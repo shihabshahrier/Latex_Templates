@@ -1,0 +1,35 @@
+\documentclass[a0paper,portrait]{article}
+\usepackage[margin=1.5cm]{geometry}
+\usepackage{multicol}
+\usepackage{xcolor}
+
+\definecolor{navy}{HTML}{002147}
+
+\begin{document}
+\begin{center}
+    \colorbox{navy}{\textcolor{white}{\Huge \bfseries Parallel Compile Engines for LaTeX Templates}}
+    \vspace{0.5cm}\\
+    {\Large \bfseries Researcher Name, Advisor Name} \\
+    {\large CSE Department, Global University}
+\end{center}
+
+\vspace{1cm}
+\begin{multicols}{3}
+\section*{1. Abstract}
+This poster details a highly robust, automated parallel compilation engine. It handles compilation, error reporting, and automatic build cleanup cleanly.
+
+\section*{2. Parallel Scaffolding}
+Our Python platform scaffolds LaTeX document directories recursively:
+\begin{itemize}
+    \item Isolate preamble settings in \texttt{main.tex}.
+    \item Segment contents in \texttt{sections/}.
+    \item Standardize targets using custom \texttt{Makefiles}.
+\end{itemize}
+
+\section*{3. Experimental Results}
+We evaluated our pipeline across 73 premium targets. Build success rates reached 100\% with an average compile time of 1.2 seconds per PDF.
+
+\section*{4. Conclusion}
+Clean, beautiful, and highly compliant. Perfect for deployment on digital editing engines.
+\end{multicols}
+\end{document}

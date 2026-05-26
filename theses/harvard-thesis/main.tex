@@ -1,0 +1,56 @@
+\documentclass[12pt,a4paper,oneside]{report}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1.2in]{geometry}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage{hyperref}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{booktabs}
+\usepackage{setspace}
+
+\definecolor{primary}{HTML}{A51C30}
+\definecolor{secondary}{HTML}{1E1E1E}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=primary,
+    citecolor=primary,
+    filecolor=primary,
+    urlcolor=primary,
+    pdftitle={Harvard Thesis Report},
+    pdfauthor={Student Author Name}
+}
+
+\onehalfspacing
+
+\begin{document}
+
+\input{sections/title.tex}
+
+\pagenumbering{roman}
+\input{sections/certificate.tex}
+\input{sections/dedication.tex}
+\input{sections/acknowledgements.tex}
+\input{sections/abstract.tex}
+
+\tableofcontents
+\listoffigures
+\listoftables
+
+\clearpage
+\pagenumbering{arabic}
+
+\input{sections/chapter1.tex}
+\input{sections/chapter2.tex}
+\input{sections/chapter3.tex}
+\input{sections/chapter4.tex}
+\input{sections/chapter5.tex}
+
+\clearpage
+\bibliographystyle{plain}
+\bibliography{references}
+
+\end{document}

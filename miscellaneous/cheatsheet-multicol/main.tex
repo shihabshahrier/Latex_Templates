@@ -1,0 +1,35 @@
+\documentclass[10pt,landscape,a4paper]{article}
+\usepackage{multicol}
+\usepackage[margin=0.25in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{xcolor}
+
+\definecolor{navy}{HTML}{002147}
+\pagestyle{empty}
+
+\begin{document}
+\begin{multicols*}{3}
+\begin{center}
+    \colorbox{navy}{\textcolor{white}{\bfseries \large LaTeX Cheatsheet \& Reference Guide}}
+\end{center}
+
+\section*{Document Classes}
+\texttt{\\documentclass[options]\{class\}} \\
+Standard classes: \texttt{article}, \texttt{report}, \texttt{book}, \texttt{beamer}, \texttt{letter}.
+
+\section*{Math Typesetting}
+Inline equation: \texttt{\$a + b = c\$} \\
+Display block:
+\begin{equation*}
+  E = mc^2
+\end{equation*}
+
+\columnbreak
+
+\section*{Tables}
+\begin{tabular}{cc}
+  A & B \\
+  1 & 2
+\end{tabular}
+\end{multicols*}
+\end{document}

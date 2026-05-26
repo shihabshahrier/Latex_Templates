@@ -1,0 +1,38 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+
+\theoremstyle{definition}
+\newtheorem{ex}{Exercise}
+
+\begin{document}
+\begin{center}
+    {\Large \bfseries Math 201: Linear Algebra Homework} \\
+    Student Name: John Doe \hfill \today
+\end{center}
+
+\hr
+\vspace{0.5cm}
+
+\begin{ex}
+Prove that the eigenvalues of a symmetric matrix are real.
+\end{ex}
+
+\begin{proof}
+Let $A$ be a symmetric real matrix, so $A = A^T$.
+Let $\lambda$ be an eigenvalue of $A$ with corresponding non-zero eigenvector $v$. Then $A v = \lambda v$.
+Taking the complex conjugate and transpose:
+\begin{equation*}
+    v^* A^T = \bar{\lambda} v^*
+\end{equation*}
+Since $A = A^T$ and $A$ is real:
+\begin{equation*}
+    v^* A v = \bar{\lambda} v^* v
+\end{equation*}
+Also:
+\begin{equation*}
+    v^* (A v) = v^* (\lambda v) = \lambda v^* v
+\end{equation*}
+Therefore, $\lambda v^* v = \bar{\lambda} v^* v$. Since $v \neq 0$, $v^* v \neq 0$, we have $\lambda = \bar{\lambda}$, meaning $\lambda$ is real.
+\end{proof}
+\end{document}

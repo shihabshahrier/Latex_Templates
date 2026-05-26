@@ -1,0 +1,39 @@
+\documentclass[11pt,a4paper]{report}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{xcolor}
+
+\theoremstyle{definition}
+\newtheorem{problem}{Problem}[section]
+
+\newenvironment{solution}{\begin{proof}[Solution]}{\end{proof}}
+
+\title{\bfseries Calculus II: Homework Solutions Guide}
+\author{Lead Instructor Name}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\chapter{Integration Techniques}
+
+\section{Integration by Parts}
+
+\begin{problem}
+Evaluate the following indefinite integral:
+\begin{equation*}
+    \int x \cos(x) \, dx
+\end{equation*}
+\end{problem}
+
+\begin{solution}
+Let $u = x$ and $dv = \cos(x) \, dx$. Then, $du = dx$ and $v = \sin(x)$.
+Using the integration by parts formula $\int u \, dv = u v - \int v \, du$:
+\begin{align*}
+    \int x \cos(x) \, dx &= x \sin(x) - \int \sin(x) \, dx \\
+    &= x \sin(x) - (-\cos(x)) + C \\
+    &= x \sin(x) + \cos(x) + C
+\end{align*}
+where $C$ is the constant of integration.
+\end{solution}
+\end{document}
