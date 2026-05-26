@@ -1,0 +1,185 @@
+LIST OF FILES FOR ClassicThesis.tex
+
+ *File List*
+ silence.sty    2012/07/02 v1.5b Selective filtering of warnings and error mess
+ages
+scrreprt.cls    2024/10/24 v3.43 KOMA-Script document class (report)
+scrkbase.sty    2024/10/24 v3.43 KOMA-Script package (KOMA-Script-dependent bas
+ics and keyval usage)
+ scrbase.sty    2024/10/24 v3.43 KOMA-Script package (KOMA-Script-independent b
+asics and keyval usage)
+scrlfile.sty    2024/10/24 v3.43 KOMA-Script package (file load hooks)
+scrlfile-hook.sty    2024/10/24 v3.43 KOMA-Script package (using LaTeX hooks)
+ scrlogo.sty    2024/10/24 v3.43 KOMA-Script package (logo)
+  keyval.sty    2022/05/29 v1.15 key=value parser (DPC)
+tocbasic.sty    2024/10/24 v3.43 KOMA-Script package (handling toc-files)
+scrsize11pt.clo    2024/10/24 v3.43 KOMA-Script font size class option (11pt)
+typearea.sty    2024/10/24 v3.43 KOMA-Script package (type area)
+classicthesis-config.tex
+inputenc.sty    2024/02/08 v1.3d Input encoding file
+ fontenc.sty    2021/04/29 v2.0v Standard LaTeX package
+   babel.sty    2025/01/01 v25.1 The multilingual framework for pdfLaTeX, LuaLa
+TeX and XeLaTeX
+ bblopts.cfg    2005/09/08 v0.1 add Arabic and Farsi to "declared" options of b
+abel
+ ngerman.ldf    2024/12/10 v2.15 German support for babel (post-1996 orthograph
+y)
+american.ldf    2017/06/06 v3.3r English support from the babel system
+babel-american.tex
+babel-ngerman.tex
+csquotes.sty    2024-04-04 v5.2o context-sensitive quotations (JAW)
+etoolbox.sty    2020/10/05 v2.5k e-TeX tools for LaTeX (JAW)
+csquotes.def    2024-04-04 v5.2o csquotes generic definitions (JAW)
+csquotes.cfg    
+biblatex.sty    2024/03/21 v3.20 programmable bibliographies (PK/MW)
+pdftexcmds.sty    2020-06-27 v0.33 Utility functions of pdfTeX for LuaTeX (HO)
+infwarerr.sty    2019/12/03 v1.5 Providing info/warning/error messages (HO)
+   iftex.sty    2024/12/12 v1.0g TeX engine tests
+ ltxcmds.sty    2023-12-04 v1.26 LaTeX kernel commands for general use (HO)
+kvoptions.sty    2022-06-15 v3.15 Key value format for package options (HO)
+kvsetkeys.sty    2022-10-05 v1.19 Key value parser (HO)
+  logreq.sty    2010/08/04 v1.0 xml request logger
+  logreq.def    2010/08/04 v1.0 logreq spec v1.0
+  ifthen.sty    2024/03/16 v1.1e Standard LaTeX ifthen package (DPC)
+     url.sty    2013/09/16  ver 3.4  Verb mode for urls, etc.
+  blx-dm.def    2024/03/21 v3.20 biblatex datamodel (PK/MW)
+blx-compat.def    2024/03/21 v3.20 biblatex compatibility (PK/MW)
+blx-bibtex.def    2024/03/21 v3.20 biblatex compatibility (PK/MW)
+biblatex.def    2024/03/21 v3.20 biblatex compatibility (PK/MW)
+blx-natbib.def    2024/03/21 v3.20 biblatex compatibility (PK/MW)
+standard.bbx    2024/03/21 v3.20 biblatex bibliography style (PK/MW)
+ numeric.bbx    2024/03/21 v3.20 biblatex bibliography style (PK/MW)
+numeric-comp.bbx    2024/03/21 v3.20 biblatex bibliography style (PK/MW)
+numeric-comp.cbx    2024/03/21 v3.20 biblatex citation style (PK/MW)
+biblatex.cfg    
+   expl3.sty    2024-12-09 L3 programming layer (loader) 
+l3backend-pdftex.def    2024-05-08 L3 backend support: PDF output (pdfTeX)
+blx-case-expl3.sty    2024/03/21 v3.20 expl3 case changing code for biblatex
+  xparse.sty    2024-08-16 L3 Experimental document command parser
+ amsmath.sty    2024/11/05 v2.17t AMS math features
+ amstext.sty    2021/08/26 v2.01 AMS text
+  amsgen.sty    1999/11/30 v2.0 generic functions
+  amsbsy.sty    1999/11/29 v1.2d Bold Symbols
+  amsopn.sty    2022/04/08 v2.04 operator names
+graphicx.sty    2021/09/16 v1.2d Enhanced LaTeX Graphics (DPC,SPQR)
+graphics.sty    2024/08/06 v1.4g Standard LaTeX Graphics (DPC,SPQR)
+    trig.sty    2023/12/02 v1.11 sin cos tan (DPC)
+graphics.cfg    2016/06/04 v1.11 sample graphics configuration
+  pdftex.def    2024/04/13 v1.2c Graphics/color driver for pdftex
+ scrhack.sty    2024-09-04 v3.42 scrhack emulation package
+  xspace.sty    2014/10/28 v1.13 Space after command names (DPC,MH)
+ acronym.sty    2024/03/30 v1.49 Support for acronyms (Tobias Oetiker)
+  suffix.sty    2006/07/15 1.5a Variant command support
+ xstring.sty    2023/08/22 v1.86 String manipulations (CT)
+ relsize.sty    2013/03/29 ver 4.1
+tabularx.sty    2023/12/11 v2.12a `tabularx' package (DPC)
+   array.sty    2024/10/17 v2.6g Tabular extension package (FMi)
+  subfig.sty    2005/06/28 ver: 1.3 subfig package
+ caption.sty    2023/08/05 v3.6o Customizing captions (AR)
+caption3.sty    2023/07/31 v2.4d caption3 kernel (AR)
+caption-koma.sto    2023/09/08 v2.0e Adaption of the caption package to the KOM
+A-Script document classes (AR)
+listings.sty    2024/09/23 1.10c (Carsten Heinz)
+lstpatch.sty    2024/09/23 1.10c (Carsten Heinz)
+ lstmisc.sty    2024/09/23 1.10c (Carsten Heinz)
+listings.cfg    2024/09/23 1.10c listings configuration
+lstlang1.sty    2024/09/23 1.10c listings language file
+lstlang2.sty    2024/09/23 1.10c listings language file
+lstlang3.sty    2024/09/23 1.10c listings language file
+lstlang1.sty    2024/09/23 1.10c listings language file
+lstlang2.sty    2024/09/23 1.10c listings language file
+lstlang3.sty    2024/09/23 1.10c listings language file
+lstlang1.sty    2024/09/23 1.10c listings language file
+lstlang2.sty    2024/09/23 1.10c listings language file
+lstlang3.sty    2024/09/23 1.10c listings language file
+ lstmisc.sty    2024/09/23 1.10c (Carsten Heinz)
+classicthesis.sty    2025/01/04 v4.8 Typographic style for a classic-looking th
+esis
+   ifpdf.sty    2019/10/25 v3.4 ifpdf legacy package. Use iftex instead.
+ ifxetex.sty    2019/10/25 v0.7 ifxetex legacy package. Use iftex instead.
+ifluatex.sty    2019/10/25 v1.5 ifluatex legacy package. Use iftex instead.
+  xcolor.sty    2024/09/29 v3.02 LaTeX color extensions (UK)
+   color.cfg    2016/01/02 v1.6 sample color configuration
+mathcolor.ltx
+dvipsnam.def    2016/06/17 v3.0m Driver-dependent file (DPC,SPQR)
+mathpazo.sty    2020/03/25 PSNFSS-v9.3 Palatino w/ Pazo Math (D.Puga, WaS) 
+beramono.sty    2004/01/31 (WaS)
+  t1pplj.fd    2004/09/06 font definitions for T1/pplj.
+microtype.sty    2024/12/12 v3.2 Micro-typographical refinements (RS)
+microtype-pdftex.def    2024/12/12 v3.2 Definitions specific to pdftex (RS)
+microtype.cfg    2024/12/12 v3.2 microtype main configuration file (RS)
+mparhack.sty    2021-05-02 v1.5 (T. Sgouros and S. Ulrich)
+booktabs.sty    2020/01/12 v1.61803398 Publication quality tables
+textcase.sty    2023/07/27 v1.04 Text only upper/lower case changing (DPC)
+scrlayer-scrpage.sty    2024/10/24 v3.43 KOMA-Script package (end user interfac
+e for scrlayer)
+scrlayer.sty    2024/10/24 v3.43 KOMA-Script package (defining layers and page 
+styles)
+titlesec.sty    2023/10/27 v2.16 Sectioning titles
+ tocloft.sty    2017/08/31 v2.3i parameterised ToC, etc., typesetting
+ scrtime.sty    2024/10/24 v3.43 KOMA-Script package (time of LaTeX run)
+prelim2e.sty    2020/11/24 v2.0 prelim2e Package
+hyperref.sty    2024-11-05 v7.01l Hypertext links for LaTeX
+kvdefinekeys.sty    2019-12-19 v1.6 Define keys (HO)
+pdfescape.sty    2019/12/09 v1.15 Implements pdfTeX's escape features (HO)
+ hycolor.sty    2020-01-27 v1.10 Color options for hyperref/bookmark (HO)
+ nameref.sty    2023-11-26 v2.56 Cross-referencing by name of section
+refcount.sty    2019/12/15 v3.6 Data extraction from label references (HO)
+gettitlestring.sty    2019/12/15 v1.6 Cleanup title references (HO)
+stringenc.sty    2019/11/29 v1.12 Convert strings between diff. encodings (HO)
+  pd1enc.def    2024-11-05 v7.01l Hyperref: PDFDocEncoding definition (HO)
+ intcalc.sty    2019/12/15 v1.3 Expandable calculations with integers (HO)
+   puenc.def    2024-11-05 v7.01l Hyperref: PDF Unicode definition (HO)
+  bitset.sty    2019/12/09 v1.3 Handle bit-vector datatype (HO)
+bigintcalc.sty    2019/12/15 v1.5 Expandable calculations on big integers (HO)
+atbegshi-ltx.sty    2021/01/10 v1.0c Emulation of the original atbegshi
+package with kernel methods
+ hpdftex.def    2024-11-05 v7.01l Hyperref driver for pdfTeX
+atveryend-ltx.sty    2020/08/19 v1.0a Emulation of the original atveryend packa
+ge
+with kernel methods
+rerunfilecheck.sty    2022-07-10 v1.10 Rerun checks for auxiliary files (HO)
+uniquecounter.sty    2019/12/15 v1.4 Provide unlimited unique counter (HO)
+ english.lbx    2024/03/21 v3.20 biblatex localization (PK/MW)
+american.lbx    2024/03/21 v3.20 biblatex localization (PK/MW)
+  german.lbx    2024/03/21 v3.20 biblatex localization (PK/MW)
+ ngerman.lbx    2024/03/21 v3.20 biblatex localization (PK/MW)
+ClassicThesis.bbl
+ClassicThesis1-blx.bbl
+supp-pdf.mkii
+epstopdf-base.sty    2020-01-24 v2.11 Base part for package epstopdf
+epstopdf-sys.cfg    2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
+  mt-ppl.cfg    2005/11/16 v1.6 microtype config. file: Palatino (RS)
+ClassicThesis.out
+ClassicThesis.out
+bookmark.sty    2023-12-10 v1.31 PDF bookmarks (HO)
+bkm-pdftex.def    2023-12-10 v1.31 bookmark driver for pdfTeX and luaTeX (HO)
+FrontBackmatter/DirtyTitlepage.tex
+ ot1pplx.fd    2004/09/06 font definitions for OT1/pplx.
+ omlzplm.fd    2002/09/08 Fontinst v1.914 font definitions for OML/zplm.
+ omszplm.fd    2002/09/08 Fontinst v1.914 font definitions for OMS/zplm.
+ omxzplm.fd    2002/09/08 Fontinst v1.914 font definitions for OMX/zplm.
+ ot1zplm.fd    2002/09/08 Fontinst v1.914 font definitions for OT1/zplm.
+FrontBackmatter/Titlepage.tex
+gfx/TFZsuperellipse_bw.pdf
+FrontBackmatter/Titleback.tex
+ ts1pplj.fd    2004/09/06 font definitions for TS1/pplj.
+FrontBackmatter/Dedication.tex
+FrontBackmatter/Abstract.tex
+   t1fvm.fd    2004/09/07 scalable font definitions for T1/fvm.
+FrontBackmatter/Publications.tex
+FrontBackmatter/Acknowledgments.tex
+FrontBackmatter/Contents.tex
+Chapters/Chapter01.tex
+Chapters/Chapter02.tex
+gfx/example_1.jpg
+gfx/example_2.jpg
+gfx/example_3.jpg
+gfx/example_4.jpg
+Chapters/Chapter03.tex
+Chapters/Chapter0A.tex
+lstlang1.sty    2024/09/23 1.10c listings language file
+FrontBackmatter/Bibliography.tex
+FrontBackmatter/Declaration.tex
+FrontBackmatter/Colophon.tex
+ ***********

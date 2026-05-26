@@ -1,47 +1,37 @@
 \begin{titlepage}
 \begin{center}
-    \vspace*{1cm}
+    \vspace*{1.0cm}
     
-    % University Logo Emblem drawn in pure TikZ
-    \begin{tikzpicture}[scale=2]
-        
-            \draw[fill=primary, draw=none] (0,0.4) -- (-0.4,-0.3) -- (0.4,-0.3) -- cycle;
-            \draw[fill=white, draw=none] (0,0.25) -- (-0.25,-0.2) -- (0.25,-0.2) -- cycle;
-            \node[primary, font=\tiny\bfseries] at (0,-0.5) {BUET};
-        
-    \end{tikzpicture}
+    % Title of the Thesis (large, bold, centered)
+    {\fontsize{20}{24}\selectfont \bfseries THESIS TITLE: DEEP NEURAL NETWORK MODELING FOR ROBUST NATURALLY OCCURRING SEQUENCE DETECTION IN GENOMIC SEQUENCES}\\[1.5cm]
     
-    \vspace{1.5cm}
+    {\large \bfseries A THESIS}\\[0.3cm]
+    {\large Submitted by}\\[0.5cm]
     
-    {\huge \bfseries \color{primary} Thesis Title: Scalable and Robust LaTeX Template Scaffolding for Modern Publishing}
+    % Student Name and Details
+    {\fontsize{14}{16}\selectfont \bfseries John Doe}\\[0.2cm]
+    {Student No: 1024315P}\\[0.3cm]
+    {\fontsize{14}{16}\selectfont \bfseries Jane Smith}\\[0.2cm]
+    {Student No: 1024316P}\\[1.5cm]
     
-    \vspace{1.5cm}
+    {\large In partial fulfillment of the requirements for the degree of}\\[0.3cm]
+    {\large \bfseries MASTER OF SCIENCE IN COMPUTER SCIENCE AND ENGINEERING}\\[1.5cm]
     
-    {\Large \bfseries Student Author Name} \\
-    \vspace{0.2cm}
-    {Roll/ID: 1029384}
+    % BUET Crest Representation
+    \begin{tikzpicture}[scale=0.9]
+        % Draw an elegant abstract university crest using pure TikZ vector shapes (shield outline + columns)
+        \draw[line width=1.5pt, draw=black] (-0.8,-1.2) -- (-0.8,0.8) -- (0.8,0.8) -- (0.8,-1.2) -- (0,-1.8) -- cycle;
+        \draw[line width=1pt] (-0.4,-0.8) rectangle (-0.2,0.4);
+        \draw[line width=1pt] (0.2,-0.8) rectangle (0.4,0.4);
+        \draw[line width=1pt] (-0.6,0.6) -- (0.6,0.6);
+        \draw[line width=1.5pt] (-1,-1.4) -- (1,-1.4);
+        \node[font=\tiny\bfseries] at (0,-0.2) {B U E T};
+    \end{tikzpicture}\\[1.2cm]
     
-    \vspace{1.5cm}
-    
-    {A thesis submitted in partial fulfillment of the requirements for the degree of} \\
-    \vspace{0.3cm}
-    {\large \bfseries \color{secondary} Bachelor of Science in Computer Science and Engineering}
-    
-    \vspace{1.5cm}
-    
-    {\large Department of Computer Science and Engineering} \\
-    \vspace{0.2cm}
-    {\large \bfseries \color{primary} Bangladesh University of Engineering and Technology} \\
-    \vspace{0.1cm}
-    {Dhaka, Bangladesh}
-    
-    \vfill
-    
-    {Supervised by:} \\
-    {\large \bfseries Prof. Advisor Name} \\
-    {Designation, CSE Department}
-    
-    \vspace{1cm}
+    % Department & University
+    {\fontsize{14}{16}\selectfont \bfseries DEPARTMENT OF COMPUTER SCIENCE AND ENGINEERING}\\[0.2cm]
+    {\fontsize{14}{16}\selectfont \bfseries BANGLADESH UNIVERSITY OF ENGINEERING AND TECHNOLOGY}\\[0.3cm]
+    {\large Dhaka-1000, Bangladesh}\\[1.0cm]
     
     {\large \today}
     

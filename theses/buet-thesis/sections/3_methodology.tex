@@ -1,0 +1,12 @@
+\chapter{METHODOLOGY}
+\label{ch:methodology}
+
+Our proposed architecture integrates a bidirectional LSTM layer with a multi-head self-attention block, allowing the network to capture both local structure and global context.
+
+\section{System Architecture}
+The system layout is depicted in the standard layers:
+\begin{enumerate}
+    \item **Input Embedding**: Maps characters $\{A, C, G, T\}$ into a dense vector space.
+    \item **BiLSTM Layer**: Processes sequence in both forward and backward directions.
+    \item **Multi-Head Attention**: Captures semantic alignments across long ranges.
+\end{enumerate}

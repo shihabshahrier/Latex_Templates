@@ -1,4 +1,4 @@
 all:
-	latexmk -pdf -interaction=nonstopmode main.tex
+	latexmk -pdfxe -interaction=nonstopmode main.tex
 clean:
 	latexmk -C

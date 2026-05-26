@@ -1,117 +1,114 @@
-\documentclass[letterpaper,11pt]{article}
-\usepackage{latexsym}
-\usepackage[empty]{fullpage}
-\usepackage{titlesec}
-\usepackage{marvosym}
-\usepackage[usenames,dvipsnames]{color}
-\usepackage{verbatim}
-\usepackage{enumitem}
-\usepackage[hidelinks]{hyperref}
-\usepackage{fancyhdr}
-\usepackage[english]{babel}
-\usepackage{tabularx}
-\input{glyphtounicode}
+%!TEX TS-program = xelatex
+%!TEX encoding = UTF-8 Unicode
+% Awesome CV LaTeX Template for CV/Resume
+%
+% This template has been downloaded from:
+% https://github.com/posquit0/Awesome-CV
+%
+% Author:
+% Claud D. Park <posquit0.bj@gmail.com>
+% http://www.posquit0.com
+%
+% Template license:
+% CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0/)
+%
 
-\pagestyle{fancy}
-\fancyhf{} % clear all header and footer fields
-\fancyfoot{}
-\renewcommand{\headrulewidth}{0pt}
-\renewcommand{\footrulewidth}{0pt}
 
-% Adjust margins
-\addtolength{\oddsidemargin}{-0.5in}
-\addtolength{\evensidemargin}{-0.5in}
-\addtolength{\textwidth}{1in}
-\addtolength{\topmargin}{-.5in}
-\addtolength{\textheight}{1.0in}
+%-------------------------------------------------------------------------------
+% CONFIGURATIONS
+%-------------------------------------------------------------------------------
+% A4 paper size by default, use 'letterpaper' for US letter
+\documentclass[11pt, a4paper]{awesome-cv}
 
-\urlstyle{same}
-\raggedbottom
-\raggedright
-\setlength{\tabcolsep}{0in}
+% Configure page margins with geometry
+\geometry{left=1.4cm, top=.8cm, right=1.4cm, bottom=1.8cm, footskip=.5cm}
 
-% Sections formatting
-\titleformat{\section}{
-  \vspace{-4pt}\scshape\raggedright\large
-}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+% Color for highlights
+% Awesome Colors: awesome-emerald, awesome-skyblue, awesome-red, awesome-pink, awesome-orange
+%                 awesome-nephritis, awesome-concrete, awesome-darknight
+\colorlet{awesome}{awesome-red}
+% Uncomment if you would like to specify your own color
+% \definecolor{awesome}{HTML}{3E6D9C}
 
-% Ensure that generate pdf is machine readable/ATS parsable
-\pdfgentounicode=1
+% Colors for text
+% Uncomment if you would like to specify your own color
+% \definecolor{darktext}{HTML}{414141}
+% \definecolor{text}{HTML}{333333}
+% \definecolor{graytext}{HTML}{5D5D5D}
+% \definecolor{lighttext}{HTML}{999999}
+% \definecolor{sectiondivider}{HTML}{5D5D5D}
 
-% Custom commands
-\newcommand{\resumeItem}[1]{
-  \item\small{
-    {#1 \vspace{-2pt}}
-  }
-}
+% Set false if you don't want to highlight section with awesome color
+\setbool{acvSectionColorHighlight}{true}
 
-\newcommand{\resumeSubheading}[4]{
-  \vspace{-2pt}\item
-    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
-      \textbf{#1} & #2 \\
-      \textit{\small#3} & \textit{\small #4} \\
-    \end{tabular*}\vspace{-7pt}
-}
+% If you would like to change the social information separator from a pipe (|) to something else
+\renewcommand{\acvHeaderSocialSep}{\quad\textbar\quad}
 
-\newcommand{\resumeProjectHeading}[2]{
-    \item
-    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
-      \small#1 & #2 \\
-    \end{tabular*}\vspace{-7pt}
-}
 
-\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+%-------------------------------------------------------------------------------
+%	PERSONAL INFORMATION
+%	Comment any of the lines below if they are not required
+%-------------------------------------------------------------------------------
+% Available options: circle|rectangle,edge/noedge,left/right
+% \photo[rectangle,edge,right]{./examples/profile}
+\name{Byungjin}{Park}
+\position{DevOps Engineer{\enskip\cdotp\enskip}Software Architect}
+\address{Mapo-gu, Seoul, Republic of Korea}
 
-\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}]}
-\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
-\newcommand{\resumeItemListStart}{\begin{itemize}}
-\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+\mobile{(+82) 10-9030-1843}
+%\whatsapp{(+82) 10-9030-1843}
+\email{posquit0.bj@gmail.com}
+%\dateofbirth{January 1st, 1970}
+\homepage{www.posquit0.com}
+\github{posquit0}
+\linkedin{posquit0}
+% \gitlab{gitlab-id}
+% \stackoverflow{SO-id}{SO-name}
+% \twitter{@twit}
+% \x{x-id}
+% \skype{skype-id}
+% \reddit{reddit-id}
+% \medium{madium-id}
+% \kaggle{kaggle-id}
+% \hackerrank{hackerrank-id}
+% \telegram{telegram-username}
+% \googlescholar{googlescholar-id}{name-to-display}
+%% \firstname and \lastname will be used
+% \googlescholar{googlescholar-id}{}
+% \extrainfo{extra information}
 
+\quote{``Be the change that you want to see in the world."}
+
+
+%-------------------------------------------------------------------------------
 \begin{document}
 
-\begin{center}
-    \textbf{\Huge \scshape Awesome Applicant} \\ \vspace{1pt}
-    \small 123-456-7890 $|$ \href{mailto:jake@university.edu}{\underline{jake@university.edu}} $|$ 
-    \href{https://linkedin.com}{\underline{linkedin.com/in/jake}} $|$
-    \href{https://github.com}{\underline{github.com/jake}}
-\end{center}
+% Print the header with above personal information
+% Give optional argument to change alignment(C: center, L: left, R: right)
+\makecvheader[C]
 
-\section{Education}
-  \resumeSubHeadingListStart
-    \resumeSubheading
-      {Top University}{City, Country}
-      {Bachelor of Science in Computer Science, GPA: 3.95/4.00}{Aug. 2022 -- May 2026}
-  \resumeSubHeadingListEnd
+% Print the footer with 3 arguments(<left>, <center>, <right>)
+% Leave any of these blank if they are not needed
+\makecvfooter
+  {\today}
+  {Byungjin Park~~~·~~~Résumé}
+  {\thepage}
 
-\section{Experience}
-  \resumeSubHeadingListStart
-    \resumeSubheading
-      {Software Engineer Intern}{June 2025 -- Aug. 2025}
-      {Tech Corporation}{Silicon Valley, CA}
-      \resumeItemListStart
-        \resumeItem{Developed a scalable REST API using FastAPI and PostgreSQL, accelerating load times by 25\%.}
-        \resumeItem{Designed and implemented a React-based analytics dashboard, optimizing core web vitals.}
-        \resumeItem{Dockerized backend services, integrating CI/CD pipelines to automate builds and test suites.}
-      \resumeItemListEnd
-  \resumeSubHeadingListEnd
 
-\section{Projects}
-  \resumeSubHeadingListStart
-    \resumeProjectHeading
-      {\textbf{Gitlytics Dashboard} $|$ \emph{React, Python, Docker, Redis}}{Jan. 2025}
-      \resumeItemListStart
-        \resumeItem{Built a real-time collaboration visualizer using Python backend and React charts.}
-        \resumeItem{Utilized Redis queues to handle high-frequency incoming API webhooks smoothly.}
-      \resumeItemListEnd
-  \resumeSubHeadingListEnd
+%-------------------------------------------------------------------------------
+%	CV/RESUME CONTENT
+%	Each section is imported separately, open each file in turn to modify content
+%-------------------------------------------------------------------------------
+\input{sections/summary.tex}
+\input{sections/experience.tex}
+\input{sections/honors.tex}
+\input{sections/certificates.tex}
+% \input{sections/presentation.tex}
+% \input{sections/writing.tex}
+% \input{sections/committees.tex}
+\input{sections/education.tex}
+% \input{sections/extracurricular.tex}
 
-\section{Technical Skills}
- \begin{itemize}[leftmargin=0.15in, label={}]
-    \small{\item{
-     \textbf{Languages}{: Python, Java, JavaScript, C++, SQL, HTML/CSS} \\
-     \textbf{Frameworks}{: React, FastAPI, Node.js, Flask, Tailwind CSS} \\
-     \textbf{Developer Tools}{: Git, Docker, Kubernetes, AWS, VS Code}
-    }}
- \end{itemize}
 
+%-------------------------------------------------------------------------------
 \end{document}

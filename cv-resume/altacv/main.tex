@@ -1,117 +1,298 @@
-\documentclass[letterpaper,11pt]{article}
-\usepackage{latexsym}
-\usepackage[empty]{fullpage}
-\usepackage{titlesec}
-\usepackage{marvosym}
-\usepackage[usenames,dvipsnames]{color}
-\usepackage{verbatim}
-\usepackage{enumitem}
-\usepackage[hidelinks]{hyperref}
-\usepackage{fancyhdr}
-\usepackage[english]{babel}
-\usepackage{tabularx}
-\input{glyphtounicode}
+%%%%%%%%%%%%%%%%%
+% This is an sample CV template created using altacv.cls
+% (v1.7.4, 30 July 2025) written by LianTze Lim (liantze@gmail.com). Compiles with pdfLaTeX, XeLaTeX and LuaLaTeX.
+%
+%% It may be distributed and/or modified under the
+%% conditions of the LaTeX Project Public License, either version 1.3
+%% of this license or (at your option) any later version.
+%% The latest version of this license is in
+%%    http://www.latex-project.org/lppl.txt
+%% and version 1.3 or later is part of all distributions of LaTeX
+%% version 2003/12/01 or later.
+%%%%%%%%%%%%%%%%
 
-\pagestyle{fancy}
-\fancyhf{} % clear all header and footer fields
-\fancyfoot{}
-\renewcommand{\headrulewidth}{0pt}
-\renewcommand{\footrulewidth}{0pt}
+%% Use the "normalphoto" option if you want a normal photo instead of cropped to a circle
+% \documentclass[10pt,a4paper,withhyper,normalphoto]{altacv}
 
-% Adjust margins
-\addtolength{\oddsidemargin}{-0.5in}
-\addtolength{\evensidemargin}{-0.5in}
-\addtolength{\textwidth}{1in}
-\addtolength{\topmargin}{-.5in}
-\addtolength{\textheight}{1.0in}
+\documentclass[10pt,a4paper,withhyper]{altacv}
+%% AltaCV uses the fontawesome5 and simpleicons packages.
+%% See http://texdoc.net/pkg/fontawesome5 and http://texdoc.net/pkg/simpleicons for full list of symbols.
 
-\urlstyle{same}
-\raggedbottom
-\raggedright
-\setlength{\tabcolsep}{0in}
+% Change the page layout if you need to
+\geometry{left=1.25cm,right=1.25cm,top=1.5cm,bottom=1.5cm,columnsep=1.2cm}
 
-% Sections formatting
-\titleformat{\section}{
-  \vspace{-4pt}\scshape\raggedright\large
-}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+% The paracol package lets you typeset columns of text in parallel
+\usepackage{paracol}
 
-% Ensure that generate pdf is machine readable/ATS parsable
-\pdfgentounicode=1
+% Change the font if you want to, depending on whether
+% you're using pdflatex or xelatex/lualatex
+% WHEN COMPILING WITH XELATEX PLEASE USE
+% xelatex -shell-escape -output-driver="xdvipdfmx -z 0" sample.tex
+\iftutex
+  % If using xelatex or lualatex:
+  % \setmainfont{Roboto Slab}
+  \setsansfont{Arial}
+  \renewcommand{\familydefault}{\sfdefault}
+\else
+  % If using pdflatex:
+  \usepackage[rm]{roboto}
+  \usepackage[defaultsans]{lato}
+  % \usepackage{sourcesanspro}
+  \renewcommand{\familydefault}{\sfdefault}
+\fi
 
-% Custom commands
-\newcommand{\resumeItem}[1]{
-  \item\small{
-    {#1 \vspace{-2pt}}
-  }
-}
+% Change the colours if you want to
+\definecolor{SlateGrey}{HTML}{2E2E2E}
+\definecolor{LightGrey}{HTML}{666666}
+\definecolor{DarkPastelRed}{HTML}{450808}
+\definecolor{PastelRed}{HTML}{8F0D0D}
+\definecolor{GoldenEarth}{HTML}{E7D192}
+\colorlet{name}{black}
+\colorlet{tagline}{PastelRed}
+\colorlet{heading}{DarkPastelRed}
+\colorlet{headingrule}{GoldenEarth}
+\colorlet{subheading}{PastelRed}
+\colorlet{accent}{PastelRed}
+\colorlet{emphasis}{SlateGrey}
+\colorlet{body}{LightGrey}
 
-\newcommand{\resumeSubheading}[4]{
-  \vspace{-2pt}\item
-    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
-      \textbf{#1} & #2 \\
-      \textit{\small#3} & \textit{\small #4} \\
-    \end{tabular*}\vspace{-7pt}
-}
+% Change some fonts, if necessary
+\renewcommand{\namefont}{\Huge\rmfamily\bfseries}
+\renewcommand{\personalinfofont}{\footnotesize}
+\renewcommand{\cvsectionfont}{\LARGE\rmfamily\bfseries}
+\renewcommand{\cvsubsectionfont}{\large\bfseries}
 
-\newcommand{\resumeProjectHeading}[2]{
-    \item
-    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
-      \small#1 & #2 \\
-    \end{tabular*}\vspace{-7pt}
-}
 
-\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+% Change the bullets for itemize and rating marker
+% for \cvskill if you want to
+\renewcommand{\cvItemMarker}{{\small\textbullet}}
+\renewcommand{\cvRatingMarker}{\faCircle}
+% ...and the markers for the date/location for \cvevent
+% \renewcommand{\cvDateMarker}{\faCalendar*[regular]}
+% \renewcommand{\cvLocationMarker}{\faMapMarker*}
 
-\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}]}
-\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
-\newcommand{\resumeItemListStart}{\begin{itemize}}
-\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+
+% If your CV/résumé is in a language other than English,
+% then you probably want to change these so that when you
+% copy-paste from the PDF or run pdftotext, the location
+% and date marker icons for \cvevent will paste as correct
+% translations. For example Spanish:
+% \renewcommand{\locationname}{Ubicación}
+% \renewcommand{\datename}{Fecha}
+
+
+%% Use (and optionally edit if necessary) this .tex if you
+%% want to use an author-year reference style like APA(6)
+%% for your publication list
+% \input{pubs-authoryear.cfg}
+
+%% Use (and optionally edit if necessary) this .tex if you
+%% want an originally numerical reference style like IEEE
+%% for your publication list
+\input{pubs-num.cfg}
+
+%% references.bib contains your publications
+\addbibresource{references.bib}
 
 \begin{document}
+\name{Your Name Here}
+\tagline{Your Position or Tagline Here}
+%% You can add multiple photos on the left or right
+\photoR{2.8cm}{Globe_High}
+% \photoL{2.5cm}{Yacht_High,Suitcase_High}
 
-\begin{center}
-    \textbf{\Huge \scshape Alta CV Designer} \\ \vspace{1pt}
-    \small 123-456-7890 $|$ \href{mailto:jake@university.edu}{\underline{jake@university.edu}} $|$ 
-    \href{https://linkedin.com}{\underline{linkedin.com/in/jake}} $|$
-    \href{https://github.com}{\underline{github.com/jake}}
-\end{center}
+\personalinfo{%
+  % Not all of these are required!
+  \email{your_name@email.com}
+  \phone{000-00-0000}
+  \mailaddress{Åddrésş, Street, 00000 Cóuntry}
+  \location{Location, COUNTRY}
+  \homepage{www.homepage.com}
+  % \twitter{@twitterhandle}
+  \xtwitter{@x-handle}
+  \linkedin{your_id}
+  \github{your_id}
+  \orcid{0000-0000-0000-0000}
+  %% You can add your own arbitrary detail with
+  %% \printinfo{symbol}{detail}[optional hyperlink prefix]
+  % \printinfo{\faPaw}{Hey ho!}[https://example.com/]
 
-\section{Education}
-  \resumeSubHeadingListStart
-    \resumeSubheading
-      {Top University}{City, Country}
-      {Bachelor of Science in Computer Science, GPA: 3.95/4.00}{Aug. 2022 -- May 2026}
-  \resumeSubHeadingListEnd
+  %% Or you can declare your own field with
+  %% \NewInfoFiled{fieldname}{symbol}[optional hyperlink prefix] and use it:
+  \NewInfoField{gitlab}{\faGitlab}[https://gitlab.com/]
+  \gitlab{your_id}
+  %%
+  %% For services and platforms like Mastodon where there isn't a
+  %% straightforward relation between the user ID/nickname and the hyperlink,
+  %% you can use \printinfo directly e.g.
+  % \printinfo{\faMastodon}{@username@instace}[https://instance.url/@username]
+  %% But if you absolutely want to create new dedicated info fields for
+  %% such platforms, then use \NewInfoField* with a star:
+  \NewInfoField*{mastodon}{\faMastodon}
+  %% then you can use \mastodon, with TWO arguments where the 2nd argument is
+  %% the full hyperlink.
+  \mastodon{@username@instance}{https://instance.url/@username}
+}
 
-\section{Experience}
-  \resumeSubHeadingListStart
-    \resumeSubheading
-      {Software Engineer Intern}{June 2025 -- Aug. 2025}
-      {Tech Corporation}{Silicon Valley, CA}
-      \resumeItemListStart
-        \resumeItem{Developed a scalable REST API using FastAPI and PostgreSQL, accelerating load times by 25\%.}
-        \resumeItem{Designed and implemented a React-based analytics dashboard, optimizing core web vitals.}
-        \resumeItem{Dockerized backend services, integrating CI/CD pipelines to automate builds and test suites.}
-      \resumeItemListEnd
-  \resumeSubHeadingListEnd
+\makecvheader
+%% Depending on your tastes, you may want to make fonts of itemize environments slightly smaller
+% \AtBeginEnvironment{itemize}{\small}
 
-\section{Projects}
-  \resumeSubHeadingListStart
-    \resumeProjectHeading
-      {\textbf{Gitlytics Dashboard} $|$ \emph{React, Python, Docker, Redis}}{Jan. 2025}
-      \resumeItemListStart
-        \resumeItem{Built a real-time collaboration visualizer using Python backend and React charts.}
-        \resumeItem{Utilized Redis queues to handle high-frequency incoming API webhooks smoothly.}
-      \resumeItemListEnd
-  \resumeSubHeadingListEnd
+%% Set the left/right column width ratio to 6:4.
+\columnratio{0.6}
 
-\section{Technical Skills}
- \begin{itemize}[leftmargin=0.15in, label={}]
-    \small{\item{
-     \textbf{Languages}{: Python, Java, JavaScript, C++, SQL, HTML/CSS} \\
-     \textbf{Frameworks}{: React, FastAPI, Node.js, Flask, Tailwind CSS} \\
-     \textbf{Developer Tools}{: Git, Docker, Kubernetes, AWS, VS Code}
-    }}
- \end{itemize}
+% Start a 2-column paracol. Both the left and right columns will automatically
+% break across pages if things get too long.
+\begin{paracol}{2}
+\cvsection{Experience}
+
+\cvevent{Job Title 1}{Company 1}{Month 20XX -- Ongoing}{Location}
+\begin{itemize}
+\item Job description 1
+\item Job description 2
+\end{itemize}
+
+\divider
+
+\cvevent{Job Title 2}{Company 2}{Month 20XX -- Ongoing}{Location}
+\begin{itemize}
+\item Job description 1
+\item Job description 2
+\end{itemize}
+
+\cvsection{Projects}
+
+\cvevent{Project 1}{Funding agency/institution}{}{}
+\begin{itemize}
+\item Details
+\end{itemize}
+
+\divider
+
+\cvevent{Project 2}{Funding agency/institution}{Project duration}{}
+A short abstract would also work.
+
+\medskip
+
+\cvsection{A Day of My Life}
+
+% Adapted from @Jake's answer from http://tex.stackexchange.com/a/82729/226
+% \wheelchart{outer radius}{inner radius}{
+% comma-separated list of value/text width/color/detail}
+\wheelchart{1.5cm}{0.5cm}{%
+  6/8em/accent!30/{Sleep,\\beautiful sleep},
+  3/8em/accent!40/Hopeful novelist by night,
+  8/8em/accent!60/Daytime job,
+  2/10em/accent/Sports and relaxation,
+  5/6em/accent!20/Spending time with family
+}
+
+% use ONLY \newpage if you want to force a page break for
+% ONLY the current column
+\newpage
+
+\cvsection{Publications}
+
+%% Specify your last name(s) and first name(s) as given in the .bib to automatically bold your own name in the publications list.
+%% One caveat: You need to write \bibnamedelima where there's a space in your name for this to work properly; or write \bibnamedelimi if you use initials in the .bib
+%% You can specify multiple names, especially if you have changed your name or if you need to highlight multiple authors.
+\mynames{Lim/Lian\bibnamedelima Tze,
+  Wong/Lian\bibnamedelima Tze,
+  Lim/Tracy,
+  Lim/L.\bibnamedelimi T.}
+%% MAKE SURE THERE IS NO SPACE AFTER THE FINAL NAME IN YOUR \mynames LIST
+
+\nocite{*}
+
+\printbibliography[heading=pubtype,title={\printinfo{\faBook}{Books}},type=book]
+
+\divider
+
+\printbibliography[heading=pubtype,title={\printinfo{\faFile*[regular]}{Journal Articles}},type=article]
+
+\divider
+
+\printbibliography[heading=pubtype,title={\printinfo{\faUsers}{Conference Proceedings}},type=inproceedings]
+
+%% Switch to the right column. This will now automatically move to the second
+%% page if the content is too long.
+\switchcolumn
+
+\cvsection{My Life Philosophy}
+
+\begin{quote}
+``Something smart or heartfelt, preferably in one sentence.''
+\end{quote}
+
+\cvsection{Most Proud of}
+
+\cvachievement{\faTrophy}{Fantastic Achievement}{and some details about it}
+
+\divider
+
+\cvachievement{\faHeartbeat}{Another achievement}{more details about it of course}
+
+\divider
+
+\cvachievement{\faHeartbeat}{Another achievement}{more details about it of course}
+
+\cvsection{Strengths}
+
+% Don't overuse these \cvtag boxes — they're just eye-candies and not essential. If something doesn't fit on a single line, it probably works better as part of an itemized list (probably inlined itemized list), or just as a comma-separated list of strengths.
+
+\cvtag{Hard-working}
+\cvtag{Eye for detail}\\
+\cvtag{Motivator \& Leader}
+
+\divider\smallskip
+
+\cvtag{C++}
+\cvtag{Embedded Systems}\\
+\cvtag{Statistical Analysis}
+
+\cvsection{Languages}
+
+\cvskill{English}{5}
+\divider
+
+\cvskill{Spanish}{4}
+\divider
+
+\cvskill{German}{3.5} %% Supports X.5 values.
+
+%% Yeah I didn't spend too much time making all the
+%% spacing consistent... sorry. Use \smallskip, \medskip,
+%% \bigskip, \vspace etc to make adjustments.
+\medskip
+
+\cvsection{Education}
+
+\cvevent{Ph.D.\ in Your Discipline}{Your University}{Sept 2002 -- June 2006}{}
+Thesis title: Wonderful Research
+
+\divider
+
+\cvevent{M.Sc.\ in Your Discipline}{Your University}{Sept 2001 -- June 2002}{}
+
+\divider
+
+\cvevent{B.Sc.\ in Your Discipline}{Stanford University}{Sept 1998 -- June 2001}{}
+
+% \divider
+
+\cvsection{Referees}
+
+% \cvref{name}{email}{mailing address}
+\cvref{Prof.\ Alpha Beta}{Institute}{a.beta@university.edu}
+{Address Line 1\\Address Line 2}
+
+\divider
+
+\cvref{Prof.\ Gamma Delta}{Institute}{g.delta@university.edu}
+{Address Line 1\\Address Line 2}
+
+
+\end{paracol}
+
 
 \end{document}
