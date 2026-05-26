@@ -1,0 +1,59 @@
+\documentclass[12pt,a4paper,oneside]{report}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1.2in]{geometry}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage{hyperref}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{booktabs}
+\usepackage{setspace}
+\usepackage[backend=biber,style=ieee,sorting=none]{biblatex}
+
+% Define Colors based on University branding
+\definecolor{primary}{HTML}{8C1515}
+\definecolor{secondary}{HTML}{5E5E5E}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=primary,
+    citecolor=primary,
+    filecolor=primary,
+    urlcolor=primary,
+    pdftitle={Stanford Thesis Report},
+    pdfauthor={Student Author Name}
+}
+
+\addbibresource{references.bib}
+\onehalfspacing
+
+\begin{document}
+
+% Title and Preliminaries
+\input{sections/title.tex}
+
+\pagenumbering{roman}
+\input{sections/dedication.tex}
+\input{sections/acknowledgements.tex}
+\input{sections/abstract.tex}
+
+\tableofcontents
+\listoffigures
+\listoftables
+
+\clearpage
+\pagenumbering{arabic}
+
+% Chapters
+\input{sections/chapter1.tex}
+\input{sections/chapter2.tex}
+\input{sections/chapter3.tex}
+\input{sections/chapter4.tex}
+\input{sections/chapter5.tex}
+
+\clearpage
+\printbibliography[heading=bibintoc,title={References}]
+
+\end{document}
