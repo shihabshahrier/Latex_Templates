@@ -1,0 +1,109 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=0.8in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage{setspace}
+\usepackage{tabularx}
+
+\definecolor{maroon}{HTML}{800000}
+\definecolor{gold}{HTML}{C5A059}
+
+\pagestyle{empty}
+\doublespacing
+
+\begin{document}
+
+% Elegant Vector Borders in pure TikZ
+\begin{tikzpicture}[remember picture, overlay]
+    % Outer gold border
+    \draw[line width=2pt, color=gold] 
+        ([shift={(1cm,-1cm)}]current page.north west) 
+        rectangle ([shift={(-1cm,1.4cm)}]current page.south east);
+        
+    % Inner thin maroon border
+    \draw[line width=1pt, color=maroon] 
+        ([shift={(1.2cm,-1.2cm)}]current page.north west) 
+        rectangle ([shift={(-1.2cm,1.6cm)}]current page.south east);
+        
+    % Corner decorative motifs
+    \foreach \x/\y/\rot in {1.2/-1.2/0, -1.2/-1.2/90, -1.2/1.6/180, 1.2/1.6/270} {
+        \begin{scope}[shift={([shift={(\x cm,\y cm)}]current page.north west)}, rotate=\rot]
+            \draw[fill=maroon, draw=none] (0,0) -- (0.3,0) -- (0,0.3) -- cycle;
+            \draw[color=gold, thick] (0.1,0.1) -- (0.4,0.1) -- (0.1,0.4) -- cycle;
+        \end{scope}
+    }
+\end{tikzpicture}
+
+\begin{center}
+    \vspace*{0.5cm}
+    {\Huge \bfseries \color{maroon} BIODATA} \\
+    \vspace{0.2cm}
+    {\large \bfseries \color{gold} For Marriage \& Matchmaking}
+    \vspace{0.8cm}
+\end{center}
+
+\noindent
+\textbf{\large \color{maroon} Personal Information}
+\vspace{0.2cm}
+\hrule[color=gold]
+\vspace{0.4cm}
+
+\noindent
+\begin{tabularx}{\textwidth}{@{}l X@{}}
+    \textbf{Name:} & Student Author Name \\
+    \textbf{Date of Birth:} & October 12, 2002 \\
+    \textbf{Height:} & 5' 10" (178 cm) \\
+    \textbf{Complexion:} & Fair \\
+    \textbf{Religion / Caste:} & Spiritual / Denomination \\
+    \textbf{Horoscope / Rashi:} & Aries / Mesh Rashi \\
+    \textbf{Languages Known:} & English, Bengali, Hindi
+\end{tabularx}
+
+\vspace{0.8cm}
+\noindent
+\textbf{\large \color{maroon} Education \& Career}
+\vspace{0.2cm}
+\hrule[color=gold]
+\vspace{0.4cm}
+
+\noindent
+\begin{tabularx}{\textwidth}{@{}l X@{}}
+    \textbf{Highest Degree:} & B.Sc. in Computer Science and Engineering \\
+    \textbf{Institution:} & Bangladesh University of Engineering and Technology (BUET) \\
+    \textbf{Occupation:} & Senior Software Engineer \\
+    \textbf{Employer:} & Tech Ventures Ltd., Dhaka \\
+    \textbf{Annual Income:} & Honorable / Disclosed upon request
+\end{tabularx}
+
+\vspace{0.8cm}
+\noindent
+\textbf{\large \color{maroon} Family Details}
+\vspace{0.2cm}
+\hrule[color=gold]
+\vspace{0.4cm}
+
+\noindent
+\begin{tabularx}{\textwidth}{@{}l X@{}}
+    \textbf{Father's Name:} & Senior Family Father (Retired Civil Servant) \\
+    \textbf{Mother's Name:} & Maternal Family Mother (Homemaker) \\
+    \textbf{Siblings:} & 1 Elder Brother (Doctor in UK), 1 Sister (Student) \\
+    \textbf{Family Values:} & Moderate / Liberal \\
+    \textbf{Residential Address:} & Dhanmondi, Dhaka, Bangladesh
+\end{tabularx}
+
+\vspace{0.8cm}
+\noindent
+\textbf{\large \color{maroon} Contact Information}
+\vspace{0.2cm}
+\hrule[color=gold]
+\vspace{0.4cm}
+
+\noindent
+\begin{tabularx}{\textwidth}{@{}l X@{}}
+    \textbf{Phone Number:} & +880-1700000000 \\
+    \textbf{Email Address:} & family.contact@email.com \\
+    \textbf{Contact Person:} & Father's Contact Name (Father)
+\end{tabularx}
+
+\end{document}
