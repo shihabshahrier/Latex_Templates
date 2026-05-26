@@ -1,0 +1,62 @@
+\documentclass[10pt,landscape,a4paper]{article}
+\usepackage{multicol}
+\usepackage[margin=0.25in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{xcolor}
+
+\definecolor{navy}{HTML}{002147}
+\pagestyle{empty}
+
+\begin{document}
+
+\begin{multicols*}{3}
+\begin{center}
+    \colorbox{navy}{\textcolor{white}{\bfseries \large Invoice Template Document \& Reference Guide}}
+\end{center}
+
+\section*{Document Classes}
+\texttt{\\documentclass[options]\{class\}} \\
+Standard classes: \texttt{article}, \texttt{report}, \texttt{book}, \texttt{beamer}, \texttt{letter}.
+
+\section*{Text Formatting}
+\textbf{Bold Text:} \texttt{\\textbf\{text\}} \\
+\textit{Italic Text:} \texttt{\\textit\{text\}} \\
+\underline{Underline:} \texttt{\\underline\{text\}}
+
+\section*{Math Typesetting}
+Inline equation: \texttt{\$a + b = c\$} \\
+Display block:
+\begin{verbatim}
+\begin{equation*}
+  E = mc^2
+\end{equation*}
+\end{verbatim}
+
+\section*{Lists}
+Itemize:
+\begin{verbatim}
+\begin{itemize}
+  \item Bullet point
+\end{itemize}
+\end{verbatim}
+
+\columnbreak
+
+\section*{Tables}
+\begin{verbatim}
+\begin{tabular}{cc}
+  A & B \\
+  1 & 2
+\end{tabular}
+\end{verbatim}
+
+\section*{Figures}
+\begin{verbatim}
+\begin{figure}[h]
+  \centering
+  \includegraphics{fig}
+\end{figure}
+\end{verbatim}
+
+\end{multicols*}
+\end{document}
