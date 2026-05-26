@@ -1,0 +1,37 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{graphicx}
+\usepackage{authblk}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage[backend=biber,style=numeric,sorting=none]{biblatex}
+
+\addbibresource{references.bib}
+
+\title{Clean and Professional arXiv Preprint Template}
+
+\author[1]{First Author\thanks{Corresponding author: first@university.edu}}
+\author[2]{Second Author}
+\author[1,2]{Third Author}
+
+\affil[1]{Department of Computer Science, Top University, City, Country}
+\affil[2]{Department of Physics, Institute of Science, City, Country}
+
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\input{sections/abstract.tex}
+
+\input{sections/introduction.tex}
+\input{sections/methodology.tex}
+\input{sections/results.tex}
+\input{sections/conclusion.tex}
+
+\printbibliography
+
+\end{document}
