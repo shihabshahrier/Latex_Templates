@@ -1,0 +1,50 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{fancyhdr}
+
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{CSE 101: Syllabus-template Homework Worksheets}
+\lhead{Student Name (1029384)}
+\rfoot{Page \thepage}
+
+\begin{document}
+
+\begin{center}
+    {\LARGE \bfseries CSE 101: Foundations of Computer Science} \\
+    \vspace{0.2cm}
+    {\large Syllabus-template Homework Worksheets: Induction and Formal Proofs}
+\end{center}
+
+\vspace{0.5cm}
+
+\textbf{Problem 1.} Prove by mathematical induction that for all positive integers $n$,
+\begin{equation*}
+    \sum_{i=1}^n i = \frac{n(n+1)}{2}
+\end{equation*}
+
+\textbf{Proof.}
+Let $P(n)$ be the statement that the summation holds.
+\begin{enumerate}
+    \item \textbf{Base Case:} For $n=1$,
+    \begin{equation*}
+        \sum_{i=1}^1 i = 1 = \frac{1(1+1)}{2}
+    \end{equation*}
+    Thus, $P(1)$ is true.
+    
+    \item \textbf{Inductive Step:} Assume $P(k)$ is true for some positive integer $k$. That is,
+    \begin{equation*}
+        \sum_{i=1}^k i = \frac{k(k+1)}{2}
+    \end{equation*}
+    We must show $P(k+1)$ is true.
+    \begin{align*}
+        \sum_{i=1}^{k+1} i &= \left(\sum_{i=1}^k i\right) + (k+1) \\
+        &= \frac{k(k+1)}{2} + (k+1) \quad \text{(by inductive hypothesis)} \\
+        &= (k+1) \left(\frac{k}{2} + 1\right) \\
+        &= \frac{(k+1)(k+2)}{2}
+    \end{align*}
+    Therefore, by mathematical induction, the proof is complete. \hfill $\square$
+\end{enumerate}
+
+\end{document}
