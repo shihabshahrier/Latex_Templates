@@ -1,0 +1,21 @@
+# LaTeX compilation artifacts
+*.aux
+*.log
+*.out
+*.pdf
+*.bbl
+*.blg
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.toc
+*.lof
+*.lot
+*.nav
+*.snm
+*.vrb
+*.bcf
+*.xml
+
+# macOS
+.DS_Store
