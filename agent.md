@@ -1,4 +1,4 @@
-# Agent Tracking Dashboard - 65 Authentic LaTeX Templates for LetX.app
+# Agent Tracking Dashboard - 66 Authentic LaTeX Templates for LetX.app
 
 This document serves as the central registry for the premium LaTeX templates repository. It tracks the status, licenses, and architecture of the authentic, publisher-compliant, and university-official templates.
 
@@ -6,7 +6,7 @@ This document serves as the central registry for the premium LaTeX templates rep
 
 ## 1. Executive Summary
 
-- **Total Elite Templates**: 65 (100% authentic, built with meticulous care and compliance)
+- **Total Elite Templates**: 66 (100% authentic, built with meticulous care and compliance)
 - **Quality & Compile Guarantees**:
   - **Zero Generic Placeholders**: No programmatically auto-generated/duplicate folders "from thin air".
   - **100% Compilation Success**: All templates successfully compile with standard LaTeX engines (pdfLaTeX, XeLaTeX, or LuaLaTeX).
@@ -15,7 +15,7 @@ This document serves as the central registry for the premium LaTeX templates rep
 
 ---
 
-## 2. Directory & Category Dashboard (65 Elite Templates)
+## 2. Directory & Category Dashboard (66 Elite Templates)
 
 ### A. University Theses & Graduate Dissertations (23)
 *Fully authentic graduate and undergraduate dissertation classes with school-conforming layout parameters.*
@@ -107,16 +107,17 @@ This document serves as the central registry for the premium LaTeX templates rep
 - `assignments/exam-paper` (59) - Conforming to the CTAN `exam.cls` document class.
 - `assignments/syllabus-template` (60) - Course syllabus calendar timeline schedule layout.
 
-### I. Miscellaneous (5)
+### I. Miscellaneous (6)
 - `miscellaneous/cheatsheet-multicol` (61) - Landscape 3-column quick-reference cheatsheet.
 - `miscellaneous/meeting-minutes` (62) - Structured business meeting record.
 - `miscellaneous/invoice` (63) - Tabular professional billing and invoice document.
 - `miscellaneous/recipe-book` (64) - Modern visual recipe cookbook layout.
 - `miscellaneous/concert-program` (65) - Structured concert or event pamphlet booklet program.
+- `miscellaneous/marriage-biodata` (66) - Premium South Asian matchmaking profile with TikZ borders.
 
 ---
 
 ## 3. Key Technical Standards Met
 
 1. **Absolute Local Font Portability**: Map all custom XeLaTeX system font declarations (Lato, Roboto, Source Sans 3) to standard fallbacks (Arial, Latin Modern). Compiles out-of-the-box on MacTeX 2025 and standard Linux TeX Live environments.
-2. **Strict Folder Cleanliness**: All 65 templates compile with zero warnings or errors, and support an automated `make clean` rule which purges all LaTeX residue (including `.aux`, `.log`, `.synctex.gz`, `.fls`, `.fdb_latexmk`, `.xdv`, `.bcf`, `.run.xml`, `.bbl`, `.blg`, `.cut`) keeping files completely clean.
+2. **Strict Folder Cleanliness**: All 66 templates compile with zero warnings or errors, and support an automated `make clean` rule which purges all LaTeX residue (including `.aux`, `.log`, `.synctex.gz`, `.fls`, `.fdb_latexmk`, `.xdv`, `.bcf`, `.run.xml`, `.bbl`, `.blg`, `.cut`) keeping files completely clean.
