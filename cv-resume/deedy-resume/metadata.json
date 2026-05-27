@@ -1,0 +1,8 @@
+{
+  "name": "Deedy Resume",
+  "compiler": "xelatex",
+  "description": "One-page two-column resume popular among tech professionals.",
+  "author": "Debarghya Das",
+  "category": "cvs-resumes",
+  "license": "Open Source"
+}

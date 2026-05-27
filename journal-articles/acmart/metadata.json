@@ -1,0 +1,8 @@
+{
+  "name": "ACM Article Template",
+  "compiler": "pdflatex",
+  "description": "Official ACM article template for journal and conference submissions.",
+  "author": "ACM",
+  "category": "journal-articles",
+  "license": "Open Source"
+}

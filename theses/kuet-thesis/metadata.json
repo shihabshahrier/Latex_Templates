@@ -1,0 +1,8 @@
+{
+  "name": "KUET Thesis",
+  "compiler": "pdflatex",
+  "description": "Khulna University of Engineering and Technology thesis template.",
+  "author": "KUET",
+  "category": "universities",
+  "license": "Open Source"
+}

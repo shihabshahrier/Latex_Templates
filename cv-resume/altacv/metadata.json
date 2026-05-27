@@ -1,0 +1,8 @@
+{
+  "name": "AltaCV Resume",
+  "compiler": "xelatex",
+  "description": "Modern two-column CV with sidebar, skill bars, and infographic elements.",
+  "author": "LianTze Lim",
+  "category": "cvs-resumes",
+  "license": "Open Source"
+}

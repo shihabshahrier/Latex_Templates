@@ -1,0 +1,8 @@
+{
+  "name": "Awesome CV",
+  "compiler": "xelatex",
+  "description": "Professional multi-page CV with clean sections, color accents, and FontAwesome icons.",
+  "author": "Claud D. Park",
+  "category": "cvs-resumes",
+  "license": "Open Source"
+}

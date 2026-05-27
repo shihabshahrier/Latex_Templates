@@ -1,0 +1,8 @@
+{
+  "name": "KOMA-Script Letter",
+  "compiler": "pdflatex",
+  "description": "European-style letter using KOMA-Script scrlttr2 class.",
+  "author": "KOMA-Script",
+  "category": "formal-letters",
+  "license": "Open Source"
+}

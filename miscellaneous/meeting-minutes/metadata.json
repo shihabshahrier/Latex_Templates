@@ -1,0 +1,8 @@
+{
+  "name": "Meeting Minutes",
+  "compiler": "pdflatex",
+  "description": "Structured meeting minutes with attendees and action items.",
+  "author": "LaTeX Community",
+  "category": "miscellaneous",
+  "license": "Open Source"
+}

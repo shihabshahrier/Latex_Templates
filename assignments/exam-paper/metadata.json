@@ -1,0 +1,8 @@
+{
+  "name": "Exam Paper Template",
+  "compiler": "pdflatex",
+  "description": "Clean exam paper layout with header, instructions box, and numbered questions.",
+  "author": "LaTeX Community",
+  "category": "assignments",
+  "license": "Open Source"
+}

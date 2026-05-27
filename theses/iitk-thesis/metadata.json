@@ -1,0 +1,8 @@
+{
+  "name": "IIT Kanpur Thesis",
+  "compiler": "pdflatex",
+  "description": "Indian Institute of Technology Kanpur thesis template.",
+  "author": "IIT Kanpur",
+  "category": "universities",
+  "license": "Open Source"
+}

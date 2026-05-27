@@ -1,0 +1,8 @@
+{
+  "name": "BUET Thesis",
+  "compiler": "pdflatex",
+  "description": "Bangladesh University of Engineering and Technology thesis template.",
+  "author": "BUET",
+  "category": "universities",
+  "license": "Open Source"
+}

@@ -1,0 +1,8 @@
+{
+  "name": "Problem Set Template",
+  "compiler": "pdflatex",
+  "description": "Problem set template with numbered problems and solution spaces.",
+  "author": "LaTeX Community",
+  "category": "assignments",
+  "license": "Open Source"
+}

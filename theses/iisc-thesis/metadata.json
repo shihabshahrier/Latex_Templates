@@ -1,0 +1,8 @@
+{
+  "name": "IISc Thesis",
+  "compiler": "pdflatex",
+  "description": "Indian Institute of Science thesis template.",
+  "author": "IISc",
+  "category": "universities",
+  "license": "Open Source"
+}

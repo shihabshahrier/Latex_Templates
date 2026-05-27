@@ -1,0 +1,8 @@
+{
+  "name": "RUET Thesis",
+  "compiler": "pdflatex",
+  "description": "Rajshahi University of Engineering and Technology thesis template.",
+  "author": "RUET",
+  "category": "universities",
+  "license": "Open Source"
+}

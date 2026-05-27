@@ -1,0 +1,8 @@
+{
+  "name": "Gemini Beamer Poster",
+  "compiler": "pdflatex",
+  "description": "Modern Beamer poster theme with clean blocks.",
+  "author": "Anish Athalye",
+  "category": "posters",
+  "license": "Open Source"
+}

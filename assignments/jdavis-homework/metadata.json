@@ -1,0 +1,8 @@
+{
+  "name": "Homework Template",
+  "compiler": "pdflatex",
+  "description": "Minimal homework template with problem-solution structure and clean formatting.",
+  "author": "Jeff Davis",
+  "category": "assignments",
+  "license": "Open Source"
+}

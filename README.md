@@ -1,153 +1,208 @@
-# Elite LaTeX Templates for LetX.app (66 Premium Templates)
+# LaTeX Templates — 66 Free, Open-Source, Ready-to-Compile Templates
 
-[![LaTeX Compile](https://img.shields.io/badge/LaTeX-100%25--Compile--Guaranteed-brightgreen.svg)](https://letx.app)
-[![License: MIT/LPPL](https://img.shields.io/badge/License-MIT%20%2F%20LPPL-blue.svg)](#license)
-[![Platform: LetX](https://img.shields.io/badge/Platform-LetX.app-orange.svg)](https://letx.app)
+[![Templates](https://img.shields.io/badge/Templates-66-brightgreen.svg)](https://letx.app/templates)
+[![Compile Tested](https://img.shields.io/badge/Compile-Tested-success.svg)](#compiler-notes)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](#license)
 
-Welcome to the official **LetX LaTeX Templates Library**—the ultimate repository of **66 premium, 100% authentic, publisher-compliant, and university-official templates** designed to serve as the structural backbone for [letx.app](https://letx.app) and technical authors worldwide.
+A curated collection of **66 free LaTeX templates** covering theses, resumes, journal articles, presentations, posters, and more. Every template compiles cleanly on modern TeX Live distributions and includes machine-readable metadata.
 
-Unlike standard template directories filled with low-quality, generic layouts created "from thin air," every single template in this repository is built strictly according to official academic formatting handbooks, publisher guidelines, or designer specifications.
-
----
-
-## 🚀 Key Quality & SEO Standards
-
-1.  **100% Compile Guaranteed:** Every template has been programmatically compiled and validated on modern TeX Live/MacTeX distributions with zero errors.
-2.  **Absolute Local Portability:** Custom system font configurations (e.g. Roboto, Lato, Source Sans 3) are mapped to standard fallback system fonts (Arial, Latin Modern) out-of-the-box, resolving `fontspec` crash loops.
-3.  **Strict Directory Cleanliness:** All repositories are 100% free of auxiliary compilation debris (`.aux`, `.log`, `.synctex.gz`, `.fls`, `.fdb_latexmk`, `.xdv`, `.bcf`, `.run.xml`, `.bbl`, `.blg`).
-4.  **Standardized Makefile Build System:** Every directory contains a clean `Makefile` for instant orchestration:
-    *   `make`: Compiles the project cleanly using the optimal engine (`pdfLaTeX`, `XeLaTeX`, or `LuaLaTeX`).
-    *   `make clean`: Instantly purges all intermediate build logs and auxiliary output files.
+Whether you're writing your PhD dissertation, preparing an IEEE paper, or crafting a resume — grab the source and start editing. All templates can also be used directly in your browser at [letx.app](https://letx.app/templates) with real-time collaboration, no local TeX installation required.
 
 ---
 
-## 📂 Complete Templates Portfolio (66 Authentic Templates)
-
-### 1. Graduate Dissertations & University Theses (23)
-*Conforming strictly to official graduation handbooks, binding margins (1.5" left margin offsets), double line-spacing, candidate declarations, and board of examiners approval sheets.*
-
-| University / Standard | Region | Colors | Source Directory |
-|:---|:---|:---|:---|
-| **Massachusetts Institute of Technology (MIT)** | USA | Cardinal Red / Gray | [theses/mit-thesis](theses/mit-thesis) |
-| **Stanford University** | USA | Stanford Cardinal Red | [theses/stanford-thesis](theses/stanford-thesis) |
-| **University of Oxford** | UK | Oxford Blue / Gold | [theses/oxford-thesis](theses/oxford-thesis) |
-| **University of Cambridge** | UK | Cambridge Blue / Gold | [theses/cambridge-thesis](theses/cambridge-thesis) |
-| **Harvard University** | USA | Crimson / Slate | [theses/harvard-thesis](theses/harvard-thesis) |
-| **University of California, Berkeley** | USA | Berkeley Blue / Gold | [theses/ucb-thesis](theses/ucb-thesis) |
-| **University of Toronto** | Canada | Toronto Blue / Slate | [theses/ut-thesis](theses/ut-thesis) |
-| **ETH Zurich** | Switzerland | ETH Navy / Bronze | [theses/eth-thesis](theses/eth-thesis) |
-| **National University of Singapore** | Singapore | NUS Blue / Orange | [theses/nus-thesis](theses/nus-thesis) |
-| **Nanyang Technological University** | Singapore | NTU Red / NTU Blue | [theses/ntu-thesis](theses/ntu-thesis) |
-| **Indian Institute of Technology Bombay (IITB)** | India | IITB Navy / Orange | [theses/iit-bombay-thesis](theses/iit-bombay-thesis) |
-| **Indian Institute of Technology Madras (IITM)** | India | IITM Teal / Vermillion | [theses/iitm-thesis](theses/iitm-thesis) |
-| **Indian Institute of Technology Delhi (IITD)** | India | IITD Crimson / Teal | [theses/iitd-thesis](theses/iitd-thesis) |
-| **Indian Institute of Technology Kanpur (IITK)** | India | IITK Blue / Gray | [theses/iitk-thesis](theses/iitk-thesis) |
-| **Indian Institute of Science (IISc)** | India | IISc Dark Navy / Gold | [theses/iisc-thesis](theses/iisc-thesis) |
-| **Bangladesh Univ. of Eng. & Tech. (BUET)** | Bangladesh | BUET Green / BUET Crimson | [theses/buet-thesis](theses/buet-thesis) |
-| **Rajshahi Univ. of Eng. & Tech. (RUET)** | Bangladesh | RUET Crimson / RUET Blue | [theses/ruet-thesis](theses/ruet-thesis) |
-| **University of Dhaka** | Bangladesh | DU Blue / DU Green | [theses/du-thesis](theses/du-thesis) |
-| **Khulna Univ. of Eng. & Tech. (KUET)** | Bangladesh | KUET Blue / Green | [theses/kuet-thesis](theses/kuet-thesis) |
-| **Chittagong Univ. of Eng. & Tech. (CUET)** | Bangladesh | CUET Purple / Teal | [theses/cuet-thesis](theses/cuet-thesis) |
-| **Shahjalal Univ. of Science & Tech. (SUST)** | Bangladesh | SUST Pink / Blue | [theses/sust-thesis](theses/sust-thesis) |
-| **Islamic University of Technology (IUT)** | Bangladesh | IUT Orange / IUT Blue | [theses/iut-thesis](theses/iut-thesis) |
-| **Classic Thesis** (André Miede layout) | Global | Classical Typographics | [theses/classicthesis](theses/classicthesis) |
-
----
-
-### 2. Resumes, CVs, & South Asian Biodatas (8)
-*Fully ATS-compliant and designer layouts optimized for professional impact and automated parsing.*
-
-*   **Jake's Resume:** The gold standard, ultra-ATS-compliant resume for tech/finance. | [cv-resume/jakes-resume](cv-resume/jakes-resume)
-*   **AltaCV:** Beautiful infographic 2-column resume with rating bars and timeline tags. | [cv-resume/altacv](cv-resume/altacv)
-*   **Awesome CV:** Premium modern CV with bold headers, styled sidebars, and FontAwesome 5 icons. | [cv-resume/awesome-cv](cv-resume/awesome-cv)
-*   **Deedy Resume:** Gorgeous 2-column outline with clean sidebar margins. | [cv-resume/deedy-resume](cv-resume/deedy-resume)
-*   **SB2Nov CV:** Classic minimalisttech resume favored by software developers. | [cv-resume/sb2nov-cv](cv-resume/sb2nov-cv)
-*   **ModernCV Classic:** The standard, elegant multi-page CV for academia. | [cv-resume/classic-cv](cv-resume/classic-cv)
-*   **ModernCV Banking:** Sleek, minimal corporate resume optimized for business applications. | [cv-resume/banking-cv](cv-resume/banking-cv)
-*   **Marriage Biodata:** Premium matchmaking profile with an elegant floral vector border drawn in pure TikZ (exclusive to LetX). | [miscellaneous/marriage-biodata](miscellaneous/marriage-biodata)
-
----
-
-### 3. Publisher-Official Journal Articles (5)
-*Perfectly pre-configured templates matching strict typesetting boundaries for major publishers.*
-
-*   **IEEE Conference:** The official double-column format using the `IEEEtran` class. | [journal-articles/ieee-conference](journal-articles/ieee-conference)
-*   **ACM SIGCONF:** Conforming strictly to the ACM sigconf proceedings class `acmart.cls`. | [journal-articles/acmart](journal-articles/acmart)
-*   **Elsevier Journal:** Pre-configured for preprint submissions using `elsarticle.cls`. | [journal-articles/elsarticle](journal-articles/elsarticle)
-*   **Springer LNCS:** Using the official Lecture Notes in Computer Science proceedings styling. | [journal-articles/springer-lncs](journal-articles/springer-lncs)
-*   **arXiv Preprint:** A clean, standard single-column preprint wrapper free of publisher constraints. | [journal-articles/arxiv-preprint](journal-articles/arxiv-preprint)
-
----
-
-### 4. Presentations, Posters, & Books (14)
-*Beautiful Beamer decks, conference banners, and textbook structures.*
-
-*   **Presentations (Beamer Slide Decks):**
-    *   `Metropolis Beamer`: Sleek dark-teal modern minimal slide theme. | [presentations/metropolis-beamer](presentations/metropolis-beamer)
-    *   `Madrid Beamer`: Standard corporate blue slide format with header/footer lines. | [presentations/madrid-beamer](presentations/madrid-beamer)
-    *   `Academic Defense`: Pre-structured slide deck optimized specifically for Ph.D. defenses. | [presentations/academic-defense](presentations/academic-defense)
-    *   `15-Minute Conference`: Compact high-impact structure for conference talks. | [presentations/conference-15min](presentations/conference-15min)
-    *   `Serif Minimalist`: Elegant serif typography deck focusing on negative space. | [presentations/minimalist-beamer](presentations/minimalist-beamer)
-    *   `Modern Dark Mode`: Premium high-contrast dark-mode slide design. | [presentations/modern-dark-beamer](presentations/modern-dark-beamer)
-*   **Conference Posters & Banners:**
-    *   `tikzposter`: Colorful academic poster using the standard `tikzposter` class. | [posters/tikzposter-clean](posters/tikzposter-clean)
-    *   `baposter`: Compact multi-column boxed poster layout. | [posters/baposter-clean](posters/baposter-clean)
-    *   `a0poster`: Raw high-control poster canvas using the `a0poster` package. | [posters/a0poster](posters/a0poster)
-    *   `Gemini Beamerposter`: Clean, modern orientation utilizing the premium Gemini poster style. | [posters/gemini-beamerposter](posters/gemini-beamerposter)
-*   **Books & Literature:**
-    *   `Tufte Textbook`: Edward Tufte-style wide-margin textbook with custom side-notes. | [books/tufte-book](books/tufte-book)
-    *   `Memoir Novel`: Classical book and fiction layout utilizing the powerful `memoir` class. | [books/memoir](books/memoir)
-    *   `Textbook Solutions`: Elegant calculus/engineering solutions manual structure. | [books/textbook-solutions](books/textbook-solutions)
-    *   `Novel Prose`: Clean, readable large-font layout for fiction novels. | [books/novel-prose](books/novel-prose)
-
----
-
-### 5. Academic Assignments & Homework (6)
-*Worksheets, lab report forms, and syllabus calendars.*
-
-- [assignments/jdavis-homework](assignments/jdavis-homework) — J. Davis Homework (the most popular homework template).
-- [assignments/problem-set](assignments/problem-set) — Clean numbered question sheet with equation blocks.
-- [assignments/lab-report](assignments/lab-report) — Conforms to standard physics/chemistry/engineering lab report layouts.
-- [assignments/math-homework](assignments/math-homework) — Proof worksheet utilizing the `amsmath` and proof environments.
-- [assignments/exam-paper](assignments/exam-paper) — Conforming strictly to the CTAN `exam.cls` document class.
-- [assignments/syllabus-template](assignments/syllabus-template) — Professional syllabus calendar course outline sheet.
-
----
-
-### 6. Letters & Miscellaneous Administrative (11)
-*Correspondence, invoice sheets, cheatsheets, and programs.*
-
-*   **Formal Letters & Memos:**
-    *   `Cover Letter`: Standalone job application letter matching the standard `letter` class. | [letters/cover-letter](letters/cover-letter)
-    *   `KOMA Letter`: Highly robust European standard business letter utilizing `scrlttr2.cls`. | [letters/koma-letter](letters/koma-letter)
-    *   `Recommendation Letter`: Structured academic reference and recommendation template. | [letters/recommendation-letter](letters/recommendation-letter)
-    *   `Resignation Letter`: Formal employee resignation notification template. | [letters/resignation-letter](letters/resignation-letter)
-    *   `Formal Business Memo`: Multi-recipient formal business correspondence memo. | [letters/formal-business](letters/formal-business)
-*   **Miscellaneous Documents:**
-    *   `Cheatsheet Multicol`: Landscape 3-column quick-reference cheatsheet card. | [miscellaneous/cheatsheet-multicol](miscellaneous/cheatsheet-multicol)
-    *   `Meeting Minutes`: Corporate meeting records with attendee lists. | [miscellaneous/meeting-minutes](miscellaneous/meeting-minutes)
-    *   `Invoice`: Elegant tabular service billing and invoice document. | [miscellaneous/invoice](miscellaneous/invoice)
-    *   `Recipe Book`: Modern visual recipe cookbook layout. | [miscellaneous/recipe-book](miscellaneous/recipe-book)
-    *   `Concert Program`: Event booklet pamphlet program outline. | [miscellaneous/concert-program](miscellaneous/concert-program)
-
----
-
-## 🛠️ Usage & Local Compilation
-
-Every single template features its own customized `Makefile`. To build or clean any template locally:
+## Quick Start
 
 ```bash
-# 1. Navigate to the template's directory
-cd theses/buet-thesis
+git clone https://github.com/Shahriar-Labs/Latex_Templates.git
+cd Latex_Templates
 
-# 2. Compile to PDF using optimal engine flags
-make
+# Pick a template and compile
+cd theses/mit-thesis
+latexmk -pdf main.tex
 
-# 3. Purge all compilation logs and aux debris before staging/committing
-make clean
+# Check metadata.json for the correct compiler
+cat metadata.json
 ```
 
 ---
 
-## 📄 License
-This repository distributes open-source layouts. Individual templates are licensed under the **MIT License** or the **LaTeX Project Public License (LPPL)** based on their core class heritage. See folder descriptions for specific license scopes.
+## University Theses & Dissertations (23)
+
+Official and community-standard thesis templates for universities worldwide. Proper margins, title pages, examiner sheets, and declaration pages included.
+
+| Template | Institution | Compiler | Source | Try Online |
+|----------|------------|----------|--------|------------|
+| MIT Thesis | Massachusetts Institute of Technology | pdfLaTeX | [theses/mit-thesis](theses/mit-thesis) | [Open in LetX](https://letx.app/templates/universities/mit-thesis) |
+| Stanford Thesis | Stanford University | pdfLaTeX | [theses/stanford-thesis](theses/stanford-thesis) | [Open in LetX](https://letx.app/templates/universities/stanford-thesis) |
+| Oxford Thesis | University of Oxford | pdfLaTeX | [theses/oxford-thesis](theses/oxford-thesis) | [Open in LetX](https://letx.app/templates/universities/oxford-thesis) |
+| Cambridge Thesis | University of Cambridge | pdfLaTeX | [theses/cambridge-thesis](theses/cambridge-thesis) | [Open in LetX](https://letx.app/templates/universities/cambridge-thesis) |
+| Harvard Thesis | Harvard University | pdfLaTeX | [theses/harvard-thesis](theses/harvard-thesis) | [Open in LetX](https://letx.app/templates/universities/harvard-thesis) |
+| UC Berkeley Thesis | UC Berkeley | pdfLaTeX | [theses/ucb-thesis](theses/ucb-thesis) | [Open in LetX](https://letx.app/templates/universities/ucb-thesis) |
+| UT Austin Thesis | University of Texas at Austin | pdfLaTeX | [theses/ut-thesis](theses/ut-thesis) | [Open in LetX](https://letx.app/templates/universities/ut-thesis) |
+| ETH Zurich Thesis | ETH Zurich | pdfLaTeX | [theses/eth-thesis](theses/eth-thesis) | [Open in LetX](https://letx.app/templates/universities/eth-thesis) |
+| NUS Thesis | National University of Singapore | pdfLaTeX | [theses/nus-thesis](theses/nus-thesis) | [Open in LetX](https://letx.app/templates/universities/nus-thesis) |
+| NTU Thesis | Nanyang Technological University | pdfLaTeX | [theses/ntu-thesis](theses/ntu-thesis) | [Open in LetX](https://letx.app/templates/universities/ntu-thesis) |
+| IIT Bombay Thesis | IIT Bombay | pdfLaTeX | [theses/iit-bombay-thesis](theses/iit-bombay-thesis) | [Open in LetX](https://letx.app/templates/universities/iit-bombay-thesis) |
+| IIT Madras Thesis | IIT Madras | pdfLaTeX | [theses/iitm-thesis](theses/iitm-thesis) | [Open in LetX](https://letx.app/templates/universities/iitm-thesis) |
+| IIT Delhi Thesis | IIT Delhi | pdfLaTeX | [theses/iitd-thesis](theses/iitd-thesis) | [Open in LetX](https://letx.app/templates/universities/iitd-thesis) |
+| IIT Kanpur Thesis | IIT Kanpur | pdfLaTeX | [theses/iitk-thesis](theses/iitk-thesis) | [Open in LetX](https://letx.app/templates/universities/iitk-thesis) |
+| IISc Thesis | Indian Institute of Science | pdfLaTeX | [theses/iisc-thesis](theses/iisc-thesis) | [Open in LetX](https://letx.app/templates/universities/iisc-thesis) |
+| ClassicThesis | Elegant typographic style | pdfLaTeX | [theses/classicthesis](theses/classicthesis) | [Open in LetX](https://letx.app/templates/universities/classicthesis) |
+| BUET Thesis | BUET, Bangladesh | pdfLaTeX | [theses/buet-thesis](theses/buet-thesis) | [Open in LetX](https://letx.app/templates/universities/buet-thesis) |
+| RUET Thesis | RUET, Bangladesh | pdfLaTeX | [theses/ruet-thesis](theses/ruet-thesis) | [Open in LetX](https://letx.app/templates/universities/ruet-thesis) |
+| DU Thesis | University of Dhaka | pdfLaTeX | [theses/du-thesis](theses/du-thesis) | [Open in LetX](https://letx.app/templates/universities/du-thesis) |
+| KUET Thesis | KUET, Bangladesh | pdfLaTeX | [theses/kuet-thesis](theses/kuet-thesis) | [Open in LetX](https://letx.app/templates/universities/kuet-thesis) |
+| CUET Thesis | CUET, Bangladesh | pdfLaTeX | [theses/cuet-thesis](theses/cuet-thesis) | [Open in LetX](https://letx.app/templates/universities/cuet-thesis) |
+| SUST Thesis | SUST, Bangladesh | pdfLaTeX | [theses/sust-thesis](theses/sust-thesis) | [Open in LetX](https://letx.app/templates/universities/sust-thesis) |
+| IUT Thesis | IUT, Bangladesh | pdfLaTeX | [theses/iut-thesis](theses/iut-thesis) | [Open in LetX](https://letx.app/templates/universities/iut-thesis) |
+
+## CVs & Resumes (7)
+
+Professional, ATS-friendly, and designer resume/CV templates for job applications and academic profiles.
+
+| Template | Compiler | Source | Try Online |
+|----------|----------|--------|------------|
+| AltaCV Resume | XeLaTeX | [cv-resume/altacv](cv-resume/altacv) | [Open in LetX](https://letx.app/templates/cvs-resumes/altacv) |
+| Awesome CV | XeLaTeX | [cv-resume/awesome-cv](cv-resume/awesome-cv) | [Open in LetX](https://letx.app/templates/cvs-resumes/awesome-cv) |
+| Banking & Finance CV | XeLaTeX | [cv-resume/banking-cv](cv-resume/banking-cv) | [Open in LetX](https://letx.app/templates/cvs-resumes/banking-cv) |
+| Classic CV | XeLaTeX | [cv-resume/classic-cv](cv-resume/classic-cv) | [Open in LetX](https://letx.app/templates/cvs-resumes/classic-cv) |
+| Deedy Resume | XeLaTeX | [cv-resume/deedy-resume](cv-resume/deedy-resume) | [Open in LetX](https://letx.app/templates/cvs-resumes/deedy-resume) |
+| Jake's Resume | pdfLaTeX | [cv-resume/jakes-resume](cv-resume/jakes-resume) | [Open in LetX](https://letx.app/templates/cvs-resumes/jakes-resume) |
+| sb2nov Resume | pdfLaTeX | [cv-resume/sb2nov-cv](cv-resume/sb2nov-cv) | [Open in LetX](https://letx.app/templates/cvs-resumes/sb2nov-resume) |
+
+## Journal Articles & Conference Papers (5)
+
+Submission-ready templates for IEEE, ACM, Elsevier, Springer, and arXiv.
+
+| Template | Publisher | Compiler | Source | Try Online |
+|----------|----------|----------|--------|------------|
+| ACM Article | ACM | pdfLaTeX | [journal-articles/acmart](journal-articles/acmart) | [Open in LetX](https://letx.app/templates/journal-articles/acmart) |
+| arXiv Preprint | arXiv | pdfLaTeX | [journal-articles/arxiv-preprint](journal-articles/arxiv-preprint) | [Open in LetX](https://letx.app/templates/journal-articles/arxiv-preprint) |
+| Elsevier (elsarticle) | Elsevier | pdfLaTeX | [journal-articles/elsarticle](journal-articles/elsarticle) | [Open in LetX](https://letx.app/templates/journal-articles/elsarticle) |
+| IEEE Conference Paper | IEEE | pdfLaTeX | [journal-articles/ieee-conference](journal-articles/ieee-conference) | [Open in LetX](https://letx.app/templates/journal-articles/ieee-conference-paper) |
+| Springer LNCS | Springer | pdfLaTeX | [journal-articles/springer-lncs](journal-articles/springer-lncs) | [Open in LetX](https://letx.app/templates/journal-articles/springer-lncs) |
+
+## Beamer Presentations (6)
+
+Slide decks for thesis defenses, conference talks, and lectures.
+
+| Template | Compiler | Source | Try Online |
+|----------|----------|--------|------------|
+| Academic Defense | pdfLaTeX | [presentations/academic-defense](presentations/academic-defense) | [Open in LetX](https://letx.app/templates/presentations/academic-defense) |
+| Conference Talk (15 min) | pdfLaTeX | [presentations/conference-15min](presentations/conference-15min) | [Open in LetX](https://letx.app/templates/presentations/conference-15min) |
+| Madrid Beamer | pdfLaTeX | [presentations/madrid-beamer](presentations/madrid-beamer) | [Open in LetX](https://letx.app/templates/presentations/madrid-beamer) |
+| Metropolis Beamer | pdfLaTeX | [presentations/metropolis-beamer](presentations/metropolis-beamer) | [Open in LetX](https://letx.app/templates/presentations/metropolis-beamer) |
+| Minimalist Beamer | pdfLaTeX | [presentations/minimalist-beamer](presentations/minimalist-beamer) | [Open in LetX](https://letx.app/templates/presentations/minimalist-beamer) |
+| Modern Dark Beamer | pdfLaTeX | [presentations/modern-dark-beamer](presentations/modern-dark-beamer) | [Open in LetX](https://letx.app/templates/presentations/modern-dark-beamer) |
+
+## Assignments & Coursework (6)
+
+Homework, lab reports, problem sets, and syllabi for students and instructors.
+
+| Template | Compiler | Source | Try Online |
+|----------|----------|--------|------------|
+| Exam Paper | pdfLaTeX | [assignments/exam-paper](assignments/exam-paper) | [Open in LetX](https://letx.app/templates/assignments/exam-paper) |
+| Homework (jdavis) | pdfLaTeX | [assignments/jdavis-homework](assignments/jdavis-homework) | [Open in LetX](https://letx.app/templates/assignments/jdavis-homework) |
+| Lab Report | pdfLaTeX | [assignments/lab-report](assignments/lab-report) | [Open in LetX](https://letx.app/templates/assignments/lab-report) |
+| Math Homework | pdfLaTeX | [assignments/math-homework](assignments/math-homework) | [Open in LetX](https://letx.app/templates/assignments/math-homework) |
+| Problem Set | pdfLaTeX | [assignments/problem-set](assignments/problem-set) | [Open in LetX](https://letx.app/templates/assignments/problem-set) |
+| Course Syllabus | pdfLaTeX | [assignments/syllabus-template](assignments/syllabus-template) | [Open in LetX](https://letx.app/templates/assignments/course-syllabus) |
+
+## Formal Letters (5)
+
+Cover letters, business correspondence, and recommendation letters.
+
+| Template | Compiler | Source | Try Online |
+|----------|----------|--------|------------|
+| Cover Letter | pdfLaTeX | [letters/cover-letter](letters/cover-letter) | [Open in LetX](https://letx.app/templates/formal-letters/cover-letter) |
+| Formal Business Letter | pdfLaTeX | [letters/formal-business](letters/formal-business) | [Open in LetX](https://letx.app/templates/formal-letters/formal-business-letter) |
+| KOMA-Script Letter | pdfLaTeX | [letters/koma-letter](letters/koma-letter) | [Open in LetX](https://letx.app/templates/formal-letters/koma-letter) |
+| Recommendation Letter | pdfLaTeX | [letters/recommendation-letter](letters/recommendation-letter) | [Open in LetX](https://letx.app/templates/formal-letters/recommendation-letter) |
+| Resignation Letter | pdfLaTeX | [letters/resignation-letter](letters/resignation-letter) | [Open in LetX](https://letx.app/templates/formal-letters/resignation-letter) |
+
+## Books (4)
+
+Typeset novels, textbooks, and manuscripts with professional typography.
+
+| Template | Compiler | Source | Try Online |
+|----------|----------|--------|------------|
+| Memoir Book | pdfLaTeX | [books/memoir](books/memoir) | [Open in LetX](https://letx.app/templates/books/memoir-book) |
+| Novel & Prose | pdfLaTeX | [books/novel-prose](books/novel-prose) | [Open in LetX](https://letx.app/templates/books/novel-prose) |
+| Textbook Solutions | pdfLaTeX | [books/textbook-solutions](books/textbook-solutions) | [Open in LetX](https://letx.app/templates/books/textbook-solutions) |
+| Tufte Book | pdfLaTeX | [books/tufte-book](books/tufte-book) | [Open in LetX](https://letx.app/templates/books/tufte-book) |
+
+## Academic Posters (4)
+
+Large-format research posters for conferences and exhibitions.
+
+| Template | Compiler | Source | Try Online |
+|----------|----------|--------|------------|
+| A0 Research Poster | pdfLaTeX | [posters/a0poster](posters/a0poster) | [Open in LetX](https://letx.app/templates/posters/a0poster) |
+| baposter Clean | pdfLaTeX | [posters/baposter-clean](posters/baposter-clean) | [Open in LetX](https://letx.app/templates/posters/baposter-clean) |
+| Gemini Beamer Poster | pdfLaTeX | [posters/gemini-beamerposter](posters/gemini-beamerposter) | [Open in LetX](https://letx.app/templates/posters/gemini-beamerposter) |
+| TikZ Poster | pdfLaTeX | [posters/tikzposter-clean](posters/tikzposter-clean) | [Open in LetX](https://letx.app/templates/posters/tikzposter-clean) |
+
+## Miscellaneous (6)
+
+Cheatsheets, invoices, programs, and other useful document types.
+
+| Template | Compiler | Source | Try Online |
+|----------|----------|--------|------------|
+| Multi-Column Cheatsheet | pdfLaTeX | [miscellaneous/cheatsheet-multicol](miscellaneous/cheatsheet-multicol) | [Open in LetX](https://letx.app/templates/miscellaneous/cheatsheet-multicol) |
+| Concert Program | pdfLaTeX | [miscellaneous/concert-program](miscellaneous/concert-program) | [Open in LetX](https://letx.app/templates/miscellaneous/concert-program) |
+| Invoice | pdfLaTeX | [miscellaneous/invoice](miscellaneous/invoice) | [Open in LetX](https://letx.app/templates/miscellaneous/invoice) |
+| Marriage Biodata | pdfLaTeX | [miscellaneous/marriage-biodata](miscellaneous/marriage-biodata) | [Open in LetX](https://letx.app/templates/miscellaneous/marriage-biodata) |
+| Meeting Minutes | pdfLaTeX | [miscellaneous/meeting-minutes](miscellaneous/meeting-minutes) | [Open in LetX](https://letx.app/templates/miscellaneous/meeting-minutes) |
+| Recipe Book | pdfLaTeX | [miscellaneous/recipe-book](miscellaneous/recipe-book) | [Open in LetX](https://letx.app/templates/miscellaneous/recipe-book) |
+
+---
+
+## Template Structure
+
+Each template directory contains:
+
+```
+category/template-name/
+  main.tex           # Main compilable file
+  metadata.json      # Name, compiler, description, category
+  *.cls / *.sty      # Custom class/style files (if any)
+  *.bib              # Bibliography (if any)
+  Makefile            # Build automation
+```
+
+## Compiler Notes
+
+| Compiler | When | Templates |
+|----------|------|-----------|
+| `latexmk -pdf` | Default — works for 59 templates | Most templates |
+| `latexmk -xelatex` | Custom fonts via `fontspec` | altacv, awesome-cv, banking-cv, classic-cv, deedy-resume |
+| `latexmk -lualatex` | Alternative when XeLaTeX has font issues | moderncv, hipstercv |
+
+If XeLaTeX fails with "font not found", add TeX Live fonts to fontconfig:
+```bash
+export FONTCONFIG_PATH=/usr/local/texlive/2025/texmf-dist/fonts
+```
+
+## Contributing
+
+1. Fork this repo
+2. Create your template in the appropriate category directory
+3. Include a `main.tex` that compiles cleanly
+4. Add a `metadata.json` with the correct compiler
+5. Run `latexmk -C` to remove build artifacts
+6. Submit a PR
+
+### Template guidelines
+
+- One `main.tex` per template with `\documentclass` at top
+- No build artifacts (`.aux`, `.log`, `.pdf`, `.synctex.gz`) committed
+- Include placeholder content that demonstrates the template's features
+- Add a `Makefile` for convenience
+
+## Using Templates Online
+
+Every template in this collection is available with **live preview, real-time collaboration, and one-click compilation** at [letx.app/templates](https://letx.app/templates). No TeX installation needed — just pick a template, edit in your browser, and download the PDF. Works great for co-authoring papers with collaborators in different time zones.
+
+## License
+
+This collection is released under the **MIT License**. Individual templates may carry their own licenses (LPPL, CC-BY, etc.) as noted in their source files.

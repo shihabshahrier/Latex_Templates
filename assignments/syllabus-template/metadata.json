@@ -1,0 +1,8 @@
+{
+  "name": "Course Syllabus Template",
+  "compiler": "pdflatex",
+  "description": "Professional course syllabus with schedule table, policies, and grading breakdown.",
+  "author": "LaTeX Community",
+  "category": "assignments",
+  "license": "Open Source"
+}

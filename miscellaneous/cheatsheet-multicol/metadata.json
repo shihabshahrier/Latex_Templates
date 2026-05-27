@@ -1,0 +1,8 @@
+{
+  "name": "Multi-Column Cheatsheet",
+  "compiler": "pdflatex",
+  "description": "Compact multi-column cheatsheet for formulas and quick reference.",
+  "author": "LaTeX Community",
+  "category": "miscellaneous",
+  "license": "Open Source"
+}

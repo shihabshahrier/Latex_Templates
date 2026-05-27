@@ -1,0 +1,8 @@
+{
+  "name": "Harvard Thesis",
+  "compiler": "pdflatex",
+  "description": "Harvard University PhD dissertation template.",
+  "author": "Harvard University",
+  "category": "universities",
+  "license": "Open Source"
+}

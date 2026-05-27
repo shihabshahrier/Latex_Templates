@@ -1,0 +1,8 @@
+{
+  "name": "Academic Defense Presentation",
+  "compiler": "pdflatex",
+  "description": "Thesis/dissertation defense slides with structured sections.",
+  "author": "LaTeX Community",
+  "category": "presentations",
+  "license": "Open Source"
+}

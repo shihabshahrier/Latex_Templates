@@ -1,0 +1,8 @@
+{
+  "name": "Tufte Book Template",
+  "compiler": "pdflatex",
+  "description": "Edward Tufte-inspired book layout with sidenotes, margin figures, and elegant typography.",
+  "author": "Edward Tufte",
+  "category": "books",
+  "license": "Open Source"
+}

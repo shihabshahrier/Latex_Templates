@@ -1,0 +1,8 @@
+{
+  "name": "UC Berkeley Thesis",
+  "compiler": "pdflatex",
+  "description": "University of California, Berkeley thesis template.",
+  "author": "UC Berkeley",
+  "category": "universities",
+  "license": "Open Source"
+}

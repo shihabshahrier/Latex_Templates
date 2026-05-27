@@ -1,0 +1,8 @@
+{
+  "name": "Modern Dark Beamer",
+  "compiler": "pdflatex",
+  "description": "Dark-themed Beamer slides with modern typography.",
+  "author": "LaTeX Community",
+  "category": "presentations",
+  "license": "Open Source"
+}

@@ -1,0 +1,8 @@
+{
+  "name": "ETH Zurich Thesis",
+  "compiler": "pdflatex",
+  "description": "ETH Zurich doctoral thesis template.",
+  "author": "ETH Zurich",
+  "category": "universities",
+  "license": "Open Source"
+}

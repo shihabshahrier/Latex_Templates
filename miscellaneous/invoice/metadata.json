@@ -1,0 +1,8 @@
+{
+  "name": "Invoice Template",
+  "compiler": "pdflatex",
+  "description": "Professional invoice with itemized table and totals.",
+  "author": "LaTeX Community",
+  "category": "miscellaneous",
+  "license": "Open Source"
+}

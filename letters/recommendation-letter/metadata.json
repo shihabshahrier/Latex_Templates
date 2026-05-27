@@ -1,0 +1,8 @@
+{
+  "name": "Recommendation Letter",
+  "compiler": "pdflatex",
+  "description": "Academic recommendation letter template.",
+  "author": "LaTeX Community",
+  "category": "formal-letters",
+  "license": "Open Source"
+}

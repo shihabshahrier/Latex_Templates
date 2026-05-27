@@ -1,0 +1,8 @@
+{
+  "name": "MIT Thesis",
+  "compiler": "pdflatex",
+  "description": "Massachusetts Institute of Technology thesis template.",
+  "author": "MIT",
+  "category": "universities",
+  "license": "Open Source"
+}

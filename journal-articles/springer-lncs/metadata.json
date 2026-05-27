@@ -1,0 +1,8 @@
+{
+  "name": "Springer LNCS",
+  "compiler": "pdflatex",
+  "description": "Springer Lecture Notes in Computer Science template.",
+  "author": "Springer",
+  "category": "journal-articles",
+  "license": "Open Source"
+}

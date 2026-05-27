@@ -1,0 +1,8 @@
+{
+  "name": "CUET Thesis",
+  "compiler": "pdflatex",
+  "description": "Chittagong University of Engineering and Technology thesis template.",
+  "author": "CUET",
+  "category": "universities",
+  "license": "Open Source"
+}

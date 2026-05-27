@@ -1,0 +1,8 @@
+{
+  "name": "Math Homework Template",
+  "compiler": "pdflatex",
+  "description": "Math homework template with theorem environments, proofs, and equation support.",
+  "author": "LaTeX Community",
+  "category": "assignments",
+  "license": "Open Source"
+}

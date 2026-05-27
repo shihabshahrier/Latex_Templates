@@ -1,0 +1,8 @@
+{
+  "name": "A0 Research Poster",
+  "compiler": "pdflatex",
+  "description": "Large-format A0 research poster using the a0poster class.",
+  "author": "LaTeX Community",
+  "category": "posters",
+  "license": "Open Source"
+}

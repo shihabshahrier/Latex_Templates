@@ -1,0 +1,8 @@
+{
+  "name": "UT Austin Thesis",
+  "compiler": "pdflatex",
+  "description": "University of Texas at Austin thesis template.",
+  "author": "UT Austin",
+  "category": "universities",
+  "license": "Open Source"
+}

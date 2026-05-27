@@ -1,0 +1,8 @@
+{
+  "name": "Marriage Biodata",
+  "compiler": "pdflatex",
+  "description": "Traditional marriage biodata template with photo and personal details.",
+  "author": "LaTeX Community",
+  "category": "miscellaneous",
+  "license": "Open Source"
+}

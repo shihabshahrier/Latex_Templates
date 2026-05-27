@@ -1,0 +1,8 @@
+{
+  "name": "Oxford Thesis",
+  "compiler": "pdflatex",
+  "description": "University of Oxford doctoral thesis template.",
+  "author": "University of Oxford",
+  "category": "universities",
+  "license": "Open Source"
+}

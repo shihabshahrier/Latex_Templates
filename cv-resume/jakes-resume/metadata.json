@@ -1,0 +1,8 @@
+{
+  "name": "Jake's Resume",
+  "compiler": "pdflatex",
+  "description": "ATS-friendly single-column resume. Most forked LaTeX resume on GitHub.",
+  "author": "Jake Gutierrez",
+  "category": "cvs-resumes",
+  "license": "Open Source"
+}

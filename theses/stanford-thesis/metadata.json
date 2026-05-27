@@ -1,0 +1,8 @@
+{
+  "name": "Stanford Thesis",
+  "compiler": "pdflatex",
+  "description": "Stanford University PhD dissertation template.",
+  "author": "Stanford University",
+  "category": "universities",
+  "license": "Open Source"
+}

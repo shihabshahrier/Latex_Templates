@@ -1,0 +1,8 @@
+{
+  "name": "SUST Thesis",
+  "compiler": "pdflatex",
+  "description": "Shahjalal University of Science and Technology thesis template.",
+  "author": "SUST",
+  "category": "universities",
+  "license": "Open Source"
+}

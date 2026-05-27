@@ -1,0 +1,8 @@
+{
+  "name": "TikZ Poster Template",
+  "compiler": "pdflatex",
+  "description": "Flexible poster template using tikzposter.",
+  "author": "LaTeX Community",
+  "category": "posters",
+  "license": "Open Source"
+}

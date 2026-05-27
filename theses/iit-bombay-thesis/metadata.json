@@ -1,0 +1,8 @@
+{
+  "name": "IIT Bombay Thesis",
+  "compiler": "pdflatex",
+  "description": "Indian Institute of Technology Bombay thesis template.",
+  "author": "IIT Bombay",
+  "category": "universities",
+  "license": "Open Source"
+}

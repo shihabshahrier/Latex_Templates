@@ -1,0 +1,8 @@
+{
+  "name": "IIT Delhi Thesis",
+  "compiler": "pdflatex",
+  "description": "Indian Institute of Technology Delhi thesis template.",
+  "author": "IIT Delhi",
+  "category": "universities",
+  "license": "Open Source"
+}

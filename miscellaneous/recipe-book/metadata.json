@@ -1,0 +1,8 @@
+{
+  "name": "Recipe Book Template",
+  "compiler": "pdflatex",
+  "description": "Beautiful recipe book layout with ingredient lists and instructions.",
+  "author": "LaTeX Community",
+  "category": "miscellaneous",
+  "license": "Open Source"
+}

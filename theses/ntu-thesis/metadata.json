@@ -1,0 +1,8 @@
+{
+  "name": "NTU Thesis",
+  "compiler": "pdflatex",
+  "description": "Nanyang Technological University thesis template.",
+  "author": "NTU",
+  "category": "universities",
+  "license": "Open Source"
+}

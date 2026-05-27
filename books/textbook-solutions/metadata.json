@@ -1,0 +1,8 @@
+{
+  "name": "Textbook Solutions Manual",
+  "compiler": "pdflatex",
+  "description": "Organized solutions manual template with chapter/problem numbering.",
+  "author": "LaTeX Community",
+  "category": "books",
+  "license": "Open Source"
+}

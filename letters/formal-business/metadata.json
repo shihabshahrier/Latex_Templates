@@ -1,0 +1,8 @@
+{
+  "name": "Formal Business Letter",
+  "compiler": "pdflatex",
+  "description": "Standard business letter with letterhead and signature block.",
+  "author": "LaTeX Community",
+  "category": "formal-letters",
+  "license": "Open Source"
+}

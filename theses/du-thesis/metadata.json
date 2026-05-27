@@ -1,0 +1,8 @@
+{
+  "name": "DU Thesis",
+  "compiler": "pdflatex",
+  "description": "University of Dhaka thesis template.",
+  "author": "University of Dhaka",
+  "category": "universities",
+  "license": "Open Source"
+}

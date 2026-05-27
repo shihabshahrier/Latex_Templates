@@ -1,0 +1,8 @@
+{
+  "name": "Lab Report Template",
+  "compiler": "pdflatex",
+  "description": "Standard lab report with abstract, methods, results, and discussion sections.",
+  "author": "LaTeX Community",
+  "category": "assignments",
+  "license": "Open Source"
+}

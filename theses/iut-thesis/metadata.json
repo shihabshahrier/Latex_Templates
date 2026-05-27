@@ -1,0 +1,8 @@
+{
+  "name": "IUT Thesis",
+  "compiler": "pdflatex",
+  "description": "Islamic University of Technology thesis template.",
+  "author": "IUT",
+  "category": "universities",
+  "license": "Open Source"
+}

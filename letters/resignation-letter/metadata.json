@@ -1,0 +1,8 @@
+{
+  "name": "Resignation Letter",
+  "compiler": "pdflatex",
+  "description": "Professional resignation letter template.",
+  "author": "LaTeX Community",
+  "category": "formal-letters",
+  "license": "Open Source"
+}

@@ -1,0 +1,8 @@
+{
+  "name": "Cover Letter Template",
+  "compiler": "pdflatex",
+  "description": "Professional cover letter with sender/recipient blocks.",
+  "author": "LaTeX Community",
+  "category": "formal-letters",
+  "license": "Open Source"
+}

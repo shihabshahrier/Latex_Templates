@@ -1,0 +1,8 @@
+{
+  "name": "NUS Thesis",
+  "compiler": "pdflatex",
+  "description": "National University of Singapore thesis template.",
+  "author": "NUS",
+  "category": "universities",
+  "license": "Open Source"
+}

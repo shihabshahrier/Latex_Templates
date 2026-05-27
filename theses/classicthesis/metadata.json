@@ -1,0 +1,8 @@
+{
+  "name": "ClassicThesis",
+  "compiler": "pdflatex",
+  "description": "Beautiful thesis template inspired by Robert Bringhurst's typography.",
+  "author": "Andre Miede",
+  "category": "universities",
+  "license": "Open Source"
+}

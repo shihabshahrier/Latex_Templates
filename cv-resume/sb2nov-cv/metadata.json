@@ -1,0 +1,8 @@
+{
+  "name": "sb2nov Resume",
+  "compiler": "pdflatex",
+  "description": "Clean single-column software engineer resume with compact sections.",
+  "author": "Sourabh Bajaj",
+  "category": "cvs-resumes",
+  "license": "Open Source"
+}

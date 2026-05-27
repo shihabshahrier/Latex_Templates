@@ -1,0 +1,8 @@
+{
+  "name": "Conference Talk (15 min)",
+  "compiler": "pdflatex",
+  "description": "Compact conference presentation for 15-minute talk slots.",
+  "author": "LaTeX Community",
+  "category": "presentations",
+  "license": "Open Source"
+}

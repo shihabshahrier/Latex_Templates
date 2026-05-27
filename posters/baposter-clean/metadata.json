@@ -1,0 +1,8 @@
+{
+  "name": "baposter Clean Template",
+  "compiler": "pdflatex",
+  "description": "Clean academic poster using baposter with customizable columns.",
+  "author": "LaTeX Community",
+  "category": "posters",
+  "license": "Open Source"
+}

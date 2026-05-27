@@ -1,0 +1,8 @@
+{
+  "name": "Metropolis Beamer Theme",
+  "compiler": "pdflatex",
+  "description": "Modern, minimal Beamer theme with progress bar.",
+  "author": "Matthias Vogelgesang",
+  "category": "presentations",
+  "license": "Open Source"
+}

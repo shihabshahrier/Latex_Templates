@@ -1,0 +1,8 @@
+{
+  "name": "Elsevier Article (elsarticle)",
+  "compiler": "pdflatex",
+  "description": "Official Elsevier journal submission template.",
+  "author": "Elsevier",
+  "category": "journal-articles",
+  "license": "Open Source"
+}

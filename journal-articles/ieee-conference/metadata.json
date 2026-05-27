@@ -1,0 +1,8 @@
+{
+  "name": "IEEE Conference Paper",
+  "compiler": "pdflatex",
+  "description": "Standard IEEE two-column conference paper template.",
+  "author": "IEEE",
+  "category": "journal-articles",
+  "license": "Open Source"
+}

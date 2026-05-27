@@ -1,0 +1,8 @@
+{
+  "name": "Madrid Beamer Theme",
+  "compiler": "pdflatex",
+  "description": "Classic Beamer presentation with the Madrid theme.",
+  "author": "LaTeX Community",
+  "category": "presentations",
+  "license": "Open Source"
+}

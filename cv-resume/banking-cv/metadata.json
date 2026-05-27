@@ -1,0 +1,8 @@
+{
+  "name": "Banking & Finance CV",
+  "compiler": "xelatex",
+  "description": "Conservative single-column CV tailored for banking and finance professionals.",
+  "author": "LaTeX Community",
+  "category": "cvs-resumes",
+  "license": "Open Source"
+}

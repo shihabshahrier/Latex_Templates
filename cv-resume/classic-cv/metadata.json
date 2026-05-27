@@ -1,0 +1,8 @@
+{
+  "name": "Classic CV Template",
+  "compiler": "xelatex",
+  "description": "Traditional academic CV with clean sections and serif typography.",
+  "author": "LaTeX Community",
+  "category": "cvs-resumes",
+  "license": "Open Source"
+}

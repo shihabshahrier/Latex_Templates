@@ -1,0 +1,8 @@
+{
+  "name": "Memoir Book Template",
+  "compiler": "pdflatex",
+  "description": "Book template using the memoir class with chapter styles and professional typography.",
+  "author": "LaTeX Community",
+  "category": "books",
+  "license": "Open Source"
+}

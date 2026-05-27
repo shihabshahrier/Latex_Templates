@@ -1,0 +1,8 @@
+{
+  "name": "arXiv Preprint Template",
+  "compiler": "pdflatex",
+  "description": "Clean preprint template suitable for arXiv submissions.",
+  "author": "LaTeX Community",
+  "category": "journal-articles",
+  "license": "Open Source"
+}

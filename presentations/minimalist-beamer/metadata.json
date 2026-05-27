@@ -1,0 +1,8 @@
+{
+  "name": "Minimalist Beamer Slides",
+  "compiler": "pdflatex",
+  "description": "Ultra-clean Beamer template for content-focused talks.",
+  "author": "LaTeX Community",
+  "category": "presentations",
+  "license": "Open Source"
+}

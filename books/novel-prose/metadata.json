@@ -1,0 +1,8 @@
+{
+  "name": "Novel & Prose Template",
+  "compiler": "pdflatex",
+  "description": "Clean novel template with chapter headings, drop caps, and prose-friendly layout.",
+  "author": "LaTeX Community",
+  "category": "books",
+  "license": "Open Source"
+}

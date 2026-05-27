@@ -1,0 +1,8 @@
+{
+  "name": "Cambridge Thesis",
+  "compiler": "pdflatex",
+  "description": "University of Cambridge PhD thesis template.",
+  "author": "University of Cambridge",
+  "category": "universities",
+  "license": "Open Source"
+}

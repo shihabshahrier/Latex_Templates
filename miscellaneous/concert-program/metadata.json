@@ -1,0 +1,8 @@
+{
+  "name": "Concert Program",
+  "compiler": "pdflatex",
+  "description": "Elegant concert or recital program template.",
+  "author": "LaTeX Community",
+  "category": "miscellaneous",
+  "license": "Open Source"
+}

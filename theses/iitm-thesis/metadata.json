@@ -1,0 +1,8 @@
+{
+  "name": "IIT Madras Thesis",
+  "compiler": "pdflatex",
+  "description": "Indian Institute of Technology Madras thesis template.",
+  "author": "IIT Madras",
+  "category": "universities",
+  "license": "Open Source"
+}
