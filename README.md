@@ -201,7 +201,18 @@ export FONTCONFIG_PATH=/usr/local/texlive/2025/texmf-dist/fonts
 
 ## Using Templates Online
 
-Every template in this collection is available with **live preview, real-time collaboration, and one-click compilation** at [letx.app/templates](https://letx.app/templates). No TeX installation needed — just pick a template, edit in your browser, and download the PDF. Works great for co-authoring papers with collaborators in different time zones.
+Every template in this collection is available with **live preview, real-time collaboration, and one-click compilation** at [letx.app/templates](https://letx.app/templates/). No TeX installation needed — just pick a template, edit in your browser, and download the PDF. Works great for co-authoring papers with collaborators in different time zones.
+
+## LaTeX Guides
+
+New to LaTeX or fixing a stubborn error? These free guides pair well with the templates:
+
+- [How to Add Images in LaTeX](https://letx.app/learn/how-to-add-images-in-latex/) — graphicx, figure placement, subfigures, wrapfig
+- [How to Write Equations in LaTeX](https://letx.app/learn/how-to-write-equations-in-latex/) — amsmath, align, matrices, symbol cheat sheet
+- [How to Make a Table in LaTeX](https://letx.app/learn/how-to-make-a-table-in-latex/) — tabular, booktabs, merged cells
+- [Citations & Bibliography in LaTeX](https://letx.app/learn/how-to-add-citations-and-bibliography-in-latex/) — BibTeX, biblatex, IEEE/APA styles
+- [Fix Common LaTeX Errors](https://letx.app/learn/problems/) — undefined control sequence, missing $, overfull hbox, and more
+- [Learn LaTeX in 30 Minutes](https://letx.app/learn/latex-in-30-minutes/) — the fast-track beginner course
 
 ## License
 
