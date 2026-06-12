@@ -217,3 +217,7 @@ New to LaTeX or fixing a stubborn error? These free guides pair well with the te
 ## License
 
 This collection is released under the **MIT License**. Individual templates may carry their own licenses (LPPL, CC-BY, etc.) as noted in their source files.
+
+---
+
+📖 **Project page:** https://shihub.online/projects/latex-templates
