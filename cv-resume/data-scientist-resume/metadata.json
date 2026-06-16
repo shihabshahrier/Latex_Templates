@@ -1,0 +1,8 @@
+{
+  "name": "Data Scientist Resume",
+  "compiler": "pdflatex",
+  "description": "Two-column data scientist resume LaTeX template — teal sidebar for skills & tools, main column for quantified business impact and projects. One page.",
+  "author": "LetX",
+  "category": "cvs-resumes",
+  "license": "Open Source"
+}

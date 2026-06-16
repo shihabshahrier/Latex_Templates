@@ -1,0 +1,8 @@
+{
+  "name": "Student / Fresher Resume",
+  "compiler": "pdflatex",
+  "description": "Student & fresher resume LaTeX template — one page, education-forward with projects, skills, and internships. Clean teal accent, ATS-friendly.",
+  "author": "LetX",
+  "category": "cvs-resumes",
+  "license": "Open Source"
+}

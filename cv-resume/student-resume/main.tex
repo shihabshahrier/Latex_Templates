@@ -1,0 +1,178 @@
+\documentclass[11pt,a4paper]{article}
+
+% Packages
+\usepackage[margin=0.5in]{geometry}
+\usepackage{xcolor}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{fontawesome5}
+\usepackage{hyperref}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{parskip}
+\usepackage{ragged2e}
+
+% Colors
+\definecolor{accent}{HTML}{0E7C7B}
+\definecolor{darkgray}{HTML}{333333}
+
+% Hyperref setup
+\hypersetup{
+    hidelinks,
+    colorlinks=true,
+    linkcolor=accent,
+    filecolor=accent,
+    urlcolor=accent,
+    citecolor=accent,
+}
+
+% Section formatting
+\titleformat{\section}{
+    \vspace{-4pt}\color{accent}\large\bfseries\scshape
+}{}{0em}{}[\color{accent}\titlerule \vspace{-4pt}]
+
+% Global formatting
+\pagestyle{empty} % No page numbers
+\setlength{\parindent}{0pt}
+\setlength{\tabcolsep}{0pt}
+
+% Custom commands
+\newcommand{\resumeItem}[1]{
+  \item \small \RaggedRight #1
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-2pt}\item
+    \begin{tabularx}{\linewidth}{X r}
+      \textbf{#1} & \textbf{\small #2} \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabularx}\vspace{-7pt}
+}
+
+\newcommand{\resumeProjectHeading}[2]{
+  \vspace{-2pt}\item
+    \begin{tabularx}{\linewidth}{X r}
+      #1 & \textbf{\small #2} \\
+    \end{tabularx}\vspace{-7pt}
+}
+
+\renewcommand\labelitemi{$\vcenter{\hbox{\tiny$\bullet$}}$}
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.0in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}\vspace{-4pt}}
+\newcommand{\resumeItemListStart}{\begin{itemize}[leftmargin=0.15in, rightmargin=0in]}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-4pt}}
+
+\begin{document}
+
+% HEADER
+\begin{center}
+    {\Huge \bfseries Tahmid Hasan} \\ \vspace{4pt}
+    \small \color{darkgray}
+    \faMapMarker* \enspace Dhaka, Bangladesh \quad
+    \faPhone \enspace +880 123 456 7890 \quad
+    \faEnvelope \enspace \href{mailto:tahmid.hasan@email.com}{tahmid.hasan@email.com} \quad
+    \faLinkedin \enspace \href{https://linkedin.com/in/tahmidhasan}{linkedin.com/in/tahmidhasan} \quad
+    \faGithub \enspace \href{https://github.com/tahmidhasan}{github.com/tahmidhasan}
+\end{center}
+\vspace{-12pt}
+
+% SUMMARY
+\section*{Objective}
+\small \RaggedRight
+Motivated and detail-oriented Computer Science senior seeking a software engineering internship to leverage strong programming skills in developing scalable applications and solving complex technical challenges.
+
+% EDUCATION
+\section*{Education}
+\resumeSubHeadingListStart
+  \resumeSubheading
+    {University of Engineering and Technology}{Dhaka, Bangladesh}
+    {Bachelor of Science in Computer Science and Engineering; CGPA: 3.85/4.00}{Expected May 2027}
+    \vspace{2pt}
+    \item \small \textbf{Relevant Coursework:} Data Structures, Algorithms, Object-Oriented Programming, Database Systems, Operating Systems, Computer Networks, Software Engineering.
+\resumeSubHeadingListEnd
+
+% TECHNICAL SKILLS
+\section*{Technical Skills}
+\begin{itemize}[leftmargin=0.0in, label={}, itemsep=1pt]
+    \small{\item{
+     \textbf{Languages}{: Python, Java, C++, JavaScript, TypeScript, SQL, HTML/CSS} \\
+     \textbf{Frameworks \& Libraries}{: React.js, Node.js, Express, Django, Spring Boot, Tailwind CSS} \\
+     \textbf{Tools \& Technologies}{: Git, GitHub, Docker, Postman, Linux, MySQL, MongoDB, AWS (EC2, S3)}
+    }}
+\end{itemize}
+\vspace{-10pt}
+
+% PROJECTS
+\section*{Projects}
+\resumeSubHeadingListStart
+  \resumeProjectHeading
+    {\textbf{E-Commerce Platform} $|$ \emph{React, Node.js, Express, MongoDB, Stripe}}{Oct 2025 -- Dec 2025}
+    \resumeItemListStart
+      \resumeItem{Developed a full-stack e-commerce web application with user authentication, product search, and a shopping cart.}
+      \resumeItem{Integrated Stripe API for secure payment processing, handling over 50 mock transactions smoothly.}
+    \resumeItemListEnd
+
+  \resumeProjectHeading
+    {\textbf{Task Management API} $|$ \emph{Python, Django REST Framework, PostgreSQL, Docker}}{Jul 2025 -- Aug 2025}
+    \resumeItemListStart
+      \resumeItem{Engineered a RESTful API for task tracking with role-based access control and JWT authentication.}
+      \resumeItem{Containerized the application using Docker, reducing setup time for other developers by 30\%.}
+    \resumeItemListEnd
+
+  \resumeProjectHeading
+    {\textbf{Algorithm Visualizer} $|$ \emph{JavaScript, HTML, CSS}}{Mar 2025 -- May 2025}
+    \resumeItemListStart
+      \resumeItem{Built an interactive web tool to visualize popular sorting algorithms (Quick, Merge, Bubble) and graph algorithms (Dijkstra, BFS, DFS) in real-time.}
+      \resumeItem{Optimized rendering performance by implementing custom state management, achieving a smooth 60 FPS animation.}
+    \resumeItemListEnd
+\resumeSubHeadingListEnd
+
+% EXPERIENCE
+\section*{Experience}
+\resumeSubHeadingListStart
+  \resumeSubheading
+    {Software Engineering Intern}{Remote}
+    {Tech Innovations Ltd.}{Jan 2026 -- Present}
+    \resumeItemListStart
+      \resumeItem{Collaborated with a team of 4 developers to design and implement new features for a customer relationship management (CRM) dashboard using React and TypeScript.}
+      \resumeItem{Optimized database queries, reducing page load times by 20\% and improving overall user experience.}
+    \resumeItemListEnd
+
+  \resumeSubheading
+    {Undergraduate Teaching Assistant}{Dhaka, Bangladesh}
+    {Department of Computer Science, UET}{Sep 2025 -- Dec 2025}
+    \resumeItemListStart
+      \resumeItem{Assisted in teaching 'Data Structures and Algorithms' to a class of 60+ sophomore students.}
+      \resumeItem{Conducted weekly lab sessions, graded assignments, and held office hours to clarify complex programming concepts.}
+    \resumeItemListEnd
+\resumeSubHeadingListEnd
+
+% ACHIEVEMENTS & ACTIVITIES
+\section*{Achievements \& Activities}
+\resumeSubHeadingListStart
+  \resumeProjectHeading
+    {\textbf{Hackathon Winner} $|$ \emph{National TechFest Hackathon 2025}}{Nov 2025}
+    \resumeItemListStart
+      \resumeItem{Led a team of 3 to build an AI-powered study assistant app in 48 hours, winning 1st place among 50+ participating teams.}
+    \resumeItemListEnd
+  \resumeProjectHeading
+    {\textbf{Dean's List Award} $|$ \emph{University of Engineering and Technology}}{2024 -- 2025}
+    \resumeItemListStart
+      \resumeItem{Recognized for maintaining a semester GPA in the top 5\% of the Computer Science cohort for 3 consecutive semesters.}
+    \resumeItemListEnd
+  \resumeProjectHeading
+    {\textbf{Technical Lead} $|$ \emph{University Computer Club}}{Jan 2025 -- Present}
+    \resumeItemListStart
+      \resumeItem{Organized 5+ technical workshops and coding bootcamps, mentoring over 100 students in modern web development frameworks.}
+    \resumeItemListEnd
+\resumeSubHeadingListEnd
+
+% CERTIFICATIONS
+\section*{Certifications}
+\begin{itemize}[leftmargin=0.15in, itemsep=1pt]
+  \small
+  \item \textbf{AWS Certified Cloud Practitioner} -- Amazon Web Services (Issued: Feb 2026)
+  \item \textbf{Meta Back-End Developer Professional Certificate} -- Coursera (Issued: Aug 2025)
+\end{itemize}
+
+\end{document}

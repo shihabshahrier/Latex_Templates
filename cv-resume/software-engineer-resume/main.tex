@@ -1,0 +1,160 @@
+\documentclass[10pt]{article}
+\usepackage[paperwidth=210mm,paperheight=297mm,margin=0pt]{geometry}
+\usepackage{xcolor,fontawesome5,enumitem,hyperref,eso-pic,array,ragged2e,parskip}
+
+\definecolor{sidebar}{HTML}{1F2937}
+\definecolor{accent}{HTML}{2563EB}
+\definecolor{sidetext}{HTML}{E5E7EB}
+\definecolor{maingray}{HTML}{374151}
+\definecolor{lightaccent}{HTML}{DBEAFE}
+
+\newlength{\sbw}\setlength{\sbw}{72mm}
+\setlength{\parindent}{0pt}
+\pagestyle{empty}
+\hypersetup{hidelinks}
+
+\AddToShipoutPictureBG{%
+  \AtPageLowerLeft{\textcolor{sidebar}{\rule{\sbw}{\paperheight}}}%
+}
+
+% Sidebar section heading
+\newcommand{\sideheading}[1]{%
+  \vspace{4mm}%
+  {\bfseries\large\color{white} #1}\\[-1mm]%
+  {\color{accent}\rule{\dimexpr\sbw-14mm\relax}{0.6pt}}%
+  \vspace{1.5mm}%
+}
+
+% Main section heading
+\newcommand{\mainheading}[1]{%
+  \vspace{4mm}%
+  {\bfseries\large\color{accent} #1}\\[-1mm]%
+  {\color{accent}\rule{\dimexpr\paperwidth-\sbw-14mm\relax}{0.6pt}}%
+  \vspace{1mm}%
+}
+
+% Experience entry: \expentry{Title}{Company, Location}{Date}
+\newcommand{\expentry}[3]{%
+  \vspace{1.5mm}%
+  \noindent\parbox[t]{\dimexpr\paperwidth-\sbw-14mm\relax}{%
+    {\bfseries\color{maingray} #1}\hfill{\small\color{accent} #3}\\%
+    {\small\itshape\color{maingray} #2}%
+  }%
+  \vspace{0.5mm}%
+}
+
+% Project entry: \projentry{Name}{Tech}
+\newcommand{\projentry}[2]{%
+  \vspace{1mm}%
+  {\bfseries\color{maingray} #1} \textbar{} {\small\color{accent}\textit{#2}}%
+  \vspace{0.5mm}%
+}
+
+\begin{document}
+\noindent
+%% ─── LEFT SIDEBAR ───────────────────────────────────────────────────────────
+\begin{minipage}[t]{\sbw}
+  \color{sidetext}\vspace{10mm}\hspace{7mm}%
+  \begin{minipage}[t]{\dimexpr\sbw-14mm\relax}\RaggedRight
+
+    % Name & Role
+    {\bfseries\LARGE\color{white} Arman Khan}\\[1.5mm]
+    {\color{accent}\rule{\dimexpr\sbw-14mm\relax}{0.6pt}}\\[1mm]
+    {\bfseries\normalsize\color{lightaccent} Software Engineer}
+
+    % Contact
+    \sideheading{Contact}
+    \small
+    {\faEnvelope}\ \href{mailto:arman.khan@email.com}{arman.khan@email.com}\\[2pt]
+    {\faPhone}\ +1\,(555)\,234-5678\\[2pt]
+    {\faMapMarker*}\ San Francisco, CA\\[2pt]
+    {\faLinkedin}\ \href{https://linkedin.com/in/armankhan}{linkedin.com/in/armankhan}\\[2pt]
+    {\faGithub}\ \href{https://github.com/armankhan}{github.com/armankhan}
+
+    % Technical Skills
+    \sideheading{Technical Skills}
+    \small
+    {\bfseries\color{white} Languages}\\[1pt]
+    Python, Go, TypeScript, Java, SQL\\[3pt]
+    {\bfseries\color{white} Frameworks}\\[1pt]
+    Django, FastAPI, React, Node.js, Spring Boot\\[3pt]
+    {\bfseries\color{white} Databases}\\[1pt]
+    PostgreSQL, MongoDB, Redis, Elasticsearch\\[3pt]
+    {\bfseries\color{white} DevOps \& Cloud}\\[1pt]
+    AWS, GCP, Docker, Kubernetes,\\
+    Terraform, CI/CD, GitHub Actions
+
+    % Education
+    \sideheading{Education}
+    \small
+    {\bfseries\color{white} BSc in Computer Science}\\[1pt]
+    {\color{lightaccent} \& Engineering}\\[2pt]
+    University of California, Berkeley\\[1pt]
+    {\color{accent} 2018 -- 2022}\\[1pt]
+    GPA: 3.82 / 4.00\\[3pt]
+    {\bfseries\color{white} Relevant Coursework}\\[1pt]
+    Distributed Systems, Algorithms,\\
+    Machine Learning, OS, Databases
+
+  \end{minipage}
+\end{minipage}\hfill
+%% ─── RIGHT MAIN COLUMN ──────────────────────────────────────────────────────
+\begin{minipage}[t]{\dimexpr\paperwidth-\sbw\relax}
+  \vspace{10mm}\hspace{6mm}%
+  \begin{minipage}[t]{\dimexpr\paperwidth-\sbw-14mm\relax}
+
+    % Profile
+    \mainheading{Profile}
+    \small\color{maingray}
+    Results-driven Software Engineer with 4+ years of experience designing and shipping
+    high-availability distributed systems serving millions of users. Proven track record of
+    reducing infrastructure costs and latency through thoughtful architecture and rigorous
+    performance tuning. Passionate about clean code, developer tooling, and mentoring junior
+    engineers to build high-impact, scalable products.
+
+    % Experience
+    \mainheading{Experience}
+
+    \expentry{Senior Software Engineer}{Stripe, Inc. \textbar{} San Francisco, CA}{Jan 2023 -- Present}
+    \begin{itemize}[leftmargin=*,itemsep=0pt,topsep=2pt,parsep=0pt]
+      \small\color{maingray}
+      \item Redesigned the payment-processing pipeline using Go microservices, reducing P99 latency by \textbf{42\%} and handling \textbf{120K} transactions per second at peak load.
+      \item Led migration of 18 legacy services to Kubernetes on GKE, cutting infrastructure costs by \textbf{\$280K/year} and improving deployment frequency from weekly to 30+ times daily.
+      \item Built an internal developer portal (React + FastAPI) adopted by \textbf{200+} engineers, reducing onboarding time from 2 weeks to 3 days.
+    \end{itemize}
+
+    \expentry{Software Engineer}{Lyft, Inc. \textbar{} San Francisco, CA}{Jul 2022 -- Dec 2022}
+    \begin{itemize}[leftmargin=*,itemsep=0pt,topsep=2pt,parsep=0pt]
+      \small\color{maingray}
+      \item Implemented a real-time surge-pricing engine with Kafka and Redis Streams, improving pricing accuracy by \textbf{31\%} and increasing revenue per ride by \textbf{9\%}.
+      \item Optimised PostgreSQL query plans and introduced connection pooling via PgBouncer, achieving a \textbf{55\%} reduction in average DB response time across 6 high-traffic services.
+      \item Authored comprehensive integration tests and chaos-engineering runbooks, raising service reliability from 99.5\% to \textbf{99.97\%} SLA.
+    \end{itemize}
+
+    % Projects
+    \mainheading{Projects}
+
+    \projentry{DistCache}{Go, Redis, Raft Consensus, gRPC}
+    \begin{itemize}[leftmargin=*,itemsep=0pt,topsep=2pt,parsep=0pt]
+      \small\color{maingray}
+      \item Built a distributed in-memory cache with Raft-based leader election and consistent hashing, achieving \textbf{sub-1ms} read latency and linear scalability to 16 nodes in benchmarks.
+    \end{itemize}
+
+    \vspace{1mm}
+    \projentry{CodeReview AI}{Python, FastAPI, OpenAI API, React, PostgreSQL}
+    \begin{itemize}[leftmargin=*,itemsep=0pt,topsep=2pt,parsep=0pt]
+      \small\color{maingray}
+      \item Developed an LLM-powered GitHub bot that automatically reviews PRs for security issues and style violations, reducing review cycle time by \textbf{60\%} across 12 open-source repos.
+    \end{itemize}
+
+    % Achievements
+    \mainheading{Achievements}
+    \begin{itemize}[leftmargin=*,itemsep=1pt,topsep=2pt,parsep=0pt]
+      \small\color{maingray}
+      \item \textbf{Stripe Hack Week Winner 2024} --- Built a fraud-detection prototype using graph neural networks that flagged \textbf{94\%} of synthetic fraud cases, earning the \emph{Best Infra Impact} award.
+      \item \textbf{AWS Certified Solutions Architect -- Professional} (2023); \textbf{Google Cloud Professional Data Engineer} (2022); top \textbf{1\%} contributor on LeetCode (\textbf{1,900+} rating).
+    \end{itemize}
+
+  \end{minipage}
+\end{minipage}
+\end{document}

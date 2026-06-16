@@ -1,6 +1,6 @@
 # LaTeX Templates Agent Guide
 
-Central registry for the 66 LaTeX templates powering [letx.app](https://letx.app).
+Central registry for the 72 LaTeX templates powering [letx.app](https://letx.app).
 
 ## Repository Structure
 
@@ -8,10 +8,10 @@ Central registry for the 66 LaTeX templates powering [letx.app](https://letx.app
 Latex_Templates/
   assignments/       (6 templates)
   books/             (4 templates)
-  cv-resume/         (7 templates)
+  cv-resume/         (12 templates)
   journal-articles/  (5 templates)
   letters/           (5 templates)
-  miscellaneous/     (6 templates)
+  miscellaneous/     (7 templates)
   posters/           (4 templates)
   presentations/     (6 templates)
   theses/            (23 templates)

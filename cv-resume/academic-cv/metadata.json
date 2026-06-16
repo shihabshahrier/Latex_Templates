@@ -1,0 +1,8 @@
+{
+  "name": "Academic CV",
+  "compiler": "pdflatex",
+  "description": "Academic CV LaTeX template for researchers and professors — publications, teaching, grants, and talks, with right-aligned dates and a clean navy accent.",
+  "author": "LetX",
+  "category": "cvs-resumes",
+  "license": "Open Source"
+}

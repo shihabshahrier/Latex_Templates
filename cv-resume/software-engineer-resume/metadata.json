@@ -1,0 +1,8 @@
+{
+  "name": "Software Engineer Resume",
+  "compiler": "pdflatex",
+  "description": "Modern two-column software engineer resume LaTeX template — dark sidebar for skills & contact, right column for experience and projects. One page, ATS-readable.",
+  "author": "LetX",
+  "category": "cvs-resumes",
+  "license": "Open Source"
+}

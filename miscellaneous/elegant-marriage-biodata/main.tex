@@ -1,0 +1,165 @@
+\documentclass[a4paper,10pt]{article}
+
+% ── Core packages ──────────────────────────────────────────────────────────────
+\usepackage[top=16mm,bottom=14mm,left=22mm,right=22mm]{geometry}
+\usepackage[dvipsnames,table]{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{calc,decorations.pathmorphing}
+\usepackage{tgpagella}
+\usepackage{enumitem}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{graphicx}
+\usepackage{pifont}
+\usepackage{parskip}
+\usepackage{eso-pic}
+
+% ── Colour palette ──────────────────────────────────────────────────────────────
+\definecolor{maroon}{HTML}{7B1E3B}
+\definecolor{gold}{HTML}{B8860B}
+\definecolor{creamlight}{HTML}{FFF9F0}
+
+\pagecolor{creamlight}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+
+% ── Section heading ─────────────────────────────────────────────────────────────
+\newcommand{\biosection}[1]{%
+  \vspace{3pt}%
+  \noindent{\color{gold}\rule{\linewidth}{0.55pt}}\\[-2pt]
+  {\color{maroon}\small\ding{70}\enspace\textbf{#1}}%
+  \\[-3pt]
+  {\color{gold}\rule{\linewidth}{0.35pt}}%
+  \vspace{1pt}%
+}
+
+% ── Table settings ──────────────────────────────────────────────────────────────
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{0.95}
+\newcolumntype{K}{>{\color{maroon}\bfseries\small}p{41mm}}
+\newcolumntype{V}{>{\small}X}
+
+% ═══════════════════════════════════════════════════════════════════════════════
+\begin{document}
+\thispagestyle{empty}
+
+% ── ORNAMENTAL BORDER (overlay on page 1 only) ──────────────────────────────
+\begin{tikzpicture}[remember picture, overlay]
+  \draw[color=maroon, line width=3pt, rounded corners=8pt]
+    ($(current page.north west)+(9mm,-9mm)$)
+    rectangle
+    ($(current page.south east)+(-9mm,9mm)$);
+  \draw[color=gold, line width=1pt, rounded corners=5pt]
+    ($(current page.north west)+(12mm,-12mm)$)
+    rectangle
+    ($(current page.south east)+(-12mm,12mm)$);
+  \draw[color=maroon!55, line width=0.4pt, rounded corners=4pt]
+    ($(current page.north west)+(14mm,-14mm)$)
+    rectangle
+    ($(current page.south east)+(-14mm,14mm)$);
+  \node[color=gold, font=\normalsize]
+    at ($(current page.north west)+(17mm,-17mm)$) {\ding{100}};
+  \node[color=gold, font=\normalsize]
+    at ($(current page.north east)+(-17mm,-17mm)$) {\ding{100}};
+  \node[color=gold, font=\normalsize]
+    at ($(current page.south west)+(17mm,17mm)$) {\ding{100}};
+  \node[color=gold, font=\normalsize]
+    at ($(current page.south east)+(-17mm,17mm)$) {\ding{100}};
+\end{tikzpicture}
+
+% ── HEADER ──────────────────────────────────────────────────────────────────────
+\begin{center}
+  {\color{gold}\rule{0.31\linewidth}{0.7pt}}%
+  \hspace{4pt}{\color{maroon}\ding{96}}%
+  \hspace{4pt}{\color{gold}\rule{0.31\linewidth}{0.7pt}}\\[4pt]
+  {\color{maroon}\fontsize{21}{25}\selectfont\textsc{Marriage Biodata}}\\[2pt]
+  {\color{gold}\rule{0.50\linewidth}{1pt}}\\[1pt]
+  {\color{maroon!70}\footnotesize\textit{\ding{167}\enspace For Matrimonial Purposes Only\enspace\ding{167}}}\\[1pt]
+  {\color{gold}\rule{0.50\linewidth}{0.5pt}}
+\end{center}
+
+\vspace{2pt}
+
+% ── PHOTO + name block ────────────────────────────────────────────────────────
+\noindent
+\begin{minipage}[t]{0.71\linewidth}
+  \vspace{0pt}
+  \begin{center}
+    {\color{maroon}\small\ding{96}\enspace\ding{96}\enspace\ding{96}}\\[2pt]
+    {\color{maroon}\large\textsc{Ananya Sharma}}\\[1pt]
+    {\color{gold}\rule{0.62\linewidth}{0.45pt}}\\[1pt]
+    {\footnotesize\color{maroon!80}\textit{``A life of grace, faith, and devotion''}}
+  \end{center}
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.26\linewidth}
+  \vspace{0pt}
+  \begin{center}
+    \begin{tikzpicture}
+      \draw[color=maroon, line width=1.6pt, rounded corners=2.5pt]
+        (0,0) rectangle (2.7cm,3.5cm);
+      \draw[color=gold, line width=0.6pt, rounded corners=2pt]
+        (0.07cm,0.07cm) rectangle (2.63cm,3.43cm);
+      \node[color=maroon!55, font=\small\itshape] at (1.35cm,1.75cm) {Photo};
+    \end{tikzpicture}
+  \end{center}
+\end{minipage}
+
+\vspace{1pt}
+
+% ── PERSONAL DETAILS ──────────────────────────────────────────────────────────
+\biosection{Personal Details}
+
+\noindent
+\begin{tabularx}{\linewidth}{KV}
+  Full Name          & Ananya Sharma \\
+  Date of Birth      & 14th September 1997 \\
+  Time of Birth      & 06:35 AM (IST) \\
+  Place of Birth     & Jaipur, Rajasthan, India \\
+  Height             & 5 ft 4 in (163 cm) \\
+  Complexion         & Fair \\
+  Blood Group        & B\textsuperscript{+} \\
+  Religion           & Hindu (Brahmin) \\
+  Mother Tongue      & Hindi \\
+  Education          & M.Sc.\ Computer Science, University of Rajasthan (2021) \\
+  Profession         & Senior Software Engineer, Infosys Ltd., Bengaluru \\
+  Annual Income      & Rs.\ 14,00,000/- per annum \\
+\end{tabularx}
+
+% ── FAMILY DETAILS ────────────────────────────────────────────────────────────
+\biosection{Family Details}
+
+\noindent
+\begin{tabularx}{\linewidth}{KV}
+  Father's Name       & Mr.\ Ramesh Kumar Sharma \\
+  Father's Occupation & Retired IAS Officer, Govt.\ of Rajasthan \\
+  Mother's Name       & Mrs.\ Sunita Sharma \\
+  Mother's Occupation & Principal, Savitri Devi Senior Secondary School \\
+  Siblings            & Elder brother: Mr.\ Arjun Sharma (Software Architect, TCS, Pune) \\
+  Native Place        & Ajmer, Rajasthan, India \\
+  Family Values       & Traditional yet progressive; deeply rooted in culture \\
+\end{tabularx}
+
+% ── CONTACT DETAILS ───────────────────────────────────────────────────────────
+\biosection{Contact Details}
+
+\noindent
+\begin{tabularx}{\linewidth}{KV}
+  Phone   & +91-98765-43210 (Father's mobile) \\
+  Email   & ananya.sharma97@gmail.com \\
+  Address & 12, Ratan Nagar Colony, Civil Lines, Jaipur -- 302\,006, Rajasthan, India \\
+\end{tabularx}
+
+\vspace{4pt}
+
+% ── Footer ────────────────────────────────────────────────────────────────────
+\begin{center}
+  {\color{gold}\rule{0.56\linewidth}{0.55pt}}\\[2pt]
+  {\color{maroon!70}\footnotesize\ding{72}\enspace
+   \textit{All information is true to the best of our knowledge.}%
+   \enspace\ding{72}}\\[2pt]
+  {\color{gold}\rule{0.56\linewidth}{0.55pt}}
+\end{center}
+
+\end{document}

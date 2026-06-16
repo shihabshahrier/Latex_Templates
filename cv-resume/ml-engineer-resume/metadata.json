@@ -1,0 +1,8 @@
+{
+  "name": "ML / AI Engineer Resume",
+  "compiler": "pdflatex",
+  "description": "Machine learning & AI engineer resume LaTeX template — skills, quantified model impact, projects, and publications. One page, clean violet accent.",
+  "author": "LetX",
+  "category": "cvs-resumes",
+  "license": "Open Source"
+}

@@ -1,0 +1,386 @@
+% =============================================================================
+%  Academic Curriculum Vitae — Dr. Ayesha Rahman
+%  Compiler: pdfLaTeX  |  Engine: latexmk -pdf main.tex
+%  All packages from TeX Live 2024/2025 full install
+% =============================================================================
+\documentclass[a4paper,11pt]{article}
+
+% ---------------------------------------------------------------------------
+% PACKAGES
+% ---------------------------------------------------------------------------
+\usepackage[
+  top=0.9in, bottom=0.9in,
+  left=0.9in, right=0.9in
+]{geometry}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+
+\usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{fontawesome5}
+\usepackage[hidelinks]{hyperref}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{parskip}
+\usepackage{ragged2e}
+\usepackage{etoolbox}
+\usepackage{microtype}
+
+% ---------------------------------------------------------------------------
+% COLORS
+% ---------------------------------------------------------------------------
+\definecolor{accent}{HTML}{1A3A6B}
+\definecolor{rulegray}{HTML}{C0C8D8}
+\definecolor{textgray}{HTML}{3A3A3A}
+
+% ---------------------------------------------------------------------------
+% HYPERREF SETUP
+% ---------------------------------------------------------------------------
+\hypersetup{
+  colorlinks = true,
+  urlcolor   = accent,
+  linkcolor  = accent,
+  citecolor  = accent,
+}
+
+% ---------------------------------------------------------------------------
+% TYPOGRAPHY
+% ---------------------------------------------------------------------------
+\color{textgray}
+\pagestyle{empty}
+
+% ---------------------------------------------------------------------------
+% SECTION STYLE  (titlesec)
+% ---------------------------------------------------------------------------
+\titleformat{\section}
+  {\large\bfseries\color{accent}}   % format
+  {}                                 % label
+  {0pt}                              % sep
+  {}                                 % before-code
+  [{\color{rulegray}\titlerule[0.6pt]}]  % after-code
+
+\titlespacing*{\section}{0pt}{14pt}{6pt}
+
+% ---------------------------------------------------------------------------
+% CV ENTRY HELPER
+%   \cventry{Left block (role/degree/title)}{Right block (date)}
+%   A tabularx row: left column fills, right column is fixed-width ragged-left.
+% ---------------------------------------------------------------------------
+\newcommand{\cventry}[2]{%
+  \begin{tabularx}{\linewidth}{@{}X@{\hspace{4pt}}>{\raggedleft\arraybackslash}p{4.6cm}@{}}
+    #1 & #2 \\
+  \end{tabularx}%
+}
+
+% Thin vertical spacing between consecutive entries
+\newcommand{\entrysep}{\vspace{3pt}}
+
+% ---------------------------------------------------------------------------
+% BOLD AUTHOR HELPER  — wraps "Rahman, A." in \textbf
+% ---------------------------------------------------------------------------
+\newcommand{\me}[1]{\textbf{#1}}
+
+% ---------------------------------------------------------------------------
+% DOCUMENT
+% ---------------------------------------------------------------------------
+\begin{document}
+
+% ===========================================================================
+%  HEADER
+% ===========================================================================
+\begin{center}
+  {\fontsize{26}{30}\selectfont\bfseries\color{accent} Dr.\ Ayesha Rahman}\\[6pt]
+  {\small
+    \faEnvelope\ \href{mailto:a.rahman@cs.cambridge.ac.uk}{a.rahman@cs.cambridge.ac.uk}
+    \quad\textbar\quad
+    \faPhone\ +44~7700~900123
+    \quad\textbar\quad
+    \faGlobe\ \href{https://ayesharahman.cs.cam.ac.uk}{ayesharahman.cs.cam.ac.uk}
+    \quad\textbar\quad
+    \faOrcid\ \href{https://orcid.org/0000-0002-1234-5678}{0000-0002-1234-5678}
+    \quad\textbar\quad
+    \faGraduationCap\ \href{https://scholar.google.com/citations?user=EXAMPLE}{Google Scholar}
+  }
+\end{center}
+
+\vspace{4pt}
+
+% ===========================================================================
+\section{Research Interests}
+% ===========================================================================
+
+Machine learning for scientific discovery; probabilistic graphical models;
+natural language processing; fairness, accountability and transparency in AI;
+computational social science; privacy-preserving federated learning.
+
+% ===========================================================================
+\section{Education}
+% ===========================================================================
+
+\cventry{%
+  \textbf{Ph.D.\ in Computer Science}\\
+  University of Cambridge, Cambridge, UK\\
+  \textit{Advisor:} Prof.\ Samuel J.\ Fletcher\\
+  \textit{Thesis:} ``Scalable Bayesian Inference for Large-Scale Structured Prediction Problems''
+}{2017--2022}
+
+\entrysep
+
+\cventry{%
+  \textbf{M.Sc.\ in Advanced Computer Science} \textit{(with Distinction)}\\
+  University of Edinburgh, Edinburgh, UK\\
+  \textit{Thesis:} ``Efficient Approximate Inference in Deep Latent Variable Models''
+}{2015--2016}
+
+\entrysep
+
+\cventry{%
+  \textbf{B.Sc.\ (Hons) in Computer Science and Mathematics}\\
+  University of Dhaka, Dhaka, Bangladesh\\
+  \textit{First Class Honours; University Gold Medal}
+}{2011--2015}
+
+% ===========================================================================
+\section{Publications}
+% ===========================================================================
+
+\subsection*{\normalsize\color{accent} Journal Articles}
+\vspace{2pt}
+
+\begin{enumerate}[leftmargin=*, label={[\arabic*]}, itemsep=4pt]
+
+\item \me{Rahman, A.}, Fletcher, S.~J., \& Nguyen, T.~L.\ (2024).
+  Variational Riemannian Flows for Posterior Approximation in High-Dimensional
+  Graphical Models.
+  \textit{Journal of Machine Learning Research}, 25(1), 1--48.
+  \href{https://doi.org/10.5555/example.2024.001}{doi:10.5555/example.2024.001}
+
+\item \me{Rahman, A.}, \& Osei-Bonsu, K.\ (2023).
+  FairFed: A Federated Learning Framework for Demographic Parity under
+  Distribution Shift.
+  \textit{IEEE Transactions on Neural Networks and Learning Systems}, 34(8),
+  4102--4115.
+  \href{https://doi.org/10.1109/TNNLS.2023.0012345}{doi:10.1109/TNNLS.2023.0012345}
+
+\item Park, J., \me{Rahman, A.}, \& Whitfield, C.\ (2022).
+  Scalable Structured Prediction via Conjugate Energy Descent.
+  \textit{Artificial Intelligence}, 312, 103780.
+  \href{https://doi.org/10.1016/j.artint.2022.103780}{doi:10.1016/j.artint.2022.103780}
+
+\item \me{Rahman, A.}, Blackwell, R., \& Singh, P.\ (2021).
+  Causal Discovery in Non-Stationary Time Series with Latent Confounders.
+  \textit{Transactions on Machine Learning Research}.
+  \href{https://openreview.net/example2021}{openreview.net/example2021}
+
+\end{enumerate}
+
+\vspace{6pt}
+\subsection*{\normalsize\color{accent} Conference Papers}
+\vspace{2pt}
+
+\begin{enumerate}[leftmargin=*, label={[\arabic*]}, itemsep=4pt,
+                  start=5]
+
+\item \me{Rahman, A.}, Leclerc, M., \& Fletcher, S.~J.\ (2024).
+  Amortized Causal Discovery with Score-Based Diffusion Priors.
+  In \textit{Proceedings of the 41st International Conference on Machine Learning
+  (ICML 2024)}, Vienna, Austria. PMLR 235, pp.~18\,432--18\,451.
+
+\item \me{Rahman, A.}, \& Huang, Y.\ (2023).
+  Privacy-Aware Representation Learning via Information-Theoretic Regularisation.
+  In \textit{Advances in Neural Information Processing Systems (NeurIPS 2023)},
+  Vol.~36, pp.~57\,120--57\,135.
+
+\item Osei-Bonsu, K., \me{Rahman, A.}, \& Patel, N.\ (2022).
+  Robust Federated Aggregation under Byzantine and Sybil Attacks.
+  In \textit{Proceedings of the 39th International Conference on Machine Learning
+  (ICML 2022)}, Baltimore, MD. PMLR 162, pp.~16\,890--16\,905.
+
+\item \me{Rahman, A.}, Whitfield, C., \& Park, J.\ (2021).
+  Spectral Normalisation for Structured Prediction with Neural CRFs.
+  In \textit{Proceedings of the 59th Annual Meeting of the Association for
+  Computational Linguistics (ACL 2021)}, pp.~3\,441--3\,454.
+
+\end{enumerate}
+
+% ===========================================================================
+\section{Research Experience}
+% ===========================================================================
+
+\cventry{%
+  \textbf{Assistant Professor (Lecturer)}, Department of Computer Science\\
+  University of Cambridge, Cambridge, UK\\
+  Principal Investigator of the \textit{Statistical AI Lab}
+}{Jan 2023--present}
+
+\entrysep
+
+\cventry{%
+  \textbf{Postdoctoral Research Associate}\\
+  Max Planck Institute for Intelligent Systems, T\"{u}bingen, Germany\\
+  Supervisor: Prof.\ Bernhard Sch\"{o}lkopf
+}{Sep 2022--Dec 2022}
+
+\entrysep
+
+\cventry{%
+  \textbf{Research Intern}, Google DeepMind, London, UK\\
+  Project: Efficient large-scale amortised inference with neural ODEs
+}{Jun 2020--Sep 2020}
+
+\entrysep
+
+\cventry{%
+  \textbf{Graduate Research Assistant}\\
+  Machine Intelligence Laboratory, University of Cambridge
+}{Oct 2017--Aug 2022}
+
+% ===========================================================================
+\section{Teaching Experience}
+% ===========================================================================
+
+\cventry{%
+  \textbf{Lecturer}, \textit{Machine Learning} (Part~II CST)\\
+  University of Cambridge --- $\sim$180 students
+}{2023--present}
+
+\entrysep
+
+\cventry{%
+  \textbf{Supervisor}, \textit{Probabilistic Machine Learning} (Part~II CST)\\
+  University of Cambridge
+}{2018--2022}
+
+\entrysep
+
+\cventry{%
+  \textbf{Teaching Assistant}, \textit{Natural Language Processing}\\
+  University of Cambridge --- Designed coursework and held weekly Q\&A sessions
+}{2019--2021}
+
+\entrysep
+
+\cventry{%
+  \textbf{Instructor}, \textit{Introduction to Data Science} (summer school)\\
+  African Institute for Mathematical Sciences (AIMS), Accra, Ghana
+}{Jul 2019}
+
+% ===========================================================================
+\section{Grants, Awards \& Honors}
+% ===========================================================================
+
+\cventry{%
+  \textbf{UKRI Future Leaders Fellowship} (FLF-MR/V021967/1) --- \pounds{}1.2M\\
+  ``Causally-Aware Machine Learning for Robust Scientific Discovery''
+}{2023--2027}
+
+\entrysep
+
+\cventry{%
+  \textbf{Royal Society Research Grant} (RG\textbackslash{}R1\textbackslash{}231042) --- \pounds{}19\,800
+}{2023}
+
+\entrysep
+
+\cventry{%
+  \textbf{Best Paper Award}, ICML 2024 (top 0.4\% of submissions)
+}{2024}
+
+\entrysep
+
+\cventry{%
+  \textbf{Cambridge International Scholarship}, Cambridge Trust
+}{2017--2021}
+
+\entrysep
+
+\cventry{%
+  \textbf{University Gold Medal} for highest aggregate, University of Dhaka
+}{2015}
+
+\entrysep
+
+\cventry{%
+  \textbf{Google PhD Fellowship in Machine Learning}
+}{2019--2021}
+
+% ===========================================================================
+\section{Invited Talks}
+% ===========================================================================
+
+\cventry{%
+  ``Towards Causally-Grounded Representation Learning,'' \textit{invited seminar}\\
+  Oxford University Machine Learning Research Group, Oxford, UK
+}{Mar 2025}
+
+\entrysep
+
+\cventry{%
+  ``Scalable Bayesian Inference for Structured Prediction,'' \textit{tutorial}\\
+  European Conference on Machine Learning (ECML-PKDD), Turin, Italy
+}{Sep 2024}
+
+\entrysep
+
+\cventry{%
+  ``FairFed: Federated Learning with Fairness Guarantees,'' \textit{keynote}\\
+  Workshop on Socially Responsible Machine Learning, NeurIPS 2023
+}{Dec 2023}
+
+\entrysep
+
+\cventry{%
+  ``Causal Discovery in Non-Stationary Systems,'' \textit{invited talk}\\
+  Alan Turing Institute Data Science Seminar, London, UK
+}{Jun 2022}
+
+% ===========================================================================
+\section{Professional Service}
+% ===========================================================================
+
+\textbf{Area Chair / Senior Program Committee}
+
+\begin{itemize}[leftmargin=1.4em, itemsep=1pt, topsep=2pt]
+  \item NeurIPS 2025; ICML 2024, 2025; ICLR 2024, 2025
+\end{itemize}
+
+\vspace{4pt}
+\textbf{Program Committee / Reviewer}
+
+\begin{itemize}[leftmargin=1.4em, itemsep=1pt, topsep=2pt]
+  \item AAAI, ACL, EMNLP, UAI (2020--present)
+  \item \textit{Journal of Machine Learning Research}; \textit{Artificial Intelligence};
+        \textit{IEEE TNNLS}; \textit{Nature Machine Intelligence}
+\end{itemize}
+
+\vspace{4pt}
+\textbf{Organizing Roles}
+
+\begin{itemize}[leftmargin=1.4em, itemsep=1pt, topsep=2pt]
+  \item Workshop Co-Organizer, ``Causal Representation Learning,'' ICML 2024
+  \item Doctoral Consortium Co-Chair, ECML-PKDD 2023
+  \item Co-Founder, Cambridge Women in AI Network (CWAIN), 2019--present
+\end{itemize}
+
+% ===========================================================================
+\section{Technical Skills}
+% ===========================================================================
+
+\begin{tabularx}{\linewidth}{@{}>{\bfseries}p{3.6cm}X@{}}
+  Programming    & Python, Julia, R, C\texttt{++}, Bash \\[2pt]
+  ML Frameworks  & PyTorch, JAX, TensorFlow, Hugging Face Transformers \\[2pt]
+  Probabilistic  & Pyro, NumPyro, Stan, GPyTorch \\[2pt]
+  Tools          & Git, Docker, Slurm/HPC, \LaTeX, Jupyter \\[2pt]
+  Languages      & English (fluent), Bengali (native), French (intermediate) \\
+\end{tabularx}
+
+% ===========================================================================
+\section{References}
+% ===========================================================================
+
+Available upon request.
+
+\end{document}

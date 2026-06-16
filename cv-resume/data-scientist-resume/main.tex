@@ -1,0 +1,157 @@
+\documentclass[10pt]{article}
+\usepackage[paperwidth=210mm,paperheight=297mm,margin=0pt]{geometry}
+\usepackage[T1]{fontenc}\usepackage{lmodern}\usepackage{microtype}
+\usepackage{xcolor,fontawesome5,enumitem,hyperref,eso-pic,array,ragged2e,parskip}
+\definecolor{sidebar}{HTML}{0F3D3E}
+\definecolor{accent}{HTML}{0E9594}
+\definecolor{sidetext}{HTML}{E5F0F0}
+\definecolor{maingray}{HTML}{2D3436}
+\newlength{\sbw}\setlength{\sbw}{72mm}
+\setlength{\parindent}{0pt}\setlength{\parskip}{3pt}\pagestyle{empty}\hypersetup{hidelinks}
+\AddToShipoutPictureBG{\AtPageLowerLeft{\textcolor{sidebar}{\rule{\sbw}{\paperheight}}}}
+
+%% Sidebar section heading: white bold text + accent rule
+\newcommand{\sideheading}[1]{%
+  \vspace{4pt}%
+  {\bfseries\large #1}\\[-2pt]%
+  {\color{accent}\rule{\dimexpr\sbw-14mm\relax}{1.2pt}}%
+  \vspace{3pt}%
+}
+
+%% Main section heading: accent bold text + accent rule
+\newcommand{\mainheading}[1]{%
+  \vspace{5pt}%
+  {\color{accent}\bfseries\large #1}\\[-2pt]%
+  {\color{accent}\rule{\dimexpr\paperwidth-\sbw-14mm\relax}{1.2pt}}%
+  \vspace{2pt}%
+}
+
+%% Experience entry: title, company/loc, dates — dates right-aligned
+\newcommand{\expentry}[3]{%
+  \vspace{2pt}%
+  \noindent\parbox{\dimexpr\paperwidth-\sbw-14mm\relax}{%
+    {\bfseries #1}\hfill{\small\color{accent}#3}\\
+    {\small\itshape #2}%
+  }%
+  \vspace{1pt}%
+}
+
+\begin{document}\noindent
+%% ============================================================
+%%  SIDEBAR
+%% ============================================================
+\begin{minipage}[t]{\sbw}\color{sidetext}\vspace{10mm}\hspace{7mm}%
+\begin{minipage}[t]{\dimexpr\sbw-14mm\relax}\RaggedRight
+
+  % NAME & ROLE
+  {\bfseries\LARGE Sara Ahmed}\\[2pt]
+  {\color{accent}\bfseries Data Scientist}\\[1pt]
+  {\color{accent}\rule{\dimexpr\sbw-14mm\relax}{1.2pt}}
+
+  \vspace{6pt}
+  \sideheading{Contact}
+
+  \vspace{2pt}
+  \faEnvelope\enspace\href{mailto:sara.ahmed@email.com}{sara.ahmed@email.com}\\[3pt]
+  \faPhone\enspace +1\,(415)\,555-0172\\[3pt]
+  \faMapMarker*\enspace San Francisco, CA\\[3pt]
+  \faLinkedin\enspace\href{https://linkedin.com/in/sara-ahmed-ds}{linkedin.com/in/sara-ahmed-ds}\\[3pt]
+  \faGithub\enspace\href{https://github.com/sara-ahmed}{github.com/sara-ahmed}
+
+  \vspace{4pt}
+  \sideheading{Technical Skills}
+
+  {\bfseries\small Languages}\\
+  Python,\ R,\ SQL\\[3pt]
+
+  {\bfseries\small ML \& AI}\\
+  scikit-learn,\ XGBoost,\\PyTorch\\[3pt]
+
+  {\bfseries\small Statistics}\\
+  A/B testing,\ Bayesian\\inference,\ time-series\\[3pt]
+
+  {\bfseries\small Visualization}\\
+  Tableau,\ Power BI,\\matplotlib\\[3pt]
+
+  {\bfseries\small Big Data}\\
+  Spark,\ Hadoop,\ Airflow
+
+  \vspace{4pt}
+  \sideheading{Education}
+
+  {\bfseries\small MSc Statistics \& Data Science}\\
+  Carnegie Mellon University\\
+  {\small 2019}\\[4pt]
+
+  {\bfseries\small BSc Mathematics}\\
+  University of Michigan\\
+  {\small 2017}
+
+\end{minipage}\end{minipage}\hfill
+%% ============================================================
+%%  MAIN COLUMN
+%% ============================================================
+\begin{minipage}[t]{\dimexpr\paperwidth-\sbw\relax}\vspace{10mm}\hspace{6mm}%
+\begin{minipage}[t]{\dimexpr\paperwidth-\sbw-14mm\relax}\color{maingray}
+
+  \mainheading{Profile}
+
+  \vspace{2pt}
+  Senior Data Scientist with 6\texttt{+} years delivering end-to-end ML solutions
+  across e-commerce, fintech, and SaaS. Expertise in predictive modelling,
+  causal inference, and large-scale data pipelines. Passionate about translating
+  complex analytical findings into clear business value.
+
+  \mainheading{Experience}
+
+  \expentry{Senior Data Scientist}{Acme Commerce Inc.\ ---\ San Francisco, CA}{Feb 2022 -- Present}
+  \begin{itemize}[leftmargin=*,topsep=1pt,itemsep=0pt,parsep=0pt]
+    \item Built a real-time recommendation engine with XGBoost; lifted conversion
+          rate by \textbf{18\%} and incremental revenue by \$\,4.2M annually.
+    \item Designed causal A/B testing framework (bootstrapped CI, CUPED variance
+          reduction) cutting experiment duration by 30\%, enabling 2$\times$ faster
+          shipping cadence.
+    \item Deployed churn prediction model (AUC~0.91) integrated with Salesforce;
+          reduced monthly churn by \textbf{22\%} saving \$\,1.8M in ARR.
+  \end{itemize}
+
+  \vspace{3pt}
+  \expentry{Data Scientist}{Finova Analytics\ ---\ Chicago, IL}{Jul 2019 -- Jan 2022}
+  \begin{itemize}[leftmargin=*,topsep=1pt,itemsep=0pt,parsep=0pt]
+    \item Developed credit-risk scoring pipeline (gradient boosting + SHAP
+          explainability) achieving AUC of 0.88, cutting manual review costs
+          by \textbf{35\%}.
+    \item Automated ETL workflows with Apache Airflow \& Spark on AWS EMR,
+          reducing data-refresh latency from 6\,h to \textbf{45\,min}.
+    \item Applied Bayesian hierarchical models to forecast regional loan demand;
+          improved forecast accuracy by \textbf{12\%} vs.\ prior ARIMA baseline.
+  \end{itemize}
+
+  \mainheading{Projects}
+
+  \noindent{\bfseries Customer Lifetime Value Engine}%
+  \hfill{\small\itshape PyTorch, Lifetimes, SQL, Tableau}\\
+  \begin{itemize}[leftmargin=*,topsep=1pt,itemsep=0pt,parsep=0pt]
+    \item BG/NBD + Gamma-Gamma CLV model retrained weekly; drove \textbf{24\%}
+          uplift in targeted-campaign ROI across 2M\texttt{+} customers.
+  \end{itemize}
+
+  \vspace{2pt}
+  \noindent{\bfseries Real-Time Anomaly Detection Dashboard}%
+  \hfill{\small\itshape Spark Streaming, sklearn, Power BI}\\
+  \begin{itemize}[leftmargin=*,topsep=1pt,itemsep=0pt,parsep=0pt]
+    \item Isolation-Forest pipeline processing 50K events/sec; reduced
+          fraud-detection latency from 4\,h to \textbf{under 2\,min} in production.
+  \end{itemize}
+
+  \mainheading{Achievements}
+
+  \begin{itemize}[leftmargin=*,topsep=1pt,itemsep=0pt,parsep=0pt]
+    \item \textbf{Kaggle Expert} --- Top 3\% finish in Tabular Playground Series
+          (May 2023); gold medal solution open-sourced with 400\texttt{+} GitHub stars.
+    \item Co-authored \textit{``Scalable Causal Inference for Online Platforms''}
+          published in \textit{NeurIPS 2023 Workshop on CausalML}; 180\texttt{+} citations.
+  \end{itemize}
+
+\end{minipage}\end{minipage}
+\end{document}

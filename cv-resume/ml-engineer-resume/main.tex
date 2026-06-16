@@ -1,0 +1,123 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage[margin=0.5in]{geometry}
+\usepackage{xcolor}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{fontawesome5}
+\usepackage{hyperref}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{parskip}
+\usepackage{ragged2e}
+
+\definecolor{accent}{HTML}{6D28D9}
+\definecolor{textgray}{HTML}{333333}
+
+\hypersetup{
+    hidelinks,
+    colorlinks=true,
+    urlcolor=accent,
+    linkcolor=accent
+}
+
+\titleformat{\section}{\large\bfseries\color{accent}}{}{0em}{}[\vspace{-0.2em}\rule{\textwidth}{0.5pt}]
+\titlespacing{\section}{0pt}{0.55em}{0.3em}
+\setlength{\parskip}{3pt}
+
+\pagestyle{empty}
+\color{textgray}
+
+\newcommand{\resumeHeading}[4]{
+  \vspace{0.2em}\noindent
+  \textbf{#1} \hfill #2 \par
+  \vspace{-0.1em}\noindent
+  \textit{#3} \hfill \textit{#4} \par
+}
+
+\newcommand{\resumeProject}[3]{
+  \vspace{0.2em}\noindent
+  \textbf{#1} $|$ \textit{#2} \hfill #3 \par
+}
+
+\newcommand{\resumePub}[2]{
+  \vspace{0.2em}\noindent
+  {#1} \hfill \textit{#2} \par
+}
+
+\begin{document}
+
+\begin{center}
+    {\Huge \textbf{Rohan Mehta}} \\[0.5em]
+    \faEnvelope\ \href{mailto:rohan.mehta@email.com}{rohan.mehta@email.com} \quad
+    \faPhone\ +1 123 456 7890 \quad
+    \faLinkedin\ \href{https://linkedin.com/in/rohanmehta}{rohanmehta} \quad
+    \faGithub\ \href{https://github.com/rohanmehta}{rohanmehta} \quad
+    \faGlobe\ \href{https://rohanmehta.dev}{rohanmehta.dev}
+\end{center}
+
+\vspace{0.5em}
+\noindent Machine Learning Engineer with 4+ years of experience designing and deploying scalable deep learning pipelines. Proven track record of improving model performance, optimizing inference latency, and driving impactful AI solutions in cloud environments.
+
+\section*{Technical Skills}
+\begin{itemize}[leftmargin=0.15in, label={}, itemsep=0.1em, parsep=0pt]
+    \item \textbf{Languages:} Python, C++, SQL
+    \item \textbf{ML/DL:} PyTorch, TensorFlow, JAX, scikit-learn, Hugging Face
+    \item \textbf{MLOps:} Docker, Kubernetes, MLflow, Airflow, Ray
+    \item \textbf{Cloud:} AWS SageMaker, GCP Vertex AI
+\end{itemize}
+
+\section*{Experience}
+
+\resumeHeading{Senior Machine Learning Engineer}{Jan 2023 -- Present}{TechNova AI}{San Francisco, CA}
+\vspace{-0.3em}
+\begin{itemize}[leftmargin=0.15in, itemsep=0.1em, parsep=0pt]
+    \item Architected a distributed training pipeline using Ray and PyTorch, reducing LLM fine-tuning time by 40\% and cutting AWS compute costs by \$50k annually.
+    \item Developed and deployed a real-time recommendation engine with GCP Vertex AI, serving over 1M requests per day with a P99 inference latency of under 45ms.
+    \item Improved the core ranking model's AUC from 0.78 to 0.85 by incorporating cross-attention mechanisms and sparse user behavior features.
+\end{itemize}
+
+\resumeHeading{Machine Learning Engineer}{Jun 2020 -- Dec 2022}{DataSphere Solutions}{New York, NY}
+\vspace{-0.3em}
+\begin{itemize}[leftmargin=0.15in, itemsep=0.1em, parsep=0pt]
+    \item Built and maintained an MLOps platform using Kubernetes, Docker, and MLflow, enabling CI/CD for 15+ machine learning models across 3 teams.
+    \item Designed a computer vision defect detection system utilizing a custom ResNet architecture in TensorFlow, achieving a 94\% F1-score and automating 80\% of manual QA processes.
+    \item Optimized BERT-based NLP models using model quantization and ONNX Runtime, reducing memory footprint by 3x without significant accuracy drop.
+\end{itemize}
+
+\section*{Selected Projects}
+
+\resumeProject{Distributed LLM Serving Engine}{C++, Python, PyTorch, gRPC}{2023}
+\vspace{-0.3em}
+\begin{itemize}[leftmargin=0.15in, itemsep=0.1em, parsep=0pt]
+    \item Implemented continuous batching and PagedAttention algorithms from scratch, increasing token throughput by 2.5x compared to standard Hugging Face Transformers.
+\end{itemize}
+
+\resumeProject{Multimodal Semantic Search}{Python, Hugging Face, Qdrant, FastAPI}{2022}
+\vspace{-0.3em}
+\begin{itemize}[leftmargin=0.15in, itemsep=0.1em, parsep=0pt]
+    \item Engineered a scalable vector search API combining CLIP embeddings and a Qdrant vector database, enabling sub-second retrieval over a 10M+ image/text dataset.
+\end{itemize}
+
+\section*{Publications \& Preprints}
+
+\resumePub{\textbf{Mehta, R.}, Doe, J., \& Smith, A. ``Efficient Cross-Attention Mechanisms for Sparse Vector Retrieval.''}{NeurIPS 2023}
+\vspace{0.2em}
+\resumePub{Doe, J., \& \textbf{Mehta, R.} ``Scaling Multi-Agent Reinforcement Learning with Ray.''}{arXiv:2401.12345 (2024)}
+
+\section*{Education}
+
+\resumeHeading{MSc in Machine Learning}{Sep 2018 -- May 2020}{Stanford University}{Stanford, CA}
+\vspace{0.4em}
+\resumeHeading{BSc in Computer Science}{Sep 2014 -- May 2018}{University of California, Berkeley}{Berkeley, CA}
+
+\section*{Achievements}
+
+\begin{itemize}[leftmargin=0.15in, itemsep=0.1em, parsep=0pt]
+    \item \textbf{Kaggle Competition Master:} Ranked in the top 1\% globally out of 150k+ data scientists.
+    \item \textbf{1st Place, NeurIPS 2022 Challenge:} Won the robust computer vision challenge against 200+ international teams.
+\end{itemize}
+
+\end{document}
