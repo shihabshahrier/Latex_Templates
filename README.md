@@ -1,10 +1,10 @@
-# LaTeX Templates — 66 Free, Open-Source, Ready-to-Compile Templates
+# LaTeX Templates — 72 Free, Open-Source, Ready-to-Compile Templates
 
-[![Templates](https://img.shields.io/badge/Templates-66-brightgreen.svg)](https://letx.app/templates)
+[![Templates](https://img.shields.io/badge/Templates-72-brightgreen.svg)](https://letx.app/templates)
 [![Compile Tested](https://img.shields.io/badge/Compile-Tested-success.svg)](#compiler-notes)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](#license)
 
-A curated collection of **66 free LaTeX templates** covering theses, resumes, journal articles, presentations, posters, and more. Every template compiles cleanly on modern TeX Live distributions and includes machine-readable metadata.
+A curated collection of **72 free LaTeX templates** covering theses, resumes, journal articles, presentations, posters, and more. Every template compiles cleanly on modern TeX Live distributions and includes machine-readable metadata.
 
 Whether you're writing your PhD dissertation, preparing an IEEE paper, or crafting a resume — grab the source and start editing. All templates can also be used directly in your browser at [letx.app](https://letx.app/templates) with real-time collaboration, no local TeX installation required.
 
@@ -56,7 +56,7 @@ Official and community-standard thesis templates for universities worldwide. Pro
 | SUST Thesis | SUST, Bangladesh | pdfLaTeX | [theses/sust-thesis](theses/sust-thesis) | [Open in LetX](https://letx.app/templates/universities/sust-thesis) |
 | IUT Thesis | IUT, Bangladesh | pdfLaTeX | [theses/iut-thesis](theses/iut-thesis) | [Open in LetX](https://letx.app/templates/universities/iut-thesis) |
 
-## CVs & Resumes (7)
+## CVs & Resumes (12)
 
 Professional, ATS-friendly, and designer resume/CV templates for job applications and academic profiles.
 
@@ -69,6 +69,11 @@ Professional, ATS-friendly, and designer resume/CV templates for job application
 | Deedy Resume | XeLaTeX | [cv-resume/deedy-resume](cv-resume/deedy-resume) | [Open in LetX](https://letx.app/templates/cvs-resumes/deedy-resume) |
 | Jake's Resume | pdfLaTeX | [cv-resume/jakes-resume](cv-resume/jakes-resume) | [Open in LetX](https://letx.app/templates/cvs-resumes/jakes-resume) |
 | sb2nov Resume | pdfLaTeX | [cv-resume/sb2nov-cv](cv-resume/sb2nov-cv) | [Open in LetX](https://letx.app/templates/cvs-resumes/sb2nov-resume) |
+| Academic CV | pdfLaTeX | [cv-resume/academic-cv](cv-resume/academic-cv) | [Open in LetX](https://letx.app/templates/cvs-resumes/academic-cv) |
+| Student / Fresher Resume | pdfLaTeX | [cv-resume/student-resume](cv-resume/student-resume) | [Open in LetX](https://letx.app/templates/cvs-resumes/student-resume) |
+| Software Engineer Resume | pdfLaTeX | [cv-resume/software-engineer-resume](cv-resume/software-engineer-resume) | [Open in LetX](https://letx.app/templates/cvs-resumes/software-engineer-resume) |
+| ML / AI Engineer Resume | pdfLaTeX | [cv-resume/ml-engineer-resume](cv-resume/ml-engineer-resume) | [Open in LetX](https://letx.app/templates/cvs-resumes/ml-engineer-resume) |
+| Data Scientist Resume | pdfLaTeX | [cv-resume/data-scientist-resume](cv-resume/data-scientist-resume) | [Open in LetX](https://letx.app/templates/cvs-resumes/data-scientist-resume) |
 
 ## Journal Articles & Conference Papers (5)
 
@@ -142,7 +147,7 @@ Large-format research posters for conferences and exhibitions.
 | Gemini Beamer Poster | pdfLaTeX | [posters/gemini-beamerposter](posters/gemini-beamerposter) | [Open in LetX](https://letx.app/templates/posters/gemini-beamerposter) |
 | TikZ Poster | pdfLaTeX | [posters/tikzposter-clean](posters/tikzposter-clean) | [Open in LetX](https://letx.app/templates/posters/tikzposter-clean) |
 
-## Miscellaneous (6)
+## Miscellaneous (7)
 
 Cheatsheets, invoices, programs, and other useful document types.
 
@@ -152,6 +157,7 @@ Cheatsheets, invoices, programs, and other useful document types.
 | Concert Program | pdfLaTeX | [miscellaneous/concert-program](miscellaneous/concert-program) | [Open in LetX](https://letx.app/templates/miscellaneous/concert-program) |
 | Invoice | pdfLaTeX | [miscellaneous/invoice](miscellaneous/invoice) | [Open in LetX](https://letx.app/templates/miscellaneous/invoice) |
 | Marriage Biodata | pdfLaTeX | [miscellaneous/marriage-biodata](miscellaneous/marriage-biodata) | [Open in LetX](https://letx.app/templates/miscellaneous/marriage-biodata) |
+| Elegant Marriage Biodata | pdfLaTeX | [miscellaneous/elegant-marriage-biodata](miscellaneous/elegant-marriage-biodata) | [Open in LetX](https://letx.app/templates/miscellaneous/elegant-marriage-biodata) |
 | Meeting Minutes | pdfLaTeX | [miscellaneous/meeting-minutes](miscellaneous/meeting-minutes) | [Open in LetX](https://letx.app/templates/miscellaneous/meeting-minutes) |
 | Recipe Book | pdfLaTeX | [miscellaneous/recipe-book](miscellaneous/recipe-book) | [Open in LetX](https://letx.app/templates/miscellaneous/recipe-book) |
 
