@@ -1,114 +1,149 @@
 %!TEX TS-program = xelatex
 %!TEX encoding = UTF-8 Unicode
-% Awesome CV LaTeX Template for CV/Resume
+% Awesome CV — self-contained resume built on the Awesome-CV class.
 %
-% This template has been downloaded from:
-% https://github.com/posquit0/Awesome-CV
+% Based on the Awesome-CV template by Claud D. Park (posquit0),
+% https://github.com/posquit0/Awesome-CV — license CC BY-SA 4.0.
+% Sample content below is fictional; replace it with your own.
 %
-% Author:
-% Claud D. Park <posquit0.bj@gmail.com>
-% http://www.posquit0.com
-%
-% Template license:
-% CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0/)
-%
+% Compile with XeLaTeX (fonts are loaded via fontspec).
 
-
-%-------------------------------------------------------------------------------
-% CONFIGURATIONS
-%-------------------------------------------------------------------------------
-% A4 paper size by default, use 'letterpaper' for US letter
 \documentclass[11pt, a4paper]{awesome-cv}
+\usepackage{fontspec}  % also loaded by the class; explicit here so the editor selects XeLaTeX
 
-% Configure page margins with geometry
 \geometry{left=1.4cm, top=.8cm, right=1.4cm, bottom=1.8cm, footskip=.5cm}
 
-% Color for highlights
-% Awesome Colors: awesome-emerald, awesome-skyblue, awesome-red, awesome-pink, awesome-orange
-%                 awesome-nephritis, awesome-concrete, awesome-darknight
-\colorlet{awesome}{awesome-red}
-% Uncomment if you would like to specify your own color
-% \definecolor{awesome}{HTML}{3E6D9C}
-
-% Colors for text
-% Uncomment if you would like to specify your own color
-% \definecolor{darktext}{HTML}{414141}
-% \definecolor{text}{HTML}{333333}
-% \definecolor{graytext}{HTML}{5D5D5D}
-% \definecolor{lighttext}{HTML}{999999}
-% \definecolor{sectiondivider}{HTML}{5D5D5D}
-
-% Set false if you don't want to highlight section with awesome color
+% Highlight color. Options: awesome-emerald, awesome-skyblue, awesome-red,
+% awesome-pink, awesome-orange, awesome-nephritis, awesome-concrete, awesome-darknight
+\colorlet{awesome}{awesome-skyblue}
 \setbool{acvSectionColorHighlight}{true}
-
-% If you would like to change the social information separator from a pipe (|) to something else
 \renewcommand{\acvHeaderSocialSep}{\quad\textbar\quad}
-
 
 %-------------------------------------------------------------------------------
 %	PERSONAL INFORMATION
-%	Comment any of the lines below if they are not required
 %-------------------------------------------------------------------------------
-% Available options: circle|rectangle,edge/noedge,left/right
-% \photo[rectangle,edge,right]{./examples/profile}
-\name{Byungjin}{Park}
-\position{DevOps Engineer{\enskip\cdotp\enskip}Software Architect}
-\address{Mapo-gu, Seoul, Republic of Korea}
+\name{Jordan}{Avery}
+\position{Software Engineer{\enskip\cdotp\enskip}Cloud \& Platform}
+\address{San Francisco, California, USA}
+\mobile{(+1) 415-555-0142}
+\email{jordan.avery@example.com}
+\homepage{www.jordanavery.dev}
+\github{jordanavery}
+\linkedin{jordanavery}
+\quote{``Build simple systems that other people can trust.''}
 
-\mobile{(+82) 10-9030-1843}
-%\whatsapp{(+82) 10-9030-1843}
-\email{posquit0.bj@gmail.com}
-%\dateofbirth{January 1st, 1970}
-\homepage{www.posquit0.com}
-\github{posquit0}
-\linkedin{posquit0}
-% \gitlab{gitlab-id}
-% \stackoverflow{SO-id}{SO-name}
-% \twitter{@twit}
-% \x{x-id}
-% \skype{skype-id}
-% \reddit{reddit-id}
-% \medium{madium-id}
-% \kaggle{kaggle-id}
-% \hackerrank{hackerrank-id}
-% \telegram{telegram-username}
-% \googlescholar{googlescholar-id}{name-to-display}
-%% \firstname and \lastname will be used
-% \googlescholar{googlescholar-id}{}
-% \extrainfo{extra information}
-
-\quote{``Be the change that you want to see in the world."}
-
-
-%-------------------------------------------------------------------------------
 \begin{document}
 
-% Print the header with above personal information
-% Give optional argument to change alignment(C: center, L: left, R: right)
 \makecvheader[C]
-
-% Print the footer with 3 arguments(<left>, <center>, <right>)
-% Leave any of these blank if they are not needed
 \makecvfooter
   {\today}
-  {Byungjin Park~~~·~~~Résumé}
+  {Jordan Avery~~~·~~~R\'esum\'e}
   {\thepage}
 
+%-------------------------------------------------------------------------------
+%	SUMMARY
+%-------------------------------------------------------------------------------
+\cvsection{Summary}
+
+\begin{cvparagraph}
+Software engineer with 8+ years building reliable, high-scale web services and the
+platforms that run them. Comfortable across the stack — from React front ends to Go and
+Python back ends — with deep experience in AWS, Kubernetes, and infrastructure-as-code.
+Known for shipping pragmatic solutions, mentoring engineers, and keeping systems
+observable and cheap to operate.
+\end{cvparagraph}
 
 %-------------------------------------------------------------------------------
-%	CV/RESUME CONTENT
-%	Each section is imported separately, open each file in turn to modify content
+%	EXPERIENCE
 %-------------------------------------------------------------------------------
-\input{sections/summary.tex}
-\input{sections/experience.tex}
-\input{sections/honors.tex}
-\input{sections/certificates.tex}
-% \input{sections/presentation.tex}
-% \input{sections/writing.tex}
-% \input{sections/committees.tex}
-\input{sections/education.tex}
-% \input{sections/extracurricular.tex}
+\cvsection{Work Experience}
+\begin{cventries}
 
+  \cventry
+    {Senior Software Engineer}
+    {Nexa Systems}
+    {San Francisco, USA}
+    {2021 -- Present}
+    {
+      \begin{cvitems}
+        \item {Designed and shipped a payments platform processing 4M transactions per day at 99.99\% availability.}
+        \item {Cut p99 API latency by 40\% through query optimisation, caching, and connection-pool tuning.}
+        \item {Introduced Terraform modules and GitOps (Argo CD) across a multi-account AWS estate, standardising deployments.}
+        \item {Mentored four engineers and led the team's code-review and on-call practices.}
+      \end{cvitems}
+    }
+
+  \cventry
+    {Software Engineer}
+    {Vertex Labs}
+    {Remote}
+    {2018 -- 2021}
+    {
+      \begin{cvitems}
+        \item {Built event-driven microservices in Go and Python on AWS (ECS, SQS, RDS, ElastiCache).}
+        \item {Reduced deploy time from 25 to 4 minutes by rebuilding the CI/CD pipeline with containerised builds.}
+        \item {Stood up centralised logging and metrics (Elastic Stack, Prometheus, Grafana) across 60+ services.}
+      \end{cvitems}
+    }
+
+  \cventry
+    {Junior Developer}
+    {Streamline Media}
+    {Dallas, USA}
+    {2016 -- 2018}
+    {
+      \begin{cvitems}
+        \item {Developed customer-facing features for a React and Node.js web application serving 500k users.}
+        \item {Wrote the internal component library still used across the product today.}
+      \end{cvitems}
+    }
+
+\end{cventries}
 
 %-------------------------------------------------------------------------------
+%	EDUCATION
+%-------------------------------------------------------------------------------
+\cvsection{Education}
+\begin{cventries}
+  \cventry
+    {B.Sc. in Computer Science}
+    {University of Texas at Austin}
+    {Austin, USA}
+    {2012 -- 2016}
+    {
+      \begin{cvitems}
+        \item {Graduated with honours (GPA 3.8/4.0); focus in distributed systems and databases.}
+      \end{cvitems}
+    }
+\end{cventries}
+
+%-------------------------------------------------------------------------------
+%	SKILLS
+%-------------------------------------------------------------------------------
+\cvsection{Skills}
+
+\begin{cvparagraph}
+\textbf{Languages:} Go, Python, TypeScript, SQL \\
+\textbf{Frameworks:} React, Node.js, FastAPI, Gin \\
+\textbf{Infrastructure:} AWS, Kubernetes, Docker, Terraform, PostgreSQL, Redis \\
+\textbf{Practices:} CI/CD, observability, infrastructure-as-code, incident response
+\end{cvparagraph}
+
+%-------------------------------------------------------------------------------
+%	CERTIFICATES
+%-------------------------------------------------------------------------------
+\cvsection{Certificates}
+\begin{cvhonors}
+  \cvhonor
+    {AWS Certified Solutions Architect -- Professional}
+    {AWS}
+    {}
+    {2023}
+  \cvhonor
+    {Certified Kubernetes Application Developer (CKAD)}
+    {The Linux Foundation}
+    {}
+    {2022}
+\end{cvhonors}
+
 \end{document}

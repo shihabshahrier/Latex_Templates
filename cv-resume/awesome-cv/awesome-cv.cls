@@ -81,9 +81,29 @@
 \defaultfontfeatures{
   Renderer=HarfBuzz,
 }
-\setmainfont{Arial}
-\setsansfont{Arial}
-\newfontfamily\roboto{Arial}
+% Fonts: use TeX Gyre Heros (a Helvetica/Arial-metric-compatible face bundled with
+% every TeX Live install), loaded by OTF filename so it resolves without fontconfig on
+% any hosted compiler. The previous "Arial" is a Microsoft font absent on Linux TeX
+% Live — it was silently substituted, which broke the rendering.
+\newcommand{\@herosfont}{texgyreheros}
+\setmainfont{texgyreheros}[
+  Extension     = .otf,
+  UprightFont   = *-regular,
+  BoldFont      = *-bold,
+  ItalicFont    = *-italic,
+  BoldItalicFont= *-bolditalic ]
+\setsansfont{texgyreheros}[
+  Extension     = .otf,
+  UprightFont   = *-regular,
+  BoldFont      = *-bold,
+  ItalicFont    = *-italic,
+  BoldItalicFont= *-bolditalic ]
+\newfontfamily\roboto{texgyreheros}[
+  Extension     = .otf,
+  UprightFont   = *-regular,
+  BoldFont      = *-bold,
+  ItalicFont    = *-italic,
+  BoldItalicFont= *-bolditalic ]
 % Needed for the photo ID
 \RequirePackage[skins]{tcolorbox}
 % Needed to deal a paragraphs

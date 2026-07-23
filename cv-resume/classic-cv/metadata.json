@@ -1,8 +1,8 @@
 {
   "name": "Classic CV Template",
-  "compiler": "xelatex",
-  "description": "Traditional academic CV with clean sections and serif typography.",
-  "author": "LaTeX Community",
-  "category": "cvs-resumes",
-  "license": "Open Source"
+  "compiler": "pdflatex",
+  "description": "Classic single-page CV on the standard moderncv classic style. Compiles on any TeX Live.",
+  "author": "LetX",
+  "category": "cv-resume",
+  "license": "LPPL-1.3c"
 }

@@ -1,0 +1,8 @@
+{
+  "name": "ModernCV",
+  "compiler": "pdflatex",
+  "description": "Clean, general-purpose CV on the moderncv casual style. Standard styles only.",
+  "author": "LetX",
+  "category": "cv-resume",
+  "license": "LPPL-1.3c"
+}

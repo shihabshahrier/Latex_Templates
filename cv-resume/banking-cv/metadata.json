@@ -1,8 +1,8 @@
 {
   "name": "Banking & Finance CV",
-  "compiler": "xelatex",
-  "description": "Conservative single-column CV tailored for banking and finance professionals.",
-  "author": "LaTeX Community",
-  "category": "cvs-resumes",
-  "license": "Open Source"
+  "compiler": "pdflatex",
+  "description": "Formal finance CV on the moderncv banking style. Compiles on any TeX Live.",
+  "author": "LetX",
+  "category": "cv-resume",
+  "license": "LPPL-1.3c"
 }

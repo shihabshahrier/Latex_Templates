@@ -1,0 +1,58 @@
+%% ModernCV — moderncv (casual style)
+%% A clean, general-purpose CV on the standard moderncv "casual" style. Uses only
+%% stock moderncv styles/colors so it compiles on any TeX Live. Swap the style to
+%% classic/banking/oldstyle/fancy and the color to blue/green/orange/purple/red/grey
+%% to restyle. Replace the sample content with your own.
+\documentclass[11pt,a4paper,sans]{moderncv}
+\moderncvstyle{casual}
+\moderncvcolor{blue}
+\usepackage[T1]{fontenc}
+\usepackage[scale=0.82]{geometry}
+\setlength{\hintscolumnwidth}{2.6cm}
+
+\name{Sam}{Rivera}
+\title{Software Engineer}
+\address{88 Willow Avenue}{Austin, TX 78701}{United States}
+\phone[mobile]{+1~512~555~0198}
+\email{sam.rivera@example.com}
+\social[linkedin]{in/samrivera}
+\social[github]{samrivera}
+
+\begin{document}
+\makecvtitle
+
+\section{Profile}
+\cvitem{}{Full-stack software engineer with 7 years building reliable web services and
+data pipelines. Comfortable across the stack, from React front ends to Go and Python
+back ends running on AWS.}
+
+\section{Experience}
+\cventry{2021--Present}{Senior Software Engineer}{Nexa Systems}{Austin, TX}{}{
+\begin{itemize}
+\item Designed and shipped a payments service handling 4M transactions per day.
+\item Reduced p99 API latency by 40\% through query and caching improvements.
+\item Mentored four engineers and led the team's code-review practice.
+\end{itemize}}
+\cventry{2018--2021}{Software Engineer}{Vertex Labs}{Remote}{}{
+\begin{itemize}
+\item Built event-driven microservices in Go and Python on AWS (ECS, SQS, RDS).
+\item Cut deploy time from 25 to 4 minutes by rebuilding the CI pipeline.
+\end{itemize}}
+\cventry{2016--2018}{Junior Developer}{Streamline Media}{Dallas, TX}{}{
+\begin{itemize}
+\item Developed customer-facing features for a React and Node.js web application.
+\end{itemize}}
+
+\section{Education}
+\cventry{2012--2016}{B.Sc.\ Computer Science}{University of Texas at Austin}{Austin}{GPA 3.8}{}
+
+\section{Technical Skills}
+\cvitem{Languages}{Go, Python, TypeScript, SQL}
+\cvitem{Frameworks}{React, Node.js, FastAPI, Gin}
+\cvitem{Infrastructure}{AWS, Docker, PostgreSQL, Redis, Terraform}
+
+\section{Languages}
+\cvitemwithcomment{English}{Native}{}
+\cvitemwithcomment{Spanish}{Conversational}{}
+
+\end{document}
