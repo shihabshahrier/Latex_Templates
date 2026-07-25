@@ -1,0 +1,8 @@
+{
+  "name": "Distance Learning Study Guide",
+  "compiler": "pdflatex",
+  "description": "Distance Learning Study Guide LaTeX template \u2014 distance learning study guide latex template. Elegant, compile-tested, editable online at letx.app.",
+  "author": "LetX",
+  "category": "education",
+  "license": "MIT"
+}

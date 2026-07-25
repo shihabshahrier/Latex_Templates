@@ -1,0 +1,565 @@
+\documentclass[11pt, a4paper, titlepage=false]{scrartcl}
+
+% -----------------------------------------------------------------------------
+% Packages & Encoding
+% -----------------------------------------------------------------------------
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage[margin=20mm, top=22mm, bottom=22mm]{geometry}
+
+% Math packages
+\usepackage{amsmath, amssymb, amsfonts, mathtools}
+\usepackage{siunitx}
+\sisetup{per-mode=symbol}
+
+% Colors (xcolor with table option)
+\usepackage[table]{xcolor}
+\definecolor{PrimaryDark}{RGB}{24,43,73}
+\definecolor{SecondaryTeal}{RGB}{15,118,110}
+\definecolor{AccentAmber}{RGB}{217,119,6}
+\definecolor{NeutralDark}{RGB}{30,41,59}
+\definecolor{BgLight}{RGB}{248,250,252}
+\definecolor{BorderColor}{RGB}{226,232,240}
+\definecolor{ForceRed}{RGB}{220,38,38}
+\definecolor{SupportGreen}{RGB}{22,101,52}
+\definecolor{SolutionBg}{RGB}{252,253,254}
+
+% Graphics & TikZ
+\usepackage{graphicx}
+\usepackage{tikz}
+\usetikzlibrary{positioning, calc, shapes.geometric, decorations.pathmorphing, backgrounds, patterns, arrows.meta}
+
+% Icons & Typography
+\usepackage{fontawesome5}
+\usepackage{enumitem}
+
+% Tables
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{array}
+
+% Headers & Footers
+\usepackage{scrlayer-scrpage}
+\clearpairofpagestyles
+\ihead{\textcolor{SecondaryTeal}{\small\faBook\ \textbf{ENGR 230: Engineering Statics \& Dynamics}}}
+\ohead{\textcolor{NeutralDark}{\small\textbf{Problem Set 4}}}
+\ifoot{\textcolor{NeutralDark!70}{\small\faGraduationCap\ Apex Engineering Institute}}
+\ofoot{\textcolor{NeutralDark!70}{\small Page \thepage}}
+\pagestyle{scrheadings}
+
+% Captions & Hyperlinks
+\usepackage{caption}
+\captionsetup{font=small, labelfont={bf, color=PrimaryDark}}
+
+\usepackage[hidelinks, colorlinks=true, linkcolor=SecondaryTeal, urlcolor=SecondaryTeal]{hyperref}
+
+% tcolorbox configuration
+\usepackage[most]{tcolorbox}
+\tcbuselibrary{skins, breakable}
+
+% -----------------------------------------------------------------------------
+% Custom Box Definitions
+% -----------------------------------------------------------------------------
+\newtcolorbox{problembox}[2][]{%
+    enhanced,
+    colback=BgLight,
+    colframe=PrimaryDark,
+    arc=3pt,
+    boxrule=1.2pt,
+    fonttitle=\bfseries\color{white},
+    coltitle=white,
+    colbacktitle=PrimaryDark,
+    title={\faFile\ #2},
+    attach boxed title to top left={yshift=-2mm, xshift=4mm},
+    boxed title style={arc=2pt, boxrule=0pt, top=3pt, bottom=3pt, left=8pt, right=8pt},
+    top=10pt, bottom=8pt, left=10pt, right=10pt,
+    before skip=12pt, after skip=12pt,
+    #1
+}
+
+\newtcolorbox{givenbox}[1][]{%
+    enhanced,
+    colback=SecondaryTeal!5,
+    colframe=SecondaryTeal,
+    arc=2pt,
+    boxrule=0.8pt,
+    left=8pt, right=8pt, top=6pt, bottom=6pt,
+    before skip=6pt, after skip=6pt,
+    title={\small\bfseries\color{SecondaryTeal}\faInfoCircle\ Given Data \& Parameters},
+    coltitle=SecondaryTeal,
+    colbacktitle=SecondaryTeal!10,
+    attach boxed title to top left={yshift=-1.5mm, xshift=3mm},
+    boxed title style={arc=1pt, boxrule=0pt, top=1pt, bottom=1pt},
+    #1
+}
+
+\newtcolorbox{solutionworkspace}[2][]{%
+    enhanced,
+    breakable,
+    colback=SolutionBg,
+    colframe=BorderColor,
+    arc=2pt,
+    boxrule=0.8pt,
+    top=8pt, bottom=8pt, left=10pt, right=10pt,
+    title={\small\bfseries\color{PrimaryDark}\faPen\ Solution Workspace: #2},
+    coltitle=PrimaryDark,
+    colbacktitle=BorderColor!50,
+    attach boxed title to top left={yshift=-1.5mm, xshift=3mm},
+    boxed title style={arc=1pt, boxrule=0pt, top=1pt, bottom=1pt},
+    before skip=8pt, after skip=12pt,
+    #1
+}
+
+\newtcolorbox{conceptbox}[1][]{%
+    enhanced,
+    colback=AccentAmber!8,
+    colframe=AccentAmber,
+    arc=2pt,
+    boxrule=0.8pt,
+    left=8pt, right=8pt, top=6pt, bottom=6pt,
+    before skip=6pt, after skip=8pt,
+    #1
+}
+
+% -----------------------------------------------------------------------------
+% TikZ Styles
+% -----------------------------------------------------------------------------
+\tikzset{
+    force/.style={->, >=Stealth, line width=1.3pt, color=ForceRed},
+    reaction/.style={->, >=Stealth, line width=1.3pt, color=SecondaryTeal},
+    dimen/.style={<->, >=Stealth, thin, color=NeutralDark!80},
+    support/.style={fill=SupportGreen!20, draw=SupportGreen, thick},
+    truss_node/.style={circle, fill=PrimaryDark, inner sep=2pt},
+    truss_member/.style={line width=1.5pt, color=PrimaryDark},
+    ground_pattern/.style={fill, pattern=north east lines, pattern color=NeutralDark!40, draw=none},
+    axis_line/.style={->, >=Stealth, dashed, color=SecondaryTeal, thick}
+}
+
+% -----------------------------------------------------------------------------
+% Document Start
+% -----------------------------------------------------------------------------
+\begin{document}
+
+% Header Banner Box
+\begin{tcolorbox}[
+    enhanced,
+    colback=PrimaryDark,
+    colframe=PrimaryDark,
+    arc=4pt,
+    boxrule=0pt,
+    top=12pt, bottom=12pt, left=14pt, right=14pt
+]
+    \begin{minipage}{0.65\textwidth}
+        \textcolor{white}{\large \textbf{APEX ENGINEERING INSTITUTE}}\\
+        \textcolor{SecondaryTeal!30}{\small Department of Mechanical \& Civil Engineering}\\[4pt]
+        \textcolor{white}{\Large \textbf{ENGR 230: Engineering Statics \& Dynamics}}\\[2pt]
+        \textcolor{AccentAmber!90}{\bfseries Problem Set 4: Rigid Body Equilibrium \& Particle Kinematics}
+    \end{minipage}%
+    \begin{minipage}{0.35\textwidth}
+        \color{white}\small
+        \raggedleft
+        \textbf{\faCalendar\ Date Issued:} Oct 7, 2026\\
+        \textbf{\faClock\ Due Date:} Oct 14, 2026\\
+        \textbf{\faUser\ Instructor:} Prof. Marcus Vance\\
+        \textbf{\faLayerGroup\ Total Points:} 100 Points
+    \end{minipage}
+\end{tcolorbox}
+
+\vspace{-4pt}
+
+% Student Metadata Submission Block
+\begin{tcolorbox}[
+    enhanced,
+    colback=BgLight,
+    colframe=BorderColor,
+    arc=3pt,
+    boxrule=0.8pt,
+    top=6pt, bottom=6pt, left=10pt, right=10pt
+]
+    \small\color{NeutralDark}
+    \begin{tabularx}{\textwidth}{@{}X X X@{}}
+        \textbf{Student Name:} \underline{\hspace{4.5cm}} &
+        \textbf{Student ID:} \underline{\hspace{3.5cm}} &
+        \textbf{Section / Recitation:} \underline{\hspace{2.5cm}}
+    \end{tabularx}
+\end{tcolorbox}
+
+% Instructions Banner
+\begin{conceptbox}
+    \small\color{NeutralDark}
+    \textbf{\faExclamationTriangle\ Submission Guidelines \& Policy:}
+    Show all free-body diagrams (FBDs), coordinate axis definitions, vector components, and intermediate algebraic steps clearly. State all physical assumptions (e.g., rigid members, frictionless pins, uniform gravitational field with $g = \SI{9.81}{\meter\per\second\squared}$). Express final numerical answers with appropriate physical units and 3 significant figures.
+\end{conceptbox}
+
+\vspace{6pt}
+
+% =============================================================================
+% SECTION 1: STATICS & EQUILIBRIUM ANALYSIS
+% =============================================================================
+\section*{\textcolor{PrimaryDark}{\faLayerGroup\ Section 1: Statics \& Rigid Body Equilibrium}}
+
+% PROBLEM 1
+\begin{problembox}{Problem 1: Planar Bridge Truss Analysis \& Zero-Force Members \hfill [25 Points]}
+    A pin-connected structural bridge truss is subjected to vertical concentrated loads from deck traffic at joints $B$ and $C$, as depicted in Figure~\ref{fig:truss_diagram}. The structure is supported by a smooth pin at joint $A$ and a roller support on a horizontal surface at joint $E$. All structural members are composed of high-strength structural steel channels ($E = \SI{200}{\giga\pascal}$).
+
+    \begin{givenbox}
+        Load $P_1 = \SI{18.0}{\kilo\newton}$ applied downwards at joint $B$.\\
+        Load $P_2 = \SI{30.0}{\kilo\newton}$ applied downwards at joint $C$.\\
+        Horizontal bay lengths: $L_{AB} = L_{BC} = L_{CD} = L_{DE} = \SI{3.0}{\meter}$.\\
+        Vertical height of top chord joints $F$ and $G$: $H = \SI{4.0}{\meter}$.
+    \end{givenbox}
+
+    \begin{center}
+        \begin{tikzpicture}[scale=0.95]
+            % Nodes
+            \coordinate (A) at (0,0);
+            \coordinate (B) at (3,0);
+            \coordinate (C) at (6,0);
+            \coordinate (D) at (9,0);
+            \coordinate (E) at (12,0);
+            \coordinate (F) at (3,4);
+            \coordinate (G) at (9,4);
+
+            % Truss Members
+            % Bottom Chord
+            \draw[truss_member] (A) -- (B) -- (C) -- (D) -- (E);
+            % Top Chord
+            \draw[truss_member] (F) -- (G);
+            % Vertical Members
+            \draw[truss_member] (B) -- (F);
+            \draw[truss_member] (D) -- (G);
+            % Inclined End Members
+            \draw[truss_member] (A) -- (F);
+            \draw[truss_member] (E) -- (G);
+            % Diagonals
+            \draw[truss_member] (F) -- (C);
+            \draw[truss_member] (G) -- (C);
+
+            % Node Dots & Labels
+            \foreach \pt/\label/\pos in {A/A/below left, B/B/below, C/C/below, D/D/below, E/E/below right, F/F/above left, G/G/above right} {
+                \node[truss_node] at (\pt) {};
+                \node[\pos, font=\bfseries\small\color{PrimaryDark}] at (\pt) {\label};
+            }
+
+            % Pin Support at A
+            \draw[support] (A) -- ++(-0.3,-0.5) -- ++(0.6,0) -- cycle;
+            \draw[line width=1.1pt, NeutralDark] (A) ++(-0.45,-0.5) -- ++(0.9,0);
+            \fill[pattern=north east lines, pattern color=NeutralDark!50] (A) ++(-0.45,-0.65) rectangle ++(0.9,0.15);
+
+            % Roller Support at E
+            \draw[support] (E) -- ++(-0.3,-0.4) -- ++(0.6,0) -- cycle;
+            \draw[fill=white, thick] (E) ++(-0.18,-0.48) circle (0.08);
+            \draw[fill=white, thick] (E) ++(0.18,-0.48) circle (0.08);
+            \draw[line width=1.1pt, NeutralDark] (E) ++(-0.45,-0.56) -- ++(0.9,0);
+            \fill[pattern=north east lines, pattern color=NeutralDark!50] (E) ++(-0.45,-0.71) rectangle ++(0.9,0.15);
+
+            % External Load Vectors
+            \draw[force] (B) -- ++(0,-1.4) node[right, font=\small\bfseries] {$P_1 = \SI{18}{\kilo\newton}$};
+            \draw[force] (C) -- ++(0,-1.7) node[right, font=\small\bfseries] {$P_2 = \SI{30}{\kilo\newton}$};
+
+            % Dimension Lines
+            \draw[dimen] (0,-1.2) -- (3,-1.2) node[midway, fill=white, inner sep=1pt, font=\small] {\SI{3.0}{\meter}};
+            \draw[dimen] (3,-1.2) -- (6,-1.2) node[midway, fill=white, inner sep=1pt, font=\small] {\SI{3.0}{\meter}};
+            \draw[dimen] (6,-1.2) -- (9,-1.2) node[midway, fill=white, inner sep=1pt, font=\small] {\SI{3.0}{\meter}};
+            \draw[dimen] (9,-1.2) -- (12,-1.2) node[midway, fill=white, inner sep=1pt, font=\small] {\SI{3.0}{\meter}};
+
+            \draw[dimen] (-0.8,0) -- (-0.8,4) node[midway, fill=white, inner sep=1pt, font=\small] {\SI{4.0}{\meter}};
+        \end{tikzpicture}
+        \captionof{figure}{Pin-connected planar bridge truss loading configuration and geometry.}
+        \label{fig:truss_diagram}
+    \end{center}
+
+    \begin{enumerate}[label=\alph*\lbrack\arabic*\rbrack, leftmargin=*, font=\bfseries\color{SecondaryTeal}]
+        \item Determine the external support reaction forces at pin support $A$ ($A_x, A_y$) and roller support $E$ ($E_y$).
+        \item Identify any zero-force members present in the truss under the specified load condition by inspection, providing a brief mechanical justification for each.
+        \item Using the \textbf{Method of Joints}, calculate the internal axial forces in members $AF$, $BF$, $FC$, and $FG$. State whether each member is in tension ($T$) or compression ($C$).
+    \end{enumerate}
+\end{problembox}
+
+\begin{solutionworkspace}{Truss Support Reactions \& Member Force Calculations}
+    \textbf{(a) Global Equilibrium Equations:}
+    \begin{align*}
+        \sum F_x = 0 &\implies A_x = 0 \\
+        \sum M_A = 0 &\implies E_y (12.0) - P_1 (3.0) - P_2 (6.0) = 0 \\
+        &\implies E_y (12.0) - (18.0)(3.0) - (30.0)(6.0) = 0 \implies E_y = \SI{19.5}{\kilo\newton} \uparrow \\
+        \sum F_y = 0 &\implies A_y + E_y - P_1 - P_2 = 0 \implies A_y = 48.0 - 19.5 = \SI{28.5}{\kilo\newton} \uparrow
+    \end{align*}
+
+    \vspace{4.5cm} % Blank space for student work / detailed steps
+\end{solutionworkspace}
+
+\newpage
+
+% PROBLEM 2
+\begin{problembox}{Problem 2: Dry Friction on Inclined Plane with Cable Tension \hfill [25 Points]}
+    A heavy modular equipment crate of mass $m = \SI{65.0}{\kilogram}$ rests on a rough inclined ramp inclined at an angle $\theta = 28^\circ$ above the horizontal. A winch cable attached to the front of the crate exerts a tension force $T$ directed at an angle $\phi = 12^\circ$ relative to the inclined surface, as illustrated in Figure~\ref{fig:friction_diagram}. The static coefficient of friction between the crate and ramp is $\mu_s = 0.38$, and the kinetic coefficient of friction is $\mu_k = 0.28$.
+
+    \begin{givenbox}
+        Mass of crate $m = \SI{65.0}{\kilogram}$; Gravitational acceleration $g = \SI{9.81}{\meter\per\second\squared}$.\\
+        Incline angle $\theta = 28^\circ$; Cable angle relative to ramp surface $\phi = 12^\circ$.\\
+        Coefficients of friction: Static $\mu_s = 0.38$, Kinetic $\mu_k = 0.28$.
+    \end{givenbox}
+
+    \begin{center}
+        \begin{tikzpicture}[scale=1.0]
+            % Ramp
+            \draw[line width=1.5pt, PrimaryDark] (0,0) -- (7,0) -- (7,3.72) -- cycle;
+            \fill[pattern=north east lines, pattern color=NeutralDark!40] (0,-0.3) rectangle (7,0);
+
+            % Angle theta
+            \draw[thick, SecondaryTeal] (1.8,0) arc (0:28:1.8);
+            \node at (2.2, 0.4) [font=\small\bfseries\color{SecondaryTeal}] {$\theta = 28^\circ$};
+
+            % Crate (rotated coordinate system)
+            \begin{scope}[shift={(4, 2.12)}, rotate=28]
+                % Box
+                \draw[line width=1.4pt, fill=PrimaryDark!15, PrimaryDark] (-1.0, 0) rectangle (1.0, 1.2);
+                \node[font=\bfseries\color{PrimaryDark}] at (0, 0.6) {Mass $m$};
+
+                % Cable and Force T
+                \draw[line width=1.6pt, AccentAmber] (1.0, 0.6) -- ++(12:2.2) coordinate (T_end);
+                \draw[force, AccentAmber] (1.0, 0.6) -- (T_end) node[above right, font=\small\bfseries] {Tension $T$};
+
+                % Cable Angle phi dashed line
+                \draw[dashed, NeutralDark!70] (1.0, 0.6) -- ++(2.2, 0);
+                \draw[thin, AccentAmber] (1.0+1.2, 0.6) arc (0:12:1.2);
+                \node at (1.0+1.5, 0.8) [font=\footnotesize\bfseries\color{AccentAmber}] {$\phi$};
+
+                % Local Axis System
+                \draw[axis_line] (-1.8, 0) -- (2.5, 0) node[right, font=\small] {$x'$ (along ramp)};
+                \draw[axis_line] (0, -0.8) -- (0, 2.2) node[above, font=\small] {$y'$ (normal)};
+            \end{scope}
+
+            % Weight Vector W (straight down from center of crate)
+            \coordinate (Center) at (3.72, 2.45);
+            \draw[force] (Center) -- ++(0, -2.0) node[below, font=\small\bfseries] {$W = mg$};
+        \end{tikzpicture}
+        \captionof{figure}{Equipment crate on an inclined ramp subjected to cable tension force $T$.}
+        \label{fig:friction_diagram}
+    \end{center}
+
+    \begin{enumerate}[label=\alph*\lbrack\arabic*\rbrack, leftmargin=*, font=\bfseries\color{SecondaryTeal}]
+        \item Draw a complete, fully labeled **Free-Body Diagram (FBD)** of the crate, defining an inclined coordinate system $(x', y')$ aligned parallel and perpendicular to the ramp surface.
+        \item Determine the minimum tension force $T_{\min}$ required to **prevent the crate from slipping down** the ramp.
+        \item Determine the tension force $T_{\text{imp}}$ required to **impend motion up** the ramp.
+        \item If the cable suddenly snaps ($T = 0$), determine whether the crate remains at rest or slides down the ramp. If it slides, calculate its acceleration $a_x$ down the incline.
+    \end{enumerate}
+\end{problembox}
+
+\begin{solutionworkspace}{Free-Body Diagram \& Impending Motion Equations}
+    \textbf{(a) Free-Body Diagram Equations along inclined axes $(x', y')$:}
+    \begin{align*}
+        \sum F_{x'} = 0 &\implies T \cos\phi + f_s - mg \sin\theta = 0 \\
+        \sum F_{y'} = 0 &\implies N + T \sin\phi - mg \cos\theta = 0 \implies N = mg \cos\theta - T \sin\phi
+    \end{align*}
+
+    \vspace{4.0cm} % Space for working steps
+\end{solutionworkspace}
+
+\newpage
+
+% =============================================================================
+% SECTION 2: DYNAMICS & KINEMATICS
+% =============================================================================
+\section*{\textcolor{PrimaryDark}{\faLayerGroup\ Section 2: Dynamics of Particles \& Rigid Bodies}}
+
+% PROBLEM 3
+\begin{problembox}{Problem 3: Particle Projectile Kinematics with Drag \hfill [25 Points]}
+    An autonomous research drone developed at Meridian Dynamics launches an environmental sensor package from the edge of a cliff at height $h = \SI{45.0}{\meter}$ above a valley floor, as illustrated in Figure~\ref{fig:projectile_diagram}. The initial launch speed is $v_0 = \SI{32.0}{\meter\per\second}$ at an angle $\alpha = 35.0^\circ$ above the horizontal.
+
+    \begin{givenbox}
+        Initial cliff elevation $h = \SI{45.0}{\meter}$; Initial speed $v_0 = \SI{32.0}{\meter\per\second}$; Angle $\alpha = 35.0^\circ$.\\
+        Gravitational acceleration $g = \SI{9.81}{\meter\per\second\squared}$ directed vertically downwards.
+    \end{givenbox}
+
+    \begin{center}
+        \begin{tikzpicture}[scale=0.92]
+            % Cliff & Ground
+            \draw[line width=1.4pt, PrimaryDark] (-1, 3.5) -- (1.5, 3.5) -- (1.5, 0) -- (11, 0);
+            \fill[pattern=north east lines, pattern color=NeutralDark!30] (-1, 0) rectangle (1.5, 3.5);
+            \fill[pattern=north east lines, pattern color=NeutralDark!30] (1.5, -0.3) rectangle (11, 0);
+
+            % Launch Point
+            \coordinate (Launch) at (1.5, 3.5);
+            \node[truss_node, color=AccentAmber] at (Launch) {};
+
+            % Velocity Vector v0
+            \draw[force, AccentAmber, line width=1.5pt] (Launch) -- ++(35:2.4) node[above right, font=\small\bfseries] {$v_0 = \SI{32.0}{\meter\per\second}$};
+            \draw[dashed, NeutralDark!70] (Launch) -- ++(2.8, 0);
+            \draw[thin, AccentAmber] (Launch) ++(1.4, 0) arc (0:35:1.4);
+            \node at (Launch) [shift={(1.8, 0.4)}, font=\small\bfseries\color{AccentAmber}] {$\alpha = 35^\circ$};
+
+            % Trajectory Curve
+            \draw[thick, PrimaryDark, dashed, line width=1.2pt] (Launch) parabola bend (5.5, 5.2) (9.8, 0);
+            \node[truss_node, color=ForceRed] at (9.8, 0) {};
+            \node[below, font=\bfseries\small\color{ForceRed}] at (9.8, -0.1) {Impact Point $C$};
+
+            % Max Height Apex Point
+            \node[truss_node, color=SecondaryTeal] at (5.5, 5.2) {};
+            \node[above, font=\small\bfseries\color{SecondaryTeal}] at (5.5, 5.3) {Apex $B$};
+
+            % Height & Range Dimensions
+            \draw[dimen] (0.5, 0) -- (0.5, 3.5) node[midway, fill=white, inner sep=1pt, font=\small] {$h = \SI{45.0}{\meter}$};
+            \draw[dimen] (1.5, -0.8) -- (9.8, -0.8) node[midway, fill=white, inner sep=1pt, font=\small] {Horizontal Range $R$};
+        \end{tikzpicture}
+        \captionof{figure}{Autonomous sensor package projectile trajectory launched from cliff apex.}
+        \label{fig:projectile_diagram}
+    \end{center}
+
+    \begin{enumerate}[label=\alph*\lbrack\arabic*\rbrack, leftmargin=*, font=\bfseries\color{SecondaryTeal}]
+        \item Neglecting air resistance, calculate the maximum peak altitude $y_{\max}$ reached by the payload measured from the valley floor.
+        \item Calculate the total time of flight $t_{\text{impact}}$ until the payload impacts the valley floor at point $C$.
+        \item Determine the horizontal range $R$ from the base of the cliff to the impact point $C$, and the magnitude and direction of the velocity vector $\vec{v}_C$ immediately prior to impact.
+    \end{enumerate}
+\end{problembox}
+
+\begin{solutionworkspace}{Kinematic Component Equations \& Trajectory Integration}
+    \textbf{Initial Velocity Components:}
+    \begin{align*}
+        v_{0x} &= v_0 \cos\alpha = 32.0 \cos(35^\circ) = \SI{26.21}{\meter\per\second} \\
+        v_{0y} &= v_0 \sin\alpha = 32.0 \sin(35^\circ) = \SI{18.35}{\meter\per\second}
+    \end{align*}
+
+    \vspace{4.0cm}
+\end{solutionworkspace}
+
+\newpage
+
+% PROBLEM 4
+\begin{problembox}{Problem 4: Planar Kinetics of Rigid Bodies \& Stepped Pulley \hfill [25 Points]}
+    A dual-concentric stepped pulley assembly of mass $m_P = \SI{16.0}{\kilogram}$ and mass radius of gyration $k_O = \SI{0.22}{\meter}$ about its central fixed axis $O$ is mounted on frictionless bearings. Block $A$ ($m_A = \SI{12.0}{\kilogram}$) is suspended from an inextensible light cable wrapped around the outer drum of radius $R = \SI{0.35}{\meter}$. A constant tension force $P = \SI{85.0}{\newton}$ is applied to a second cable wrapped around the inner hub of radius $r = \SI{0.18}{\meter}$, as shown in Figure~\ref{fig:pulley_diagram}.
+
+    \begin{givenbox}
+        Pulley mass $m_P = \SI{16.0}{\kilogram}$; Radius of gyration $k_O = \SI{0.22}{\meter}$; Outer radius $R = \SI{0.35}{\meter}$; Hub radius $r = \SI{0.18}{\meter}$.\\
+        Suspended mass $m_A = \SI{12.0}{\kilogram}$; Pull force $P = \SI{85.0}{\newton}$; Gravitational acceleration $g = \SI{9.81}{\meter\per\second\squared}$.
+    \end{givenbox}
+
+    \begin{center}
+        \begin{tikzpicture}[scale=1.1]
+            % Concentric Circles
+            \draw[line width=1.6pt, PrimaryDark, fill=PrimaryDark!8] (0,0) circle (1.4);
+            \draw[line width=1.4pt, SecondaryTeal, fill=SecondaryTeal!15] (0,0) circle (0.7);
+
+            % Center Pin O
+            \draw[support] (0,0) -- ++(-0.25,-0.4) -- ++(0.5,0) -- cycle;
+            \node[truss_node, color=PrimaryDark] at (0,0) {};
+            \node[above left, font=\bfseries\small\color{PrimaryDark}] at (0,0) {$O$};
+
+            % Inner Cable and Force P
+            \draw[line width=1.3pt, AccentAmber] (-0.7,0) -- (-0.7, -1.8);
+            \draw[force, AccentAmber] (-0.7,-1.2) -- (-0.7,-2.2) node[below, font=\small\bfseries] {Force $P = \SI{85}{\newton}$};
+
+            % Outer Cable and Suspended Block A
+            \draw[line width=1.3pt, PrimaryDark] (1.4,0) -- (1.4, -2.0);
+            \draw[line width=1.2pt, fill=PrimaryDark!20, PrimaryDark] (0.9, -3.2) rectangle (1.9, -2.0);
+            \node[font=\bfseries\small\color{PrimaryDark}] at (1.4, -2.6) {Block $A$};
+            \node[right, font=\small] at (1.9, -2.6) {$m_A = \SI{12}{\kilogram}$};
+
+            % Radius Dimensions
+            \draw[axis_line] (0,0) -- (1.4,0) node[midway, above, font=\small] {$R = \SI{0.35}{\meter}$};
+            \draw[axis_line] (0,0) -- (0,0.7) node[midway, right, font=\small] {$r = \SI{0.18}{\meter}$};
+
+            % Angular Acceleration Arrow
+            \draw[->, >=Stealth, line width=1.4pt, SecondaryTeal] (0.4, 0.9) arc (60:130:0.9) node[above, font=\small\bfseries] {$\alpha$};
+        \end{tikzpicture}
+        \captionof{figure}{Concentric stepped pulley dynamics with applied cable force and suspended load.}
+        \label{fig:pulley_diagram}
+    \end{center}
+
+    \begin{enumerate}[label=\alph*\lbrack\arabic*\rbrack, leftmargin=*, font=\bfseries\color{SecondaryTeal}]
+        \item Compute the mass moment of inertia $I_O$ of the stepped pulley system about its central axis $O$.
+        \item Draw individual Free-Body Diagrams (FBDs) for both the pulley system and Block $A$.
+        \item Formulate Newton-Euler equations of motion ($\sum M_O = I_O \alpha$ and $\sum F_y = m_A a_A$) to calculate the angular acceleration $\alpha$ of the pulley and the linear acceleration $a_A$ of Block $A$.
+    \end{enumerate}
+\end{problembox}
+
+\begin{solutionworkspace}{Moment of Inertia \& Equations of Motion Integration}
+    \textbf{(a) Mass Moment of Inertia Calculation:}
+    \[
+        I_O = m_P \, k_O^2 = (16.0 \, \text{kg}) \, (0.22 \, \text{m})^2 = \SI{0.7744}{\kilogram\meter\squared}
+    \]
+
+    \vspace{4.0cm}
+\end{solutionworkspace}
+
+% =============================================================================
+% SECTION 3: FORMULA REFERENCE & RUBRIC
+% =============================================================================
+\newpage
+\section*{\textcolor{PrimaryDark}{\faBook\ Section 3: Reference \& Grading Breakdown}}
+
+\begin{minipage}{0.48\textwidth}
+    \begin{tcolorbox}[
+        enhanced,
+        colback=BgLight,
+        colframe=PrimaryDark,
+        arc=3pt,
+        boxrule=1.0pt,
+        title={\small\bfseries\color{white}\faBook\ Statics Formula Quick Reference},
+        coltitle=white,
+        colbacktitle=PrimaryDark,
+        top=6pt, bottom=6pt, left=8pt, right=8pt
+    ]
+        \small\color{NeutralDark}
+        \textbf{2D Equilibrium Conditions:}
+        \[ \sum F_x = 0, \quad \sum F_y = 0, \quad \sum M_O = 0 \]
+        
+        \textbf{Dry Friction Laws (Coulomb):}
+        \[ F_{s,\max} = \mu_s N, \quad F_k = \mu_k N \]
+
+        \textbf{Truss Zero-Force Member Rules:}
+        \begin{itemize}[leftmargin=*]
+            \item Two non-collinear members at unloaded joint $\implies$ both zero.
+            \item Three members at unloaded joint, two collinear $\implies$ 3rd is zero.
+        \end{itemize}
+    \end{tcolorbox}
+\end{minipage}%
+\hfill
+\begin{minipage}{0.48\textwidth}
+    \begin{tcolorbox}[
+        enhanced,
+        colback=BgLight,
+        colframe=SecondaryTeal,
+        arc=3pt,
+        boxrule=1.0pt,
+        title={\small\bfseries\color{white}\faBook\ Dynamics Formula Quick Reference},
+        coltitle=white,
+        colbacktitle=SecondaryTeal,
+        top=6pt, bottom=6pt, left=8pt, right=8pt
+    ]
+        \small\color{NeutralDark}
+        \textbf{Kinematics (Constant Acceleration):}
+        \[ v(t) = v_0 + a t, \quad s(t) = s_0 + v_0 t + \frac{1}{2}a t^2 \]
+        
+        \textbf{Rigid Body Planar Kinetics:}
+        \[ \sum \vec{F} = m \vec{a}_G, \quad \sum M_O = I_O \alpha \]
+
+        \textbf{Radius of Gyration:}
+        \[ I_O = m k_O^2, \quad a_t = r \alpha \]
+    \end{tcolorbox}
+\end{minipage}
+
+\vspace{12pt}
+
+\subsection*{\textcolor{PrimaryDark}{\faCheckCircle\ Evaluation \& Grading Rubric}}
+
+\begin{table}[h!]
+    \centering
+    \small
+    \begin{tabularx}{\textwidth}{@{} l c X r @{}}
+        \toprule
+        \textbf{Problem No.} & \textbf{Max Points} & \textbf{Core Competencies Evaluated} & \textbf{Score} \\
+        \midrule
+        \textbf{Problem 1} & 25 & Global reactions, zero-force member identification, method of joints & \hspace{1.5cm} / 25 \\
+        \textbf{Problem 2} & 25 & FBD precision, inclined axes resolution, static/kinetic friction threshold & \hspace{1.5cm} / 25 \\
+        \textbf{Problem 3} & 25 & 2D particle kinematics, elevated launch trajectory, vector velocity & \hspace{1.5cm} / 25 \\
+        \textbf{Problem 4} & 25 & Rotational inertia, moment of inertia, combined cable-pulley kinetics & \hspace{1.5cm} / 25 \\
+        \midrule
+        \textbf{TOTAL} & \textbf{100} & \textbf{Overall Engineering Statics \& Dynamics Performance} & \textbf{/ 100} \\
+        \bottomrule
+    \end{tabularx}
+\end{table}
+
+\end{document}

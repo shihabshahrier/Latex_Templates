@@ -1,0 +1,191 @@
+\documentclass[10pt,a4paper]{article}
+
+% --- PACKAGES ---
+\usepackage[utf8]{inputenc}
+\usepackage[margin=10mm,top=10mm,bottom=10mm]{geometry}
+\usepackage[table]{xcolor}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{tcolorbox}
+\usepackage{fontawesome5}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\usepackage{microtype}
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+\usepackage{parskip}
+
+\pagestyle{empty}
+
+% --- COLOR PALETTE ---
+\definecolor{AccentColor}{HTML}{1E3A8A}   % Deep Royal Slate Navy
+\definecolor{AccentBright}{HTML}{2563EB}  % Electric Blue
+\definecolor{AccentLight}{HTML}{EFF6FF}   % Soft Tint Blue
+\definecolor{PrimaryDark}{HTML}{111827}   % Charcoal Dark Text
+\definecolor{SecondaryGray}{HTML}{4B5563} % Muted Gray Text
+\definecolor{BorderGray}{HTML}{E5E7EB}    % Soft Border Gray
+\definecolor{LightBg}{HTML}{F9FAFB}       % Alternating Table Row Tint
+\definecolor{SuccessGreen}{HTML}{059669}  % Status Badge Green
+
+% --- TCOLORBOX CONFIG ---
+\tcbuselibrary{skins}
+\tcbset{
+  enhanced,
+  boxrule=0.5pt,
+  arc=3pt,
+  fonttitle=\bfseries,
+  colframe=BorderGray,
+  colback=white,
+  left=6pt, right=6pt, top=4pt, bottom=4pt
+}
+
+\begin{document}
+
+% --- TOP DECORATIVE ACCENT BAR ---
+\begin{tikzpicture}[remember picture, overlay]
+    \fill[AccentColor] (current page.north west) rectangle ($(current page.north east)+(0,-4mm)$);
+\end{tikzpicture}
+
+\vspace*{-4mm}
+
+% --- HEADER BLOCK ---
+\begin{minipage}[t]{0.56\textwidth}
+    {\raggedright
+        {\Huge \bfseries \color{PrimaryDark} Alex Morgan}\\[2pt]
+        {\large \bfseries \color{AccentBright} Senior UX/UI Designer \& Frontend Engineer}\\[4pt]
+        \color{SecondaryGray}\small
+        \faBuilding\ \ \textbf{Vertex Digital Design Studio LLC}\\
+        \faMapMarker\ \ 1248 Innovation Way, Suite 300, Austin, TX 78701\\
+        \faEnvelope\ \ alex@vertexdigital.example.com \ \ \textbar\ \ \faPhone\ \ +1 (512) 555-0194\\
+        \faGlobe\ \ www.vertexdigital.example.com \ \ \textbar\ \ \faIdCard\ \ Tax ID: US-987654321
+    }
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.40\textwidth}
+    {\raggedleft
+        {\Huge \bfseries \color{AccentColor} INVOICE}\\[2pt]
+        \begin{tcolorbox}[colback=AccentLight, colframe=AccentBright!30, arc=3.5pt, top=4pt, bottom=4pt, left=6pt, right=6pt]
+            \small
+            \begin{tabular}{@{}r l@{}}
+                \textbf{\color{PrimaryDark} Invoice No:} & \textbf{\color{AccentBright} INV-2026-042} \\
+                \textbf{\color{PrimaryDark} Issue Date:} & July 24, 2026 \\
+                \textbf{\color{PrimaryDark} Due Date:} & August 07, 2026 \\
+                \textbf{\color{PrimaryDark} Payment Terms:} & Net 14 Days \\
+                \textbf{\color{PrimaryDark} PO Reference:} & PO-98412-NEXA
+            \end{tabular}
+        \end{tcolorbox}
+    }
+\end{minipage}
+
+\vspace{5pt}
+{\color{BorderGray}\hrule height 0.5pt}
+\vspace{5pt}
+
+% --- CLIENT & PROJECT SUMMARY BLOCK ---
+\begin{minipage}[t]{0.485\textwidth}
+    \begin{tcolorbox}[title=\color{AccentColor}\faUser\ \ BILLED TO, colbacktitle=AccentLight, colframe=BorderGray, coltitle=AccentColor]
+        {\large \bfseries \color{PrimaryDark} Nexa System Solutions Inc.}\\[2pt]
+        \color{SecondaryGray}\small
+        \textbf{Attn:} Sarah Jenkins, Senior Product Director\\
+        \textbf{Address:} 742 Enterprise Blvd, Suite 400\\
+        San Francisco, CA 94105, United States\\
+        \textbf{Email:} s.jenkins@nexasystems.example.com\\
+        \textbf{Client Tax ID:} US-334902187
+    \end{tcolorbox}
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.485\textwidth}
+    \begin{tcolorbox}[title=\color{AccentColor}\faInfoCircle\ \ PROJECT SUMMARY, colbacktitle=AccentLight, colframe=BorderGray, coltitle=AccentColor]
+        {\large \bfseries \color{PrimaryDark} Enterprise SaaS Dashboard Redesign}\\[2pt]
+        \color{SecondaryGray}\small
+        \textbf{Project Phase:} Milestone 2 -- Design System \& Frontend\\
+        \textbf{Billing Period:} July 01, 2026 -- July 24, 2026\\
+        \textbf{Status:} \color{SuccessGreen}\faClock\ \ \textbf{PENDING PAYMENT}\\[2pt]
+        \begin{tcolorbox}[colback=SuccessGreen!10, colframe=SuccessGreen!40, top=2pt, bottom=2pt, left=4pt, right=4pt]
+            \centering \bfseries \color{SuccessGreen} Total Amount Due: \$8,450.00 USD
+        \end{tcolorbox}
+    \end{tcolorbox}
+\end{minipage}
+
+\vspace{6pt}
+
+% --- ITEMIZED TABLE ---
+{\large \bfseries \color{PrimaryDark} \faList\ \ Itemized Deliverables}
+\vspace{3pt}
+
+\arrayrulecolor{AccentColor}
+\renewcommand{\arraystretch}{1.1}
+
+\begin{tabularx}{\textwidth}{@{} X c r r @{}}
+    \rowcolor{AccentColor}
+    \color{white}\bfseries Deliverable \& Description & 
+    \color{white}\bfseries Qty / Hrs & 
+    \color{white}\bfseries Rate & 
+    \color{white}\bfseries Line Total \\
+    \hline
+    \textbf{UX/UI Research \& Interactive Figma Prototype} & 35 hrs & \$110.00 & \$3,850.00 \\
+    \multicolumn{4}{@{}p{\textwidth}@{}}{\color{SecondaryGray}\footnotesize User flow mapping, 24 dashboard screen designs, dark/light themes, and interactive prototype for Cloud Console v2.0.} \\[2pt]
+    \rowcolor{LightBg}
+    \textbf{Frontend React Component Architecture} & 28 hrs & \$115.00 & \$3,220.00 \\
+    \rowcolor{LightBg}
+    \multicolumn{4}{@{}p{\textwidth}@{}}{\color{SecondaryGray}\footnotesize Reusable TypeScript / React 19 component library with Tailwind CSS and full Storybook documentation.} \\[2pt]
+    \textbf{REST API Integration \& State Management Setup} & 10 hrs & \$115.00 & \$1,150.00 \\
+    \multicolumn{4}{@{}p{\textwidth}@{}}{\color{SecondaryGray}\footnotesize TanStack Query data fetching layer, global state store, and real-time WebSocket event listeners.} \\[2pt]
+    \rowcolor{LightBg}
+    \textbf{Responsive QA \& Cross-Browser Compatibility} & 5 hrs & \$90.00 & \$450.00 \\
+    \rowcolor{LightBg}
+    \multicolumn{4}{@{}p{\textwidth}@{}}{\color{SecondaryGray}\footnotesize Multi-device validation across Safari, Chrome, Edge, iOS Safari, and Android Chrome viewports.} \\[2pt]
+    \textbf{CI/CD Deployment \& Vercel Configuration} & 1 ea & \$0.00 & \$0.00 \\
+    \multicolumn{4}{@{}p{\textwidth}@{}}{\color{SecondaryGray}\footnotesize \textit{Complimentary:} Automated GitHub Actions workflow and preview environment pipeline setup.} \\[2pt]
+    \hline
+\end{tabularx}
+
+\vspace{5pt}
+
+% --- PAYMENT DETAILS & TOTALS SUMMARY ---
+\begin{minipage}[t]{0.485\textwidth}
+    \begin{tcolorbox}[title=\color{AccentColor}\faLock\ \ PAYMENT METHOD \& BANK DETAILS, colbacktitle=AccentLight, colframe=BorderGray, coltitle=AccentColor]
+        \color{SecondaryGray}\small
+        \begin{tabular}{@{}l l@{}}
+            \textbf{Bank Name:} & Meridian Global Financial Bank \\
+            \textbf{Account Name:} & Alex Morgan Studios LLC \\
+            \textbf{Account No:} & 4839-2019-8841 \\
+            \textbf{Routing / ABA:} & 121000358 \\
+            \textbf{IBAN:} & US64 MGBK 0001 2345 6789 01 \\
+            \textbf{SWIFT / BIC:} & MGBKUS6S \\
+            \textbf{Wire Reference:} & \textbf{\color{AccentBright} INV-2026-042}
+        \end{tabular}
+    \end{tcolorbox}
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.485\textwidth}
+    \vspace*{1pt}
+    \begin{tabularx}{\linewidth}{@{} X r @{}}
+        \color{SecondaryGray}\textbf{Subtotal:} & \$8,670.00 \\
+        \color{SecondaryGray}\textbf{Partner Discount (Early Booking):} & -\$220.00 \\
+        \color{SecondaryGray}\textbf{Taxable Amount:} & \$8,450.00 \\
+        \color{SecondaryGray}\textbf{Sales Tax / VAT (0\% Exempt):} & \$0.00 \\
+    \end{tabularx}
+    \vspace{2pt}
+    \begin{tcolorbox}[colback=AccentColor, colframe=AccentColor, arc=3.5pt, top=4pt, bottom=4pt, left=7pt, right=7pt]
+        \color{white}
+        \large \bfseries
+        TOTAL AMOUNT DUE: \hfill \$8,450.00 USD
+    \end{tcolorbox}
+    \vspace{1pt}
+    {\raggedleft \footnotesize \color{SecondaryGray} Payment due in full within 14 calendar days.\par}
+\end{minipage}
+
+\vfill
+
+% --- FOOTER / TERMS ---
+{\color{BorderGray}\hrule height 0.5pt}
+\vspace{3pt}
+
+\begin{center}
+    \color{SecondaryGray}\footnotesize
+    \textbf{Terms \& Conditions:} Payment is due within 14 days of invoice issue date (by August 07, 2026).\\
+    Please direct any billing inquiries to \textbf{alex@vertexdigital.example.com}. Thank you for your business!
+\end{center}
+
+\end{document}

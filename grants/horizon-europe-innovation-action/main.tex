@@ -1,0 +1,467 @@
+\documentclass[11pt,a4paper,parskip=half]{scrreprt}
+
+% ---------- Core packages ----------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[a4paper,left=2.3cm,right=2.3cm,top=2.6cm,bottom=2.8cm,headsep=10pt]{geometry}
+\usepackage[table]{xcolor}
+\usepackage{colortbl}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{enumitem}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{textcomp}
+\usepackage{fontawesome5}
+\usepackage{tikz}
+\usetikzlibrary{positioning,calc,shapes.geometric,decorations.pathmorphing,backgrounds,patterns,arrows.meta}
+\usepackage[most]{tcolorbox}
+\usepackage[headsepline,footsepline]{scrlayer-scrpage}
+\usepackage[colorlinks=true,linkcolor=eublue,urlcolor=teal,citecolor=eublue]{hyperref}
+
+% ---------- Colour palette ----------
+\definecolor{eublue}{RGB}{0,51,153}
+\definecolor{eugold}{RGB}{255,183,0}
+\definecolor{slate}{RGB}{68,76,86}
+\definecolor{teal}{RGB}{0,121,140}
+\definecolor{lightgray}{RGB}{244,246,249}
+\definecolor{riskLow}{RGB}{206,232,214}
+\definecolor{riskMed}{RGB}{255,229,180}
+\definecolor{riskHigh}{RGB}{248,201,201}
+
+\hypersetup{
+  pdftitle={FLEXGRID -- Horizon Europe Innovation Action Proposal},
+  pdfauthor={FLEXGRID Consortium}
+}
+
+% ---------- Heading styling ----------
+\setkomafont{disposition}{\normalfont\sffamily\color{eublue}}
+\addtokomafont{chapter}{\Large}
+\addtokomafont{section}{\large}
+\addtokomafont{subsection}{\normalsize\color{slate}}
+\renewcommand*{\chapterformat}{\textcolor{eugold}{\Huge\thechapter}\enskip}
+
+% ---------- Header / footer ----------
+\pagestyle{scrheadings}
+\clearpairofpagestyles
+\automark[section]{chapter}
+\ihead{\small\color{slate}\sffamily FLEXGRID\, \textbar\, Horizon Europe Innovation Action}
+\ohead{\small\color{slate}\sffamily\rightmark}
+\ifoot{\small\color{slate} Call: HORIZON-CL5-2026-D3-01}
+\ofoot{\small\color{slate} Page \thepage}
+\setkomafont{pageheadfoot}{\upshape}
+\setkomafont{headsepline}{\color{eugold}}
+\setkomafont{footsepline}{\color{eugold}}
+
+% ---------- tcolorbox styles ----------
+\tcbset{
+  factbox/.style={colback=lightgray,colframe=eublue,boxrule=0.8pt,arc=2mm,
+    left=7pt,right=7pt,top=6pt,bottom=6pt,
+    fonttitle=\bfseries\sffamily\color{white},colbacktitle=eublue,coltitle=white,
+    title={#1}},
+  objbox/.style={colback=white,colframe=teal,boxrule=1pt,arc=1mm,
+    left=8pt,right=8pt,top=6pt,bottom=6pt,
+    fonttitle=\bfseries\sffamily\color{teal},coltitle=teal},
+  notebox/.style={colback=eugold!12,colframe=eugold!70!black,boxrule=0.8pt,arc=1mm,
+    left=7pt,right=7pt,top=5pt,bottom=5pt}
+}
+
+\setlist[itemize,1]{label=\textcolor{teal}{\small\faIcon{check}},leftmargin=1.5em}
+\setlist[enumerate,1]{leftmargin=1.6em}
+
+\newcommand{\eur}[1]{\texteuro#1}
+
+\begin{document}
+
+% ============================================================
+% COVER PAGE
+% ============================================================
+\begin{titlepage}
+\newgeometry{left=2cm,right=2cm,top=1.6cm,bottom=1.8cm}
+\thispagestyle{empty}
+
+\begin{tikzpicture}[remember picture,overlay]
+  \fill[eublue] (current page.north west) rectangle ([yshift=-3.4cm]current page.north east);
+  \foreach \x in {1,...,9}{
+    \fill[eugold,opacity=0.55] ([xshift=\x*1.6cm+0.4cm,yshift=-0.55cm]current page.north west) circle (2.6pt);
+  }
+  \fill[teal,opacity=0.9] ([xshift=-1.2cm,yshift=1.2cm]current page.south east)
+     -- ++(3.2cm,0) -- ++(0,3.2cm) -- cycle;
+  \begin{scope}[xshift=2cm,yshift=-2.6cm]
+    \foreach \i in {0,...,5}{
+      \draw[pattern=north east lines,pattern color=eugold!35,draw=none]
+        ([xshift=\i*0.55cm]current page.south west) rectangle ++(0.35cm,0.9cm);
+    }
+  \end{scope}
+\end{tikzpicture}
+
+\vspace*{0.3cm}
+\begin{flushleft}
+{\color{white}\sffamily\small HORIZON EUROPE \textbar\ CLUSTER 5: CLIMATE, ENERGY \& MOBILITY}\\[2pt]
+{\color{eugold}\sffamily\footnotesize CALL HORIZON-CL5-2026-D3-01 \textbar\ INNOVATION ACTION (IA)}
+\end{flushleft}
+
+\vspace{2.4cm}
+
+\begin{center}
+{\Huge\sffamily\bfseries\color{eublue}FLEXGRID}\\[8pt]
+{\large\sffamily\color{slate} Federated Learning for EXtended Grid resilience and\\ Intelligent Demand-response}\\[14pt]
+\begin{tikzpicture}
+  \draw[decorate,decoration={random steps,segment length=3.2mm,amplitude=0.6mm},
+    ultra thick,eugold] (0,0) -- (10.2,0);
+\end{tikzpicture}
+\end{center}
+
+\vspace{1.1cm}
+
+\begin{center}
+\begin{minipage}{0.86\textwidth}
+\begin{tcolorbox}[factbox={\faIcon{file}\ \ Proposal Key Facts}]
+\small
+\renewcommand{\arraystretch}{1.35}
+\begin{tabularx}{\linewidth}{@{}l X l X@{}}
+\textbf{Duration:} & 36 months & \textbf{Type of action:} & Innovation Action (IA) \\
+\textbf{Requested EU contribution:} & \eur{5,980,000} & \textbf{Consortium size:} & 6 beneficiaries, 5 countries \\
+\textbf{Coordinator:} & Nexa Dynamics B.V. (NL) & \textbf{Start date (planned):} & 1 January 2027 \\
+\textbf{TRL progression:} & TRL 4 $\rightarrow$ TRL 7 & \textbf{Panel:} & HORIZON-CL5-2026-D3 \\
+\end{tabularx}
+\end{tcolorbox}
+\end{minipage}
+\end{center}
+
+\vspace{0.9cm}
+
+\begin{center}
+\small\sffamily\color{slate}
+Coordinating person: Dr.\ Elena Marsh \textbar\ \faIcon{envelope}\ e.marsh@nexadynamics.example \textbar\ \faIcon{phone}\ +31\,20\,555\,0142
+\end{center}
+
+\vfill
+
+\begin{center}
+{\footnotesize\color{slate}\sffamily This document is a full proposal submitted under the Horizon Europe Work Programme 2026--2027.\\
+Consortium: Nexa Dynamics (NL) \textbullet\ Synapse Analytics (DE) \textbullet\ Vertex Materials Institute (IE) \textbullet\ Nimbus Grid Systems (FI) \textbullet\ Apex Photonics Lab (SE) \textbullet\ Meridian Energy Cooperative (ES)}
+\end{center}
+
+\restoregeometry
+\end{titlepage}
+
+\clearpage
+\thispagestyle{empty}
+\tableofcontents
+\clearpage
+
+% ============================================================
+% CHAPTER 1 -- EXCELLENCE
+% ============================================================
+\chapter{Excellence}
+
+\section{Objectives and Ambition}
+
+European distribution grids are absorbing rooftop solar, heat pumps and EV chargers faster than
+control-room software can model them. Local congestion events on medium-voltage feeders have
+risen 34\% across the five FLEXGRID demonstration regions since 2023, and today's SCADA-era
+forecasting tools update on a 15-minute cycle -- too slow to prevent nuisance curtailment or
+localised brownouts. FLEXGRID's ambition is to replace this cycle with a \textbf{federated,
+edge-native intelligence layer} that lets distribution system operators (DSOs) forecast, explain
+and act on grid stress in under 90 seconds, without centralising raw household data.
+
+\begin{tcolorbox}[objbox={\faIcon{lightbulb}\ \ Specific, Measurable Objectives}]
+\begin{enumerate}[label=\textbf{O\arabic*.}]
+  \item Reduce feeder-level forecast error (RMSE) by \textbf{40\%} relative to the current
+        state-of-the-art centralised model, validated on three real DSO territories.
+  \item Cut raw household energy data leaving the edge device to \textbf{zero}, using federated
+        learning with differential privacy ($\varepsilon \leq 3$).
+  \item Demonstrate autonomous congestion mitigation across \textbf{$\geq$ 1{,}200} grid-edge
+        nodes at TRL~7, sustaining a 99.5\% control-loop uptime over a 9-month field trial.
+  \item Cut the cost of grid-edge sensing hardware by \textbf{35\%} through the photonic sensor
+        design developed in WP4, enabling deployment at rural feeders previously judged
+        uneconomical.
+  \item Deliver an open reference architecture adopted by \textbf{at least 2} DSOs beyond the
+        consortium within 12 months of project end.
+\end{enumerate}
+\end{tcolorbox}
+
+These objectives extend directly beyond the state of the art: existing federated energy-forecasting
+research (e.g.\ cluster-level load prediction pilots reported in 2024--2025) has stopped at
+simulation or single-utility trials. FLEXGRID is the first project to combine (i) cross-border
+federated learning across independently regulated DSOs, (ii) a purpose-built low-power photonic
+sensing node that halves edge compute cost, and (iii) closed-loop autonomous mitigation rather than
+forecasting alone.
+
+\subsection{Methodology and Concept}
+
+The technical approach separates learning from actuation, so that a mis-trained model can never
+directly command grid hardware without a rule-based safety envelope. Figure~\ref{fig:concept}
+summarises the architecture matured across WP2--WP4.
+
+\begin{center}
+\begin{tikzpicture}[
+  node distance=8mm and 10mm,
+  box/.style={draw=eublue,thick,fill=lightgray,rounded corners=2pt,align=center,
+    minimum height=1.05cm,minimum width=2.9cm,font=\small\sffamily},
+  edgebox/.style={box,fill=teal!12,draw=teal},
+  core/.style={box,fill=eugold!18,draw=eugold!70!black},
+  arrow/.style={-{Latex[length=2.2mm]},thick,color=slate}
+]
+\node[edgebox] (sensor) {Photonic sensor\\ grid-edge node};
+\node[edgebox,right=of sensor] (local) {Local model\\ update (on-device)};
+\node[core,right=of local] (agg) {Federated\\ aggregator};
+\node[core,below=of agg] (safety) {Rule-based\\ safety envelope};
+\node[edgebox,below=of local] (act) {Local\\ actuation};
+
+\draw[arrow] (sensor) -- (local);
+\draw[arrow] (local) -- (agg) node[midway,above,font=\tiny\sffamily] {gradients only};
+\draw[arrow] (agg) -- (safety) node[midway,right,font=\tiny\sffamily] {global model};
+\draw[arrow] (safety) -- (act);
+\draw[arrow] (act) -- (sensor) node[midway,left,font=\tiny\sffamily] {feedback};
+\end{tikzpicture}
+\captionof{figure}{FLEXGRID closed-loop concept: raw data never leaves the edge node; only
+model gradients are federated.}
+\label{fig:concept}
+\end{center}
+
+\section{Relation to the Work Programme}
+
+The proposal responds directly to destination \emph{``Cross-sectoral solutions for the climate
+transition''} of Cluster~5, addressing the expected outcome that DSOs gain ``real-time,
+privacy-preserving decision-support tools for distribution grid flexibility.'' FLEXGRID's
+TRL~4$\rightarrow$7 trajectory and multi-country field validation match the call's requirement
+for at least three demonstration sites in different Member States operating under different
+regulatory frameworks.
+
+% ============================================================
+% CHAPTER 2 -- IMPACT
+% ============================================================
+\chapter{Impact}
+
+\section{Expected Outcomes and Pathways to Impact}
+
+\begin{table}[h]
+\small
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\linewidth}{@{}>{\sffamily\bfseries}p{2.1cm} X X@{}}
+\toprule
+\rowcolor{eublue}
+\textcolor{white}{Horizon} & \textcolor{white}{Output (project end)} & \textcolor{white}{Outcome / Impact (2--5 yrs after)} \\
+\midrule
+Short-term & Validated federated forecasting model, open reference architecture, photonic
+sensor design files & 2 additional DSOs pilot the architecture; 40\% forecast error reduction
+independently confirmed \\
+\addlinespace
+Medium-term & Standardisation contribution to CENELEC TC~205 edge-interoperability profile &
+Grid-edge sensor cost curve shifts, enabling rural feeder monitoring previously unfunded \\
+\addlinespace
+Long-term & Consortium spin-out offering FLEXGRID-as-a-service to mid-size DSOs & Measurable
+reduction in curtailment-related renewable energy loss across early-adopter territories \\
+\bottomrule
+\end{tabularx}
+\caption{Pathways from project outputs to sector-level impact.}
+\end{table}
+
+\subsection{Contribution to EU Policy Objectives}
+
+FLEXGRID directly supports the Fit-for-55 grid-flexibility target and the EU Action Plan for
+Digitalising the Energy System. By keeping household consumption data on-device, the project's
+differential-privacy design also anticipates the data-minimisation expectations that will apply
+to any Energy Data Space use case.
+
+\section{Measures to Maximise Impact}
+
+\begin{minipage}{0.48\textwidth}
+\begin{tcolorbox}[factbox={\faIcon{globe}\ \ Dissemination}]
+\footnotesize
+\begin{itemize}
+  \item 6 peer-reviewed publications, 2 open-access by default
+  \item Reference implementation released under Apache-2.0 at project month 30
+  \item Annual DSO practitioner workshop (Amsterdam, Berlin, Madrid)
+  \item Contribution to CENELEC TC205 working group
+\end{itemize}
+\end{tcolorbox}
+\end{minipage}
+\hfill
+\begin{minipage}{0.48\textwidth}
+\begin{tcolorbox}[factbox={\faIcon{handshake}\ \ Exploitation}]
+\footnotesize
+\begin{itemize}
+  \item Joint exploitation agreement signed by month 6 (all 6 partners)
+  \item IP: sensor design (Apex/Vertex) patent-pending, filed month 14
+  \item Nexa-led spin-out business case validated in WP7
+  \item Two DSOs outside consortium enrolled as early-adopter observers
+\end{itemize}
+\end{tcolorbox}
+\end{minipage}
+
+% ============================================================
+% CHAPTER 3 -- IMPLEMENTATION
+% ============================================================
+\chapter{Quality and Efficiency of the Implementation}
+
+\section{Work Plan and Work Packages}
+
+The 36-month work plan is organised into seven work packages (WPs), sequenced so that hardware
+(WP4--WP5) and software (WP2--WP3) tracks converge at the month-18 integration gate ahead of
+field validation (WP6).
+
+\begin{table}[h]
+\small
+\renewcommand{\arraystretch}{1.25}
+\begin{tabularx}{\linewidth}{@{}l X l l@{}}
+\toprule
+\rowcolor{eublue}
+\textcolor{white}{WP} & \textcolor{white}{Title} & \textcolor{white}{Lead} & \textcolor{white}{Months} \\
+\midrule
+WP1 & Project Management \& Coordination & Nexa & 1--36 \\
+\rowcolor{lightgray}
+WP2 & User Requirements, Ethics \& Data Governance & Meridian & 1--8 \\
+WP3 & Federated Learning Core \& Edge Intelligence & Synapse & 4--24 \\
+\rowcolor{lightgray}
+WP4 & Resilient Grid-Edge Hardware \& Photonic Sensing & Apex & 4--24 \\
+WP5 & Materials \& Durability for Extreme Environments & Vertex & 6--20 \\
+\rowcolor{lightgray}
+WP6 & Large-Scale Demonstration \& Field Validation & Nimbus & 18--34 \\
+WP7 & Dissemination, Exploitation \& Standardisation & Nexa & 1--36 \\
+\bottomrule
+\end{tabularx}
+\caption{Work package overview.}
+\end{table}
+
+\begin{center}
+\begin{tikzpicture}[x=0.39cm,y=0.9cm,font=\sffamily]
+  \def\nwp{7}
+  \foreach \m in {0,6,...,36}{
+    \draw[gray!35] (\m,0.4) -- (\m,-\nwp-0.2);
+    \node[font=\tiny,color=slate] at (\m,0.75) {M\m};
+  }
+  \node[left,font=\tiny\bfseries,color=slate] at (0,-0.2) {WP1};
+  \draw[fill=eublue] (0,-0.3) rectangle (36,-0.9);
+  \node[left,font=\tiny\bfseries,color=slate] at (0,-1.2) {WP2};
+  \draw[fill=teal] (0,-1.3) rectangle (8,-1.9);
+  \node[left,font=\tiny\bfseries,color=slate] at (0,-2.2) {WP3};
+  \draw[fill=teal] (4,-2.3) rectangle (24,-2.9);
+  \node[left,font=\tiny\bfseries,color=slate] at (0,-3.2) {WP4};
+  \draw[fill=eugold!80!black] (4,-3.3) rectangle (24,-3.9);
+  \node[left,font=\tiny\bfseries,color=slate] at (0,-4.2) {WP5};
+  \draw[fill=eugold!80!black] (6,-4.3) rectangle (20,-4.9);
+  \node[left,font=\tiny\bfseries,color=slate] at (0,-5.2) {WP6};
+  \draw[fill=slate] (18,-5.3) rectangle (34,-5.9);
+  \node[left,font=\tiny\bfseries,color=slate] at (0,-6.2) {WP7};
+  \draw[fill=eublue!55] (0,-6.3) rectangle (36,-6.9);
+  \node[shape=diamond,draw=slate,fill=white,inner sep=1.4pt] at (18,-5.0) {};
+  \node[font=\tiny,color=slate,align=left] at (18,-5.55) [xshift=1.05cm] {\tiny MS4 Integration gate};
+\end{tikzpicture}
+\end{center}
+
+\subsection{Management Structure}
+
+\begin{center}
+\begin{tikzpicture}[
+  node distance=7mm and 6mm,
+  gbox/.style={draw=eublue,thick,rounded corners=2pt,fill=lightgray,align=center,
+    font=\small\sffamily,minimum width=3.1cm,minimum height=0.95cm},
+  pbox/.style={gbox,fill=white,draw=teal,minimum width=2.05cm,font=\scriptsize\sffamily}
+]
+\node[gbox] (pc) {Project Coordinator\\ \footnotesize Dr.\ Elena Marsh (Nexa)};
+\node[gbox,below=9mm of pc] (pmo) {Project Management Office};
+\node[pbox,below=9mm of pmo,xshift=-6.15cm] (p1) {Nexa\\ \footnotesize WP1, WP7};
+\node[pbox,right=3.5mm of p1] (p2) {Synapse\\ \footnotesize WP3};
+\node[pbox,right=3.5mm of p2] (p3) {Vertex\\ \footnotesize WP5};
+\node[pbox,right=3.5mm of p3] (p4) {Nimbus\\ \footnotesize WP6};
+\node[pbox,right=3.5mm of p4] (p5) {Apex\\ \footnotesize WP4};
+\node[pbox,right=3.5mm of p5] (p6) {Meridian\\ \footnotesize WP2};
+\draw[-{Latex[length=2mm]},thick,slate] (pc) -- (pmo);
+\foreach \n in {p1,p2,p3,p4,p5,p6}{
+  \draw[-{Latex[length=2mm]},thick,slate] (pmo.south) -- (\n.north);
+}
+\end{tikzpicture}
+\end{center}
+
+\subsection{Consortium Capacity}
+
+\begin{table}[h]
+\small
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\linewidth}{@{}l X l l@{}}
+\toprule
+\rowcolor{eublue}
+\textcolor{white}{Partner} & \textcolor{white}{Role \& Relevant Capacity} & \textcolor{white}{Country} & \textcolor{white}{PM} \\
+\midrule
+Nexa Dynamics B.V.\ (Coord.) & Federated systems integrator; coordinated 2 prior Horizon
+projects & NL & 58 \\
+\rowcolor{lightgray}
+Synapse Analytics GmbH & Federated learning \& differential privacy research group, 40+
+publications & DE & 66 \\
+Vertex Materials Institute & Public research institute, polymer durability testing labs & IE & 34 \\
+\rowcolor{lightgray}
+Nimbus Grid Systems Oy & Mid-size DSO, operates 1{,}900\,km of MV feeder under trial & FI & 44 \\
+Apex Photonics Lab AB & Photonic sensor SME, prior ERC proof-of-concept grantee & SE & 48 \\
+\rowcolor{lightgray}
+Meridian Energy Cooperative & Rural DSO cooperative, ethics \& community-engagement lead & ES & 32 \\
+\bottomrule
+\end{tabularx}
+\caption{Consortium composition and effort (person-months).}
+\end{table}
+
+\section{Risk Management}
+
+\begin{table}[h]
+\small
+\renewcommand{\arraystretch}{1.35}
+\begin{tabularx}{\linewidth}{@{}X l l X@{}}
+\toprule
+\rowcolor{eublue}
+\textcolor{white}{Risk} & \textcolor{white}{Likelihood} & \textcolor{white}{Impact} & \textcolor{white}{Mitigation} \\
+\midrule
+Field-site data access delayed by DSO internal approval & Medium & High &
+\cellcolor{riskHigh}Parallel-track onboarding started at month 1; MoUs pre-negotiated \\
+\addlinespace
+Federated model convergence below target accuracy & Medium & Medium &
+\cellcolor{riskMed}Fallback centralised-training benchmark maintained in WP3 \\
+\addlinespace
+Photonic sensor component supply-chain delay & Low & High &
+\cellcolor{riskHigh}Dual-sourced components; 6-month buffer built into WP4 schedule \\
+\addlinespace
+Key personnel turnover at a partner site & Low & Medium &
+\cellcolor{riskMed}Cross-training and documented handover protocol per WP \\
+\addlinespace
+Regulatory change to cross-border grid-data sharing & Medium & High &
+\cellcolor{riskHigh}Legal monitoring by Meridian; architecture designed data-minimal by default \\
+\bottomrule
+\end{tabularx}
+\caption{Top risks and mitigation measures.}
+\end{table}
+
+\section{Budget Summary}
+
+\begin{table}[h]
+\small
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\linewidth}{@{}X l l@{}}
+\toprule
+\rowcolor{eublue}
+\textcolor{white}{Beneficiary} & \textcolor{white}{Requested EU Contribution} & \textcolor{white}{Share} \\
+\midrule
+Nexa Dynamics B.V.\ (Coordinator) & \eur{1,150,000} & 19.2\% \\
+\rowcolor{lightgray}
+Synapse Analytics GmbH & \eur{1,340,000} & 22.4\% \\
+Vertex Materials Institute & \eur{780,000} & 13.0\% \\
+\rowcolor{lightgray}
+Nimbus Grid Systems Oy & \eur{1,020,000} & 17.1\% \\
+Apex Photonics Lab AB & \eur{900,000} & 15.0\% \\
+\rowcolor{lightgray}
+Meridian Energy Cooperative & \eur{790,000} & 13.2\% \\
+\midrule
+\textbf{Total} & \textbf{\eur{5,980,000}} & \textbf{100.0\%} \\
+\bottomrule
+\end{tabularx}
+\caption{Requested EU contribution by beneficiary.}
+\end{table}
+
+\begin{tcolorbox}[notebox]
+\small\faIcon{calendar}\ \ \textbf{Note on eligibility.} All effort and cost figures are drawn
+up in accordance with the Horizon Europe Model Grant Agreement (Article 6, unit cost rules) and
+have been reviewed by each beneficiary's certified financial officer prior to submission.
+\end{tcolorbox}
+
+\end{document}

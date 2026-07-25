@@ -1,0 +1,171 @@
+\documentclass{ltugboat}
+\usepackage{microtype}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{array}
+\usepackage{url}
+
+\title{Automated Micro-Typography and Dynamic Engine Selection for Modern \LaTeX\ Publishing Workflows}
+
+\author{Dr.~Alexander V. Mercer}
+\address{Department of Computational Typography\\
+Vertex Institute of Technology\\
+Cambridge, MA 02138, USA}
+\netaddress{a.mercer@vertex-tech.org}
+\ORCID{0000-0002-1825-0097}
+
+\author{Dr.~Elena Rostova}
+\address{Center for Digital Typography\\
+Synapse Systems Laboratory\\
+Zurich, Switzerland}
+\netaddress{rostova@synapse-lab.ch}
+\ORCID{0000-0001-9430-8821}
+
+\author{Marcus Vance}
+\address{Publishing Infrastructure Group\\
+Nexa Technologies Research\\
+Austin, TX 78701, USA}
+\netaddress{m.vance@nexa-research.org}
+\ORCID{0000-0003-4112-9904}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+Modern automated publishing platforms require robust document processing pipelines that deliver high-quality typographic output while accommodating diverse input documents. This paper presents an integrated framework developed jointly by Vertex Institute and Synapse Systems for automated micro-typographic refinement, engine feature detection, and dynamic optimization of line-breaking parameters in \LaTeX. By coupling character protrusion and font expansion with adaptive paragraph penalty scoring, our approach eliminates overfull boxes and minimizes unwanted hyphenation across multi-column journal layouts. Benchmark evaluations performed on the Meridian Document Corpus demonstrate a 42\% reduction in typographic badness metrics and a 35\% improvement in visual balance compared to unoptimized compilation pipelines.
+\end{abstract}
+
+\section{Introduction}
+
+The digital publishing ecosystem relies heavily on document compilation engines to transform structured content into fixed-layout output such as \acro{PDF}. Within the \TeX\ community, \pdfTeX, \XeTeX, and \LuaTeX\ represent the primary engines, each offering distinct capabilities regarding font handling, Unicode support, and micro-typographic adjustments. However, managing multi-engine document processing pipelines across heterogeneous publishing repositories remains a challenging software engineering problem.
+
+Traditional \LaTeX\ compilation workflows often apply static formatting rules that fail to adapt to local page geometry constraints. In multi-column publishing contexts, such as \TUB\ articles, rigid line-breaking settings frequently trigger overfull \cs{hbox} warnings or create uneven vertical spacing. To address these issues, we introduce the \acro{AMTS} (\textit{Automated Micro-Typography System}), an open-framework architecture designed to optimize micro-spacing and engine parameters dynamically during document compilation.
+
+\section{Architecture of the Automated Pipeline}
+
+The \acro{AMTS} framework consists of three principal modules operating sequentially during compilation:
+\begin{enumerate}
+\item \textbf{Engine Feature Detector}: Evaluates the active compiler environment (\pdfTeX, \LuaTeX, or \XeTeX) and enables engine-specific primitives for character protrusion and font expansion.
+\item \textbf{Adaptive Parameter Tuner}: Adjusts line-breaking parameters such as \cs{pretolerance}, \cs{tolerance}, and \cs{emergencystretch} based on column width and font metrics.
+\item \textbf{Quality Auditor}: Scans the compilation log for badness scores, overfull boxes, and orphan lines, performing multi-pass tuning when threshold bounds are exceeded.
+\end{enumerate}
+
+\subsection{Engine Feature Detection}
+
+Engine detection is performed during the early execution phase using conditional \TeX\ primitives. When compiling under \pdfTeX\ or \LuaTeX, typographic features such as margin protrusion and font expansion are activated dynamically. Under \XeTeX, font features are managed through the \tbcode{fontspec} interface while maintaining backward compatibility with standard font declarations.
+
+\subsection{Micro-Typographic Refinements}
+
+Micro-typography enhances readability by making subtle adjustments to character margins and font widths. Character protrusion (hanging punctuation) allows small punctuation marks such as periods, commas, and hyphens to extend slightly into the right margin, creating a visually straight edge. Font expansion slightly stretches or shrinks glyphs horizontally to avoid awkward line breaks without introducing noticeable distortion.
+
+When compiled under \pdfTeX\ or \LuaTeX, the \acro{AMTS} pipeline configures parameters with controlled expansion limits:
+\begin{small}
+\begin{verbatim}
+\usepackage[
+  activate={true,nocompatibility},
+  final, tracking=true,
+  kerning=true, spacing=true,
+  factor=1100, stretch=10,
+  shrink=10
+]{microtype}
+\end{verbatim}
+\end{small}
+These parameters ensure that font expansion remains within a $\pm 1\%$ envelope, preserving the structural integrity of the typeface while providing sufficient flexibility for line-breaking algorithms.
+
+\section{Mathematical Formalization}
+
+To evaluate paragraph quality objectively, we define a composite penalty score $P$ for each paragraph containing $n$ lines. The total penalty combines line badness $b_i$, hyphenation occurrence $h_i$, and margin protrusion variance $d_i$:
+
+\begin{equation}
+P = \sum_{i=1}^{n} \left( \alpha \cdot d_i^2 + \beta \cdot b_i + \gamma \cdot h_i \right) + \delta \cdot S_{\text{demerits}}
+\label{eq:penalty}
+\end{equation}
+
+Here, $\alpha, \beta, \gamma, \delta > 0$ represent weighting factors calibrated across the Nexa benchmark dataset. The term $S_{\text{demerits}}$ captures global paragraph demerits as calculated by Knuth's line-breaking algorithm:
+
+\begin{equation}
+S_{\text{demerits}} = \sum_{i=1}^{n} \left( l + b_i \right)^2 + q \cdot h_{i-1} \cdot h_i
+\label{eq:demerits}
+\end{equation}
+
+where $l$ is the line penalty constant and $q$ represents the consecutive hyphenation penalty. By minimizing $P$ through iterative adjustments to line-break parameters, the compilation pipeline achieves optimal visual uniformity.
+
+\section{Experimental Results}
+
+We conducted an empirical evaluation using $500$ sample articles from the Meridian and Vertex document archives. Each document was compiled under four distinct workflow configurations:
+\begin{enumerate}
+\item \textbf{Standard}: Default \LaTeX\ settings.
+\item \textbf{Protrusion}: Character protrusion enabled.
+\item \textbf{Microtype}: Standard \tbcode{microtype} options.
+\item \textbf{AMTS}: Full automated parameter tuning and adaptive penalty scoring.
+\end{enumerate}
+
+Table~\ref{tab:benchmarks} summarizes the benchmark results across the four evaluated configurations.
+
+\begin{table}[htbp]
+\caption{Performance evaluation of typographic refinement workflows across 500 sample documents.}
+\label{tab:benchmarks}
+\centering
+\footnotesize
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+\textbf{Workflow Mode} & \textbf{Overfull} & \textbf{Badness} & \textbf{Hyphens} & \textbf{Time(s)} \\
+\midrule
+Standard & 142 & 845.2 & 4.8 & 0.42 \\{}
+Protrusion & 86 & 512.6 & 4.1 & 0.48 \\{}
+Microtype & 29 & 310.4 & 3.2 & 0.65 \\{}
+AMTS & 3 & 148.9 & 2.1 & 0.78 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+As shown in Table~\ref{tab:benchmarks}, the \acro{AMTS} pipeline reduces the total number of overfull boxes from $142$ to just $3$ across the entire dataset, representing a $97.8\%$ reduction in layout defects. Furthermore, the mean paragraph badness score decreases from $845.2$ to $148.9$, confirming significant improvements in visual density and line spacing.
+
+\section{Implementation Guidelines}
+
+Publishing environments integrating the \acro{AMTS} workflow should adhere to the following best practices:
+\begin{itemize}
+\item Ensure that vector fonts (Type 1 or OpenType) are loaded prior to invoking micro-typographic packages to allow precise glyph width scaling.
+\item Set emergency stretch parameters conservatively to avoid excessive inter-word gaps when resolving stubborn line-break conflicts.
+\item Validate \acro{PDF}/A compliance using automated post-compilation checks in continuous integration pipelines.
+\end{itemize}
+
+\section{Conclusion}
+
+The \acro{AMTS} framework demonstrates that coupling engine feature detection with micro-typographic adjustments significantly enhances document quality in automated publishing pipelines. Future work will focus on integrating machine learning models to predict optimal line-break parameters prior to initial compilation passes.
+
+\begin{thebibliography}{9}
+
+\bibitem{knuth1984texbook}
+D.~E. Knuth.
+\newblock \textit{The \TeX book}.
+\newblock Addison-Wesley, Reading, Massachusetts, 1984.
+
+\bibitem{lamport1994latex}
+L.~Lamport.
+\newblock \textit{\LaTeX: A Document Preparation System}.
+\newblock Addison-Wesley, Reading, Massachusetts, 2nd edition, 1994.
+
+\bibitem{thiel2018micro}
+H.~Thiel.
+\newblock Micro-typographic refinements in modern \pdfTeX\ and \LuaTeX\ workflows.
+\newblock \textit{\TUB}, 39(2):145--152, 2018.
+
+\bibitem{mercer2023publishing}
+A.~V. Mercer and E.~Rostova.
+\newblock Automated layout auditing for digital academic publishing.
+\newblock \textit{Journal of Electronic Publishing}, 14(1):22--39, 2023.
+
+\bibitem{vance2024pipeline}
+M.~Vance and N.~Apex.
+\newblock Enterprise document processing at scale with \LaTeX\ engine clusters.
+\newblock \textit{Computational Typography Reports}, 28:101--118, 2024.
+
+\end{thebibliography}
+
+\makesignature
+
+\end{document}

@@ -1,0 +1,430 @@
+\documentclass[10pt,a4paper]{scrartcl}
+
+%-------------------------------------------------------------------------------
+% PACKAGES & CORE SETUP
+%-------------------------------------------------------------------------------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{charter}
+\usepackage[scaled=0.92]{helvet}
+\usepackage{inconsolata}
+\usepackage{microtype}
+
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{graphicx}
+\usepackage[table]{xcolor}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{float}
+\usepackage{marginnote}
+\usepackage{changepage}
+\usepackage{tcolorbox}
+\tcbuselibrary{skins,breakable}
+\usepackage{tikz}
+\usetikzlibrary{positioning,calc,shapes.geometric,backgrounds,patterns}
+\usepackage{fontawesome5}
+\usepackage{scrlayer-scrpage}
+
+% Page Geometry (Asymmetric layout for modern open-access journal with wide margin notes)
+\usepackage[
+  a4paper,
+  left=20mm,
+  right=62mm,
+  top=25mm,
+  bottom=25mm,
+  marginparwidth=48mm,
+  marginparsep=6mm,
+  headheight=16pt
+]{geometry}
+
+% Color Palette
+\definecolor{primary}{HTML}{0F172A}       % Slate 900 (Headings/Title)
+\definecolor{journalblue}{HTML}{1E3A8A}   % Deep Navy Blue
+\definecolor{journalteal}{HTML}{0D9488}   % Vibrant Teal Accent
+\definecolor{darkslate}{HTML}{334155}     % Body text slate
+\definecolor{lightbg}{HTML}{F8FAFC}       % Soft Slate Background
+\definecolor{bordergray}{HTML}{E2E8F0}    % Light Gray Border
+\definecolor{accentorange}{HTML}{EA580C}  % Highlight Orange
+
+% Typography & Section Styles
+\addtokomafont{section}{\sffamily\Large\bfseries\color{journalblue}}
+\addtokomafont{subsection}{\sffamily\large\bfseries\color{journalteal}}
+\addtokomafont{subsubsection}{\sffamily\normalsize\bfseries\color{primary}}
+\setkomafont{author}{\sffamily\normalsize}
+\setkomafont{date}{\sffamily\small\color{darkslate}}
+
+% Paragraph Spacing
+\setlength{\parskip}{0.5em}
+\setlength{\parindent}{0pt}
+
+% Header & Footer Styling
+\clearpairofpagestyles
+\ihead{\sffamily\small\bfseries\color{journalblue} Journal of Advanced Multidisciplinary Research \quad\normalfont\color{darkslate}|\quad Vol. 14, No. 2, 2026}
+\ohead{\sffamily\small\color{darkslate}Open Access \ \textcolor{journalteal}{\faGlobe}}
+\ifoot{\sffamily\scriptsize\color{darkslate}\copyright\ 2026 Vance et al. Published under CC BY 4.0 by Meridian Publishing Group.}
+\ofoot{\sffamily\small\bfseries\color{journalblue} Page \thepage}
+\setheadsepline{0.6pt}[\color{bordergray}]
+\setfootsepline{0.6pt}[\color{bordergray}]
+
+% Caption Styling
+\captionsetup{
+  font={small,sf},
+  labelfont={bf,color=journalblue},
+  labelsep=colon,
+  justification=justified,
+  singlelinecheck=false
+}
+
+% Hyperref Setup
+\usepackage[
+  colorlinks=true,
+  linkcolor=journalblue,
+  citecolor=journalteal,
+  urlcolor=journalteal,
+  pdftitle={Scalable Multimodal Neural Architecture for Real-Time Macromolecular Structure Prediction},
+  pdfauthor={Elena Vance et al.}
+]{hyperref}
+
+% Custom Commands
+\newcommand{\marginbox}[2][journalteal]{%
+  \marginnote{%
+    \begin{tcolorbox}[
+      colback=lightbg,
+      colframe=#1,
+      arc=3pt,
+      boxrule=0.8pt,
+      left=6pt, right=6pt, top=6pt, bottom=6pt
+    ]
+    {\sffamily\small #2}
+    \end{tcolorbox}%
+  }%
+}
+
+% Re-define marginnote font
+\renewcommand*{\marginfont}{\sffamily\footnotesize\color{darkslate}}
+
+%-------------------------------------------------------------------------------
+% DOCUMENT STARTS
+%-------------------------------------------------------------------------------
+\begin{document}
+
+% TOP METADATA BANNER (Spans across main text + margin)
+\begin{adjustwidth}{0pt}{-54mm}
+  \begin{tcolorbox}[
+    enhanced,
+    colback=lightbg,
+    colframe=bordergray,
+    boxrule=0.6pt,
+    arc=4pt,
+    left=16pt, right=16pt, top=14pt, bottom=14pt
+  ]
+    \tikz\node[fill=journalteal, text=white, font=\sffamily\bfseries\scriptsize, inner xsep=6pt, inner ysep=3pt, rounded corners=2pt]{RESEARCH ARTICLE};
+    \hfill
+    {\sffamily\footnotesize\color{darkslate}\faCalendar\ Received: 12 Jan 2026 \quad|\quad Accepted: 18 Mar 2026 \quad|\quad Published: 04 Apr 2026 \quad|\quad DOI: 10.1038/s41586-026-00492-x}
+    
+    \vspace{3mm}
+    {\raggedright\sffamily\bfseries\huge\color{primary} Scalable Multimodal Neural Architecture for Real-Time Macromolecular Structure Prediction \par}
+    
+    \vspace{2mm}
+    {\raggedright\sffamily\large\color{journalblue} High-Throughput Geometric Deep Learning with Integrated Physical Energy Constraints \par}
+    
+    \vspace{4mm}
+    {\sffamily\small
+      \textbf{Elena Vance}$^{1,*}$ \ \textcolor{journalteal}{\faEnvelope},
+      \textbf{Marcus Thorne}$^{1,2}$,
+      \textbf{Sarah Chen}$^{3}$, \text{and}
+      \textbf{Julian Reyes}$^{2}$
+    }
+    
+    \vspace{2mm}
+    {\sffamily\scriptsize\color{darkslate}
+      $^1$Vertex Institute for Computational Biology, Cambridge, MA 02142, USA\\
+      $^2$Synapse Artificial Intelligence Research Labs, San Francisco, CA 94107, USA\\
+      $^3$Nexa Quantum \& Biomolecular Center, 8093 Zurich, Switzerland\\
+      $^*$Corresponding author: \texttt{e.vance@vertex.org}
+    }
+    
+    \vspace{4mm}
+    \begin{tcolorbox}[
+      colback=white,
+      colframe=journalteal,
+      boxrule=1pt,
+      arc=3pt,
+      left=12pt, right=12pt, top=10pt, bottom=10pt
+    ]
+      {\sffamily\bfseries\color{journalteal}\small ABSTRACT}\\[1.5mm]
+      {\sffamily\small\color{darkslate}
+      Macromolecular structure determination remains a computational bottleneck in drug discovery and synthetic biology. Here we introduce \textbf{Synapse-Fold}, an end-to-end multimodal geometric neural network capable of predicting tertiary protein-ligand complexes at sub-angstrom resolution in real time. By integrating equivariant graph convolutions with differentiable thermodynamic boundary constraints, Synapse-Fold achieves a 140-fold speedup compared to state-of-the-art conformational sampling routines while reducing prediction error by 38\% on benchmark datasets (Nexa-PDB2025). The architecture incorporates an adaptive SE(3)-equivariant attention layer that natively models side-chain dynamics and non-covalent interactions under flexible cellular microenvironments. Validation across 4,200 diverse protein targets synthesized at the Meridian Bio-Foundry confirms that predicted structural dynamics closely match cryo-EM density maps (mean RMSD of 0.84~\AA). This hybrid deep learning and physical modeling paradigm provides a foundation for high-throughput automated biotherapeutic design.
+      }
+      
+      \vspace{2mm}
+      {\sffamily\scriptsize\color{journalblue}
+      \textbf{Keywords:} Geometric Deep Learning \ \textbullet\ \ Macromolecular Structure \ \textbullet\ \ Equivariant Graph Neural Networks \ \textbullet\ \ Cryo-EM Validation \ \textbullet\ \ Synapse Engine
+      }
+    \end{tcolorbox}
+  \end{tcolorbox}
+\end{adjustwidth}
+
+\vspace{4mm}
+
+% SIDEBAR / MARGIN HIGHLIGHTS FOR FIRST PAGE
+\marginbox[journalblue]{%
+  \textcolor{journalblue}{\bfseries\faCheckCircle\ Key Highlights}\\[1.5mm]
+  \begin{itemize}[leftmargin=*,label=\tiny\textcolor{journalteal}{$\blacksquare$},itemsep=2pt,parsep=0pt]
+    \item Sub-angstrom resolution ($0.84~\text{\AA}$ RMSD) across 4,200 target complexes.
+    \item $140\times$ inference speedup over iterative Monte Carlo docking pipelines.
+    \item Seamless integration of SE(3) equivariance with physical force-field priors.
+    \item Validated experimentally on the Apex-9 benchmark dataset.
+  \end{itemize}
+}
+
+%-------------------------------------------------------------------------------
+% SECTION 1: INTRODUCTION
+%-------------------------------------------------------------------------------
+\section{Introduction}
+
+Determining three-dimensional macromolecular structures and understanding their conformational landscapes are central challenges in modern structural biology and rational drug design \cite{Vance2025, Thorne2024}. Although recent advances in deep learning—most notably transformer-based homology prediction models—have dramatically improved single-chain structure prediction accuracy, accurately modeling multi-component protein-ligand interactions under physiological conditions remains challenging. Traditional molecular dynamics (MD) simulations provide atomic trajectories with high physical fidelity, but their intense computational requirements prevent their deployment in large-scale virtual screening campaigns.
+
+\marginnote{%
+  \textcolor{journalteal}{\bfseries\faFile\ Open Data \& Code}\\[1mm]
+  All model weights, dataset manifests (Nexa-PDB2025), and evaluation scripts are available under an open license at:\\
+  \href{https://github.com/vertex-lab/synapse-fold}{\texttt{github.com/vertex-lab/synapse-fold}}
+}
+
+To resolve this trade-off between physical rigor and computational speed, we present \textbf{Synapse-Fold}, a multimodal geometric deep learning framework. Unlike conventional models that treat structural prediction as an isolated geometric translation task, Synapse-Fold explicitly encodes physical energy surfaces within its latent representations. By embedding SE(3)-equivariant graph neural network (GNN) layers with differentiable molecular mechanics loss terms, our system enforces bond length constraints, steric overlap penalties, and electrostatic potential boundaries directly during the forward pass.
+
+The primary contributions of this work are three-fold:
+\begin{enumerate}[label=\bfseries\textcolor{journalteal}{\arabic*.}, leftmargin=*]
+  \item \textbf{Architectural Innovation:} We formulate the \emph{Equivariant Tensor Attention} (ETA) module, enabling simultaneous updates of coordinate topologies and invariant sequence features without losing spatial orientation.
+  \item \textbf{Thermodynamic Regularization:} We introduce a novel loss formulation, $\mathcal{L}_{\text{phys}}$, combining Amber-18 force-field terms with deep spatial embedding distances.
+  \item \textbf{Experimental Benchmark:} We evaluate Synapse-Fold against a newly curated set of 4,200 complex targets at the Meridian Bio-Foundry, demonstrating unprecedented structural recovery metrics.
+\end{enumerate}
+
+%-------------------------------------------------------------------------------
+% SECTION 2: SYSTEM ARCHITECTURE & METHODS
+%-------------------------------------------------------------------------------
+\section{System Architecture \& Mathematical Formulation}
+
+The overall pipeline of Synapse-Fold consists of three cascaded modules: (i) an invariant residue embedding network, (ii) an SE(3)-equivariant geometric message passing stack, and (iii) a physical energy relaxation module, as illustrated in Figure~\ref{fig:architecture}.
+
+\marginnote{%
+  \textcolor{journalblue}{\bfseries\faLock\ Security \& Compliance}\\[1mm]
+  Dual-use screening protocols were enforced in accordance with the Nimbus Biosafety Guidelines v4.2. No toxic or pathogenic sequences were synthesized.
+}
+
+\subsection{SE(3)-Equivariant Tensor Message Passing}
+
+Let $\mathcal{G} = (\mathcal{V}, \mathcal{E})$ represent a molecular graph with nodes $v_i \in \mathcal{V}$ corresponding to amino acid residues and edges $e_{ij} \in \mathcal{E}$ representing spatial interactions within a cutoff distance $r_c = 12.5~\text{\AA}$. Each node is assigned a scalar feature vector $h_i^{(l)} \in \mathbb{R}^d$ and a coordinate position vector $\vec{x}_i^{(l)} \in \mathbb{R}^3$ at layer $l$.
+
+The update rule for node coordinates and scalar embeddings is formulated as:
+\begin{equation}
+\vec{x}_i^{(l+1)} = \vec{x}_i^{(l)} + \sum_{j \in \mathcal{N}(i)} \phi_x \left( h_i^{(l)}, h_j^{(l)}, \|\vec{x}_i^{(l)} - \vec{x}_j^{(l)}\|^2 \right) \left( \vec{x}_i^{(l)} - \vec{x}_j^{(l)} \right)
+\label{eq:coord_update}
+\end{equation}
+\begin{equation}
+m_{ij}^{(l)} = \phi_m \left( h_i^{(l)}, h_j^{(l)}, \|\vec{x}_i^{(l)} - \vec{x}_j^{(l)}\|^2, e_{ij} \right)
+\label{eq:message}
+\end{equation}
+\begin{equation}
+h_i^{(l+1)} = \phi_h \left( h_i^{(l)}, \sum_{j \in \mathcal{N}(i)} m_{ij}^{(l)} \right)
+\label{eq:feature_update}
+\end{equation}
+where $\phi_x, \phi_m, \phi_h$ are multi-layer perceptrons (MLPs) parameterizing the message passing operation.
+
+% FIGURE 1: TIKZ ARCHITECTURE DIAGRAM
+\begin{figure}[H]
+  \centering
+  \begin{tcolorbox}[colback=white, colframe=bordergray, arc=4pt, boxrule=0.8pt, left=4pt, right=4pt, top=6pt, bottom=6pt]
+    \centering
+    \begin{tikzpicture}[
+      node distance=0.4cm and 0.4cm,
+      block/.style={draw=journalblue, fill=lightbg, rectangle, rounded corners=3pt, font=\sffamily\tiny\bfseries, align=center, minimum height=0.8cm, minimum width=1.9cm, line width=0.8pt},
+      accent/.style={draw=journalteal, fill=journalteal!10, rectangle, rounded corners=3pt, font=\sffamily\tiny\bfseries, align=center, minimum height=0.8cm, minimum width=1.9cm, line width=1pt},
+      orangebox/.style={draw=accentorange, fill=accentorange!10, rectangle, rounded corners=3pt, font=\sffamily\tiny\bfseries, align=center, minimum height=0.8cm, minimum width=1.9cm, line width=1pt},
+      arrow/.style={->, >=stealth, thick, color=journalblue}
+    ]
+      % Nodes
+      \node [block] (input) {Sequence \& MSA\\Input $\mathcal{S}$};
+      \node [accent, right=of input] (eta) {ETA Encoder\\Stack ($L=12$)};
+      \node [orangebox, right=of eta] (phys) {Physical Energy\\Relaxation};
+      \node [block, right=of phys] (output) {3D Structure\\Complex ($\vec{X}$)};
+
+      % Paths
+      \draw [arrow] (input) -- node[above, font=\sffamily\tiny\color{darkslate}] {Tokens} (eta);
+      \draw [arrow] (eta) -- node[above, font=\sffamily\tiny\color{darkslate}] {$\vec{x}_i, h_i$} (phys);
+      \draw [arrow] (phys) -- node[above, font=\sffamily\tiny\color{darkslate}] {Refined} (output);
+
+      % Feedback Loop
+      \draw [arrow, dashed, color=journalteal] (phys.south) -- ++(0,-0.5) -| node[near start, below, font=\sffamily\tiny\color{journalteal}] {Recycling Loop ($\times 3$)} (eta.south);
+    \end{tikzpicture}
+  \end{tcolorbox}
+  \caption{\textbf{Overview of the Synapse-Fold neural architecture.} The input sequence is passed to 12 stacked Equivariant Tensor Attention (ETA) layers, producing initial spatial coordinates $\vec{x}_i$. The Physical Energy Relaxation Module refines the backbone angles before final structure generation.}
+  \label{fig:architecture}
+\end{figure}
+
+\subsection{Physical Differentiable Loss Formulation}
+
+The model is trained end-to-end using a composite loss function comprising structural coordinate error, stereochemical validity, and electrostatic potentials:
+\begin{equation}
+\mathcal{L}_{\text{total}} = \lambda_1 \mathcal{L}_{\text{FAPE}} + \lambda_2 \mathcal{L}_{\text{bond}} + \lambda_3 \mathcal{L}_{\text{clash}} + \lambda_4 \mathcal{L}_{\text{electrostatic}}
+\end{equation}
+where $\mathcal{L}_{\text{FAPE}}$ represents the Frame Aligned Point Error \cite{Chen2025}, $\mathcal{L}_{\text{bond}}$ penalizes non-physical bond lengths, and $\mathcal{L}_{\text{clash}}$ prevents atomic overlaps:
+\begin{equation}
+\mathcal{L}_{\text{clash}} = \sum_{i \neq j} \max \left( 0, \, d_{\text{vdw}}^{(ij)} - \|\vec{x}_i - \vec{x}_j\| \right)^2
+\end{equation}
+
+%-------------------------------------------------------------------------------
+% SECTION 3: EXPERIMENTAL RESULTS
+%-------------------------------------------------------------------------------
+\section{Experimental Results \& Benchmarks}
+
+We benchmarked Synapse-Fold against leading open-access structure prediction platforms across the \textbf{Apex-9} evaluation suite, comprising 4,200 non-redundant protein complexes solved via cryo-EM at resolutions $\le 2.2~\text{\AA}$.
+
+\marginbox[accentorange]{%
+  \textcolor{accentorange}{\bfseries\faPen\ Benchmarking Note}\\[1mm]
+  All experiments were executed on Vertex Cluster-8 equipped with 64$\times$ Lumina H100 GPUs using mixed-precision FP8 kernels.
+}
+
+\subsection{Structural Accuracy \& RMSD Comparison}
+
+As summarized in Table~\ref{tab:benchmarks}, Synapse-Fold demonstrates superior precision across all target difficulty tiers (Rigid, Flexible Loop, and Multi-Chain Assembly).
+
+\begin{table}[H]
+  \centering
+  \caption{\textbf{Performance comparison on the Apex-9 benchmark dataset.} RMSD values are in Angstroms (\AA); GDT-TS scores are out of 100. Best results in bold.}
+  \label{tab:benchmarks}
+  \vspace{1.5mm}
+  \small
+  \begin{tabularx}{\linewidth}{X c c c c}
+    \toprule
+    \textbf{Method} & \textbf{Rigid RMSD ($\downarrow$)} & \textbf{Loop RMSD ($\downarrow$)} & \textbf{GDT-TS ($\uparrow$)} & \textbf{Time/Target (s)} \\
+    \midrule
+    Baseline Model A & 1.42 & 2.85 & 84.2 & 148.5 \\
+    Baseline Model B & 1.18 & 2.10 & 89.1 & 94.2 \\
+    Nexa-Fold v2.1   & 0.96 & 1.64 & 92.4 & 32.0 \\
+    \rowcolor{lightbg}
+    \textbf{Synapse-Fold (Ours)} & \textbf{0.84} & \textbf{1.12} & \textbf{96.8} & \textbf{1.05} \\
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
+\subsection{Conformational Energy Landscapes}
+
+Figure~\ref{fig:energy_plot} demonstrates the trajectory of potential energy convergence during the physical relaxation phase. Our differentiable relaxation module reduces steric clashes within fewer than 50 gradient steps.
+
+% FIGURE 2: TIKZ PERFORMANCE GRAPH
+\begin{figure}[H]
+  \centering
+  \begin{tcolorbox}[colback=white, colframe=bordergray, arc=4pt, boxrule=0.8pt, left=4pt, right=4pt, top=6pt, bottom=6pt]
+    \centering
+    \begin{tikzpicture}
+      \draw[->, color=darkslate, thick] (0,0) -- (7,0) node[right, font=\sffamily\tiny] {Optimization Steps};
+      \draw[->, color=darkslate, thick] (0,0) -- (0,3.5) node[above, font=\sffamily\tiny] {System Energy (kcal/mol)};
+
+      % Grid lines
+      \draw[color=bordergray, dashed] (0,1) -- (6.8,1);
+      \draw[color=bordergray, dashed] (0,2) -- (6.8,2);
+      \draw[color=bordergray, dashed] (0,3) -- (6.8,3);
+
+      % Curves
+      % Baseline (slow decay)
+      \draw[color=journalblue, line width=1.2pt] plot [smooth] coordinates {(0,3.2) (1.5,2.6) (3.5,2.1) (5.5,1.8) (6.5,1.7)};
+      \node[color=journalblue, font=\sffamily\tiny\bfseries] at (5.2,2.3) {Standard MD Minimization};
+
+      % Synapse-Fold (fast decay)
+      \draw[color=journalteal, line width=1.4pt] plot [smooth] coordinates {(0,3.2) (0.8,1.2) (2.0,0.5) (4.0,0.4) (6.5,0.38)};
+      \node[color=journalteal, font=\sffamily\tiny\bfseries] at (3.2,0.9) {Synapse-Fold Differentiable Loss};
+
+      % Target baseline marker
+      \draw[color=accentorange, dotted, line width=1pt] (0,0.35) -- (6.8,0.35) node[right, font=\sffamily\tiny] {Native Target Energy};
+    \end{tikzpicture}
+  \end{tcolorbox}
+  \caption{\textbf{Energy minimization profile.} Comparison of potential energy convergence between standard molecular dynamics gradient descent and Synapse-Fold's physical loss optimization.}
+  \label{fig:energy_plot}
+\end{figure}
+
+%-------------------------------------------------------------------------------
+% SECTION 4: DISCUSSION & IMPLEMENTATION DETAILS
+%-------------------------------------------------------------------------------
+\section{Discussion \& High-Throughput Deployment}
+
+The dramatic acceleration achieved by Synapse-Fold stems from replacing iterative sampling routines with closed-form tensor convolutions. In collaborative trials conducted with \textbf{Meridian Biopharma}, the system was deployed to screen a library of 120,000 synthetic macrocycles against cancer-relevant kinase targets.
+
+\marginbox[journalteal]{%
+  \textcolor{journalteal}{\bfseries\faPhone\ Technical Support}\\[1mm]
+  Enterprise deployment templates for cloud clusters (AWS/GCP/Kubernetes) are managed by Nimbus Computational Services: \texttt{support@nimbus-cloud.io}
+}
+
+Key operational advantages observed during deployment include:
+\begin{itemize}[leftmargin=*,label=\textcolor{journalteal}{\small\faCheckCircle}]
+  \item \textbf{Zero-Shot Generalization:} Robust performance on unseen protein families without requiring multiple sequence alignment (MSA) depth $> 20$.
+  \item \textbf{Memory Efficiency:} Memory footprint scales as $\mathcal{O}(N^{1.3})$ instead of quadratic $\mathcal{O}(N^2)$ scaling typical of standard attention kernels.
+  \item \textbf{Automated Quality Control:} Integrated confidence scores (pLDDT and predicted TM-score) correlate strongly ($r = 0.94$) with experimental cryo-EM resolution.
+\end{itemize}
+
+%-------------------------------------------------------------------------------
+% SECTION 5: CONCLUSION
+%-------------------------------------------------------------------------------
+\section{Conclusion \& Future Work}
+
+We have introduced Synapse-Fold, an open-access multimodal neural architecture that bridges the gap between deep learning speed and biophysical accuracy in protein complex prediction. By enforcing SE(3) equivariance alongside physical force-field constraints, Synapse-Fold provides reliable sub-angstrom predictions in sub-second inference times. Future extensions will expand the framework to incorporate nucleic acid interactions (DNA/RNA) and solvent dynamics under non-equilibrium cellular conditions.
+
+%-------------------------------------------------------------------------------
+% ACKNOWLEDGMENTS & METADATA SECTIONS
+%-------------------------------------------------------------------------------
+\vspace{6mm}
+\begin{tcolorbox}[colback=lightbg, colframe=bordergray, arc=4pt, boxrule=0.6pt, left=10pt, right=10pt, top=8pt, bottom=8pt]
+  {\sffamily\small\bfseries\color{journalblue} AUTHOR CONTRIBUTIONS}\\[1mm]
+  {\sffamily\scriptsize\color{darkslate}
+  \textbf{E.V.} conceived the study, designed the ETA neural architecture, and drafted the manuscript. \textbf{M.T.} derived the physical loss formulation and performed energy landscape calculations. \textbf{S.C.} performed experimental cryo-EM benchmarks at the Nexa Biomolecular Center. \textbf{J.R.} optimized GPU tensor kernels and managed cluster deployment. All authors reviewed and approved the final manuscript.
+  }
+
+  \vspace{2mm}
+  {\sffamily\small\bfseries\color{journalblue} COMPETING INTERESTS}\\[1mm]
+  {\sffamily\scriptsize\color{darkslate}
+  The authors declare no competing financial or non-financial interests.
+  }
+
+  \vspace{2mm}
+  {\sffamily\small\bfseries\color{journalblue} FUNDING ACKNOWLEDGMENTS}\\[1mm]
+  {\sffamily\scriptsize\color{darkslate}
+  This work was supported in part by the Apex Research Foundation (Grant ARF-2025-8821), the Meridian Computational Science Initiative, and the Vertex Foundation for Advanced Biotechnology.
+  }
+\end{tcolorbox}
+
+%-------------------------------------------------------------------------------
+% REFERENCES
+%-------------------------------------------------------------------------------
+\vspace{4mm}
+\begin{thebibliography}{99}
+\small
+\setlength{\itemsep}{2pt}
+\setlength{\parsep}{0pt}
+
+\bibitem{Vance2025}
+E.~Vance, M.~Thorne, and S.~Chen.
+\newblock Geometric deep learning paradigms in structural genomics.
+\newblock {\em Journal of Multidisciplinary Biology}, 18(3):204--218, 2025.
+
+\bibitem{Thorne2024}
+M.~Thorne and J.~Reyes.
+\newblock Differentiable physical force-fields for macromolecular relaxation.
+\newblock {\em ACS Synthetic Chemistry}, 12(1):45--59, 2024.
+
+\bibitem{Chen2025}
+S.~Chen, E.~Vance, and N.~Apex.
+\newblock High-resolution cryo-EM validation of deep learning predicted structures.
+\newblock {\em Nature Methods Review}, 22(4):512--526, 2025.
+
+\bibitem{Meridian2025}
+Meridian Bio-Foundry Consortium.
+\newblock Standardized metrics for automated biotherapeutic screening.
+\newblock {\em Open Biotech Quarterly}, 9(2):88--102, 2025.
+
+\end{thebibliography}
+
+\end{document}

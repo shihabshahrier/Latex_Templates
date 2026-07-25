@@ -1,0 +1,456 @@
+\documentclass[10pt,a4paper]{article}
+
+% --- Core Packages ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+\usepackage{microtype}
+
+% --- Page Geometry ---
+\usepackage[top=1.8cm, bottom=2.0cm, left=1.5cm, right=1.5cm, headheight=26pt, headsep=12pt, footskip=20pt]{geometry}
+
+% --- Colors & Graphics ---
+\usepackage[table]{xcolor}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usetikzlibrary{calc,positioning,shapes.geometric}
+
+% --- Custom Color Palette ---
+\definecolor{SopNavy}{HTML}{0A3663}
+\definecolor{SopTeal}{HTML}{007A87}
+\definecolor{SopDanger}{HTML}{C0392B}
+\definecolor{SopWarning}{HTML}{D97706}
+\definecolor{SopSuccess}{HTML}{166534}
+\definecolor{SopLightBg}{HTML}{F8FAFC}
+\definecolor{SopAltRow}{HTML}{F1F5F9}
+\definecolor{SopBorder}{HTML}{CBD5E1}
+\definecolor{SopTextDark}{HTML}{1E293B}
+
+% --- Tables & Lists ---
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{enumitem}
+\setlist{leftmargin=*,itemsep=2pt,topsep=3pt,parsep=0pt}
+
+% --- Math & Symbols ---
+\usepackage{amsmath,amssymb}
+
+% --- Headers & Footers ---
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\pagestyle{fancy}
+\fancyhf{}
+
+\fancyhead[L]{%
+  \small \textbf{\color{SopNavy}MERIDIAN BIOSCIENCES INC.}\\[-2pt]%
+  \scriptsize \textcolor{gray}{Department of Molecular Biochemistry \& Bioassays}%
+}
+\fancyhead[C]{%
+  \small \textbf{\color{SopNavy}STANDARD OPERATING PROCEDURE}\\[-2pt]%
+  \scriptsize \textcolor{SopTeal}{\textbf{SOP-BIO-2026-042} \textbar\ Rev 3.1}%
+}
+\fancyhead[R]{%
+  \scriptsize \textbf{Effective Date:} 15-JUL-2026\\[-2pt]%
+  \scriptsize \textbf{Status:} \textcolor{SopSuccess}{APPROVED / CONTROLLED}%
+}
+
+\fancyfoot[L]{\scriptsize \textcolor{gray}{SOP-BIO-2026-042: Recombinant Kinase V-321 Purification \& Assay}}
+\fancyfoot[C]{\scriptsize \textcolor{gray}{\textbf{CONFIDENTIAL \& PROPRIETARY} --- INTERNAL LAB USE ONLY}}
+\fancyfoot[R]{\scriptsize \textcolor{gray}{Page \thepage\ of \pageref{LastPage}}}
+
+\renewcommand{\headrulewidth}{0.5pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+% --- Boxes & Styling ---
+\usepackage[many]{tcolorbox}
+\usepackage{fontawesome5}
+\usepackage[hidelinks]{hyperref}
+
+\tcbset{
+  sopheader/.style={
+    enhanced,
+    colback=SopNavy,
+    colframe=SopNavy,
+    arc=3pt,
+    left=10pt, right=10pt, top=8pt, bottom=8pt,
+    coltext=white
+  },
+  hazardbox/.style={
+    enhanced,
+    colback=SopDanger!5!white,
+    colframe=SopDanger,
+    arc=3pt,
+    boxrule=1.1pt,
+    left=9pt, right=9pt, top=6pt, bottom=6pt,
+    title={\small\textbf{\color{SopDanger}\faBiohazard\ SAFETY WARNING \& HAZARD CONTROL}},
+    coltitle=SopDanger,
+    attach title to upper
+  },
+  infobox/.style={
+    enhanced,
+    colback=SopTeal!5!white,
+    colframe=SopTeal,
+    arc=3pt,
+    boxrule=0.9pt,
+    left=9pt, right=9pt, top=5pt, bottom=5pt
+  },
+  formulabox/.style={
+    enhanced,
+    colback=SopLightBg,
+    colframe=SopNavy,
+    arc=3pt,
+    boxrule=0.9pt,
+    left=9pt, right=9pt, top=6pt, bottom=6pt
+  }
+}
+
+% --- Section Formatting ---
+\makeatletter
+\renewcommand\section{\@startsection{section}{1}{\z@}%
+  {-10pt plus -2pt minus -1pt}{5pt plus 1pt}%
+  {\normalfont\large\bfseries\color{SopNavy}}}
+\renewcommand\subsection{\@startsection{subsection}{2}{\z@}%
+  {-8pt plus -2pt minus -1pt}{4pt plus 1pt}%
+  {\normalfont\small\bfseries\color{SopTeal}}}
+\makeatother
+
+% --- Table Column Definitions ---
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+\newcolumntype{C}{>{\centering\arraybackslash}X}
+
+\begin{document}
+
+% ==========================================
+% DOCUMENT CONTROL HEADER BLOCK
+% ==========================================
+\begin{tcolorbox}[sopheader]
+  \begin{minipage}[c]{0.70\textwidth}
+    {\fontfamily{phv}\selectfont\Large\bfseries STANDARD OPERATING PROCEDURE}\\[2pt]
+    {\small Purification and Kinetic Enzymatic Assay of Recombinant Human Kinase V-321}
+  \end{minipage}%
+  \hfill
+  \begin{minipage}[c]{0.28\textwidth}
+    \raggedleft
+    \tcbox[colback=white,colframe=white,arc=2pt,left=5pt,right=5pt,top=3pt,bottom=3pt]{%
+      \color{SopNavy}\bfseries\scriptsize SOP-BIO-2026-042
+    }\par\vspace{2pt}
+    {\scriptsize\textbf{Revision:} 3.1 \textbar\ \textbf{Supersedes:} Rev 3.0}
+  \end{minipage}
+\end{tcolorbox}
+
+\vspace{-4pt}
+
+% Metadata Table
+\begin{table}[h!]
+  \centering
+  \scriptsize
+  \renewcommand{\arraystretch}{1.2}
+  \begin{tabularx}{\textwidth}{|>{\bfseries\color{SopNavy}}p{2.4cm}|Y|>{\bfseries\color{SopNavy}}p{2.4cm}|Y|}
+    \hline
+    \rowcolor{SopAltRow}
+    Document ID & SOP-BIO-2026-042 & Effective Date & July 15, 2026 \\ \hline
+    Department & Molecular Biochemistry \& Bioassays & Review Cycle & Bi-annual (Next: Jan 2027) \\ \hline
+    Target Molecule & Human Kinase V-321 (His\textsubscript{6}-tagged) & Expression Host & \textit{E. coli} BL21(DE3) pET-28a(+) \\ \hline
+    Primary Author & Dr. Elena Rostova, Senior Biochemist & Technical Approver & Dr. Marcus Vance, VP Operations \\ \hline
+    Quality Assurance & Dr. Sarah Jenkins, QA Compliance Manager & Classification & Controlled Operating Protocol \\ \hline
+  \end{tabularx}
+\end{table}
+
+\vspace{-6pt}
+
+% ==========================================
+% SECTION 1: PURPOSE AND SCOPE
+% ==========================================
+\section*{\faInfoCircle\ 1. PURPOSE \& SCOPE}
+
+This Standard Operating Procedure (SOP) outlines the validated workflow for cell lysis, Immobilized Metal Affinity Chromatography (IMAC) purification, size-exclusion buffer exchange, and continuous spectrophotometric NADH-coupled kinase activity assay of human recombinant Kinase V-321.
+
+\begin{itemize}
+  \item \textbf{Scope:} Applies to all research personnel within Molecular Biochemistry at Meridian Biosciences Inc. executing lot release, stability testing, or kinetic profiling for Project Kinase-V321.
+  \item \textbf{Quality Goal:} Maintain lot consistency with protein purity $\ge 95\%$, specific activity $\ge 280\text{ U/mg}$, and assay coefficient of variation ($\text{CV}$) $< 5\%$.
+\end{itemize}
+
+% ==========================================
+% SECTION 2: SAFETY PRECAUTIONS & HAZARDS
+% ==========================================
+\section*{\faBiohazard\ 2. SAFETY PRECAUTIONS \& HAZARD CONTROL}
+
+\begin{tcolorbox}[hazardbox]
+  \scriptsize
+  Strict adherence to Biosafety Level 2 (BSL-2) practices is mandatory. All operations involving chemical lysis reagents and inhibitors must be conducted with appropriate Personal Protective Equipment (PPE).
+  \begin{itemize}[leftmargin=10pt]
+    \item \textbf{PMSF (Phenylmethylsulfonyl fluoride):} Highly toxic serine protease inhibitor ($\text{LD}_{50} = 200\text{ mg/kg}$). Causes severe skin burns. Prepare fresh solutions in anhydrous Isopropanol inside a certified chemical fume hood.
+    \item \textbf{Acrylamide \& SDS (SDS-PAGE):} Neurotoxin and suspected carcinogen. Handle monomer gels in the fume hood.
+    \item \textbf{Imidazole \& Dithiothreitol (DTT):} Corrosive skin irritants. Avoid inhalation of dust or contact with eyes.
+    \item \textbf{Required PPE:} Lab coat, safety goggles with side shields, double nitrile gloves, and closed-toe non-porous footwear.
+  \end{itemize}
+\end{tcolorbox}
+
+% ==========================================
+% SECTION 3: REAGENTS & EQUIPMENT
+% ==========================================
+\section*{\faFlask\ 3. REAGENTS, MATERIALS \& EQUIPMENT}
+
+\subsection*{\faList\ 3.1 Chemical Reagents \& Solutions}
+
+\begin{table}[h!]
+  \centering
+  \scriptsize
+  \renewcommand{\arraystretch}{1.15}
+  \begin{tabularx}{\textwidth}{|Y|p{3.2cm}|p{1.8cm}|p{1.8cm}|Y|}
+    \hline
+    \rowcolor{SopNavy}
+    \color{white}\textbf{Reagent / Chemical} & \color{white}\textbf{Grade / Specification} & \color{white}\textbf{CAS No.} & \color{white}\textbf{Storage} & \color{white}\textbf{Safety / Prep Note} \\ \hline
+    Tris-HCl & Mol. Biology Grade ($\ge 99.8\%$) & 77-86-1 & Room Temp & Buffer base; adjust pH with HCl \\ \hline
+    \rowcolor{SopAltRow}
+    Sodium Chloride ($\text{NaCl}$) & ACS Reagent ($\ge 99.0\%$) & 7647-14-5 & Room Temp & High purity ionic strength agent \\ \hline
+    Imidazole & ReagentPlus ($\ge 99.0\%$) & 288-32-4 & Room Temp & Corrosive; light sensitive \\ \hline
+    \rowcolor{SopAltRow}
+    Ni-NTA Sepharose High Perf. & 5 mL Prepacked Column & N/A & 4--8$^\circ$C & Do not freeze; store in 20\% EtOH \\ \hline
+    Adenosine 5'-triphosphate (ATP) & Disodium Salt ($\ge 98.0\%$) & 34369-07-8 & -20$^\circ$C & Prepare 100 mM stock in $\text{dH}_2\text{O}$ \\ \hline
+    \rowcolor{SopAltRow}
+    NADH (Reduced $\text{NAD}^+$) & Disodium Salt ($\ge 98\%$) & 606-68-8 & -20$^\circ$C (Desic.) & Prepare fresh daily; light sensitive \\ \hline
+    Phosphoenolpyruvate (PEP) & Monopotassium Salt & 4265-07-2 & -20$^\circ$C & Prepare 50 mM stock in buffer \\ \hline
+    \rowcolor{SopAltRow}
+    PK/LDH Enzyme Suspension & Rabbit Muscle Mix & N/A & 2--8$^\circ$C & Do not freeze or vortex vigorously \\ \hline
+    Substrate Peptide STK-1 & Synthetic ($\ge 98.0\%$ HPLC) & Custom-STK1 & -80$^\circ$C & Resuspend in ultrapure $\text{dH}_2\text{O}$ \\ \hline
+  \end{tabularx}
+\end{table}
+
+\subsection*{\faCogs\ 3.2 Equipment Specifications}
+
+\begin{table}[h!]
+  \centering
+  \scriptsize
+  \renewcommand{\arraystretch}{1.15}
+  \begin{tabularx}{\textwidth}{|p{3.5cm}|Y|p{3.0cm}|Y|}
+    \hline
+    \rowcolor{SopNavy}
+    \color{white}\textbf{Equipment Type} & \color{white}\textbf{Model / Manufacturer} & \color{white}\textbf{Calibration Standard} & \color{white}\textbf{Operational Criteria} \\ \hline
+    FPLC System & ÄKTA pure 25 (Cytiva) & Annual IQ/OQ (CAL-014) & Flow rate range: 0.1--25 mL/min \\ \hline
+    \rowcolor{SopAltRow}
+    UV-Vis Microplate Reader & SpectraMax M5 (Molecular Dev.) & NIST Traceable Filters & Temp stability: $30.0 \pm 0.2^\circ$C \\ \hline
+    Ultrasonic Disruptor & Sonifier SFX-550 (Branson) & Microtip Calibration & Output: 40\% amplitude, pulsed \\ \hline
+    \rowcolor{SopAltRow}
+    Refrigerated Centrifuge & Avanti J-26S XP (Beckman) & Rotor Cert. (JA-25.50) & Max RCF: $50,000 \times g$ at 4$^\circ$C \\ \hline
+  \end{tabularx}
+\end{table}
+
+% ==========================================
+% SECTION 4: REAGENT PREPARATION PROCEDURES
+% ==========================================
+\section*{\faVial\ 4. REAGENT \& BUFFER PREPARATION}
+
+Prepare all buffers using Milli-Q ultrapure water ($18.2\text{ M}\Omega\cdot\text{cm}$ resistivity at 25$^\circ$C). Filter chromatography buffers through a 0.22 $\mu$m PES membrane prior to use.
+
+\begin{itemize}[leftmargin=12pt]
+  \item \textbf{Lysis Buffer L-1 (500 mL):} 50 mM Tris-HCl (pH 8.0), 300 mM NaCl, 20 mM Imidazole, 10\% (v/v) Glycerol, 0.1\% (v/v) Triton X-100. Store at 4$^\circ$C. Add fresh 1.0 mM PMSF and 0.5 mg/mL Lysozyme prior to use.
+  \item \textbf{Wash Buffer W-1 (500 mL):} 50 mM Tris-HCl (pH 8.0), 500 mM NaCl, 40 mM Imidazole, 5\% (v/v) Glycerol. Store at 4$^\circ$C.
+  \item \textbf{Elution Buffer E-1 (250 mL):} 50 mM Tris-HCl (pH 8.0), 300 mM NaCl, 300 mM Imidazole, 10\% (v/v) Glycerol. Store at 4$^\circ$C.
+  \item \textbf{Kinase Assay Buffer A-1 (5x Stock, 100 mL):} 250 mM HEPES-NaOH (pH 7.5), 50 mM $\text{MgCl}_2$, 5 mM EGTA, 0.05\% (v/v) Tween-20. Aliquot and store at -20$^\circ$C. Supplement with 1 mM DTT on day of assay.
+\end{itemize}
+
+% ==========================================
+% SECTION 5: STEP-BY-STEP PROTOCOL
+% ==========================================
+\section*{\faLayerGroup\ 5. STEP-BY-STEP EXPERIMENTAL PROTOCOL}
+
+\subsection*{\faClipboard\ Phase I: Cell Lysis \& Clarification}
+\begin{enumerate}
+  \item Retrieve frozen \textit{E. coli} BL21(DE3) cell pellet (approx. 10.0 g wet weight) from -80$^\circ$C freezer and thaw on ice for 25 min.
+  \item Resuspend pellet in 50 mL ice-cold Lysis Buffer L-1 (5 mL/g cell paste) using a magnetic stirrer at 4$^\circ$C for 15 min.
+  \item Add 50 $\mu$L of 1000x PMSF stock (100 mM in Isopropanol) for a final concentration of 1.0 mM.
+  \item Perform ultrasonic lysis on ice: 10 cycles of 30 s ON, 30 s OFF at 40\% output amplitude. Maintain temperature below 8$^\circ$C.
+  \item Centrifuge crude lysate at $24,000 \times g$ for 35 min at 4$^\circ$C. Collect clarified supernatant and filter through a 0.45 $\mu$m syringe filter.
+\end{enumerate}
+
+\subsection*{\faFilter\ Phase II: IMAC Chromatography Purification (Ni-NTA)}
+\begin{enumerate}
+  \item Mount a 5 mL Ni-NTA Sepharose column onto ÄKTA pure FPLC. Flush with 5 Column Volumes (CV) Milli-Q water at 2.5 mL/min.
+  \item Equilibrate column with 8 CV of Lysis Buffer L-1 at 2.0 mL/min.
+  \item Load filtered supernatant onto column at 1.0 mL/min to maximize target binding. Collect flow-through (FT).
+  \item Wash column with 10 CV of Lysis Buffer L-1, followed by 8 CV of Wash Buffer W-1 at 2.0 mL/min.
+  \item Elute bound Kinase V-321 using 100\% Elution Buffer E-1 over 5 CV at 1.5 mL/min. Collect 1.5 mL fractions. Monitor $\text{A}_{280}$ UV.
+\end{enumerate}
+
+\subsection*{\faSync\ Phase III: Buffer Exchange \& Storage}
+\begin{enumerate}
+  \item Pool peak fractions ($\text{A}_{280} > 0.6\text{ AU}$). Load onto PD-10 desalting column pre-equilibrated with Storage Buffer S-1 (50 mM HEPES pH 7.5, 150 mM NaCl, 1 mM DTT, 20\% Glycerol).
+  \item Concentrate protein using Amicon Ultra-15 10 kDa MWCO centrifugal unit at $4,000 \times g$ ($4^\circ\text{C}$) to $\sim 2.5\text{ mg/mL}$.
+  \item Measure protein concentration by UV spectrophotometry at 280 nm ($\epsilon_{280} = 54,490\text{ M}^{-1}\text{cm}^{-1}$).
+  \item Aliquot 50 $\mu$L into cryovials, snap-freeze in liquid nitrogen, and store at -80$^\circ$C.
+\end{enumerate}
+
+\begin{tcolorbox}[infobox]
+  \scriptsize\textbf{\color{SopTeal}\faCheckCircle\ CRITICAL HOLDING POINT:} Purified Kinase V-321 aliquots may be stored at -80$^\circ$C for up to 6 months. Avoid repeated freeze-thaw cycles ($>2$ cycles results in $>15\%$ loss of activity).
+\end{tcolorbox}
+
+% ==========================================
+% SECTION 6: KINETIC ASSAY PROTOCOL
+% ==========================================
+\section*{\faClock\ 6. KINETIC ENZYMATIC ASSAY PROTOCOL}
+
+Enzymatic activity of Kinase V-321 is determined via a continuous NADH-coupled spectrophotometric assay at 340 nm ($\epsilon_{\text{NADH}} = 6,220\text{ M}^{-1}\text{cm}^{-1}$).
+
+\subsection*{\faTable\ 6.1 Assay Reaction Setup (96-Well Microplate)}
+
+\begin{table}[h!]
+  \centering
+  \scriptsize
+  \renewcommand{\arraystretch}{1.15}
+  \begin{tabularx}{\textwidth}{|Y|c|c|Y|}
+    \hline
+    \rowcolor{SopNavy}
+    \color{white}\textbf{Reaction Component} & \color{white}\textbf{Stock Conc.} & \color{white}\textbf{Vol / Well ($\mu$L)} & \color{white}\textbf{Final Conc. (200 $\mu$L Total)} \\ \hline
+    Kinase Assay Buffer A-1 & 5x & 40.0 & 1x (50 mM HEPES pH 7.5) \\ \hline
+    \rowcolor{SopAltRow}
+    Substrate Peptide STK-1 & 1.0 mM & 20.0 & 100 $\mu$M \\ \hline
+    NADH Solution & 10.0 mM & 4.0 & 0.20 mM \\ \hline
+    \rowcolor{SopAltRow}
+    Phosphoenolpyruvate (PEP) & 50.0 mM & 4.0 & 1.0 mM \\ \hline
+    PK/LDH Enzyme Suspension & Commercial & 5.0 & 10 U/mL PK / 15 U/mL LDH \\ \hline
+    \rowcolor{SopAltRow}
+    Kinase V-321 (Enzyme Sample) & 1.0 $\mu$M & 10.0 & 50 nM (Target concentration) \\ \hline
+    Milli-Q $\text{H}_2\text{O}$ & N/A & 97.0 & Fill to final volume \\ \hline
+    \rowcolor{SopAltRow}
+    ATP (Initiator - Add last) & 10.0 mM & 20.0 & 1.0 mM \\ \hline
+    \rowcolor{SopNavy}
+    \multicolumn{2}{|l|}{\color{white}\textbf{TOTAL REACTION VOLUME}} & \color{white}\textbf{200.0 $\mu$L} & \color{white}\textbf{Assay Temp: $30.0^\circ\text{C}$} \\ \hline
+  \end{tabularx}
+\end{table}
+
+\subsection*{\faPlayCircle\ 6.2 Spectrophotometric Measurement Procedure}
+\begin{enumerate}
+  \item Preheat SpectraMax M5 microplate reader chamber to $30.0^\circ\text{C}$.
+  \item Pipette buffer, substrate, coupling enzymes, and Kinase V-321 into duplicate wells (Table 6.1).
+  \item Incubate microplate inside reader for 5 min to reach thermal equilibrium ($30^\circ\text{C}$).
+  \item Initiate reaction by adding 20.0 $\mu$L of 10.0 mM ATP solution with a multi-channel pipette.
+  \item Record absorbance at $\lambda = 340\text{ nm}$ every 15 s for 20 min (81 data points total).
+\end{enumerate}
+
+% ==========================================
+% SECTION 7: CALCULATIONS & FORMULAS
+% ==========================================
+\section*{\faCalculator\ 7. CALCULATIONS \& MATHEMATICAL FORMULAS}
+
+Calculate the linear reaction rate ($\Delta \text{A}_{340}/\text{min}$) from the initial velocity region (minutes 2 to 7).
+
+\begin{tcolorbox}[formulabox]
+  \scriptsize\textbf{\color{SopNavy}\faBalanceScale\ Enzyme Volumetric Activity Formula:}
+  \begin{equation*}
+    \text{Volumetric Activity (U/mL)} = \left( \frac{\Delta \text{A}_{340}/\text{min}}{\epsilon_{\text{NADH}} \times d} \right) \times \left( \frac{V_{\text{total}}}{V_{\text{enzyme}}} \right) \times D
+  \end{equation*}
+  \vspace{-8pt}
+  \begin{itemize}[leftmargin=10pt]
+    \item $\Delta \text{A}_{340}/\text{min}$: Linear rate of absorbance decrease at 340 nm ($\text{min}^{-1}$)
+    \item $\epsilon_{\text{NADH}}$: Molar extinction coefficient of NADH ($6.22\text{ mM}^{-1}\text{cm}^{-1}$)
+    \item $d$: Optical pathlength for 200 $\mu$L in 96-well plate ($0.588\text{ cm}$)
+    \item $V_{\text{total}}$: Total assay volume ($0.200\text{ mL}$) \quad \textbar \quad $V_{\text{enzyme}}$: Enzyme volume added ($0.010\text{ mL}$)
+    \item $D$: Sample dilution factor ($D = 20$ for 1.0 $\mu$M stock dilution)
+  \end{itemize}
+\end{tcolorbox}
+
+\begin{tcolorbox}[formulabox]
+  \scriptsize\textbf{\color{SopNavy}\faBalanceScale\ Specific Activity Calculation:}
+  \begin{equation*}
+    \text{Specific Activity (U/mg)} = \frac{\text{Volumetric Activity (U/mL)}}{\text{Protein Concentration (mg/mL)}}
+  \end{equation*}
+  One Unit (U) catalyzes phosphorylation of 1.0 $\mu$mol STK-1 peptide per minute at $30^\circ\text{C}$ under standard assay conditions.
+\end{tcolorbox}
+
+% ==========================================
+% SECTION 8: QUALITY CONTROL & ACCEPTANCE
+% ==========================================
+\section*{\faCheckSquare\ 8. QUALITY CONTROL ACCEPTANCE CRITERIA}
+
+Purified Kinase V-321 batches must meet all specifications in Table 8.1 prior to lot release.
+
+\begin{table}[h!]
+  \centering
+  \scriptsize
+  \renewcommand{\arraystretch}{1.2}
+  \begin{tabularx}{\textwidth}{|>{\bfseries\color{SopNavy}}p{3.2cm}|Y|c|C|}
+    \hline
+    \rowcolor{SopNavy}
+    \color{white}\textbf{QC Parameter} & \color{white}\textbf{Acceptance Specification} & \color{white}\textbf{Lot V321-08} & \color{white}\textbf{Status} \\ \hline
+    Protein Purity (SDS-PAGE) & Single main band at $48.5\text{ kDa} \ge 95.0\%$ & $98.2\%$ & \textcolor{SopSuccess}{\textbf{\faCheck\ PASS}} \\ \hline
+    \rowcolor{SopAltRow}
+    Purification Yield & $\ge 5.0\text{ mg}$ protein per liter cell culture & $8.4\text{ mg/L}$ & \textcolor{SopSuccess}{\textbf{\faCheck\ PASS}} \\ \hline
+    Specific Activity & $\ge 280\text{ U/mg}$ at $30.0^\circ\text{C}$ & $345 \pm 12\text{ U/mg}$ & \textcolor{SopSuccess}{\textbf{\faCheck\ PASS}} \\ \hline
+    \rowcolor{SopAltRow}
+    Absorbance Ratio ($\text{A}_{280}/\text{A}_{260}$) & $1.65 \le \text{Ratio} \le 1.85$ (Low nucleic acid contamination) & $1.76$ & \textcolor{SopSuccess}{\textbf{\faCheck\ PASS}} \\ \hline
+    Enzymatic Precision ($\text{CV}$) & Intra-assay replicate $\text{CV} \le 4.0\%$ & $1.8\%$ & \textcolor{SopSuccess}{\textbf{\faCheck\ PASS}} \\ \hline
+    \rowcolor{SopAltRow}
+    Bacterial Endotoxin & $< 0.10\text{ EU/}\mu\text{g}$ protein (LAL Assay) & $0.025\text{ EU/}\mu\text{g}$ & \textcolor{SopSuccess}{\textbf{\faCheck\ PASS}} \\ \hline
+  \end{tabularx}
+\end{table}
+
+% ==========================================
+% SECTION 9: TROUBLESHOOTING GUIDE
+% ==========================================
+\section*{\faWrench\ 9. TROUBLESHOOTING GUIDE}
+
+\begin{table}[h!]
+  \centering
+  \scriptsize
+  \renewcommand{\arraystretch}{1.2}
+  \begin{tabularx}{\textwidth}{|>{\bfseries\color{SopDanger}}p{3.2cm}|Y|Y|}
+    \hline
+    \rowcolor{SopNavy}
+    \color{white}\textbf{Observed Issue} & \color{white}\textbf{Probable Cause} & \color{white}\textbf{Corrective Action} \\ \hline
+    Low Protein Yield ($< 2\text{ mg/L}$) & Incomplete cell lysis or poor induction in host cells. & Increase sonication cycles; verify IPTG concentration (0.5 mM) and induction temp ($18^\circ\text{C}$ overnight). \\ \hline
+    \rowcolor{SopAltRow}
+    Protein Precipitates in Elution & Rapid imidazole shift or high protein density ($>5\text{ mg/mL}$). & Perform step-wise desalting; add 10\% Glycerol and 1 mM DTT to Elution Buffer E-1. Keep on ice. \\ \hline
+    High Background Rate in Blank & Spontaneous NADH oxidation or ATPase contamination. & Prepare fresh NADH daily; filter PEP solution; run control wells lacking STK-1 substrate. \\ \hline
+    \rowcolor{SopAltRow}
+    Non-linear Rate ($\text{R}^2 < 0.98$) & Substrate exhaustion or rapid thermal denaturation. & Lower enzyme concentration to 25 nM; ensure reader temperature is stable at $30.0^\circ\text{C}$. \\ \hline
+  \end{tabularx}
+\end{table}
+
+% ==========================================
+% SECTION 10: REVISION HISTORY & APPROVALS
+% ==========================================
+\section*{\faHistory\ 10. REVISION HISTORY \& APPROVALS}
+
+\begin{table}[h!]
+  \centering
+  \scriptsize
+  \renewcommand{\arraystretch}{1.15}
+  \begin{tabularx}{\textwidth}{|c|c|>{\bfseries}p{2.8cm}|Y|}
+    \hline
+    \rowcolor{SopNavy}
+    \color{white}\textbf{Rev \#} & \color{white}\textbf{Date} & \color{white}\textbf{Author} & \color{white}\textbf{Description of Revision} \\ \hline
+    1.0 & 10-JAN-2024 & Dr. Elena Rostova & Initial release for pilot-scale Kinase V-321 assay. \\ \hline
+    \rowcolor{SopAltRow}
+    2.0 & 14-FEB-2025 & Dr. Elena Rostova & Updated IMAC wash buffer imidazole conc. from 20 mM to 40 mM. \\ \hline
+    3.0 & 10-NOV-2025 & Dr. Marcus Vance & Added continuous NADH spectrophotometric kinetic protocol. \\ \hline
+    \rowcolor{SopAltRow}
+    3.1 & 15-JUL-2026 & Dr. Elena Rostova & Current Version: Optimized assay buffer pH and added STK-1 specs. \\ \hline
+  \end{tabularx}
+\end{table}
+
+\begin{table}[h!]
+  \centering
+  \scriptsize
+  \renewcommand{\arraystretch}{1.35}
+  \begin{tabularx}{\textwidth}{|Y|Y|Y|}
+    \hline
+    \rowcolor{SopNavy}
+    \color{white}\textbf{Role} & \color{white}\textbf{Printed Name \& Title} & \color{white}\textbf{Signature \& Approval Date} \\ \hline
+    \textbf{Primary Author} & Dr. Elena Rostova \newline Senior Biochemist & \textit{Elena Rostova} \quad (15-JUL-2026) \\ \hline
+    \rowcolor{SopAltRow}
+    \textbf{Technical Reviewer} & Dr. Marcus Vance \newline VP Scientific Operations & \textit{Marcus Vance} \quad (16-JUL-2026) \\ \hline
+    \textbf{Quality Assurance} & Dr. Sarah Jenkins \newline QA Compliance Manager & \textit{Sarah Jenkins} \quad (17-JUL-2026) \\ \hline
+  \end{tabularx}
+\end{table}
+
+\vspace{6pt}
+
+\begin{tcolorbox}[sopheader]
+  \centering
+  \scriptsize\textbf{\faLock\ END OF STANDARD OPERATING PROCEDURE --- MERIDIAN BIOSCIENCES INC. --- CONFIDENTIAL}
+\end{tcolorbox}
+
+\end{document}

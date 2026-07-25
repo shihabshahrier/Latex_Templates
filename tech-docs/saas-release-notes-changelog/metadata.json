@@ -1,0 +1,8 @@
+{
+  "name": "SaaS Product Release Notes & Changelog",
+  "compiler": "pdflatex",
+  "description": "SaaS Product Release Notes & Changelog LaTeX template \u2014 saas product release notes & changelog latex template. Elegant, compile-tested, editable online at letx.app.",
+  "author": "LetX",
+  "category": "tech-docs",
+  "license": "MIT"
+}

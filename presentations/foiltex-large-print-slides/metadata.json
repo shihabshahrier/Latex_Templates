@@ -1,0 +1,8 @@
+{
+  "name": "FoilTeX Large Print Conference Slides",
+  "compiler": "pdflatex",
+  "description": "FoilTeX Large Print Conference Slides LaTeX template \u2014 foiltex large print conference slides latex template. Elegant, compile-tested, editable online at letx.app.",
+  "author": "LetX",
+  "category": "presentations",
+  "license": "MIT"
+}

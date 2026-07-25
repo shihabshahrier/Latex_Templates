@@ -1,0 +1,8 @@
+{
+  "name": "Clinical Research Grant Application",
+  "compiler": "pdflatex",
+  "description": "Clinical Research Grant Application LaTeX template \u2014 clinical research grant application latex template. Elegant, compile-tested, editable online at letx.app.",
+  "author": "LetX",
+  "category": "grants",
+  "license": "MIT"
+}

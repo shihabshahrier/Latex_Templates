@@ -1,0 +1,8 @@
+{
+  "name": "High School Science Problem Set",
+  "compiler": "pdflatex",
+  "description": "High School Science Problem Set LaTeX template \u2014 high school science problem set latex template. Elegant, compile-tested, editable online at letx.app.",
+  "author": "LetX",
+  "category": "assignments",
+  "license": "MIT"
+}

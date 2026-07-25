@@ -1,0 +1,150 @@
+\documentclass[11pt]{letter}
+
+\usepackage[top=0.75in,bottom=1in,left=1in,right=1in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{xcolor}
+\usepackage{tcolorbox}
+\tcbuselibrary{skins}
+\usepackage{tikz}
+\usetikzlibrary{positioning,calc}
+\usepackage{fontawesome5}
+\usepackage{enumitem}
+\usepackage{microtype}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+
+% ---------------------------------------------------------------------------
+% Palette
+% ---------------------------------------------------------------------------
+\definecolor{navy}{HTML}{1B2A4A}
+\definecolor{gold}{HTML}{B8860B}
+\definecolor{slate}{HTML}{5B6B79}
+\definecolor{paleblue}{HTML}{EEF2F7}
+
+% ---------------------------------------------------------------------------
+% Typographic rhythm
+% ---------------------------------------------------------------------------
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{7pt}
+
+% ---------------------------------------------------------------------------
+% Running footer
+% ---------------------------------------------------------------------------
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0.4pt}
+\fancyfootoffset{0pt}
+\fancyfoot[L]{\footnotesize\color{slate}Reference Letter \textbar\ Sarah Chen}
+\fancyfoot[R]{\footnotesize\color{slate}Page \thepage\ of \pageref{LastPage}}
+
+\fancypagestyle{firstpage}{%
+  \fancyhf{}
+  \renewcommand{\headrulewidth}{0pt}
+  \renewcommand{\footrulewidth}{0.4pt}
+  \fancyfoot[L]{\footnotesize\color{slate}Vertex Analytics \textbar\ Confidential Professional Reference}
+  \fancyfoot[R]{\footnotesize\color{slate}Page \thepage\ of \pageref{LastPage}}
+}
+
+% ---------------------------------------------------------------------------
+% Sender / signer (no automatic \address block -- letterhead below replaces it)
+% ---------------------------------------------------------------------------
+\signature{Michael Torres\\ Director of Data Science\\ Vertex Analytics}
+
+\begin{document}
+
+% =============================================================================
+% LETTERHEAD
+% =============================================================================
+\begin{tcolorbox}[
+  enhanced,
+  colback=navy,
+  colframe=navy,
+  boxrule=0pt,
+  sharp corners,
+  left=16pt,right=16pt,top=11pt,bottom=11pt
+]
+\begin{minipage}[c]{0.68\textwidth}
+{\color{white}\Large\textbf{VERTEX ANALYTICS}}\\[2pt]
+{\color{gold}\footnotesize\itshape Applied Intelligence for Financial Risk}
+\end{minipage}\hfill
+\begin{minipage}[c]{0.28\textwidth}
+\raggedleft\footnotesize\color{white}
+Data Science \& Talent Office
+\end{minipage}
+\end{tcolorbox}
+
+\vspace{4pt}
+\begin{center}
+\footnotesize\color{slate}
+\faMapMarker\ 900 Meridian Plaza, Suite 1200, Austin, TX 78701
+\quad\textbar\quad \faPhone\ (512) 555-0142
+\quad\textbar\quad \faEnvelope\ m.torres@vertexanalytics.example
+\quad\textbar\quad \faGlobe\ www.vertexanalytics.example
+\end{center}
+\vspace{2pt}
+{\color{gold}\hrule height 1pt}
+\vspace{14pt}
+
+% =============================================================================
+% LETTER
+% =============================================================================
+\begin{letter}{Ms.\ Rebecca Lin\\ Director of Talent Acquisition\\ Nimbus Technologies\\ 4400 Meridian Parkway, Suite 200\\ Austin, TX 78701}
+
+\opening{Dear Ms.\ Lin,}
+
+I am writing to give my strongest possible recommendation for Sarah Chen, who is applying for the Lead Data Scientist position on your Risk \& Trust team. I have been Sarah's direct manager at Vertex Analytics for the past four years, and in that time she has become one of the most consistently excellent scientists I have had the privilege to supervise. I do not write letters like this often, and when I do, I try to make them specific rather than superlative -- so let me tell you exactly what Sarah has done and why it matters.
+
+Sarah joined Vertex Analytics in June 2022 as a Data Scientist II, was promoted to Senior Data Scientist in early 2024, and has been operating at a level consistent with a Staff title for roughly a year, though our internal ladder has not yet caught up with her. She currently leads a five-person pod within our Financial Crimes analytics group, reporting to me, and owns the modeling roadmap for our flagship fraud-detection product end to end.
+
+\begin{tcolorbox}[
+  enhanced,
+  colback=paleblue,
+  colframe=navy,
+  boxrule=0.8pt,
+  arc=2mm,
+  left=10pt,right=10pt,top=7pt,bottom=7pt,
+  title={\textbf{At a Glance}},
+  coltitle=white,
+  colbacktitle=navy,
+  fonttitle=\normalsize
+]
+\begin{itemize}[leftmargin=1.6em,itemsep=5pt,topsep=3pt,label={}]
+\item[\faTrophy] \textbf{Tenure \& growth:} 4 years at Vertex Analytics (2022--2026); promoted twice, most recently to Senior Data Scientist.
+\item[\faChartLine] \textbf{Signature result:} Led the Sentinel Risk Engine rebuild, cutting false-positive fraud alerts by 34\% and preserving an estimated \$2.3M in annual manual-review costs.
+\item[\faUsers] \textbf{Team impact:} Mentored 6 junior analysts; 4 were promoted within 18 months of working under her.
+\item[\faBullseye] \textbf{Core strength:} Applied machine learning and causal inference, paired with an unusual talent for cross-functional delivery under deadline pressure.
+\end{itemize}
+\end{tcolorbox}
+
+The achievement I am proudest to have watched Sarah drive is the Sentinel Risk Engine rebuild, which she led from problem framing through production rollout over roughly nine months in 2024. Our legacy fraud model was accurate on paper but operationally unusable -- it was flooding our review queue with false positives, and the analyst team was drowning. Rather than simply retrain the existing model, Sarah spent three weeks doing something most people under deadline pressure skip: she interviewed the review analysts, mapped where the false positives were actually costing us time, and discovered that a large share of the noise came from a handful of merchant categories where our features were structurally weak. She then redesigned the feature pipeline around transaction-graph signals, migrated the training pipeline from a nightly batch job to Spark (cutting retraining time from roughly eleven hours to under ninety minutes), and shipped a model that reduced false-positive alerts by 34\% while holding recall constant. The Compliance team signed off without a single escalation, which, if you have worked in fraud analytics, you will know is close to unheard of.
+
+\begin{tcolorbox}[
+  enhanced,
+  colback=paleblue,
+  colframe=paleblue,
+  borderline west={3pt}{0pt}{gold},
+  boxrule=0pt,
+  left=14pt,right=14pt,top=8pt,bottom=8pt
+]
+\itshape\color{navy}
+``Sarah does not simply solve the problem in front of her; she asks whether it is the right problem, and more often than not, she is right to ask.''
+\end{tcolorbox}
+
+What sets Sarah apart from other strong technical contributors I have managed is not just the modeling work -- it is her judgment about which problems deserve the modeling work in the first place, and her ability to carry a project across organizational lines without friction. The Sentinel rebuild required sustained buy-in from Product, Engineering, and Compliance, three groups that do not always agree on priorities. Sarah ran a biweekly working session across all three for the duration of the project, translated technical tradeoffs into terms each group cared about, and delivered two weeks ahead of the internal target date we had set. Our VP of Risk still cites that project when new hires ask what "good" looks like at Vertex.
+
+Sarah is also, quite simply, an excellent teammate and a generous mentor. She has taken on six junior analysts over the past three years in an unofficial but well-known mentorship capacity, four of whom have since been promoted, and two of whom specifically requested to join her pod because of how she runs project retrospectives -- blunt about what went wrong, generous about crediting what went right. She presented the Sentinel results at our internal Data Science Summit in 2025 and, at my encouragement, again at a regional fintech analytics meetup, where she handled a genuinely difficult question about model fairness with more composure than I would have managed myself.
+
+If I have a candid caveat, it is this: Sarah is more comfortable owning a problem end to end than delegating pieces of it, which occasionally means she takes on more than she needs to. I say this not as a weakness so much as a growth edge, and one she is already aware of -- she has been actively handing off ownership of smaller workstreams to the analysts she mentors, specifically to build their track records. In a Lead role with a larger team, I expect that instinct to become an asset rather than a constraint.
+
+I recommend Sarah to you without reservation. She combines rigorous technical judgment, real operational impact, and a track record of developing the people around her -- which is precisely the combination a Lead Data Scientist role demands. I am confident she would be an outstanding addition to Nimbus Technologies, and I would hire her again in a heartbeat if our own roadmap allowed for it.
+
+Please do not hesitate to contact me directly at (512) 555-0142 or m.torres@vertexanalytics.example if I can answer any further questions.
+
+\closing{Sincerely,}
+
+\encl{Performance Summary (2025 Annual Review Excerpt)}
+
+\end{letter}
+
+\end{document}

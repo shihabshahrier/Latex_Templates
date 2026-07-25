@@ -1,0 +1,429 @@
+\PassOptionsToPackage{table}{xcolor}
+\documentclass[final]{beamer}
+
+% Poster dimensions and orientation via beamerposter
+\usepackage[orientation=landscape,size=custom,width=121.92,height=91.44,scale=1.4]{beamerposter}
+
+% Packages
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{colortbl}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usetikzlibrary{positioning,calc,shapes.geometric,backgrounds,patterns}
+\usepackage[most]{tcolorbox}
+\usepackage{fontawesome5}
+
+% Remove default beamer navigation & header/footer templates
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{headline}{}
+\setbeamertemplate{footline}{}
+
+% Color Palette (Cohesive 4-color palette)
+\definecolor{primary}{HTML}{0A192F}      % Deep Navy Banner/Frames
+\definecolor{secondary}{HTML}{0F4C81}    % Slate Blue
+\definecolor{accent}{HTML}{00A896}       % Teal Accent
+\definecolor{highlight}{HTML}{F2A900}    % Gold Highlight
+\definecolor{cardbg}{HTML}{F8FAFC}       % Light Gray/Blue Card Background
+\definecolor{darktext}{HTML}{1E293B}     % Dark Charcoal Body Text
+\definecolor{mutedtext}{HTML}{475569}    % Muted Text
+\definecolor{bordercolor}{HTML}{CBD5E1}  % Subtle Border
+
+% Set global text color
+\setbeamercolor{normal text}{fg=darktext}
+
+% Custom tcolorbox box style for poster sections
+\tcbset{
+  posterbox/.style={
+    enhanced,
+    colback=cardbg,
+    colframe=primary,
+    coltitle=white,
+    fonttitle=\bfseries\Large,
+    boxrule=2.5pt,
+    arc=8pt,
+    left=16pt, right=16pt, top=14pt, bottom=14pt,
+    toptitle=10pt, bottomtitle=10pt,
+    shadow={2pt}{-2pt}{0pt}{black!15},
+    titlerule=0pt
+  },
+  accentbox/.style={
+    enhanced,
+    colback=accent!8!white,
+    colframe=accent,
+    coltitle=white,
+    fonttitle=\bfseries\Large,
+    boxrule=2.5pt,
+    arc=8pt,
+    left=16pt, right=16pt, top=14pt, bottom=14pt,
+    toptitle=10pt, bottomtitle=10pt,
+    shadow={2pt}{-2pt}{0pt}{black!15},
+    titlerule=0pt
+  },
+  statcard/.style={
+    enhanced,
+    colback=white,
+    colframe=secondary,
+    boxrule=1.5pt,
+    arc=6pt,
+    left=10pt, right=10pt, top=10pt, bottom=10pt,
+    halign=center
+  }
+}
+
+\begin{document}
+\begin{frame}[t]
+
+% ==============================================================================
+% TOP HEADER BANNER
+% ==============================================================================
+\begin{tcolorbox}[
+  enhanced,
+  colback=primary,
+  colframe=primary,
+  arc=0pt,
+  boxrule=0pt,
+  left=24pt, right=24pt, top=20pt, bottom=20pt
+]
+\begin{columns}[c]
+  % Left Logo Badge
+  \begin{column}{0.12\textwidth}
+    \centering
+    \begin{tikzpicture}[scale=1.2]
+      \fill[accent] (0,0) circle (1.8cm);
+      \node at (0,0) {\color{white}\Huge\faBrain};
+    \end{tikzpicture}
+    \\[4pt]
+    {\color{white}\bfseries\small SYNAPSE LABS}
+  \end{column}
+  
+  % Center Title and Author Metadata
+  \begin{column}{0.74\textwidth}
+    \centering
+    {\color{highlight}\bfseries\fontsize{38}{44}\selectfont SYNAPSE-X: Deep Multi-Modal Latent Alignment for Real-Time Neural Signal Decoding}\\[12pt]
+    {\color{white}\Large\bfseries International Conference on Neural Interfaces \& Bio-AI Systems (NIBAS 2026)}\\[14pt]
+    {\color{white}\large Dr. Elena Rostova$^1$, Marcus Vance$^1$, Prof. David Chen$^2$, Dr. Sarah Jenkins$^1$}\\[6pt]
+    {\color{accent!30!white}\normalsize $^1$Synapse Neural Systems Group, Vertex Research Institute \quad $^2$Department of Computational Neuroscience, Meridian University}\\[4pt]
+    {\color{white}\small \faEnvelope{} contact@vertex-synapse.org \quad \faGlobe{} https://synapse.vertex-labs.io/x-align}
+  \end{column}
+  
+  % Right Logo Badge
+  \begin{column}{0.12\textwidth}
+    \centering
+    \begin{tikzpicture}[scale=1.2]
+      \fill[highlight] (0,0) circle (1.8cm);
+      \node at (0,0) {\color{primary}\Huge\faMicrochip};
+    \end{tikzpicture}
+    \\[4pt]
+    {\color{white}\bfseries\small VERTEX AI}
+  \end{column}
+\end{columns}
+\end{tcolorbox}
+
+\vspace{12pt}
+
+% ==============================================================================
+% MAIN 3-COLUMN LAYOUT
+% ==============================================================================
+\begin{columns}[t]
+
+  % ----------------------------------------------------------------------------
+  % COLUMN 1: Background, Objectives, Architecture
+  % ----------------------------------------------------------------------------
+  \begin{column}{0.318\textwidth}
+    
+    % Box 1: Introduction & Motivation
+    \begin{tcolorbox}[posterbox, title={\faInfoCircle{} 1. Introduction \& Motivation}]
+      Non-invasive electroencephalography (EEG) and invasive electrocorticography (ECoG) offer non-destructive pathways for brain-computer interfaces (BCIs). However, practical deployment faces major hurdles:
+      
+      \begin{itemize}
+        \item \textbf{Low Signal-to-Noise Ratio (SNR):} Artifacts from ocular and muscular activity heavily degrade signal fidelity.
+        \item \textbf{Inter-Subject Non-Stationarity:} Significant variance across participants typically requires hours of subject-specific calibration.
+        \item \textbf{Cross-Modal Divergence:} Synchronizing temporal EEG micro-states with high-frequency ECoG spectral bands remains unsolved.
+      \end{itemize}
+      
+      \vspace{6pt}
+      \tcblower
+      \textbf{Core Objective:} Develop a unified self-supervised framework (\textbf{Synapse-X}) that projects multi-modal neural time-series into a shared, invariant latent embedding space to enable zero-shot cross-subject motor imagery decoding.
+    \end{tcolorbox}
+    
+    \vspace{10pt}
+    
+    % Box 2: Key Innovation Summary
+    \begin{tcolorbox}[accentbox, title={\faStar{} Core Innovations}]
+      \begin{columns}[t]
+        \begin{column}{0.31\textwidth}
+          \begin{tcolorbox}[statcard]
+            {\color{accent}\bfseries\Huge 85\%}\\[4pt]
+            {\small Less Calibration Time}
+          \end{tcolorbox}
+        \end{column}
+        \begin{column}{0.31\textwidth}
+          \begin{tcolorbox}[statcard]
+            {\color{primary}\bfseries\Huge 12.4ms}\\[4pt]
+            {\small End-to-End Latency}
+          \end{tcolorbox}
+        \end{column}
+        \begin{column}{0.31\textwidth}
+          \begin{tcolorbox}[statcard]
+            {\color{secondary}\bfseries\Huge 94.8\%}\\[4pt]
+            {\small Peak Motor Acc.}
+          \end{tcolorbox}
+        \end{column}
+      \end{columns}
+    \end{tcolorbox}
+
+    \vspace{10pt}
+
+    % Box 3: System Architecture
+    \begin{tcolorbox}[posterbox, title={\faCogs{} 2. System Architecture (Synapse-X)}]
+      The \textbf{Synapse-X} pipeline extracts spatial-temporal features from raw multichannel streams, passing them through cross-attention alignment before projection.
+      
+      \vspace{8pt}
+      \centering
+      \begin{tikzpicture}[
+        node distance=0.9cm and 1.2cm,
+        block/.style={rectangle, draw=primary, fill=white, thick, rounded corners=4pt, align=center, minimum height=1.1cm, minimum width=2.4cm, font=\small\bfseries},
+        accentblock/.style={rectangle, draw=accent, fill=accent!12, thick, rounded corners=4pt, align=center, minimum height=1.1cm, minimum width=2.5cm, font=\small\bfseries},
+        highlightblock/.style={rectangle, draw=highlight!90!black, fill=highlight!20, thick, rounded corners=4pt, align=center, minimum height=1.1cm, minimum width=2.5cm, font=\small\bfseries},
+        line/.style={draw=primary, -latex, ultra thick}
+      ]
+        % Nodes
+        \node [block] (eeg) {EEG Stream\\(64-Ch, 1kHz)};
+        \node [block, right=1.2cm of eeg] (ecog) {ECoG Stream\\(128-Ch Grid)};
+        
+        \node [accentblock, below=0.8cm of eeg] (enc1) {Spatial-Temporal\\ConvNet Encoder};
+        \node [accentblock, below=0.8cm of ecog] (enc2) {Spectral-Wavelet\\Feature Extractor};
+        
+        \node [highlightblock, below=0.9cm of $(enc1.south)!0.5!(enc2.south)$, xshift=0cm, minimum width=6cm] (align) {Multi-Head Cross-Attention Latent Align ($\mathcal{L}_{\text{cont}}$)};
+        
+        \node [block, below=0.8cm of align, xshift=-1.6cm] (dec1) {Continuous Trajectory\\Decoder (6-DOF)};
+        \node [block, below=0.8cm of align, xshift=1.6cm] (dec2) {Discrete Motor Intent\\Classifier (4-Class)};
+        
+        % Connections
+        \draw [line] (eeg) -- (enc1);
+        \draw [line] (ecog) -- (enc2);
+        \draw [line] (enc1) -- (align);
+        \draw [line] (enc2) -- (align);
+        \draw [line] (align) -- (dec1);
+        \draw [line] (align) -- (dec2);
+      \end{tikzpicture}
+      \vspace{4pt}
+    \end{tcolorbox}
+
+  \end{column}
+
+  % ----------------------------------------------------------------------------
+  % COLUMN 2: Methods, Equations, Benchmark Table, Calibration Plot
+  % ----------------------------------------------------------------------------
+  \begin{column}{0.318\textwidth}
+
+    % Box 4: Mathematical Formulation
+    \begin{tcolorbox}[posterbox, title={\faCalculator{} 3. Mathematical Formulation}]
+      Given paired temporal EEG signals $X_e \in \mathbb{R}^{C_e \times T}$ and ECoG grids $X_c \in \mathbb{R}^{C_c \times T}$, we project feature embeddings $z_e = f_{\theta}(X_e)$ and $z_c = g_{\phi}(X_c)$ into a unified unit sphere $\mathbb{S}^{d-1}$.
+      
+      \vspace{6pt}
+      \textbf{1. InfoNCE Latent Contrastive Loss:}
+      $$\mathcal{L}_{\text{cont}} = -\sum_{i=1}^{N} \log \frac{\exp(\text{sim}(z_{e,i}, z_{c,i})/\tau)}{\sum_{j=1}^{N} \exp(\text{sim}(z_{e,i}, z_{c,j})/\tau)}$$
+      where $\text{sim}(u, v) = \frac{u^\top v}{\|u\|_2 \|v\|_2}$ denotes cosine similarity and $\tau = 0.07$ is the temperature parameter.
+      
+      \vspace{6pt}
+      \textbf{2. Joint Optimization Objective:}
+      $$\mathcal{L}_{\text{total}} = \alpha \mathcal{L}_{\text{cont}} + \beta \mathcal{L}_{\text{recon}} + \gamma \mathcal{L}_{\text{task}}$$
+      Hyperparameters $\alpha=1.0, \beta=0.25, \gamma=0.8$ were tuned via Bayesian grid search on Nexa-Bio Open Dataset.
+    \end{tcolorbox}
+
+    \vspace{10pt}
+
+    % Box 5: Benchmark Comparison Table
+    \begin{tcolorbox}[posterbox, title={\faTable{} 4. Benchmark Performance Comparison}]
+      Evaluation across 18 participants (14 healthy, 4 SCI patients) performing 4-class motor imagery (Left Hand, Right Hand, Feet, Tongue).
+      
+      \vspace{6pt}
+      \centering
+      \small
+      \begin{tabular}{lcccc}
+        \hline
+        \rowcolor{primary!10} \textbf{Model Architecture} & \textbf{Acc (\%)} & \textbf{Latency (ms)} & \textbf{Params (M)} & \textbf{Energy (mJ)} \\
+        \hline
+        EEGNet-4,2 Baseline & 72.4 $\pm$ 3.1 & 24.5 & 0.03 & 1.2 \\
+        DeepConvNet & 76.1 $\pm$ 2.8 & 31.0 & 0.28 & 4.5 \\
+        Conformer-BCI (2024) & 84.5 $\pm$ 2.2 & 45.2 & 12.4 & 18.2 \\
+        Braindecode-v4 & 81.8 $\pm$ 2.5 & 18.6 & 2.15 & 6.8 \\
+        \rowcolor{accent!15}
+        \textbf{Synapse-X (Ours - Base)} & \textbf{91.4 $\pm$ 1.4} & \textbf{12.4} & \textbf{1.84} & \textbf{3.1} \\
+        \rowcolor{highlight!20}
+        \textbf{Synapse-X (Ours - Heavy)} & \textbf{94.8 $\pm$ 1.1} & \textbf{16.8} & \textbf{4.60} & \textbf{5.9} \\
+        \hline
+      \end{tabular}
+      \vspace{4pt}
+    \end{tcolorbox}
+
+    \vspace{10pt}
+
+    % Box 6: Data Efficiency & Learning Curves
+    \begin{tcolorbox}[posterbox, title={\faChartLine{} 5. Calibration Data Efficiency}]
+      \textbf{Synapse-X} achieves high zero-shot performance immediately upon transfer without fine-tuning, rapidly converging within 5 minutes of subject adaptation.
+      
+      \vspace{8pt}
+      \centering
+      \begin{tikzpicture}[scale=0.95]
+        % Axes
+        \draw[->, thick, color=darktext] (0,0) -- (9.5,0) node[right, font=\small\bfseries] {Calibration Time (min)};
+        \draw[->, thick, color=darktext] (0,0) -- (0,5.5) node[above, font=\small\bfseries] {Accuracy (\%)};
+        
+        % Grid
+        \draw[gray!20, very thin] (0,0) grid[xstep=1.8, ystep=1.0] (9.0,5.0);
+        
+        % Y-Labels
+        \node[left, font=\scriptsize] at (0,1) {60\%};
+        \node[left, font=\scriptsize] at (0,2) {70\%};
+        \node[left, font=\scriptsize] at (0,3) {80\%};
+        \node[left, font=\scriptsize] at (0,4) {90\%};
+        \node[left, font=\scriptsize] at (0,5) {100\%};
+        
+        % X-Labels
+        \node[below, font=\scriptsize] at (0,0) {0};
+        \node[below, font=\scriptsize] at (1.8,0) {5};
+        \node[below, font=\scriptsize] at (3.6,0) {10};
+        \node[below, font=\scriptsize] at (5.4,0) {15};
+        \node[below, font=\scriptsize] at (7.2,0) {20};
+        \node[below, font=\scriptsize] at (9.0,0) {30};
+        
+        % Baseline Curve (Conformer-BCI) - Red/Secondary
+        \draw[color=secondary, ultra thick, dashed] 
+          (0,0.5) .. controls (1.8,1.2) and (3.6,2.2) .. (5.4,3.1) .. controls (7.2,3.4) .. (9.0,3.6);
+        \node[color=secondary, right, font=\scriptsize\bfseries] at (9.0,3.6) {Conformer-BCI};
+        
+        % EEGNet Curve - Gray
+        \draw[color=mutedtext, thick, dotted] 
+          (0,0.2) .. controls (1.8,0.8) and (3.6,1.4) .. (5.4,1.9) .. controls (7.2,2.2) .. (9.0,2.4);
+        \node[color=mutedtext, right, font=\scriptsize\bfseries] at (9.0,2.4) {EEGNet-4,2};
+
+        % Synapse-X Curve (Ours) - Teal/Highlight
+        \draw[color=accent, line width=2.5pt] 
+          (0,3.2) .. controls (1.8,4.2) and (3.6,4.6) .. (5.4,4.75) .. controls (7.2,4.82) .. (9.0,4.88);
+        
+        \fill[color=highlight] (0,3.2) circle (4pt);
+        \fill[color=accent] (1.8,4.2) circle (4pt);
+        \fill[color=accent] (5.4,4.75) circle (4pt);
+        \fill[color=accent] (9.0,4.88) circle (4pt);
+        
+        \node[color=accent, right, font=\small\bfseries] at (5.5,4.4) {Synapse-X (Zero-Shot $\rightarrow$ Adapted)};
+      \end{tikzpicture}
+    \end{tcolorbox}
+
+  \end{column}
+
+  % ----------------------------------------------------------------------------
+  % COLUMN 3: Ablation, Clinical Trials, Conclusion, References
+  % ----------------------------------------------------------------------------
+  \begin{column}{0.318\textwidth}
+
+    % Box 7: Ablation Study & Insights
+    \begin{tcolorbox}[posterbox, title={\faMicroscope{} 6. Ablation Study \& Insights}]
+      Systematic removal of key components highlights the critical role of contrastive cross-modal alignment:
+      
+      \begin{itemize}
+        \item \textbf{w/o Contrastive Loss ($\mathcal{L}_{\text{cont}}$):} Accuracy dropped by \textbf{7.4\%}, demonstrating that feature alignment prevents domain shift.
+        \item \textbf{w/o Multi-Head Spatial Attention:} Performance decreased by \textbf{5.1\%}, confirming the necessity of dynamic channel selection.
+        \item \textbf{Single Modality (EEG only):} Achieved 83.2\% accuracy, proving that multi-modal fusion provides a \textbf{+11.6\% boost}.
+      \end{itemize}
+    \end{tcolorbox}
+
+    \vspace{10pt}
+
+    % Box 8: Hardware Integration & Clinical Trial
+    \begin{tcolorbox}[posterbox, title={\faHospital{} 7. Real-Time Hardware Integration}]
+      Deployed on \textbf{Vertex BCI Processor v2} coupled with a 6-DOF robotic arm for motor restoration trials at Apex Health Institute:
+      
+      \vspace{6pt}
+      \begin{columns}[c]
+        \begin{column}{0.55\textwidth}
+          \begin{itemize}
+            \item \textbf{18 Clinical Subjects:} Tested on healthy and SCI individuals.
+            \item \textbf{Task Completion Rate:} \textbf{98.2\%} success in targeted reaching tasks.
+            \item \textbf{Safety \& Drift:} Zero safety faults over 120 hours of continuous trial run.
+          \end{itemize}
+        \end{column}
+        \begin{column}{0.42\textwidth}
+          \centering
+          \begin{tikzpicture}[scale=0.85]
+            \draw[fill=primary!10, draw=primary, thick, rounded corners=6pt] (0,0) rectangle (3.8,3.2);
+            \node[font=\scriptsize\bfseries, color=primary] at (1.9,2.8) {Latency Budget (16.8ms)};
+            
+            \draw[fill=accent, draw=accent] (0.4,1.8) rectangle (3.4,2.3);
+            \node[color=white, font=\tiny\bfseries] at (1.9,2.05) {Neural Acquisition (3.2ms)};
+            
+            \draw[fill=highlight, draw=highlight!80!black] (0.4,1.1) rectangle (3.4,1.6);
+            \node[color=primary, font=\tiny\bfseries] at (1.9,1.35) {Synapse-X Inference (8.4ms)};
+            
+            \draw[fill=secondary, draw=secondary] (0.4,0.4) rectangle (3.4,0.9);
+            \node[color=white, font=\tiny\bfseries] at (1.9,0.65) {CAN-Bus Actuation (5.2ms)};
+          \end{tikzpicture}
+        \end{column}
+      \end{columns}
+    \end{tcolorbox}
+
+    \vspace{10pt}
+
+    % Box 9: Conclusions & Future Work
+    \begin{tcolorbox}[accentbox, title={\faFlag{} 8. Conclusions \& Future Horizons}]
+      \begin{itemize}
+        \item \textbf{Synapse-X} establishes a new state-of-the-art benchmark for real-time non-invasive neural decoding.
+        \item Enables practical, low-latency prosthetic control without tedious participant-specific setup.
+        \item \textbf{Future Work:} Scaling to 1,024-channel ultra-dense sensor arrays and extending self-supervised pre-training to 10,000+ hours of continuous neural time-series data.
+      \end{itemize}
+    \end{tcolorbox}
+
+    \vspace{10pt}
+
+    % Box 10: References & Acknowledgments
+    \begin{tcolorbox}[posterbox, title={\faBook{} References \& Acknowledgments}]
+      \tiny
+      \begin{enumerate}
+        \item E. Rostova, M. Vance, et al., "Cross-Modal Latent Spaces for Neural Time-Series," \textit{Nature Machine Intelligence}, vol. 7, pp. 412--425, 2025.
+        \item D. Chen \& S. Jenkins, "Real-Time BCI Control via Conformer Architectures," \textit{IEEE Trans. Neural Syst. Rehabil. Eng.}, vol. 32, 2024.
+        \item M. Vance et al., "Zero-Shot Subject Adaptation in Non-Invasive Brain Signals," \textit{NeurIPS Proceedings}, 2025.
+      \end{enumerate}
+      
+      \vspace{4pt}
+      \hrule
+      \vspace{4pt}
+      \textbf{Acknowledgments:} This research was funded by Vertex AI Research Grant \#VX-2025-882 and Meridian Neuro-Technology Foundation. Fictional dataset provided by Synapse Open Brain Initiative.
+    \end{tcolorbox}
+
+  \end{column}
+
+\end{columns}
+
+\vspace{12pt}
+
+% ==============================================================================
+% BOTTOM FOOTER BANNER
+% ==============================================================================
+\begin{tcolorbox}[
+  enhanced,
+  colback=secondary,
+  colframe=secondary,
+  arc=0pt,
+  boxrule=0pt,
+  left=20pt, right=20pt, top=10pt, bottom=10pt
+]
+\begin{columns}[c]
+  \begin{column}{0.33\textwidth}
+    {\color{white}\small \faBuilding{} \textbf{Vertex Research Institute \& Synapse Bio-AI Labs}}
+  \end{column}
+  \begin{column}{0.33\textwidth}
+    \centering
+    {\color{highlight}\small \faCode{} Code \& Pretrained Models: \texttt{github.com/vertex-ai/synapse-x}}
+  \end{column}
+  \begin{column}{0.33\textwidth}
+    \raggedleft
+    {\color{white}\small NIBAS 2026 Presentation Poster \quad $\mid$ \quad Fictional Project Showcase}
+  \end{column}
+\end{columns}
+\end{tcolorbox}
+
+\end{frame}
+\end{document}

@@ -1,0 +1,8 @@
+{
+  "name": "Modern Freelance Invoice",
+  "compiler": "pdflatex",
+  "description": "Modern Freelance Invoice LaTeX template \u2014 freelance invoice latex template. Elegant, compile-tested, editable online at letx.app.",
+  "author": "LetX",
+  "category": "finance",
+  "license": "MIT"
+}

@@ -1,0 +1,330 @@
+\documentclass[11pt,a4paper,parskip=half]{scrartcl}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{geometry}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage[table]{xcolor}
+\usepackage{colortbl}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{enumitem}
+\usepackage{tikz}
+\usetikzlibrary{positioning,calc,shapes.geometric,backgrounds}
+\usepackage[most,breakable]{tcolorbox}
+\usepackage{fontawesome5}
+\usepackage{hyperref}
+\hypersetup{hidelinks}
+
+\geometry{a4paper,margin=1.9cm,top=1.8cm,bottom=2.0cm}
+
+% ---------- palette ----------
+\definecolor{stemteal}{HTML}{1B4B4A}
+\definecolor{stemamber}{HTML}{E8A33D}
+\definecolor{stemslate}{HTML}{4A5568}
+\definecolor{stembg}{HTML}{F4F7F6}
+
+\pagestyle{empty}
+
+% ---------- section rule ----------
+\newcommand{\plansection}[2]{%
+  \vspace{12pt}%
+  {\color{stemteal}\Large\bfseries #1\ \textcolor{stemamber}{\normalsize\faIcon{#2}}}\par
+  {\color{stemamber}\rule{\linewidth}{1.1pt}}\par
+  \vspace{4pt}%
+}
+
+% ---------- day box style ----------
+\tcbset{
+  daybox/.style={
+    enhanced, breakable,
+    colback=stembg, colframe=stemteal,
+    colbacktitle=stemteal, coltitle=white,
+    fonttitle=\bfseries\large,
+    boxrule=0.5pt, arc=1.5mm,
+    left=8pt, right=8pt, top=3pt, bottom=3pt,
+    attach boxed title to top left={yshift=-2mm,xshift=6mm},
+    boxed title style={colback=stemteal,arc=1mm,boxrule=0pt},
+    title filled
+  }
+}
+
+\newcommand{\dayline}[2]{%
+  \noindent\small\textcolor{stemteal}{\textbf{#1}}\quad\small #2\par\smallskip
+}
+
+\newcommand{\ckbox}{\textcolor{stemteal}{$\square$}}
+
+\begin{document}
+
+% ============================================================
+% TITLE BANNER
+% ============================================================
+\begin{tcolorbox}[
+  colback=stemteal, colframe=stemteal, coltext=white,
+  arc=2mm, boxrule=0pt, left=14pt, right=14pt, top=10pt, bottom=10pt
+]
+\centering
+\begin{tikzpicture}[scale=0.5,every node/.style={transform shape}]
+  \draw[white,thick] (0,0) ellipse ({1.3} and {0.5});
+  \draw[white,thick,rotate=60] (0,0) ellipse ({1.3} and {0.5});
+  \draw[white,thick,rotate=120] (0,0) ellipse ({1.3} and {0.5});
+  \fill[stemamber] (0,0) circle (0.16);
+\end{tikzpicture}\par
+{\small\color{stemamber}\bfseries\MakeUppercase{Weekly Lesson Plan}}\par
+\vspace{2pt}
+{\huge\bfseries Renewable Energy \& Simple Circuits}\par
+\vspace{6pt}
+{\small
+\faIcon{chalkboard-teacher}\ Ms.\ Rachel Kim
+\quad\textcolor{stemamber}{\textbullet}\quad
+\faIcon{graduation-cap}\ Grade 6 --- Science / STEM
+\quad\textcolor{stemamber}{\textbullet}\quad
+\faCalendar\ Week of October 12--16, 2026
+\quad\textcolor{stemamber}{\textbullet}\quad
+\faIcon{users}\ Meridian STEM Academy
+}
+\end{tcolorbox}
+
+% ============================================================
+% WEEKLY OVERVIEW
+% ============================================================
+\plansection{Weekly Overview}{lightbulb}
+
+\noindent
+\begin{minipage}[t]{0.48\textwidth}
+\textbf{\color{stemslate}Essential Question}\par
+\small How can engineers design a device that converts a renewable energy source into usable electrical energy to solve a real-world problem?
+\vspace{8pt}
+
+\textbf{\color{stemslate}Learning Targets --- I can\ldots}
+\begin{itemize}[leftmargin=14pt,itemsep=2pt,topsep=4pt]
+  \small
+  \item explain how energy transforms from one form to another within a circuit
+  \item distinguish renewable from nonrenewable sources and evaluate trade-offs
+  \item apply the engineering design process to build and test a working prototype
+  \item construct and troubleshoot a simple series circuit
+  \item communicate design decisions using labeled diagrams and test data
+\end{itemize}
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.48\textwidth}
+\textbf{\color{stemslate}Standards Alignment}
+\begin{itemize}[leftmargin=14pt,itemsep=2pt,topsep=4pt]
+  \small
+  \item[] \textbf{MS-PS3-3} --- design, construct, and test a device that transfers energy
+  \item[] \textbf{MS-ETS1-1} --- define criteria and constraints of a design problem
+  \item[] \textbf{MS-ETS1-2} --- evaluate competing design solutions
+  \item[] \textbf{MS-ETS1-4} --- develop a model to generate data for iterative testing
+  \item[] \textbf{CCSS.ELA WHST.6-8.7} --- conduct a short, focused research task
+\end{itemize}
+\vspace{4pt}
+\textbf{\color{stemslate}Cross-Curricular Links}\par
+\small Math (energy-cost ratios) \textbullet\ ELA (engineering logs) \textbullet\ Social Studies (energy policy)
+\end{minipage}
+\par
+
+% ============================================================
+% MATERIALS CHECKLIST
+% ============================================================
+\plansection{Materials \& Setup Checklist}{list-ul}
+
+\noindent
+\begin{minipage}[t]{0.48\textwidth}
+\textbf{\color{stemslate}\faIcon{tools}\ Equipment \& Tools}
+\begin{itemize}[label=\ckbox,leftmargin=16pt,itemsep=3pt,topsep=4pt]
+  \small
+  \item D-cell batteries \& holders (1 per group of 3)
+  \item Insulated copper wire, pre-stripped, 15\,cm lengths
+  \item Miniature bulbs and sockets, or LEDs with resistors
+  \item Small DC motors with mini fan blades
+  \item Multimeters (class set of 6)
+  \item Alligator-clip test leads
+\end{itemize}
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.48\textwidth}
+\textbf{\color{stemslate}\faIcon{file}\ Consumables \& Printables}
+\begin{itemize}[label=\ckbox,leftmargin=16pt,itemsep=3pt,topsep=4pt]
+  \small
+  \item Engineering Design Log packets (1 per student)
+  \item Renewable Energy Source sorting cards
+  \item Circuit diagram worksheets
+  \item Friday showcase rubric handout
+  \item Recycled-materials bin (cardboard, caps, foil)
+  \item Safety glasses (class set)
+\end{itemize}
+\end{minipage}
+\par
+
+% ============================================================
+% DAILY LESSON PLANS
+% ============================================================
+\plansection{Daily Lesson Plans}{calendar}
+
+\begin{tcolorbox}[daybox,title={Monday --- Energy Forms \& Transfer (Intro)}]
+\dayline{Objective:}{Students will explain how energy changes form as it moves through a system, using a circuit as a concrete example.}
+\dayline{Standards:}{MS-PS3-3}
+\dayline{Warm-Up (5 min):}{``Energy Scavenger Hunt'' --- identify three examples of energy transformation happening in the classroom right now.}
+\dayline{Direct Instruction (15 min):}{Mini-lecture on potential vs.\ kinetic vs.\ electrical energy; teacher demo of a hand-crank generator lighting an LED.}
+\dayline{Hands-On Activity (25 min):}{Station rotation --- students test four pre-built circuits (open, closed, short, with resistor) and record observations in the Engineering Log.}
+\dayline{Materials:}{Hand-crank generator, four pre-built circuit stations, Engineering Log packets.}
+\dayline{Exit Ticket:}{One sentence explaining where the energy ``went'' in the crank-to-light demo.}
+\dayline{Differentiation:}{Sentence starters provided for the exit ticket; advanced students estimate energy lost as heat.}
+\end{tcolorbox}
+
+\vspace{4pt}
+\begin{tcolorbox}[daybox,title={Tuesday --- Renewable vs.\ Nonrenewable Sources}]
+\dayline{Objective:}{Students will compare renewable and nonrenewable energy sources and evaluate trade-offs using evidence.}
+\dayline{Standards:}{MS-PS3-3, MS-ETS1-1}
+\dayline{Warm-Up:}{Quick-write: ``Name one energy source your home uses. Where do you think it comes from?''}
+\dayline{Direct Instruction:}{Card sort --- solar, wind, hydro, geothermal, biomass vs.\ coal, natural gas, oil; class builds a T-chart of trade-offs (cost, availability, emissions).}
+\dayline{Hands-On Activity:}{Small groups research one renewable source with provided fact sheets and complete a trade-off comparison table.}
+\dayline{Materials:}{Sorting cards, fact sheets, comparison-table handout.}
+\dayline{Exit Ticket:}{Rank three energy sources by ``best fit'' for a fictional coastal town, with one reason each.}
+\dayline{Differentiation:}{Fact sheets available in simplified-text and extended-detail versions; glossary of key terms for multilingual learners.}
+\end{tcolorbox}
+
+\vspace{4pt}
+\begin{tcolorbox}[daybox,title={Wednesday --- Engineering Design Challenge Launch}]
+\dayline{Objective:}{Students will define criteria and constraints for a renewable-energy device and generate initial design sketches.}
+\dayline{Standards:}{MS-ETS1-1}
+\dayline{Warm-Up:}{Review the Engineering Design Process poster; pairs sequence the six steps from memory.}
+\dayline{Direct Instruction:}{Introduce the design brief: build a device that uses a renewable source to power a small light or motor for a model streetlight, using only approved materials.}
+\dayline{Hands-On Activity:}{Teams draft a criteria-and-constraints list, then sketch two competing design concepts with labeled parts.}
+\dayline{Materials:}{Design brief handout, recycled-materials bin (preview only), rulers, colored pencils.}
+\dayline{Exit Ticket:}{Team submits one sketch with a one-sentence justification for their leading concept.}
+\dayline{Differentiation:}{Sentence frames for the justification; enrichment groups add a cost/budget constraint to their design.}
+\end{tcolorbox}
+
+\vspace{4pt}
+\begin{tcolorbox}[daybox,title={Thursday --- Build \& Test Prototypes}]
+\dayline{Objective:}{Students will construct a working prototype circuit and collect performance data through iterative testing.}
+\dayline{Standards:}{MS-ETS1-2, MS-ETS1-4}
+\dayline{Warm-Up:}{Safety briefing and materials distribution; review multimeter use.}
+\dayline{Direct Instruction:}{Quick demo measuring voltage and current with a multimeter; troubleshooting checklist (loose connection, dead battery, short).}
+\dayline{Hands-On Activity:}{Teams build their prototype, run three test trials, and log voltage/brightness or motor-speed data on the Prototype Testing Data Sheet.}
+\dayline{Materials:}{Batteries, wire, bulbs/motors, multimeters, alligator clips, recycled housing materials.}
+\dayline{Exit Ticket:}{One documented failure and the fix the team applied.}
+\dayline{Differentiation:}{Pre-wired starter circuits for students needing scaffolding; enrichment teams add a switch or a second load in series or parallel.}
+\end{tcolorbox}
+
+\vspace{4pt}
+\begin{tcolorbox}[daybox,title={Friday --- Showcase, Testing \& Reflection}]
+\dayline{Objective:}{Students will present their device, justify design decisions with test data, and reflect on the engineering process.}
+\dayline{Standards:}{MS-ETS1-2, MS-ETS1-4}
+\dayline{Warm-Up:}{Final ten-minute build/repair window.}
+\dayline{Direct Instruction:}{Mini-lesson on giving effective peer feedback (specific, kind, useful).}
+\dayline{Hands-On Activity:}{Gallery-walk showcase --- teams display devices and data sheets; peers leave written feedback using the rubric; teacher circulates for spot-checks.}
+\dayline{Materials:}{Rubric handouts, completed prototypes, Engineering Log packets, sticky notes.}
+\dayline{Exit Ticket / Assessment:}{Individual written reflection --- one thing that worked, one thing to redesign, one connection to real-world renewable energy.}
+\dayline{Differentiation:}{Reflection may be typed, handwritten, or dictated to a partner or scribe for students with IEP accommodations.}
+\end{tcolorbox}
+
+% ============================================================
+% ASSESSMENT SUMMARY
+% ============================================================
+\plansection{Assessment Summary}{clipboard}
+
+\begin{tabularx}{\textwidth}{@{}>{\bfseries\color{stemteal}}l l X X@{}}
+\toprule
+\rowcolor{stemteal!12}
+\textbf{Day} & \textbf{Standard Focus} & \textbf{Formative Check} & \textbf{Summative / Culminating} \\
+\midrule
+Monday & MS-PS3-3 & Exit slip: energy-transfer diagram & -- \\
+Tuesday & MS-PS3-3, MS-ETS1-1 & Trade-off comparison table review & -- \\
+Wednesday & MS-ETS1-1 & Design sketch + justification check & -- \\
+Thursday & MS-ETS1-2, MS-ETS1-4 & Prototype testing data sheet & -- \\
+Friday & MS-ETS1-2, MS-ETS1-4 & Gallery-walk peer feedback & Renewable Energy Device showcase + rubric \\
+\bottomrule
+\end{tabularx}
+
+% ============================================================
+% DIFFERENTIATION
+% ============================================================
+\plansection{Differentiation \& Support}{users}
+
+\noindent
+\begin{minipage}[t]{0.32\textwidth}
+\begin{tcolorbox}[colback=stembg,colframe=stemteal,arc=1mm,boxrule=0.4pt,title=Support / Intervention,coltitle=white,colbacktitle=stemslate,fonttitle=\small\bfseries,left=5pt,right=5pt,top=4pt,bottom=4pt]
+\small
+\begin{itemize}[leftmargin=12pt,itemsep=2pt,topsep=2pt]
+  \item Pre-wired starter circuits
+  \item Simplified-text fact sheets
+  \item Sentence frames for exit tickets
+  \item Extended time on Friday reflection
+  \item Visual step-by-step build cards
+\end{itemize}
+\end{tcolorbox}
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.32\textwidth}
+\begin{tcolorbox}[colback=stembg,colframe=stemteal,arc=1mm,boxrule=0.4pt,title=On-Level,coltitle=white,colbacktitle=stemteal,fonttitle=\small\bfseries,left=5pt,right=5pt,top=4pt,bottom=4pt]
+\small
+\begin{itemize}[leftmargin=12pt,itemsep=2pt,topsep=2pt]
+  \item Standard design brief \& materials list
+  \item Mixed-readiness triads for collaboration
+  \item Checklist-guided testing protocol
+  \item Standard rubric expectations
+\end{itemize}
+\end{tcolorbox}
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.32\textwidth}
+\begin{tcolorbox}[colback=stembg,colframe=stemamber,arc=1mm,boxrule=0.4pt,title=Enrichment,coltitle=white,colbacktitle=stemamber,fonttitle=\small\bfseries,left=5pt,right=5pt,top=4pt,bottom=4pt]
+\small
+\begin{itemize}[leftmargin=12pt,itemsep=2pt,topsep=2pt]
+  \item Added budget/cost constraint
+  \item Series-vs-parallel circuit comparison
+  \item Optional brief on a local renewable project
+  \item Mentor role during gallery walk
+\end{itemize}
+\end{tcolorbox}
+\end{minipage}
+\par
+
+% ============================================================
+% HOMEWORK
+% ============================================================
+\plansection{Homework \& Extension}{book}
+
+\begin{itemize}[leftmargin=16pt,itemsep=3pt]
+  \small
+  \item Interview a family member about one energy-saving habit at home; bring two sentences to share Monday.
+  \item Optional: sketch an alternate streetlight design using a different renewable source.
+  \item Extension reading: one-page article on community solar programs (provided).
+\end{itemize}
+
+% ============================================================
+% TEACHER REFLECTION
+% ============================================================
+\plansection{Teacher Reflection --- End of Week}{pen}
+
+\noindent
+\ckbox\ Objectives met for all groups\qquad
+\ckbox\ Materials were sufficient\qquad
+\ckbox\ Pacing stayed on target
+\vspace{6pt}
+
+\textbf{\color{stemslate}What worked well this week:}\par
+\rule{\textwidth}{0.4pt}\par
+\vspace{4pt}\rule{\textwidth}{0.4pt}
+\vspace{8pt}
+
+\textbf{\color{stemslate}What I would change next time:}\par
+\rule{\textwidth}{0.4pt}\par
+\vspace{4pt}\rule{\textwidth}{0.4pt}
+\vspace{8pt}
+
+\textbf{\color{stemslate}Notes for next year's Renewable Energy unit:}\par
+\rule{\textwidth}{0.4pt}\par
+\vspace{4pt}\rule{\textwidth}{0.4pt}
+
+\vspace{16pt}
+\noindent{\small\color{stemslate}Meridian STEM Academy \textbullet\ Grade 6 Science / STEM \textbullet\ Ms. Rachel Kim}
+
+\end{document}

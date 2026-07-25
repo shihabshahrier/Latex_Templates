@@ -1,0 +1,338 @@
+\documentclass[11pt,a4paper]{scrartcl}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=2.1cm,top=2.3cm,bottom=2.4cm]{geometry}
+\usepackage[table]{xcolor}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{enumitem}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{tikz}
+\usepackage[skins,breakable]{tcolorbox}
+\usepackage{fontawesome5}
+\usepackage[headsepline]{scrlayer-scrpage}
+\usepackage{parskip}
+
+\definecolor{inkblue}{RGB}{26,42,68}
+\definecolor{gold}{RGB}{184,138,60}
+\definecolor{slate}{RGB}{102,114,130}
+\definecolor{paper}{RGB}{250,248,242}
+
+\setkomafont{disposition}{\normalfont\sffamily\bfseries\color{inkblue}}
+\setkomafont{section}{\normalfont\sffamily\bfseries\Large\color{inkblue}}
+\setkomafont{subsection}{\normalfont\sffamily\bfseries\large\color{inkblue}}
+
+\pagestyle{scrheadings}
+\clearpairofpagestyles
+\ohead{\small\sffamily\color{slate} ENGL 340 --- Grading Rubric}
+\ihead{\small\sffamily\color{slate} Meridian University}
+\ofoot{\small\sffamily\color{slate} Page \pagemark}
+\ifoot{\small\sffamily\color{slate} Department of English}
+
+\setlength{\parindent}{0pt}
+\renewcommand{\arraystretch}{1.3}
+
+\newcommand{\levelpill}[2]{%
+  {\small\sffamily\bfseries\color{white}\colorbox{#1}{\strut\,#2\,}}%
+}
+
+\begin{document}
+
+\begin{tcolorbox}[colback=inkblue,colframe=inkblue,arc=0pt,boxrule=0pt,left=16pt,right=16pt,top=11pt,bottom=11pt]
+{\color{white}\sffamily\bfseries\LARGE Rubric \& Assignment Grading Matrix}\\[3pt]
+{\color{gold}\sffamily\bfseries\large ENGL 340 --- The Modern Novel: Narrative Form and Ideology}\\[5pt]
+{\color{white}\sffamily\small Meridian University \ \textbullet\ \ Department of English \ \textbullet\ \ Fall Semester}
+\end{tcolorbox}
+
+\vspace{4mm}
+
+\noindent
+\begin{minipage}[t]{0.48\linewidth}
+\begin{tcolorbox}[colback=paper,colframe=inkblue,boxrule=0.7pt,arc=2pt,
+  title={\faFile\ \ Assignment Details},coltitle=white,colbacktitle=inkblue,
+  fonttitle=\sffamily\bfseries\small,left=9pt,right=9pt,top=5pt,bottom=5pt]
+\small
+\textbf{Assignment:} Critical Analysis Essay\\
+\textbf{Prompt:} Narrative Unreliability in 20th-Century Fiction\\
+\textbf{Length:} 2{,}000--2{,}500 words\\
+\textbf{Format:} MLA 9th ed., double-spaced\\
+\textbf{Weight:} 25\% of final course grade\\
+\textbf{Due:} Friday, October 30, 2026, 11:59\,pm
+\end{tcolorbox}
+\end{minipage}\hfill%
+\begin{minipage}[t]{0.48\linewidth}
+\begin{tcolorbox}[colback=paper,colframe=inkblue,boxrule=0.7pt,arc=2pt,
+  title={\faUser\ \ Student \& Submission},coltitle=white,colbacktitle=inkblue,
+  fonttitle=\sffamily\bfseries\small,left=9pt,right=9pt,top=5pt,bottom=5pt]
+\small
+\textbf{Student:} Marcus Whitfield\\
+\textbf{Student ID:} MU-2029-0417\\
+\textbf{Section:} 340-02, T/Th 2:00\,pm\\
+\textbf{Instructor:} Dr.\ Elena Voss\\
+\textbf{Submitted:} October 30, 2026\\
+\textbf{Graded:} November 6, 2026
+\end{tcolorbox}
+\end{minipage}
+\par
+
+\vspace{4mm}
+
+\section*{Grading Scale}
+\begin{tcolorbox}[colback=white,colframe=slate!60,boxrule=0.5pt,arc=2pt,left=9pt,right=9pt,top=6pt,bottom=6pt]
+\small
+\begin{tabularx}{\linewidth}{@{}l c X@{}}
+\rowcolor{inkblue}
+\color{white}\bfseries Level & \color{white}\bfseries Points & \color{white}\bfseries Descriptor \\
+Excellent & 4 & Sophisticated, original work that exceeds expectations in every dimension of the criterion. \\
+\rowcolor{paper}
+Proficient & 3 & Solid, competent work that meets all core expectations of the criterion. \\
+Developing & 2 & Adequate work with noticeable gaps in execution, depth, or consistency. \\
+\rowcolor{paper}
+Beginning & 1 & Significant revision required; core requirements of the criterion are largely unmet. \\
+\end{tabularx}
+\end{tcolorbox}
+
+\vspace{5mm}
+
+\section*{Criterion Weighting}
+\small\color{slate} Relative weight of each criterion toward the 100-point total for this assignment.\par
+\vspace{2mm}
+\begin{center}
+\begin{tikzpicture}
+\def\bx{0}
+\def\by{0}
+\def\bh{0.9}
+\fill[inkblue]      (\bx,\by) rectangle ++(2.80,\bh);
+\fill[gold]         (2.80,\by) rectangle ++(2.80,\bh);
+\fill[slate]        (5.60,\by) rectangle ++(3.50,\bh);
+\fill[inkblue!55]   (9.10,\by) rectangle ++(2.10,\bh);
+\fill[gold!55]      (11.20,\by) rectangle ++(1.40,\bh);
+\fill[slate!55]     (12.60,\by) rectangle ++(1.40,\bh);
+\draw[white,line width=0.8pt] (2.80,\by) -- ++(0,\bh);
+\draw[white,line width=0.8pt] (5.60,\by) -- ++(0,\bh);
+\draw[white,line width=0.8pt] (9.10,\by) -- ++(0,\bh);
+\draw[white,line width=0.8pt] (11.20,\by) -- ++(0,\bh);
+\draw[white,line width=0.8pt] (12.60,\by) -- ++(0,\bh);
+\node[white,font=\bfseries\small] at (1.40,0.45) {20\%};
+\node[white,font=\bfseries\small] at (4.20,0.45) {20\%};
+\node[white,font=\bfseries\small] at (7.35,0.45) {25\%};
+\node[white,font=\bfseries\small] at (10.15,0.45) {15\%};
+\node[inkblue,font=\bfseries\small] at (11.90,0.45) {10\%};
+\node[white,font=\bfseries\small] at (13.30,0.45) {10\%};
+\draw[slate!40] (\bx,\by) rectangle (14.00,\bh);
+\end{tikzpicture}
+\end{center}
+\vspace{1mm}
+\begin{center}
+\small\sffamily
+\tikz[baseline=-0.5ex]\fill[inkblue] (0,0) rectangle (0.28,0.28); \ Thesis \& Argument (20\%) \quad
+\tikz[baseline=-0.5ex]\fill[gold] (0,0) rectangle (0.28,0.28); \ Evidence \& Textual Support (20\%) \quad
+\tikz[baseline=-0.5ex]\fill[slate] (0,0) rectangle (0.28,0.28); \ Analysis \& Critical Thinking (25\%)\\[2mm]
+\tikz[baseline=-0.5ex]\fill[inkblue!55] (0,0) rectangle (0.28,0.28); \ Organization \& Structure (15\%) \quad
+\tikz[baseline=-0.5ex]\fill[gold!55] (0,0) rectangle (0.28,0.28); \ Style, Voice \& Mechanics (10\%) \quad
+\tikz[baseline=-0.5ex]\fill[slate!55] (0,0) rectangle (0.28,0.28); \ Citation \& Formatting -- MLA (10\%)
+\end{center}
+
+\clearpage
+
+\section*{Grading Matrix --- Overview}
+\small\color{slate} Quick-reference summary; full descriptors for each criterion follow below.\par
+\vspace{2mm}
+\begin{footnotesize}
+\begin{tabularx}{\linewidth}{@{}p{2.3cm} c X X X X@{}}
+\rowcolor{inkblue}
+\color{white}\bfseries Criterion & \color{white}\bfseries Wt. & \color{white}\bfseries Excellent (4) & \color{white}\bfseries Proficient (3) & \color{white}\bfseries Developing (2) & \color{white}\bfseries Beginning (1) \\
+Thesis \& Argument & 20\% & Original, precise, argument-driving thesis & Clear, arguable thesis shapes the essay & Vague or overly descriptive thesis & Thesis absent or restates the prompt \\
+\rowcolor{paper}
+Evidence \& Textual Support & 20\% & Abundant evidence, seamlessly integrated & Sufficient, relevant evidence, competent use & Thin or generic supporting evidence & Claims unsupported; evidence misquoted \\
+Analysis \& Critical Thinking & 25\% & Interprets form; anticipates counterarguments & Interprets rather than merely describes & Leans on summary over interpretation & Little analysis; mostly plot recounting \\
+\rowcolor{paper}
+Organization \& Structure & 15\% & Purposeful, cumulative, sustained argument & Logical order, clear transitions & Formulaic or occasionally disjointed & No discernible structure \\
+Style, Voice \& Mechanics & 10\% & Precise, varied prose, virtually error-free & Clear, correct, occasional lapses & Frequent errors interfere with clarity & Pervasive errors impede readability \\
+\rowcolor{paper}
+Citation \& Formatting (MLA) & 10\% & Consistently accurate MLA\,9 citations & Mostly correct, minor inconsistencies & Inconsistent or incomplete citations & Citations absent or malformed \\
+\end{tabularx}
+\end{footnotesize}
+
+\vspace{6mm}
+
+\section*{Detailed Criteria}
+
+\begin{tcolorbox}[enhanced,breakable,colback=white,colframe=inkblue,boxrule=0.6pt,arc=2pt,
+  title={1.\ \ Thesis \& Argument \hfill Weight: 20\%},coltitle=white,colbacktitle=inkblue,
+  fonttitle=\sffamily\bfseries\small,left=9pt,right=9pt,top=6pt,bottom=6pt]
+\small
+\begin{tabularx}{\linewidth}{@{}l c X@{}}
+\levelpill{inkblue}{Excellent} & 4 & The thesis is precise, arguable, and advances a genuinely original reading of narrative unreliability; every paragraph visibly serves it. \\
+\levelpill{gold}{Proficient} & 3 & The thesis is clear and arguable and shapes the essay's direction, though its originality or precision could be sharpened. \\
+\levelpill{slate}{Developing} & 2 & The thesis is present but vague, overly broad, or descriptive rather than argumentative; its connection to body paragraphs is inconsistent. \\
+\levelpill{slate!70}{Beginning} & 1 & The thesis is missing, merely restates the prompt, or cannot be located within the essay. \\
+\end{tabularx}
+\vspace{2mm}
+\textbf{\small Points Awarded:} \makebox[1.4cm]{\dotfill} / 4 \hfill \textbf{\small Comments:} \makebox[6cm]{\dotfill}
+\end{tcolorbox}
+
+\vspace{4mm}
+
+\begin{tcolorbox}[enhanced,breakable,colback=white,colframe=inkblue,boxrule=0.6pt,arc=2pt,
+  title={2.\ \ Evidence \& Textual Support \hfill Weight: 20\%},coltitle=white,colbacktitle=inkblue,
+  fonttitle=\sffamily\bfseries\small,left=9pt,right=9pt,top=6pt,bottom=6pt]
+\small
+\begin{tabularx}{\linewidth}{@{}l c X@{}}
+\levelpill{inkblue}{Excellent} & 4 & Textual evidence is abundant, precisely chosen, and integrated seamlessly; quotations are never left to ``speak for themselves.'' \\
+\levelpill{gold}{Proficient} & 3 & Sufficient, relevant evidence supports each claim; integration is competent with occasional over-reliance on summary. \\
+\levelpill{slate}{Developing} & 2 & Evidence is thin, generic, or drawn from secondary summary rather than close reading of the primary text. \\
+\levelpill{slate!70}{Beginning} & 1 & Claims are largely unsupported, or evidence is misquoted, irrelevant, or absent. \\
+\end{tabularx}
+\vspace{2mm}
+\textbf{\small Points Awarded:} \makebox[1.4cm]{\dotfill} / 4 \hfill \textbf{\small Comments:} \makebox[6cm]{\dotfill}
+\end{tcolorbox}
+
+\vspace{4mm}
+
+\begin{tcolorbox}[enhanced,breakable,colback=white,colframe=inkblue,boxrule=0.6pt,arc=2pt,
+  title={3.\ \ Analysis \& Critical Thinking \hfill Weight: 25\%},coltitle=white,colbacktitle=inkblue,
+  fonttitle=\sffamily\bfseries\small,left=9pt,right=9pt,top=6pt,bottom=6pt]
+\small
+\begin{tabularx}{\linewidth}{@{}l c X@{}}
+\levelpill{inkblue}{Excellent} & 4 & Analysis moves well beyond plot summary to interpret form, technique, and ideology; counterarguments are anticipated and addressed. \\
+\levelpill{gold}{Proficient} & 3 & Analysis interprets rather than merely describes the text, with reasonable engagement of complexity and nuance. \\
+\levelpill{slate}{Developing} & 2 & Analysis leans heavily on summary or paraphrase; interpretive claims are asserted rather than demonstrated. \\
+\levelpill{slate!70}{Beginning} & 1 & Little to no analysis is present; the essay is primarily a recounting of plot events. \\
+\end{tabularx}
+\vspace{2mm}
+\textbf{\small Points Awarded:} \makebox[1.4cm]{\dotfill} / 4 \hfill \textbf{\small Comments:} \makebox[6cm]{\dotfill}
+\end{tcolorbox}
+
+\clearpage
+
+\begin{tcolorbox}[enhanced,breakable,colback=white,colframe=inkblue,boxrule=0.6pt,arc=2pt,
+  title={4.\ \ Organization \& Structure \hfill Weight: 15\%},coltitle=white,colbacktitle=inkblue,
+  fonttitle=\sffamily\bfseries\small,left=9pt,right=9pt,top=6pt,bottom=6pt]
+\small
+\begin{tabularx}{\linewidth}{@{}l c X@{}}
+\levelpill{inkblue}{Excellent} & 4 & Structure is purposeful and cumulative; transitions build a sustained argument from introduction through conclusion. \\
+\levelpill{gold}{Proficient} & 3 & Paragraphs are logically ordered with clear topic sentences and generally effective transitions. \\
+\levelpill{slate}{Developing} & 2 & Organization is present but formulaic or occasionally disjointed; some paragraphs lack a clear focus. \\
+\levelpill{slate!70}{Beginning} & 1 & The essay lacks discernible structure; ideas appear disconnected or randomly sequenced. \\
+\end{tabularx}
+\vspace{2mm}
+\textbf{\small Points Awarded:} \makebox[1.4cm]{\dotfill} / 4 \hfill \textbf{\small Comments:} \makebox[6cm]{\dotfill}
+\end{tcolorbox}
+
+\vspace{4mm}
+
+\begin{tcolorbox}[enhanced,breakable,colback=white,colframe=inkblue,boxrule=0.6pt,arc=2pt,
+  title={5.\ \ Style, Voice \& Mechanics \hfill Weight: 10\%},coltitle=white,colbacktitle=inkblue,
+  fonttitle=\sffamily\bfseries\small,left=9pt,right=9pt,top=6pt,bottom=6pt]
+\small
+\begin{tabularx}{\linewidth}{@{}l c X@{}}
+\levelpill{inkblue}{Excellent} & 4 & Prose is precise, varied, and confident; the essay is virtually free of grammatical or mechanical error. \\
+\levelpill{gold}{Proficient} & 3 & Prose is clear and correct with occasional lapses in word choice, syntax, or proofreading. \\
+\levelpill{slate}{Developing} & 2 & Frequent mechanical errors or awkward phrasing interfere with clarity in places. \\
+\levelpill{slate!70}{Beginning} & 1 & Pervasive errors substantially impede readability. \\
+\end{tabularx}
+\vspace{2mm}
+\textbf{\small Points Awarded:} \makebox[1.4cm]{\dotfill} / 4 \hfill \textbf{\small Comments:} \makebox[6cm]{\dotfill}
+\end{tcolorbox}
+
+\vspace{4mm}
+
+\begin{tcolorbox}[enhanced,breakable,colback=white,colframe=inkblue,boxrule=0.6pt,arc=2pt,
+  title={6.\ \ Citation \& Formatting (MLA) \hfill Weight: 10\%},coltitle=white,colbacktitle=inkblue,
+  fonttitle=\sffamily\bfseries\small,left=9pt,right=9pt,top=6pt,bottom=6pt]
+\small
+\begin{tabularx}{\linewidth}{@{}l c X@{}}
+\levelpill{inkblue}{Excellent} & 4 & Citations are consistently accurate in MLA\,9 format; the Works Cited page is complete and correctly formatted. \\
+\levelpill{gold}{Proficient} & 3 & Citations are mostly correct with minor formatting inconsistencies; Works Cited is present and largely accurate. \\
+\levelpill{slate}{Developing} & 2 & Citation format is inconsistent or incomplete; several entries are missing or malformed. \\
+\levelpill{slate!70}{Beginning} & 1 & Citations are absent or in the wrong format; no Works Cited page is included. \\
+\end{tabularx}
+\vspace{2mm}
+\textbf{\small Points Awarded:} \makebox[1.4cm]{\dotfill} / 4 \hfill \textbf{\small Comments:} \makebox[6cm]{\dotfill}
+\end{tcolorbox}
+
+\clearpage
+
+\section*{Score Summary}
+\small
+\begin{tabularx}{\linewidth}{@{}X c c c c@{}}
+\rowcolor{inkblue}
+\color{white}\bfseries Criterion & \color{white}\bfseries Weight & \color{white}\bfseries Level Achieved & \color{white}\bfseries Points /4 & \color{white}\bfseries Weighted Score \\
+Thesis \& Argument & 20\% & Proficient & 3 & 15.00 \\
+\rowcolor{paper}
+Evidence \& Textual Support & 20\% & Excellent & 4 & 20.00 \\
+Analysis \& Critical Thinking & 25\% & Proficient & 3 & 18.75 \\
+\rowcolor{paper}
+Organization \& Structure & 15\% & Proficient & 3 & 11.25 \\
+Style, Voice \& Mechanics & 10\% & Developing & 2 & 5.00 \\
+\rowcolor{paper}
+Citation \& Formatting (MLA) & 10\% & Excellent & 4 & 10.00 \\
+\midrule
+\rowcolor{gold!25}
+\multicolumn{4}{r}{\bfseries Total Score (out of 100)} & \bfseries 80.00 \\
+\end{tabularx}
+
+\vspace{7mm}
+
+\noindent
+\begin{minipage}[t]{0.42\linewidth}
+\begin{center}
+\begin{tikzpicture}
+\draw[line width=10pt, line cap=round, slate!25] (0,0) arc (180:0:2.1cm);
+\draw[line width=10pt, line cap=round, gold] (0,0) arc (180:36:2.1cm);
+\node[font=\bfseries\Large,color=inkblue] at (2.1,1.0) {80/100};
+\node[font=\sffamily\small,color=slate] at (2.1,0.35) {Final Weighted Score};
+\end{tikzpicture}
+\end{center}
+\end{minipage}\hfill%
+\begin{minipage}[t]{0.54\linewidth}
+\begin{tcolorbox}[colback=paper,colframe=inkblue,boxrule=0.7pt,arc=2pt,
+  title={\faPercent\ \ Grade Conversion},coltitle=white,colbacktitle=inkblue,
+  fonttitle=\sffamily\bfseries\small,left=9pt,right=9pt,top=5pt,bottom=5pt]
+\small
+\begin{tabularx}{\linewidth}{@{}c c X@{}}
+\bfseries Grade & \bfseries Range & \bfseries Description \\
+\midrule
+A & 90--100 & Excellent, exemplary work \\
+\rowcolor{white}
+B & 80--89 & Strong, above-average work \\
+C & 70--79 & Satisfactory, competent work \\
+\rowcolor{white}
+D & 60--69 & Marginal, below expectations \\
+F & 0--59 & Unsatisfactory, does not meet requirements \\
+\end{tabularx}
+\end{tcolorbox}
+\end{minipage}
+\par
+
+\vspace{6mm}
+
+\section*{Instructor Comments}
+\begin{tcolorbox}[colback=white,colframe=slate!60,boxrule=0.5pt,arc=2pt,left=10pt,right=10pt,top=8pt,bottom=8pt]
+\small
+Marcus, this is a confident and well-researched essay. Your reading of the governess's testimony
+is genuinely persuasive, and the evidence you draw from the frame narrative is exactly the kind of
+close attention this assignment rewards --- section 2 is the strongest part of the paper.
+
+The thesis in your introduction is clear, but by the third body paragraph the argument has drifted
+toward a related claim about narrative reliability in general rather than the specific mechanism you
+opened with; tightening that thread would move Criterion~1 from Proficient to Excellent.
+
+Watch comma splices in your topic sentences (paragraphs 4 and 6) and double-check in-text citation
+placement relative to closing punctuation per MLA\,9. Overall: a strong essay with a clear path to an
+A-range revision. Office hours are open Tuesdays 1--3\,pm if you would like to talk through the
+introduction before the portfolio deadline.\\[4mm]
+\textbf{Instructor Signature:} \makebox[4.5cm]{\dotfill} \hfill \textbf{Date:} \makebox[3cm]{\dotfill}
+\end{tcolorbox}
+
+\vfill
+\begin{center}
+\small\color{slate} Meridian University \ \textbullet\ \ Department of English \ \textbullet\ \ ENGL 340 Grading Rubric, Rev.\ Fall 2026
+\end{center}
+
+\end{document}

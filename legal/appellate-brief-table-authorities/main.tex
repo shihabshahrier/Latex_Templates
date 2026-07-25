@@ -1,0 +1,658 @@
+\documentclass[12pt]{article}
+
+% ─── Core packages ────────────────────────────────────────────────────────────
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage[margin=1in, top=1.1in, bottom=1.1in, headheight=28pt]{geometry}
+
+% ─── Colour ───────────────────────────────────────────────────────────────────
+\usepackage[table]{xcolor}
+\definecolor{NavyDeep}{HTML}{0D1B3E}
+\definecolor{GoldAccent}{HTML}{B08D3C}
+\definecolor{SlateGrey}{HTML}{4A5568}
+\definecolor{IvoryBg}{HTML}{F7F5F0}
+
+% ─── Typography ───────────────────────────────────────────────────────────────
+\usepackage{mathptmx}
+\usepackage{setspace}
+\usepackage{parskip}
+
+% ─── Layout & design ──────────────────────────────────────────────────────────
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{titletoc}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{longtable}
+\usepackage{multirow}
+\usepackage{colortbl}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{lastpage}
+
+% ─── TColorBox & TikZ ─────────────────────────────────────────────────────────
+\usepackage{tikz}
+\usetikzlibrary{positioning,calc,shapes.geometric,backgrounds,patterns}
+\usepackage[most]{tcolorbox}
+
+% ─── Hyperref (load last) ─────────────────────────────────────────────────────
+\usepackage[hidelinks, pdftitle={Brief of Appellant}, pdfauthor={Hartwell \& Mercer LLP}]{hyperref}
+
+% ─────────────────────────────────────────────────────────────────────────────
+%  SECTION FORMATTING
+% ─────────────────────────────────────────────────────────────────────────────
+\titleformat{\section}
+  {\color{NavyDeep}\large\bfseries\scshape}
+  {\thesection.}{0.5em}{}
+  [\vspace{2pt}\color{GoldAccent}\rule{\linewidth}{1.2pt}\vspace{4pt}]
+
+\titleformat{\subsection}
+  {\color{NavyDeep}\normalsize\bfseries}
+  {\thesubsection.}{0.5em}{}
+
+\titleformat{\subsubsection}
+  {\color{SlateGrey}\normalsize\itshape}
+  {}{0em}{}
+
+\titlespacing*{\section}{0pt}{18pt}{8pt}
+\titlespacing*{\subsection}{0pt}{12pt}{4pt}
+
+% ─────────────────────────────────────────────────────────────────────────────
+%  PAGE STYLE
+% ─────────────────────────────────────────────────────────────────────────────
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+
+% Header: gold bar + court info
+\fancyhead[L]{%
+  \begin{tikzpicture}[overlay, remember picture]
+    \fill[GoldAccent] (0,0) rectangle (\textwidth, 3pt);
+  \end{tikzpicture}%
+  \vspace{6pt}%
+  {\footnotesize\color{SlateGrey}\scshape No.\ 25-4471 \quad\textbar\quad
+   United States Court of Appeals, Twelfth Circuit}%
+}
+\fancyhead[R]{%
+  \footnotesize\color{SlateGrey}\itshape Hartwell \& Mercer LLP%
+}
+\fancyfoot[C]{%
+  \footnotesize\color{SlateGrey}---\;\thepage\;of\;\pageref{LastPage}\;---
+}
+
+% Plain style for first page
+\fancypagestyle{plain}{%
+  \fancyhf{}
+  \renewcommand{\headrulewidth}{0pt}
+  \fancyfoot[C]{\footnotesize\color{SlateGrey}---\;\thepage\;of\;\pageref{LastPage}\;---}
+}
+
+% ─────────────────────────────────────────────────────────────────────────────
+%  CUSTOM COMMANDS
+% ─────────────────────────────────────────────────────────────────────────────
+\newcommand{\courtcase}[1]{\textit{#1}}
+\newcommand{\statute}[1]{\textbf{#1}}
+\newcommand{\emphasis}[1]{\textbf{\color{NavyDeep}#1}}
+
+% Decorative rule
+\newcommand{\goldrule}{%
+  {\color{GoldAccent}\rule{\linewidth}{0.8pt}}%
+}
+
+% ─────────────────────────────────────────────────────────────────────────────
+%  TCOLORBOX STYLES
+% ─────────────────────────────────────────────────────────────────────────────
+\tcbset{
+  legalbox/.style={
+    enhanced,
+    colback=IvoryBg,
+    colframe=NavyDeep,
+    colbacktitle=NavyDeep,
+    coltitle=white,
+    fonttitle=\bfseries\scshape,
+    arc=2pt,
+    boxrule=0.8pt,
+    left=10pt, right=10pt, top=6pt, bottom=6pt,
+    titlerule=0pt,
+    attach boxed title to top left={yshift=-2mm, xshift=6mm},
+    boxed title style={arc=2pt, colback=NavyDeep},
+  },
+  quotebox/.style={
+    enhanced,
+    colback=NavyDeep!5,
+    colframe=GoldAccent,
+    arc=0pt,
+    boxrule=0pt,
+    leftrule=3pt,
+    left=10pt, right=8pt, top=6pt, bottom=6pt,
+  },
+  authoritybox/.style={
+    enhanced,
+    colback=white,
+    colframe=GoldAccent,
+    arc=2pt,
+    boxrule=0.6pt,
+    left=8pt, right=8pt, top=5pt, bottom=5pt,
+  }
+}
+
+% ─────────────────────────────────────────────────────────────────────────────
+%  DOCUMENT
+% ─────────────────────────────────────────────────────────────────────────────
+\begin{document}
+\setstretch{1.2}
+
+% ═══════════════════════════════════════════════════════════════════════════════
+%  COVER PAGE
+% ═══════════════════════════════════════════════════════════════════════════════
+\thispagestyle{plain}
+
+\begin{center}
+
+% Court seal / decorative header
+\begin{tikzpicture}
+  \fill[NavyDeep] (0,0) rectangle (\textwidth, 0.12);
+  \fill[GoldAccent] (0,-0.18) rectangle (\textwidth, -0.1);
+\end{tikzpicture}
+
+\vspace{18pt}
+
+{\footnotesize\scshape\color{SlateGrey} United States Court of Appeals}\\[2pt]
+{\Large\bfseries\color{NavyDeep}\scshape For the Twelfth Circuit}\\[6pt]
+{\small\color{GoldAccent}\rule{4cm}{0.6pt}}\\[18pt]
+
+{\normalsize\color{SlateGrey} No.\ \textbf{25-4471}}\\[16pt]
+
+\goldrule\par
+\vspace{10pt}
+
+{\LARGE\bfseries\color{NavyDeep} MERIDIAN CAPITAL PARTNERS, LLC,}\\[4pt]
+{\normalsize\itshape\color{SlateGrey} Plaintiff-Appellant,}\\[10pt]
+{\normalsize\color{SlateGrey} v.}\\[10pt]
+{\LARGE\bfseries\color{NavyDeep} NEXA FINANCIAL SERVICES, INC.\ and}\\[2pt]
+{\LARGE\bfseries\color{NavyDeep} SYNAPSE BANCORP, NA,}\\[4pt]
+{\normalsize\itshape\color{SlateGrey} Defendants-Appellees.}\\[10pt]
+
+\goldrule
+
+\vspace{16pt}
+
+\begin{tcolorbox}[
+  enhanced,
+  colback=NavyDeep,
+  colframe=GoldAccent,
+  arc=3pt,
+  boxrule=1pt,
+  width=0.72\linewidth,
+  halign=center,
+  left=12pt, right=12pt, top=8pt, bottom=8pt
+]
+  {\large\bfseries\color{white}\scshape Brief of Appellant}\\[3pt]
+  {\small\color{GoldAccent} On Appeal from the United States District Court}\\
+  {\small\color{GoldAccent} for the Eastern District of Lakemont, No.\ 24-CV-1183}
+\end{tcolorbox}
+
+\vspace{20pt}
+
+{\small\color{SlateGrey} Counsel of Record:}\\[4pt]
+{\normalsize\bfseries\color{NavyDeep} VICTORIA A.\ HARTWELL}\\
+{\small\color{SlateGrey} Hartwell \& Mercer LLP}\\
+{\small\color{SlateGrey} 1420 Civic Plaza, Suite 3100}\\
+{\small\color{SlateGrey} Lakemont City, LM 60201}\\
+{\small\color{SlateGrey} Tel.\ (312) 555-0187 \quad Fax (312) 555-0190}\\
+{\small\color{SlateGrey} v.hartwell@hartwellmercer.com}\\[10pt]
+
+{\small\color{SlateGrey} \textit{Counsel for Plaintiff-Appellant\\Meridian Capital Partners, LLC}}\\[20pt]
+
+\begin{tikzpicture}
+  \fill[GoldAccent] (0,0) rectangle (\textwidth, 0.1);
+  \fill[NavyDeep] (0,0.12) rectangle (\textwidth, 0.22);
+\end{tikzpicture}
+
+\end{center}
+
+\clearpage
+
+% ═══════════════════════════════════════════════════════════════════════════════
+%  TABLE OF CONTENTS
+% ═══════════════════════════════════════════════════════════════════════════════
+\renewcommand{\contentsname}{\color{NavyDeep}\scshape Table of Contents}
+\tableofcontents
+
+\vspace{24pt}
+\goldrule
+
+\clearpage
+
+% ═══════════════════════════════════════════════════════════════════════════════
+%  TABLE OF AUTHORITIES
+% ═══════════════════════════════════════════════════════════════════════════════
+
+\section*{Table of Authorities}
+\addcontentsline{toc}{section}{Table of Authorities}
+
+\vspace{4pt}
+
+% ─── Cases ────────────────────────────────────────────────────────────────────
+\begin{tcolorbox}[legalbox, title={Cases}]
+
+\begin{tabularx}{\linewidth}{@{} X r @{}}
+  \toprule
+  \rowcolor{NavyDeep!8}
+  \textbf{\color{NavyDeep} Case} & \textbf{\color{NavyDeep} Page(s)} \\
+  \midrule
+  \courtcase{Alderman v.\ Vertex Savings Bank}, 891 F.3d 441 (12th Cir.\ 2019) & 7, 14 \\[3pt]
+  \courtcase{Apex Holdings Corp.\ v.\ Commissioner}, 774 F.2d 209 (7th Cir.\ 1985) & 11 \\[3pt]
+  \rowcolor{NavyDeep!4}
+  \courtcase{Brennan v.\ Nimbus Trust Co.}, 523 U.S.\ 224 (1998) & 8, 9, 17 \\[3pt]
+  \courtcase{Caldwell v.\ Meridian Capital Partners}, 658 F.3d 312 (12th Cir.\ 2011) & 6 \\[3pt]
+  \rowcolor{NavyDeep!4}
+  \courtcase{Donovan v.\ Synapse Bancorp, NA}, 940 F.3d 88 (1st Cir.\ 2020) & 12, 15 \\[3pt]
+  \courtcase{Ellroy v.\ National Fiduciary Board}, 112 F.4th 502 (12th Cir.\ 2024) & \textit{passim} \\[3pt]
+  \rowcolor{NavyDeep!4}
+  \courtcase{Holloway v.\ Nexa Financial Services}, 48 F.\ Supp.\ 3d 799 (E.D.\ LM 2022) & 7 \\[3pt]
+  \courtcase{In re Meridian Capital Partners}, No.\ 24-CV-1183 (E.D.\ LM 2024) & 2, 3 \\[3pt]
+  \rowcolor{NavyDeep!4}
+  \courtcase{Reyes v.\ Great Lakemont Securities Comm'n}, 300 F.3d 714 (12th Cir.\ 2002) & 16 \\[3pt]
+  \courtcase{Steinberg v.\ Apex Holdings Corp.}, 619 F.3d 557 (9th Cir.\ 2010) & 13 \\[3pt]
+  \bottomrule
+\end{tabularx}
+
+\end{tcolorbox}
+
+\vspace{12pt}
+
+% ─── Constitutional Provisions ────────────────────────────────────────────────
+\begin{tcolorbox}[legalbox, title={Constitutional Provisions}]
+
+\begin{tabularx}{\linewidth}{@{} X r @{}}
+  \toprule
+  \rowcolor{NavyDeep!8}
+  \textbf{\color{NavyDeep} Provision} & \textbf{\color{NavyDeep} Page(s)} \\
+  \midrule
+  U.S.\ Const.\ art.\ III, \S\ 2 & 5 \\[3pt]
+  U.S.\ Const.\ amend.\ XIV, \S\ 1 & 9 \\[3pt]
+  \bottomrule
+\end{tabularx}
+
+\end{tcolorbox}
+
+\vspace{12pt}
+
+% ─── Statutes ─────────────────────────────────────────────────────────────────
+\begin{tcolorbox}[legalbox, title={Statutes \& Regulations}]
+
+\begin{tabularx}{\linewidth}{@{} X r @{}}
+  \toprule
+  \rowcolor{NavyDeep!8}
+  \textbf{\color{NavyDeep} Authority} & \textbf{\color{NavyDeep} Page(s)} \\
+  \midrule
+  15 U.S.C.\ \S\ 78j(b) (Securities Exchange Act \S\ 10(b)) & 6, 8, 12 \\[3pt]
+  \rowcolor{NavyDeep!4}
+  17 C.F.R.\ \S\ 240.10b-5 (Rule 10b-5) & 6, 8, 12 \\[3pt]
+  28 U.S.C.\ \S\ 1291 (appellate jurisdiction) & 5 \\[3pt]
+  \rowcolor{NavyDeep!4}
+  28 U.S.C.\ \S\ 1331 (federal question) & 5 \\[3pt]
+  Fed.\ R.\ Civ.\ P.\ 12(b)(6) & 4, 7 \\[3pt]
+  \rowcolor{NavyDeep!4}
+  Fed.\ R.\ App.\ P.\ 4(a)(1)(B) & 5 \\[3pt]
+  \bottomrule
+\end{tabularx}
+
+\end{tcolorbox}
+
+\vspace{12pt}
+
+% ─── Secondary Authorities ────────────────────────────────────────────────────
+\begin{tcolorbox}[legalbox, title={Secondary Authorities}]
+
+\begin{tabularx}{\linewidth}{@{} X r @{}}
+  \toprule
+  \rowcolor{NavyDeep!8}
+  \textbf{\color{NavyDeep} Source} & \textbf{\color{NavyDeep} Page(s)} \\
+  \midrule
+  Miriam Ostrowski, \textit{Securities Fraud in Modern Markets} 3d ed.\ (2021) & 10 \\[3pt]
+  \rowcolor{NavyDeep!4}
+  Daniel P.\ Farro, \textit{Materiality Standards After Ellroy}, 88 Yale L.\ Rev.\ 441 (2025) & 13 \\[3pt]
+  Restatement (Second) of Torts \S\ 552 (1977) & 14 \\[3pt]
+  \bottomrule
+\end{tabularx}
+
+\end{tcolorbox}
+
+\clearpage
+
+% ═══════════════════════════════════════════════════════════════════════════════
+%  JURISDICTIONAL STATEMENT
+% ═══════════════════════════════════════════════════════════════════════════════
+
+\section{Jurisdictional Statement}
+
+The district court had subject-matter jurisdiction under \statute{28 U.S.C.\ \S\ 1331}
+because this action arises under the Securities Exchange Act of 1934, \statute{15 U.S.C.\
+\S\S\ 78a}--\textit{78pp}. Appellant Meridian Capital Partners, LLC (``Meridian'') is a
+Delaware limited liability company with its principal place of business in Lakemont City,
+Lakemont.
+
+Final judgment was entered on January 14, 2025. \textit{See} J.A.\ 482. Meridian timely
+filed its notice of appeal on March 13, 2025, within the sixty-day period allowed
+under \statute{Fed.\ R.\ App.\ P.\ 4(a)(1)(B)}. This Court has jurisdiction over the
+appeal pursuant to \statute{28 U.S.C.\ \S\ 1291}.
+
+% ═══════════════════════════════════════════════════════════════════════════════
+%  QUESTIONS PRESENTED
+% ═══════════════════════════════════════════════════════════════════════════════
+
+\section{Questions Presented}
+
+\begin{enumerate}[label=\Roman{enumi}.,leftmargin=*,itemsep=8pt]
+
+  \item Whether the district court erred in holding that Meridian's complaint failed to
+  plead materiality with particularity, where the alleged misstatements concerned
+  multi-million-dollar off-balance-sheet liabilities of Nexa Financial Services, Inc.\
+  that, when disclosed, caused a 34\% decline in Nexa's market capitalisation.
+
+  \item Whether the district court erred in dismissing Meridian's claims against
+  Synapse Bancorp, NA as a control-person defendant under \statute{15 U.S.C.\ \S\
+  78t(a)}, where Synapse held a 60\% voting-equity interest in Nexa and exercised day-to-day
+  supervisory authority over Nexa's financial reporting functions.
+
+  \item Whether the district court applied the correct scienter standard in evaluating
+  Meridian's allegations of reckless disregard, given the Twelfth Circuit's framework
+  articulated in \courtcase{Ellroy v.\ National Fiduciary Board}, 112 F.4th 502 (12th
+  Cir.\ 2024).
+
+\end{enumerate}
+
+% ═══════════════════════════════════════════════════════════════════════════════
+%  STATEMENT OF THE CASE
+% ═══════════════════════════════════════════════════════════════════════════════
+
+\section{Statement of the Case}
+
+\subsection{The Parties}
+
+\emphasis{Appellant} Meridian Capital Partners, LLC is an institutional investment fund that,
+between April 2022 and September 2023, purchased approximately 4.1 million shares of
+common stock in Nexa Financial Services, Inc.\ (``Nexa''), at prices ranging from
+\$38.20 to \$54.75 per share, for a total investment of approximately \$194.6 million.
+
+\emphasis{Appellee} Nexa Financial Services, Inc.\ is a diversified financial holding
+company incorporated in Delaware, whose shares were listed on the Lakemont National
+Exchange (``LNX'') during the relevant period. Nexa operates consumer lending, mortgage
+origination, and institutional brokerage subsidiaries throughout the Lakemont region.
+
+\emphasis{Appellee} Synapse Bancorp, NA (``Synapse'') is a nationally chartered bank and
+the majority shareholder of Nexa, holding a 60\% voting-equity interest throughout
+the class period. Synapse designated three of Nexa's five board directors and
+its Chief Financial Officer, \textbf{Robert D.\ Calloway}, who served concurrently as
+Deputy Treasurer of Synapse.
+
+\subsection{Factual Background}
+
+\begin{tcolorbox}[quotebox]
+\small\itshape
+``Nexa's consolidated financial statements, as filed with the Lakemont Securities Commission
+for fiscal years 2021 through 2023, omitted material information regarding
+\$412 million in contingent off-balance-sheet exposures arising from a series of
+warehouse lending facilities extended to affiliated special-purpose entities.''
+--- Meridian Compl.\ \P\ 47, J.A.\ 62
+\end{tcolorbox}
+
+\vspace{8pt}
+
+Between January 2021 and September 2023, Nexa's senior officers --- including Chief
+Executive Officer \textbf{Patricia L.\ Voss} and CFO Calloway --- made a series of
+affirmative public statements characterising Nexa's off-balance-sheet exposures as
+``nominal and fully hedged.'' J.A.\ 63--67. These statements appeared in:
+(a)~quarterly earnings releases filed as Exhibits 99.1 to Nexa's Forms 8-K;
+(b)~Nexa's Annual Reports on Forms 10-K for fiscal years 2021 and 2022; and
+(c)~investor-relations presentations hosted by Synapse and made available on its
+corporate website.
+
+On October 3, 2023, Nexa issued a restatement disclosing that its off-balance-sheet
+contingent liabilities totalled \$412 million --- a figure omitted from all prior
+filings. J.A.\ 104. Nexa's stock price fell from \$51.40 to \$33.90 per share in
+the two trading sessions following the disclosure, a decline of approximately 34\%.
+J.A.\ 106. Meridian suffered aggregate losses of approximately \$68.3 million.
+
+\subsection{Proceedings Below}
+
+Meridian filed its complaint on November 18, 2023, asserting claims under
+\statute{\S\ 10(b)} of the Securities Exchange Act and \statute{Rule 10b-5}
+promulgated thereunder, as well as control-person liability against Synapse
+under \statute{\S\ 20(a)}. J.A.\ 1--128.
+
+On January 14, 2025, the district court (Honorable George M.\ Fenton, J.) granted
+Appellees' motion to dismiss pursuant to \statute{Fed.\ R.\ Civ.\ P.\ 12(b)(6)}.
+J.A.\ 480--502. The court held: (1)~Meridian failed to plead materiality with
+requisite particularity; (2)~Meridian's scienter allegations were insufficient under
+the applicable ``strong inference'' standard; and (3)~the control-person claim
+against Synapse must be dismissed because the primary claim was not adequately
+pleaded. J.A.\ 482--501. This appeal followed.
+
+\clearpage
+
+% ═══════════════════════════════════════════════════════════════════════════════
+%  SUMMARY OF ARGUMENT
+% ═══════════════════════════════════════════════════════════════════════════════
+
+\section{Summary of Argument}
+
+The district court committed three independent, reversible errors.
+
+\vspace{8pt}
+
+\noindent\begin{minipage}[t]{0.48\textwidth}
+\begin{tcolorbox}[authoritybox, height=5.6cm]
+  \begin{center}
+    \begin{tikzpicture}
+      \node[circle, fill=NavyDeep, text=white, font=\bfseries\large, minimum size=1.1cm] {I};
+    \end{tikzpicture}
+  \end{center}
+  \vspace{4pt}
+  {\small\color{NavyDeep}\bfseries Materiality}\\[4pt]
+  {\small\color{SlateGrey}
+  A 34\% price decline following restatement of a \$412 million omitted liability
+  establishes materiality as a matter of law under \textit{Brennan} and \textit{Ellroy}.
+  The district court applied an impermissibly heightened standard.}
+\end{tcolorbox}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.48\textwidth}
+\begin{tcolorbox}[authoritybox, height=5.6cm]
+  \begin{center}
+    \begin{tikzpicture}
+      \node[circle, fill=NavyDeep, text=white, font=\bfseries\large, minimum size=1.1cm] {II};
+    \end{tikzpicture}
+  \end{center}
+  \vspace{4pt}
+  {\small\color{NavyDeep}\bfseries Scienter}\\[4pt]
+  {\small\color{SlateGrey}
+  CFO Calloway's dual role at Synapse and Nexa, combined with internal emails
+  referencing the \$412 million exposure, supports a strong inference of scienter
+  under the Twelfth Circuit's \textit{Ellroy} framework.}
+\end{tcolorbox}
+\end{minipage}
+
+\par
+\vspace{12pt}
+
+\noindent\begin{minipage}[t]{0.48\textwidth}
+\begin{tcolorbox}[authoritybox]
+  \begin{center}
+    \begin{tikzpicture}
+      \node[circle, fill=NavyDeep, text=white, font=\bfseries\large, minimum size=1.1cm] {III};
+    \end{tikzpicture}
+  \end{center}
+  \vspace{4pt}
+  {\small\color{NavyDeep}\bfseries Control-Person Liability}\\[4pt]
+  {\small\color{SlateGrey}
+  Because the \S\ 10(b) primary claim is adequately pleaded, Synapse's 60\% equity
+  stake and board-appointment authority render it a ``controlling person'' under
+  \textit{Alderman} and \statute{15 U.S.C.\ \S\ 78t(a)}.}
+\end{tcolorbox}
+\end{minipage}
+
+\vspace{18pt}
+
+% ═══════════════════════════════════════════════════════════════════════════════
+%  ARGUMENT
+% ═══════════════════════════════════════════════════════════════════════════════
+
+\section{Argument}
+
+\subsection{Standard of Review}
+
+This Court reviews de novo a district court's grant of a motion to dismiss under
+\statute{Rule 12(b)(6)}. \courtcase{Caldwell v.\ Meridian Capital Partners}, 658 F.3d
+312, 316 (12th Cir.\ 2011). The Court ``must accept all well-pleaded facts as true
+and view them in the light most favorable to the plaintiff.'' \textit{Id.}\ at 317.
+
+\subsection{Meridian Adequately Pleaded Materiality}
+
+\subsubsection{I.\quad The Omitted Liabilities Were Objectively Material}
+
+A misstatement or omission is material if ``there is a substantial likelihood that
+a reasonable shareholder would consider it important.'' \courtcase{Brennan v.\ Nimbus
+Trust Co.}, 523 U.S.\ 224, 231 (1998). The Court considers the ``total mix'' of
+information available to the market. \textit{Id.}\ at 232.
+
+Here, the omitted contingent liabilities represented \$412 million --- approximately
+37\% of Nexa's total reported assets for fiscal year 2022. J.A.\ 78. Courts in
+this Circuit and others have consistently found that omissions constituting
+20\% or more of reported assets are material as a matter of law. \textit{See}
+\courtcase{Ellroy}, 112 F.4th at 519 (holding that omitted exposure equalling
+25\% of total assets was material); \courtcase{Donovan v.\ Synapse Bancorp, NA},
+940 F.3d 88, 97 (1st Cir.\ 2020) (collecting cases).
+
+\begin{tcolorbox}[quotebox]
+\small
+The 34\% stock-price decline following the October 2023 restatement is among the
+most probative evidence of materiality available: it reflects the market's own
+assessment of the economic significance of the previously omitted information.
+\courtcase{Holloway v.\ Nexa Financial Services}, 48 F.\ Supp.\ 3d 799, 808
+(E.D.\ LM 2022) (``Market reaction, while not conclusive, provides strong
+circumstantial evidence of materiality.'').
+\end{tcolorbox}
+
+\subsubsection{II.\quad The District Court Applied an Impermissibly Heightened Standard}
+
+The district court required Meridian to plead materiality with ``near-certainty,''
+holding that Meridian must ``exclude every plausible non-material interpretation
+of the omission.'' J.A.\ 487. That standard is not the law of this Circuit.
+
+\courtcase{Ellroy} is unambiguous: a plaintiff need only plead facts that, ``taken
+as a whole, give rise to a plausible inference'' that the omitted information would
+have been significant to a reasonable investor. 112 F.4th at 516. Meridian's
+complaint --- which cites specific dollar figures, analyst commentary noting the
+undisclosed warehouse-lending program, and an internal Nexa memorandum in which
+CFO Calloway characterised the off-balance-sheet program as a ``significant
+contingent exposure,'' J.A.\ 93 --- plainly meets that standard.
+
+\subsection{Meridian Adequately Pleaded Scienter}
+
+To survive a motion to dismiss, a plaintiff must allege facts giving rise to
+a ``strong inference'' of scienter, i.e., that the defendant acted with either
+intent to defraud or reckless disregard for the truth. \courtcase{Ellroy}, 112
+F.4th at 521. The inference of scienter must be ``cogent and at least as compelling
+as any opposing inference.'' \textit{Id.}
+
+CFO Calloway's February 2022 internal memorandum, obtained through whistleblower
+disclosures, expressly identifies the \$412 million warehouse-lending contingency
+and describes it as a ``material undisclosed risk.'' J.A.\ 93. Calloway signed
+each of Nexa's misleading public filings and investor presentations. J.A.\ 95--98.
+The inference that Calloway---and, by extension, Nexa---acted with at minimum
+reckless disregard for the truth is far stronger than any competing benign
+inference.
+
+\subsection{Synapse Is Liable as a Controlling Person}
+
+\statute{Section 20(a) of the Securities Exchange Act} imposes liability on any
+person who, directly or indirectly, \textit{controls} a person liable under \S\ 10(b).
+\courtcase{Alderman v.\ Vertex Savings Bank}, 891 F.3d 441, 450 (12th Cir.\ 2019).
+``Control'' is established by showing ``the power to direct or cause the direction
+of the management and policies of a person.'' \textit{Id.}
+
+Synapse held 60\% of Nexa's voting equity, appointed three of five board members
+(including the audit committee chair), and designated Nexa's CFO --- the very
+individual responsible for the misleading filings. J.A.\ 22--24. These facts
+more than adequately plead control-person liability under \courtcase{Alderman}.
+
+\vspace{12pt}
+\goldrule
+\vspace{12pt}
+
+% ═══════════════════════════════════════════════════════════════════════════════
+%  CONCLUSION
+% ═══════════════════════════════════════════════════════════════════════════════
+
+\section{Conclusion}
+
+For the foregoing reasons, Appellant Meridian Capital Partners, LLC respectfully
+requests that this Court \textbf{reverse} the district court's order of dismissal and
+\textbf{remand} this action for further proceedings, including discovery and trial on
+the merits. Alternatively, should the Court identify deficiencies in any individual
+claim, Meridian requests leave to amend its complaint.
+
+\vspace{24pt}
+
+\noindent\begin{minipage}[t]{0.45\linewidth}
+  \textit{Respectfully submitted,}\\[20pt]
+  \noindent\rule{0.85\linewidth}{0.6pt}\\[2pt]
+  {\bfseries\color{NavyDeep} VICTORIA A.\ HARTWELL}\\
+  {\small\color{SlateGrey} Counsel of Record}\\[6pt]
+  {\bfseries\color{NavyDeep} JAMES R.\ MERCER}\\
+  {\small\color{SlateGrey} Of Counsel}\\[8pt]
+  {\color{SlateGrey}\small Hartwell \& Mercer LLP\\
+  1420 Civic Plaza, Suite 3100\\
+  Lakemont City, LM 60201\\
+  (312) 555-0187}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.45\linewidth}
+  \vspace{6pt}
+  \begin{tcolorbox}[
+    enhanced,
+    colback=IvoryBg,
+    colframe=GoldAccent,
+    arc=2pt,
+    boxrule=0.6pt,
+    left=8pt, right=8pt, top=8pt, bottom=8pt
+  ]
+    {\small\color{NavyDeep}\bfseries Certificate of Service}\\[4pt]
+    {\small\color{SlateGrey}
+    I hereby certify that on \textbf{March 13, 2025}, I caused a true copy of
+    the foregoing Brief of Appellant to be served upon counsel for Appellees
+    via the Court's CM/ECF electronic filing system.}\\[6pt]
+    {\small\color{SlateGrey}\rule{0.6\linewidth}{0.5pt}}\\
+    {\small\color{SlateGrey} Victoria A.\ Hartwell}
+  \end{tcolorbox}
+\end{minipage}
+
+\vspace{16pt}
+
+\begin{tcolorbox}[
+  enhanced,
+  colback=NavyDeep!6,
+  colframe=NavyDeep!25,
+  arc=2pt,
+  boxrule=0.5pt,
+  left=10pt, right=10pt, top=6pt, bottom=6pt
+]
+  {\small\color{NavyDeep}\bfseries Certificate of Compliance with Fed.\ R.\ App.\ P.\
+  32(a)(7)(B)}\\[4pt]
+  {\small\color{SlateGrey}
+  This brief complies with the type-volume limitation of \statute{Fed.\ R.\ App.\ P.\
+  32(a)(7)(B)} because it contains \textbf{6,847 words}, excluding the parts exempted
+  by \statute{Rule 32(f)}. This brief has been prepared in a proportionally spaced
+  typeface using Times New Roman, 12-point font, in compliance with
+  \statute{Rule 32(a)(5)--(6)}.}
+\end{tcolorbox}
+
+\end{document}

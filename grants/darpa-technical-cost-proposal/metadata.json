@@ -1,0 +1,8 @@
+{
+  "name": "DARPA Technical & Cost Proposal",
+  "compiler": "pdflatex",
+  "description": "DARPA Technical & Cost Proposal LaTeX template \u2014 darpa technical & cost proposal latex template. Elegant, compile-tested, editable online at letx.app.",
+  "author": "LetX",
+  "category": "grants",
+  "license": "MIT"
+}

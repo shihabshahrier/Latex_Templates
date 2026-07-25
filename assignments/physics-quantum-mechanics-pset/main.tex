@@ -1,0 +1,449 @@
+\documentclass[11pt, a4paper, parskip=half]{scrartcl}
+
+% ==============================================================================
+% PACKAGES & ENGINE COMPATIBILITY (pdflatex)
+% ==============================================================================
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{mathpazo}          % Elegant Palatino font for text & math
+\usepackage{microtype}         % Fine typographic adjustments
+\usepackage{amsmath, amssymb, amsfonts, mathrsfs} % Math typography
+\usepackage[table]{xcolor}     % Advanced color support
+\usepackage[top=1.8cm, bottom=2.0cm, left=1.8cm, right=1.8cm, headheight=26pt]{geometry}
+\usepackage{scrlayer-scrpage}  % KOMA-Script header/footer management
+\usepackage{enumitem}          % List customization
+\usepackage{booktabs}          % Professional tables
+\usepackage{tabularx}          % Dynamic width tables
+\usepackage{tcolorbox}         % Styled boxes
+\tcbuselibrary{skins, breakable}
+\usepackage{tikz}              % Vector graphics
+\usetikzlibrary{positioning, calc, shapes.geometric, decorations.pathmorphing, backgrounds, patterns}
+\usepackage{fontawesome5}      % Standard FontAwesome icons
+\usepackage{multicol}          % Multi-column text
+\usepackage{lastpage}          % Total page count reference
+\usepackage[colorlinks=true, linkcolor=QMPrimary, urlcolor=QMSecondary, citecolor=QMSecondary]{hyperref}
+
+% ==============================================================================
+% COLOR PALETTE (Modern Slate & Deep Teal)
+% ==============================================================================
+\definecolor{QMPrimary}{HTML}{1E293B}     % Slate Dark / Navy (Headers, Titles)
+\definecolor{QMSecondary}{HTML}{0F766E}   % Deep Teal / Accent Blue
+\definecolor{QMAccent}{HTML}{C2410C}      % Burnt Orange / Points & Callouts
+\definecolor{QMBg}{HTML}{F8FAFC}          % Light Cool Tint for Problem Boxes
+\definecolor{QMSolutionBg}{HTML}{F0FDFA}  % Light Mint/Teal Tint for Solution Boxes
+\definecolor{QMBorder}{HTML}{CBD5E1}      % Soft Neutral Gray Border
+\definecolor{QMTealBorder}{HTML}{99F6E4}  % Soft Teal Border
+\definecolor{QMTextDark}{HTML}{0F172A}    % High contrast body text
+
+% ==============================================================================
+% PAGE LAYOUT & HEADER / FOOTER
+% ==============================================================================
+\clearpairofpagestyles
+\ihead{\small\sffamily\bfseries\color{QMPrimary} PHYS 401: Quantum Mechanics I \ \vline\ \ {\normalfont\color{gray} Problem Set 4}}
+\ohead{\small\sffamily\color{QMSecondary} Spring 2026 \ \vline\ \ Meridian University}
+\ifoot{\small\sffamily\color{gray} Department of Physics}
+\ofoot{\small\sffamily\color{QMPrimary} Page \thepage\ of \pageref{LastPage}}
+\addtokomafont{pageheadfoot}{\sffamily}
+\KOMAoptions{headsepline=0.5pt}
+\setkomafont{headsepline}{\color{QMSecondary}}
+
+% ==============================================================================
+% CUSTOM MACROS & COMMANDS
+% ==============================================================================
+% Quantum Mechanics Dirac Notation & Operators
+\newcommand{\ket}[1]{\left| #1 \right\rangle}
+\newcommand{\bra}[1]{\left\langle #1 \right|}
+\newcommand{\braket}[2]{\left\langle #1 \middle| #2 \right\rangle}
+\newcommand{\mel}[3]{\left\langle #1 \middle| #2 \middle| #3 \right\rangle}
+\newcommand{\hatop}[1]{\hat{\mathbf{#1}}}
+\newcommand{\comm}[2]{\left[ #1, #2 \right]}
+\newcommand{\acomm}[2]{\left\{ #1, #2 \right\}}
+\newcommand{\expval}[1]{\left\langle #1 \right\rangle}
+
+% ==============================================================================
+% TCOLORBOX STYLES FOR PROBLEMS AND SOLUTIONS
+% ==============================================================================
+% Problem Container Box
+\newtcolorbox{problembox}[2][]{
+  enhanced,
+  breakable,
+  colback=QMBg,
+  colframe=QMPrimary,
+  coltitle=white,
+  fonttitle=\sffamily\bfseries\large,
+  title={#2},
+  attach boxed title to top left={xshift=4mm, yshift=-3mm},
+  boxed title style={
+    colback=QMPrimary,
+    colframe=QMPrimary,
+    arc=3pt,
+    outer arc=3pt,
+    top=3pt, bottom=3pt, left=8pt, right=8pt
+  },
+  top=10pt, bottom=8pt, left=10pt, right=10pt,
+  arc=4pt,
+  boxrule=1pt,
+  #1
+}
+
+% Solution Box (Teal Accent Container)
+\newtcolorbox{solutionbox}[1][Solution]{
+  enhanced,
+  breakable,
+  colback=QMSolutionBg,
+  colframe=QMSecondary,
+  coltitle=QMSecondary,
+  fonttitle=\sffamily\bfseries,
+  title={\faCheckCircle\ \ #1},
+  attach boxed title to top left={xshift=4mm, yshift=-2.5mm},
+  boxed title style={
+    colback=white,
+    colframe=QMTealBorder,
+    arc=2pt,
+    outer arc=2pt,
+    top=2pt, bottom=2pt, left=6pt, right=6pt
+  },
+  top=8pt, bottom=6pt, left=10pt, right=10pt,
+  arc=3pt,
+  boxrule=0.8pt
+}
+
+% Conceptual Tip Callout Box
+\newtcolorbox{tipbox}[1][Key Concept]{
+  enhanced,
+  breakable,
+  colback=white,
+  colframe=QMAccent,
+  fonttitle=\sffamily\bfseries\color{QMAccent},
+  title={\faLightbulb\ \ #1},
+  top=6pt, bottom=6pt, left=10pt, right=10pt,
+  arc=2pt,
+  boxrule=0.6pt,
+  leftrule=4pt
+}
+
+% Point Badge Macro
+\newcommand{\points}[1]{\hfill{\sffamily\bfseries\color{QMAccent}\lbrack #1 Points\rbrack}}
+
+% ==============================================================================
+% DOCUMENT BEGIN
+% ==============================================================================
+\begin{document}
+
+% ------------------------------------------------------------------------------
+% HEADER / TITLE BLOCK
+% ------------------------------------------------------------------------------
+\begin{tcolorbox}[
+  enhanced,
+  colback=QMPrimary,
+  colframe=QMPrimary,
+  arc=5pt,
+  top=10pt, bottom=10pt, left=14pt, right=14pt
+]
+  \color{white}
+  \begin{minipage}[t]{0.65\textwidth}
+    {\sffamily\small\bfseries\color{QMTealBorder} MERIDIAN UNIVERSITY \ $\cdot$ \ DEPARTMENT OF PHYSICS} \\[3pt]
+    {\sffamily\Huge\bfseries Quantum Mechanics I} \\[4pt]
+    {\sffamily\large\color{QMBg} Problem Set 4: Operator Algebra, Spin Dynamics \& Perturbation Theory}
+  \end{minipage}%
+  \hfill
+  \begin{minipage}[t]{0.30\textwidth}
+    \raggedleft \sffamily \small
+    \color{white}
+    \textbf{Course:} PHYS 401 \\
+    \textbf{Term:} Spring 2026 \\
+    \textbf{Instructor:} Prof. Elena Vance \\
+    \textbf{Issued:} March 20, 2026 \\
+    \textbf{Due Date:} March 27, 2026
+  \end{minipage}
+\end{tcolorbox}
+
+\vspace{1mm}
+
+% ------------------------------------------------------------------------------
+% STUDENT INFORMATION & SUBMISSION RULES GRID
+% ------------------------------------------------------------------------------
+\begin{tcolorbox}[
+  enhanced,
+  colback=white,
+  colframe=QMBorder,
+  arc=4pt,
+  boxrule=0.8pt,
+  top=6pt, bottom=6pt, left=12pt, right=12pt
+]
+  \sffamily\small
+  \begin{minipage}[c]{0.55\textwidth}
+    \textbf{Student Name:} \rule{4.5cm}{0.4pt} \\[3pt]
+    \textbf{Student ID:} \ \ \ \ \ \rule{4.5cm}{0.4pt}
+  \end{minipage}%
+  \hfill
+  \begin{minipage}[c]{0.42\textwidth}
+    \faClock\ \textbf{Total Points:} 100 Points \\
+    \faFile\ \textbf{Format:} Show all intermediate operator derivations. \\
+    \faLock\ \textbf{Honor Code:} Standard academic integrity rules apply.
+  \end{minipage}
+\end{tcolorbox}
+
+\vspace{2mm}
+
+% ------------------------------------------------------------------------------
+% PROBLEM 1: HARMONIC OSCILLATOR & LADDER OPERATORS
+% ------------------------------------------------------------------------------
+\begin{problembox}{Problem 1: Harmonic Oscillator Matrix Elements \& Uncertainty \points{30}}
+
+Consider a one-dimensional quantum harmonic oscillator of mass $m$ and natural frequency $\omega$. Recall the ladder (annihilation and creation) operators defined by:
+\[
+\hat{a} = \sqrt{\frac{m\omega}{2\hbar}} \left( \hat{x} + \frac{i}{m\omega} \hat{p} \right), \quad 
+\hat{a}^\dagger = \sqrt{\frac{m\omega}{2\hbar}} \left( \hat{x} - \frac{i}{m\omega} \hat{p} \right)
+\]
+which obey the canonical commutation relation $\comm{\hat{a}}{\hat{a}^\dagger} = 1$. The energy eigenstates are denoted by $\ket{n}$ with $n = 0, 1, 2, \dots$, where $\hat{a}\ket{n} = \sqrt{n}\ket{n-1}$ and $\hat{a}^\dagger\ket{n} = \sqrt{n+1}\ket{n+1}$.
+
+\begin{enumerate}[label=\bfseries(\alph*), leftmargin=*, itemsep=3pt]
+  \item Express the position operator $\hat{x}$ and momentum operator $\hat{p}$ in terms of $\hat{a}$ and $\hat{a}^\dagger$. Use these to evaluate the matrix elements $\mel{n}{\hat{x}^2}{m}$ and $\mel{n}{\hat{p}^2}{m}$ for arbitrary non-negative integers $n$ and $m$. \points{12}
+  
+  \item Calculate the expectation values $\expval{\hat{x}}$, $\expval{\hat{x}^2}$, $\expval{\hat{p}}$, and $\expval{\hat{p}^2}$ for a stationary state $\ket{n}$. Show that the product of uncertainties $\Delta x \Delta p$ satisfies:
+  \[
+  \Delta x \Delta p = \left( n + \frac{1}{2} \right) \hbar
+  \]
+  Verify that the ground state $\ket{0}$ saturates the Heisenberg Uncertainty Principle bound. \points{10}
+  
+  \item A quantum particle at $t=0$ is prepared in the coherent superposition state:
+  \[
+  \ket{\psi(0)} = \frac{1}{\sqrt{2}} \left( \ket{0} + \ket{1} \right)
+  \]
+  Calculate the time-dependent expectation value of position $\expval{\hat{x}}(t)$ for $t > 0$, and determine its amplitude and oscillation frequency. \points{8}
+\end{enumerate}
+
+\end{problembox}
+
+\begin{solutionbox}[Solution to Problem 1]
+\textbf{Part (a): Operator Expressions and Matrix Elements}
+
+Inverting the definitions of $\hat{a}$ and $\hat{a}^\dagger$, we obtain:
+\[
+\hat{x} = \sqrt{\frac{\hbar}{2m\omega}} \left( \hat{a} + \hat{a}^\dagger \right), \qquad
+\hat{p} = -i \sqrt{\frac{m\hbar\omega}{2}} \left( \hat{a} - \hat{a}^\dagger \right)
+\]
+
+Squaring the position operator $\hat{x}^2$:
+\[
+\hat{x}^2 = \frac{\hbar}{2m\omega} \left( \hat{a} + \hat{a}^\dagger \right)^2 = \frac{\hbar}{2m\omega} \left( \hat{a}^2 + \hat{a}\hat{a}^\dagger + \hat{a}^\dagger\hat{a} + (\hat{a}^\dagger)^2 \right)
+\]
+Using $\hat{a}\hat{a}^\dagger = \hat{a}^\dagger\hat{a} + 1 = \hat{N} + 1$, where $\hat{N} = \hat{a}^\dagger\hat{a}$ is the number operator:
+\[
+\hat{x}^2 = \frac{\hbar}{2m\omega} \left( \hat{a}^2 + 2\hat{N} + 1 + (\hat{a}^\dagger)^2 \right)
+\]
+Taking matrix elements between orthonormal states $\bra{n}$ and $\ket{m}$:
+\[
+\mel{n}{\hat{x}^2}{m} = \frac{\hbar}{2m\omega} \left[ \sqrt{m(m-1)}\,\delta_{n, m-2} + (2m+1)\,\delta_{n,m} + \sqrt{(m+1)(m+2)}\,\delta_{n, m+2} \right]
+\]
+
+Similarly, for the squared momentum operator $\hat{p}^2$:
+\[
+\hat{p}^2 = -\frac{m\hbar\omega}{2} \left( \hat{a}^2 - (2\hat{N} + 1) + (\hat{a}^\dagger)^2 \right)
+\]
+\[
+\mel{n}{\hat{p}^2}{m} = \frac{m\hbar\omega}{2} \left[ -\sqrt{m(m-1)}\,\delta_{n, m-2} + (2m+1)\,\delta_{n,m} - \sqrt{(m+1)(m+2)}\,\delta_{n, m+2} \right]
+\]
+
+\textbf{Part (b): Uncertainty Relation in State $\ket{n}$}
+
+For any stationary state $\ket{n}$, off-diagonal terms vanish, yielding $\expval{\hat{x}}_n = 0$ and $\expval{\hat{p}}_n = 0$.
+From the diagonal matrix elements ($n=m$):
+\[
+\expval{\hat{x}^2}_n = \frac{\hbar}{2m\omega} (2n+1), \qquad \expval{\hat{p}^2}_n = \frac{m\hbar\omega}{2} (2n+1)
+\]
+The standard deviations (uncertainties) are:
+\[
+\Delta x = \sqrt{\frac{\hbar}{2m\omega}(2n+1)}, \qquad
+\Delta p = \sqrt{\frac{m\hbar\omega}{2}(2n+1)}
+\]
+Multiplying the uncertainties:
+\[
+\Delta x \Delta p = \sqrt{\frac{\hbar}{2m\omega}(2n+1)} \cdot \sqrt{\frac{m\hbar\omega}{2}(2n+1)} = \left(n + \frac{1}{2}\right)\hbar
+\]
+For $n=0$: $\Delta x \Delta p = \frac{\hbar}{2}$, saturating the Heisenberg Uncertainty Principle bound.
+
+\textbf{Part (c): Time Evolution of Position Expectation Value}
+
+State evolution: $\ket{\psi(t)} = \frac{1}{\sqrt{2}} \left( e^{-i E_0 t/\hbar}\ket{0} + e^{-i E_1 t/\hbar}\ket{1} \right)$, where $E_1 - E_0 = \hbar\omega$.
+\[
+\expval{\hat{x}}(t) = \mel{\psi(t)}{\hat{x}}{\psi(t)} = \frac{1}{2} \left[ e^{i\omega t} \mel{0}{\hat{x}}{1} + e^{-i\omega t} \mel{1}{\hat{x}}{0} \right] = \sqrt{\frac{\hbar}{2m\omega}} \cos(\omega t)
+\]
+The expectation value executes simple harmonic motion with amplitude $A = \sqrt{\frac{\hbar}{2m\omega}}$ and frequency $\omega$.
+\end{solutionbox}
+
+\vspace{3mm}
+
+% ------------------------------------------------------------------------------
+% PROBLEM 2: SPIN 1/2 IN TIME-DEPENDENT MAGNETIC FIELD
+% ------------------------------------------------------------------------------
+\begin{problembox}{Problem 2: Spin-$1/2$ Particle in a Rotating Magnetic Field \points{35}}
+
+A spin-$1/2$ particle with gyromagnetic ratio $\gamma$ is subject to a strong constant magnetic field along the $z$-axis, combined with a transverse rotating magnetic field of frequency $\omega$:
+\[
+\vec{B}(t) = B_0 \hat{\mathbf{z}} + B_1 \left( \cos(\omega t)\hat{\mathbf{x}} + \sin(\omega t)\hat{\mathbf{y}} \right)
+\]
+where $B_0 \gg B_1 > 0$. The spin operators are $\hatop{S} = \frac{\hbar}{2}\vec{\sigma}$, where $\sigma_x, \sigma_y, \sigma_z$ are the Pauli spin matrices.
+
+\begin{enumerate}[label=\bfseries(\alph*), leftmargin=*, itemsep=3pt]
+  \item Write down the explicit $2\times 2$ matrix representation of the time-dependent Hamiltonian $\hat{H}(t) = -\gamma \hatop{S} \cdot \vec{B}(t)$ in the standard $S_z$ basis $\{\ket{+}, \ket{-}\}$. Define the Larmor frequencies $\omega_0 = -\gamma B_0$ and $\omega_1 = -\gamma B_1$. \points{10}
+  
+  \item Transform the state vector into the rotating frame: $\ket{\psi_R(t)} = e^{i \omega t \sigma_z / 2} \ket{\psi(t)}$. Show that $\ket{\psi_R(t)}$ satisfies an effective time-independent Schrödinger equation:
+  \[
+  i\hbar \frac{d}{dt}\ket{\psi_R(t)} = \hat{H}_{\text{eff}} \ket{\psi_R(t)}
+  \]
+  and write down the explicit matrix form of $\hat{H}_{\text{eff}}$. \points{13}
+  
+  \item Assuming the particle is initially in the spin-down state $\ket{\psi(0)} = \ket{-}$ at $t=0$, derive Rabi's formula for the spin-flip probability $P_{-\to+}(t) = |\braket{+}{\psi(t)}|^2$:
+  \[
+  P_{-\to+}(t) = \frac{\omega_1^2}{\Omega_R^2} \sin^2\left( \frac{\Omega_R t}{2} \right)
+  \]
+  where $\Omega_R = \sqrt{(\omega - \omega_0)^2 + \omega_1^2}$ is the generalized Rabi frequency. State the resonance condition. \points{12}
+\end{enumerate}
+
+\end{problembox}
+
+\begin{solutionbox}[Solution to Problem 2]
+\textbf{Part (a): Hamiltonian Matrix}
+
+Using Pauli matrices $\sigma_x, \sigma_y, \sigma_z$ and frequencies $\omega_0 = -\gamma B_0$, $\omega_1 = -\gamma B_1$:
+\[
+\hat{H}(t) = \frac{\hbar}{2} \begin{pmatrix} \omega_0 & \omega_1 (\cos\omega t - i\sin\omega t) \\ \omega_1 (\cos\omega t + i\sin\omega t) & -\omega_0 \end{pmatrix} 
+= \frac{\hbar}{2} \begin{pmatrix} \omega_0 & \omega_1 e^{-i\omega t} \\ \omega_1 e^{i\omega t} & -\omega_0 \end{pmatrix}
+\]
+
+\textbf{Part (b): Rotating Frame Transformation}
+
+Let $U(t) = e^{i \omega t \sigma_z / 2} = \begin{pmatrix} e^{i\omega t/2} & 0 \\ 0 & e^{-i\omega t/2} \end{pmatrix}$. 
+Substituting $\ket{\psi(t)} = U^\dagger(t)\ket{\psi_R(t)}$ into Schrödinger's equation:
+\[
+i\hbar \dot{\ket{\psi_R}} = \left( U \hat{H} U^\dagger - i\hbar U \dot{U}^\dagger \right) \ket{\psi_R} \equiv \hat{H}_{\text{eff}} \ket{\psi_R}
+\]
+Evaluating terms:
+\[
+U \hat{H}(t) U^\dagger = \frac{\hbar}{2} \begin{pmatrix} \omega_0 & \omega_1 \\ \omega_1 & -\omega_0 \end{pmatrix}, \qquad
+-i\hbar U \dot{U}^\dagger = -\frac{\hbar\omega}{2}\sigma_z
+\]
+Adding these together yields the time-independent effective Hamiltonian:
+\[
+\hat{H}_{\text{eff}} = \frac{\hbar}{2} \begin{pmatrix} \omega_0 - \omega & \omega_1 \\ \omega_1 & -(\omega_0 - \omega) \end{pmatrix}
+\]
+
+\textbf{Part (c): Rabi Oscillations \& Resonance}
+
+The eigenvalues of $\hat{H}_{\text{eff}}$ are $\lambda_\pm = \pm \frac{\hbar}{2} \Omega_R$, with $\Omega_R = \sqrt{(\omega_0 - \omega)^2 + \omega_1^2}$. 
+Starting in state $\ket{\psi(0)} = \begin{pmatrix} 0 \\ 1 \end{pmatrix}$:
+\[
+\ket{\psi_R(t)} = \begin{pmatrix} -i \frac{\omega_1}{\Omega_R} \sin\left(\frac{\Omega_R t}{2}\right) \\[4pt] \cos\left(\frac{\Omega_R t}{2}\right) + i \frac{\omega_0 - \omega}{\Omega_R} \sin\left(\frac{\Omega_R t}{2}\right) \end{pmatrix}
+\]
+The spin-flip transition probability is:
+\[
+P_{-\to+}(t) = |\braket{+}{\psi_R(t)}|^2 = \frac{\omega_1^2}{(\omega - \omega_0)^2 + \omega_1^2} \sin^2\left( \frac{\Omega_R t}{2} \right)
+\]
+\textbf{Resonance Condition:} Complete transition ($P_{\max} = 1$) occurs when $\omega = \omega_0$.
+\end{solutionbox}
+
+\vspace{3mm}
+
+% ------------------------------------------------------------------------------
+% PROBLEM 3: PERTURBATION THEORY IN 1D INFINITE WELL
+% ------------------------------------------------------------------------------
+\begin{problembox}{Problem 3: Delta-Function Perturbation in an Infinite Square Well \points{35}}
+
+A particle of mass $m$ moves in an unperturbed one-dimensional infinite square well potential:
+\[
+V(x) = \begin{cases} 0 & 0 < x < a \\ \infty & \text{otherwise} \end{cases}
+\]
+The unperturbed energy eigenstates and eigenvalues are given by:
+\[
+\psi_n^{(0)}(x) = \sqrt{\frac{2}{a}} \sin\left( \frac{n\pi x}{a} \right), \qquad E_n^{(0)} = \frac{n^2 \pi^2 \hbar^2}{2m a^2}, \qquad n = 1, 2, 3, \dots
+\]
+A delta-function perturbation is placed at the center of the well:
+\[
+\hat{H}' = \alpha \delta\left( x - \frac{a}{2} \right)
+\]
+where $\alpha > 0$ represents the strength of the potential barrier.
+
+\begin{enumerate}[label=\bfseries(\alph*), leftmargin=*, itemsep=3pt]
+  \item Calculate the first-order energy correction $E_n^{(1)}$ for all energy levels $n = 1, 2, 3, \dots$. \points{12}
+  
+  \item Explain physically and mathematically why $E_n^{(1)} = 0$ for all even values of $n$. \points{8}
+  
+  \item Obtain the first-order correction to the ground state wave function $\psi_1^{(1)}(x)$. Calculate the explicit coefficient for the first non-vanishing term in the expansion series. \points{15}
+\end{enumerate}
+
+\end{problembox}
+
+\begin{solutionbox}[Solution to Problem 3]
+\textbf{Part (a): First-Order Energy Shifts}
+
+In non-degenerate perturbation theory:
+\[
+E_n^{(1)} = \mel{\psi_n^{(0)}}{\hat{H}'}{\psi_n^{(0)}} = \int_0^a \left[\psi_n^{(0)}(x)\right]^* \alpha \delta\left(x - \frac{a}{2}\right) \psi_n^{(0)}(x) \, dx = \alpha \left|\psi_n^{(0)}\left(\frac{a}{2}\right)\right|^2
+\]
+Evaluating the wave function at $x = a/2$:
+\[
+E_n^{(1)} = \frac{2\alpha}{a} \sin^2\left( \frac{n\pi}{2} \right) = \begin{cases} \dfrac{2\alpha}{a} & \text{for } n \text{ odd } (n = 1, 3, 5, \dots) \\[6pt] 0 & \text{for } n \text{ even } (n = 2, 4, 6, \dots) \end{cases}
+\]
+
+\textbf{Part (b): Vanishing Shift for Even $n$}
+
+Even quantum numbers $n$ correspond to wave functions with nodes at the well center ($\sin(n\pi/2) = 0$). Since the particle density at $x = a/2$ is zero, the particle does not interact with the delta perturbation, leaving its energy unchanged to first order.
+
+\textbf{Part (c): First-Order Wave Function Correction}
+
+Using first-order perturbation theory:
+\[
+\psi_1^{(1)}(x) = \sum_{m \neq 1} \frac{\mel{\psi_m^{(0)}}{\hat{H}'}{\psi_1^{(0)}}}{E_1^{(0)} - E_m^{(0)}} \psi_m^{(0)}(x)
+\]
+Matrix element: $H'_{m1} = \frac{2\alpha}{a} \sin\left(\frac{m\pi}{2}\right)$. For odd $m = 3, 5, 7, \dots$:
+\[
+E_1^{(0)} - E_m^{(0)} = \frac{\pi^2 \hbar^2}{2ma^2} (1 - m^2)
+\]
+For the dominant lowest correction term $m = 3$:
+\[
+c_3 = \frac{-2\alpha/a}{-4\pi^2\hbar^2 / ma^2} = \frac{m a \alpha}{2\pi^2 \hbar^2}
+\]
+The corrected ground state wave function to leading non-trivial order is:
+\[
+\psi_1(x) \approx \sqrt{\frac{2}{a}} \left[ \sin\left(\frac{\pi x}{a}\right) + \frac{m a \alpha}{2\pi^2 \hbar^2} \sin\left(\frac{3\pi x}{a}\right) \right]
+\]
+\end{solutionbox}
+
+\vspace{3mm}
+
+% ------------------------------------------------------------------------------
+% CONCEPTUAL SUMMARY & USEFUL FORMULAE REFERENCE BOX
+% ------------------------------------------------------------------------------
+\begin{tipbox}[Quantum Mechanics Quick Reference \& Formulas]
+\sffamily\small
+\begin{multicols}{2}
+\textbf{1D Harmonic Oscillator Operators:}
+\begin{itemize}[leftmargin=10pt, itemsep=1pt]
+  \item $[\hat{a}, \hat{a}^\dagger] = 1, \quad \hat{H} = \hbar\omega\left(\hat{N} + \frac{1}{2}\right)$
+  \item $\hat{a}\ket{n} = \sqrt{n}\ket{n-1}, \quad \hat{a}^\dagger\ket{n} = \sqrt{n+1}\ket{n+1}$
+\end{itemize}
+
+\textbf{Spin-$1/2$ Pauli Matrices:}
+\begin{itemize}[leftmargin=10pt, itemsep=1pt]
+  \item $\sigma_x = \left(\begin{smallmatrix} 0&1\\1&0 \end{smallmatrix}\right), \quad \sigma_y = \left(\begin{smallmatrix} 0&-i\\i&0 \end{smallmatrix}\right), \quad \sigma_z = \left(\begin{smallmatrix} 1&0\\0&-1 \end{smallmatrix}\right)$
+  \item $[\sigma_i, \sigma_j] = 2i\epsilon_{ijk}\sigma_k, \quad \{\sigma_i, \sigma_j\} = 2\delta_{ij}I$
+\end{itemize}
+
+\columnbreak
+
+\textbf{Time-Independent Perturbation Theory:}
+\begin{itemize}[leftmargin=10pt, itemsep=1pt]
+  \item $E_n^{(1)} = \mel{\psi_n^{(0)}}{\hat{H}'}{\psi_n^{(0)}}$
+  \item $\psi_n^{(1)} = \sum_{m \neq n} \frac{\mel{\psi_m^{(0)}}{\hat{H}'}{\psi_n^{(0)}}}{E_n^{(0)} - E_m^{(0)}} \psi_m^{(0)}$
+\end{itemize}
+
+\textbf{Dirac Delta Property:}
+\begin{itemize}[leftmargin=10pt, itemsep=1pt]
+  \item $\int_{a}^{b} f(x) \delta(x - x_0) dx = f(x_0) \quad \text{for } x_0 \in (a,b)$
+\end{itemize}
+\end{multicols}
+\end{tipbox}
+
+\end{document}

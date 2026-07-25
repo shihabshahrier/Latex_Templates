@@ -1,0 +1,537 @@
+\documentclass[11pt,a4paper]{scrreprt}
+
+% ---------- Packages ----------
+\usepackage[margin=2.2cm,headheight=32pt,headsep=14pt,footskip=32pt]{geometry}
+\usepackage[table]{xcolor}
+\usepackage{colortbl}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{tikz}
+\usetikzlibrary{positioning,calc,shapes.geometric,backgrounds,arrows.meta}
+\usepackage[most]{tcolorbox}
+\usepackage{enumitem}
+\usepackage{fontawesome5}
+\usepackage{fancyhdr}
+\usepackage{float}
+\usepackage{ragged2e}
+\usepackage[colorlinks=true,linkcolor=icdnavy,urlcolor=icdsteel,citecolor=icdnavy,linktoc=all]{hyperref}
+
+% ---------- Palette ----------
+\definecolor{icdnavy}{HTML}{16324F}
+\definecolor{icdsteel}{HTML}{2E7091}
+\definecolor{icdamber}{HTML}{C8752B}
+\definecolor{icdgray}{HTML}{F2F4F6}
+\definecolor{icdline}{HTML}{D6DCE2}
+
+% ---------- Typographic hierarchy ----------
+\addtokomafont{chapter}{\color{icdnavy}}
+\addtokomafont{section}{\color{icdnavy}}
+\addtokomafont{subsection}{\color{icdsteel}}
+\addtokomafont{subsubsection}{\color{icdsteel}}
+\addtokomafont{disposition}{\rmfamily}
+\setkomafont{chapterentry}{\color{icdnavy}}
+\setkomafont{pagenumber}{\color{icdsteel}}
+
+\renewcommand{\thechapter}{\arabic{chapter}}
+\renewcommand{\thesection}{\thechapter.\arabic{section}}
+
+% ---------- Header / Footer ----------
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0.6pt}
+\renewcommand{\footrulewidth}{0.4pt}
+\renewcommand{\headrule}{\hbox to\headwidth{\color{icdline}\leaders\hrule height \headrulewidth\hfill}}
+\renewcommand{\footrule}{\hbox to\headwidth{\color{icdline}\leaders\hrule height \footrulewidth\hfill}}
+\fancyhead[L]{\small\color{icdsteel}\textsf{ICD--PX410--0031}}
+\fancyhead[R]{\small\color{icdsteel}\textsf{Nimbus Systems / Meridian Aerospace}}
+\fancyfoot[L]{\small\color{icdsteel}\textsf{Rev.\ C -- Proprietary}}
+\fancyfoot[R]{\small\color{icdsteel}\textsf{Page \thepage\ of \pageref{LastPage}}}
+
+\fancypagestyle{plain}{%
+  \fancyhf{}
+  \fancyfoot[L]{\small\color{icdsteel}\textsf{Rev.\ C -- Proprietary}}
+  \fancyfoot[R]{\small\color{icdsteel}\textsf{Page \thepage\ of \pageref{LastPage}}}
+  \renewcommand{\headrulewidth}{0pt}
+  \renewcommand{\footrulewidth}{0.4pt}
+}
+
+\usepackage{lastpage}
+
+% ---------- tcolorbox styles ----------
+\tcbset{
+  icdbase/.style={
+    breakable, enhanced, colback=icdgray, colframe=icdnavy,
+    boxrule=0.5pt, left=8pt, right=8pt, top=6pt, bottom=6pt,
+    arc=1.5pt, fonttitle=\bfseries\sffamily
+  }
+}
+\newtcolorbox{noticebox}[1][]{icdbase, colframe=icdamber, title={#1}}
+\newtcolorbox{infobox}[1][]{icdbase, colframe=icdsteel, title={#1}}
+\newtcolorbox{specbox}[1][]{icdbase, colframe=icdnavy, title={#1}}
+
+% ---------- Table helpers ----------
+\renewcommand{\arraystretch}{1.15}
+\newcolumntype{Y}{>{\RaggedRight\arraybackslash}X}
+
+\newcommand{\sectionrule}{\par\vspace{2pt}{\color{icdline}\hrule height 0.6pt}\par\vspace{6pt}}
+
+\begin{document}
+
+% =====================================================================
+\begin{titlepage}
+\newgeometry{margin=2.2cm}
+\begin{tikzpicture}[remember picture,overlay]
+  \fill[icdnavy] (current page.north west) rectangle ([yshift=-2.6cm]current page.north east);
+  \fill[icdamber] ([yshift=-2.6cm]current page.north west) rectangle ([yshift=-2.65cm]current page.north east);
+  \node[anchor=north west, text=white, font=\sffamily\bfseries\Large]
+    at ([xshift=0.9cm,yshift=-0.7cm]current page.north west) {NIMBUS SYSTEMS};
+  \node[anchor=north west, text=white, font=\sffamily\small]
+    at ([xshift=0.9cm,yshift=-1.5cm]current page.north west) {Guidance, Navigation \& Sensing Products};
+\end{tikzpicture}
+
+\vspace*{3.0cm}
+
+\begin{center}
+{\sffamily\bfseries\Huge\color{icdnavy} Hardware Interface\\[2pt] Control Document}\\[10pt]
+{\sffamily\Large\color{icdsteel} Nimbus AeroLink PX-410 IMU/GNSS Sensor Module}\\[4pt]
+{\sffamily\large\color{icdsteel} Interface to Meridian Aerospace Host Vehicle Avionics Bus}
+\end{center}
+
+\vspace{1.6cm}
+\begin{center}
+\begin{tabularx}{0.86\textwidth}{@{}l Y@{}}
+\rowcolor{icdnavy}
+\multicolumn{2}{@{}l}{\color{white}\bfseries\sffamily\ \ Document Control} \\
+\textbf{Document No.} & ICD--PX410--0031 \\
+\textbf{Revision} & C \\
+\textbf{Classification} & Proprietary -- Nimbus / Meridian Joint Program \\
+\textbf{Issue Date} & 14 March 2026 \\
+\textbf{Prepared by} & Dana Kowalski, Principal Hardware Engineer, Nimbus Systems \\
+\textbf{Reviewed by} & Owen Achterberg, Systems Integration Lead, Meridian Aerospace \\
+\textbf{Approved by} & Renata Silva, Chief Engineer, Nimbus Systems \\
+\textbf{Program} & Meridian MV-7 Autonomous Survey Platform \\
+\end{tabularx}
+\end{center}
+
+\vfill
+\begin{center}
+\small\color{icdsteel}\sffamily
+This document defines the mechanical, electrical, and connector-level interface between the\\
+Nimbus AeroLink PX-410 sensor module and the host vehicle avionics bay. Distribution\\
+limited to the Nimbus / Meridian program office and authorized suppliers.
+\end{center}
+\vspace{0.6cm}
+\restoregeometry
+\end{titlepage}
+
+% =====================================================================
+\tableofcontents
+
+% =====================================================================
+\chapter{Introduction}
+
+\section{Document Control}
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{@{}l l l Y@{}}
+\toprule
+\rowcolor{icdnavy}
+\color{white}\bfseries Rev & \color{white}\bfseries Date & \color{white}\bfseries Author & \color{white}\bfseries Description of Change \\
+\midrule
+A & 02 Sep 2025 & D. Kowalski & Initial release for design review. \\
+B & 19 Nov 2025 & D. Kowalski & Added J2 connector CAN bus pins; revised absolute max ratings after EMC pre-scan. \\
+C & 14 Mar 2026 & D. Kowalski & Corrected PPS timing skew tolerance; added ID strap pinout; updated mounting hole callouts to match qualification hardware. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\vspace{4pt}
+\begin{noticebox}[\faExclamationTriangle\ \ Precedence Notice]
+In case of conflict between this document and Nimbus drawing PX410-D-0002 (mechanical
+outline), the drawing governs. In case of conflict between this document and the Meridian
+MV-7 Power Bus ICD (MER-ICD-0114), this document governs for all PX-410 connector pin
+assignments.
+\end{noticebox}
+
+\section{Purpose}
+This Interface Control Document (ICD) establishes and maintains the mechanical, electrical,
+and connector-level interface requirements between the Nimbus AeroLink PX-410 Inertial
+Measurement Unit / GNSS Sensor Module (hereafter ``the Unit'') and the Meridian MV-7 host
+vehicle avionics bay (hereafter ``the Host''). It is the controlling reference for hardware
+and software teams on both programs when designing, integrating, or troubleshooting the
+Unit-to-Host boundary.
+
+\section{Scope}
+This document covers:
+\begin{itemize}[leftmargin=*,itemsep=2pt]
+  \item Mechanical envelope, mounting pattern, and connector keep-out zones.
+  \item Electrical power interface, absolute maximum ratings, and grounding scheme.
+  \item Connector part numbers and full pin-by-pin signal definitions for J1 and J2.
+  \item Signal timing for the 1 PPS strobe and external synchronization input.
+  \item Environmental qualification levels and the verification cross-reference matrix.
+\end{itemize}
+This document does not define the internal design of the Unit, the Host's software driver
+architecture, or the GNSS antenna interface, which are covered by ICD--PX410--0032.
+
+\section{Applicability}
+This ICD applies to all PX-410 hardware built to and after Engineering Change Order
+ECO-0148 (serial numbers PX410-0091 and higher). Earlier serial numbers should be evaluated
+against Revision A of this document before integration.
+
+\section{Reference Documents}
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{@{}l Y l@{}}
+\toprule
+\rowcolor{icdnavy}
+\color{white}\bfseries Ref. & \color{white}\bfseries Title & \color{white}\bfseries Number \\
+\midrule
+{[}1{]} & PX-410 Mechanical Outline Drawing & PX410-D-0002 \\
+{[}2{]} & MV-7 Power Bus Interface Control Document & MER-ICD-0114 \\
+{[}3{]} & PX-410 Environmental Qualification Test Report & NX-EQ-0077 \\
+{[}4{]} & PX-410/PX-410 GNSS Antenna ICD & ICD--PX410--0032 \\
+{[}5{]} & Nimbus EMC Design Standard & NX-STD-014 Rev.\ F \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+% =====================================================================
+\chapter{Interface Overview and Mechanical Interface}
+
+\section{System Context}
+The Unit mounts inside the Host avionics bay and interfaces to two harnesses: a power and
+discrete-I/O harness (via connector J1) and a data harness (via connector J2) carrying
+RS-422 attitude data, a 1 PPS timing strobe, and a CAN bus tap used for maintenance polling.
+Figure~\ref{fig:overview} shows the interface boundary.
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[
+  box/.style={draw=icdnavy, thick, rounded corners=2pt, fill=icdgray,
+              minimum width=3.3cm, minimum height=1.2cm, align=center, font=\sffamily\small},
+  lbl/.style={font=\sffamily\scriptsize, color=icdsteel}
+]
+\node[box] (unit) {Nimbus PX-410\\Sensor Module};
+\node[box, left=34mm of unit] (host) {Meridian MV-7\\Host Avionics Bus};
+\node[box, fill=white, draw=icdamber, below left=16mm and 2mm of unit] (power) {28 VDC Aircraft\\Power Bus};
+\node[box, fill=white, draw=gray, below right=16mm and 2mm of unit] (gnss) {GNSS Antenna\\(ICD--PX410--0032)};
+
+\draw[{Latex[length=2.2mm]}-{Latex[length=2.2mm]}, thick, icdsteel] (host.east) -- node[above, lbl] {J2 -- data} (unit.west);
+\draw[-{Latex[length=2.2mm]}, thick, icdamber] (power.north) -- node[left, lbl] {J1} (unit.south west);
+\draw[-{Latex[length=2.2mm]}, thick, gray] (gnss.north) -- node[right, lbl] {ANT} (unit.south east);
+\end{tikzpicture}
+\caption{PX-410 interface context within the MV-7 avionics bay.}
+\label{fig:overview}
+\end{figure}
+
+\section{Connector Summary}
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{@{}l l l Y@{}}
+\toprule
+\rowcolor{icdnavy}
+\color{white}\bfseries Designator & \color{white}\bfseries Function & \color{white}\bfseries Pins & \color{white}\bfseries Mating Connector \\
+\midrule
+J1 & Power \& discrete I/O & 9 & Micro-D, socket, per MIL-DTL-83513 \\
+J2 & Data (RS-422 / PPS / CAN / ID) & 15 & Micro-D, socket, per MIL-DTL-83513 \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Envelope and Mounting}
+\label{sec:mech-mount}
+The Unit occupies an envelope of 82.0~mm~$\times$~62.0~mm~$\times$~24.5~mm (excluding
+connector shells) and mounts to the Host structure using four M3 fasteners torqued to
+0.9~N$\cdot$m. Figure~\ref{fig:mech} shows the mounting hole pattern as viewed from the
+connector face.
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[scale=1.0]
+  \draw[thick, icdnavy, rounded corners=2pt, fill=icdgray] (0,0) rectangle (8.2,6.2);
+  \foreach \x/\y in {0.7/0.7, 7.5/0.7, 0.7/5.5, 7.5/5.5} {
+    \draw[thick, icdsteel, fill=white] (\x,\y) circle (0.16);
+    \draw[icdline] (\x,\y) circle (0.30);
+  }
+  \draw[icdamber, thick, fill=white] (2.9,-0.05) rectangle (5.3,0.55);
+  \node[font=\sffamily\scriptsize] at (4.1,0.25) {J1};
+  \draw[icdamber, thick, fill=white] (2.9,5.75) rectangle (5.9,6.35);
+  \node[font=\sffamily\scriptsize] at (4.4,6.05) {J2};
+
+  \draw[<->, thick] (0,-0.9) -- (8.2,-0.9);
+  \node[below, font=\sffamily\scriptsize] at (4.1,-0.9) {82.0 mm};
+  \draw[<->, thick] (-0.9,0) -- (-0.9,6.2);
+  \node[left, font=\sffamily\scriptsize, rotate=90] at (-0.9,3.1) {62.0 mm};
+
+  \draw[<->, thick, icdsteel] (0.7,0.7) -- (7.5,0.7);
+  \node[above, font=\sffamily\scriptsize, color=icdsteel] at (4.1,0.7) {70.0 mm hole spacing};
+  \node[font=\sffamily\tiny, color=icdsteel] at (0.7,1.05) {\O 3.2};
+\end{tikzpicture}
+\caption{PX-410 mounting hole pattern, connector face view. Four places, \O3.2~mm clearance for M3 fasteners.}
+\label{fig:mech}
+\end{figure}
+
+\section{Mechanical Requirements}
+\begin{specbox}[Mechanical Interface Requirements]
+\begin{itemize}[leftmargin=*,itemsep=2pt]
+  \item[\faCheckCircle] Mounting surface flatness: 0.10~mm max over the fastener footprint.
+  \item[\faCheckCircle] Fastener: four M3~$\times$~0.5, class 8.8 or better, with lock washer.
+  \item[\faCheckCircle] Connector keep-out: 18~mm clear of mating connector back-shell for cable bend radius.
+  \item[\faCheckCircle] Mass: 165~g $\pm$ 8~g, including connector shells.
+  \item[\faCheckCircle] Center of gravity: within 3~mm of geometric center in the mounting plane.
+\end{itemize}
+\end{specbox}
+
+% =====================================================================
+\chapter{Electrical Interface}
+
+\section{Power Interface}
+\label{sec:power}
+The Unit accepts a primary and a redundant secondary 28~VDC feed on J1. Either feed alone
+is sufficient for full operation; the Unit does not perform automatic load-sharing and draws
+from whichever feed is present, with the primary feed taking priority if both are applied.
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{@{}Y c c c c@{}}
+\toprule
+\rowcolor{icdnavy}
+\color{white}\bfseries Parameter & \color{white}\bfseries Min & \color{white}\bfseries Typ & \color{white}\bfseries Max & \color{white}\bfseries Unit \\
+\midrule
+Supply voltage (steady state) & 22.0 & 28.0 & 32.0 & VDC \\
+Supply voltage (transient, $<$50~ms) & 18.0 & -- & 40.0 & VDC \\
+Steady-state current draw & -- & 0.38 & 0.55 & A \\
+Inrush current ($<$10~ms) & -- & 1.6 & 2.4 & A \\
+Ripple \& noise (20~MHz BW) & -- & -- & 200 & mVpp \\
+Turn-on time to data valid & -- & 1.4 & 2.5 & s \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Absolute Maximum Ratings}
+\label{sec:absmax}
+\begin{noticebox}[\faBolt\ \ Absolute Maximum Ratings -- Exceeding These Values May Cause Permanent Damage]
+\begin{tabularx}{\textwidth}{@{}Y c c c@{}}
+\toprule
+\bfseries Parameter & \bfseries Min & \bfseries Max & \bfseries Unit \\
+\midrule
+Supply voltage, J1 pins 1--4 & $-0.5$ & 36.0 & V \\
+Discrete input voltage & $-0.5$ & 32.0 & V \\
+RS-422 / CAN line voltage & $-7.0$ & 12.0 & V \\
+ESD, human body model, all pins & -- & 8 & kV \\
+Storage temperature & $-55$ & 100 & \textdegree C \\
+Operating case temperature & $-40$ & 85 & \textdegree C \\
+\end{tabularx}
+\end{noticebox}
+
+\section{Grounding and Shielding}
+Chassis ground (J1 pin 5) shall bond to the Host structure through a dedicated stud with
+contact resistance below 2.5~m$\Omega$. Signal ground (J2 pins 9 and 10) is isolated from
+chassis inside the Unit by a 1~M$\Omega$ / 1~nF network and must not be tied to chassis
+ground anywhere in the Host harness. Cable shields terminate to the connector back-shell at
+both ends (single-point per shield, 360\textdegree\ termination recommended at the Unit end).
+
+% =====================================================================
+\chapter{Connector and Pinout Definition}
+
+{\renewcommand{\arraystretch}{1.0}
+\section{J1 -- Power and Discrete I/O}
+\textbf{Connector type:} 9-pin Micro-D, socket contacts (Unit side), per MIL-DTL-83513.
+\textbf{Mating connector:} Glenair 801-009M or equivalent pin-contact plug.
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabularx}{\textwidth}{@{}c l l Y@{}}
+\toprule
+\rowcolor{icdnavy}
+\color{white}\bfseries Pin & \color{white}\bfseries Signal & \color{white}\bfseries Type & \color{white}\bfseries Description \\
+\midrule
+1 & +28V\_PRI & Power In & Primary 28~VDC power input \\
+\rowcolor{icdgray}
+2 & +28V\_RTN & Power Return & Primary power return \\
+3 & +28V\_SEC & Power In & Secondary (redundant) 28~VDC power input \\
+\rowcolor{icdgray}
+4 & +28V\_SEC\_RTN & Power Return & Secondary power return \\
+5 & CHASSIS\_GND & Ground & Chassis / frame ground stud reference \\
+\rowcolor{icdgray}
+6 & DISC\_IN\_1 & Discrete In & Built-in-test initiate, active low, 10~k$\Omega$ pull-up \\
+7 & DISC\_OUT\_1 & Discrete Out & Health/status flag, open-collector, 100~mA sink max \\
+\rowcolor{icdgray}
+8 & SHIELD & Shield & Cable shield termination, single-point \\
+9 & RESERVED & -- & No connect; reserved for future use \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{J2 -- Data Interface}
+\textbf{Connector type:} 15-pin Micro-D, socket contacts (Unit side), per MIL-DTL-83513.
+\textbf{Mating connector:} Glenair 801-015M or equivalent pin-contact plug.
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabularx}{\textwidth}{@{}c l l Y@{}}
+\toprule
+\rowcolor{icdnavy}
+\color{white}\bfseries Pin & \color{white}\bfseries Signal & \color{white}\bfseries Type & \color{white}\bfseries Description \\
+\midrule
+1 & RS422\_TX+ & Output & Attitude data transmit, differential positive \\
+\rowcolor{icdgray}
+2 & RS422\_TX$-$ & Output & Attitude data transmit, differential negative \\
+3 & RS422\_RX+ & Input & Command receive, differential positive \\
+\rowcolor{icdgray}
+4 & RS422\_RX$-$ & Input & Command receive, differential negative \\
+5 & PPS\_OUT & Output & 1~PPS timing strobe, LVTTL, rising edge on-time \\
+\rowcolor{icdgray}
+6 & SYNC\_IN & Input & External synchronization input, LVTTL \\
+7 & CAN\_H & I/O & CAN bus, high, 500~kbps maintenance tap \\
+\rowcolor{icdgray}
+8 & CAN\_L & I/O & CAN bus, low, 500~kbps maintenance tap \\
+9 & SIG\_GND & Ground & Signal / logic ground reference \\
+\rowcolor{icdgray}
+10 & SIG\_GND & Ground & Signal / logic ground reference (redundant pin) \\
+11 & TEST\_1 & Input & Factory test point; leave open in flight harness \\
+\rowcolor{icdgray}
+12 & TEST\_2 & Input & Factory test point; leave open in flight harness \\
+13 & ID\_0 & Input & Address / ID strap, bit 0 (tie to SIG\_GND for `1') \\
+\rowcolor{icdgray}
+14 & ID\_1 & Input & Address / ID strap, bit 1 (tie to SIG\_GND for `1') \\
+15 & SHIELD & Shield & Cable shield termination, single-point \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\begin{infobox}[\faInfoCircle\ \ ID Strap Usage]
+Pins 13/14 set the CAN node address for multi-unit installations: 00 = address 1 (default,
+both pins open), 01 = address 2, 10 = address 3, 11 = address 4. Straps are sampled once at
+power-on; changing them while the Unit is powered has no effect until the next boot.
+\end{infobox}
+}
+
+% =====================================================================
+\chapter{Signal Timing, Environmental Interface and Appendix}
+
+\section{1 PPS and External Sync}
+\label{sec:timing}
+PPS\_OUT rises within 100~ns of the top of the GNSS second once the Unit reports a valid
+navigation solution. SYNC\_IN, when driven, forces the Unit's internal timing epoch to
+realign on the next rising edge; this is used during Host bring-up when the Unit is the
+timing follower rather than the timing source.
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[x=1.6cm, y=1cm]
+  \draw[thick, icdnavy] (0,2) -- (0.9,2) -- (0.9,2.7) -- (1.9,2.7) -- (1.9,2) -- (3.9,2) -- (3.9,2.7) -- (4.9,2.7);
+  \node[left, font=\sffamily\small] at (0,2.35) {PPS\_OUT};
+
+  \draw[thick, icdsteel] (0,0) -- (0.6,0) -- (0.6,0.7) -- (1.6,0.7) -- (1.6,0) -- (4.6,0) -- (4.6,0.7) -- (4.9,0.7);
+  \node[left, font=\sffamily\small] at (0,0.35) {SYNC\_IN};
+
+  \draw[dashed, gray] (0.9,0) -- (0.9,3.0);
+  \draw[dashed, gray] (0.6,0) -- (0.6,3.0);
+  \draw[<->, thick] (0.6,2.95) -- (0.9,2.95);
+  \node[above, font=\sffamily\tiny] at (0.75,2.95) {$t_{skew} \leq 50~\mu$s};
+
+  \draw[<->, thick] (0.9,-0.35) -- (3.9,-0.35);
+  \node[below, font=\sffamily\tiny] at (2.4,-0.35) {1.000\,000~s $\pm$ 50~ppm};
+\end{tikzpicture}
+\caption{PPS\_OUT to SYNC\_IN timing relationship (follower mode).}
+\label{fig:timing}
+\end{figure}
+
+\section{Timing Requirements}
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{@{}Y c c c c@{}}
+\toprule
+\rowcolor{icdnavy}
+\color{white}\bfseries Parameter & \color{white}\bfseries Min & \color{white}\bfseries Typ & \color{white}\bfseries Max & \color{white}\bfseries Unit \\
+\midrule
+PPS pulse width & 20 & 100 & 200 & ms \\
+PPS period accuracy & -- & -- & 50 & ppm \\
+PPS-to-SYNC skew (follower mode) & -- & 12 & 50 & \textmu s \\
+RS-422 data rate & 9600 & 115200 & 921600 & bps \\
+CAN bus data rate & -- & 500 & -- & kbps \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Qualification Levels}
+\label{sec:qual}
+The Unit is qualified per NX-EQ-0077 to the levels summarized below. These are boundary
+conditions on the Host installation, not internal design margins.
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{@{}Y Y@{}}
+\toprule
+\rowcolor{icdnavy}
+\color{white}\bfseries Environment & \color{white}\bfseries Level \\
+\midrule
+Operating temperature & $-40$\textdegree C to $+85$\textdegree C, case \\
+\rowcolor{icdgray}
+Storage temperature & $-55$\textdegree C to $+100$\textdegree C \\
+Random vibration & 7.7~$g_{rms}$, 20--2000~Hz, 3 axes \\
+\rowcolor{icdgray}
+Operational shock & 40~g, 11~ms half-sine, 3 axes \\
+Humidity & 95\% RH non-condensing, 48~h dwell \\
+\rowcolor{icdgray}
+Altitude & Sea level to 15{,}000~m \\
+Ingress protection & IP54 (mated connectors) \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Verification Cross-Reference Matrix}
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{@{}l Y c c@{}}
+\toprule
+\rowcolor{icdnavy}
+\color{white}\bfseries Req.\ ID & \color{white}\bfseries Requirement & \color{white}\bfseries Method & \color{white}\bfseries Ref. \\
+\midrule
+ICD-M-01 & Mounting hole pattern per Fig.~\ref{fig:mech} & Inspection & \S\ref{sec:mech-mount} \\
+\rowcolor{icdgray}
+ICD-E-02 & Steady-state supply current $\leq$ 0.55~A & Test & \S\ref{sec:power} \\
+ICD-E-03 & Survives 8~kV HBM ESD, all pins & Test & \S\ref{sec:absmax} \\
+\rowcolor{icdgray}
+ICD-T-04 & PPS-to-SYNC skew $\leq$ 50~\textmu s & Test & \S\ref{sec:timing} \\
+ICD-V-05 & Random vibration, 7.7~$g_{rms}$ & Test & \S\ref{sec:qual} \\
+\rowcolor{icdgray}
+ICD-V-06 & IP54 with mated connectors & Analysis \& Test & \S\ref{sec:qual} \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Appendix A -- Mating Hardware}
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{@{}l Y l@{}}
+\toprule
+\rowcolor{icdnavy}
+\color{white}\bfseries Item & \color{white}\bfseries Description & \color{white}\bfseries Part Number \\
+\midrule
+J1 mate & 9-pin Micro-D plug, pin contacts & Glenair 801-009M \\
+\rowcolor{icdgray}
+J2 mate & 15-pin Micro-D plug, pin contacts & Glenair 801-015M \\
+Backshell & 90\textdegree\ EMI backshell, both connectors & Glenair 25-716SN \\
+\rowcolor{icdgray}
+Mounting fastener & M3 $\times$ 0.5, class 8.8, 10~mm & Nimbus SP-0044 \\
+Chassis ground lug & M3 ring lug, tin-plated copper & Nimbus SP-0051 \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\vspace{6pt}
+\begin{infobox}[\faFile\ \ Change Requests]
+Proposed changes to this ICD are submitted through the joint Nimbus/Meridian configuration
+control board using form NX-CCB-002 and require concurrence from both chief engineers listed
+on the title page before incorporation.
+\end{infobox}
+
+\end{document}

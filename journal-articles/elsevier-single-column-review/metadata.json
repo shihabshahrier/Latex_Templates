@@ -1,0 +1,8 @@
+{
+  "name": "Elsevier Single-Column Review Article",
+  "compiler": "pdflatex",
+  "description": "Elsevier Single-Column Review Article LaTeX template \u2014 elsevier single-column review article latex template. Elegant, compile-tested, editable online at letx.app.",
+  "author": "LetX",
+  "category": "journal-articles",
+  "license": "MIT"
+}

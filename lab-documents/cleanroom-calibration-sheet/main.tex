@@ -1,0 +1,361 @@
+\documentclass[10pt,a4paper]{scrartcl}
+
+%-------------------------------------------------------------------------------
+% PACKAGES & SETUP
+%-------------------------------------------------------------------------------
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+\usepackage{microtype}
+
+\usepackage[top=1.2cm, bottom=1.4cm, left=1.2cm, right=1.2cm]{geometry}
+\usepackage[table,x11names]{xcolor}
+\usepackage{graphicx}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{multirow}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage{fontawesome5}
+\usepackage{scrlayer-scrpage}
+\usepackage{tikz}
+\usetikzlibrary{calc, positioning, backgrounds, shapes.geometric}
+\usepackage[many]{tcolorbox}
+
+%-------------------------------------------------------------------------------
+% COLOR PALETTE (Cleanroom Precision Theme)
+%-------------------------------------------------------------------------------
+\definecolor{NavyDark}{HTML}{0F172A}      % Slate 900 - Main headers & structural elements
+\definecolor{CleanroomBlue}{HTML}{0284C7} % Sky 600 - Primary brand / accent color
+\definecolor{CleanroomLight}{HTML}{F0F9FF}% Sky 50 - Background fills for boxes
+\definecolor{SlateGrey}{HTML}{475569}     % Slate 600 - Secondary text & labels
+\definecolor{BorderGrey}{HTML}{CBD5E1}    % Slate 300 - Table borders & dividers
+\definecolor{PassGreen}{HTML}{16A34A}     % Green 600 - Pass badge / verification
+\definecolor{TableAlt}{HTML}{F8FAFC}      % Slate 50 - Alternating table row fill
+
+%-------------------------------------------------------------------------------
+% PAGE LAYOUT & HEADER/FOOTER
+%-------------------------------------------------------------------------------
+\pagestyle{scrheadings}
+\clearpairofpagestyles
+\ihead{\footnotesize \textcolor{SlateGrey}{\faBuilding\ Nexa Microfabrication Cleanroom Facility ~|~ ISO 5 (Class 100)}}
+\ohead{\footnotesize \textcolor{SlateGrey}{Doc ID: \textbf{CAL-2026-NFX-0842}}}
+\ifoot{\footnotesize \textcolor{SlateGrey}{Form Ref: QA-CL-FRM-049 Rev 4.2}}
+\cfoot{\footnotesize \textcolor{SlateGrey}{Page \thepage\ of 2}}
+\ofoot{\footnotesize \textcolor{PassGreen}{\faCheckCircle\ Official Calibration Log}}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{3pt}
+
+%-------------------------------------------------------------------------------
+% TCOLORBOX STYLES
+%-------------------------------------------------------------------------------
+\tcbset{
+  basebox/.style={
+    enhanced,
+    arc=3pt,
+    boxrule=0.8pt,
+    colframe=NavyDark,
+    colback=white,
+    left=6pt, right=6pt, top=5pt, bottom=5pt,
+    fonttitle=\bfseries\sffamily,
+  },
+  headerbox/.style={
+    enhanced,
+    arc=4pt,
+    boxrule=1pt,
+    colframe=NavyDark,
+    colback=CleanroomLight,
+    left=8pt, right=8pt, top=6pt, bottom=6pt
+  },
+  sectionbox/.style={
+    enhanced,
+    arc=3pt,
+    boxrule=0.6pt,
+    colframe=CleanroomBlue,
+    colback=white,
+    coltitle=white,
+    colbacktitle=CleanroomBlue,
+    fonttitle=\bfseries\sffamily\small,
+    left=6pt, right=6pt, top=5pt, bottom=5pt
+  }
+}
+
+%-------------------------------------------------------------------------------
+% CUSTOM COMMANDS
+%-------------------------------------------------------------------------------
+\newcommand{\fieldlabel}[1]{\textcolor{SlateGrey}{\small\bfseries #1}}
+\newcommand{\fieldval}[1]{{\small #1}}
+\newcommand{\passstatus}{\textcolor{PassGreen}{\textbf{\faCheck\ PASS}}}
+
+\begin{document}
+
+%-------------------------------------------------------------------------------
+% HEADER BANNER
+%-------------------------------------------------------------------------------
+\begin{tcolorbox}[headerbox]
+\begin{minipage}[c]{0.68\textwidth}
+  {\Large \textbf{\textcolor{NavyDark}{NEXA NANO-FABRICATION FACILITY}}}\\[2pt]
+  {\large \textbf{\textcolor{CleanroomBlue}{EQUIPMENT CALIBRATION \& VERIFICATION SHEET}}}\\[3pt]
+  {\small \textcolor{SlateGrey}{\faMapMarker\ Bay 3 -- Thin Film Photolithography Zone ~|~ Metrology Core B}}
+\end{minipage}%
+\begin{minipage}[c]{0.32\textwidth}
+  \centering
+  \begin{tikz}
+    \node[
+      draw=PassGreen,
+      fill=PassGreen!10,
+      line width=1.2pt,
+      rounded corners=4pt,
+      inner sep=5pt,
+      align=center
+    ] {
+      \textcolor{PassGreen}{\large \textbf{\faCheckCircle\ CALIBRATION PASSED}}\\[2pt]
+      \small \textbf{Status:} \textcolor{NavyDark}{APPROVED FOR USE}\\[1pt]
+      \scriptsize \textcolor{SlateGrey}{Valid: 24-Jul-2026 to 24-Jan-2027}
+    };
+  \end{tikz}
+\end{minipage}
+\end{tcolorbox}
+
+\vspace{1pt}
+
+%-------------------------------------------------------------------------------
+% SECTION 1: EQUIPMENT IDENTIFICATION & SPECIFICATIONS
+%-------------------------------------------------------------------------------
+\begin{tcolorbox}[sectionbox, title={\faMicroscope\ SECTION 1: EQUIPMENT IDENTIFICATION \& SPECIFICATIONS}]
+\small
+\begin{tabularx}{\textwidth}{@{}l X l X@{}}
+  \fieldlabel{Equipment Name:} & \fieldval{OptiSpec 5000 Laser Ellipsometer} & \fieldlabel{Asset Control ID:} & \fieldval{NFX-EQ-ELL-094} \\
+  \fieldlabel{Manufacturer:} & \fieldval{Meridian Precision Instruments Inc.} & \fieldlabel{Serial Number:} & \fieldval{MPI-2023-8849-X} \\
+  \fieldlabel{Model Number:} & \fieldval{OS-5000-DUV-HighRes} & \fieldlabel{Cleanroom Location:} & \fieldval{Bay 3 / Workstation B-02} \\
+  \fieldlabel{Measurement Range:} & \fieldval{0.5 nm -- 5,000.0 nm} & \fieldlabel{Cleanroom Class:} & \fieldval{ISO 5 (Class 100 Standard)} \\
+  \fieldlabel{Laser Wavelengths:} & \fieldval{632.8 nm (HeNe), 355.0 nm (UV)} & \fieldlabel{Calibration Cycle:} & \fieldval{6 Months (Semi-Annual)} \\
+  \fieldlabel{Primary Contact:} & \fieldval{Dr. Aris Thorne (Metrology Lead)} & \fieldlabel{Department:} & \fieldval{Microfabrication Systems} \\
+\end{tabularx}
+\end{tcolorbox}
+
+\vspace{1pt}
+
+%-------------------------------------------------------------------------------
+% SECTION 2: ENVIRONMENTAL CONDITIONS & CLEANROOM STATUS
+%-------------------------------------------------------------------------------
+\begin{tcolorbox}[sectionbox, title={\faWind\ SECTION 2: ENVIRONMENTAL MONITORING DURING CALIBRATION}]
+\small
+\begin{tabularx}{\textwidth}{@{}X X X X@{}}
+  \fieldlabel{Ambient Temperature:} & \fieldval{20.1~$^\circ$C ~(\textpm 0.3~$^\circ$C limit)} & 
+  \fieldlabel{Relative Humidity:} & \fieldval{42.5\% RH ~(\textpm 3.0\% limit)} \\
+  \fieldlabel{Laminar Airflow:} & \fieldval{0.45 m/s ~(HEPA Filtration)} & 
+  \fieldlabel{Particle Count (0.5\,\ensuremath{\mu}m):} & \fieldval{280 particles/m$^3$ ~(Pass ISO 5)} \\
+  \fieldlabel{Vibration Control:} & \fieldval{Active Isolation Table ON} & 
+  \fieldlabel{Barometric Pressure:} & \fieldval{1013.2 mbar (Nominal)} \\
+\end{tabularx}
+\end{tcolorbox}
+
+\vspace{1pt}
+
+%-------------------------------------------------------------------------------
+% SECTION 3: TRACEABLE REFERENCE STANDARDS USED
+%-------------------------------------------------------------------------------
+\begin{tcolorbox}[sectionbox, title={\faBookmark\ SECTION 3: TRACEABLE CALIBRATION REFERENCE STANDARDS}]
+\small
+\begin{tabularx}{\textwidth}{@{}l X l c c c@{}}
+  \toprule
+  \textbf{Standard ID} & \textbf{Description} & \textbf{Nominal Value / Spec} & \textbf{NIST / ISO Cert \#} & \textbf{Cal Date} & \textbf{DueDate} \\
+  \midrule
+  \rowcolor{TableAlt}
+  NFX-STD-SiO2-10 & Thermal $\text{SiO}_2$ Standard Wafer & 14.8 nm \textpm{} 0.15 nm & NIST-98421-B & 10-Jan-2026 & 10-Jan-2027 \\
+  NFX-STD-SiO2-100 & Thermal $\text{SiO}_2$ Standard Wafer & 101.4 nm \textpm{} 0.20 nm & NIST-98422-B & 10-Jan-2026 & 10-Jan-2027 \\
+  \rowcolor{TableAlt}
+  NFX-STD-SiO2-1000 & Thermal $\text{SiO}_2$ Standard Wafer & 1002.5 nm \textpm{} 0.50 nm & NIST-98425-C & 15-Feb-2026 & 15-Feb-2027 \\
+  NFX-STD-SI-RI & Single Crystal Si Standard & $n = 3.8650 \text{ @ } 632.8\,\text{nm}$ & ISO-17025-882 & 04-Mar-2026 & 04-Mar-2027 \\
+  \bottomrule
+\end{tabularx}
+\end{tcolorbox}
+
+\vspace{1pt}
+
+%-------------------------------------------------------------------------------
+% SECTION 4: MULTI-POINT OPTICAL & THICKNESS MEASUREMENT RESULTS
+%-------------------------------------------------------------------------------
+\begin{tcolorbox}[sectionbox, title={\faList\ SECTION 4: MULTI-POINT MEASUREMENT RESULTS (AS-FOUND VS. AS-LEFT)}]
+\small
+\begin{tabularx}{\textwidth}{@{}X r r r r c@{}}
+  \toprule
+  \textbf{Parameter Test} & \textbf{Reference} & \textbf{As-Found} & \textbf{As-Left} & \textbf{Tolerance} & \textbf{Status} \\
+  \midrule
+  \rowcolor{TableAlt}
+  Ultra-Thin $\text{SiO}_2$ Film Thickness & 14.80 nm & 15.02 nm & 14.83 nm & \textpm{} 0.15 nm & \passstatus \\
+  Medium $\text{SiO}_2$ Oxide Film Thickness & 101.40 nm & 101.95 nm & 101.44 nm & \textpm{} 0.30 nm & \passstatus \\
+  \rowcolor{TableAlt}
+  Thick $\text{SiO}_2$ Oxide Film Thickness & 1002.50 nm & 1004.10 nm & 1002.72 nm & \textpm{} 1.00 nm & \passstatus \\
+  Refractive Index ($n$) @ 632.8nm & 1.4570 & 1.4592 & 1.4572 & \textpm{} 0.0010 & \passstatus \\
+  \rowcolor{TableAlt}
+  Incident Angle Calibration ($\theta$) & 70.000$^\circ$ & 70.045$^\circ$ & 70.002$^\circ$ & \textpm{} 0.010$^\circ$ & \passstatus \\
+  Polarizer Zero Angle Alignment & 0.000$^\circ$ & 0.018$^\circ$ & 0.001$^\circ$ & \textpm{} 0.005$^\circ$ & \passstatus \\
+  \rowcolor{TableAlt}
+  Laser Power Stability (632.8nm Output) & 5.00 mW & 4.88 mW & 4.98 mW & \textpm{} 0.10 mW & \passstatus \\
+  Sample Stage Repeatability (X/Y Axis) & 0.000 \ensuremath{\mu}m & 0.420 \ensuremath{\mu}m & 0.080 \ensuremath{\mu}m & \textpm{} 0.250 \ensuremath{\mu}m & \passstatus \\
+  \bottomrule
+\end{tabularx}
+\end{tcolorbox}
+
+\vfill
+\begin{center}
+  \textcolor{SlateGrey}{\scriptsize --- Continued on Page 2 (Wafer Uniformity Map, Uncertainty Budget \& Sign-off) ---}
+\end{center}
+
+\newpage
+
+%-------------------------------------------------------------------------------
+% PAGE 2 HEADER
+%-------------------------------------------------------------------------------
+\begin{tcolorbox}[headerbox]
+\begin{minipage}[c]{0.65\textwidth}
+  {\large \textbf{\textcolor{NavyDark}{NEXA MICROFABRICATION METROLOGY CORE}}}\\[2pt]
+  {\small \textbf{\textcolor{CleanroomBlue}{EQUIPMENT CALIBRATION RECORD ~|~ CONTINUATION SHEET}}}
+\end{minipage}%
+\begin{minipage}[c]{0.35\textwidth}
+  \begin{flushright}
+    {\small \fieldlabel{Equipment ID:} \fieldval{NFX-EQ-ELL-094}}\\[2pt]
+    {\small \fieldlabel{Cal Date:} \fieldval{24-Jul-2026}}
+  \end{flushright}
+\end{minipage}
+\end{tcolorbox}
+
+\vspace{1pt}
+
+%-------------------------------------------------------------------------------
+% SECTION 5: 9-POINT WAFER UNIFORMITY TEST & UNCERTAINTY ANALYSIS
+%-------------------------------------------------------------------------------
+\begin{tcolorbox}[sectionbox, title={\faChartBar\ SECTION 5: 200mm WAFER UNIFORMITY MAP \& UNCERTAINTY BUDGET}]
+\begin{minipage}[t]{0.51\textwidth}
+  \textbf{\small 9-Point Uniformity Test (100 nm Nominal Wafer)}
+  \vspace{3pt}
+
+  \small
+  \begin{tabularx}{\textwidth}{@{}c c r r@{}}
+    \toprule
+    \textbf{Pt \#} & \textbf{Position (X, Y mm)} & \textbf{Thickness} & \textbf{Dev.} \\
+    \midrule
+    \rowcolor{TableAlt}
+    1 & Center (0, 0) & 101.42 nm & $+0.02$ nm \\
+    2 & Top (0, 80) & 101.55 nm & $+0.15$ nm \\
+    \rowcolor{TableAlt}
+    3 & Bottom (0, -80) & 101.38 nm & $-0.02$ nm \\
+    4 & Left (-80, 0) & 101.45 nm & $+0.05$ nm \\
+    \rowcolor{TableAlt}
+    5 & Right (80, 0) & 101.48 nm & $+0.08$ nm \\
+    6 & Top-Left (-56, 56) & 101.51 nm & $+0.11$ nm \\
+    \rowcolor{TableAlt}
+    7 & Top-Right (56, 56) & 101.53 nm & $+0.13$ nm \\
+    8 & Bottom-Left (-56, -56) & 101.35 nm & $-0.05$ nm \\
+    \rowcolor{TableAlt}
+    9 & Bottom-Right (56, -56) & 101.39 nm & $-0.01$ nm \\
+    \bottomrule
+  \end{tabularx}
+  \vspace{3pt}
+  
+  \begin{tcolorbox}[colback=CleanroomLight, colframe=BorderGrey, boxrule=0.5pt, arc=2pt, left=4pt, right=4pt, top=3pt, bottom=3pt]
+    \scriptsize
+    \textbf{Statistical Summary:}\\[1pt]
+    Mean Thickness ($\bar{x}$): \textbf{101.45 nm} ~~|~~ Std Deviation ($\sigma$): \textbf{0.068 nm}\\
+    Max Non-Uniformity [$\frac{\text{Max}-\text{Min}}{2\bar{x}}$]: \textbf{0.098\%} ~(Limit: \textless{} 0.25\%)
+  \end{tcolorbox}
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.46\textwidth}
+  \textbf{\small Measurement Uncertainty Budget}
+  \vspace{3pt}
+
+  \small
+  \begin{tabularx}{\textwidth}{@{}X r r@{}}
+    \toprule
+    \textbf{Uncertainty Source} & \textbf{Std Unc.} & \textbf{Type} \\
+    \midrule
+    \rowcolor{TableAlt}
+    Calibration Standard Unc. & 0.075 nm & Type A \\
+    Detector Non-linearity & 0.032 nm & Type B \\
+    \rowcolor{TableAlt}
+    Wavelength Drift (HeNe) & 0.015 nm & Type B \\
+    Temperature Variation & 0.020 nm & Type B \\
+    \rowcolor{TableAlt}
+    Repeatability (10 runs) & 0.028 nm & Type A \\
+    \midrule
+    Combined Std Unc. ($u_c$) & \textbf{0.089 nm} & -- \\
+    \rowcolor{TableAlt}
+    Coverage Factor ($k$) & \textbf{2.00} & -- \\
+    \textbf{Expanded Unc. ($U$)} & \textbf{\textpm{} 0.178 nm} & \textbf{95\% CI} \\
+    \bottomrule
+  \end{tabularx}
+
+  \vspace{4pt}
+  \begin{tcolorbox}[colback=white, colframe=CleanroomBlue, boxrule=0.5pt, arc=2pt, left=4pt, right=4pt, top=3pt, bottom=3pt]
+    \scriptsize \textcolor{NavyDark}{\textbf{\faInfoCircle\ Compliance Statement:}}\\
+    The calculated expanded measurement uncertainty ($U = 0.178\,\text{nm}$) is well within the facility allowable tolerance limit of $\text{\textpm} 0.300\,\text{nm}$. Test Accuracy Ratio (TAR) exceeds 4:1.
+  \end{tcolorbox}
+\end{minipage}
+\end{tcolorbox}
+
+\vspace{1pt}
+
+%-------------------------------------------------------------------------------
+% SECTION 6: MAINTENANCE & ADJUSTMENTS LOG
+%-------------------------------------------------------------------------------
+\begin{tcolorbox}[sectionbox, title={\faTools\ SECTION 6: MAINTENANCE, ADJUSTMENTS \& ACTION ITEMS}]
+\small
+\begin{itemize}[leftmargin=12pt, topsep=1pt, itemsep=2pt, parsep=0pt]
+  \item \textbf{Optical Clean:} Cleaned HeNe 632.8 nm beam expander lenses and analyzer Rochon prism using cleanroom grade isopropyl alcohol (IPA 99.9\%) and optical wipes.
+  \item \textbf{Laser Alignment:} Adjusted incident angle goniometer zero position offset by $-0.043^\circ$ to restore absolute mechanical alignment with sample stage.
+  \item \textbf{Detector Calibration:} Recalibrated photomultiplier tube (PMT) gain curve and dark current baseline noise offset.
+  \item \textbf{Software \& Firmware Update:} System control firmware upgraded to v4.8.2. Baseline calibration matrix updated in system memory.
+\end{itemize}
+\end{tcolorbox}
+
+\vspace{1pt}
+
+%-------------------------------------------------------------------------------
+% SECTION 7: AUTHORIZATION & CALIBRATION STICKER PREVIEW
+%-------------------------------------------------------------------------------
+\begin{tcolorbox}[sectionbox, title={\faUserCheck\ SECTION 7: QUALITY ASSURANCE AUTHORIZATION \& SIGN-OFF}]
+\begin{minipage}[t]{0.62\textwidth}
+  \small
+  \begin{tabularx}{\textwidth}{@{}X X@{}}
+    \fieldlabel{Calibrated By (Technician):} & \fieldlabel{Approved By (QA Manager):} \\[2pt]
+    \fieldval{Julian Vance, Senior Metrology Tech} & \fieldval{Dr. Elena Rostova, QA Director} \\[12pt]
+    \fieldlabel{Signature:} \underline{~~~~~~\textit{J. Vance}~~~~~~} & \fieldlabel{Signature:} \underline{~~~~~~\textit{E. Rostova}~~~~~~} \\[8pt]
+    \fieldlabel{Date:} \fieldval{24-Jul-2026} & \fieldlabel{Date:} \fieldval{24-Jul-2026} \\
+  \end{tabularx}
+  
+  \vspace{6pt}
+  \scriptsize \textcolor{SlateGrey}{This calibration certificate is issued in compliance with ISO/IEC 17025:2017 general requirements for laboratory competence. Results relate only to the item calibrated specified herein.}
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.35\textwidth}
+  \centering
+  \textbf{\small Calibration Label Replica}\\[2pt]
+  \begin{tikz}
+    \node[
+      draw=NavyDark,
+      fill=CleanroomLight,
+      line width=0.8pt,
+      rounded corners=3pt,
+      inner sep=5pt,
+      align=left,
+      text width=0.88\textwidth
+    ] {
+      \centering \textcolor{NavyDark}{\textbf{\small NEXA CLEANROOM CALIBRATION}}\\[1pt]
+      \rule{\linewidth}{0.4pt}\\[2pt]
+      \scriptsize
+      \textbf{Asset ID:} NFX-EQ-ELL-094\\
+      \textbf{Cal Date:} 24-JUL-2026 ~~~ \textbf{By:} J.V.\\
+      \textbf{Next Due:} 24-JAN-2027 ~~~ \textbf{Status:} \textcolor{PassGreen}{\textbf{PASS}}\\[2pt]
+      \centering \tiny \textcolor{SlateGrey}{DO NOT REMOVE OR TAMPER}
+    };
+  \end{tikz}
+\end{minipage}
+\end{tcolorbox}
+
+\end{document}

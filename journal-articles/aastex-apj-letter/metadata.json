@@ -1,0 +1,8 @@
+{
+  "name": "AAS Astrophysical Journal Letter",
+  "compiler": "pdflatex",
+  "description": "AAS Astrophysical Journal Letter LaTeX template \u2014 aas astrophysical journal letter latex template. Elegant, compile-tested, editable online at letx.app.",
+  "author": "LetX",
+  "category": "journal-articles",
+  "license": "MIT"
+}

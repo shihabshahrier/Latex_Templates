@@ -1,0 +1,224 @@
+\documentclass[
+  fontsize=11pt,
+  parskip=half,
+  subject=titled,
+  backaddress=true,
+  fromalign=right,
+  fromphone=true,
+  fromemail=true,
+  fromurl=true,
+  addrfield=true,
+  foldmarks=false,
+  enlargefirstpage=true
+]{scrletter}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{libertine}
+\usepackage{microtype}
+\usepackage[table]{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{positioning, calc, shapes.geometric, decorations.text}
+\usepackage[skins,breakable]{tcolorbox}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage{fontawesome5}
+
+% ---------------------------------------------------------------------------
+% Palette
+% ---------------------------------------------------------------------------
+\definecolor{meridianNavy}{HTML}{1B2A4A}
+\definecolor{meridianGold}{HTML}{C9A227}
+\definecolor{meridianSlate}{HTML}{5B6472}
+\definecolor{meridianPaper}{HTML}{F6F4EE}
+
+\setlist[itemize]{leftmargin=1.4em, itemsep=2pt, topsep=2pt}
+\setlist[enumerate]{leftmargin=1.6em, itemsep=2pt, topsep=2pt}
+
+\tcbset{
+  meridianbox/.style={
+    enhanced, breakable,
+    colback=meridianPaper,
+    colframe=meridianNavy,
+    boxrule=0.5pt,
+    left=10pt, right=10pt, top=7pt, bottom=7pt,
+    borderline west={2.4pt}{0pt}{meridianGold},
+    fonttitle=\bfseries\color{meridianNavy},
+    coltitle=meridianNavy,
+    title style={left color=meridianPaper, right color=meridianPaper},
+    attach boxed title to top left={xshift=8pt, yshift=-2pt},
+    boxed title style={colback=meridianPaper, boxrule=0pt},
+  }
+}
+
+% ---------------------------------------------------------------------------
+% Institutional seal
+% ---------------------------------------------------------------------------
+\newcommand{\meridianSeal}{%
+\begin{tikzpicture}[baseline]
+  \draw[meridianNavy, line width=1pt] (0,0) circle (1.05cm);
+  \draw[meridianGold, line width=0.5pt] (0,0) circle (0.86cm);
+  \node[star, star points=5, star point ratio=2.2, draw=meridianNavy,
+        line width=0.5pt, fill=meridianGold!30, minimum size=0.62cm] at (0,0) {};
+  \node[meridianNavy, font=\bfseries\footnotesize] at (0,0) {MU};
+  \path[
+    postaction={decorate},
+    decoration={text along path, text align=center, raise=1pt,
+                 text={|\color{meridianNavy}\fontsize{5.2}{5.2}\selectfont\scshape|MERIDIAN UNIVERSITY}}
+  ] (150:0.96cm) arc (150:30:0.96cm);
+  \path[
+    postaction={decorate},
+    decoration={text along path, text align=center, raise=-8.5pt,
+                 text={|\color{meridianNavy}\fontsize{5.2}{5.2}\selectfont\scshape|FOUNDED 1889}}
+  ] (330:0.96cm) arc (330:210:0.96cm);
+\end{tikzpicture}%
+}
+
+% ---------------------------------------------------------------------------
+% Letterhead
+% ---------------------------------------------------------------------------
+\setkomavar{firsthead}{%
+  \begin{minipage}[c]{0.16\textwidth}
+    \meridianSeal
+  \end{minipage}%
+  \hfill
+  \begin{minipage}[c]{0.80\textwidth}
+    \raggedleft
+    {\color{meridianNavy}\scshape\LARGE Meridian University}\\[3pt]
+    {\color{meridianSlate}\Large Department of Computer Science \& Engineering}\\[5pt]
+    {\small\color{meridianSlate} Office of the Chair\quad\textbullet\quad 1400 Summit Ridge Parkway, Ashcombe, ME 04901}
+  \end{minipage}%
+  \par\vspace{6pt}
+  {\color{meridianGold}\rule{\textwidth}{1.6pt}}
+}
+
+\setkomavar{firstfoot}{%
+  {\color{meridianGold}\rule{\textwidth}{0.6pt}}\\[5pt]
+  \centering
+  {\footnotesize\color{meridianSlate}%
+   \textit{Founded 1889 \(\cdot\) Advancing Computing Research \& Education}\\[2pt]
+   \faGlobe\ www.meridian.edu/cse \qquad \faEnvelope\ cse-chair@meridian.edu \qquad \faPhone\ (207) 555-0148}
+}
+
+% ---------------------------------------------------------------------------
+% Sender data
+% ---------------------------------------------------------------------------
+\setkomavar{fromname}{Eleanor R.~Whitfield, Ph.D.}
+\setkomavar{fromaddress}{Department of Computer Science \& Engineering\\Meridian University\\1400 Summit Ridge Parkway\\Ashcombe, ME 04901}
+\setkomavar{fromphone}{(207) 555-0148}
+\setkomavar{fromemail}{cse-chair@meridian.edu}
+\setkomavar{fromurl}{www.meridian.edu/cse}
+\setkomavar{signature}{Eleanor R.~Whitfield, Ph.D.\\Professor and Chair\\Department of Computer Science \& Engineering}
+\setkomavar{backaddress}{Meridian University \textperiodcentered\ Ashcombe, ME 04901}
+\setkomavar{place}{Ashcombe, Maine}
+\setkomavar{date}{August 3, 2026}
+\setkomavar{subject}{Confirmation of Appointment --- Assistant Professor, Department of Computer Science \& Engineering}
+
+\begin{document}
+
+\begin{letter}{Dr.~Marcus D.~Ionescu\\118 Birchwood Lane\\Ashcombe, ME 04901}
+
+\opening{Dear Dr.~Ionescu,}
+
+On behalf of the Department of Computer Science \& Engineering and the Faculty Appointments
+Committee, it is my pleasure to confirm, in writing, the terms of your appointment as
+Assistant Professor on the tenure track, following the vote of the department faculty on
+July 21, 2026 and subsequent approval by the Dean of the Meridian College of Engineering.
+This letter, together with its enclosures, constitutes the department's official record of
+the appointment and supersedes the verbal offer extended on July 24, 2026.
+
+We were especially persuaded by the trajectory of your work on fault-tolerant consensus
+protocols and by the letters from your referees describing your effectiveness in the
+classroom. The Committee's recommendation was unanimous, and I am glad to have the chance to
+put that enthusiasm into an official record.
+
+\begin{center}
+\begin{tcolorbox}[meridianbox, width=0.92\textwidth, title=Key Terms of Appointment]
+\begin{itemize}
+  \item \textbf{Rank:} Assistant Professor, tenure-track
+  \item \textbf{Effective date:} September 1, 2026
+  \item \textbf{Base academic-year salary:} \$96,500, paid over 24 installments
+  \item \textbf{Tenure clock:} six-year probationary period; mandatory third-year review in
+        Spring 2029 and tenure review in Spring 2032
+  \item \textbf{Startup research fund:} \$45,000, disbursed over three years and administered
+        through the Vertex Grants Portal
+  \item \textbf{Reporting line:} Chair, Department of Computer Science \& Engineering
+\end{itemize}
+\end{tcolorbox}
+\end{center}
+
+In recognition of the laboratory build-out described in your proposal, the department has
+approved a standard 2/2 teaching load reduced to 1/1 (a 50\% teaching release) for your first
+two academic years. The confirmed assignments for your inaugural year are summarized below.
+
+\begin{center}
+\begin{minipage}{0.92\textwidth}
+\centering
+\begin{tabular}{@{}l l c c@{}}
+\toprule
+\rowcolor{meridianNavy}
+\textcolor{white}{\textbf{Course}} & \textcolor{white}{\textbf{Title}} &
+\textcolor{white}{\textbf{Cap.}} & \textcolor{white}{\textbf{Credits}} \\
+\midrule
+\multicolumn{4}{@{}l}{\textit{Fall 2026}} \\
+\addlinespace
+CSE~214 & Data Structures \& Algorithms      & 65 & 4 \\
+CSE~471 & Distributed Systems Seminar        & 18 & 3 \\
+\addlinespace
+\multicolumn{4}{@{}l}{\textit{Spring 2027}} \\
+\addlinespace
+CSE~512 & Advanced Distributed Systems       & 22 & 3 \\
+CSE~690 & Directed Doctoral Research (var.)  &  4 & 1 \\
+\bottomrule
+\end{tabular}
+\end{minipage}
+\end{center}
+
+Your service assignments for the coming academic year, agreed with the Committee on
+Committees, are as follows.
+
+\begin{itemize}
+  \item \textbf{Graduate Admissions Committee} --- member, reviewing PhD and MS applications
+        for the 2027 entering cohort
+  \item \textbf{Curriculum \& Accreditation Committee} --- member, supporting the department's
+        current ABET self-study cycle
+  \item \textbf{Distributed Systems Laboratory} --- co-principal-investigator liaison for the
+        department's sponsored research agreement with Nexa Research Institute, covering
+        replicated-log infrastructure for the lab's testbed cluster
+\end{itemize}
+
+On the matter of facilities: you will be assigned office 318 in Innovation Hall and shared
+bench space in the Innovation Hall B-Wing alongside the Concurrent Systems Group, effective
+from your start date. Compute credits for large-scale experiments are available immediately
+through the department's standing partnership with Apex Cloud Platforms; the onboarding
+packet enclosed with this letter explains how to request an allocation. Payroll, benefits
+enrollment, and tax-withholding forms are processed through the Synapse HR Portal, and you
+will receive system credentials under separate cover from Human Resources during orientation
+week.
+
+New Faculty Orientation runs from August 25 through August 27, 2026 in Bellcourt Auditorium
+and is mandatory for all incoming tenure-track faculty. A detailed agenda, including sessions
+on IRB procedures, library research services, and the department's mentoring program, will
+follow by email no later than August 10, 2026. I have asked Professor Daniel Achterberg, your
+assigned faculty mentor for the coming year, to reach out directly to arrange an introductory
+meeting before classes begin.
+
+Please countersign the enclosed appointment summary and return one copy to the department
+office by August 15, 2026 to formalize this agreement. Should any of the terms above differ
+from your understanding of the offer, contact my office immediately so that we can resolve
+the discrepancy before your start date.
+
+On behalf of the entire department, welcome to Meridian University. We are genuinely glad you
+are joining us and look forward to the contribution your research and teaching will make to
+the department in the years ahead.
+
+\closing{Sincerely,}
+
+\cc{Dr.~Priya Handasamy, Dean, Meridian College of Engineering\\Mr.~Thomas Okafor, Director, Human Resources\\Office of the Registrar}
+\encl{Appointment Terms Summary (for countersignature)\\Faculty Handbook Excerpt, \S\S4.2--4.7\\Payroll \& Benefits Enrollment Packet (Synapse HR Portal)}
+
+\end{letter}
+
+\end{document}

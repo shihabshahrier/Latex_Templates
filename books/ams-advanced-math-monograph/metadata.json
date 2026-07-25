@@ -1,0 +1,8 @@
+{
+  "name": "AMS Advanced Mathematical Monograph",
+  "compiler": "pdflatex",
+  "description": "AMS Advanced Mathematical Monograph LaTeX template \u2014 ams advanced mathematical monograph latex template. Elegant, compile-tested, editable online at letx.app.",
+  "author": "LetX",
+  "category": "books",
+  "license": "MIT"
+}

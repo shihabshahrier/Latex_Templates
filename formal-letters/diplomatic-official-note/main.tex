@@ -1,0 +1,341 @@
+\documentclass[%
+  fontsize=11pt,
+  paper=a4,
+  parskip=half,
+  fromalign=false,
+  fromrule=false,
+  fromphone=false,
+  fromfax=false,
+  fromemail=false,
+  fromurl=false,
+  addrfield=true,
+  backaddress=false,
+  subject=titled,
+  foldmarks=false,
+  refline=narrow,
+  enlargefirstpage=false,
+  pagenumber=botcenter
+]{scrlttr2}
+
+\usepackage[english]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{libertine}
+\usepackage[table]{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{positioning,calc,shapes.geometric,backgrounds}
+\usepackage{tcolorbox}
+\tcbuselibrary{skins}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{enumitem}
+\usepackage{microtype}
+\usepackage{ragged2e}
+
+% ---------- palette ----------
+\definecolor{noteblue}{RGB}{20,38,68}
+\definecolor{notegold}{RGB}{163,126,58}
+\definecolor{noteburgundy}{RGB}{112,24,32}
+\definecolor{notegray}{RGB}{95,95,100}
+\definecolor{notepaper}{RGB}{250,248,244}
+
+% ---------- pseudolengths: make room for a tall centred crest ----------
+\setplength{toaddrvpos}{8.4cm}
+\setplength{toaddrheight}{4cm}
+\setplength{refvpos}{13cm}
+\setplength{sigbeforevskip}{1.1cm}
+
+% ---------- the crest ----------
+\newcommand{\NoteCrest}{%
+\begin{tikzpicture}[scale=1]
+  \fill[noteblue] (0,0) circle (1.55cm);
+  \draw[notegold, line width=0.7pt] (0,0) circle (1.55cm);
+  \draw[notegold, line width=0.5pt] (0,0) circle (1.72cm);
+  \node[star, star points=5, star point ratio=2.2, fill=notegold,
+        draw=noteblue, line width=0.5pt, minimum size=1.55cm] at (0,0) {};
+  \node[circle, fill=noteblue, draw=notegold, line width=0.4pt,
+        minimum size=0.42cm] at (0,0) {};
+  \foreach \a in {195,215,235,255,275,295,315,335}{
+    \node[ellipse, fill=notegold, minimum width=6.5pt, minimum height=3pt,
+          rotate=\a+90] at ({1.9*cos(\a)},{1.9*sin(\a)}) {};
+  }
+  \node[fill=noteburgundy, draw=notegold, line width=0.5pt, rounded corners=1pt,
+        minimum width=3.65cm, minimum height=0.58cm] at (0,-2.55)
+        {\color{notegold}\sffamily\scriptsize\textbf{R\,E\,P\,U\,B\,L\,I\,C\;\;O\,F\;\;M\,E\,R\,I\,D\,I\,A\,N}};
+\end{tikzpicture}%
+}
+
+% ---------- small crest for annex mastheads ----------
+\newcommand{\AnnexHeader}[2]{%
+  \begin{center}
+    \scalebox{0.46}{\NoteCrest}\\[2pt]
+    {\color{noteblue}\sffamily\Large\textbf{#1}}\\[1pt]
+    {\color{notegray}\itshape\small #2}\\[3pt]
+    {\color{notegold}\rule{5.2cm}{0.6pt}}
+  \end{center}
+  \vspace{4mm}
+}
+
+% ---------- diplomatic paragraph list ----------
+\newlist{notepara}{enumerate}{1}
+\setlist[notepara]{label=\textbf{\color{noteblue}\arabic*.},leftmargin=1.15cm,
+  itemsep=7pt,topsep=4pt,parsep=2pt}
+
+\setkomavar{fromname}{Ministry of Foreign Affairs}
+\setkomavar{fromaddress}{Directorate for Bilateral and Consular Affairs\\%
+14 Plaza de la Constituci\'on, Cardessa\\Republic of Meridian}
+\setkomavar{fromlogo}{\NoteCrest}
+\setkomavar{firsthead}{%
+  \parbox[b]{\textwidth}{\centering
+    \usekomavar{fromlogo}\\[5pt]
+    {\usekomafont{fromname}\color{noteblue}\bfseries\large\sffamily
+      \usekomavar{fromname}}\\[1pt]
+    {\usekomafont{fromaddress}\color{notegray}\small
+      \usekomavar{fromaddress}}
+  }%
+}
+\setkomavar{signature}{Ariana Voss Castel\\%
+\textit{Director-General for Bilateral and Consular Affairs}\\%
+\textit{for the Minister of Foreign Affairs}}
+\setkomavar*{subject}{Subject: }
+\setkomavar*{yourref}{Reference}
+\setkomavar*{myref}{Our Ref.}
+\setkomavar*{enclseparator}{Enclosures}
+\setkomavar*{ccseparator}{Distribution}
+
+\begin{document}
+
+\begin{letter}{%
+Embassy of the Kingdom of Solvenia\\
+\textit{Attention: H.E.\ Mr.\ Feodor Linden}\\
+\textit{Ambassador Extraordinary and Plenipotentiary}\\
+9 Rue de l'Ambassade\\
+Cardessa, Republic of Meridian}
+
+\setkomavar{place}{Cardessa}
+\setkomavar{date}{24 July 2026}
+\setkomavar{yourref}{Note No.\ 187/2026 of 2 July 2026}
+\setkomavar{myref}{Note No.\ 214/2026-DE}
+\setkomavar{subject}{Reciprocal Facilitation of Entry for Holders of Diplomatic and\\
+Official Passports; Establishment of a Joint Cultural Heritage Commission}
+
+\opening{The Ministry of Foreign Affairs of the Republic of Meridian presents its
+compliments to the Embassy of the Kingdom of Solvenia and has the honour to
+refer to the exchanges between the two Governments concerning the
+strengthening of bilateral relations in the fields of consular facilitation
+and cultural cooperation.}
+
+In this connection, the Ministry has the further honour to communicate the
+following to the Embassy:
+
+\begin{notepara}
+
+\item The Ministry recalls the proceedings of the Ninth Session of the
+Meridian--Solvenia Joint Bilateral Commission, held in Cardessa from 3 to 5
+June 2026, at which the respective delegations reached understanding on two
+matters of immediate practical benefit to the nationals of both States: the
+reciprocal facilitation of entry for holders of diplomatic and official
+passports, and the establishment of a standing mechanism for cooperation on
+shared cultural heritage.
+
+\item The Government of the Republic of Meridian is pleased to confirm its
+agreement to waive, on a strictly reciprocal basis, the requirement of an
+entry visa for holders of valid diplomatic or official/service passports
+issued by the Kingdom of Solvenia, in respect of stays not exceeding ninety
+(90) days within any period of one hundred and eighty (180) days, for
+purposes not involving remunerated activity. The particulars of this
+arrangement, including the treatment of accredited diplomatic couriers and
+accompanying family members, are set out in \textbf{Annex I} to this Note.
+
+\item The Ministry further proposes the establishment of a Joint Cultural
+Heritage Commission, composed of an equal number of representatives
+designated by each Government, whose function shall be to identify, and
+recommend measures for the conservation, restoration, and reciprocal
+exhibition of, moveable and immoveable cultural property of shared or
+comparable historical significance situated within the territory of either
+State. A draft Protocol setting out the composition, functions, and working
+methods of the proposed Commission is enclosed as \textbf{Annex II}.
+
+\item Should the foregoing meet with the concurrence of the Government of
+the Kingdom of Solvenia, the Ministry has the honour to propose that the
+present Note, together with the Embassy's Note in reply expressing such
+concurrence, shall constitute an Agreement between the two Governments,
+which shall enter into force thirty (30) days after the date of the
+Embassy's reply and shall remain in force until terminated by either Party
+upon ninety (90) days' written notice through the diplomatic channel.
+
+\item The competent authorities of the Republic of Meridian, namely the
+Directorate-General of Migration and the National Heritage Institute, stand
+ready to enter into the technical arrangements necessary to give practical
+effect to the foregoing at the earliest convenience of the Embassy.
+
+\item The Ministry avails itself of this opportunity to request that the
+Embassy transmit the substance of this Note to the Government of the Kingdom
+of Solvenia at its earliest convenience, and would welcome confirmation of
+receipt through the usual channel.
+
+\end{notepara}
+
+\closing{The Ministry of Foreign Affairs avails itself of this opportunity
+to renew to the Embassy of the Kingdom of Solvenia the assurances of its
+highest consideration.}
+
+\encl{Annex I --- Schedule of Reciprocal Measures\\%
+Annex II --- Draft Protocol on the Joint Cultural Heritage Commission}
+\cc{Consular Department, Ministry of Foreign Affairs\\%
+Embassy of the Republic of Meridian, Solvenia City}
+
+\end{letter}
+
+\newpage
+\thispagestyle{empty}
+\AnnexHeader{Annex I}{Schedule of Reciprocal Measures}
+
+\noindent Referred to in paragraph 2 of Note No.\ 214/2026-DE of the
+Ministry of Foreign Affairs of the Republic of Meridian to the Embassy of
+the Kingdom of Solvenia, dated 24 July 2026.
+
+\bigskip
+
+\renewcommand{\arraystretch}{1.35}
+\begin{center}
+\begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{3.1cm}
+                                >{\raggedright\arraybackslash}X
+                                >{\raggedright\arraybackslash}X
+                                >{\raggedright\arraybackslash}p{2.1cm}@{}}
+\toprule
+\rowcolor{noteblue}
+\textcolor{white}{\textbf{Category}} &
+\textcolor{white}{\textbf{Prior Requirement}} &
+\textcolor{white}{\textbf{Reciprocal Arrangement}} &
+\textcolor{white}{\textbf{Effective}} \\
+\midrule
+Diplomatic passport holders &
+Entry visa required, single or multiple entry &
+Visa waived; entry and stay up to 90 days per 180-day period &
+T+30 days \\
+Official / service passport holders &
+Entry visa required, verified by note verbale &
+Visa waived under identical terms as diplomatic passport holders &
+T+30 days \\
+Accredited diplomatic couriers &
+Courier visa required per mission &
+Waived upon presentation of courier certificate and official passport &
+T+30 days \\
+Accompanying family members (household) &
+Dependent visa, linked to principal's accreditation &
+Waived where travelling on a diplomatic or official passport &
+T+30 days \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\bigskip
+
+\begin{tcolorbox}[colback=notepaper,colframe=notegold,boxrule=0.6pt,
+  left=8pt,right=8pt,top=6pt,bottom=6pt,arc=1pt]
+\small\color{noteblue}\textbf{Note.} The waiver does not extend to persons
+seeking to take up remunerated employment, establish residence, or engage in
+commercial activity within the territory of the receiving State; such
+persons remain subject to the ordinary visa regime and to registration with
+the competent authority within fifteen (15) days of arrival.
+\end{tcolorbox}
+
+\vspace{6mm}
+\noindent{\color{notegray}\small T denotes the date of entry into force of
+the arrangement recorded in paragraph 4 of the Note to which this Schedule
+is annexed.}
+
+\newpage
+\thispagestyle{empty}
+\AnnexHeader{Annex II}{Draft Protocol on the Joint Cultural Heritage Commission}
+
+\noindent The Government of the Republic of Meridian and the Government of
+the Kingdom of Solvenia (\textquotedblleft the Parties\textquotedblright),
+
+\smallskip
+\noindent Desiring to safeguard and present to future generations the
+cultural heritage held in common or of comparable significance to both
+peoples, and to deepen cooperation between their competent institutions,
+
+\smallskip
+\noindent Have agreed as follows:
+
+\begin{enumerate}[label=\textbf{\color{noteblue}Article \arabic*.},
+  leftmargin=2.4cm,itemsep=8pt,topsep=6pt]
+
+\item \textbf{Establishment and Purpose.} There is hereby established a
+Joint Cultural Heritage Commission (\textquotedblleft the
+Commission\textquotedblright), which shall serve as the principal
+consultative body between the Parties on matters of shared cultural
+heritage, including conservation, restoration, provenance research, and
+reciprocal exhibition.
+
+\item \textbf{Composition.} The Commission shall consist of six members,
+three designated by each Party, drawn from the respective national heritage
+institute, ministry of culture, and academic sector. Each Party shall
+designate a Co-Chair from among its members.
+
+\item \textbf{Functions.} The Commission shall: (a) identify sites,
+collections, and objects of shared or comparable significance; (b) recommend
+joint conservation and restoration projects and their funding arrangements;
+(c) facilitate the temporary reciprocal loan of objects for exhibition; and
+(d) report annually to both Governments through the diplomatic channel.
+
+\item \textbf{Meetings.} The Commission shall meet in ordinary session once
+each calendar year, alternately in Cardessa and in the capital of the
+Kingdom of Solvenia, and in extraordinary session upon the written request
+of either Co-Chair.
+
+\item \textbf{Funding.} Each Party shall bear the expenses of its own
+delegation's participation in meetings of the Commission. Costs of joint
+projects recommended by the Commission shall be apportioned as agreed
+project-by-project and recorded in a separate implementing arrangement.
+
+\item \textbf{Entry into Force and Duration.} This Protocol shall enter into
+force on the date specified in paragraph 4 of the Note to which it is
+annexed and shall remain in force for so long as that Note, as accepted,
+remains in effect.
+
+\end{enumerate}
+
+\vspace{6mm}
+\begin{center}
+  {\color{noteblue}\sffamily\Large\textbf{Certification}}\\[2pt]
+  {\color{notegold}\rule{4.2cm}{0.6pt}}
+\end{center}
+
+\vspace{10mm}
+\noindent In witness whereof, the undersigned, being duly authorised by
+their respective Governments, have signed the present Protocol.
+
+\vspace{7mm}
+\noindent{\small\color{notegray} Drawn up in duplicate, in the Meridian and
+Solvenian languages, both texts being equally authentic.}
+
+\vspace{7mm}
+\noindent Done at Cardessa, this 24th day of July, 2026.
+
+\vfill
+
+\noindent
+\begin{minipage}[t]{0.46\textwidth}
+\centering
+\scalebox{0.4}{\NoteCrest}\\[6pt]
+\rule{5.4cm}{0.5pt}\\[3pt]
+\textbf{\color{noteblue}For the Government of\\the Republic of Meridian}\\[4pt]
+{\small\itshape Ariana Voss Castel}\\
+{\small Director-General for Bilateral and Consular Affairs}
+\end{minipage}\hfill%
+\begin{minipage}[t]{0.46\textwidth}
+\centering
+\rule{0pt}{1.83cm}\\[6pt]
+\rule{5.4cm}{0.5pt}\\[3pt]
+\textbf{\color{noteblue}For the Government of\\the Kingdom of Solvenia}\\[4pt]
+{\small\itshape (name to be inserted upon signature)}\\
+{\small Ambassador Extraordinary and Plenipotentiary}
+\end{minipage}
+\par
+\vfill
+
+\end{document}

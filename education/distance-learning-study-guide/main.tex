@@ -1,0 +1,421 @@
+\documentclass[11pt,a4paper]{scrreprt}
+
+% ---------- Layout ----------
+\usepackage[a4paper,top=2cm,bottom=2.1cm,left=2.2cm,right=2.2cm,headheight=15pt]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+
+% ---------- Color ----------
+\usepackage{xcolor}
+\definecolor{deepnavy}{RGB}{25,52,84}
+\definecolor{tealaccent}{RGB}{40,132,132}
+\definecolor{warmgold}{RGB}{198,148,42}
+\definecolor{softgray}{RGB}{244,244,240}
+\definecolor{inkgray}{RGB}{70,70,70}
+
+% ---------- Drawing ----------
+\usepackage{tikz}
+\usetikzlibrary{positioning,calc}
+\usepackage[most]{tcolorbox}
+\tcbuselibrary{skins}
+
+% ---------- Text / math / tables ----------
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage{fontawesome5}
+
+% ---------- Headers / footers ----------
+\usepackage[automark]{scrlayer-scrpage}
+\pagestyle{scrheadings}
+\clearpairofpagestyles
+\ihead{\small\color{inkgray}\textsc{Distance Learning Study Guide}}
+\ohead{\small\color{inkgray}ENV\,101 -- Module Guide}
+\ofoot{\small\color{inkgray}Page \thepage\ of \pageref{LastPage}}
+\ifoot{\small\color{inkgray}Meridian Distance Learning Institute}
+\usepackage{lastpage}
+
+% ---------- KOMA heading styling ----------
+\addtokomafont{disposition}{\color{deepnavy}}
+\addtokomafont{chapter}{\Huge\bfseries}
+\addtokomafont{section}{\Large\bfseries\color{tealaccent}}
+\addtokomafont{subsection}{\large\bfseries}
+\setkomafont{chapterentry}{\normalfont}
+\RedeclareSectionCommand[
+  beforeskip=0.4cm,
+  afterskip=0.6cm
+]{chapter}
+
+\usepackage[hidelinks,colorlinks=true,linkcolor=deepnavy,urlcolor=tealaccent]{hyperref}
+
+% ---------- Reusable box styles ----------
+\newtcolorbox{objectivesbox}{
+  enhanced,
+  breakable,
+  colback=softgray,
+  colframe=deepnavy,
+  boxrule=0.6pt,
+  left=9pt,right=9pt,top=5pt,bottom=5pt,
+  title={\faBullseye\ \ Learning Objectives},
+  fontupper=\small,
+  fonttitle=\bfseries\color{white},
+  colbacktitle=deepnavy,
+  arc=2pt
+}
+
+\newtcolorbox{infobox}[1]{
+  enhanced,
+  breakable,
+  colback=white,
+  colframe=tealaccent,
+  boxrule=0.6pt,
+  left=8pt,right=8pt,top=4pt,bottom=4pt,
+  title=#1,
+  fonttitle=\bfseries\color{white},
+  colbacktitle=tealaccent,
+  arc=2pt
+}
+
+\newtcolorbox{termsbox}{
+  enhanced,
+  breakable,
+  colback=softgray,
+  colframe=warmgold,
+  boxrule=0.6pt,
+  left=9pt,right=9pt,top=5pt,bottom=5pt,
+  title={\faBook\ \ Key Terms},
+  fontupper=\small,
+  fonttitle=\bfseries\color{white},
+  colbacktitle=warmgold,
+  arc=2pt
+}
+
+\newtcolorbox{quizbox}{
+  enhanced,
+  breakable,
+  colback=white,
+  colframe=deepnavy,
+  boxrule=0.8pt,
+  left=9pt,right=9pt,top=5pt,bottom=5pt,
+  title={\faQuestionCircle\ \ Self-Check Quiz},
+  fontupper=\small,
+  fonttitle=\bfseries\color{white},
+  colbacktitle=deepnavy,
+  arc=2pt
+}
+
+\newtcolorbox{activitybox}{
+  enhanced,
+  breakable,
+  colback=softgray,
+  colframe=tealaccent,
+  boxrule=0.6pt,
+  left=9pt,right=9pt,top=5pt,bottom=5pt,
+  title={\faPen\ \ Applied Activity},
+  fontupper=\small,
+  fonttitle=\bfseries\color{white},
+  colbacktitle=tealaccent,
+  arc=2pt
+}
+
+\setlist[itemize,1]{leftmargin=1.4em,itemsep=2pt,topsep=2pt}
+\setlist[enumerate,1]{leftmargin=1.6em,itemsep=3pt,topsep=2pt}
+
+\begin{document}
+
+% ================= TITLE PAGE =================
+\begin{titlepage}
+\begin{tikzpicture}[remember picture,overlay]
+  \fill[deepnavy] (current page.north west) rectangle ([yshift=-4.2cm]current page.north east);
+  \fill[warmgold] ([yshift=-4.2cm]current page.north west) rectangle ([yshift=-4.28cm]current page.north east);
+\end{tikzpicture}
+
+\vspace*{1.1cm}
+\begin{flushleft}
+\hspace{1.6cm}\textcolor{white}{\Large\textsc{Meridian Distance Learning Institute}}
+\end{flushleft}
+
+\vspace{3.4cm}
+\begin{center}
+{\Huge\bfseries\color{deepnavy} Foundations of\\[2pt] Environmental Science}\\[10pt]
+{\Large\color{tealaccent} Self-Paced Study Guide}\\[4pt]
+{\large\color{inkgray} Course Code ENV\,101 \quad$\vert$\quad Modules 1--2 of 8}
+\end{center}
+
+\vspace{1.6cm}
+\begin{center}
+\begin{tikzpicture}
+\draw[deepnavy,line width=0.8pt] (0,0) -- (11.5,0);
+\end{tikzpicture}
+\end{center}
+
+\vspace{1cm}
+\begin{center}
+\begin{minipage}{0.78\textwidth}
+\begin{infobox}{\faGraduationCap\ \ Course At a Glance}
+\begin{tabular}{@{}p{3.4cm}p{7.6cm}@{}}
+\textbf{Instructor:} & Dr.\ Elena Whitfield, Ph.D.\ Environmental Systems \\
+\textbf{Credit Load:} & 3 semester credits \\
+\textbf{Format:} & Fully asynchronous; readings, recorded lectures, quizzes \\
+\textbf{Estimated Pace:} & 3--4 hours per module, 8 modules total \\
+\textbf{Support:} & Weekly virtual office hours, discussion board within 24h \\
+\end{tabular}
+\end{infobox}
+\end{minipage}
+\end{center}
+
+\vspace{10pt}
+\begin{center}
+\begin{minipage}{0.78\textwidth}
+\begin{infobox}{\faLightbulb\ \ How to Use This Guide}
+\small
+This guide mirrors the online course shell module by module. Every chapter opens with
+\textbf{\faBullseye\ objectives}, lists an \textbf{\faClock\ estimated time} and reading, closes
+practice with a \textbf{\faPen\ hands-on activity}, and checks understanding with a
+\textbf{\faQuestionCircle\ self-check quiz} -- answers are in the Answer Key at the very end.
+Do the activity before the quiz; skipping it is the single biggest predictor of a failed
+self-check.
+\end{infobox}
+\end{minipage}
+\end{center}
+
+\vfill
+\begin{center}
+{\small\color{inkgray} This guide accompanies the ENV\,101 course shell and the required text\\
+\emph{Systems of the Living Earth}, 4th ed.\ (Nimbus Academic Press).}\\[6pt]
+{\small\color{inkgray} Revision 3 -- Spring Term}
+\end{center}
+\end{titlepage}
+
+% ================= CHAPTER 1 =================
+\chapter{Earth as an Interconnected System}
+
+\begin{objectivesbox}
+By the end of this chapter, you will be able to:
+\begin{enumerate}[label=\arabic*.]
+  \item Identify the four major spheres of the Earth system and describe how they interact.
+  \item Explain the difference between an open system and a closed system using a real example.
+  \item Trace a single carbon atom through at least three reservoirs of the carbon cycle.
+  \item Evaluate a short case study for evidence of feedback loops.
+\end{enumerate}
+\end{objectivesbox}
+
+\begin{center}
+\begin{minipage}{0.47\textwidth}
+\begin{infobox}{\faClock\ \ Estimated Time}
+Reading: 40 min\\
+Activity: 20 min\\
+Quiz: 10 min\\
+\textbf{Total: about 70 minutes}
+\end{infobox}
+\end{minipage}\hfill
+\begin{minipage}{0.47\textwidth}
+\begin{infobox}{\faBook\ \ Reading Assignment}
+\emph{Systems of the Living Earth}, Chapter 1, pp.\ 3--21, plus the recorded lecture
+``Spheres in Motion'' (18 min) in the course shell.
+\end{infobox}
+\end{minipage}
+\end{center}
+
+\section{The Four Spheres}
+
+Environmental science begins with a simple but powerful idea: the planet behaves as one
+interconnected system rather than a collection of separate parts. Scientists divide this system
+into four overlapping spheres. The \textbf{atmosphere} is the thin envelope of gases surrounding
+the planet, extending roughly 100 km upward before thinning into space. The \textbf{hydrosphere}
+includes every reservoir of water -- oceans, rivers, groundwater, ice, and atmospheric vapor. The
+\textbf{lithosphere} is the solid outer shell of rock and soil, and the \textbf{biosphere} is the
+sum of every living thing and the environments they inhabit.
+
+No sphere operates in isolation. When a wildfire burns through a forest (biosphere), it releases
+carbon into the atmosphere, alters the soil chemistry of the lithosphere, and can change local
+rainfall patterns in the hydrosphere for years afterward. Recognizing these cross-sphere
+interactions is the foundational skill this course builds toward across all eight modules.
+
+\begin{center}
+\begin{tikzpicture}[
+  every node/.style={font=\small},
+  sphere/.style={circle,draw=deepnavy,line width=0.9pt,fill=softgray,minimum size=1.4cm,align=center,font=\footnotesize\bfseries\color{deepnavy}}
+]
+  \node[sphere] (atmo) at (0,1.9) {Atmosphere};
+  \node[sphere] (bio)  at (2.0,0) {Biosphere};
+  \node[sphere] (litho) at (0,-1.9) {Lithosphere};
+  \node[sphere] (hydro) at (-2.0,0) {Hydrosphere};
+
+  \draw[->,tealaccent,line width=1pt] (atmo) -- (bio);
+  \draw[->,tealaccent,line width=1pt] (bio) -- (litho);
+  \draw[->,tealaccent,line width=1pt] (litho) -- (hydro);
+  \draw[->,tealaccent,line width=1pt] (hydro) -- (atmo);
+
+  \node[warmgold,font=\footnotesize\itshape] at (0,0) {constant exchange};
+\end{tikzpicture}
+\end{center}
+
+\section{Open Systems, Closed Systems, and Feedback}
+
+A \textbf{closed system} exchanges energy with its surroundings but not matter; Earth as a whole
+is very nearly closed in this sense -- sunlight enters, heat radiates out, but almost no material
+leaves or arrives. An \textbf{open system}, such as a single watershed, exchanges both energy and
+matter freely with what surrounds it: rain enters, rivers carry sediment out, and organisms move
+across its boundary daily.
+
+Feedback loops determine whether a system resists or amplifies change. A \textbf{negative
+feedback loop} dampens change and pushes a system back toward equilibrium -- for instance,
+increased cloud cover reflecting sunlight and cooling a warming surface. A \textbf{positive
+feedback loop} amplifies an initial change, such as melting sea ice exposing darker ocean water
+that absorbs more heat and melts still more ice.
+
+\begin{termsbox}
+\begin{description}[leftmargin=3.6cm,itemsep=1pt,topsep=1pt]
+  \item[Biosphere] All living organisms and the environments that sustain them.
+  \item[Closed system] A system exchanging energy, but not matter, with its surroundings.
+  \item[Feedback loop] A process where a system's output influences its own future behavior.
+  \item[Reservoir] A location where a substance such as carbon is stored for a period of time.
+  \item[Residence time] The average duration a unit of matter remains in a given reservoir.
+\end{description}
+\end{termsbox}
+
+\section{Case Study: The Carbon Cycle}
+
+Carbon moves continuously among the atmosphere, oceans, soil, and living tissue. A carbon atom
+released by a factory smokestack may be absorbed by ocean surface water within a decade, taken up
+by phytoplankton, sink to the deep ocean as organic debris, and remain there as sediment for
+thousands of years before geological uplift and erosion return it to the surface. Each reservoir
+has a different \textit{residence time} -- the atmosphere holds carbon for roughly 5 years on
+average, while deep ocean sediments can hold it for millennia.
+
+\begin{activitybox}
+Choose one everyday object within arm's reach that contains carbon (a wooden pencil, a cotton
+shirt, a plastic pen). In 3--4 sentences, trace the likely path that carbon took through at least
+two spheres before becoming part of that object, and identify one reservoir where it may have
+had a long residence time. Post your answer to the Module 1 discussion board before attempting
+the quiz below.
+\end{activitybox}
+
+\begin{quizbox}
+\begin{enumerate}[label=\arabic*.]
+  \item Which sphere would sea ice, groundwater, and atmospheric humidity all belong to?
+  \begin{enumerate}[label=(\alph*)]
+    \item Lithosphere \quad (b) Hydrosphere \quad (c) Biosphere \quad (d) Atmosphere
+  \end{enumerate}
+  \item A single isolated lake that receives rainfall and loses water only to evaporation, with
+    no matter otherwise entering or leaving, is best described as:
+  \begin{enumerate}[label=(\alph*)]
+    \item An open system \quad (b) A closed system \quad (c) A feedback loop \quad (d) A reservoir
+  \end{enumerate}
+  \item Melting Arctic ice exposing darker water that absorbs more solar energy, causing further
+    melting, is an example of:
+  \begin{enumerate}[label=(\alph*)]
+    \item Negative feedback \quad (b) A closed system \quad (c) Positive feedback \quad (d) Residence time
+  \end{enumerate}
+  \item List two spheres a carbon atom might pass through between being emitted by a wildfire and
+    being stored in deep ocean sediment.
+\end{enumerate}
+\end{quizbox}
+
+% ================= CHAPTER 2 =================
+\chapter{Populations, Resources, and Human Impact}
+
+\begin{objectivesbox}
+By the end of this chapter, you will be able to:
+\begin{enumerate}[label=\arabic*.]
+  \item Distinguish between renewable and non-renewable resources with an example of each.
+  \item Explain carrying capacity and predict what happens when a population exceeds it.
+  \item Compare two competing strategies for managing a shared resource.
+\end{enumerate}
+\end{objectivesbox}
+
+\begin{center}
+\begin{minipage}{0.47\textwidth}
+\begin{infobox}{\faClock\ \ Estimated Time}
+Reading: 45 min\\
+Activity: 25 min\\
+Quiz: 10 min\\
+\textbf{Total: about 80 minutes}
+\end{infobox}
+\end{minipage}\hfill
+\begin{minipage}{0.47\textwidth}
+\begin{infobox}{\faBook\ \ Reading Assignment}
+\emph{Systems of the Living Earth}, Chapter 2, pp.\ 23--44, plus the case brief
+``The Apex Fishery Collapse'' posted in the course shell.
+\end{infobox}
+\end{minipage}
+\end{center}
+
+\section{Resources and Carrying Capacity}
+
+Resources are commonly classified as \textbf{renewable} -- those that regenerate on human
+timescales, such as timber or fresh groundwater recharge -- or \textbf{non-renewable}, those that
+form over geological timescales far slower than we consume them, such as coal or phosphate rock. A
+resource can behave as renewable in principle yet be depleted in practice if extraction outpaces
+regeneration, as happened to the once-abundant Apex Bank fishery in the case brief for this
+module. Every population, human or otherwise, exists within a \textbf{carrying capacity}: the
+maximum size an environment can sustain indefinitely given available food, water, and space.
+Populations that briefly exceed it typically experience a sharp correction -- famine, disease, or
+emigration -- before stabilizing near the original limit, unless resource availability itself changes.
+
+\begin{termsbox}
+\begin{description}[leftmargin=3.6cm,itemsep=1pt,topsep=1pt]
+  \item[Carrying capacity] The maximum population an environment can sustain long-term.
+  \item[Ecological footprint] The land and resource area required to sustain a given lifestyle.
+  \item[Non-renewable resource] A resource that regenerates far slower than it is consumed.
+  \item[Tragedy of the commons] Overuse of a shared resource when no single party bears the full cost.
+\end{description}
+\end{termsbox}
+
+\begin{activitybox}
+Compare two solutions to a shared-resource problem of your choosing (a community well, a public
+fishery, shared grazing land). Note whether each relies on regulation, pricing, or community
+norms, and predict which better prevents a tragedy of the commons in that case.
+\end{activitybox}
+
+\begin{quizbox}
+\begin{enumerate}[label=\arabic*.]
+  \item A fishery harvested faster than fish populations can reproduce is best classified as:
+  \begin{enumerate}[label=(\alph*)]
+    \item A non-renewable resource in practice \quad (b) Always non-renewable \quad (c) A closed system
+  \end{enumerate}
+  \item When a population briefly exceeds carrying capacity, the most likely outcome is:
+  \begin{enumerate}[label=(\alph*)]
+    \item Permanent stabilization above the limit \quad (b) A correction back toward the limit
+  \end{enumerate}
+  \item Name one factor that increases an individual's ecological footprint.
+\end{enumerate}
+\end{quizbox}
+
+% ================= ANSWER KEY =================
+\chapter*{Answer Key}
+\addcontentsline{toc}{chapter}{Answer Key}
+
+\begin{infobox}{\faCheck\ \ Chapter 1 -- Self-Check Answers}
+\begin{enumerate}[label=\arabic*.]
+  \item (b) Hydrosphere
+  \item (b) A closed system
+  \item (c) Positive feedback
+  \item Sample answer: biosphere to atmosphere (combustion releases carbon dioxide), then
+    atmosphere to hydrosphere (dissolves into ocean surface water) before settling into
+    lithosphere sediment.
+\end{enumerate}
+\end{infobox}
+
+\vspace{10pt}
+
+\begin{infobox}{\faCheck\ \ Chapter 2 -- Self-Check Answers}
+\begin{enumerate}[label=\arabic*.]
+  \item (a) A non-renewable resource in practice
+  \item (b) A correction back toward the limit
+  \item Sample answers: higher meat consumption, larger dwelling size, more frequent air travel,
+    or greater per-capita energy use.
+\end{enumerate}
+\end{infobox}
+
+\vspace{16pt}
+\noindent{\small\color{inkgray}\faEnvelope\ \ Questions about scoring or content should go to
+your instructor via the course messaging tool, not personal email, so responses count toward
+your participation record. \faPhone\ \ Technical support: Meridian IT Helpdesk, available
+Monday--Friday during posted office hours.}
+
+\end{document}

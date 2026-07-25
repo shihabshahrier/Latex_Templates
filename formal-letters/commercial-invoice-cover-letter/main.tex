@@ -1,0 +1,208 @@
+\documentclass[11pt,a4paper,addressstd]{dinbrief}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{xcolor}
+\usepackage{array}
+\usepackage{tcolorbox}
+
+% dinbrief's page shipout crashes ("main@pdfcolorstack undefined") as soon as
+% any color package is loaded, because the kernel's \@outputpage
+% unconditionally calls \normalcolor to reset the header/footer color.
+% Disabling that call is harmless here (colors inside the letter body use a
+% different, unaffected mechanism) and avoids the crash.
+\makeatletter
+\global\let\normalcolor\relax
+\makeatother
+
+% booktabs/colortbl rules (\toprule, patched \hline, \rowcolor) rely on
+% \futurelet-based lookahead that breaks inside the second or later
+% tcolorbox on a dinbrief page; plain \hline plus bold text is used for all
+% table emphasis below instead.
+
+\definecolor{meridianNavy}{HTML}{1B2A4A}
+\definecolor{meridianGold}{HTML}{B8862F}
+\definecolor{slateInk}{HTML}{56606E}
+\definecolor{paleSteel}{HTML}{EEF1F6}
+
+\renewcommand{\yourmailmsg}{Your Reference, Your Letter of}
+\renewcommand{\signmsgnew}{Our Reference, Invoice Date}
+\renewcommand{\phonemsg}{Telephone}
+\renewcommand{\writermsg}{}
+\renewcommand{\datemsg}{Date}
+\renewcommand{\enclname}{Enclosures}
+\renewcommand{\ccname}{Distribution}
+\renewcommand{\psname}{P.S.}
+
+\address{%
+\begin{minipage}[t]{\linewidth}
+{\sffamily\bfseries\color{meridianNavy}\fontsize{20}{24}\selectfont MERIDIAN FABRICATION CO.}\\[1mm]
+{\sffamily\color{meridianGold}\small STRUCTURAL STEEL \ $\bullet$ \ RACKING SYSTEMS \ $\bullet$ \ INDUSTRIAL INSTALLATION}\\[2mm]
+{\color{meridianNavy}\rule{\linewidth}{1pt}}\\[2mm]
+{\sffamily\small\color{slateInk}%
+118 Foundry Row, Portland, OR 97209, United States\\
+Telephone +1 (503) 555-0148 \ $\bullet$ \ billing@meridianfab.example \ $\bullet$ \ www.meridianfab.example}
+\end{minipage}}
+
+\backaddress{Meridian Fabrication Co. \textperiodcentered\ Portland, OR 97209}
+
+\signature{Priya Chandrasekaran\\Manager, Accounts Receivable}
+\place{Portland, OR}
+
+\bottomtext{\centering\footnotesize\color{slateInk}%
+Meridian Fabrication Co. \ $\cdot$ \ 118 Foundry Row, Portland, OR 97209 \ $\cdot$ \ Tax ID 84-1029384 \ $\cdot$ \ First Cascadia Commercial Bank, Acct.\ ****4471}
+
+\begin{document}
+
+\begin{letter}{Mr.\ Owen Castellanos\\
+               Director of Accounts Payable\\
+               Vertex Industries Ltd.\\
+               4400 Corporate Parkway, Suite 300\\
+               Chicago, IL 60601\\
+               United States}
+
+\postremark{VIA ELECTRONIC MAIL AND CERTIFIED U.S.\ MAIL --- RETURN RECEIPT REQUESTED}
+
+\date{July 1, 2026}
+\yourmail{PO-22910}
+\sign{INV-08452}
+\phone{+1 503}{555-0148}
+\writer{}
+\subject{Commercial Invoice INV-08452 --- Vertex Distribution Center Racking Retrofit, Phase 2}
+
+\opening{Dear Mr.\ Castellanos,}
+
+Please find enclosed our commercial invoice for materials supplied and installation
+labor performed under your purchase order PO-22910, dated May 4, 2026. This invoice
+covers the racking fabrication and installation scope completed at your Vertex
+Distribution Center facility in Aurora, Illinois, between May 18 and June 26, 2026.
+
+The final site walkthrough was conducted on June 26, 2026, and the completed work
+was accepted without exception by your site supervisor, Ms.\ Renata Boyle, whose
+signed acceptance form is on file with our project management office. All materials
+were fabricated to the specifications set out in Exhibit~C of the Master Services
+Agreement dated April 11, 2026, and installation was performed in accordance with
+the applicable rack manufacturer's engineering certification.
+
+\begin{tcolorbox}[
+  colback=paleSteel,
+  colframe=meridianNavy,
+  boxrule=0.8pt,
+  arc=1.5mm,
+  left=4mm,right=4mm,top=2.5mm,bottom=2.5mm,
+  colbacktitle=meridianNavy,
+  coltitle=white,
+  fonttitle=\sffamily\bfseries,
+  title=Invoice Summary
+]
+\begin{tabular}{@{}lp{8.6cm}@{}}
+Invoice Number: & INV-08452\\
+Invoice Date: & June 30, 2026\\
+Purchase Order: & PO-22910\\
+Project: & Vertex Distribution Center --- Racking Retrofit, Phase~2\\
+Payment Terms: & Net 30 (2\%/10 early-payment discount available)\\
+\textbf{Amount Due:} & \textbf{\color{meridianGold}\$47,052.07}\\
+\textbf{Payment Due Date:} & \textbf{July 30, 2026}\\
+\end{tabular}
+\end{tcolorbox}
+
+The itemized schedule of materials, labor, and freight charges comprising this
+invoice is set out below as Exhibit~A. Quantities and unit prices match the
+delivery tickets and daily labor logs countersigned by your on-site
+representative throughout the installation period.
+
+\begin{tcolorbox}[
+  colback=white,
+  colframe=meridianNavy,
+  boxrule=0.8pt,
+  arc=1.5mm,
+  left=3mm,right=3mm,top=2.5mm,bottom=2.5mm,
+  colbacktitle=meridianNavy,
+  coltitle=white,
+  fonttitle=\sffamily\bfseries,
+  title=Exhibit A --- Itemized Schedule of Charges
+]
+\begin{tabular}{@{}p{7.3cm}rrr@{}}
+\hline
+\textcolor{meridianNavy}{\textbf{Description}} & \textcolor{meridianNavy}{\textbf{Qty}} & \textcolor{meridianNavy}{\textbf{Unit Price}} & \textcolor{meridianNavy}{\textbf{Amount}}\\
+\hline
+Custom steel pallet-rack uprights, 10~ft, powder-coated & 48 & \$412.00 & \$19,776.00\\
+Heavy-duty beam connectors, 8~ft & 96 & \$86.50 & \$8,304.00\\
+Wire mesh decking panels, 42~in.\ $\times$ 46~in. & 210 & \$34.75 & \$7,297.50\\
+On-site installation labor (crew of six, four days) & 192~hrs & \$58.00 & \$11,136.00\\
+Freight \& logistics, LTL, Portland OR to Chicago IL & 1 & \$2,140.00 & \$2,140.00\\
+Site safety compliance inspection & 1 & \$875.00 & \$875.00\\
+\hline
+\multicolumn{3}{r}{Subtotal} & \$49,528.50\\
+\multicolumn{3}{r}{Less: Contract Retention Withheld (5\%)} & (\$2,476.43)\\
+\hline
+\multicolumn{3}{r}{\textbf{Total Due Upon This Invoice}} & \textcolor{meridianGold}{\textbf{\$47,052.07}}\\
+\hline
+\end{tabular}
+\end{tcolorbox}
+
+Per Section 8.4 of the Master Services Agreement, the five percent contract
+retention withheld above will be released within thirty days of receipt of an
+executed lien waiver and final acceptance certificate, both of which we
+transmitted to your office on June 27, 2026 under separate cover.
+
+Payment of the amount due may be remitted by ACH transfer, wire transfer, or
+company check. A two percent discount applies to the net invoice total if
+payment is received within ten calendar days of the invoice date; otherwise,
+the full amount is due within thirty calendar days as stated above.
+
+\begin{tcolorbox}[
+  colback=paleSteel,
+  colframe=meridianGold,
+  boxrule=0.8pt,
+  arc=1.5mm,
+  left=4mm,right=4mm,top=2.5mm,bottom=2.5mm,
+  colbacktitle=meridianGold,
+  coltitle=white,
+  fonttitle=\sffamily\bfseries,
+  title=Remittance Instructions
+]
+\begin{tabular}{@{}lp{8.6cm}@{}}
+Account Name: & Meridian Fabrication Co.\\
+Bank: & First Cascadia Commercial Bank, Portland, OR\\
+Routing/ABA Number: & 123456789\\
+Account Number: & ****4471\\
+SWIFT/BIC: & FCCBUS6P\\
+Wire Reference: & Please cite Invoice No.\ INV-08452 in the payment memo\\
+Check Remittance: & Meridian Fabrication Co., Lockbox 88214, Portland, OR 97209\\
+\end{tabular}
+\end{tcolorbox}
+
+Invoices remaining unpaid after the thirty-day payment term will accrue a
+late-payment charge of one and one-half percent per month, or the maximum
+rate permitted by applicable law, whichever is lower, in accordance with
+Section 9.2 of the Master Services Agreement. We would prefer, of course,
+to avoid that outcome entirely and are glad to work with your team on
+scheduling if any question arises regarding this invoice.
+
+Should your accounts payable department have any questions concerning the
+charges above, the underlying delivery tickets, or the retention release
+schedule, please contact our billing office directly at
+billing@meridianfab.example or +1 (503) 555-0148, extension 212, and we will
+respond within one business day.
+
+We are grateful for the opportunity to support the Vertex Distribution Center
+expansion and look forward to continuing our work together on Phase~3 of the
+racking retrofit later this year.
+
+\closing{Sincerely,}
+
+\encl{Commercial Invoice INV-08452 (2 pages)\\
+      Itemized Delivery Schedule --- Exhibit A\\
+      Signed Final Acceptance Certificate, dated June 26, 2026\\
+      IRS Form W-9, Taxpayer Identification and Certification}
+
+\cc{Daniel Osei, Finance Director, Meridian Fabrication Co.\\
+    File Copy --- Accounts Receivable}
+
+\ps{A courtesy copy of this invoice and the remittance instructions above has
+also been sent to your accounts payable portal reference number
+AP-2026-33481.}
+
+\end{letter}
+\end{document}

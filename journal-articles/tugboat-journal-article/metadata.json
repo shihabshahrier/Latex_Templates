@@ -1,0 +1,8 @@
+{
+  "name": "TUGboat TeX & Typography Article",
+  "compiler": "pdflatex",
+  "description": "TUGboat TeX & Typography Article LaTeX template \u2014 tugboat tex & typography article latex template. Elegant, compile-tested, editable online at letx.app.",
+  "author": "LetX",
+  "category": "journal-articles",
+  "license": "MIT"
+}

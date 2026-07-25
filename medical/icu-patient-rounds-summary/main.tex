@@ -1,0 +1,768 @@
+\documentclass[11pt,a4paper]{scrartcl}
+
+%% ──────────────────────────────────────────────────────────────────────────────
+%%  PACKAGES
+%% ──────────────────────────────────────────────────────────────────────────────
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=18mm, top=20mm, bottom=22mm]{geometry}
+\usepackage{microtype}
+\usepackage{lmodern}
+\usepackage[table]{xcolor}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{colortbl}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{multirow}
+\usepackage{enumitem}
+\usepackage{fontawesome5}
+\usepackage{tikz}
+\usepackage[most]{tcolorbox}
+\usepackage{mdframed}
+\usepackage{parskip}
+\usepackage{ragged2e}
+\usepackage{calc}
+\usepackage{ifthen}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{makecell}
+\usepackage{dashrule}
+\usepackage{pgffor}
+
+\usetikzlibrary{positioning, calc, shapes.geometric, decorations.pathmorphing, backgrounds, patterns}
+
+%% ──────────────────────────────────────────────────────────────────────────────
+%%  COLOUR PALETTE
+%% ──────────────────────────────────────────────────────────────────────────────
+\definecolor{MedNavy}{HTML}{1A2E4A}
+\definecolor{MedTeal}{HTML}{0D7377}
+\definecolor{MedGold}{HTML}{C8973A}
+\definecolor{MedCream}{HTML}{F5F3EE}
+\definecolor{MedLight}{HTML}{EAF4F4}
+\definecolor{MedMid}{HTML}{C3DCE0}
+\definecolor{MedDark}{HTML}{0A4A4E}
+\definecolor{AlertRed}{HTML}{C0392B}
+\definecolor{AlertAmber}{HTML}{D4870A}
+\definecolor{AlertGreen}{HTML}{1A7A4A}
+\definecolor{RuleGray}{HTML}{B0BAC5}
+\definecolor{TextGray}{HTML}{4A5568}
+\definecolor{LightGray}{HTML}{F0F2F5}
+\definecolor{CheckBox}{HTML}{E2EEF0}
+\definecolor{SpecimenGray}{HTML}{CCCCCC}
+
+%% ──────────────────────────────────────────────────────────────────────────────
+%%  FONTS (pdflatex-safe)
+%% ──────────────────────────────────────────────────────────────────────────────
+\usepackage{charter}
+\usepackage[scaled=0.88]{helvet}
+\renewcommand{\sfdefault}{phv}
+
+%% ──────────────────────────────────────────────────────────────────────────────
+%%  HEADER / FOOTER
+%% ──────────────────────────────────────────────────────────────────────────────
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\fancyhead[L]{%
+  \small\sffamily\color{MedNavy}%
+  \textbf{Meridian General Hospital} \textcolor{RuleGray}{|}
+  \textit{Intensive Care Unit} \textcolor{RuleGray}{|}
+  Ward~4B
+}
+\fancyhead[R]{%
+  \small\sffamily\color{TextGray}%
+  \faCalendar\enspace 24 July 2026 \quad
+  \textbf{\color{MedTeal}ICU Rounds Summary}
+}
+\fancyfoot[L]{\footnotesize\sffamily\color{RuleGray}CONFIDENTIAL — FOR CLINICAL USE ONLY}
+\fancyfoot[C]{\footnotesize\sffamily\color{TextGray}\textbf{SPECIMEN}}
+\fancyfoot[R]{\footnotesize\sffamily\color{RuleGray}Page~\thepage~of~\pageref{LastPage}}
+
+%% ──────────────────────────────────────────────────────────────────────────────
+%%  SPECIMEN WATERMARK (every page)
+%% ──────────────────────────────────────────────────────────────────────────────
+\usepackage{eso-pic}
+\AddToShipoutPictureBG{%
+  \begin{tikzpicture}[remember picture, overlay]
+    \node[rotate=45, scale=1, opacity=0.06]
+      at (current page.center)
+      {\fontsize{96}{96}\selectfont\sffamily\bfseries\color{SpecimenGray}SPECIMEN};
+  \end{tikzpicture}%
+}
+
+%% ──────────────────────────────────────────────────────────────────────────────
+%%  TCOLORBOX STYLES
+%% ──────────────────────────────────────────────────────────────────────────────
+\tcbset{
+  sectionbox/.style={
+    colframe=MedTeal,
+    colback=MedLight,
+    colbacktitle=MedTeal,
+    coltitle=white,
+    fonttitle=\sffamily\bfseries\small,
+    title style={left color=MedTeal, right color=MedDark},
+    boxrule=0.6pt,
+    arc=3pt,
+    left=5pt, right=5pt, top=4pt, bottom=4pt,
+    titlerule=0pt,
+    toptitle=3pt, bottomtitle=3pt,
+    attach boxed title to top left={yshift=-0.6pt, xshift=6pt},
+    boxed title style={colframe=MedTeal, arc=2pt, boxrule=0pt},
+    drop shadow={opacity=0.06, shadow xshift=1pt, shadow yshift=-1pt},
+  },
+  alertbox/.style={
+    colframe=AlertRed,
+    colback=AlertRed!6!white,
+    colbacktitle=AlertRed,
+    coltitle=white,
+    fonttitle=\sffamily\bfseries\small,
+    boxrule=0.8pt,
+    arc=3pt,
+    left=5pt, right=5pt, top=4pt, bottom=4pt,
+    toptitle=3pt, bottomtitle=3pt,
+  },
+  notebox/.style={
+    colframe=MedGold,
+    colback=MedGold!8!white,
+    colbacktitle=MedGold,
+    coltitle=MedNavy,
+    fonttitle=\sffamily\bfseries\small,
+    boxrule=0.6pt,
+    arc=3pt,
+    left=5pt, right=5pt, top=4pt, bottom=4pt,
+    toptitle=3pt, bottomtitle=3pt,
+  },
+  planbox/.style={
+    colframe=MedNavy,
+    colback=MedNavy!4!white,
+    colbacktitle=MedNavy,
+    coltitle=white,
+    fonttitle=\sffamily\bfseries\small,
+    boxrule=0.6pt,
+    arc=3pt,
+    left=5pt, right=5pt, top=4pt, bottom=4pt,
+    toptitle=3pt, bottomtitle=3pt,
+  },
+  metricbox/.style={
+    colframe=MedMid,
+    colback=white,
+    boxrule=0.5pt,
+    arc=3pt,
+    left=4pt, right=4pt, top=3pt, bottom=3pt,
+    halign=center,
+  },
+}
+
+%% ──────────────────────────────────────────────────────────────────────────────
+%%  HELPER COMMANDS
+%% ──────────────────────────────────────────────────────────────────────────────
+\newcommand{\organ}[2]{%
+  \noindent
+  {\color{MedTeal}\rule{3pt}{9pt}}\enspace
+  {\sffamily\bfseries\small\color{MedNavy}#1}\enspace
+  {\small\color{TextGray}#2}\par\vspace{1pt}%
+}
+
+\newcommand{\labrow}[2]{%
+  {\footnotesize\sffamily\color{TextGray}#1} & {\footnotesize\sffamily\bfseries\color{MedNavy}#2}%
+}
+
+\newcommand{\checkitem}[2]{%
+  \noindent
+  \begin{tikzpicture}[baseline=-0.5ex]
+    \fill[CheckBox] (0,0) rectangle (8pt,8pt);
+    \ifthenelse{\equal{#1}{1}}{%
+      \draw[MedTeal, line width=1.2pt] (1.5pt,4pt) -- (3.5pt,2pt) -- (6.5pt,7pt);
+    }{%
+      \ifthenelse{\equal{#1}{2}}{%
+        \fill[AlertRed!70!white] (1.5pt,1.5pt) rectangle (6.5pt,6.5pt);
+      }{}%
+    }%
+    \draw[RuleGray, line width=0.4pt] (0,0) rectangle (8pt,8pt);
+  \end{tikzpicture}\enspace
+  {\footnotesize\sffamily\color{TextGray}#2}\quad%
+}
+
+\newcommand{\vitalbadge}[3]{%
+  % #1 colour name, #2 label, #3 value
+  \begin{tcolorbox}[metricbox, colframe=#1!60!MedMid, colback=#1!6!white, width=\linewidth]
+    {\fontsize{7}{8}\selectfont\sffamily\color{TextGray}#2\par}%
+    {\bfseries\sffamily\color{#1}#3}%
+  \end{tcolorbox}%
+}
+
+\newcommand{\sectionrule}{%
+  \vspace{4pt}%
+  \noindent{\color{MedMid}\rule{\linewidth}{0.5pt}}\par
+  \vspace{4pt}%
+}
+
+%% ──────────────────────────────────────────────────────────────────────────────
+%%  DOCUMENT
+%% ──────────────────────────────────────────────────────────────────────────────
+\begin{document}
+
+%% ════════════════════════════════════════════════════════════════════════════
+%%  PAGE 1 — PATIENT HEADER + VITALS + SYSTEMS REVIEW
+%% ════════════════════════════════════════════════════════════════════════════
+
+%% ── TOP HEADER BAR ──────────────────────────────────────────────────────────
+\begin{tikzpicture}[remember picture]
+  \node[fill=MedNavy, minimum width=\linewidth+2pt, minimum height=28pt,
+        inner sep=0, anchor=north west] (hdrbar) at (0,0)
+        {\hspace{6pt}\parbox{\linewidth-12pt}{%
+          \vspace{3pt}%
+          {\color{white}\Large\sffamily\bfseries ICU Patient Progress \& Rounds Summary}%
+          \hfill
+          {\color{MedGold}\small\sffamily\bfseries MERIDIAN GENERAL HOSPITAL
+           \textcolor{white}{|} Intensive Care Unit, Ward~4B}%
+          \vspace{3pt}%
+        }};
+\end{tikzpicture}
+
+\vspace{6pt}
+
+%% ── PATIENT IDENTITY STRIP ──────────────────────────────────────────────────
+\noindent
+\begin{minipage}[t]{0.62\linewidth}
+  \begin{tcolorbox}[sectionbox, title={\faUser\enspace Patient Information}]
+    \begin{tabularx}{\linewidth}{@{}lX@{}}
+      \textbf{Name:}       & Margaret L.\ Hartwell \\[2pt]
+      \textbf{DOB / Age:}  & 12 March 1951 \quad (75 yr) \\[2pt]
+      \textbf{MRN:}        & MGH-ICU-2026-00847 \\[2pt]
+      \textbf{Admission:}  & 19 July 2026 \quad (Day~5) \\[2pt]
+      \textbf{Bed:}        & 4B-07 \\[2pt]
+      \textbf{Attending:}  & Dr.\ Sandra Osei-Bonsu, MD \\[2pt]
+      \textbf{Team:}       & Dr.\ Liam Kavanagh (Res.), Nurse P.\ Rajan \\[2pt]
+      \textbf{Allergies:}  & \textcolor{AlertRed}{\bfseries Penicillin} (anaphylaxis),
+                             Sulfonamides (rash) \\
+    \end{tabularx}
+  \end{tcolorbox}
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.355\linewidth}
+  \begin{tcolorbox}[sectionbox, title={\faClipboard\enspace Admission Diagnoses}]
+    \begin{itemize}[leftmargin=10pt, itemsep=1pt, topsep=0pt]
+      \item[\textcolor{MedTeal}{\faCircle[regular]}]
+            \footnotesize\sffamily Septic shock (gram-negative, urosepsis)
+      \item[\textcolor{MedTeal}{\faCircle[regular]}]
+            \footnotesize\sffamily Acute respiratory failure — ARDS (moderate)
+      \item[\textcolor{MedTeal}{\faCircle[regular]}]
+            \footnotesize\sffamily Acute kidney injury, stage~II
+      \item[\textcolor{MedTeal}{\faCircle[regular]}]
+            \footnotesize\sffamily Type 2 diabetes mellitus
+      \item[\textcolor{MedTeal}{\faCircle[regular]}]
+            \footnotesize\sffamily Hypertension, chronic
+    \end{itemize}
+  \end{tcolorbox}
+\end{minipage}
+
+\vspace{6pt}
+
+%% ── VITAL SIGNS DASHBOARD ───────────────────────────────────────────────────
+\noindent
+\begin{tcolorbox}[sectionbox, title={\faHeartbeat\enspace Vital Signs — 07:00 Rounds
+  \hfill{\normalfont\tiny\color{white!70!MedTeal}Previous 24 h range in parentheses}}]
+  \noindent
+  \begin{minipage}[t]{0.115\linewidth}
+    \vitalbadge{AlertRed}{HR (bpm)}{102\newline{\tiny(88--118)}}
+  \end{minipage}\hfill
+  \begin{minipage}[t]{0.115\linewidth}
+    \vitalbadge{AlertAmber}{SBP / DBP}{98/62\newline{\tiny(88--105/54--68)}}
+  \end{minipage}\hfill
+  \begin{minipage}[t]{0.115\linewidth}
+    \vitalbadge{AlertAmber}{MAP (mmHg)}{74\newline{\tiny(65--78)}}
+  \end{minipage}\hfill
+  \begin{minipage}[t]{0.115\linewidth}
+    \vitalbadge{AlertRed}{Temp (°C)}{38.7\newline{\tiny(37.6--39.2)}}
+  \end{minipage}\hfill
+  \begin{minipage}[t]{0.115\linewidth}
+    \vitalbadge{AlertAmber}{SpO\textsubscript{2} (\%)}{94\newline{\tiny(91--96)}}
+  \end{minipage}\hfill
+  \begin{minipage}[t]{0.115\linewidth}
+    \vitalbadge{AlertAmber}{RR (/min)}{22\newline{\tiny(18--26)}}
+  \end{minipage}\hfill
+  \begin{minipage}[t]{0.115\linewidth}
+    \vitalbadge{AlertRed}{GCS}{12/15\newline{\tiny(11--13)}}
+  \end{minipage}\hfill
+  \begin{minipage}[t]{0.115\linewidth}
+    \vitalbadge{AlertAmber}{Pain (NRS)}{3/10\newline{\tiny(2--5)}}
+  \end{minipage}
+\end{tcolorbox}
+
+\vspace{6pt}
+
+%% ── VENTILATOR + I/O ────────────────────────────────────────────────────────
+\noindent
+\begin{minipage}[t]{0.48\linewidth}
+  \begin{tcolorbox}[sectionbox, title={\faWind\enspace Ventilator Settings (Invasive MV)}]
+    \footnotesize\sffamily
+    \begin{tabularx}{\linewidth}{@{}lXlX@{}}
+      \textbf{Mode:}   & SIMV-PC   & \textbf{FiO\textsubscript{2}:} & 0.55 \\[2pt]
+      \textbf{RR set:} & 14/min    & \textbf{PEEP:}                 & 8 cmH\textsubscript{2}O \\[2pt]
+      \textbf{PC:}     & 18 cmH\textsubscript{2}O & \textbf{PS:}  & 10 cmH\textsubscript{2}O \\[2pt]
+      \textbf{VT:}     & 410 mL    & \textbf{Plateau:}              & 24 cmH\textsubscript{2}O \\[2pt]
+      \textbf{MV:}     & 8.2 L/min & \textbf{Drive P:}              & 16 cmH\textsubscript{2}O \\
+    \end{tabularx}
+    \vspace{3pt}
+    \noindent\colorbox{MedLight}{\parbox{\linewidth-6pt}{%
+      \textcolor{TextGray}{\faInfoCircle}\enspace
+      SBT trial planned if MAP $\geq$~65 and norad $\leq$~0.1
+      \textmu{}g/kg/min by 10:00
+    }}
+  \end{tcolorbox}
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.48\linewidth}
+  \begin{tcolorbox}[sectionbox, title={\faTint\enspace Fluid Balance (24 h)}]
+    \footnotesize\sffamily
+    \begin{tabularx}{\linewidth}{@{}lXlX@{}}
+      \multicolumn{2}{@{}l}{\textbf{\color{AlertGreen}Intake}} &
+      \multicolumn{2}{l@{}}{\textbf{\color{AlertRed}Output}} \\[2pt]
+      IV fluids:    & 1{,}450 mL & Urine:    & 920 mL \\[1pt]
+      NG feeds:     & 800 mL     & Drain:    & 35 mL \\[1pt]
+      Medications:  & 320 mL     & NGT:      & 110 mL \\[1pt]
+      Blood prods.: & 0 mL       & Insensible: & \(\approx\)300 mL \\[2pt]
+      \midrule
+      \textbf{Total in:} & \textbf{2{,}570 mL} &
+      \textbf{Total out:} & \textbf{1{,}365 mL} \\[2pt]
+    \end{tabularx}
+    \vspace{2pt}
+    \noindent\colorbox{AlertAmber!15!white}{\parbox{\linewidth-6pt}{%
+      \textbf{\color{AlertAmber}Balance:} +1{,}205 mL (cumulative: +4{,}810 mL)
+    }}
+  \end{tcolorbox}
+\end{minipage}
+
+\vspace{8pt}
+
+%% ── ORGAN SYSTEM REVIEW ─────────────────────────────────────────────────────
+\noindent
+\begin{tcolorbox}[sectionbox,
+  title={\faBrain\enspace Organ Systems Review — 24 July 2026}]
+
+  \noindent
+  \begin{minipage}[t]{0.47\linewidth}
+
+    \organ{Neurological}{GCS~12 (E3V4M5). Sedation: propofol 30~mg/h,
+      fentanyl~25~\textmu{}g/h. RASS~--1 (target --1 to~0). CAM-ICU negative.
+      Pupils equal 3~mm, reactive. No focal deficits. Pain managed; NRS~3.
+      Continue daily sedation interruption at 08:00.}
+
+    \vspace{4pt}
+
+    \organ{Respiratory}{Day~5 invasive MV. FiO\textsubscript{2} weaned from
+      0.60 to 0.55 overnight. P/F ratio~171 (moderate ARDS). Lung-protective
+      strategy maintained. CXR: bilateral opacities, slight improvement L~base.
+      Suction: moderate white secretions. SBT eligibility reassessed 10:00.
+      Prone positioning not required today.}
+
+    \vspace{4pt}
+
+    \organ{Cardiovascular}{Persistent septic physiology; vasopressor
+      requirement trending down. Noradrenaline 0.15~\textmu{}g/kg/min
+      (was 0.22 yesterday). Echo (22~Jul): LVEF~50\%, no regional wall motion
+      abnormality; mild tricuspid regurgitation. CVP~10 mmHg. Sinus
+      tachycardia — rate-control not indicated. Repeat 12-lead ECG ordered.}
+
+    \vspace{4pt}
+
+    \organ{Gastrointestinal / Nutrition}{NG feeding at 40~mL/h
+      (Meridian Peptide Formula, 1.2~kcal/mL; target 1{,}440~kcal/day).
+      Residuals~\textless~150~mL; feeds not held. Bowels: no motion since
+      admission — lactulose added today. LFTs mildly elevated (ALT~72,
+      AST~68 U/L); monitoring trend. Pantoprazole 40~mg IV OD for GI
+      prophylaxis.}
+
+  \end{minipage}%
+  \hfill
+  \begin{minipage}[t]{0.47\linewidth}
+
+    \organ{Renal}{AKI stage~II — urine output 920~mL/24~h (0.51~mL/kg/h);
+      improving. Creatinine~214~\textmu{}mol/L (was~261). No CRRT today;
+      reassess if UO~\textless~0.3~mL/kg/h or K\textsuperscript{+}~$>$~6.0.
+      Electrolytes being repleted (K\textsuperscript{+}~3.2 — see below).
+      Avoid nephrotoxins; meropenem dose-adjusted for GFR~28.}
+
+    \vspace{4pt}
+
+    \organ{Haematology}{Hb~87~g/L (threshold for transfusion~\textless{}70~g/L
+      — hold). Plt~94\,\texttimes{}\,10\textsuperscript{9}/L, trending up.
+      INR~1.6. DIC screen negative. VTE prophylaxis: enoxaparin 20~mg SC OD
+      (renally adjusted). Compression stockings in situ.}
+
+    \vspace{4pt}
+
+    \organ{Infectious Disease}{Source: urosepsis — E.~coli ESBL\textsuperscript{+}
+      (urine culture 20~Jul). Day~5 of meropenem 500~mg IV q12h (adjusted).
+      ID team reviewed — continue current regimen; de-escalation pending
+      48~h sensitivity. Procalcitonin trend: 18~\textrightarrow{}~9.4~ng/mL.
+      CRP~124 (was 210). Fever persistent; urine output improving.}
+
+    \vspace{4pt}
+
+    \organ{Endocrine / Metabolic}{Insulin infusion protocol: current rate
+      2~U/h; BGL 06:00:~8.4~mmol/L (target 6--10). HbA1c~9.2\% (on
+      admission). K\textsuperscript{+}~3.2 — K-replacement 40~mmol in 100~mL
+      0.9\% NaCl over 4~h, then recheck. Mg\textsuperscript{2+}~0.68~mmol/L —
+      supplement ordered. Thyroid function normal.}
+
+  \end{minipage}
+
+\end{tcolorbox}
+
+\newpage
+
+%% ════════════════════════════════════════════════════════════════════════════
+%%  PAGE 2 — LABS, MEDS, CARE CHECKLIST, PLAN
+%% ════════════════════════════════════════════════════════════════════════════
+
+\vspace{4pt}
+
+%% ── LABORATORY RESULTS ──────────────────────────────────────────────────────
+\noindent
+\begin{tcolorbox}[sectionbox, title={\faFlask\enspace Laboratory Results — 07:00
+  \hfill{\normalfont\tiny\color{white!70!MedTeal}
+  \textbf{H} = High \quad \textbf{L} = Low \quad $\bullet$ = Critical}}]
+
+  \footnotesize\sffamily
+  \noindent
+  \begin{minipage}[t]{0.32\linewidth}
+    \textbf{\color{MedNavy}Haematology}\par\vspace{2pt}
+    \begin{tabular}{@{}ll@{}}
+      \labrow{WBC ($\times$10\textsuperscript{9}/L)}{13.4 \textbf{H}} \\[2pt]
+      \labrow{Neutrophils}{11.8 \textbf{H}} \\[2pt]
+      \labrow{Hb (g/L)}{87 \textbf{L}} \\[2pt]
+      \labrow{Platelets ($\times$10\textsuperscript{9}/L)}{94 \textbf{L}} \\[2pt]
+      \labrow{INR}{1.6 \textbf{H}} \\[2pt]
+      \labrow{APTT (s)}{38} \\[2pt]
+      \labrow{Fibrinogen (g/L)}{3.8} \\
+    \end{tabular}
+  \end{minipage}\hfill
+  \begin{minipage}[t]{0.32\linewidth}
+    \textbf{\color{MedNavy}Biochemistry}\par\vspace{2pt}
+    \begin{tabular}{@{}ll@{}}
+      \labrow{Na\textsuperscript{+} (mmol/L)}{138} \\[2pt]
+      \labrow{K\textsuperscript{+} (mmol/L)}{3.2 \textbf{L}} \\[2pt]
+      \labrow{Cr (\textmu{}mol/L)}{214 \textbf{H}} \\[2pt]
+      \labrow{Urea (mmol/L)}{18.6 \textbf{H}} \\[2pt]
+      \labrow{CRP (mg/L)}{124 \textbf{H}} \\[2pt]
+      \labrow{Albumin (g/L)}{22 \textbf{L}} \\[2pt]
+      \labrow{Total bili (\textmu{}mol/L)}{28 \textbf{H}} \\
+    \end{tabular}
+  \end{minipage}\hfill
+  \begin{minipage}[t]{0.32\linewidth}
+    \textbf{\color{MedNavy}Blood Gas (07:00 ABG)}\par\vspace{2pt}
+    \begin{tabular}{@{}ll@{}}
+      \labrow{pH}{7.34 \textbf{L}} \\[2pt]
+      \labrow{pCO\textsubscript{2} (kPa)}{5.8} \\[2pt]
+      \labrow{pO\textsubscript{2} (kPa)}{9.4 \textbf{L}} \\[2pt]
+      \labrow{HCO\textsubscript{3}\textsuperscript{-} (mmol/L)}{20 \textbf{L}} \\[2pt]
+      \labrow{Lactate (mmol/L)}{1.9 \textbf{H}} \\[2pt]
+      \labrow{BE (mmol/L)}{--5.2 \textbf{L}} \\[2pt]
+      \labrow{P/F ratio}{171 \textbf{L}} \\
+    \end{tabular}
+  \end{minipage}
+
+  \vspace{6pt}
+  \noindent\colorbox{AlertRed!10!white}{\parbox{\linewidth-6pt}{%
+    \textbf{\color{AlertRed}\faExclamationTriangle\enspace Critical flags:}\enspace
+    K\textsuperscript{+}~3.2~(replacing IV) \textbf{|} pH~7.34 (metabolic acidosis, improving)
+    \textbf{|} Lactate~1.9 (trending down from 3.4 on admission)
+  }}
+
+\end{tcolorbox}
+
+\vspace{6pt}
+
+%% ── MEDICATIONS ─────────────────────────────────────────────────────────────
+\noindent
+\begin{tcolorbox}[sectionbox, title={\faPills\enspace Active Medication Chart}]
+  \footnotesize\sffamily
+  \renewcommand{\arraystretch}{1.35}
+  \begin{tabularx}{\linewidth}{@{}p{3.6cm}p{2.8cm}p{2.2cm}p{2.0cm}X@{}}
+    \rowcolor{MedNavy}
+    \textbf{\color{white}Drug} &
+    \textbf{\color{white}Dose / Route} &
+    \textbf{\color{white}Frequency} &
+    \textbf{\color{white}Indication} &
+    \textbf{\color{white}Notes} \\
+    %
+    \rowcolor{MedLight}
+    Meropenem & 500 mg IV & q12h & Sepsis / ESBL & Renal-adjusted \\
+    Noradrenaline & 0.15 \textmu{}g/kg/min & Continuous & Vasopressor & Wean target MAP\,$\geq$65 \\
+    \rowcolor{MedLight}
+    Propofol 1\% & 30 mg/h & Continuous & Sedation & RASS target --1 to 0 \\
+    Fentanyl & 25 \textmu{}g/h & Continuous & Analgesia & NRS target $\leq$3 \\
+    \rowcolor{MedLight}
+    Insulin (actrapid) & 2 U/h & Continuous & Glycaemic ctrl & BGL 6--10 mmol/L \\
+    Pantoprazole & 40 mg IV & OD & GI prophylaxis & \\
+    \rowcolor{MedLight}
+    Enoxaparin & 20 mg SC & OD & VTE prophylaxis & Renal-adjusted \\
+    KCl replacement & 40 mmol IV & Once (today) & Hypokalaemia & Over 4h in 100~mL 0.9\% NaCl \\
+    \rowcolor{MedLight}
+    Lactulose & 30 mL NG & TDS & Constipation & Commenced today \\
+    Magnesium sulfate & 10 mmol IV & Once & Hypomagnesaemia & Over 2h \\
+    \rowcolor{MedLight}
+    Heparin flush & 10 U/mL & PRN & CVC maintenance & \\
+    Paracetamol & 1 g IV & q6h & Analgesia / pyrexia & \\
+  \end{tabularx}
+\end{tcolorbox}
+
+\vspace{6pt}
+
+%% ── DAILY CARE CHECKLIST ────────────────────────────────────────────────────
+\noindent
+\begin{tcolorbox}[sectionbox, title={\faCheckSquare\enspace ICU Daily Care Checklist}]
+  \footnotesize\sffamily
+  \noindent
+  \begin{minipage}[t]{0.30\linewidth}
+    \textbf{\color{MedNavy}Infection Control}\par\vspace{4pt}
+    \checkitem{1}{Hand hygiene bundle}\par\vspace{2pt}
+    \checkitem{1}{Contact precautions active}\par\vspace{2pt}
+    \checkitem{1}{CVC site checked \& dressed}\par\vspace{2pt}
+    \checkitem{1}{IDC site clean; secured}\par\vspace{2pt}
+    \checkitem{1}{ETT cuff pressure 20--25 cmH\textsubscript{2}O}\par\vspace{2pt}
+    \checkitem{0}{Blood cultures (if temp\,$>$38.5)}\par\vspace{2pt}
+    \checkitem{1}{Chlorhexidine mouth care}
+  \end{minipage}\hfill
+  \begin{minipage}[t]{0.30\linewidth}
+    \textbf{\color{MedNavy}Safety \& Monitoring}\par\vspace{4pt}
+    \checkitem{1}{Bed head elevated 30--45\textdegree}\par\vspace{2pt}
+    \checkitem{1}{Restraints assessed}\par\vspace{2pt}
+    \checkitem{1}{Fall risk assessed}\par\vspace{2pt}
+    \checkitem{1}{Pressure area check (Braden~13)}\par\vspace{2pt}
+    \checkitem{1}{Turn q2h schedule active}\par\vspace{2pt}
+    \checkitem{1}{Compression stockings}\par\vspace{2pt}
+    \checkitem{0}{Delirium — CAM-ICU (08:00)}
+  \end{minipage}\hfill
+  \begin{minipage}[t]{0.30\linewidth}
+    \textbf{\color{MedNavy}Goals of Care}\par\vspace{4pt}
+    \checkitem{1}{Goals of care documented}\par\vspace{2pt}
+    \checkitem{1}{Resuscitation status: Full code}\par\vspace{2pt}
+    \checkitem{1}{Family meeting booked (14:00)}\par\vspace{2pt}
+    \checkitem{0}{Physiotherapy — passive ROM}\par\vspace{2pt}
+    \checkitem{0}{Social work referral}\par\vspace{2pt}
+    \checkitem{1}{Nutrition dietitian reviewed}\par\vspace{2pt}
+    \checkitem{1}{Daily consent form reviewed}
+  \end{minipage}
+
+  \vspace{3pt}
+  \noindent
+  {\color{MedTeal}\footnotesize\sffamily
+   \rule{8pt}{8pt}~Completed\hspace{10pt}
+   \colorbox{AlertRed!70!white}{\rule{0pt}{5pt}\hspace{6pt}}~Flagged\hspace{10pt}
+   \colorbox{CheckBox}{\rule{0pt}{5pt}\hspace{6pt}}~Pending}
+
+\end{tcolorbox}
+
+\newpage
+
+%% ════════════════════════════════════════════════════════════════════════════
+%%  PAGE 3 — PROBLEM LIST, ASSESSMENT & PLAN, PROCEDURE LOG, COMMUNICATION
+%% ════════════════════════════════════════════════════════════════════════════
+
+\vspace{4pt}
+
+%% ── PROBLEM LIST ────────────────────────────────────────────────────────────
+\noindent
+\begin{tcolorbox}[alertbox, title={\faExclamationTriangle\enspace Active Problem List}]
+  \footnotesize\sffamily
+  \renewcommand{\arraystretch}{1.3}
+  \begin{tabularx}{\linewidth}{@{}clXcc@{}}
+    \rowcolor{AlertRed!15!white}
+    \textbf{\#} & \textbf{Problem} & \textbf{Status / Notes} &
+    \textbf{Priority} & \textbf{Resp.} \\
+    1 & Septic shock (urosepsis, ESBL E.~coli) &
+      Improving — vasopressor weaning & \textcolor{AlertRed}{\bfseries High} & ICU \\
+    \rowcolor{LightGray}
+    2 & Moderate ARDS &
+      Lung-protective MV; SBT planned & \textcolor{AlertRed}{\bfseries High} & ICU \\
+    3 & AKI stage~II &
+      Urine output improving; avoid CRRT today & \textcolor{AlertAmber}{\bfseries Med} & ICU/Renal \\
+    \rowcolor{LightGray}
+    4 & Hypokalaemia (K\textsuperscript{+}~3.2) &
+      IV replacement ordered; recheck 12:00 & \textcolor{AlertAmber}{\bfseries Med} & ICU \\
+    5 & Metabolic acidosis &
+      pH~7.34, improving trend; monitor & \textcolor{AlertAmber}{\bfseries Med} & ICU \\
+    \rowcolor{LightGray}
+    6 & Ventilator-associated pneumonia risk &
+      Bundle compliant; no new infiltrates & \textcolor{AlertAmber}{\bfseries Med} & ICU \\
+    7 & Constipation &
+      Lactulose commenced & \textcolor{AlertGreen}{\bfseries Low} & ICU \\
+    \rowcolor{LightGray}
+    8 & Pressure injury risk &
+      Braden 13; turn protocol active & \textcolor{AlertGreen}{\bfseries Low} & Nursing \\
+  \end{tabularx}
+\end{tcolorbox}
+
+\vspace{6pt}
+
+%% ── ASSESSMENT AND PLAN ─────────────────────────────────────────────────────
+\noindent
+\begin{tcolorbox}[planbox, title={\faPen\enspace Assessment \& Plan — Dr.\ Sandra Osei-Bonsu}]
+  \footnotesize\sffamily
+
+  \textbf{\color{MedGold}Overall Impression:}\enspace
+  Mrs.~Hartwell is showing \textit{cautious improvement} on day~5.
+  Vasopressor requirements continue to trend down; renal function recovering.
+  ARDS remains moderate — lung-protective strategy is key. Goals: wean
+  noradrenaline to~$\leq$0.05~\textmu{}g/kg/min; consider SBT if haemodynamics
+  allow; optimise electrolytes; continue antibiotics per ID guidance.
+
+  \vspace{6pt}
+
+  \noindent
+  \begin{minipage}[t]{0.47\linewidth}
+    \textbf{\color{MedMid}Respiratory}\par
+    \begin{itemize}[leftmargin=12pt, itemsep=1pt, topsep=2pt]
+      \item Maintain lung-protective ventilation (VT~6~mL/kg IBW, plateau~$\leq$28)
+      \item Wean FiO\textsubscript{2} by 0.05 increments if SpO\textsubscript{2}~$\geq$~93\%
+      \item SBT trial (30-min T-piece) at 10:00 if criteria met
+      \item Repeat CXR 14:00; physiotherapy sputum clearance
+      \item If SBT fails: resume SIMV-PC, re-trial 48~h
+    \end{itemize}
+
+    \vspace{4pt}
+    \textbf{\color{MedMid}Cardiovascular}\par
+    \begin{itemize}[leftmargin=12pt, itemsep=1pt, topsep=2pt]
+      \item Noradrenaline: titrate to MAP~$\geq$~65; wean if stable
+      \item 12-lead ECG (tachycardia work-up)
+      \item Repeat echocardiogram day~7 if haemodynamics worsen
+      \item Conservative fluid strategy; target net-even or negative today
+    \end{itemize}
+
+    \vspace{4pt}
+    \textbf{\color{MedMid}Renal}\par
+    \begin{itemize}[leftmargin=12pt, itemsep=1pt, topsep=2pt]
+      \item Hourly urine output monitoring; strict I\&O
+      \item Hold CRRT if UO $>$0.5~mL/kg/h maintained
+      \item Nephrology to review if Cr~not declining by tomorrow
+      \item Avoid all nephrotoxic agents
+    \end{itemize}
+  \end{minipage}\hfill
+  \begin{minipage}[t]{0.47\linewidth}
+    \textbf{\color{MedMid}Infectious Disease}\par
+    \begin{itemize}[leftmargin=12pt, itemsep=1pt, topsep=2pt]
+      \item Continue meropenem 500~mg q12h (day~5 of planned 14-day course)
+      \item De-escalation plan: review sensitivity results 26~Jul
+      \item Daily procalcitonin trending; target $<$2 before de-escalation
+      \item No new source identified; IDC remains — reassess removal day~7
+    \end{itemize}
+
+    \vspace{4pt}
+    \textbf{\color{MedMid}Neurological / Sedation}\par
+    \begin{itemize}[leftmargin=12pt, itemsep=1pt, topsep=2pt]
+      \item Daily sedation interruption 08:00; target RASS~--1 to~0
+      \item Fentanyl: consider switch to oral morphine when extubated
+      \item CAM-ICU q8h; early mobilisation when haemodynamically stable
+      \item Sleep hygiene protocol active — lights off 22:00
+    \end{itemize}
+
+    \vspace{4pt}
+    \textbf{\color{MedMid}Nutrition / GI}\par
+    \begin{itemize}[leftmargin=12pt, itemsep=1pt, topsep=2pt]
+      \item Continue NG feeds 40~mL/h; dietitian review 26~Jul
+      \item Lactulose 30~mL TDS — monitor for response
+      \item LFT recheck 26~Jul; hold statin if ALT~$>$3\texttimes{} ULN
+      \item Add multivitamin supplement to NG regimen
+    \end{itemize}
+
+    \vspace{4pt}
+    \textbf{\color{MedMid}Electrolytes / Endocrine}\par
+    \begin{itemize}[leftmargin=12pt, itemsep=1pt, topsep=2pt]
+      \item Replace K\textsuperscript{+}: 40~mmol IV; recheck 12:00
+      \item Replace Mg\textsuperscript{2+}: 10~mmol IV over 2~h
+      \item Insulin protocol: BGL target 6--10 mmol/L; recheck q2h
+      \item HbA1c noted 9.2\% — endocrine outpatient follow-up on discharge
+    \end{itemize}
+  \end{minipage}
+
+\end{tcolorbox}
+
+\vspace{6pt}
+
+%% ── PROCEDURE LOG ───────────────────────────────────────────────────────────
+\noindent
+\begin{minipage}[t]{0.48\linewidth}
+  \begin{tcolorbox}[notebox, title={\faSyringe\enspace Procedure Log}]
+    \footnotesize\sffamily
+    \renewcommand{\arraystretch}{1.2}
+    \begin{tabularx}{\linewidth}{@{}lXl@{}}
+      \textbf{Date} & \textbf{Procedure} & \textbf{Operator} \\
+      \midrule
+      19 Jul & Oral intubation (RSI) & Dr.\ Kavanagh \\
+      19 Jul & R subclavian CVC insertion & Dr.\ Osei-Bonsu \\
+      19 Jul & IDC insertion & RN Priya Rajan \\
+      20 Jul & Arterial line — R radial & Dr.\ Kavanagh \\
+      21 Jul & NG tube insertion (blind) & RN Marcus Teele \\
+      22 Jul & Bedside echo (POCUS) & Dr.\ Osei-Bonsu \\
+      24 Jul & K\textsuperscript{+} / Mg replacement (today) & Pharmacy / Nurse \\
+    \end{tabularx}
+    \vspace{4pt}
+    \noindent\colorbox{MedGold!15!white}{\parbox{\linewidth-6pt}{%
+      \textbf{\color{MedGold}CVC day~5:} Change or review by day~7 per protocol.
+    }}
+  \end{tcolorbox}
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.48\linewidth}
+  \begin{tcolorbox}[notebox, title={\faComments\enspace Communication Log}]
+    \footnotesize\sffamily
+    \renewcommand{\arraystretch}{1.2}
+    \begin{tabularx}{\linewidth}{@{}lX@{}}
+      \textbf{Time} & \textbf{Event / Note} \\
+      \midrule
+      06:45 & Handover from night team (RN M.~Teele) \\
+      07:00 & Rounds commenced — full team \\
+      07:30 & ID consult reviewed chart; plan agreed \\
+      08:00 & Sedation hold — patient responsive \\
+      08:45 & Family (daughter, James H.) phoned; updated re: condition \\
+      09:00 & Dietitian plan updated in EMR \\
+      \textbf{14:00} & \textbf{Family meeting} — Dr.\ Osei-Bonsu, Family \\
+    \end{tabularx}
+    \vspace{4pt}
+    \noindent\colorbox{MedLight}{\parbox{\linewidth-6pt}{%
+      \textbf{\color{MedTeal}Next of kin:} James Hartwell (son),
+      \textcolor{TextGray}{+1-555-0192}
+    }}
+  \end{tcolorbox}
+\end{minipage}
+
+\vspace{10pt}
+
+%% ── SIGNATURE FOOTER ────────────────────────────────────────────────────────
+\noindent
+\begin{tcolorbox}[colframe=MedNavy, colback=MedNavy!3!white, arc=3pt,
+  boxrule=0.5pt, left=8pt, right=8pt, top=6pt, bottom=6pt]
+  \sffamily\footnotesize
+  \noindent
+  \begin{minipage}[t]{0.55\linewidth}
+    \textbf{\color{MedNavy}\large Dr.\ Sandra Osei-Bonsu, MD, FRCPC}\\[2pt]
+    \textcolor{TextGray}{Attending Intensivist — Meridian General Hospital ICU}\\[2pt]
+    \textcolor{TextGray}{Staff ID:~\textbf{MGH-ICU-0042}}\quad
+    \textcolor{TextGray}{Pager:~\textbf{4B-021}}\\[6pt]
+    \noindent\textbf{\color{MedNavy}Countersigned:}\enspace
+    Dr.\ Liam Kavanagh (Resident, PGY-4)
+  \end{minipage}\hfill
+  \begin{minipage}[t]{0.42\linewidth}
+    \raggedleft
+    \textbf{\color{MedNavy}Rounds completed:}\enspace\textcolor{TextGray}{07:00 -- 08:15}\\[2pt]
+    \textbf{\color{MedNavy}Documentation:}\enspace\textcolor{TextGray}{08:30, 24 Jul 2026}\\[2pt]
+    \textbf{\color{MedNavy}Next rounds:}\enspace\textcolor{TextGray}{18:00 (evening)}\\[6pt]
+    \vspace{8pt}
+    \noindent\textcolor{RuleGray}{\hdashrule[0.5ex]{5cm}{0.4pt}{2pt}}\par
+    {\footnotesize\color{TextGray}Attending Signature}
+  \end{minipage}
+\end{tcolorbox}
+
+\vspace{4pt}
+\noindent{\footnotesize\sffamily\color{RuleGray}%
+This document is a confidential clinical record generated for demonstration purposes only.
+All patient data, names, and identifiers are entirely fictional.
+Meridian General Hospital is a fictional institution. \textbf{SPECIMEN} --- Not for clinical use.}
+
+\end{document}

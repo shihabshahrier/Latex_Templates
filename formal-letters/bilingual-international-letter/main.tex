@@ -1,0 +1,240 @@
+\documentclass[paper=a4,fontsize=11pt,parskip=half,DIV=11,headsepline,footsepline,addrfield=true,backaddress=false,locfield=narrow,foldmarks=off,enlargefirstpage=on]{scrlttr2}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+\usepackage[table]{xcolor}
+\usepackage{tikz}
+\usepackage{tcolorbox}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage{fontawesome5}
+\usepackage{lastpage}
+
+\definecolor{navy}{RGB}{22,36,58}
+\definecolor{gold}{RGB}{176,141,74}
+\definecolor{stone}{RGB}{96,100,108}
+\definecolor{pale}{RGB}{244,242,236}
+
+\setlength{\parindent}{0pt}
+
+% ---------------------------------------------------------------------------
+% Bilingual side-by-side paragraph: English (left, upright) / French (right, italic)
+% ---------------------------------------------------------------------------
+\newcommand{\bilingual}[2]{%
+\noindent\begin{minipage}[t]{0.475\textwidth}\raggedright\small #1\end{minipage}\hspace{0.012\textwidth}%
+{\color{gold}\vrule width 0.6pt}\hspace{0.012\textwidth}%
+\begin{minipage}[t]{0.475\textwidth}\raggedright\small\itshape #2\end{minipage}\par\smallskip
+}
+
+% Section title: English left, French subtitle right, gold rule beneath
+\newcommand{\sectiontitle}[2]{%
+\vspace{2pt}\noindent{\color{navy}\bfseries\large #1}\hfill{\color{gold}\itshape\small #2}\par
+\noindent{\color{gold}\rule{\dimexpr\linewidth-11pt\relax}{0.7pt}}\par\smallskip
+}
+
+% ---------------------------------------------------------------------------
+% Sender identity
+% ---------------------------------------------------------------------------
+\setkomavar{fromname}{Meridian Chamber of International Commerce}
+\setkomavar{fromaddress}{14 Rue de la Paix\\75002 Paris, France}
+\setkomavar{fromphone}{+33\,1\,42\,86\,17\,40}
+\setkomavar{fromemail}{secretariat@meridianchamber.example}
+\setkomavar{fromurl}{www.meridianchamber.example}
+\setkomavar{signature}{Camille Dubreuil\\Secretary General\\\textit{Secr\'etaire G\'en\'erale}}
+\setkomavar{place}{Paris}
+\setkomavar{date}{14 August 2026}
+\setkomavar{subject}{Memorandum of Understanding --- Cross-Border Trade Facilitation Partnership\\
+{\normalfont\itshape Protocole d'Accord --- Partenariat de Facilitation du Commerce Transfrontalier}}
+
+\setkomavar{firsthead}{%
+\begin{tikzpicture}
+\fill[navy] (0,0) rectangle (\textwidth,2.6cm);
+\fill[gold] (0,0) rectangle (\textwidth,0.09cm);
+\draw[white,line width=1pt] (\textwidth-1.9cm,1.4cm) circle (0.55cm);
+\draw[gold,line width=1pt] (\textwidth-1.9cm,1.4cm) circle (0.36cm);
+\fill[gold] (\textwidth-1.9cm,1.4cm) circle (0.06cm);
+\node[anchor=west,text=white,font=\fontsize{20}{22}\selectfont\bfseries] at (0.3cm,1.95cm) {Meridian Chamber};
+\node[anchor=west,text=white,font=\fontsize{11}{13}\selectfont] at (0.3cm,1.5cm) {of International Commerce};
+\node[anchor=west,text=gold,font=\itshape\fontsize{9}{11}\selectfont] at (0.3cm,0.5cm) {Bridges Between Markets \ \textbullet\ \ Passerelles Entre March\'es};
+\end{tikzpicture}}
+
+\setkomavar{firstfoot}{%
+\centering\footnotesize\color{stone}
+\faMapMarker\ 14 Rue de la Paix, 75002 Paris, France \quad\textbullet\quad
+\faPhone\ +33\,1\,42\,86\,17\,40 \quad\textbullet\quad
+\faEnvelope\ secretariat@meridianchamber.example \quad\textbullet\quad
+\faGlobe\ www.meridianchamber.example}
+
+\begin{document}
+
+\begin{letter}{Monsieur \'Etienne Rousseau\\Directeur G\'en\'eral\\Synapse Industries S.A.\\22 Quai du Mont-Blanc\\1201 Gen\`eve, Suisse}
+
+\opening{Dear Mr.~Rousseau,\\[2pt]\textit{Monsieur Rousseau,}}
+
+\bilingual{%
+On behalf of the Meridian Chamber of International Commerce, I am pleased to confirm the terms under which our organisation and Synapse Industries S.A. will jointly establish a cross-border trade facilitation corridor linking the \^Ile-de-France logistics basin with the Geneva free-trade zone, effective from the date of countersignature below.
+}{%
+Au nom de la Chambre Internationale de Commerce Meridian, j'ai le plaisir de confirmer les modalit\'es selon lesquelles notre organisation et Synapse Industries S.A. \'etabliront conjointement un corridor de facilitation des \'echanges transfrontaliers reliant le bassin logistique d'\^Ile-de-France \`a la zone franche de Gen\`eve, \`a compter de la date de contresignature ci-dessous.
+}
+
+\sectiontitle{Background}{Contexte}
+
+\bilingual{%
+This Memorandum follows eighteen months of exploratory dialogue between our respective trade delegations, beginning with the Lyon Round Table of March 2025 and continuing through four working sessions hosted alternately in Paris and Geneva.
+}{%
+Le pr\'esent protocole fait suite \`a dix-huit mois de dialogue exploratoire entre nos d\'el\'egations commerciales respectives, d\'ebut\'e lors de la Table Ronde de Lyon en mars 2025 et poursuivi au travers de quatre sessions de travail organis\'ees alternativement \`a Paris et \`a Gen\`eve.
+}
+
+\sectiontitle{Scope of Partnership}{Port\'ee du Partenariat}
+
+\bilingual{%
+The partnership covers three principal work-streams: simplified customs pre-clearance for qualifying manufactured goods, a shared digital manifest platform interoperable with both national customs systems, and a joint arbitration protocol for cargo disputes arising under the corridor.
+}{%
+Le partenariat couvre trois axes de travail principaux~: un d\'edouanement pr\'ealable simplifi\'e pour les biens manufactur\'es \'eligibles, une plateforme num\'erique de manifeste partag\'ee interop\'erable avec les deux syst\`emes douaniers nationaux, et un protocole d'arbitrage conjoint pour les litiges relatifs au fret survenant dans le cadre du corridor.
+}
+
+\noindent
+\begin{minipage}[t]{0.485\textwidth}
+\begin{tcolorbox}[colback=pale,colframe=gold,arc=1pt,boxrule=0.6pt,title={At a Glance},coltitle=navy,colbacktitle=white,fonttitle=\bfseries,left=6pt,right=6pt,top=4pt,bottom=4pt]
+\footnotesize
+\faUsers\ \textbf{Parties:} Meridian Chamber \& Synapse Industries S.A.\\
+\faCalendar\ \textbf{Effective:} Upon countersignature\\
+\faClock\ \textbf{Initial Term:} 24 months, renewable\\
+\faGavel\ \textbf{Law:} FR/CH; arbitration in Zurich\\
+\faBuilding\ \textbf{Route:} \^Ile-de-France \(\leftrightarrow\) Geneva
+\end{tcolorbox}
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.485\textwidth}
+\begin{tcolorbox}[colback=pale,colframe=gold,arc=1pt,boxrule=0.6pt,title={En Bref},coltitle=navy,colbacktitle=white,fonttitle=\bfseries,left=6pt,right=6pt,top=4pt,bottom=4pt]
+\footnotesize
+\faUsers\ \textbf{Parties~:} Chambre Meridian \& Synapse Industries S.A.\\
+\faCalendar\ \textbf{Effet~:} D\`es contresignature\\
+\faClock\ \textbf{Dur\'ee Initiale~:} 24 mois, renouvelable\\
+\faGavel\ \textbf{Droit~:} FR/CH~; arbitrage \`a Zurich\\
+\faBuilding\ \textbf{Itin\'eraire~:} \^Ile-de-France \(\leftrightarrow\) Gen\`eve
+\end{tcolorbox}
+\end{minipage}
+\par\medskip
+
+\sectiontitle{Governance}{Gouvernance}
+
+\bilingual{%
+A Joint Steering Committee, composed of three representatives from each party, will convene quarterly to review corridor performance, approve budget allocations, and resolve escalated operational matters. The Committee's first meeting is scheduled per the key dates set out below.
+}{%
+Un comit\'e de pilotage conjoint, compos\'e de trois repr\'esentants de chaque partie, se r\'eunira trimestriellement afin d'examiner la performance du corridor, d'approuver les allocations budg\'etaires et de r\'esoudre les questions op\'erationnelles port\'ees \`a son niveau. La premi\`ere r\'eunion du comit\'e est pr\'evue aux dates indiqu\'ees ci-dessous.
+}
+
+\begin{tabularx}{0.97\textwidth}{@{}X l l@{}}
+\toprule
+\rowcolor{pale}
+\textcolor{navy}{\textbf{Milestone / \'Etape}} & \textcolor{navy}{\textbf{Date}} & \textcolor{navy}{\textbf{Location / Lieu}} \\
+\midrule
+Signing Ceremony \textbullet\ \textit{C\'er\'emonie de Signature} & 14 Sep 2026 & Paris \\
+Steering Committee I \textbullet\ \textit{1\textsuperscript{er} Comit\'e de Pilotage} & 06 Oct 2026 & Geneva \\
+Customs Platform Pilot Launch \textbullet\ \textit{Lancement Pilote Douanier} & 03 Nov 2026 & Paris / Gen\`eve \\
+Steering Committee II \textbullet\ \textit{2\textsuperscript{e} Comit\'e de Pilotage} & 15 Jan 2027 & Paris \\
+Corridor Performance Review \textbullet\ \textit{Premier Bilan} & 30 Mar 2027 & Geneva \\
+Allocation Formula Review \textbullet\ \textit{R\'evision de R\'epartition} & 14 Sep 2028 & Paris \\
+\bottomrule
+\end{tabularx}
+\par\medskip
+
+\sectiontitle{Financial Terms}{Modalit\'es Financi\`eres}
+
+\bilingual{%
+Implementation costs will be shared in equal proportion for the first twenty-four months, after which the allocation formula will be revisited by the Steering Committee in light of actual freight volumes recorded on each side of the corridor.
+}{%
+Les co\^uts de mise en \oe uvre seront partag\'es \`a parts \'egales durant les vingt-quatre premiers mois, \`a l'issue desquels la formule de r\'epartition sera r\'eexamin\'ee par le comit\'e de pilotage \`a la lumi\`ere des volumes de fret effectivement enregistr\'es de part et d'autre du corridor.
+}
+
+\sectiontitle{Governing Law \& Disputes}{Droit Applicable et Litiges}
+
+\bilingual{%
+This Memorandum is governed by the laws of Switzerland with respect to matters arising in Geneva and by the laws of France with respect to matters arising in Paris; any dispute not resolved by the Steering Committee within thirty days shall be referred to arbitration under the Swiss Rules, seated in Zurich.
+}{%
+Le pr\'esent protocole est r\'egi par le droit suisse pour les questions relevant de Gen\`eve et par le droit fran\c{c}ais pour celles relevant de Paris~; tout diff\'erend non r\'esolu par le comit\'e de pilotage dans un d\'elai de trente jours sera soumis \`a arbitrage selon le r\`eglement suisse, avec si\`ege \`a Zurich.
+}
+
+\sectiontitle{Confidentiality}{Confidentialit\'e}
+
+\bilingual{%
+Each party undertakes to treat commercial volumes, customs data, and manifest content exchanged under this partnership as confidential, disclosable only to regulators, auditors, or arbitral tribunals as required by law.
+}{%
+Chaque partie s'engage \`a traiter les volumes commerciaux, les donn\'ees douani\`eres et le contenu des manifestes \'echang\'es dans le cadre de ce partenariat comme confidentiels, ceux-ci ne pouvant \^etre divulgu\'es qu'aux autorit\'es de r\'egulation, aux auditeurs ou aux tribunaux arbitraux, dans la mesure requise par la loi.
+}
+
+\sectiontitle{Next Steps}{Prochaines \'Etapes}
+
+\bilingual{%
+We cordially invite Synapse Industries S.A. to formalise this Memorandum at a signing ceremony to be held at the Meridian Chamber's Paris headquarters, followed by a joint press briefing and a reception for delegation members and invited press.
+}{%
+Nous invitons cordialement Synapse Industries S.A. \`a formaliser le pr\'esent protocole lors d'une c\'er\'emonie de signature qui se tiendra au si\`ege parisien de la Chambre Meridian, suivie d'un point de presse conjoint et d'une r\'eception \`a l'attention des membres des d\'el\'egations et de la presse invit\'ee.
+}
+
+\bilingual{%
+We are confident that this corridor will meaningfully reduce transit friction between our two markets and look forward to a long and mutually beneficial collaboration.
+}{%
+Nous sommes convaincus que ce corridor r\'eduira sensiblement les frictions de transit entre nos deux march\'es et nous nous r\'ejouissons d'une collaboration durable et mutuellement b\'en\'efique.
+}
+
+\closing{Yours faithfully,\\[2pt]\textit{Veuillez agr\'eer, Monsieur Rousseau, l'expression de mes salutations distingu\'ees.}}
+
+\ps{P.S.\ --- A provisional charter for the Joint Steering Committee is enclosed and remains open for comment until the signing ceremony.\\
+\textit{Le mandat provisoire du comit\'e de pilotage conjoint est joint et reste ouvert aux commentaires jusqu'\`a la c\'er\'emonie de signature.}}
+
+\encl{Draft Memorandum of Understanding, bilingual edition\\ \textit{Projet de protocole d'accord, \'edition bilingue} \\
+Corridor route map and customs checkpoint schedule\\ \textit{Carte de l'itin\'eraire et calendrier des points de douane}}
+
+\cc{Ms.~Aline Berger, Trade Counselor, French Embassy in Bern\\ \textit{Mme Aline Berger, Conseill\`ere Commerciale, Ambassade de France \`a Berne} \\
+Mr.~Julien Helvetia Bio, Legal Counsel, Synapse Industries S.A.}
+
+\end{letter}
+
+\bigskip\bigskip
+
+{\color{navy}\bfseries\Large Annex A --- Summary of Principal Clauses}\hfill{\color{gold}\itshape Annexe A --- R\'esum\'e des Clauses Principales}\par
+\noindent{\color{gold}\rule{\dimexpr\linewidth-11pt\relax}{0.8pt}}\par\bigskip
+
+\noindent\small
+\begin{tabularx}{0.97\textwidth}{@{} c X X @{}}
+\toprule
+\rowcolor{pale}
+\textcolor{navy}{\textbf{No.}} & \textcolor{navy}{\textbf{English}} & \textcolor{navy}{\textbf{Fran\c{c}ais}} \\
+\midrule
+1 & \textbf{Scope.} Three work-streams: pre-clearance, shared manifest platform, joint arbitration protocol. &
+\textbf{Port\'ee.} Trois axes~: pr\'ed\'edouanement, plateforme de manifeste partag\'ee, protocole d'arbitrage conjoint. \\
+\addlinespace
+2 & \textbf{Governance.} Six-member Steering Committee, quarterly meetings, escalation authority over operational disputes. &
+\textbf{Gouvernance.} Comit\'e de pilotage de six membres, r\'eunions trimestrielles, autorit\'e d'escalade sur les litiges op\'erationnels. \\
+\addlinespace
+3 & \textbf{Finance.} Costs shared equally for 24 months; formula reviewed thereafter against recorded freight volumes. &
+\textbf{Finances.} Co\^uts partag\'es \'egalement durant 24 mois~; formule r\'e\'evalu\'ee ensuite selon les volumes de fret constat\'es. \\
+\addlinespace
+4 & \textbf{Confidentiality.} Commercial and customs data disclosed only to regulators, auditors, or arbitral tribunals. &
+\textbf{Confidentialit\'e.} Donn\'ees commerciales et douani\`eres divulgu\'ees uniquement aux r\'egulateurs, auditeurs ou tribunaux arbitraux. \\
+\addlinespace
+5 & \textbf{Term \& Termination.} Initial term of 24 months, renewable by mutual written consent; either party may withdraw with 90 days' notice. &
+\textbf{Dur\'ee et R\'esiliation.} Dur\'ee initiale de 24 mois, renouvelable par accord \'ecrit mutuel~; chaque partie peut se retirer avec un pr\'eavis de 90 jours. \\
+\addlinespace
+6 & \textbf{Force Majeure.} Neither party is liable for delay caused by events beyond reasonable control, including border closures or customs strikes. &
+\textbf{Force Majeure.} Aucune partie n'est responsable d'un retard caus\'e par des \'ev\'enements ind\'ependants de sa volont\'e, y compris fermetures de fronti\`ere ou gr\`eves douani\`eres. \\
+\addlinespace
+7 & \textbf{Notices.} All formal notices delivered in writing to both the Paris and Geneva addresses of record, in English and French. &
+\textbf{Notifications.} Tout avis formel remis par \'ecrit aux adresses de r\'ef\'erence de Paris et de Gen\`eve, en anglais et en fran\c{c}ais. \\
+\bottomrule
+\end{tabularx}
+
+\bigskip
+\noindent{\color{stone}\footnotesize
+This annex forms an integral part of the Memorandum referenced above and is governed by the same terms.\\
+\textit{La pr\'esente annexe fait partie int\'egrante du protocole susmentionn\'e et est r\'egie par les m\^emes modalit\'es.}}
+
+\vfill
+\noindent{\color{gold}\rule{\dimexpr\linewidth-11pt\relax}{0.4pt}}\\[4pt]
+\centering\footnotesize\color{stone}
+Meridian Chamber of International Commerce \quad\textbullet\quad Page \thepage\ of \pageref{LastPage}
+
+\end{document}

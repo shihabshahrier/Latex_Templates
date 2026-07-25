@@ -1,0 +1,155 @@
+\documentclass[10pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{mathpazo} % Palatino typography for refined elegance
+\usepackage[margin=1.5cm, top=1.7cm, bottom=1.5cm]{geometry}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\usepackage{multicol}
+\usepackage[most]{tcolorbox}
+\usepackage{microtype}
+
+\pagestyle{empty}
+
+% Define refined custom color palette
+\definecolor{menuprimary}{RGB}{32, 28, 26}      % Deep Charcoal
+\definecolor{menuaccent}{RGB}{155, 112, 50}     % Warm Accent Gold
+\definecolor{menubg}{RGB}{253, 251, 246}         % Warm Off-White / Cream
+\definecolor{bodytext}{RGB}{75, 70, 65}         % Muted Warm Gray
+\definecolor{bordergold}{RGB}{205, 170, 110}    % Soft Decorative Gold
+
+% Command for menu item with price and description
+\newcommand{\menuitem}[3]{%
+  \noindent
+  {\large\bfseries\color{menuprimary} #1}%
+  {\color{bordergold}\dotfill}%
+  {\large\bfseries\color{menuaccent} #2}\\[2pt]%
+  {\small\itshape\color{bodytext} #3}\par\vspace{8pt}%
+}
+
+% Section Header Command
+\newcommand{\menusection}[1]{%
+  \vspace{4pt}%
+  \begin{center}
+    {\fontfamily{ppl}\scshape\Large\bfseries\color{menuaccent}\textls[100]{#1}}\\[-4pt]
+    {\color{bordergold}\rule{0.38\linewidth}{0.6pt}}
+  \end{center}%
+  \vspace{6pt}%
+}
+
+\begin{document}
+
+% Page background and decorative border frame using TikZ
+\begin{tikzpicture}[remember picture, overlay]
+  % Full page warm background fill
+  \fill[menubg] (current page.south west) rectangle (current page.north east);
+  
+  % Outer elegant border frame
+  \draw[line width=0.8pt, bordergold] 
+    ([xshift=0.9cm, yshift=-0.9cm]current page.north west) 
+    rectangle 
+    ([xshift=-0.9cm, yshift=0.9cm]current page.south east);
+    
+  % Inner subtle border frame
+  \draw[line width=0.4pt, bordergold] 
+    ([xshift=1.08cm, yshift=-1.08cm]current page.north west) 
+    rectangle 
+    ([xshift=-1.08cm, yshift=1.08cm]current page.south east);
+    
+  % Four corner diamond accents
+  \node[anchor=center, color=menuaccent] at ([xshift=1.08cm, yshift=-1.08cm]current page.north west) {\scriptsize$\diamond$};
+  \node[anchor=center, color=menuaccent] at ([xshift=-1.08cm, yshift=-1.08cm]current page.north east) {\scriptsize$\diamond$};
+  \node[anchor=center, color=menuaccent] at ([xshift=-1.08cm, yshift=1.08cm]current page.south east) {\scriptsize$\diamond$};
+  \node[anchor=center, color=menuaccent] at ([xshift=1.08cm, yshift=1.08cm]current page.south west) {\scriptsize$\diamond$};
+\end{tikzpicture}
+
+% Header Section
+\begin{center}
+  \vspace*{-4pt}
+  {\color{menuaccent}\small $\star$\quad$\diamond$\quad$\star$}\\[3pt]
+  {\fontfamily{ppl}\fontsize{26pt}{28pt}\selectfont\bfseries\color{menuprimary}\textls[180]{MERIDIAN}}\\[4pt]
+  {\fontfamily{ppl}\scshape\small\color{menuaccent}\textls[120]{FINE DINING \& SEASONAL KITCHEN}}\\[5pt]
+  {\color{bordergold}\rule{0.5\linewidth}{0.7pt}}\\[4pt]
+  {\small\itshape\color{bodytext} Executive Chef Julian Vance \quad$\cdot$\quad Chef de Cuisine Clara Moreau}\\[6pt]
+\end{center}
+
+% Chef's Tasting Menu Highlight Box
+\begin{center}
+  \begin{tcolorbox}[
+    colback=menubg,
+    colframe=bordergold,
+    arc=0mm,
+    boxrule=0.5pt,
+    width=0.92\linewidth,
+    halign=center,
+    top=4pt, bottom=4pt, left=8pt, right=8pt
+  ]
+    {\fontfamily{ppl}\scshape\small\bfseries\color{menuaccent}\textls[90]{CHEF'S TASTING EXPERIENCE}}\\[1.5pt]
+    {\small\itshape\color{bodytext} Five-course seasonal tasting menu paired with reserve artisanal wines \hfill \$125 per guest}
+  \end{tcolorbox}
+\end{center}
+
+\vspace{4pt}
+
+% Main Content in 2 Balanced Columns
+\begin{multicols}{2}
+\columnsep=22pt
+
+% STARTERS
+\menusection{Starters}
+
+\menuitem{Pan-Seared Sea Scallops}{\$24}{Cauliflower purée, crispy prosciutto, caramelized apple reduction, micro chervil}
+
+\menuitem{Wild Mushroom Velouté}{\$18}{Black winter truffle cream, chive oil, toasted sourdough crostini}
+
+\menuitem{Heirloom Tomato Tartare}{\$19}{Stracciatella di bufala, aged balsamic glaze, basil oil, toasted pine nuts}
+
+\menuitem{Duck Confit Croquettes}{\$21}{Spiced plum chutney, pickled mustard seeds, watercress salad}
+
+% MAINS
+\menusection{Mains}
+
+\menuitem{Prime Dry-Aged Ribeye}{\$54}{Truffled potato mousseline, roasted bone marrow, glazed baby carrots, red wine jus}
+
+\menuitem{Pan-Roasted Wild Salmon}{\$42}{Saffron risotto, braised fennel, charred leeks, citrus beurre blanc}
+
+\menuitem{Herb-Crusted Rack of Lamb}{\$48}{Ratatouille tartlet, roasted garlic jus, rosemary oil, mint gremolata}
+
+\menuitem{Handmade Truffle Tagliatelle}{\$36}{Fresh black truffle, Parmigiano-Reggiano, cultured butter, sage}
+
+% DESSERTS
+\menusection{Desserts}
+
+\menuitem{Valrhona Chocolate Tart}{\$16}{Salted caramel, espresso gelato, hazelnut praline dust}
+
+\menuitem{Classic Vanilla Bean Soufflé}{\$17}{Grand Marnier crème anglaise, fresh raspberries \textit{(20 min preparation)}}
+
+\menuitem{Deconstructed Lemon Tart}{\$15}{Meyer lemon curd, toasted Italian meringue, sable crumble, thyme syrup}
+
+% DRINKS & COCKTAILS
+\menusection{Drinks \& Cocktails}
+
+\menuitem{The Meridian Old Fashioned}{\$18}{Single barrel bourbon, smoked maple syrup, angostura \& orange bitters}
+
+\menuitem{Rosemary Botanical Tonic}{\$16}{Artisanal gin, wild rosemary, elderflower liqueur, sparkling tonic}
+
+\menuitem{Smoked Fig Sour}{\$17}{Mezcal, black fig preserves, fresh lemon, egg white, smoked sea salt}
+
+\menuitem{Chablis Premier Cru, Moreau 2021}{\$22}{Burgundy, France --- Crisp mineral notes, green apple, elegant finish}
+
+\menuitem{Barolo Riserva, DOCG 2017}{\$26}{Piedmont, Italy --- Deep violet, dried cherry, velvety tannins}
+
+\end{multicols}
+
+\vfill
+
+% Footer Info
+\begin{center}
+  {\color{bordergold}\rule{0.45\linewidth}{0.5pt}}\\[4pt]
+  {\small\color{bodytext} 142 Saint-Germain Boulevard, Suite 400 \quad$\cdot$\quad Reservations: (555) 019-2834}\\[2pt]
+  {\scriptsize\itshape\color{bodytext} Please inform your server of any dietary requirements or food allergies. An 18\% gratuity is added for parties of 6 or more.}
+\end{center}
+
+\end{document}

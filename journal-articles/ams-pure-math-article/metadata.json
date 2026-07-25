@@ -1,0 +1,8 @@
+{
+  "name": "AMS Pure Mathematics Research Article",
+  "compiler": "pdflatex",
+  "description": "AMS Pure Mathematics Research Article LaTeX template \u2014 ams pure mathematics research article latex template. Elegant, compile-tested, editable online at letx.app.",
+  "author": "LetX",
+  "category": "journal-articles",
+  "license": "MIT"
+}

@@ -1,0 +1,8 @@
+{
+  "name": "Hardware Interface Control Document (ICD)",
+  "compiler": "pdflatex",
+  "description": "Hardware Interface Control Document (ICD) LaTeX template \u2014 hardware interface control document icd latex template. Elegant, compile-tested, editable online at letx.app.",
+  "author": "LetX",
+  "category": "tech-docs",
+  "license": "MIT"
+}

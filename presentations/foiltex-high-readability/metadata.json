@@ -1,0 +1,8 @@
+{
+  "name": "FoilTeX High-Readability Workshop Deck",
+  "compiler": "pdflatex",
+  "description": "FoilTeX High-Readability Workshop Deck LaTeX template \u2014 foiltex high-readability workshop deck latex template. Elegant, compile-tested, editable online at letx.app.",
+  "author": "LetX",
+  "category": "presentations",
+  "license": "MIT"
+}

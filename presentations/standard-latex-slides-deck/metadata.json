@@ -1,0 +1,8 @@
+{
+  "name": "LaTeX Standard Transparencies Deck",
+  "compiler": "pdflatex",
+  "description": "LaTeX Standard Transparencies Deck LaTeX template \u2014 latex standard transparencies deck latex template. Elegant, compile-tested, editable online at letx.app.",
+  "author": "LetX",
+  "category": "presentations",
+  "license": "MIT"
+}

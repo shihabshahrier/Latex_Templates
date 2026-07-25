@@ -1,0 +1,226 @@
+\documentclass[a4paper,11pt]{scrletter}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{mathpazo}
+\usepackage{helvet}
+\usepackage{geometry}
+\usepackage[table]{xcolor}
+\usepackage{tikz}
+\usepackage{tcolorbox}
+\usepackage{eso-pic}
+\usepackage{fontawesome5}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{enumitem}
+
+\geometry{a4paper,left=7.4cm,right=2.2cm,top=2.6cm,bottom=2.6cm,headheight=13.6pt,headsep=0pt,footskip=1.2cm}
+
+\definecolor{sidebarnavy}{RGB}{27,41,64}
+\definecolor{golddivider}{RGB}{182,146,84}
+\definecolor{softgray}{RGB}{238,238,235}
+\definecolor{inktext}{RGB}{40,40,42}
+
+\color{inktext}
+
+\KOMAoptions{
+  addrfield=false,
+  backaddress=false,
+  fromalign=false,
+  fromrule=false,
+  foldmarks=false,
+  parskip=half
+}
+
+\setkomavar{date}{}
+
+\setlength{\parindent}{0pt}
+\pagestyle{empty}
+
+\newcommand{\sidebarcontent}{%
+\begin{tikzpicture}[remember picture,overlay]
+  \fill[sidebarnavy] (current page.south west) rectangle ([xshift=6.2cm]current page.north west);
+  \fill[golddivider] ([xshift=6.2cm]current page.south west) rectangle ([xshift=6.28cm]current page.north west);
+
+  \node[anchor=north west,xshift=1.5cm,yshift=-2.1cm] at (current page.north west) {%
+    \begin{tikzpicture}
+      \node[draw=white,line width=1pt,circle,inner sep=9pt,text=white,
+            font=\sffamily\bfseries\fontsize{17}{17}\selectfont] {MC};
+    \end{tikzpicture}%
+  };
+
+  \node[anchor=north west,text width=4.7cm,align=left,xshift=0.75cm,yshift=-4.5cm,
+        text=white,font=\sffamily\bfseries\fontsize{15}{18}\selectfont]
+        at (current page.north west)
+        {Meridian\\Consulting Group};
+
+  \node[anchor=north west,text width=4.7cm,align=left,xshift=0.75cm,yshift=-6.05cm,
+        text=golddivider,font=\sffamily\itshape\small] at (current page.north west)
+        {Strategy. Data. Results.};
+
+  \draw[golddivider,line width=0.6pt]
+    ([xshift=0.75cm,yshift=-6.65cm]current page.north west) --
+    ++(4.7cm,0);
+
+  \node[anchor=north west,text width=4.7cm,align=left,xshift=0.75cm,yshift=-7.35cm,
+        text=golddivider,font=\sffamily\bfseries\small] at (current page.north west)
+        {CONTACT};
+
+  \node[anchor=north west,text width=4.7cm,align=left,xshift=0.75cm,yshift=-7.95cm,
+        text=white,font=\small] at (current page.north west) {%
+    {\color{golddivider}\faMapMarker}\ \ 48 Ashcombe Row\\
+    \hspace*{0.85cm}Suite 300\\
+    \hspace*{0.85cm}Boston, MA 02110\\[7pt]
+    {\color{golddivider}\faPhone}\ \ +1 (617) 555-0148\\[7pt]
+    {\color{golddivider}\faEnvelope}\ \ hello@meridianconsulting.com\\[7pt]
+    {\color{golddivider}\faGlobe}\ \ www.meridianconsulting.com
+  };
+
+  \draw[golddivider,line width=0.6pt]
+    ([xshift=0.75cm,yshift=-13.2cm]current page.north west) --
+    ++(4.7cm,0);
+
+  \node[anchor=north west,text width=4.7cm,align=left,xshift=0.75cm,yshift=-13.9cm,
+        text=golddivider,font=\sffamily\bfseries\small] at (current page.north west)
+        {PRACTICE AREAS};
+
+  \node[anchor=north west,text width=4.7cm,align=left,xshift=0.75cm,yshift=-14.5cm,
+        text=white,font=\small] at (current page.north west) {%
+    {\color{golddivider}\textbullet}\ \ Strategy \& Operations\\[5pt]
+    {\color{golddivider}\textbullet}\ \ Data \& Analytics\\[5pt]
+    {\color{golddivider}\textbullet}\ \ Organizational Design\\[5pt]
+    {\color{golddivider}\textbullet}\ \ Risk Advisory
+  };
+
+  \draw[golddivider,line width=0.6pt]
+    ([xshift=0.75cm,yshift=-18.7cm]current page.north west) --
+    ++(4.7cm,0);
+
+  \node[anchor=north west,text width=4.7cm,align=left,xshift=0.75cm,yshift=-19.4cm,
+        text=golddivider,font=\sffamily\bfseries\small] at (current page.north west)
+        {ENGAGEMENT REF.};
+
+  \node[anchor=north west,text width=4.7cm,align=left,xshift=0.75cm,yshift=-20.0cm,
+        text=white,font=\small] at (current page.north west)
+        {MCG-2026-0417\\[3pt]Boston, Massachusetts};
+
+  \node[anchor=south west,text width=4.7cm,align=left,xshift=0.75cm,yshift=1.3cm]
+        at (current page.south west) {%
+    \color{white}\scriptsize Registered Consulting Partnership\\
+    Commonwealth of Massachusetts
+  };
+\end{tikzpicture}%
+}
+
+\AddToShipoutPictureBG{\sidebarcontent}
+
+\begin{document}
+
+\setkomavar{signature}{Jonathan Reyes\\Senior Partner, Client Engagements}
+
+\begin{letter}{Ms. Elena Warrick}
+
+\begin{flushright}
+{\color{sidebarnavy}\sffamily Boston, Massachusetts \hspace{0.3em}$\cdot$\hspace{0.3em} \today}
+\end{flushright}
+
+\vspace{0.4cm}
+
+\textbf{Ms. Elena Warrick}\\
+Chief Operating Officer\\
+Nexa Analytics\\
+220 Harbor View Drive\\
+Cambridge, MA 02142
+
+\vspace{0.5cm}
+
+{\color{sidebarnavy}\bfseries Re: Proposed Engagement --- Data Governance \& Reporting Modernization (Ref.\ MCG-2026-0417)}
+
+\vspace{0.4cm}
+
+\opening{Dear Ms. Warrick,}
+
+Thank you for the productive working session your team hosted on July 9th at Nexa Analytics' Cambridge office. Following our discussion with you, Mr. Okonkwo, and the platform engineering group, Meridian Consulting Group is pleased to submit this letter as a follow-up summary of the proposed engagement scope, revised timeline, and investment for the Data Governance \& Reporting Modernization initiative, together with the enclosed draft Statement of Work for your review.
+
+As we discussed, Nexa Analytics' current reporting stack has outgrown the manual reconciliation processes that were adequate at an earlier stage of growth. Our recommended approach addresses this in four sequential phases, each concluding with a formal deliverable review with your leadership team before work proceeds to the next stage.
+
+\vspace{0.3cm}
+
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{@{}p{2.9cm}p{2.5cm}p{5.3cm}@{}}
+\toprule
+\textbf{Phase} & \textbf{Timeline} & \textbf{Key Deliverable} \\
+\midrule
+1. Discovery & Weeks 1--3 & Current-state data lineage map and governance gap assessment \\
+2. Design & Weeks 4--7 & Target-state architecture and reporting taxonomy \\
+3. Implementation & Weeks 8--14 & Deployed governance controls and automated reporting pipeline \\
+4. Change \& Handover & Weeks 15--16 & Trained internal owners and closeout documentation \\
+\bottomrule
+\end{tabular}
+
+\vspace{0.4cm}
+
+This represents a modest compression of the sixteen-week estimate we shared verbally, achieved by running the data-lineage discovery workstream in parallel with early design activities rather than sequentially, an approach we have used successfully with similarly sized organizations in the financial services and healthcare analytics sectors.
+
+Our methodology emphasizes embedded knowledge transfer over external dependency: at each phase, a designated member of your data team is paired with a Meridian consultant so that operational ownership of the new controls sits with Nexa Analytics, not with us, by the time the engagement concludes. We have found this pairing model to be the single strongest predictor of whether a governance program survives past the first two fiscal quarters.
+
+\pagebreak
+
+The engagement would be staffed by three consultants, each of whom has led comparable modernization work in your sector:
+
+\begin{itemize}[leftmargin=1.4em,itemsep=4pt,topsep=4pt]
+  \item \textbf{Priya Natarajan}, Lead Data Architect --- twelve years designing governed reporting platforms for mid-market analytics firms.
+  \item \textbf{Marcus Chen}, Senior Change Management Advisor --- specializes in operational handover and internal capability building.
+  \item \textbf{Sofia Delgado}, Analytics Engineer --- will lead pipeline implementation and automated testing of the new reporting layer.
+\end{itemize}
+
+Detailed biographies for each team member are included in the enclosed materials.
+
+Based on the scope outlined above, our proposed investment is as follows:
+
+\vspace{0.3cm}
+
+\rowcolors{2}{white}{softgray}
+\begin{tabular}{@{}p{4.0cm}>{\raggedleft\arraybackslash}p{3.1cm}>{\raggedleft\arraybackslash}p{2.6cm}@{}}
+\toprule
+\textbf{Phase} & \textbf{Professional Fees} & \textbf{Expenses (est.)} \\
+\midrule
+1. Discovery & \$18,500 & \$400 \\
+2. Design & \$24,000 & \$300 \\
+3. Implementation & \$96,000 & \$2,600 \\
+4. Change \& Handover & \$21,500 & \$900 \\
+\midrule
+\rowcolor{softgray}
+\textbf{Total} & \textbf{\$160,000} & \textbf{\$4,200} \\
+\bottomrule
+\end{tabular}
+
+\vspace{0.4cm}
+
+Fees are billed at the conclusion of each phase against its accepted deliverable, and the estimate above assumes access to a single production-equivalent data environment for testing. Should Nexa Analytics prefer a fixed monthly retainer structure instead, we would be glad to restructure the proposal accordingly.
+
+\begin{tcolorbox}[colback=softgray,colframe=sidebarnavy,boxrule=0.6pt,arc=1.5pt,
+  left=8pt,right=8pt,top=6pt,bottom=6pt,title={\sffamily\bfseries\small Recommended Next Steps},
+  coltitle=white,colbacktitle=sidebarnavy,fonttitle=\sffamily]
+\begin{enumerate}[leftmargin=1.3em,itemsep=3pt,topsep=2pt]
+  \item Review the enclosed draft Statement of Work with your procurement team.
+  \item Confirm the two internal data owners who will be paired with our consultants.
+  \item Return a countersigned copy by \textbf{August 8, 2026} to hold the proposed September 1st start date.
+\end{enumerate}
+\end{tcolorbox}
+
+We are conscious that a governance overhaul touches nearly every team that consumes Nexa Analytics' reporting, and we have structured this proposal so that disruption to your quarterly close process is minimal --- the Implementation phase is deliberately scheduled to conclude before your fiscal year-end reporting cycle begins.
+
+We would welcome the opportunity to begin this work with your team and are happy to walk through any part of this proposal on a call this week or next. Please do not hesitate to reach out directly with questions in the meantime.
+
+\closing{With best regards,}
+
+\vspace{0.2cm}
+
+\encl{Draft Statement of Work (12 pages)\\Consulting Team Biographies\\Selected Case Studies --- Financial Services \& Healthcare Analytics}
+
+\cc{David Okafor, Engagement Director, Meridian Consulting Group}
+
+\end{letter}
+
+\end{document}

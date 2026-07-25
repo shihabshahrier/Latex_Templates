@@ -1,0 +1,214 @@
+\documentclass[11pt]{letter}
+
+\usepackage[re]{envlab}
+\makelabels
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[table]{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{positioning,calc}
+\usepackage{tcolorbox}
+\tcbuselibrary{skins}
+\usepackage{booktabs}
+\usepackage{enumitem}
+
+\definecolor{inkslate}{HTML}{1F2A3D}
+\definecolor{brass}{HTML}{A8793B}
+\definecolor{fogline}{HTML}{6B7280}
+\definecolor{hairline}{HTML}{D9DCE3}
+\definecolor{cream}{HTML}{F7F3EC}
+
+\date{August 3, 2026}
+
+\name{Meridian Capital Partners}
+\address{\textcolor{inkslate}{\scshape Meridian Capital Partners}\\
+  \textcolor{fogline}{Investor Relations \& Operations}\\
+  1180 Harbor View Terrace, Suite 2200\\
+  Boston, MA 02110}
+\signature{\textcolor{inkslate}{Caroline Voss}\\Director, Investor Operations}
+\location{Boston, Massachusetts}
+\telephone{(617) 555-0148}
+
+\begin{document}
+
+\thispagestyle{empty}
+
+\begin{center}
+  \begin{tikzpicture}[line cap=round,line join=round]
+    \draw[line width=1.1pt,color=inkslate] (0,0) rectangle (1.15,0.78);
+    \draw[line width=1.1pt,color=brass] (0,0.78) -- (0.575,0.32) -- (1.15,0.78);
+  \end{tikzpicture}\par
+  \vspace{4pt}
+  {\color{brass}\scshape\Large Meridian Capital Partners}\par
+  \vspace{2pt}
+  {\color{inkslate}\bfseries\huge Batch Mailing Manifest}\par
+  \vspace{4pt}
+  {\color{fogline}\small Investor Relations \& Operations \,---\, Outgoing Correspondence Run}
+\end{center}
+
+\vspace{6pt}
+\begin{center}
+  \begin{tikzpicture}
+    \draw[line width=1.4pt,color=inkslate] (0,0.06) -- (\linewidth,0.06);
+    \draw[line width=0.7pt,color=brass] (0,-0.06) -- (\linewidth,-0.06);
+  \end{tikzpicture}
+\end{center}
+\vspace{10pt}
+
+\noindent{\color{inkslate}\scshape\large Batch Details}\par
+\vspace{2pt}
+{\color{brass}\rule{2.6cm}{1pt}}\par
+\vspace{6pt}
+
+\noindent{\small
+\begin{tabular}{@{}l l @{\hspace{2em}} l l@{}}
+\textbf{Batch Reference:}  & MER-2026-BATCH-0817        & \textbf{Total Pieces:}          & 6 \\[3pt]
+\textbf{Run Date:}         & August 3, 2026              & \textbf{Envelopes (\#10):}      & 2 \\[3pt]
+\textbf{Prepared By:}      & Caroline Voss               & \textbf{Labels (Avery 5160):}   & 4 \\[3pt]
+\textbf{Sender:}           & Meridian Capital Partners    & \textbf{Label Sheets Required:} & 1 \\
+\end{tabular}\par}
+
+\vspace{16pt}
+\noindent{\color{inkslate}\scshape\large Correspondence Manifest}\par
+\vspace{2pt}
+{\color{brass}\rule{2.6cm}{1pt}}\par
+\vspace{8pt}
+
+\noindent{\small\setlength{\tabcolsep}{3pt}
+\begin{tabular}{@{}c p{3.3cm} p{3.6cm} c c@{}}
+\toprule
+\textbf{No.} & \textbf{Recipient} & \textbf{Correspondence} & \textbf{Medium} & \textbf{Reference} \\
+\midrule
+1 & \textbf{Priya Chandrasekaran}\newline\textit{Chief Financial Officer, Nexa Dynamics, Inc.} & Capital Call Notice --- Drawdown No.\ 7 & Envelope \#10 & MER-2026-1103 \\[10pt]
+2 & \textbf{Marcus Webb}\newline\textit{General Counsel, Synapse Robotics Corp.} & LPA Side-Letter Amendment No.\ 2 & Envelope \#10 & MER-2026-1104 \\[10pt]
+3 & \textbf{Elena Kowalski}\newline\textit{Corp.\ Development, Vertex Materials Group} & Q3 2026 Portfolio Update & Label 5160 & MER-2026-1105 \\[10pt]
+4 & \textbf{Sofia Marchetti}\newline\textit{Finance Director, Apex Industrial Group} & Annual Compliance Certification & Label 5160 & MER-2026-1106 \\[10pt]
+5 & \textbf{Thomas Reyes}\newline\textit{Limited Partner} & Schedule K-1 Delivery Notice & Label 5160 & MER-2026-1107 \\[10pt]
+6 & \textbf{Angela Petrov}\newline\textit{Limited Partner} & Address Change Confirmation & Label 5160 & MER-2026-1108 \\
+\bottomrule
+\end{tabular}\par}
+
+\vspace{16pt}
+\begin{tcolorbox}[colback=cream,colframe=hairline,arc=2pt,boxrule=0.6pt,
+  left=8pt,right=8pt,top=6pt,bottom=6pt,width=\linewidth]
+\textbf{\color{inkslate}Handling Notes}\\[4pt]
+\begin{itemize}[leftmargin=1.3em,itemsep=3pt,topsep=2pt]
+  \item Envelope stock: \#10 business envelope (9.5in $\times$ 4.125in), rotated and centered per feed orientation.
+  \item Label stock: Avery 5160 (2.75in $\times$ 1in, 3 columns $\times$ 10 rows).
+  \item Return and destination addresses are auto-capitalized and barcoded per USPS Publication 25 conventions.
+  \item This file must be processed with \texttt{pdflatex} twice --- the envelopes and label sheet are assembled from letter data collected in the \texttt{.aux} file on the first pass and typeset on the second.
+\end{itemize}
+\end{tcolorbox}
+
+\begin{letter}{Ms. Priya Chandrasekaran\\
+  Chief Financial Officer\\
+  Nexa Dynamics, Inc.\\
+  4400 Innovation Parkway, Suite 300\\
+  Austin, TX 78759}
+
+\re{Capital Call Notice --- Meridian Growth Fund III, Drawdown No. 7}
+\opening{Dear Ms. Chandrasekaran:}
+\vspace{-0.4\baselineskip}
+{\color{hairline}\hrule height 0.4pt}
+\vspace{0.6\baselineskip}
+
+Pursuant to Section 4.2 of the Amended and Restated Limited Partnership Agreement of Meridian Growth Fund III, L.P., dated January 14, 2024, this letter serves as formal notice of Capital Call No.\ 7. Nexa Dynamics, Inc.'s pro rata share of this drawdown is \$2,415,000, representing 3.2\% of your total committed capital of \$75,000,000.
+
+Funds are due no later than August 17, 2026. Wire instructions consistent with those provided in our May 2025 investor letter remain in effect; please contact our operations desk directly should you require them resent through a secure channel.
+
+Please do not hesitate to reach out with any questions regarding the calculation schedule enclosed with this notice.
+
+\closing{Sincerely,}
+\encl{Capital Call Notice --- Schedule of Calculations}
+\end{letter}
+
+\begin{letter}{Mr. Marcus Webb\\
+  General Counsel\\
+  Synapse Robotics Corp.\\
+  900 Foundry Street, Building C\\
+  Pittsburgh, PA 15222}
+
+\re{Amendment No. 2 to Side Letter Agreement dated March 11, 2024}
+\opening{Dear Mr. Webb:}
+\vspace{-0.4\baselineskip}
+{\color{hairline}\hrule height 0.4pt}
+\vspace{0.6\baselineskip}
+
+Enclosed please find Amendment No.\ 2 to the Side Letter Agreement between Synapse Robotics Corp. and Meridian Capital Partners, dated March 11, 2024. The amendment reflects the revised most-favored-nation reporting cadence agreed during the June 2026 annual meeting, moving certain covenant disclosures from a quarterly to a monthly schedule.
+
+Please arrange for countersignature and return one executed original no later than September 1, 2026. A prepaid return envelope has been included for your convenience.
+
+\closing{Sincerely,}
+\encl{Amendment No. 2 to Side Letter Agreement (2 originals)}
+\cc{Fund Counsel --- Ferris \& Cole LLP}
+\end{letter}
+
+\ChangeLabel{2.75in}{1in}{0.5in}{0.19in}{0.12in}{3}{10}
+
+\begin{letter}{Ms. Elena Kowalski\\
+  Vertex Materials Group\\
+  1275 Foundry Row\\
+  Newark, NJ 07102}
+
+\re{Quarterly Portfolio Update --- Q3 2026}
+\opening{Dear Ms. Kowalski:}
+\vspace{-0.4\baselineskip}
+{\color{hairline}\hrule height 0.4pt}
+\vspace{0.6\baselineskip}
+
+Enclosed please find the Q3 2026 portfolio update for Vertex Materials Group, prepared in accordance with our standard quarterly reporting schedule. Should you have questions concerning valuation methodology or covenant compliance, please contact our investor relations desk at your convenience.
+
+\closing{Sincerely,}
+\encl{Q3 2026 Portfolio Update}
+\end{letter}
+
+\begin{letter}{Ms. Sofia Marchetti\\
+  Apex Industrial Group\\
+  2200 Harborview Blvd\\
+  Seattle, WA 98101}
+
+\re{Annual Compliance Certification Request}
+\opening{Dear Ms. Marchetti:}
+\vspace{-0.4\baselineskip}
+{\color{hairline}\hrule height 0.4pt}
+\vspace{0.6\baselineskip}
+
+As part of our annual compliance review, we are required to obtain a signed certification confirming Apex Industrial Group's continued adherence to the representations set out in Schedule C of the Subscription Agreement. Please complete and return the enclosed certification no later than October 1, 2026.
+
+\closing{Sincerely,}
+\encl{Annual Compliance Certification Form}
+\end{letter}
+
+\begin{letter}{Mr. Thomas Reyes\\
+  482 Willowmere Lane\\
+  Charlotte, NC 28202}
+
+\re{Schedule K-1 Delivery Notice --- Tax Year 2025}
+\opening{Dear Mr. Reyes:}
+\vspace{-0.4\baselineskip}
+{\color{hairline}\hrule height 0.4pt}
+\vspace{0.6\baselineskip}
+
+Your Schedule K-1 for the 2025 tax year has been finalized and is enclosed. Please share this document with your tax advisor at your convenience. The ordinary income adjustment referenced in Section III reflects the disposition of the Fund's minority interest in a portfolio company, completed in November 2025.
+
+\closing{Sincerely,}
+\encl{Schedule K-1, Tax Year 2025}
+\end{letter}
+
+\begin{letter}{Ms. Angela Petrov\\
+  19 Cobblestone Court, Apt 4B\\
+  Providence, RI 02903}
+
+\re{Confirmation of Updated Mailing Address}
+\opening{Dear Ms. Petrov:}
+\vspace{-0.4\baselineskip}
+{\color{hairline}\hrule height 0.4pt}
+\vspace{0.6\baselineskip}
+
+This letter confirms that we have updated our records to reflect your new mailing address, effective immediately. All future correspondence, including capital call and distribution notices, will be directed to the address above.
+
+\closing{Sincerely,}
+\end{letter}
+
+\end{document}

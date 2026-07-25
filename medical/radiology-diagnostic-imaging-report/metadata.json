@@ -1,0 +1,8 @@
+{
+  "name": "Radiology Diagnostic Imaging Report",
+  "compiler": "pdflatex",
+  "description": "Radiology Diagnostic Imaging Report LaTeX template \u2014 radiology diagnostic imaging report latex template. Elegant, compile-tested, editable online at letx.app.",
+  "author": "LetX",
+  "category": "medical",
+  "license": "MIT"
+}

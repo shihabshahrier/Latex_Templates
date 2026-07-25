@@ -1,0 +1,345 @@
+\documentclass[11pt,letterpaper]{scrartcl}
+
+% ==============================================================================
+% PACKAGES & SETUP
+% ==============================================================================
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{mathpazo} % Elegant Palatino typography
+\usepackage[scaled=0.95]{helvet}
+\usepackage{courier}
+
+% Page Geometry (NSF standard 1-inch margins)
+\usepackage[margin=1in]{geometry}
+
+% Spacing & Paragraph Formatting
+\usepackage{microtype}
+\usepackage{setspace}
+\setstretch{0.97}
+\usepackage{parskip}
+
+% Color Palette
+\usepackage[table]{xcolor}
+\definecolor{NSFNavy}{RGB}{15, 44, 89}       % Primary NSF Deep Navy (#0F2C59)
+\definecolor{NSFTeal}{RGB}{13, 148, 136}     % Secondary Teal Accent (#0D9488)
+\definecolor{NSFDark}{RGB}{31, 41, 55}       % Body text dark (#1F2937)
+\definecolor{NSFLightBg}{RGB}{244, 246, 249}  % Light background tint (#F4F6F9)
+\definecolor{NSFBorder}{RGB}{209, 213, 219}  % Subtle border (#D1D5DB)
+\definecolor{NSFAmber}{RGB}{217, 119, 6}      % Accent gold/amber (#D97706)
+
+% Math & Symbols
+\usepackage{amsmath,amssymb,amsfonts}
+
+% Tables & Lists
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{enumitem}
+
+% Graphics & TikZ
+\usepackage{graphicx}
+\usepackage[many]{tcolorbox}
+\usepackage{tikz}
+\usetikzlibrary{calc,positioning,shapes.geometric,arrows.meta,backgrounds,fit}
+
+% Icons
+\usepackage{fontawesome5}
+
+% Page Numbering & KOMA-Script Headers/Footers
+\usepackage{lastpage}
+\usepackage[headsepline=0.5pt]{scrlayer-scrpage}
+\setkomafont{headsepline}{\color{NSFBorder}}
+\pagestyle{scrheadings}
+\clearpairofpagestyles
+\ihead{\small\color{NSFDark!70}\sffamily\bfseries NSF Project Description: ARMI-DEI}
+\ohead{\small\color{NSFDark!70}\sffamily PI: E. Rostova | Vertex Institute}
+\cfoot{\small\color{NSFDark!70}\sffamily Page \thepage\ of \pageref{LastPage}}
+\addtokomafont{pageheadfoot}{\sffamily}
+
+% Section Styling (KOMA-Script)
+\setkomafont{section}{\color{NSFNavy}\Large\sffamily\bfseries}
+\setkomafont{subsection}{\color{NSFTeal}\large\sffamily\bfseries}
+\setkomafont{subsubsection}{\color{NSFNavy}\normalsize\sffamily\bfseries}
+
+% Section numbering format
+\renewcommand*{\othersectionlevelsformat}[1]{%
+  \csname the#1\end{csname}.\enskip%
+}
+
+% Custom section decorative divider
+\newcommand{\sectionline}{%
+  \vspace{-0.5em}%
+  {\color{NSFNavy}\hrule height 0.8pt}%
+  \vspace{0.2em}%
+}
+
+% tcolorbox Styles
+\tcbset{
+  headerbox/.style={
+    colback=NSFNavy,
+    colframe=NSFNavy,
+    arc=4pt,
+    boxrule=1pt,
+    left=12pt,
+    right=12pt,
+    top=8pt,
+    bottom=8pt,
+    coltext=white
+  },
+  meritbox/.style={
+    colback=NSFNavy!4!white,
+    colframe=NSFNavy,
+    arc=3pt,
+    boxrule=0.8pt,
+    left=10pt,
+    right=10pt,
+    top=5pt,
+    bottom=5pt,
+    title={\sffamily\bfseries\small\faLightbulb\ \ INTELLECTUAL MERIT HIGHLIGHT},
+    fonttitle=\sffamily\bfseries\small\color{white},
+    coltitle=white,
+    colbacktitle=NSFNavy
+  },
+  impactbox/.style={
+    colback=NSFTeal!4!white,
+    colframe=NSFTeal,
+    arc=3pt,
+    boxrule=0.8pt,
+    left=10pt,
+    right=10pt,
+    top=5pt,
+    bottom=5pt,
+    title={\sffamily\bfseries\small\faGlobe\ \ BROADER IMPACTS HIGHLIGHT},
+    fonttitle=\sffamily\bfseries\small\color{white},
+    coltitle=white,
+    colbacktitle=NSFTeal
+  },
+  infobox/.style={
+    colback=NSFLightBg,
+    colframe=NSFBorder,
+    arc=3pt,
+    boxrule=0.6pt,
+    left=8pt,
+    right=8pt,
+    top=4pt,
+    bottom=4pt
+  }
+}
+
+% Hyperref Setup
+\usepackage[
+  colorlinks=true,
+  linkcolor=NSFNavy,
+  citecolor=NSFTeal,
+  urlcolor=NSFTeal,
+  pdfauthor={Dr. Elena Rostova},
+  pdftitle={NSF Project Description - ARMI-DEI}
+]{hyperref}
+
+% Custom List bullet styling
+\setlist[itemize,1]{label=\color{NSFTeal}\small\faAngleRight,leftmargin=1.5em,itemsep=1pt,topsep=1pt}
+\setlist[enumerate,1]{label=\color{NSFNavy}\bfseries\arabic*.,leftmargin=1.5em,itemsep=1pt,topsep=1pt}
+
+% ==============================================================================
+% DOCUMENT CONTENT
+% ==============================================================================
+\begin{document}
+
+% ------------------------------------------------------------------------------
+% PROPOSAL HEADER BOX
+% ------------------------------------------------------------------------------
+\begin{tcolorbox}[headerbox]
+\begin{center}
+{\sffamily\Huge\bfseries Autonomous Resilient Mesh Infrastructure for Distributed Edge Intelligence (ARMI-DEI)} \\[0.4em]
+{\sffamily\large\bfseries NSF Program Solicitation: CISE / Robust Intelligence (RI) -- Core Small}
+\end{center}
+\vspace{0.2em}
+{\color{white!40}\hrule height 0.5pt}
+\vspace{0.3em}
+\begin{tabularx}{\textwidth}{@{}X X@{}}
+\textbf{Lead Institution:} Vertex Institute of Technology & \textbf{Proposed Duration:} 36 Months (Oct 2026 -- Sep 2029) \\
+\textbf{Principal Investigator:} Dr. Elena Rostova (Vertex) & \textbf{Total Requested Budget:} \$598,420 \\
+\textbf{Co-PI:} Dr. Marcus Vance (Meridian University) & \textbf{Target Track:} RI Small Collaborative Research
+\end{tabularx}
+\end{tcolorbox}
+
+\vspace{0.1em}
+
+% ------------------------------------------------------------------------------
+% SECTION 1: PROJECT OVERVIEW & RESEARCH MOTIVATION
+% ------------------------------------------------------------------------------
+\section{Project Overview and Research Motivation}
+\sectionline
+
+Modern autonomous cyber-physical systems---ranging from autonomous aerial swarm networks operating in communication-denied environments to real-time smart grid power balancing systems---increasingly depend on decentralized decision-making at the network edge. Traditional centralized cloud architecture suffers from brittle network dependencies, excessive latency ($>100$\,ms), and catastrophic single-point failures when operating in dynamic, adversarial, or resource-constrained settings. While distributed machine learning (e.g., Federated Learning) has advanced edge analytics, current paradigms assume continuous topological connectivity and stable link bandwidth. They lack formal safety guarantees when network links undergo sudden degradation or Byzantine failures.
+
+This project introduces \textbf{ARMI-DEI} (\textbf{A}utonomous \textbf{R}esilient \textbf{M}esh \textbf{I}nfrastructure for \textbf{D}istributed \textbf{E}dge \textbf{I}ntelligence), a novel framework that unifies \emph{neural-symbolic reasoning}, \emph{dynamic topological consensus}, and \emph{formal verification primitives} directly on heterogeneous edge hardware. By embedding lightweight formal logic engines into deep neural architectures, ARMI-DEI enables autonomous agents to perform provably correct, localized inference while dynamically reorganizing inter-node communication meshes under severe network partitioning.
+
+\begin{figure}[h!]
+\centering
+\begin{tikzpicture}[
+    node distance=1.1cm and 1.5cm,
+    agent/.style={circle, draw=NSFNavy, fill=NSFLightBg, thick, minimum size=0.8cm, font=\sffamily\bfseries\small},
+    cloud/.style={ellipse, draw=NSFTeal, fill=NSFTeal!10, thick, minimum width=1.9cm, minimum height=0.85cm, font=\sffamily\small},
+    sync/.style={stealth-stealth, thick, color=NSFTeal},
+    broken/.style={dashed, thick, color=NSFAmber}
+]
+    % Nodes
+    \node[cloud] (cloud) {\faCloud\ Cloud Base};
+    \node[agent] (a1) [below left=0.8cm and 1.2cm of cloud] {$A_1$};
+    \node[agent] (a2) [below=1.0cm of cloud] {$A_2$};
+    \node[agent] (a3) [below right=0.8cm and 1.2cm of cloud] {$A_3$};
+    \node[agent] (a4) [below left=0.9cm and 0.4cm of a1] {$A_4$};
+    \node[agent] (a5) [below right=0.9cm and 0.4cm of a3] {$A_5$};
+
+    % Links
+    \draw[sync] (cloud) -- (a1);
+    \draw[sync] (cloud) -- (a3);
+    \draw[broken] (cloud) -- node[left, font=\tiny\sffamily, color=NSFAmber] {Severed Link} (a2);
+    
+    \draw[sync, color=NSFNavy] (a1) -- (a2);
+    \draw[sync, color=NSFNavy] (a2) -- (a3);
+    \draw[sync, color=NSFNavy] (a1) -- (a4);
+    \draw[sync, color=NSFNavy] (a3) -- (a5);
+    \draw[sync, color=NSFNavy, ultra thick] (a4) -- node[below, font=\tiny\sffamily, color=NSFNavy] {Local Mesh Consensus} (a5);
+
+    % Background Box
+    \begin{scope}[on background layer]
+        \node[draw=NSFBorder, fill=NSFLightBg!50, rounded corners=5pt, fit=(a1) (a2) (a3) (a4) (a5), label={[font=\sffamily\bfseries\small, color=NSFNavy]south:Decentralized Resilient Edge Mesh}] {};
+    \end{scope}
+\end{tikzpicture}
+\caption{ARMI-DEI system architecture illustrating autonomous edge mesh reconfiguration during cloud disconnection.}
+\label{fig:architecture}
+\end{figure}
+
+\subsection{Key Research Objectives}
+The overarching goal of ARMI-DEI is to transform vulnerable edge deployments into self-healing, safety-verified intelligent swarms. The research is structured around three core scientific objectives:
+
+\begin{enumerate}
+    \item \textbf{Objective 1: Differentiable Neural-Symbolic Reasoning Layers (Thrust 1):} Formulate mathematical primitives that inject Temporal Logic (TL) specifications into gradient-based neural network training, ensuring zero-violation safety bounds during local edge inference.
+    \item \textbf{Objective 2: Topological Graph Consensus under Intermittent Connectivity (Thrust 2):} Develop decentralized, asynchronous consensus algorithms capable of maintaining state consistency across dynamic mesh topologies with link loss up to 60\%.
+    \item \textbf{Objective 3: Hardware-Aware Micro-Verification and Field Testbed (Thrust 3):} Realize sub-millisecond execution of formal safety constraints on embedded SoC architectures (Lumina Jetson, RISC-V edge TPU) and validate performance across a 15-node autonomous ground rover fleet.
+\end{enumerate}
+
+% ------------------------------------------------------------------------------
+% SECTION 2: RESULTS FROM PRIOR NSF SUPPORT
+% ------------------------------------------------------------------------------
+\section{Results from Prior NSF Support}
+\sectionline
+
+\textbf{PI: Dr. Elena Rostova} -- \emph{NSF Award IIS-2104892: "Autonomous Edge Perception in Dynamic Environments"} (\$499,820; Period: 09/01/2021 -- 08/31/2024).
+
+\textbf{Intellectual Merit:} Under this prior award, the PI's lab investigated lightweight graph neural networks (GNNs) for multi-robot perception. Key outcomes included: (1) A spatio-temporal GNN architecture that reduced perception inference latency by 42\% on low-power Jetson Xavier platforms; (2) An adaptive feature compression algorithm yielding a $10\times$ reduction in inter-agent wireless bandwidth requirements without loss of target classification accuracy; and (3) 8 peer-reviewed publications in IEEE Transactions on Robotics (T-RO), IEEE ICRA, and NeurIPS.
+
+\textbf{Broader Impacts:} The project supported the dissertation research of 3 PhD students (2 from underrepresented groups in STEM) and 6 undergraduate researchers. The PI developed a new graduate course, \emph{ECE 6840: Edge Artificial Intelligence}, which reached over 140 students across three academic years. Software artifacts, including the \texttt{EdgeSense-100K} multi-sensor dataset, were made publicly available on GitHub ($>450$ stars, $>1,200$ downloads), fostering open science in the robotics research community.
+
+\textbf{Relationship to Proposed Work:} While IIS-2104892 focused on \emph{perception} and feature compression, the proposed ARMI-DEI project addresses the orthogonal and critical challenges of \emph{reasoning}, \emph{formal safety verification}, and \emph{decentralized consensus} under severe network degradation.
+
+% ------------------------------------------------------------------------------
+% SECTION 3: RESEARCH PLAN & TECHNICAL METHODOLOGY
+% ------------------------------------------------------------------------------
+\section{Research Plan and Technical Methodology}
+\sectionline
+
+The research plan is organized into three tightly integrated technical thrusts spanning 36 months.
+
+\subsection{Thrust 1: Differentiable Neural-Symbolic Reasoning Layers}
+Deep neural networks excel at perceptual pattern recognition but lack explainability and deterministic guarantees. Conversely, symbolic logic provides rigorous safety specifications but suffers from combinatorial state explosion. Thrust 1 bridges this gap by creating differentiable loss formulations from Signal Temporal Logic (STL) specifications.
+
+Let $s(t) \in \mathbb{R}^d$ denote the state trajectory of an autonomous edge node at time $t$. An STL property $\varphi$ defines safety constraints (e.g., "always maintain distance $d_{\text{min}} > 1.5$\,m from obstacles"). We define a continuous, smooth quantitative robustness measure $\rho(\varphi, s, t)$ such that $\rho(\varphi, s, t) > 0 \iff s \models \varphi$. 
+
+% Equation
+\begin{equation}
+    \mathcal{L}_{\text{total}}(\theta) = \mathcal{L}_{\text{task}}(f_\theta(x), y) + \lambda \cdot \text{SoftPlus}\Big(-\rho\big(\varphi, f_\theta(x), t\big)\Big)
+    \label{eq:stl_loss}
+\end{equation}
+
+By backpropagating through Equation~\ref{eq:stl_loss}, the model parameters $\theta$ are optimized directly toward satisfaction of symbolic safety properties without requiring expensive SMT solver calls at runtime.
+
+\subsection{Thrust 2: Topological Graph Consensus under Intermittent Connectivity}
+Edge networks in contested or emergency response scenarios experience frequent topology changes and link drops. We model the communication topology as a time-varying directed graph $\mathcal{G}(t) = (\mathcal{V}, \mathcal{E}(t))$. We formulate an asynchronous matrix completion method for edge state synchronization:
+
+\begin{table}[h!]
+\centering
+\small
+\begin{tabularx}{\textwidth}{@{}l p{4.2cm} X c@{}}
+\toprule
+\textbf{Phase} & \textbf{Algorithmic Primitive} & \textbf{Key Innovation} & \textbf{Latency Target} \\
+\midrule
+Phase I & Local State Representation & Compact Bit-Vector Encoding ($\le 128$\,bytes) & $< 0.5$\,ms \\
+Phase II & Asynchronous Gossip Consensus & Bounded-Error Matrix Completion & $< 3.2$\,ms \\
+Phase III & Safety Verification Check & Embedded SMT Micro-Checker & $< 1.0$\,ms \\
+Phase IV & Control Actuation & Fallback Safe Policy Execution & $< 0.2$\,ms \\
+\bottomrule
+\end{tabularx}
+\caption{Operational breakdown of the ARMI-DEI edge decision pipeline per control loop cycle.}
+\label{tab:pipeline}
+\end{table}
+
+\subsection{Thrust 3: Embedded Micro-Verification and Testbed Validation}
+To evaluate ARMI-DEI under realistic physical dynamics, we will deploy the software pipeline on a 15-node physical testbed comprising custom ground rovers equipped with Lumina Jetson Orin Nano modules and RISC-V edge co-processors. Testbed experiments will take place at the Synapse Field Station facility, simulating urban search-and-rescue and micro-grid energy balancing.
+
+\begin{tcolorbox}[meritbox]
+\textbf{Intellectual Merit Summary:} ARMI-DEI fundamentally advances the state-of-the-art in robust intelligence by establishing the mathematical foundations for differentiable neural-symbolic reasoning. It provides the first unified framework capable of guaranteeing formal safety bounds (STL satisfaction) while maintaining asynchronous multi-agent consensus over lossy, dynamic edge topologies.
+\end{tcolorbox}
+
+% ------------------------------------------------------------------------------
+% SECTION 4: PROJECT MANAGEMENT & MILESTONES
+% ------------------------------------------------------------------------------
+\section{Project Schedule, Management, and Milestones}
+\sectionline
+
+The project will be co-led by PI Dr. Elena Rostova (Vertex Institute; expert in neural-symbolic systems and edge AI) and Co-PI Dr. Marcus Vance (Meridian University; expert in formal verification and distributed control). Bi-weekly virtual synchronization meetings and semi-annual joint workshops will ensure seamless collaboration between both institutions.
+
+% Milestone Table
+\begin{table}[h!]
+\centering
+\sffamily\small
+\begin{tabularx}{\textwidth}{@{}c X c c c c@{}}
+\toprule
+\textbf{Milestone} & \textbf{Description / Deliverable} & \textbf{Year 1} & \textbf{Year 2} & \textbf{Year 3} & \textbf{Lead} \\
+\midrule
+\textbf{M1.1} & Mathematical formulation of differentiable STL loss & {\color{NSFNavy}\rule{1.2ex}{1.2ex}} & & & Vertex \\
+\textbf{M1.2} & Open-source PyTorch neural-symbolic toolkit release & & {\color{NSFNavy}\rule{1.2ex}{1.2ex}} & & Vertex \\
+\textbf{M2.1} & Asynchronous gossip consensus protocol implementation & {\color{NSFTeal}\rule{1.2ex}{1.2ex}} & & & Meridian \\
+\textbf{M2.2} & Network fault injection benchmarks ($>50\%$ link loss) & & {\color{NSFTeal}\rule{1.2ex}{1.2ex}} & & Meridian \\
+\textbf{M3.1} & Deployment of 15-node Jetson Orin rover testbed & & {\color{NSFNavy}\rule{1.2ex}{1.2ex}} & & Joint \\
+\textbf{M3.2} & Comprehensive field demonstration \& benchmark data release & & & {\color{NSFAmber}\rule{1.2ex}{1.2ex}} & Joint \\
+\bottomrule
+\end{tabularx}
+\caption{Project milestone timeline across the 36-month grant period.}
+\label{tab:milestones}
+\end{table}
+
+% ------------------------------------------------------------------------------
+% SECTION 5: BROADER IMPACTS
+% ------------------------------------------------------------------------------
+\section{Broader Impacts}
+\sectionline
+
+The broader impacts of ARMI-DEI span STEM education, broadening participation, technology transfer, and critical infrastructure resilience.
+
+\subsection{Integration with STEM Education and Curriculum Development}
+The PIs will create an inter-institutional project-based course, \emph{Autonomous Edge Systems}, co-taught at Vertex Institute and Meridian University. The course will feature hands-on labs utilizing the open-source ARMI-DEI software framework, enabling students to program miniature autonomous vehicles in virtual and physical environments.
+
+\subsection{Broadening Participation of Underrepresented Groups}
+Partnering with the \emph{Meridian STEM Inclusion Network}, the project will recruit at least 4 undergraduate researchers annually from underrepresented backgrounds through a funded 10-week summer REU (Research Experiences for Undergraduates) program. PIs will actively mentor candidates, providing structured pathways to graduate education.
+
+\subsection{Open Science, Software Release, and Industry Transfer}
+All code, model weights, hardware schematics, and benchmarking datasets produced by ARMI-DEI will be released under permissive open-source licenses (MIT/Apache 2.0) on GitHub. PIs will engage with industry advisory boards at Nexa Systems and Apex Autonomous Infrastructure to translate research findings into commercial edge computing standards.
+
+\begin{tcolorbox}[impactbox]
+\textbf{Broader Impacts Summary:} ARMI-DEI impacts broader society by fortifying critical infrastructure (smart grids, emergency response swarms) against communication failures and cyber-disruptions. It broadens STEM participation through targeted REU internships, open-access educational modules, and robust public software release.
+\end{tcolorbox}
+
+% ------------------------------------------------------------------------------
+% SECTION 6: SUMMARY OF INTELLECTUAL MERIT AND BROADER IMPACTS
+% ------------------------------------------------------------------------------
+\section{Summary of Intellectual Merit and Broader Impacts}
+\sectionline
+
+\textbf{Intellectual Merit:} ARMI-DEI establishes a rigorous mathematical foundation uniting neural-symbolic reasoning, formal Temporal Logic verification, and asynchronous mesh consensus. It resolves fundamental trade-offs between deep learning adaptability and formal safety guarantees in dynamic, communication-restricted environments.
+
+\textbf{Broader Impacts:} The proposed work delivers tangible societal benefits by safeguarding mission-critical edge deployments, training a diverse next-generation STEM workforce, providing open-source tools to the academic community, and transferring technology to industrial partners.
+
+\end{document}

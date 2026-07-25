@@ -1,0 +1,8 @@
+{
+  "name": "KOMA-Script Modern Academic Book",
+  "compiler": "pdflatex",
+  "description": "KOMA-Script Modern Academic Book LaTeX template \u2014 koma-script modern academic book latex template. Elegant, compile-tested, editable online at letx.app.",
+  "author": "LetX",
+  "category": "books",
+  "license": "MIT"
+}

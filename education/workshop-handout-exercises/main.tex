@@ -1,0 +1,376 @@
+\documentclass[11pt, a4paper, parskip=half]{scrartcl}
+
+% --- PACKAGES ---
+\usepackage[utf8]{inputenc}
+\usepackage[margin=16mm, top=16mm, bottom=16mm]{geometry}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{amsmath, amssymb}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{colortbl}
+\usepackage{enumitem}
+\usepackage{tcolorbox}
+\tcbuselibrary{skins, breakable}
+\usepackage{tikz}
+\usetikzlibrary{calc, positioning, shapes.geometric}
+\usepackage{fontawesome5}
+\usepackage{scrlayer-scrpage}
+\usepackage{microtype}
+\usepackage[hidelinks, pdfencoding=auto]{hyperref}
+
+% --- COLOR PALETTE (Tasteful 4-color palette) ---
+\definecolor{primaryNavy}{HTML}{0F172A}     % Slate Navy 900
+\definecolor{accentTeal}{HTML}{0D9488}      % Teal 600
+\definecolor{subtleBlue}{HTML}{2563EB}      % Royal Blue 600
+\definecolor{amberWarm}{HTML}{D97706}       % Amber 600
+\definecolor{bgSoft}{HTML}{F8FAFC}          % Slate 50
+\definecolor{cardBg}{HTML}{F1F5F9}          % Slate 100
+\definecolor{borderSlate}{HTML}{CBD5E1}      % Slate 300
+\definecolor{textMuted}{HTML}{475569}        % Slate 600
+
+% --- PAGE HEADERS & FOOTERS ---
+\clearpairofpagestyles
+\ihead{\small\textcolor{accentTeal}{\faGraduationCap\ \textbf{VERTEX ACADEMY}} \ \textcolor{borderSlate}{|} \ \textcolor{primaryNavy}{\small Distributed Systems Workshop}}
+\ohead{\small\textcolor{textMuted}{\faCalendar\ Fall 2026 Edition}}
+\ifoot{\small\textcolor{textMuted}{\faFile\ Participant Guide \& Exercise Workbook}}
+\ofoot{\small\textcolor{primaryNavy}{\textbf{Page \thepage}}}
+\pagestyle{scrheadings}
+
+% --- CUSTOM BOX STYLES ---
+\tcbset{
+    boxrule=0.5pt,
+    arc=4pt,
+    left=10pt, right=10pt, top=6pt, bottom=6pt,
+    fonttitle=\bfseries\sffamily,
+}
+
+\newtcolorbox{headerbox}{
+    enhanced,
+    colback=primaryNavy,
+    colframe=primaryNavy,
+    coltext=white,
+    arc=6pt,
+    boxrule=0pt,
+    left=14pt, right=14pt, top=10pt, bottom=10pt
+}
+
+\newtcolorbox{objectivesbox}{
+    enhanced,
+    colback=bgSoft,
+    colframe=accentTeal,
+    coltitle=accentTeal,
+    fonttitle=\bfseries\sffamily\large,
+    borderline={1.5pt}{0pt}{accentTeal},
+    arc=4pt,
+    top=6pt, bottom=6pt
+}
+
+\newtcolorbox{exercisebox}[2][]{
+    enhanced,
+    colback=white,
+    colframe=primaryNavy,
+    coltitle=white,
+    colbacktitle=primaryNavy,
+    fonttitle=\bfseries\sffamily,
+    title={\faPen\ \ #2},
+    drop shadow=cardBg,
+    arc=4pt,
+    top=6pt, bottom=6pt,
+    #1
+}
+
+\newtcolorbox{infobox}[1]{
+    enhanced,
+    colback=bgSoft,
+    colframe=subtleBlue,
+    borderline west={3pt}{0pt}{subtleBlue},
+    title={\faLightbulb\ \ #1},
+    coltitle=subtleBlue,
+    colbacktitle=bgSoft,
+    fonttitle=\bfseries\sffamily,
+    arc=2pt,
+    boxrule=0.5pt,
+    top=5pt, bottom=5pt
+}
+
+\newtcolorbox{warningbox}[1]{
+    enhanced,
+    colback=bgSoft,
+    colframe=amberWarm,
+    borderline west={3pt}{0pt}{amberWarm},
+    title={\faExclamationTriangle\ \ #1},
+    coltitle=amberWarm,
+    colbacktitle=bgSoft,
+    fonttitle=\bfseries\sffamily,
+    arc=2pt,
+    boxrule=0.5pt,
+    top=5pt, bottom=5pt
+}
+
+% --- SECTION STYLING ---
+\setkomafont{section}{\sffamily\color{primaryNavy}\Large\bfseries}
+\setkomafont{subsection}{\sffamily\color{accentTeal}\large\bfseries}
+\setkomafont{subsubsection}{\sffamily\color{primaryNavy}\normalfont\bfseries}
+
+\begin{document}
+
+% ==========================================
+% PAGE 1: TITLE BANNER, OBJECTIVES & THEORY
+% ==========================================
+
+\begin{headerbox}
+    \begin{minipage}[t]{0.68\textwidth}
+        \microtypesetup{activate=false}
+        {\sffamily\small\color{accentTeal}\textbf{ADVANCED ENGINEERING WORKSHOP \ \textperiodcentered\ \ TRACK A}} \\[2pt]
+        {\sffamily\Huge\bfseries\color{white} Distributed Systems \& Event Architecture} \\[4pt]
+        {\sffamily\large\color{borderSlate} Building Resilient Microservices with Synapse Engine \& Apex Bus}
+    \end{minipage}%
+    \hfill
+    \begin{minipage}[t]{0.28\textwidth}
+        \raggedleft
+        \small\sffamily\color{white}
+        \textbf{Lead Instructor:} \\
+        Dr. Elena Rostova \\[2pt]
+        \textbf{Location:} \\
+        Nexus Hall, Room 402 \\[2pt]
+        \textbf{Duration:} 4.0 Hours
+    \end{minipage}
+\end{headerbox}
+
+\vspace{-2pt}
+
+\begin{objectivesbox}
+    {\large\bfseries\sffamily\color{accentTeal} Key Learning Objectives}
+    \vspace{2pt}
+    \begin{itemize}[leftmargin=16pt, itemsep=1pt, label=\textcolor{accentTeal}{\faCheckCircle}]
+        \item Master the fundamentals of event-driven asynchronous messaging using the \textbf{Synapse Pipeline}.
+        \item Analyze consensus algorithms (Raft, Paxos) and evaluate system availability under network partitions (\textbf{CAP Theorem}).
+        \item Design self-healing circuit breaker patterns and distributed sagas for cross-service transactions in \textbf{Apex Engine}.
+        \item Calculate latency bounds, throughput ceilings, and resource utilization across distributed node clusters.
+    \end{itemize}
+\end{objectivesbox}
+
+\vspace{0pt}
+
+\section{Core Architectural Concepts}
+
+Modern distributed architectures decouple services through event streams, ensuring high throughput and isolated fault domains. Below is the reference topology for the \textbf{Meridian Enterprise System} utilized throughout today's exercises.
+
+\vspace{0pt}
+\begin{center}
+\begin{tikzpicture}[node distance=1.0cm and 1.2cm, auto, >=stealth, every node/.style={font=\sffamily, align=center}]
+    % Nodes
+    \node (client) [rectangle, draw=primaryNavy, fill=bgSoft, rounded corners=4pt, minimum width=2.2cm, minimum height=0.8cm, line width=1pt] {\textbf{Client Ingress}\\\small (Nexa Gateway)};
+    
+    \node (router) [rectangle, draw=accentTeal, fill=bgSoft, rounded corners=4pt, minimum width=2.4cm, minimum height=0.8cm, right=of client, line width=1pt] {\textbf{Synapse Router}\\\small (Event Distribution)};
+    
+    \node (worker1) [rectangle, draw=subtleBlue, fill=cardBg, rounded corners=4pt, minimum width=2.3cm, minimum height=0.7cm, above right=0.15cm and 1.2cm of router, line width=0.8pt] {\textbf{Apex Worker A}\\\small Order Processing};
+    
+    \node (worker2) [rectangle, draw=subtleBlue, fill=cardBg, rounded corners=4pt, minimum width=2.3cm, minimum height=0.7cm, below right=0.15cm and 1.2cm of router, line width=0.8pt] {\textbf{Apex Worker B}\\\small Inventory State};
+    
+    \node (storage) [cylinder, shape border rotate=90, draw=primaryNavy, fill=bgSoft, minimum width=1.8cm, minimum height=0.9cm, right=of router, xshift=2.3cm, line width=1pt] {\textbf{Nimbus DB}\\\small Ledger};
+
+    % Paths
+    \draw[->, line width=1pt, primaryNavy] (client) -- node[above, font=\footnotesize] {HTTP/2} (router);
+    \draw[->, line width=1pt, accentTeal] (router) |- node[above left, font=\tiny] {gRPC Stream} (worker1);
+    \draw[->, line width=1pt, accentTeal] (router) |- node[below left, font=\tiny] {gRPC Stream} (worker2);
+    \draw[->, line width=0.8pt, subtleBlue, dashed] (worker1) -| node[above right, font=\tiny] {Raft Commit} (storage);
+    \draw[->, line width=0.8pt, subtleBlue, dashed] (worker2) -| node[below right, font=\tiny] {Raft Commit} (storage);
+\end{tikzpicture}
+\end{center}
+
+\subsection{Theoretical Foundations \& Mathematical Models}
+
+When designing fault-tolerant clusters, overall system availability $A_{\text{sys}}$ across $n$ independent series components is bounded by:
+\begin{equation}
+    A_{\text{sys}} = \prod_{i=1}^{n} A_i = A_1 \times A_2 \times \cdots \times A_n
+\end{equation}
+For parallel redundant nodes running active-active failover, availability improves according to:
+\begin{equation}
+    A_{\text{parallel}} = 1 - \prod_{i=1}^{m} (1 - A_i)
+\end{equation}
+
+\begin{infobox}{Architectural Golden Rule}
+    Never sacrifice consistency for availability in financial state engines. Utilize \textbf{Strong Eventual Consistency (SEC)} with Conflict-Free Replicated Data Types (CRDTs) when full ACID compliance introduces unacceptable tail latencies ($p_{99} > 150\text{ms}$).
+\end{infobox}
+
+\newpage
+
+% ==========================================
+% PAGE 2: HANDS-ON EXERCISES (MODULE 1 & 2)
+% ==========================================
+
+\section{Module 1: Circuit Breaker Implementation}
+
+When downstream services experience latency spikes or partial failure, cascading failure can collapse the entire cluster. A \textbf{Circuit Breaker} monitors error thresholds and trips into an \texttt{OPEN} state to protect system health.
+
+\begin{exercisebox}[label=ex:circuit]{Exercise 1: Circuit Breaker State Transition Matrix}
+\textbf{Scenario:} Service \textit{Synapse-Core} issues request calls to \textit{Nimbus-Storage}. The breaker parameters are configured as:
+\begin{itemize}[leftmargin=14pt, itemsep=0pt]
+    \item Failure Rate Threshold ($\theta_{\text{fail}}$): $40\%$ over a sliding window of 10 requests.
+    \item Half-Open Probe Count ($N_{\text{probe}}$): 3 consecutive successful calls.
+    \item Timeout Period ($T_{\text{open}}$): 5000\,ms.
+\end{itemize}
+
+\vspace{1pt}
+\textbf{Task 1.1:} Examine the incoming request log sequence below and determine the Circuit Breaker State after each step:
+
+\vspace{2pt}
+\begin{center}
+\small
+\begin{tabularx}{\textwidth}{c c X c c}
+\toprule
+\textbf{Step} & \textbf{Call ID} & \textbf{Upstream Response} & \textbf{Window Fail \%} & \textbf{Breaker State} \\
+\midrule
+1 & REQ-101 & 200 OK (latency 12ms) & 0\% & CLOSED \\
+2 & REQ-102 & 504 Gateway Timeout & 10\% & CLOSED \\
+3 & REQ-103 & 500 Internal Server Error & 20\% & CLOSED \\
+4 & REQ-104 & 503 Service Unavailable & 30\% & CLOSED \\
+5 & REQ-105 & 500 Internal Server Error & 40\% & \underline{\hspace{3cm}} \\
+6 & REQ-106 & \textit{Blocked by local policy} & -- & \underline{\hspace{3cm}} \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\vspace{1pt}
+\textbf{Task 1.2:} Formulate the pseudo-code logic for the \texttt{onResponse(status, latency)} hook when transitioning from \texttt{HALF-OPEN} back to \texttt{CLOSED}.
+
+\vspace{2pt}
+\begin{tcolorbox}[colback=cardBg, colframe=borderSlate, boxrule=0.5pt, fontupper=\small\ttfamily]
+function onResponse(response) \{\\
+\ \ \ \ if (currentState == State.HALF\_OPEN) \{\\
+\ \ \ \ \ \ \ \ if (response.isSuccess()) \{\\
+\ \ \ \ \ \ \ \ \ \ \ \ successCount++;\\
+\ \ \ \ \ \ \ \ \ \ \ \ if (successCount >= N\_probe) \{\\
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{accentTeal}{// TODO: Write state transition logic here}\\
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textbf{currentState} = \underline{\hspace{4cm}};\\
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textbf{failureCount} = \underline{\hspace{4cm}};\\
+\ \ \ \ \ \ \ \ \ \ \ \ \}\\
+\ \ \ \ \ \ \ \ \} else \{\\
+\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{amberWarm}{// Trip immediately back to OPEN}\\
+\ \ \ \ \ \ \ \ \ \ \ \ \textbf{currentState} = \underline{\hspace{4cm}};\\
+\ \ \ \ \ \ \ \ \}\\
+\ \ \ \ \}\\
+\}
+\end{tcolorbox}
+\end{exercisebox}
+
+\vspace{2pt}
+
+\section{Module 2: Distributed Saga \& Transactional Integrity}
+
+In microservice architectures without global 2-Phase Commit (2PC), distributed transactions use the \textbf{Saga Pattern}—a sequence of local transactions paired with compensating actions.
+
+\begin{exercisebox}[label=ex:saga]{Exercise 2: Orchestrated vs. Choreographed Sagas}
+\textbf{Background:} \textbf{Nexa Platform} processes customer subscription upgrades. The process involves three distinct services:
+\begin{enumerate}[leftmargin=16pt, itemsep=0pt, label=\textbf{\arabic*.}]
+    \item \textbf{Billing Service:} Debits user wallet (\$49.00).
+    \item \textbf{License Service:} Grants Tier-3 permissions in Apex Security.
+    \item \textbf{Notification Service:} Dispatches confirmation email and SMS.
+\end{enumerate}
+
+\vspace{1pt}
+\begin{warningbox}{Failure Scenario}
+    During step 2 (\textit{License Service}), the service throws an unhandled \texttt{DatabaseLockException}. The Billing Service has already completed step 1.
+\end{warningbox}
+
+\vspace{1pt}
+\textbf{Task 2.1:} Complete the comparison matrix between Choreography and Orchestration for this scenario:
+
+\vspace{2pt}
+\begin{center}
+\small
+\begin{tabularx}{\textwidth}{X X X}
+\toprule
+\textbf{Architectural Dimension} & \textbf{Event Choreography} & \textbf{Central Orchestrator} \\
+\midrule
+\textbf{Coupling Level} & Low (Services listen to topics) & Medium (Services bound to controller) \\
+\textbf{Failure Recovery} & \underline{\hspace{4cm}} & Explicit compensation steps \\
+\textbf{Debugging Complexity} & High (Distributed event tracing) & \underline{\hspace{4cm}} \\
+\textbf{Recommended For} & Small workflows ($<3$ services) & Enterprise multi-step transactions \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\vspace{1pt}
+\textbf{Task 2.2:} Write the compensating SQL command / API invocation required for the \textbf{Billing Service} to restore system consistency following the failure:
+\vspace{10pt}
+\hrule style dotted
+\vspace{10pt}
+\hrule style dotted
+\end{exercisebox}
+
+\newpage
+
+% ==========================================
+% PAGE 3: BOTTLENECK ANALYSIS & WORKSHOP REF
+% ==========================================
+
+\section{Module 3: Performance Bottleneck Analysis}
+
+High-performance distributed nodes require strict adherence to latency budgets. Below is an empirical performance benchmark trace extracted from \textbf{Meridian Load Simulator}.
+
+\begin{exercisebox}[label=ex:perf]{Exercise 3: Latency \& Throughput Calculation}
+\textbf{System Profile:} 4-Node Apex Service Cluster handling 12,000 requests per second (RPS).
+
+\vspace{1pt}
+\begin{center}
+\small
+\begin{tabularx}{\textwidth}{l c c c X}
+\toprule
+\textbf{Subsystem Phase} & \textbf{Avg Latency} & \textbf{$p_{95}$ Latency} & \textbf{$p_{99}$ Latency} & \textbf{Primary Bottleneck Factor} \\
+\midrule
+1. Ingress SSL Termination & 1.2 ms & 2.1 ms & 4.5 ms & CPU Cryptographic cycles \\
+2. Synapse Queue Dispatch & 0.4 ms & 0.8 ms & 12.0 ms & Memory queue lock contention \\
+3. Database Query Execution & 14.5 ms & 48.0 ms & 210.0 ms & Disk I/O \& Index scan \\
+4. JSON Serialization & 0.8 ms & 1.1 ms & 2.3 ms & CPU memory allocations \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\vspace{1pt}
+\textbf{Calculation Question 3.1:} Calculate the total $p_{99}$ end-to-end latency budget for a request passing sequentially through all four phases:
+\begin{equation*}
+    \text{Latency}_{p99} = \text{Phase}_1 + \text{Phase}_2 + \text{Phase}_3 + \text{Phase}_4 = \underline{\hspace{4cm}} \text{ ms}
+\end{equation*}
+
+\vspace{1pt}
+\textbf{Analysis Question 3.2:} If Database Query Execution ($p_{99} = 210\,\text{ms}$) is optimized by implementing a \textbf{Synapse Redis Cache} layer with a 92\% hit rate (cache latency = 1.5\,ms), calculate the new effective $p_{99}$ database phase latency:
+\vspace{12pt}
+\hrule style dotted
+\vspace{12pt}
+\hrule style dotted
+\end{exercisebox}
+
+\vspace{2pt}
+
+\section{Quick Reference Cheat-Sheet}
+
+Keep this quick reference guide handy during your team lab sessions.
+
+\vspace{2pt}
+\begin{center}
+\small
+\begin{tabularx}{\textwidth}{l X X}
+\toprule
+\textbf{Tool / Component} & \textbf{CLI Command / Endpoint} & \textbf{Primary Purpose} \\
+\midrule
+\texttt{synapse-cli} & \texttt{\footnotesize synapse-cli cluster status} & Inspect health of broker nodes. \\
+\texttt{apex-bench} & \texttt{\footnotesize apex-bench -c 100 -n 10000} & Execute concurrent load tests. \\
+\texttt{nimbus-ctl} & \texttt{\footnotesize nimbus-ctl raft election-reset} & Force leader re-election in cluster. \\
+\texttt{meridian-mon} & \texttt{\footnotesize http://localhost:9090/metrics} & Prometheus metrics exporter. \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\vspace{2pt}
+
+\begin{infobox}{Instructor Notes \& Lab Reminders}
+    \begin{itemize}[leftmargin=14pt, itemsep=1pt]
+        \item Ensure all local Docker containers are connected to the \texttt{vertex-net} bridge network before running \texttt{apex-bench}.
+        \item Submission for today's lab grade: Upload your completed workbook PDF and repository link to \url{https://academy.vertex.internal/submit}.
+    \end{itemize}
+\end{infobox}
+
+\end{document}

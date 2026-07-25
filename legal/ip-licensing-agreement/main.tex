@@ -1,0 +1,768 @@
+\documentclass[11pt,a4paper]{article}
+
+% ── Core packages ──────────────────────────────────────────────────────────────
+\usepackage[a4paper, top=25mm, bottom=28mm, left=25mm, right=25mm]{geometry}
+\usepackage[table]{xcolor}
+\usepackage{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{microtype}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{colortbl}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{parskip}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{tikz}
+\usepackage[most]{tcolorbox}
+\usepackage{fontawesome5}
+\usepackage{setspace}
+\usepackage{ragged2e}
+\usepackage{multicol}
+\usepackage{mdframed}
+\usepackage{lmodern}
+
+\usetikzlibrary{positioning, calc, shapes.geometric, backgrounds, patterns}
+
+% ── Colour palette ─────────────────────────────────────────────────────────────
+\definecolor{NexaNavy}{RGB}{18, 40, 76}
+\definecolor{NexaGold}{RGB}{193, 153, 74}
+\definecolor{NexaSlate}{RGB}{88, 105, 130}
+\definecolor{NexaIce}{RGB}{237, 243, 250}
+\definecolor{NexaRule}{RGB}{210, 220, 232}
+\definecolor{NexaLight}{RGB}{248, 250, 253}
+\definecolor{NexaText}{RGB}{30, 40, 55}
+\definecolor{NexaMuted}{RGB}{110, 125, 145}
+
+% ── Hyperref setup ─────────────────────────────────────────────────────────────
+\hypersetup{
+  colorlinks=true,
+  linkcolor=NexaNavy,
+  urlcolor=NexaSlate,
+  pdfauthor={Nexa Technologies Inc.},
+  pdftitle={Intellectual Property Licensing Agreement},
+  pdfsubject={IP Licensing}
+}
+
+% ── Typography ─────────────────────────────────────────────────────────────────
+\renewcommand{\familydefault}{\rmdefault}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt}
+
+% ── Section styling ────────────────────────────────────────────────────────────
+\titleformat{\section}
+  {\color{NexaNavy}\large\bfseries}
+  {\thesection.}{0.6em}{}[{\color{NexaGold}\titlerule[1.2pt]}]
+
+\titleformat{\subsection}
+  {\color{NexaSlate}\normalsize\bfseries}
+  {\thesubsection.}{0.5em}{}
+
+\titlespacing{\section}{0pt}{18pt}{8pt}
+\titlespacing{\subsection}{0pt}{12pt}{4pt}
+
+% ── Header / Footer ────────────────────────────────────────────────────────────
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\fancyhead[L]{%
+  \small\color{NexaMuted}%
+  \textbf{\color{NexaNavy}NEXA} \textbar{} IP Licensing Agreement%
+}
+\fancyhead[R]{%
+  \small\color{NexaMuted}Agreement No.\ NTI-2025-IPL-0047%
+}
+\fancyfoot[C]{%
+  \color{NexaRule}\rule{0.4\textwidth}{0.4pt}\\[3pt]
+  \small\color{NexaMuted}Page \thepage\ of 4 \quad\textbullet\quad Confidential%
+}
+
+% ── Custom tcolorbox styles ────────────────────────────────────────────────────
+\tcbuselibrary{skins, breakable}
+
+\tcbset{
+  partystyle/.style={
+    enhanced,
+    colback=NexaIce,
+    colframe=NexaNavy,
+    fonttitle=\bfseries\color{white},
+    coltitle=white,
+    attach boxed title to top left={yshift=-2mm, xshift=6mm},
+    boxed title style={colback=NexaNavy, colframe=NexaNavy, sharp corners},
+    boxrule=0.8pt,
+    arc=4pt,
+    left=8pt, right=8pt, top=10pt, bottom=8pt,
+    breakable
+  },
+  termstyle/.style={
+    enhanced,
+    colback=NexaLight,
+    colframe=NexaGold,
+    boxrule=1pt,
+    arc=3pt,
+    left=10pt, right=10pt, top=8pt, bottom=8pt,
+    breakable
+  },
+  warnstyle/.style={
+    enhanced,
+    colback=NexaNavy!6,
+    colframe=NexaNavy,
+    boxrule=0pt,
+    borderline west={3pt}{0pt}{NexaGold},
+    arc=0pt,
+    left=12pt, right=10pt, top=6pt, bottom=6pt,
+    breakable
+  }
+}
+
+% ── Defined-term helper ────────────────────────────────────────────────────────
+\newcommand{\defterm}[1]{\textbf{\color{NexaNavy}``#1''}}
+\newcommand{\party}[1]{\textbf{\color{NexaSlate}#1}}
+\newcommand{\clause}[1]{\textbf{#1}}
+
+% ══════════════════════════════════════════════════════════════════════════════
+\begin{document}
+% ══════════════════════════════════════════════════════════════════════════════
+
+% ── Cover header ──────────────────────────────────────────────────────────────
+\thispagestyle{fancy}
+
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[NexaNavy]
+    (current page.north west) rectangle
+    ([yshift=-38mm]current page.north east);
+  \fill[NexaGold]
+    ([yshift=-38mm]current page.north west) rectangle
+    ([yshift=-41mm]current page.north east);
+\end{tikzpicture}
+
+\vspace*{-18pt}
+
+\begin{center}
+  {\color{white}\fontsize{9}{11}\selectfont\bfseries\MakeUppercase{Intellectual Property}}\\[3pt]
+  {\color{white}\fontsize{22}{26}\selectfont\bfseries Licensing Agreement}\\[6pt]
+  {\color{NexaGold!80!white}\fontsize{8.5}{11}\selectfont\bfseries
+    PATENT\ \textbullet\ SOFTWARE\ \textbullet\ TRADE SECRETS\ \textbullet\ KNOW-HOW}\\[14pt]
+  {\color{NexaRule}\fontsize{8}{10}\selectfont
+    Agreement No.~NTI-2025-IPL-0047 \quad\textbullet\quad Execution Date:\ September 12, 2025}
+\end{center}
+
+\vspace{26pt}
+
+% ── Parties block ─────────────────────────────────────────────────────────────
+\noindent
+\begin{minipage}[t]{0.475\textwidth}
+\begin{tcolorbox}[partystyle, title={\faBuilding\enspace Licensor}]
+  \textbf{\color{NexaNavy}Nexa Technologies, Inc.}\\[3pt]
+  {\small\color{NexaMuted}a Delaware corporation}\\[6pt]
+  \faMapMarker\enspace 1450 Innovation Drive, Suite 800\\
+  \hphantom{\faMapMarker\enspace}San Francisco, CA\ 94107, USA\\[4pt]
+  \faEnvelope\enspace \texttt{legal@nexatech.io}\\[4pt]
+  \faPhone\enspace +1 (415) 882-4400\\[4pt]
+  \faPen\enspace Authorized signatory: \textbf{Elaine Hartwell}\\
+  \hphantom{\faPen\enspace}Chief Legal Officer
+\end{tcolorbox}
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.475\textwidth}
+\begin{tcolorbox}[partystyle, title={\faBuilding\enspace Licensee}]
+  \textbf{\color{NexaNavy}Synapse Dynamics GmbH}\\[3pt]
+  {\small\color{NexaMuted}a German limited liability company}\\[6pt]
+  \faMapMarker\enspace Hauptstra{\ss}e 24, 3rd Floor\\
+  \hphantom{\faMapMarker\enspace}10117 Berlin, Germany\\[4pt]
+  \faEnvelope\enspace \texttt{contracts@synapsedyn.de}\\[4pt]
+  \faPhone\enspace +49 30 2095 7730\\[4pt]
+  \faPen\enspace Authorized signatory: \textbf{Marcus Voigt}\\
+  \hphantom{\faPen\enspace}Chief Executive Officer
+\end{tcolorbox}
+\end{minipage}
+
+\vspace{12pt}
+
+% ── Recitals ──────────────────────────────────────────────────────────────────
+\begin{tcolorbox}[warnstyle]
+  \small\color{NexaText}%
+  \textbf{RECITALS.}\enspace Nexa Technologies, Inc.\ owns certain patents, software, and
+  proprietary know-how relating to adaptive neural inference acceleration (\defterm{Licensed IP}).
+  Synapse Dynamics GmbH wishes to obtain a license to commercialize the Licensed IP within the
+  Territory. The parties therefore agree as follows.
+\end{tcolorbox}
+
+\vspace{4pt}
+
+% ══════════════════════════════════════════════════════════════════════════════
+\section{Definitions}
+% ══════════════════════════════════════════════════════════════════════════════
+
+For purposes of this Agreement the following terms have the meanings set out below:
+
+\begin{tcolorbox}[termstyle]
+\setlength{\parskip}{5pt}
+\small
+\textbf{1.1}\enspace \defterm{Affiliate} means any entity that directly or indirectly controls,
+is controlled by, or is under common control with a party, where \defterm{control} means
+beneficial ownership of more than fifty percent (\textbf{50\%}) of the voting securities.
+
+\textbf{1.2}\enspace \defterm{Effective Date} means September 12, 2025.
+
+\textbf{1.3}\enspace \defterm{Licensed IP} means, collectively: (a)~the patent applications
+and issued patents listed in \textbf{Schedule A}; (b)~the \textit{NeuronX Inference Engine}
+software (version 3.x and all updates released during the Term); (c)~all associated trade
+secrets, algorithms, training datasets, and technical documentation; and (d)~any improvements
+thereto made solely by Licensor during the Term.
+
+\textbf{1.4}\enspace \defterm{Licensed Products} means any product, service, or platform that
+incorporates, is derived from, or is enabled by the Licensed IP.
+
+\textbf{1.5}\enspace \defterm{Net Revenue} means gross revenue invoiced by Licensee and its
+sublicensees from sales of Licensed Products, less: (i)~sales, value-added, or excise taxes
+actually paid; (ii)~credit for bona fide returns; and (iii)~documented shipping and insurance
+costs separately stated on invoices.
+
+\textbf{1.6}\enspace \defterm{Territory} means the member states of the European Economic Area
+and the United Kingdom of Great Britain and Northern Ireland.
+
+\textbf{1.7}\enspace \defterm{Term} means the period commencing on the Effective Date and
+expiring five (5)~years thereafter, unless earlier terminated pursuant to Section~10.
+\end{tcolorbox}
+
+% ══════════════════════════════════════════════════════════════════════════════
+\section{Grant of License}
+% ══════════════════════════════════════════════════════════════════════════════
+
+\textbf{2.1\enspace Exclusive License.}\enspace Subject to the terms and conditions hereof,
+Licensor hereby grants to Licensee an \textit{exclusive}, royalty-bearing, non-transferable
+license within the Territory to: (a)~make, have made, use, sell, offer for sale, and import
+Licensed Products; (b)~reproduce and distribute the NeuronX Inference Engine in object-code form
+as embedded within Licensed Products; and (c)~prepare derivative works of the documentation
+solely for internal and end-user purposes.
+
+\textbf{2.2\enspace Sublicensing.}\enspace Licensee may sublicense its rights under Section~2.1
+solely to Affiliates and to authorized channel partners approved in writing by Licensor.
+Each sublicense shall be subject to terms no less restrictive than those herein, and Licensee
+shall remain primarily liable for any breach by any sublicensee.
+
+\textbf{2.3\enspace Reservation of Rights.}\enspace Licensor retains all rights not expressly
+granted, including the right to exploit the Licensed IP outside the Territory and to conduct
+internal research and development. No implied licenses are granted.
+
+\textbf{2.4\enspace Open-Source Restrictions.}\enspace Licensee shall not use the Licensed IP
+in any manner that would cause it to become subject to any open-source or copyleft license
+(including any version of the GNU GPL, LGPL, AGPL, or EUPL) without Licensor's prior written
+consent.
+
+% ══════════════════════════════════════════════════════════════════════════════
+\section{Financial Terms}
+% ══════════════════════════════════════════════════════════════════════════════
+
+\textbf{3.1\enspace Upfront License Fee.}\enspace Licensee shall pay Licensor a non-refundable
+upfront fee of \textbf{EUR~750{,}000} within thirty (30)~days of the Effective Date.
+
+\textbf{3.2\enspace Running Royalties.}\enspace Licensee shall pay royalties on Net Revenue
+from Licensed Products as follows:
+
+\vspace{6pt}
+\noindent
+\begin{tabularx}{\textwidth}{>{\bfseries\color{NexaNavy}}l X >{\bfseries\color{NexaGold}}r}
+  \toprule
+  \rowcolor{NexaNavy}
+  \multicolumn{1}{l}{\color{white}\textbf{Tier}} &
+  \color{white}\textbf{Annual Net Revenue Band (EUR)} &
+  \color{white}\textbf{Royalty Rate} \\
+  \midrule
+  Tier 1 & Up to EUR~5{,}000{,}000 & 6.0\% \\[2pt]
+  \rowcolor{NexaIce}
+  Tier 2 & EUR~5{,}000{,}001 -- EUR~20{,}000{,}000 & 4.5\% \\[2pt]
+  Tier 3 & EUR~20{,}000{,}001 -- EUR~50{,}000{,}000 & 3.0\% \\[2pt]
+  \rowcolor{NexaIce}
+  Tier 4 & Above EUR~50{,}000{,}000 & 2.0\% \\
+  \bottomrule
+\end{tabularx}
+
+\vspace{8pt}
+
+\textbf{3.3\enspace Annual Minimum.}\enspace Beginning in Contract Year~2, Licensee guarantees
+annual minimum royalties of \textbf{EUR~200{,}000}. If actual royalties fall short, Licensee
+shall pay the shortfall within forty-five (45)~days after year-end.
+
+\textbf{3.4\enspace Milestone Payments.}\enspace Licensee shall pay the following one-time
+milestone payments to Licensor:
+
+\vspace{6pt}
+\noindent
+\begin{tabularx}{\textwidth}{X >{\bfseries}r}
+  \toprule
+  \rowcolor{NexaNavy}
+  \color{white}\textbf{Milestone Event} & \color{white}\textbf{Payment (EUR)} \\
+  \midrule
+  First commercial sale of a Licensed Product & 100{,}000 \\[2pt]
+  \rowcolor{NexaIce}
+  Cumulative Net Revenue exceeds EUR~10{,}000{,}000 & 250{,}000 \\[2pt]
+  Regulatory approval in any EEA jurisdiction & 150{,}000 \\[2pt]
+  \rowcolor{NexaIce}
+  CE marking of a Licensed Product & 75{,}000 \\
+  \bottomrule
+\end{tabularx}
+
+\vspace{8pt}
+
+\textbf{3.5\enspace Payment Terms.}\enspace Royalty reports and payments are due quarterly,
+within thirty (30)~days after the close of each calendar quarter. All sums are in Euros and
+shall be remitted by wire transfer free of bank charges to Licensor's designated account.
+Late payments accrue interest at the three-month EURIBOR rate plus \textbf{4\%} per annum.
+
+\textbf{3.6\enspace Taxes.}\enspace Each party is responsible for its own income taxes.
+Withholding taxes, if any, shall be borne by Licensee and grossed up so that Licensor receives
+the full contracted amount net of withholding.
+
+% ══════════════════════════════════════════════════════════════════════════════
+\section{Intellectual Property Ownership and Improvements}
+% ══════════════════════════════════════════════════════════════════════════════
+
+\textbf{4.1\enspace Ownership.}\enspace As between the parties, Licensor owns and shall
+continue to own all right, title, and interest in and to the Licensed IP, including all
+patents, copyrights, trade secrets, and other proprietary rights subsisting therein.
+
+\textbf{4.2\enspace Licensee Improvements.}\enspace Any improvement, modification, or
+derivative work of the Licensed IP created solely by Licensee's employees (\defterm{Licensee
+Improvement}) shall be owned by Licensee; provided, however, that Licensee hereby grants
+Licensor a non-exclusive, worldwide, royalty-free, irrevocable license to all Licensee
+Improvements.
+
+\textbf{4.3\enspace Joint Developments.}\enspace Improvements created jointly by employees of
+both parties shall be jointly owned. Each party may exploit joint developments without
+accounting to the other, except that neither party may license joint developments to third
+parties without the other's prior written consent.
+
+\textbf{4.4\enspace Patent Prosecution.}\enspace Licensor shall have the first right to
+prosecute, maintain, and enforce the Licensed Patents. If Licensor elects not to act within
+sixty (60)~days of written notice of a potential infringement, Licensee may do so at its own
+cost, and any recovery shall be shared equally after deduction of costs.
+
+% ══════════════════════════════════════════════════════════════════════════════
+\section{Confidentiality}
+% ══════════════════════════════════════════════════════════════════════════════
+
+\textbf{5.1\enspace Obligations.}\enspace Each party (\defterm{Receiving Party}) agrees to
+hold all non-public information disclosed by the other party (\defterm{Disclosing Party})
+in strict confidence, to use it solely to exercise rights or fulfill obligations under this
+Agreement, and not to disclose it to any third party without prior written consent of the
+Disclosing Party.
+
+\textbf{5.2\enspace Exclusions.}\enspace Confidentiality obligations do not apply to
+information that: (a)~is or becomes publicly available through no fault of the Receiving Party;
+(b)~was rightfully known before disclosure; (c)~is received from a third party without
+restriction; or (d)~is required to be disclosed by law or court order, provided prompt written
+notice is given to the Disclosing Party.
+
+\textbf{5.3\enspace Duration.}\enspace Confidentiality obligations shall survive expiration or
+termination of this Agreement for a period of \textbf{seven (7)~years}.
+
+% ══════════════════════════════════════════════════════════════════════════════
+\section{Representations and Warranties}
+% ══════════════════════════════════════════════════════════════════════════════
+
+\textbf{6.1\enspace Licensor Warranties.}\enspace Licensor represents and warrants that:
+(a)~it has the full legal right and authority to grant the licenses herein; (b)~to the best
+of its knowledge, the Licensed IP does not infringe any third-party intellectual property
+right as of the Effective Date; (c)~all patents listed in Schedule~A are in good standing;
+and (d)~there are no pending or threatened claims challenging Licensor's ownership of the
+Licensed IP.
+
+\textbf{6.2\enspace Licensee Warranties.}\enspace Licensee represents and warrants that:
+(a)~it has the authority to enter into and perform its obligations under this Agreement;
+(b)~it will comply with all applicable laws and regulations in the Territory; and (c)~it will
+not challenge the validity of any Licensed Patent during the Term or for two (2)~years
+thereafter.
+
+\textbf{6.3\enspace Disclaimer.}\enspace EXCEPT AS EXPRESSLY SET FORTH IN SECTION~6.1,
+THE LICENSED IP IS PROVIDED \defterm{AS IS}. LICENSOR DISCLAIMS ALL WARRANTIES, EXPRESS OR
+IMPLIED, INCLUDING ANY WARRANTY OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR
+NON-INFRINGEMENT.
+
+% ══════════════════════════════════════════════════════════════════════════════
+\section{Indemnification}
+% ══════════════════════════════════════════════════════════════════════════════
+
+\textbf{7.1\enspace By Licensor.}\enspace Licensor shall indemnify, defend, and hold harmless
+Licensee and its officers, directors, employees, and agents from any third-party claim that the
+Licensed IP, as delivered and used in accordance with this Agreement, infringes any valid
+patent, copyright, or trade secret right in the Territory.
+
+\textbf{7.2\enspace By Licensee.}\enspace Licensee shall indemnify, defend, and hold harmless
+Licensor from any third-party claim arising out of: (a)~Licensee's modification of the
+Licensed IP; (b)~combination of the Licensed IP with third-party products not approved by
+Licensor; or (c)~Licensee's breach of this Agreement.
+
+\textbf{7.3\enspace Procedure.}\enspace The indemnified party shall: (i)~give prompt written
+notice of the claim; (ii)~grant the indemnifying party sole control of the defense and
+settlement; and (iii)~provide reasonable cooperation at the indemnifying party's expense.
+
+% ══════════════════════════════════════════════════════════════════════════════
+\section{Limitation of Liability}
+% ══════════════════════════════════════════════════════════════════════════════
+
+\begin{tcolorbox}[warnstyle]
+\small\color{NexaText}
+\textbf{8.1}\enspace IN NO EVENT SHALL EITHER PARTY BE LIABLE FOR INDIRECT, INCIDENTAL,
+SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES, INCLUDING LOST PROFITS, EVEN IF ADVISED OF
+THE POSSIBILITY THEREOF.
+
+\textbf{8.2}\enspace EACH PARTY'S AGGREGATE LIABILITY UNDER THIS AGREEMENT SHALL NOT EXCEED
+THE GREATER OF: (A)~THE TOTAL FEES AND ROYALTIES PAID OR PAYABLE BY LICENSEE IN THE
+TWELVE (12)~MONTHS PRECEDING THE CLAIM; OR (B)~EUR~2{,}500{,}000.
+
+\textbf{8.3}\enspace The foregoing limitations shall not apply to: (i)~death or personal
+injury caused by negligence; (ii)~fraud or fraudulent misrepresentation; or (iii)~any liability
+that cannot be limited by applicable law.
+\end{tcolorbox}
+
+% ══════════════════════════════════════════════════════════════════════════════
+\section{Audit Rights}
+% ══════════════════════════════════════════════════════════════════════════════
+
+\textbf{9.1}\enspace Licensee shall maintain complete and accurate books and records relating
+to Net Revenue and royalty calculations for at least \textbf{three (3)~years} after the
+relevant reporting period.
+
+\textbf{9.2}\enspace Licensor may, upon thirty (30)~days' prior written notice, appoint an
+independent certified public accountant to audit Licensee's records, no more than once per
+Contract Year. Any underpayment discovered shall be remitted within twenty (20)~business days.
+If the audit reveals an underpayment of more than \textbf{5\%}, Licensee shall bear the
+full cost of the audit.
+
+% ══════════════════════════════════════════════════════════════════════════════
+\section{Term and Termination}
+% ══════════════════════════════════════════════════════════════════════════════
+
+\textbf{10.1\enspace Expiration.}\enspace This Agreement expires at the end of the Term unless
+renewed by mutual written agreement not less than ninety (90)~days prior to expiration.
+
+\textbf{10.2\enspace Termination for Cause.}\enspace Either party may terminate this Agreement
+by written notice if: (a)~the other party materially breaches this Agreement and fails to
+cure within sixty (60)~days of written notice; or (b)~the other party becomes insolvent,
+makes an assignment for the benefit of creditors, or becomes subject to insolvency proceedings.
+
+\textbf{10.3\enspace Termination for Patent Challenge.}\enspace Licensor may terminate this
+Agreement immediately upon written notice if Licensee or any Affiliate directly or indirectly
+challenges the validity, enforceability, or ownership of any Licensed Patent.
+
+\textbf{10.4\enspace Effect of Termination.}\enspace Upon expiration or termination:
+(a)~all licenses granted herein immediately cease; (b)~Licensee shall cease all use and
+distribution of the Licensed IP within ninety (90)~days; (c)~each party shall return or
+certifiably destroy the other's confidential information; and (d)~all accrued payment
+obligations survive.
+
+% ══════════════════════════════════════════════════════════════════════════════
+\section{Governing Law and Dispute Resolution}
+% ══════════════════════════════════════════════════════════════════════════════
+
+\textbf{11.1\enspace Governing Law.}\enspace This Agreement shall be governed by and
+construed in accordance with the laws of the State of New York, USA, without regard to its
+conflict-of-law principles, except that issues of patent validity and ownership shall be
+governed by the law of the relevant jurisdiction.
+
+\textbf{11.2\enspace Arbitration.}\enspace Any dispute, controversy, or claim arising out of
+or in connection with this Agreement shall be finally resolved by binding arbitration under
+the Rules of the International Chamber of Commerce (\textbf{ICC}), with the seat of arbitration
+in Geneva, Switzerland. The arbitral tribunal shall consist of three (3)~arbitrators appointed
+in accordance with ICC Rules. The language of the arbitration shall be English.
+
+\textbf{11.3\enspace Injunctive Relief.}\enspace Notwithstanding Section~11.2, either party
+may seek interim injunctive or other equitable relief from any court of competent jurisdiction
+to prevent irreparable harm pending the constitution of the arbitral tribunal.
+
+% ══════════════════════════════════════════════════════════════════════════════
+\section{General Provisions}
+% ══════════════════════════════════════════════════════════════════════════════
+
+\textbf{12.1\enspace Entire Agreement.}\enspace This Agreement, together with all Schedules
+attached hereto, constitutes the entire agreement between the parties with respect to its
+subject matter and supersedes all prior negotiations, representations, and understandings.
+
+\textbf{12.2\enspace Amendments.}\enspace No amendment to this Agreement shall be effective
+unless made in writing and signed by duly authorized representatives of both parties.
+
+\textbf{12.3\enspace Waiver.}\enspace Failure to enforce any provision shall not constitute a
+waiver of future enforcement of that or any other provision.
+
+\textbf{12.4\enspace Severability.}\enspace If any provision is found invalid or unenforceable,
+the remaining provisions shall continue in full force and effect.
+
+\textbf{12.5\enspace Assignment.}\enspace Licensee may not assign this Agreement or any rights
+hereunder without Licensor's prior written consent, which shall not be unreasonably withheld.
+Licensor may assign this Agreement in connection with a merger, acquisition, or sale of all or
+substantially all of its assets relating to the Licensed IP.
+
+\textbf{12.6\enspace Notices.}\enspace All notices shall be in writing and delivered by
+overnight courier, email with delivery confirmation, or certified mail to the addresses
+set forth on page~1.
+
+\textbf{12.7\enspace Force Majeure.}\enspace Neither party shall be liable for delays or
+failures in performance resulting from acts beyond its reasonable control, including natural
+disasters, pandemics, governmental actions, or failures of third-party infrastructure.
+The affected party shall give prompt notice and use commercially reasonable efforts to resume
+performance.
+
+\textbf{12.8\enspace Counterparts.}\enspace This Agreement may be executed in counterparts,
+including electronic signatures, each of which shall constitute an original, and all of which
+together shall constitute one and the same instrument.
+
+\vspace{20pt}
+
+% ── Signature block ───────────────────────────────────────────────────────────
+\begin{tcolorbox}[
+  enhanced,
+  colback=NexaNavy,
+  colframe=NexaNavy,
+  arc=4pt,
+  boxrule=0pt,
+  left=0pt, right=0pt, top=0pt, bottom=0pt
+]
+  \begin{center}
+    \color{white}\bfseries\large IN WITNESS WHEREOF
+  \end{center}
+  \vspace{2pt}
+  \begin{center}
+    \color{NexaRule}\small
+    The parties have caused this Agreement to be executed by their duly authorized
+    representatives as of the date first written above.
+  \end{center}
+\end{tcolorbox}
+
+\vspace{14pt}
+
+\noindent
+\begin{minipage}[t]{0.46\textwidth}
+\begin{tcolorbox}[
+  enhanced,
+  colback=NexaLight,
+  colframe=NexaNavy,
+  boxrule=0.8pt,
+  arc=3pt,
+  left=10pt, right=10pt, top=10pt, bottom=10pt
+]
+  {\small\bfseries\color{NexaNavy}NEXA TECHNOLOGIES, INC.}\\[2pt]
+  {\small\color{NexaMuted}(``Licensor'')}
+
+  \vspace{14pt}
+  \textbf{Signature:}\enspace\rule{0.55\textwidth}{0.4pt}
+
+  \vspace{10pt}
+  \textbf{Name:}\enspace Elaine Hartwell
+
+  \vspace{6pt}
+  \textbf{Title:}\enspace Chief Legal Officer
+
+  \vspace{6pt}
+  \textbf{Date:}\enspace September 12, 2025
+
+  \vspace{6pt}
+  \textbf{Email:}\enspace \texttt{e.hartwell@nexatech.io}
+\end{tcolorbox}
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.46\textwidth}
+\begin{tcolorbox}[
+  enhanced,
+  colback=NexaLight,
+  colframe=NexaSlate,
+  boxrule=0.8pt,
+  arc=3pt,
+  left=10pt, right=10pt, top=10pt, bottom=10pt
+]
+  {\small\bfseries\color{NexaNavy}SYNAPSE DYNAMICS GMBH}\\[2pt]
+  {\small\color{NexaMuted}(``Licensee'')}
+
+  \vspace{14pt}
+  \textbf{Signature:}\enspace\rule{0.55\textwidth}{0.4pt}
+
+  \vspace{10pt}
+  \textbf{Name:}\enspace Marcus Voigt
+
+  \vspace{6pt}
+  \textbf{Title:}\enspace Chief Executive Officer
+
+  \vspace{6pt}
+  \textbf{Date:}\enspace September 12, 2025
+
+  \vspace{6pt}
+  \textbf{Email:}\enspace \texttt{m.voigt@synapsedyn.de}
+\end{tcolorbox}
+\end{minipage}
+
+% ══════════════════════════════════════════════════════════════════════════════
+%  SCHEDULE A — LICENSED PATENTS
+% ══════════════════════════════════════════════════════════════════════════════
+\newpage
+\section*{\color{NexaNavy}Schedule A — Licensed Patents and Software}
+
+\begin{tcolorbox}[
+  enhanced,
+  colback=NexaLight,
+  colframe=NexaGold,
+  boxrule=1.2pt,
+  arc=3pt,
+  title={\faFile\enspace Patent Portfolio — NeuronX Inference Engine},
+  fonttitle=\bfseries\color{NexaNavy},
+  coltitle=NexaNavy,
+  attach boxed title to top left={yshift=-2mm, xshift=8mm},
+  boxed title style={colback=NexaGold!20, colframe=NexaGold, arc=2pt},
+  left=8pt, right=8pt, top=12pt, bottom=8pt
+]
+\vspace{4pt}
+\noindent
+\begin{tabularx}{\linewidth}{l l >{\RaggedRight}X l}
+  \toprule
+  \rowcolor{NexaNavy}
+  \color{white}\textbf{Ref.} &
+  \color{white}\textbf{App./Patent No.} &
+  \color{white}\textbf{Title} &
+  \color{white}\textbf{Status} \\
+  \midrule
+  A-01 & US 11,423,851 B2 & Adaptive Sparse Attention for Low-Latency Inference & Granted \\[2pt]
+  \rowcolor{NexaIce}
+  A-02 & US 11,558,104 B1 & Hardware-Aware Quantization with Dynamic Bit Allocation & Granted \\[2pt]
+  A-03 & EP 4 102 987 A1 & Neural Graph Compiler with Cross-Platform Portability & Pending \\[2pt]
+  \rowcolor{NexaIce}
+  A-04 & US 2024/0123456 A1 & Federated Fine-Tuning with Differential Privacy Guarantees & Pending \\[2pt]
+  A-05 & WO 2024/098712 & Efficient Transformer Caching via Hierarchical Memory Maps & Pending \\[2pt]
+  \rowcolor{NexaIce}
+  A-06 & US 11,301,027 B2 & Runtime Kernel Fusion for Edge Inference Accelerators & Granted \\
+  \bottomrule
+\end{tabularx}
+\end{tcolorbox}
+
+\vspace{12pt}
+
+\noindent
+\begin{minipage}[t]{0.475\textwidth}
+\begin{tcolorbox}[
+  enhanced,
+  colback=NexaLight,
+  colframe=NexaSlate,
+  boxrule=0.8pt,
+  arc=3pt,
+  title={\faLock\enspace Licensed Software},
+  fonttitle=\bfseries\color{NexaNavy},
+  coltitle=NexaNavy,
+  attach boxed title to top left={yshift=-2mm, xshift=8mm},
+  boxed title style={colback=NexaSlate!15, colframe=NexaSlate, arc=2pt},
+  left=8pt, right=8pt, top=12pt, bottom=8pt
+]
+\small
+\begin{itemize}[leftmargin=1.2em, itemsep=3pt]
+  \item \textbf{NeuronX Inference Engine v3.x}\\
+        Binary and source form, C++20 / CUDA 12
+  \item \textbf{NeuronX Model Optimizer}\\
+        Python 3.11 package, Apache-2.0 with CLA
+  \item \textbf{NeuronX Benchmarking Suite}\\
+        Internal toolchain; object-code delivery only
+  \item \textbf{NeuronX Developer Portal SDK}\\
+        REST API client libraries (Python, Go, TypeScript)
+\end{itemize}
+\end{tcolorbox}
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.475\textwidth}
+\begin{tcolorbox}[
+  enhanced,
+  colback=NexaLight,
+  colframe=NexaSlate,
+  boxrule=0.8pt,
+  arc=3pt,
+  title={\faBook\enspace Know-How and Documentation},
+  fonttitle=\bfseries\color{NexaNavy},
+  coltitle=NexaNavy,
+  attach boxed title to top left={yshift=-2mm, xshift=8mm},
+  boxed title style={colback=NexaSlate!15, colframe=NexaSlate, arc=2pt},
+  left=8pt, right=8pt, top=12pt, bottom=8pt
+]
+\small
+\begin{itemize}[leftmargin=1.2em, itemsep=3pt]
+  \item Architecture white paper and design specifications
+  \item Calibration datasets (ImageNet-NX-4K, SpecBench-2025)
+  \item Integration guides and API reference manuals
+  \item Benchmark methodology and reproducibility scripts
+  \item Training recipes for on-device fine-tuning workflows
+  \item Regression and validation test suites
+\end{itemize}
+\end{tcolorbox}
+\end{minipage}
+
+\vspace{20pt}
+
+% ── Schedule B — Approved Jurisdictions ───────────────────────────────────────
+\section*{\color{NexaNavy}Schedule B — Approved Sublicensee Jurisdictions}
+
+The following jurisdictions within the Territory are pre-approved for sublicensee operations:
+
+\vspace{6pt}
+\noindent
+\begin{tabularx}{\textwidth}{>{\bfseries}l X X}
+  \toprule
+  \rowcolor{NexaNavy}
+  \color{white}\textbf{Region} & \color{white}\textbf{Countries} &
+  \color{white}\textbf{Special Conditions} \\
+  \midrule
+  Western Europe &
+    Germany, France, Netherlands, Belgium, Austria, Switzerland (associated) &
+    No additional approval required \\[4pt]
+  \rowcolor{NexaIce}
+  Nordic Region &
+    Sweden, Norway (EEA), Denmark, Finland &
+    Export control compliance certification required \\[4pt]
+  Southern Europe &
+    Italy, Spain, Portugal &
+    Local data-residency addendum required \\[4pt]
+  \rowcolor{NexaIce}
+  CEE Region &
+    Poland, Czech Republic, Hungary, Romania &
+    Sublicensee must maintain ISO 27001 certification \\[4pt]
+  United Kingdom &
+    England, Scotland, Wales, Northern Ireland &
+    UK GDPR addendum required per Schedule~C \\
+  \bottomrule
+\end{tabularx}
+
+\vspace{20pt}
+
+% ── Execution footer ──────────────────────────────────────────────────────────
+\begin{tcolorbox}[
+  enhanced,
+  colback=NexaNavy!4,
+  colframe=NexaGold,
+  boxrule=1pt,
+  arc=3pt,
+  left=12pt, right=12pt, top=10pt, bottom=10pt
+]
+\small\color{NexaText}
+\textbf{\color{NexaNavy}\faCalendar\enspace Key Dates Summary}
+
+\vspace{6pt}
+\begin{tabularx}{\linewidth}{l X}
+  \textbf{Effective Date} & September 12, 2025 \\[3pt]
+  \textbf{Upfront Fee Due} & October 12, 2025 (30 days after Effective Date) \\[3pt]
+  \textbf{First Royalty Report} & January 30, 2026 (Q4 2025 period) \\[3pt]
+  \textbf{First Annual Minimum Review} & January 31, 2027 (Contract Year 2 close) \\[3pt]
+  \textbf{Agreement Expiry} & September 11, 2030 (unless renewed) \\[3pt]
+  \textbf{Renewal Notice Deadline} & June 13, 2030 (90 days before expiry) \\
+\end{tabularx}
+\end{tcolorbox}
+
+\vspace{14pt}
+
+\begin{center}
+  \small\color{NexaMuted}
+  \textit{This Agreement was prepared by the Legal Department of Nexa Technologies, Inc.}\\[2pt]
+  \textit{Document reference:\ NTI-2025-IPL-0047 \textbullet{} Version 1.0 (Execution Copy)}\\[4pt]
+  {\color{NexaRule}\rule{0.5\textwidth}{0.4pt}}\\[4pt]
+  \textit{All rights reserved. Unauthorized reproduction or distribution is prohibited.}
+\end{center}
+
+\end{document}

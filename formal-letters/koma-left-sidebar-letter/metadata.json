@@ -1,0 +1,8 @@
+{
+  "name": "Modern KOMA Letter with Left Sidebar",
+  "compiler": "pdflatex",
+  "description": "Modern KOMA Letter with Left Sidebar LaTeX template \u2014 modern koma letter with left sidebar latex template. Elegant, compile-tested, editable online at letx.app.",
+  "author": "LetX",
+  "category": "formal-letters",
+  "license": "MIT"
+}

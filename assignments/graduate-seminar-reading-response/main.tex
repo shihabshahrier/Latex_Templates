@@ -1,0 +1,318 @@
+\documentclass[11pt, a4paper, english]{scrartcl}
+
+% --- Language & Encoding ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{babel}
+
+% --- Fonts & Typography ---
+\usepackage{charter}
+\usepackage[scaled=0.92]{helvet}
+\usepackage{inconsolata}
+\usepackage{microtype}
+
+% --- Page Geometry ---
+\usepackage[
+  top=2.2cm,
+  bottom=2.5cm,
+  left=2.3cm,
+  right=2.3cm,
+  headheight=14pt
+]{geometry}
+
+% --- Colors ---
+\usepackage[table]{xcolor}
+\definecolor{NavyBlue}{RGB}{20,40,75}
+\definecolor{TealAccent}{RGB}{0,120,130}
+\definecolor{WarmGold}{RGB}{185,125,40}
+\definecolor{DarkSlate}{RGB}{45,55,72}
+\definecolor{LightBg}{RGB}{246,248,251}
+\definecolor{BorderGrey}{RGB}{220,225,232}
+\definecolor{AlertRed}{RGB}{160,40,40}
+
+% --- Headers & Footers ---
+\usepackage{scrlayer-scrpage}
+\pagestyle{scrheadings}
+\clearscrheadings
+\ihead{\footnotesize\sffamily\color{DarkSlate}CS 8803: Advanced Distributed Systems \textbar{} Seminar Response}
+\ohead{\footnotesize\sffamily\color{DarkSlate}Week 7: Fault-Tolerant Consensus}
+\cfoot{\pagemark}
+\addtokomafont{pagefoot}{\small\sffamily\color{DarkSlate}}
+\KOMAoptions{headsepline=0.5pt}
+\addtokomafont{headsepline}{\color{BorderGrey}}
+
+% --- Math & Tables ---
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\definecolor{TableHeadBg}{RGB}{235,240,248}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{fontawesome5}
+
+% --- TikZ & Graphics ---
+\usepackage{tikz}
+\usetikzlibrary{calc,positioning,shapes.geometric}
+
+% --- tcolorbox ---
+\usepackage[many]{tcolorbox}
+\tcbuselibrary{skins,breakable}
+
+% --- Hyperlinks ---
+\usepackage[
+  colorlinks=true,
+  linkcolor=TealAccent,
+  citecolor=TealAccent,
+  urlcolor=TealAccent
+]{hyperref}
+
+% --- Section Headings Styling (KOMA-Script Native) ---
+\setkomafont{section}{\normalfont\Large\sffamily\bfseries\color{NavyBlue}}
+\setkomafont{subsection}{\normalfont\large\sffamily\bfseries\color{TealAccent}}
+
+\makeatletter
+\renewcommand*{\sectionlinesformat}[4]{%
+  \@hangfrom{\hskip #2#3}{#4}%
+  \Ifstr{#1}{section}{\par\nobreak\vspace{2pt}{\color{TealAccent}\hrule height 0.8pt}}{}%
+}
+\makeatother
+
+% --- Custom tcolorbox Styles ---
+\tcbset{
+  paperbox/.style={
+    enhanced,
+    colback=LightBg,
+    colframe=NavyBlue,
+    arc=3pt,
+    boxrule=0.8pt,
+    left=10pt,
+    right=10pt,
+    top=8pt,
+    bottom=8pt,
+    fonttitle=\bfseries\sffamily\color{white},
+    coltitle=white,
+    colbacktitle=NavyBlue,
+    attach boxed title to top left={xshift=10pt, yshift=-10pt},
+    boxed title style={arc=2pt, boxrule=0pt, top=4pt, bottom=4pt, left=8pt, right=8pt}
+  },
+  promptbox/.style={
+    enhanced,
+    colback=white,
+    colframe=TealAccent,
+    arc=3pt,
+    boxrule=1pt,
+    left=12pt,
+    right=12pt,
+    top=8pt,
+    bottom=8pt,
+    drop shadow=black!10
+  },
+  takeawaybox/.style={
+    enhanced,
+    colback=LightBg,
+    colframe=WarmGold,
+    arc=2pt,
+    boxrule=0.6pt,
+    borderline west={3pt}{0pt}{WarmGold},
+    left=10pt,
+    right=10pt,
+    top=8pt,
+    bottom=8pt
+  }
+}
+
+\begin{document}
+
+% ==================== HEADER BLOCK ====================
+\begin{tcolorbox}[
+  enhanced,
+  colback=NavyBlue,
+  colframe=NavyBlue,
+  arc=4pt,
+  top=14pt,
+  bottom=14pt,
+  left=16pt,
+  right=16pt
+]
+\begin{minipage}[t]{0.62\textwidth}
+  {\color{WarmGold}\sffamily\bfseries\footnotesize GRADUATE SEMINAR READING RESPONSE \textbar{} WEEK 7}\\[4pt]
+  {\color{white}\sffamily\huge\bfseries High-Latency Fault Tolerance \& Consensus Protocols}\\[6pt]
+  {\color{LightBg}\sffamily\small CS 8803: Advanced Distributed Infrastructure \& Network Resilience}
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.34\textwidth}
+  \color{white}\sffamily\small
+  \begin{tabular}{rl}
+    \textbf{Student:} & Alex Sterling \\
+    \textbf{NID:} & N-19842091 \\
+    \textbf{Instructor:} & Prof. Evelyn Vance \\
+    \textbf{Date:} & October 24, 2026 \\
+    \textbf{Track:} & Distributed Systems
+  \end{tabular}
+\end{minipage}
+\end{tcolorbox}
+
+\vspace{0.5em}
+
+% ==================== SECTION 1: ASSIGNED READINGS ====================
+\section{Assigned Readings \& Metadata}
+
+\begin{tcolorbox}[paperbox, title={\faBook\ \ Reading Portfolio}]
+\small
+\begin{tabularx}{\linewidth}{@{}l X l l@{}}
+  \textbf{Ref} & \textbf{Title \& Authors} & \textbf{Venue / Year} & \textbf{Primary Focus} \\
+  \toprule
+  \textbf{\lbrack P1\rbrack} & \textbf{Speculative State Replication in Partial Asynchrony}\newline \emph{Marcus Thorne, Elena Rostova, and Julian Sterling} & ACM TOCS (2024) & Consensus Latency \\
+  \midrule
+  \textbf{\lbrack P2\rbrack} & \textbf{Dynamic Quorum Reconfiguration under Byzantine Churn}\newline \emph{Sarah Jenkins and David K. Chen} & OSDI '25 & Adaptive Membership \\
+  \midrule
+  \textbf{\lbrack P3\rbrack} & \textbf{Practical Bounded Memory Footprints for Geo-Raft}\newline \emph{Nexa Research Group (Tech Report \#402)} & Tech Report (2026) & Storage Overhead \\
+  \bottomrule
+\end{tabularx}
+\end{tcolorbox}
+
+\begin{tcolorbox}[takeawaybox]
+\sffamily\small
+\textbf{\faLightbulb\ Executive Summary of Week 7 Scope:}
+This week's readings examine the tension between network latency and safety guarantees in fault-tolerant replicated state machines. \textbf{\lbrack P1\rbrack} introduces optimistic fast-path execution reducing round-trips from $3 \rightarrow 1$ under zero-contention scenarios. \textbf{\lbrack P2\rbrack} relaxes static node set assumptions by formalizing epoch-based dynamic reconfiguration under active adversarial churn. \textbf{\lbrack P3\rbrack} addresses log compaction memory explosion in multi-region deployments managed by Synapse Infrastructure Engine.
+\end{tcolorbox}
+
+% ==================== SECTION 2: SYNTHESIS & COMPARATIVE ANALYSIS ====================
+\section{Core Synthesis \& Comparative Analysis}
+
+\subsection{Architectural Paradigms: Optimistic vs. Pessimistic Consensus}
+
+The central thesis connecting \textbf{\lbrack P1\rbrack} and \textbf{\lbrack P2\rbrack} revolves around the tradeoff between fast-path speculation and worst-case protocol fallback. Traditional Multi-Paxos and Raft enforce structural ordering prior to state application. Thorne et al. (\textbf{\lbrack P1\rbrack}) break this barrier by allowing replicas to speculatively execute incoming request batches provided a supermajority ($Q_{\text{fast}} = \lceil \frac{3f+1}{2} \rceil$) of nodes agree on the sequence vector.
+
+Mathematically, while classical PBFT requires $3f+1$ total nodes to tolerate $f$ Byzantine faults with 2-phase commit (2 message round-trips), \textbf{\lbrack P1\rbrack} achieves single round-trip consensus whenever the network latency ratio satisfies:
+\begin{equation}
+  \Delta_{\text{actual}} \le \frac{1}{2} \delta_{\text{estimated}} + \gamma_{\text{jitter}}
+\end{equation}
+where $\gamma_{\text{jitter}}$ represents the variance in inter-replica packet transit time across WAN links.
+
+\begin{table}[h]
+\centering
+\caption{\color{NavyBlue}\sffamily Comparative Matrix of Protocol Guarantees}
+\vspace{4pt}
+\small
+\begin{tabularx}{\linewidth}{@{} l X X X @{}}
+  \toprule
+  \rowcolor{TableHeadBg}
+  \textbf{Dimension} & \textbf{Thorne et al. \lbrack P1\rbrack} & \textbf{Jenkins \& Chen \lbrack P2\rbrack} & \textbf{Nexa Group \lbrack P3\rbrack} \\
+  \midrule
+  \textbf{Network Assumption} & Partial Asynchrony ($\text{GST}$) & Asynchronous WAN & Synchronous LAN / Edge \\
+  \textbf{Fault Model} & Crash-Recovery + Byzantine & Byzantine Churn ($f < n/3$) & Fail-Stop Only \\
+  \textbf{Commit Latency} & 1 RTT (Optimistic) / 3 RTT & 2 RTT + Epoch Sync & 2 RTT (Direct Log Stream) \\
+  \textbf{Reconfiguration} & Static Configuration & Epoch-based Dynamic Quorums & Joint Consensus (Raft) \\
+  \textbf{Memory Bound} & $O(N \cdot \text{Window})$ & $O(N \cdot \text{Epochs})$ & $O(\text{Active Snapshots})$ \\
+  \bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{Trade-offs in Dynamic Quorum Maintenance}
+
+Jenkins and Chen (\textbf{\lbrack P2\rbrack}) pick up where \textbf{\lbrack P1\rbrack} leaves off by addressing node departure and joining in WAN environments. While \textbf{\lbrack P1\rbrack} assumes a static universe of $N$ processes, real-world cloud infrastructures (such as Vertex Distributed Storage or Apex Engine) undergo constant maintenance, partition recovery, and spot instance terminations.
+
+The authors propose \emph{Epoch-Shift}, a mechanism that decouples state machine execution from membership agreement. Instead of stalling the consensus pipeline during reconfiguration, \textbf{\lbrack P2\rbrack} runs a lightweight parallel consensus instance to elect the epoch configuration $E_{k+1}$ while $E_k$ processes client payload writes. However, this approach exposes an interesting edge case: if $E_k$ and $E_{k+1}$ experience concurrent partitions, client requests can be committed in $E_k$ but omitted from the initial snapshot transferred to $E_{k+1}$.
+
+% ==================== SECTION 3: CRITICAL EVALUATION & WEAKNESSES ====================
+\section{Critical Evaluation \& Methodological Weaknesses}
+
+\begin{enumerate}[label={\sffamily\bfseries W\arabic*.}, leftmargin=2em]
+  \item \textbf{Unrealistic Asymmetry Assumptions in Thorne et al. \lbrack P1\rbrack:}\\{}
+  The paper evaluates speculative state replication over a controlled 5-region AWS deployment. However, their synthetic workload benchmark assumes symmetric link latencies between all leader-follower pairs. In production networks managed by Nimbus Cloud, cross-Atlantic latency exhibits significant jitter ($\sigma^2 > 45\text{ms}$). Under such variance, the fast-path condition ($Q_{\text{fast}}$) falls back to the slow-path in $38\%$ of trials, incurring a double-penalty of execution rollback and state repair.
+
+  \item \textbf{Unbounded State Growth during Reconfiguration Catch-up \lbrack P2\rbrack:}\\{}
+  Jenkins and Chen rely on sliding-window state checkpoints to onboard new quorum members in \textbf{\lbrack P2\rbrack}. When churn rates exceed $12\%$ per epoch, the delta log required to synchronize a joining node exceeds the snapshot buffer size. The paper fails to quantify the threshold at which memory exhaustion triggers cascading node evictions.
+
+  \item \textbf{Over-Reliance on Hardware Security Modules (HSM) in Nexa Tech Report \lbrack P3\rbrack:}\\{}
+  \textbf{\lbrack P3\rbrack} achieves impressive memory compaction numbers ($74\%$ reduction in RAM consumption) by offloading signature verification and log sequence hashing to dedicated TPM/HSM units. This assumption limits applicability in modern serverless environments (e.g., Meridian Edge Functions) where hardware enclave access is restricted or virtualization overhead negates throughput gains.
+\end{enumerate}
+
+% ==================== SECTION 4: SEMINAR DISCUSSION PROMPTS ====================
+\section{Discussion Questions \& Seminar Prompts}
+
+\begin{tcolorbox}[promptbox]
+\sffamily
+\textbf{\color{NavyBlue}\faQuestionCircle\ Prompt 1: Speculative Rollbacks vs. Storage Durability}
+\smallskip
+
+In \textbf{\lbrack P1\rbrack}, fast-path speculative execution modifies memory state before disk synchronization completes. If a power failure occurs simultaneously across $f+1$ nodes during an uncommitted speculative window, can state corruption be strictly isolated without invalidating non-volatile RAM logs? How would you design a recovery protocol that avoids replaying phantom operations?
+
+\begin{itemize}[label={\color{TealAccent}\small\faAngleRight}, leftmargin=1.2em, itemsep=2pt]
+  \item \emph{Key Angles:} NVRAM persistence guarantees, linearizability vs. sequential consistency, hardware costs.
+  \item \emph{Target Audience:} Distributed storage engineers and transaction processing specialists.
+\end{itemize}
+\end{tcolorbox}
+
+\vspace{0.4em}
+
+\begin{tcolorbox}[promptbox]
+\sffamily
+\textbf{\color{NavyBlue}\faQuestionCircle\ Prompt 2: Governance \& Security under High Churn Rates}
+\smallskip
+
+Jenkins and Chen (\textbf{\lbrack P2\rbrack}) argue that epoch transitions can occur as frequently as every 5 seconds under severe network volatility. Does this high re-configuration frequency open a novel attack vector where a malicious actor can orchestrate a Sybil attack by selectively delaying epoch ACK messages, thereby freezing the consensus membership indefinitely?
+
+\begin{itemize}[label={\color{TealAccent}\small\faAngleRight}, leftmargin=1.2em, itemsep=2pt]
+  \item \emph{Key Angles:} Adversarial network manipulation, protocol liveness vs. safety under active Denial of Service.
+  \item \emph{Target Audience:} Fault-tolerant protocol designers and security researchers.
+\end{itemize}
+\end{tcolorbox}
+
+\vspace{0.4em}
+
+\begin{tcolorbox}[promptbox]
+\sffamily
+\textbf{\color{NavyBlue}\faQuestionCircle\ Prompt 3: Real-World Viability of Hybrid Consensus Engines}
+\smallskip
+
+Comparing \textbf{\lbrack P1\rbrack} and \textbf{\lbrack P3\rbrack}, is it practical to construct a hybrid state machine engine that dynamically switches between speculative fast-paths during peak hours and compact storage-constrained Raft modes during batch maintenance windows? What metadata overhead would such runtime mode switching introduce?
+
+\begin{itemize}[label={\color{TealAccent}\small\faAngleRight}, leftmargin=1.2em, itemsep=2pt]
+  \item \emph{Key Angles:} Operational complexity, dynamic reconfiguration bugs, production maintainability.
+\end{itemize}
+\end{tcolorbox}
+
+% ==================== SECTION 5: FUTURE RESEARCH DIRECTIONS ====================
+\section{Synthesis of Future Research Directions}
+
+Based on this week's papers, three promising research avenues emerge for potential term projects or thesis work:
+
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}[node distance=0.8cm, auto, >=stealth]
+  \node [draw=NavyBlue, fill=LightBg, rounded corners=3pt, inner sep=6pt, text width=3.6cm, align=center, font=\sffamily\small] (spec)
+    {\textbf{Speculative WAN Consensus}\\(\textbf{\lbrack P1\rbrack} Extension)};
+  \node [draw=TealAccent, fill=LightBg, rounded corners=3pt, inner sep=6pt, text width=3.6cm, align=center, font=\sffamily\small, right=0.6cm of spec] (dynamic)
+    {\textbf{Zero-Trust Dynamic Quorums}\\(\textbf{\lbrack P2\rbrack} Extension)};
+  \node [draw=WarmGold, fill=LightBg, rounded corners=3pt, inner sep=6pt, text width=3.6cm, align=center, font=\sffamily\small, right=0.6cm of dynamic] (compaction)
+    {\textbf{Hardware-Assisted Compaction}\\(\textbf{\lbrack P3\rbrack} Extension)};
+
+  \draw[->, thick, NavyBlue] (spec) -- node[above, font=\sffamily\tiny\color{DarkSlate}]{Epoch Handshake} (dynamic);
+  \draw[->, thick, TealAccent] (dynamic) -- node[above, font=\sffamily\tiny\color{DarkSlate}]{Log Pruning} (compaction);
+\end{tikzpicture}
+\caption{\color{NavyBlue}\sffamily Interconnection of Future Research Tracks}
+\end{figure}
+
+\begin{description}[font=\sffamily\bfseries\color{TealAccent}, leftmargin=1.5em]
+  \item[Track A: Machine-Learned Latency Predictors for Speculative Paths]
+  Rather than using static threshold estimates $\delta_{\text{estimated}}$ as in \textbf{\lbrack P1\rbrack}, replace the fast-path trigger with a lightweight online neural predictor that forecasts link congestion based on real-time telemetry from Vertex edge routers.
+
+  \item[Track B: Formally Verified Reconfiguration in TLA+]
+  Neither \textbf{\lbrack P1\rbrack} nor \textbf{\lbrack P2\rbrack} provides mechanically verified safety proofs for concurrent epoch updates during split-brain recovery. A valuable contribution would be modeling \textbf{\lbrack P2\rbrack}'s Epoch-Shift protocol in TLA+ / TLC to verify invariant retention under network partitions.
+\end{description}
+
+% ==================== REFERENCES ====================
+\section{References \& Extended Bibliography}
+
+\small
+\begin{enumerate}[label={\sffamily\bfseries\color{NavyBlue}[\arabic*]}, leftmargin=2.2em, itemsep=3pt]
+  \item Thorne, M., Rostova, E., \& Sterling, J. (2024). Speculative State Replication in Partial Asynchrony. \emph{ACM Transactions on Computer Systems (TOCS)}, 42(3), 112--138.
+  \item Jenkins, S., \& Chen, D. K. (2025). Dynamic Quorum Reconfiguration under Byzantine Churn. In \emph{Proc. 19th USENIX Symposium on Operating Systems Design and Implementation (OSDI '25)}, pp. 405--422.
+  \item Nexa Research Group (2026). Practical Bounded Memory Footprints for Geo-Replicated Raft Systems. \emph{Technical Report \#402}, Nexa Institute of Distributed Infrastructure.
+  \item Lamport, L. (1998). The Part-Time Parliament. \emph{ACM Transactions on Computer Systems}, 16(2), 133--169.
+  \item Ongaro, D., \& Ousterhout, J. (2014). In Search of an Understandable Consensus Algorithm. In \emph{Proc. USENIX Annual Technical Conference (ATC '14)}, pp. 305--319.
+\end{enumerate}
+
+\end{document}

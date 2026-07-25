@@ -1,0 +1,309 @@
+\documentclass[10pt,a4paper]{scrartcl}
+
+% --- Essential Packages ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+
+\usepackage[margin=1.5cm, top=1.6cm, bottom=1.6cm]{geometry}
+\usepackage{amsmath, amssymb}
+\usepackage[table]{xcolor}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{multirow}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage{tcolorbox}
+\tcbuselibrary{skins, breakable}
+\usepackage{tikz}
+\usetikzlibrary{calc, positioning, shapes.geometric, backgrounds}
+\usepackage{fontawesome5}
+\usepackage{microtype}
+\usepackage{lastpage}
+\usepackage{scrlayer-scrpage}
+
+% --- Color Palette Definition ---
+\definecolor{NavyPrimary}{HTML}{0F172A}   % Deep slate navy
+\definecolor{TealAccent}{HTML}{0D9488}    % Biosafety teal/emerald
+\definecolor{TealLight}{HTML}{E6FFFA}     % Soft teal tint
+\definecolor{TealDark}{HTML}{0F766E}      % Darker teal for text
+\definecolor{SlateDark}{HTML}{334155}     % Dark gray text
+\definecolor{SlateMedium}{HTML}{64748B}   % Muted gray
+\definecolor{SlateLight}{HTML}{F8FAFC}    % Light gray background
+\definecolor{BorderGray}{HTML}{CBD5E1}    % Table border color
+\definecolor{AlertAmber}{HTML}{D97706}    % Action required amber
+\definecolor{AlertGreen}{HTML}{16A34A}    % Compliant green
+\definecolor{BadgeRed}{HTML}{DC2626}      % Critical red
+\definecolor{TableHeadBg}{HTML}{1E293B}   % Dark table header background
+
+% --- Page Header & Footer Configuration ---
+\clearpairofpagestyles
+\ihead{\textcolor{SlateMedium}{\small\sffamily\bfseries MERIDIAN BIOLABS \:\textbullet\:\ MICROBIOLOGY SAFETY \& CONTAINMENT AUDIT}}
+\ohead{\textcolor{SlateMedium}{\small\sffamily DOC ID: AUD-2026-MB-0492}}
+\ifoot{\textcolor{SlateMedium}{\small\sffamily Biosafety Level 2/3 Culture Facility Compliance Audit}}
+\ofoot{\textcolor{SlateMedium}{\small\sffamily Page \thepage\ of \pageref{LastPage}}}
+\addtokomafont{pageheadfoot}{\sffamily}
+\pagestyle{scrheadings}
+
+% --- Custom Helper Commands ---
+\newcommand{\statuspass}{\colorbox{TealLight}{\textcolor{AlertGreen}{\scriptsize\bfseries\:\faCheck\ COMPLIANT\:}}}
+\newcommand{\statusaction}{\colorbox{yellow!20}{\textcolor{AlertAmber}{\scriptsize\bfseries\:\faExclamation\ ACTION REQUIRED\:}}}
+\newcommand{\statuscritical}{\colorbox{red!15}{\textcolor{BadgeRed}{\scriptsize\bfseries\:\faTimes\ CRITICAL\:}}}
+
+% --- Tcolorbox Global Styles ---
+\tcbset{
+    auditcard/.style={
+        enhanced,
+        colback=white,
+        colframe=BorderGray,
+        arc=3pt,
+        boxrule=0.6pt,
+        left=6pt, right=6pt, top=6pt, bottom=6pt
+    },
+    headercard/.style={
+        enhanced,
+        colback=NavyPrimary,
+        colframe=NavyPrimary,
+        arc=4pt,
+        boxrule=0pt,
+        left=10pt, right=10pt, top=8pt, bottom=8pt
+    },
+    summarycard/.style={
+        enhanced,
+        colback=SlateLight,
+        colframe=TealAccent,
+        arc=4pt,
+        boxrule=1.2pt,
+        left=8pt, right=8pt, top=6pt, bottom=6pt
+    }
+}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{4pt}
+
+\begin{document}
+
+% ==============================================================================
+% HEADER BANNER
+% ==============================================================================
+\begin{tcolorbox}[headercard]
+\begin{minipage}[c]{0.65\textwidth}
+    \textcolor{TealAccent}{\scriptsize\bfseries\faBiohazard\ QUALITY ASSURANCE \& BIOSAFETY COMPLIANCE DIVISION}\\[2pt]
+    {\Large\bfseries\textcolor{white}{Microbiology Culture Safety Audit}}\\[2pt]
+    \textcolor{SlateMedium}{\small Facility: Meridian BioLabs Central Containment Hub (Building C)}
+\end{minipage}%
+\begin{minipage}[c]{0.35\textwidth}
+    \raggedleft
+    \begin{tcolorbox}[colback=white!10,colframe=white!20,arc=2pt,boxrule=0.5pt,left=5pt,right=5pt,top=3pt,bottom=3pt]
+        \color{white}
+        \scriptsize
+        \textbf{\faCalendar\ Audit Date:} July 22, 2026\\
+        \textbf{\faLock\ Containment:} BSL-2 \& BSL-3 Suites\\
+        \textbf{\faUser\ Lead Auditor:} Dr. Eleanor Vance, RSO\\
+        \textbf{\faFile\ Audit Ref:} AUD-2026-MB-0492
+    \end{tcolorbox}
+\end{minipage}
+\end{tcolorbox}
+
+\vspace{-4pt}
+
+% ==============================================================================
+% EXECUTIVE SUMMARY & KPI CARDS
+% ==============================================================================
+\begin{tcolorbox}[summarycard]
+\begin{minipage}[c]{0.22\textwidth}
+    \centering
+    \textcolor{TealDark}{\Large\bfseries 98.4\%}\\[1pt]
+    \textcolor{SlateDark}{\scriptsize\bfseries OVERALL COMPLIANCE}
+\end{minipage}%
+\begin{minipage}[c]{0.01\textwidth}
+    \color{BorderGray}\rule{0.4pt}{24pt}
+\end{minipage}%
+\begin{minipage}[c]{0.25\textwidth}
+    \centering
+    \textcolor{AlertGreen}{\Large\bfseries ZERO}\\[1pt]
+    \textcolor{SlateDark}{\scriptsize\bfseries CRITICAL DEFICIENCIES}
+\end{minipage}%
+\begin{minipage}[c]{0.01\textwidth}
+    \color{BorderGray}\rule{0.4pt}{24pt}
+\end{minipage}%
+\begin{minipage}[c]{0.25\textwidth}
+    \centering
+    \textcolor{AlertAmber}{\Large\bfseries 2 ITEMS}\\[1pt]
+    \textcolor{SlateDark}{\scriptsize\bfseries ACTION ITEMS PENDING}
+\end{minipage}%
+\begin{minipage}[c]{0.01\textwidth}
+    \color{BorderGray}\rule{0.4pt}{24pt}
+\end{minipage}%
+\begin{minipage}[c]{0.25\textwidth}
+    \centering
+    \textcolor{NavyPrimary}{\Large\bfseries 142}\\[1pt]
+    \textcolor{SlateDark}{\scriptsize\bfseries LOGGED CULTURES}
+\end{minipage}
+\end{tcolorbox}
+
+\vspace{-2pt}
+
+{\small\textcolor{SlateDark}{\textbf{Audit Purpose \& Scope:} This audit evaluates microbiological safety, containment protocols, pathogen storage logs, and equipment validation for Meridian BioLabs' BSL-2 and BSL-3 suites in accordance with CDC/NIH \textit{Biosafety in Microbiological and Biomedical Laboratories} (BMBL 6th Edition) and ISO 15189 standards.}}
+
+\vspace{2pt}
+
+% ==============================================================================
+% SECTION 1: FACILITY CONTAINMENT & SAFETY CHECKLIST
+% ==============================================================================
+\subsubsection*{\textcolor{NavyPrimary}{\faCheckSquare\ 1. Biosafety Containment \& Facility Operations Checklist}}
+
+\begin{tcolorbox}[auditcard, left=0pt, right=0pt, top=0pt, bottom=0pt]
+\small
+\rowcolors{2}{SlateLight}{white}
+\begin{tabularx}{\textwidth}{c X c c X}
+\rowcolor{TableHeadBg}
+\textcolor{white}{\textbf{ID}} & \textcolor{white}{\textbf{Inspection Criteria \& Standard Ref.}} & \textcolor{white}{\textbf{Suite}} & \textcolor{white}{\textbf{Status}} & \textcolor{white}{\textbf{Auditor Observations \& Notes}} \\
+\midrule
+C-01 & Negative Pressure Differential ($\ge 30\,\text{Pa}$ relative to hallway) & BSL-3 & \statuspass & Continuous pressure monitoring active. Digital sensors calibrated June 2026. \\
+C-02 & Class II Type A2 Biosafety Cabinet Laminar Velocity ($100\,\text{fpm}$) & BSL-2 & \statuspass & All 6 cabinets certified by Vertex Air Systems. Next service due Jan 2027. \\
+C-03 & Autoclave Efficacy Validation (\textit{Geobacillus stearothermophilus}) & Shared & \statuspass & Weekly spore strip tests verified clear. Sterilization logs complete. \\
+C-04 & Emergency Eyewash \& Safety Shower Weekly Flush Logs & BSL-2/3 & \statusaction & Eyewash unit \#3 in Room B3-102 missing 2 signature entries for early July. \\
+C-05 & High-Efficiency Particulate Air (HEPA) Exhaust Filter Integrity & BSL-3 & \statuspass & DOP smoke test passed with 99.997\% efficiency on primary filter bank. \\
+C-06 & Access Control \& Bio-containment Keycard Security Logs & BSL-3 & \statuspass & Dual-factor biometric entry log reconciled. Zero unauthorized attempts. \\
+C-07 & Chemical \& Biological Hazard Emergency Spill Kit Readiness & BSL-2/3 & \statusaction & BSL-2 main lab spill kit missing fresh 10\% bleach concentrate solution. \\
+C-08 & Waste Segregation \& Sharps Containment Disposal Protocol & BSL-2 & \statuspass & Biohazard bins properly color-coded and sealed prior to incineration. \\
+\bottomrule
+\end{tabularx}
+\end{tcolorbox}
+
+\vspace{4pt}
+
+% ==============================================================================
+% SECTION 2: PATHOGEN & CULTURE LOG SUMMARY
+% ==============================================================================
+\subsubsection*{\textcolor{NavyPrimary}{\faMicroscope\ 2. Microorganism Culture Repository Inventory Log (Sample Audit)}}
+
+\begin{tcolorbox}[auditcard, left=0pt, right=0pt, top=0pt, bottom=0pt]
+\small
+\rowcolors{2}{SlateLight}{white}
+\begin{tabularx}{\textwidth}{l X c X c c X}
+\rowcolor{TableHeadBg}
+\textcolor{white}{\textbf{Strain ID}} & \textcolor{white}{\textbf{Microorganism / Species}} & \textcolor{white}{\textbf{Risk}} & \textcolor{white}{\textbf{Storage Location}} & \textcolor{white}{\textbf{Vials}} & \textcolor{white}{\textbf{State}} & \textcolor{white}{\textbf{Authorized Custodian}} \\
+\midrule
+MB-ECOLI-01 & \textit{Escherichia coli} K-12 & RG1 & Cryo-Freezer A1 ($-80^{\circ}\text{C}$) & 24 & Frozen & Dr. Marcus Vance \\
+MB-STAPH-04 & \textit{Staphylococcus aureus} ATCC 25923 & RG2 & Cryo-Freezer B2 ($-80^{\circ}\text{C}$) & 12 & Frozen & Dr. Sarah Jenkins \\
+MB-PSEUD-09 & \textit{Pseudomonas aeruginosa} PAO1 & RG2 & Liquid N2 Tank 01 & 8 & Cryo & Dr. Marcus Vance \\
+MB-CANDI-02 & \textit{Candida albicans} SC5314 & RG2 & Incubator 3 ($37^{\circ}\text{C}$) & 4 & Slant & Tech. David Miller \\
+MB-ASPER-01 & \textit{Aspergillus fumigatus} Af293 & RG2 & Cryo-Freezer B1 ($-80^{\circ}\text{C}$) & 6 & Spore & Dr. Sarah Jenkins \\
+MB-MYCO-03 & \textit{Mycobacterium smegmatis} MC2 155 & RG1 & Cryo-Freezer A2 ($-80^{\circ}\text{C}$) & 15 & Frozen & Tech. Elena Rostova \\
+MB-SALM-11 & \textit{Salmonella enterica} ser. Typhimurium & RG2 & Liquid N2 Tank 02 & 10 & Cryo & Dr. Marcus Vance \\
+MB-BACIL-02 & \textit{Bacillus subtilis} 168 & RG1 & Storage Cabinet C & 30 & Dry & Tech. David Miller \\
+MB-BRUCL-01 & \textit{Brucella abortus} RB51 (Vaccine) & RG3 & BSL-3 Vault-Freezer 01 & 4 & Cryo & Dr. Eleanor Vance \\
+MB-VIBRI-05 & \textit{Vibrio cholerae} O1 El Tor & RG2 & Cryo-Freezer B3 ($-80^{\circ}\text{C}$) & 6 & Frozen & Dr. Sarah Jenkins \\
+\bottomrule
+\end{tabularx}
+\end{tcolorbox}
+
+\pagebreak
+
+% ==============================================================================
+% SECTION 3: EQUIPMENT CALIBRATION & MAINTENANCE LOG
+% ==============================================================================
+\subsubsection*{\textcolor{NavyPrimary}{\faTools\ 3. Critical Equipment Certification \& Environmental Monitoring}}
+
+{\small The table below summarizes technical certifications and operational parameters for critical containment and decontamination hardware within the BSL-2 and BSL-3 suites.}
+
+\vspace{4pt}
+
+\begin{tcolorbox}[auditcard, left=0pt, right=0pt, top=0pt, bottom=0pt]
+\small
+\rowcolors{2}{SlateLight}{white}
+\begin{tabularx}{\textwidth}{l X X c c c c}
+\rowcolor{TableHeadBg}
+\textcolor{white}{\textbf{Equipment ID}} & \textcolor{white}{\textbf{Model / Type}} & \textcolor{white}{\textbf{Location}} & \textcolor{white}{\textbf{Airflow / Temp}} & \textcolor{white}{\textbf{Last Cert}} & \textcolor{white}{\textbf{Next Due}} & \textcolor{white}{\textbf{Status}} \\
+\midrule
+BSC-BSL3-01 & Class III Glove Box & Room B3-101 & 112 fpm & 15-May-2026 & 15-Nov-2026 & \statuspass \\
+BSC-BSL2-01 & Class II Type A2 & Room B2-104 & 104 fpm & 10-Jan-2026 & 10-Jan-2027 & \statuspass \\
+BSC-BSL2-02 & Class II Type A2 & Room B2-105 & 98 fpm & 10-Jan-2026 & 10-Jan-2027 & \statuspass \\
+AUT-CENT-01 & Pass-Through Autoclave & BSL-3 Wall 2 & $121.5^{\circ}\text{C}$ / 15 psi & 02-Jul-2026 & 02-Aug-2026 & \statuspass \\
+INC-CO2-03 & Thermo Scientific CO2 & Room B2-102 & $37.0^{\circ}\text{C}$ / 5\% CO2 & 18-Jun-2026 & 18-Dec-2026 & \statuspass \\
+FREEZ-ULT-01 & Thermo Revco $-80^{\circ}\text{C}$ & Hall A & $-81.2^{\circ}\text{C}$ & 11-Apr-2026 & 11-Oct-2026 & \statuspass \\
+\bottomrule
+\end{tabularx}
+\end{tcolorbox}
+
+\vspace{6pt}
+
+% ==============================================================================
+% SECTION 4: DECONTAMINATION & SPILL DRILL ASSESSMENT
+% ==============================================================================
+\subsubsection*{\textcolor{NavyPrimary}{\faLock\ 4. Emergency Spill Kits, Decontamination \& Incident Preparedness}}
+
+\begin{minipage}[t]{0.48\textwidth}
+    \begin{tcolorbox}[auditcard, title=\textcolor{NavyPrimary}{\bfseries\scriptsize\faExclamationTriangle\ Biological Spill Kit Inventory Check}]
+        {\small
+        \begin{itemize}[leftmargin=12pt, itemsep=2pt, topsep=2pt]
+            \item \textbf{Disinfectants:} Sodium Hypochlorite (10\% dilution), Peracetic Acid (0.2\%), Surface Wipes.
+            \item \textbf{Absorbents:} Spill-X-B Agent, Biohazard pads (20 units/kit).
+            \item \textbf{Personal Protection:} PAPR Hoods (BSL-3), Nitrile Gloves (Double layer), Tyvek Suits (Size L/XL).
+            \item \textbf{Status:} Fully stocked in BSL-3. BSL-2 kit bleach bottle replacement requested (CAR-02).
+        \end{itemize}
+        }
+    \end{tcolorbox}
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.48\textwidth}
+    \begin{tcolorbox}[auditcard, title=\textcolor{NavyPrimary}{\bfseries\scriptsize\faFireExtinguisher\ Safety Drill \& Training Compliance}]
+        {\small
+        \begin{itemize}[leftmargin=12pt, itemsep=2pt, topsep=2pt]
+            \item \textbf{BSL-3 Spill Drill:} Conducted June 14, 2026. Evacuation and VHP decontamination simulated successfully.
+            \item \textbf{Staff Biosafety Refresher:} 28 of 29 lab personnel completed annual retraining (96.5\%).
+            \item \textbf{Autoclave Safety Check:} All operators certified on high-pressure steam vessel protocols.
+            \item \textbf{Medical Surveillance:} Blood draw and health clearance up-to-date for all active handlers.
+        \end{itemize}
+        }
+    \end{tcolorbox}
+\end{minipage}
+
+\vspace{6pt}
+
+% ==============================================================================
+% SECTION 5: CORRECTIVE ACTION REQUESTS (CAR)
+% ==============================================================================
+\subsubsection*{\textcolor{NavyPrimary}{\faClipboardList\ 5. Corrective Action Requests (CAR) \& Remediation Schedule}}
+
+\begin{tcolorbox}[auditcard, left=0pt, right=0pt, top=0pt, bottom=0pt]
+\small
+\rowcolors{2}{SlateLight}{white}
+\begin{tabularx}{\textwidth}{l c X X c c}
+\rowcolor{TableHeadBg}
+\textcolor{white}{\textbf{CAR ID}} & \textcolor{white}{\textbf{Priority}} & \textcolor{white}{\textbf{Description of Deficiency}} & \textcolor{white}{\textbf{Required Remediation}} & \textcolor{white}{\textbf{Assignee}} & \textcolor{white}{\textbf{Target Date}} \\
+\midrule
+CAR-01 & Medium & Eyewash unit \#3 weekly flush log missing 2 signatures. & Perform immediate flow test and update logbook. & Tech. D. Miller & 26-Jul-2026 \\
+CAR-02 & Low & BSL-2 biological spill kit disinfectant near expiration. & Replace 10\% bleach concentrate with fresh stock. & Dr. S. Jenkins & 28-Jul-2026 \\
+\bottomrule
+\end{tabularx}
+\end{tcolorbox}
+
+\vspace{6pt}
+
+% ==============================================================================
+% SECTION 6: AUDIT CONCLUSION & OFFICIAL SIGN-OFF
+% ==============================================================================
+\subsubsection*{\textcolor{NavyPrimary}{\faFileContract\ 6. Audit Attestation \& Authorized Sign-Off}}
+
+\begin{tcolorbox}[auditcard]
+{\small
+\textbf{Auditor Statement:} Based on physical inspection, protocol review, and bio-inventory sampling, Meridian BioLabs Central Containment Hub complies with CDC/NIH BSL-2 and BSL-3 biosafety standards. Minor corrective actions detailed in Section 5 must be completed by the target dates specified.
+}
+
+\vspace{8pt}
+
+\begin{tabularx}{\textwidth}{X X X}
+    \textbf{Lead Biosafety Auditor} & \textbf{Biosafety Officer (RSO)} & \textbf{Laboratory Safety Director} \\[16pt]
+    \underline{\hspace{4.5cm}} & \underline{\hspace{4.5cm}} & \underline{\hspace{4.5cm}} \\
+    \textbf{Dr. Eleanor Vance, PhD, RSO} & \textbf{Marcus Sterling, MS} & \textbf{Dr. Julian Thorne, PhD} \\
+    Lead Auditor, Meridian Safety & Radiation \& Bio Safety Officer & Executive Director, Meridian BioLabs \\
+    Date: July 22, 2026 & Date: July 22, 2026 & Date: July 23, 2026 \\
+\end{tabularx}
+\end{tcolorbox}
+
+\end{document}

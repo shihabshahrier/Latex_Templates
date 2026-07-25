@@ -1,0 +1,8 @@
+{
+  "name": "Pathology & Histology Analysis Sheet",
+  "compiler": "pdflatex",
+  "description": "Pathology & Histology Analysis Sheet LaTeX template \u2014 pathology & histology analysis sheet latex template. Elegant, compile-tested, editable online at letx.app.",
+  "author": "LetX",
+  "category": "medical",
+  "license": "MIT"
+}

@@ -1,0 +1,799 @@
+\documentclass[11pt,a4paper]{article}
+
+%% ── Encoding & fonts ──────────────────────────────────────────────────────────
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+
+%% ── Page geometry ─────────────────────────────────────────────────────────────
+\usepackage[
+  top=22mm, bottom=24mm,
+  left=22mm, right=22mm,
+  headheight=14pt
+]{geometry}
+
+%% ── Colour ────────────────────────────────────────────────────────────────────
+\usepackage[table]{xcolor}
+\definecolor{NavyInk}{HTML}{0D2340}
+\definecolor{SteelBlue}{HTML}{1C5FAD}
+\definecolor{IceBlue}{HTML}{E8F1FB}
+\definecolor{SlateGray}{HTML}{6B7A8D}
+\definecolor{MidRule}{HTML}{B8C8DC}
+\definecolor{AccentGold}{HTML}{C89A2F}
+\definecolor{LightGold}{HTML}{FDF6E3}
+\definecolor{RowAlt}{HTML}{F4F7FC}
+\definecolor{AlertRed}{HTML}{B00020}
+\definecolor{GreenOK}{HTML}{1A7A4A}
+\definecolor{GrayBg}{HTML}{F0F3F7}
+
+%% ── Graphics & TikZ ───────────────────────────────────────────────────────────
+\usepackage{tikz}
+\usetikzlibrary{positioning,calc,shapes.geometric,backgrounds,patterns}
+\usepackage{graphicx}
+
+%% ── Tables ────────────────────────────────────────────────────────────────────
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{colortbl}
+\usepackage{makecell}
+\usepackage{longtable}
+
+%% ── Boxes ─────────────────────────────────────────────────────────────────────
+\usepackage[most]{tcolorbox}
+\tcbuselibrary{skins,breakable}
+
+%% ── Lists ─────────────────────────────────────────────────────────────────────
+\usepackage{enumitem}
+
+%% ── Math ──────────────────────────────────────────────────────────────────────
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+%% ── Header / footer ───────────────────────────────────────────────────────────
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{fontawesome5}
+
+%% ── Misc ──────────────────────────────────────────────────────────────────────
+\usepackage{parskip}
+\usepackage{calc}
+\usepackage{setspace}
+\usepackage{soul}
+\usepackage{ragged2e}
+
+%% ── Hyperlinks (load last) ────────────────────────────────────────────────────
+\usepackage[hidelinks,pdfusetitle]{hyperref}
+
+%% ── Custom column types ───────────────────────────────────────────────────────
+\newcolumntype{L}[1]{>{\RaggedRight\arraybackslash}p{#1}}
+\newcolumntype{R}[1]{>{\RaggedLeft\arraybackslash}p{#1}}
+\newcolumntype{C}[1]{>{\Centering\arraybackslash}p{#1}}
+
+%% ── tcolorbox styles ──────────────────────────────────────────────────────────
+\tcbset{
+  creditbox/.style={
+    enhanced,
+    colback=IceBlue,
+    colframe=SteelBlue,
+    colbacktitle=NavyInk,
+    coltitle=white,
+    fonttitle=\bfseries\small,
+    arc=3pt,
+    boxrule=0.5pt,
+    titlerule=0pt,
+    top=6pt, bottom=6pt, left=8pt, right=8pt,
+    toptitle=4pt, bottomtitle=4pt,
+    drop shadow={NavyInk!20}
+  },
+  goldbox/.style={
+    enhanced,
+    colback=LightGold,
+    colframe=AccentGold,
+    colbacktitle=AccentGold,
+    coltitle=white,
+    fonttitle=\bfseries\small,
+    arc=3pt,
+    boxrule=0.5pt,
+    top=6pt, bottom=6pt, left=8pt, right=8pt,
+    toptitle=4pt, bottomtitle=4pt,
+  },
+  metricbox/.style={
+    enhanced,
+    colback=GrayBg,
+    colframe=MidRule,
+    arc=3pt,
+    boxrule=0.4pt,
+    top=5pt, bottom=5pt, left=6pt, right=6pt,
+    nobeforeafter,
+  },
+  sectiontitle/.style={
+    enhanced,
+    colback=NavyInk,
+    colframe=NavyInk,
+    coltext=white,
+    arc=2pt,
+    boxrule=0pt,
+    top=4pt, bottom=4pt, left=8pt, right=8pt,
+    nobeforeafter,
+  },
+  alertbox/.style={
+    enhanced,
+    colback=AlertRed!8,
+    colframe=AlertRed,
+    arc=2pt,
+    boxrule=0.6pt,
+    top=5pt, bottom=5pt, left=8pt, right=8pt,
+  },
+  greenbox/.style={
+    enhanced,
+    colback=GreenOK!8,
+    colframe=GreenOK,
+    arc=2pt,
+    boxrule=0.6pt,
+    top=5pt, bottom=5pt, left=8pt, right=8pt,
+  },
+}
+
+%% ── Section styling ───────────────────────────────────────────────────────────
+\usepackage{titlesec}
+\newcommand{\SectionBox}[1]{%
+  \begin{tcolorbox}[sectiontitle]
+    \large\bfseries #1
+  \end{tcolorbox}%
+}
+\titleformat{\section}{\normalfont}{}{0pt}{\SectionBox}
+\titlespacing*{\section}{0pt}{14pt}{6pt}
+
+\titleformat{\subsection}{\color{SteelBlue}\bfseries\normalsize}{}{0pt}{}[{\color{SteelBlue}\titlerule[0.5pt]}]
+\titlespacing*{\subsection}{0pt}{10pt}{4pt}
+
+%% ── Header / footer setup ─────────────────────────────────────────────────────
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\fancyhead[L]{%
+  \scriptsize\color{SlateGray}
+  \textbf{\color{NavyInk}MERIDIAN COMMERCIAL BANK} \quad
+  \textbar\quad Credit \& Underwriting Division
+}
+\fancyhead[R]{%
+  \scriptsize\color{SlateGray}
+  CONFIDENTIAL \quad \faLock
+}
+\fancyfoot[L]{%
+  \scriptsize\color{SlateGray}
+  Loan Ref:\ MCB-2024-CRE-00847 \quad \textbar\quad
+  Prepared by Credit Analysis Unit
+}
+\fancyfoot[R]{%
+  \scriptsize\color{SlateGray}
+  Page \thepage\ of \pageref{LastPage}
+}
+\fancyfoot[C]{\color{MidRule}\rule{0.35\textwidth}{0.4pt}}
+
+%% ═══════════════════════════════════════════════════════════════════════════════
+\begin{document}
+%% ═══════════════════════════════════════════════════════════════════════════════
+
+%% ── COVER HEADER ──────────────────────────────────────────────────────────────
+\thispagestyle{empty}
+
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[NavyInk]
+    (current page.north west) rectangle
+    ([yshift=-42mm]current page.north east);
+  \fill[SteelBlue]
+    ([yshift=-42mm]current page.north west) rectangle
+    ([yshift=-46mm]current page.north east);
+  \fill[AccentGold]
+    ([yshift=-46mm]current page.north west) rectangle
+    ([yshift=-47.2mm]current page.north east);
+\end{tikzpicture}
+
+\vspace*{-14mm}
+\begin{minipage}[t]{0.55\textwidth}
+  \vspace{0pt}
+  {\color{white}\fontsize{22}{26}\selectfont\bfseries Meridian Commercial Bank}\\[3pt]
+  {\color{MidRule}\small Credit \& Underwriting Division}\\[6pt]
+  {\color{white!80!NavyInk}\scriptsize\faLock\enspace CONFIDENTIAL — INTERNAL USE ONLY}
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.40\textwidth}
+  \vspace{0pt}
+  \raggedleft
+  {\color{AccentGold}\bfseries\Large CREDIT ANALYSIS REPORT}\\[4pt]
+  {\color{white}\small Corporate Loan Underwriting}\\[2pt]
+  {\color{MidRule}\scriptsize Loan Ref:\ MCB-2024-CRE-00847}\\[2pt]
+  {\color{MidRule}\scriptsize \faCalendar\enspace Report Date:\ November 14, 2024}
+\end{minipage}
+
+\vspace{20mm}
+
+%% ── EXECUTIVE IDENTIFICATION BOX ──────────────────────────────────────────────
+\begin{tcolorbox}[
+  enhanced, arc=4pt,
+  colback=white, colframe=NavyInk,
+  boxrule=1pt,
+  top=10pt, bottom=10pt, left=12pt, right=12pt,
+  drop shadow={NavyInk!25}
+]
+  \begin{minipage}[t]{0.48\textwidth}
+    \vspace{0pt}
+    {\color{SlateGray}\scriptsize\bfseries BORROWING ENTITY}\\[3pt]
+    {\color{NavyInk}\Large\bfseries Vertex Dynamics Corp.}\\[2pt]
+    {\color{SlateGray}\small 4820 Harborview Drive, Suite 300}\\
+    {\color{SlateGray}\small Chicago, IL 60601}\\[4pt]
+    {\color{SlateGray}\scriptsize Industry:\enspace}{\small Manufacturing \& Industrial Equipment}\\
+    {\color{SlateGray}\scriptsize Entity Type:\enspace}{\small Delaware C-Corporation}\\
+    {\color{SlateGray}\scriptsize Established:\enspace}{\small 2009}\\
+    {\color{SlateGray}\scriptsize Tax ID:\enspace}{\small VDC-TXN-8847321}
+  \end{minipage}%
+  \hfill
+  \vrule width 0.5pt height 70pt depth 0pt \relax
+  \hfill
+  \begin{minipage}[t]{0.46\textwidth}
+    \vspace{0pt}
+    {\color{SlateGray}\scriptsize\bfseries CREDIT REQUEST SUMMARY}\\[3pt]
+    \begin{tabularx}{\linewidth}{@{}L{3.2cm} R{2.5cm}@{}}
+      Facility Type        & Term Loan \\
+      Requested Amount     & \textbf{\$8,500,000} \\
+      Proposed Tenor       & 7 Years \\
+      Proposed Rate        & SOFR + 285 bps \\
+      Collateral Type      & Real Estate / Equipment \\
+      Guarantor            & James R. Halloway \\
+      Relationship Mgr.    & Sophie L. Chen \\
+      Credit Officer       & Marcus T. Wren \\
+    \end{tabularx}
+  \end{minipage}
+\end{tcolorbox}
+
+\vspace{8pt}
+
+%% ── RECOMMENDATION BANNER ─────────────────────────────────────────────────────
+\begin{tcolorbox}[
+  enhanced, arc=3pt,
+  colback=GreenOK!10, colframe=GreenOK,
+  boxrule=0.7pt,
+  top=6pt, bottom=6pt, left=10pt, right=10pt,
+]
+  \noindent
+  {\color{GreenOK}\faCheckCircle\enspace}%
+  {\bfseries\color{GreenOK} RECOMMENDATION: CONDITIONAL APPROVAL}%
+  \hfill
+  {\color{SlateGray}\small Internal Risk Rating:\ }{\bfseries\color{NavyInk} 3B — Acceptable Risk}%
+  \hfill
+  {\color{SlateGray}\small Approval Authority:\ }{\bfseries\color{NavyInk} Senior Credit Committee}
+\end{tcolorbox}
+
+\vspace{2mm}
+
+%% ── 1. EXECUTIVE SUMMARY ──────────────────────────────────────────────────────
+\section{Executive Summary}
+
+Vertex Dynamics Corp.\ (``VDC'' or the ``Borrower'') is requesting a \$8.5 million senior secured
+term loan to fund the acquisition of advanced CNC machining equipment and the expansion of its
+primary manufacturing facility in Chicago, Illinois. VDC is a mid-market manufacturer of
+precision industrial components serving aerospace, defense, and automotive OEM customers. The
+company has demonstrated consistent revenue growth averaging 11.4\% annually over the past
+four fiscal years, supported by long-term supply agreements with three investment-grade
+counterparties.
+
+The credit analysis team finds the request within acceptable risk parameters subject to
+compliance with the financial covenants outlined in Section 7. The primary credit considerations
+are the borrower's adequate debt-service coverage, strong management tenure, and the tangible
+collateral base, partially offset by moderate leverage and exposure to cyclical end-markets.
+
+\vspace{4pt}
+
+%% ── KPI TILES ─────────────────────────────────────────────────────────────────
+\subsection{Key Financial Indicators — FY2024 (Projected)}
+
+\noindent
+\begin{minipage}[t]{0.185\textwidth}
+  \begin{tcolorbox}[metricbox, height=32mm]
+    \centering
+    {\color{SlateGray}\scriptsize\bfseries REVENUE}\\[4pt]
+    {\color{NavyInk}\bfseries\large\$41.2M}\\[2pt]
+    {\color{GreenOK}\scriptsize $\blacktriangle$\,9.8\% YoY}
+  \end{tcolorbox}
+\end{minipage}%
+\hspace{2mm}%
+\begin{minipage}[t]{0.185\textwidth}
+  \begin{tcolorbox}[metricbox, height=32mm]
+    \centering
+    {\color{SlateGray}\scriptsize\bfseries EBITDA}\\[4pt]
+    {\color{NavyInk}\bfseries\large\$6.8M}\\[2pt]
+    {\color{GreenOK}\scriptsize $\blacktriangle$\,16.5\% YoY}
+  \end{tcolorbox}
+\end{minipage}%
+\hspace{2mm}%
+\begin{minipage}[t]{0.185\textwidth}
+  \begin{tcolorbox}[metricbox, height=32mm]
+    \centering
+    {\color{SlateGray}\scriptsize\bfseries DSCR}\\[4pt]
+    {\color{NavyInk}\bfseries\large 1.48$\times$}\\[2pt]
+    {\color{SlateGray}\scriptsize Min.\ Required: 1.25$\times$}
+  \end{tcolorbox}
+\end{minipage}%
+\hspace{2mm}%
+\begin{minipage}[t]{0.185\textwidth}
+  \begin{tcolorbox}[metricbox, height=32mm]
+    \centering
+    {\color{SlateGray}\scriptsize\bfseries TOTAL DEBT/EBITDA}\\[4pt]
+    {\color{NavyInk}\bfseries\large 3.7$\times$}\\[2pt]
+    {\color{SlateGray}\scriptsize Covenant Max: 4.5$\times$}
+  \end{tcolorbox}
+\end{minipage}%
+\hspace{2mm}%
+\begin{minipage}[t]{0.185\textwidth}
+  \begin{tcolorbox}[metricbox, height=32mm]
+    \centering
+    {\color{SlateGray}\scriptsize\bfseries LTV (COLLATERAL)}\\[4pt]
+    {\color{NavyInk}\bfseries\large 61.3\%}\\[2pt]
+    {\color{SlateGray}\scriptsize Max Policy: 75\%}
+  \end{tcolorbox}
+\end{minipage}
+
+\vspace{4mm}
+
+%% ── 2. BORROWER PROFILE ───────────────────────────────────────────────────────
+\section{Borrower Profile \& Business Overview}
+
+\subsection{Company Background}
+
+Founded in 2009 by James R.\ Halloway (current CEO) and Dr.\ Linda Marsh (Chief Technology
+Officer), Vertex Dynamics Corp.\ has grown from a 12-person job-shop into a 290-employee
+precision manufacturing enterprise. The company operates two facilities totalling approximately
+145,000 sq.\ ft.\ of production floor space. VDC holds AS9100 Rev.\ D and ISO 9001:2015
+certifications, which are required qualifications for its primary customer segments.
+
+VDC's customer concentration risk is moderate: its three largest customers — Apex Aerospace
+LLC, Nimbus Defense Systems, and Synapse Automotive Group — collectively represent 63\% of
+trailing twelve-month revenues. All three counterparties carry investment-grade credit ratings
+from an independent rating agency. The remaining 37\% of revenue is spread across 48 smaller
+accounts, providing a reasonable diversification buffer.
+
+\vspace{4pt}
+
+\noindent
+\begin{minipage}[t]{0.47\textwidth}
+  \vspace{0pt}
+  \begin{tcolorbox}[creditbox, title={\faIndustry\enspace Operational Snapshot}]
+    \small
+    \begin{tabular}{@{}L{3.2cm} L{2.8cm}@{}}
+      Employees (FTE)      & 290 \\
+      Production Capacity  & 145,000 sq.\ ft. \\
+      Shifts per Day       & 2 (5-day week) \\
+      OEE Rating           & 83\% \\
+      Backlog (12-mo.)     & \$22.4M \\
+      Key Certifications   & AS9100D, ISO 9001 \\
+      Primary Markets      & Aerospace, Defense \\
+      Secondary Markets    & Automotive OEM \\
+    \end{tabular}
+  \end{tcolorbox}
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.47\textwidth}
+  \vspace{0pt}
+  \begin{tcolorbox}[creditbox, title={\faUsers\enspace Management Team}]
+    \small
+    \begin{tabular}{@{}L{3.0cm} L{3.0cm}@{}}
+      \textbf{Name}         & \textbf{Role / Tenure} \\[2pt]
+      James R.\ Halloway    & CEO — 15 yrs \\
+      Dr.\ Linda Marsh      & CTO — 15 yrs \\
+      Robert G.\ Stanton    & CFO — 8 yrs \\
+      Patricia W.\ Nguyen   & VP Operations — 6 yrs \\
+      Daniel F.\ Okafor     & VP Sales — 5 yrs \\
+    \end{tabular}
+  \end{tcolorbox}
+\end{minipage}
+
+\par
+\vspace{4mm}
+
+%% ── 3. FINANCIAL ANALYSIS ─────────────────────────────────────────────────────
+\section{Financial Analysis}
+
+\subsection{Income Statement Summary (USD Thousands)}
+
+\renewcommand{\arraystretch}{1.35}
+\begin{tabularx}{\textwidth}{@{} L{4.5cm} R{2.0cm} R{2.0cm} R{2.0cm} R{2.4cm} @{}}
+  \toprule
+  \rowcolor{NavyInk}
+  {\color{white}\bfseries\small Line Item} &
+  {\color{white}\bfseries\small FY2021} &
+  {\color{white}\bfseries\small FY2022} &
+  {\color{white}\bfseries\small FY2023} &
+  {\color{white}\bfseries\small FY2024P} \\
+  \midrule
+  Net Revenue                & \$28,410  & \$33,180  & \$37,560  & \$41,200  \\
+  \rowcolor{RowAlt}
+  Cost of Goods Sold         & \$18,950  & \$21,870  & \$24,380  & \$26,340  \\
+  Gross Profit               & \$9,460   & \$11,310  & \$13,180  & \$14,860  \\
+  \rowcolor{RowAlt}
+  Gross Margin               & 33.3\%    & 34.1\%    & 35.1\%    & 36.1\%    \\
+  SG\&A Expenses             & \$4,820   & \$5,490   & \$5,940   & \$6,250   \\
+  \rowcolor{RowAlt}
+  EBITDA                     & \$4,640   & \$5,820   & \$7,240   & \$8,610   \\
+  Depreciation \& Amort.     & \$1,230   & \$1,350   & \$1,480   & \$1,810   \\
+  \rowcolor{RowAlt}
+  EBIT                       & \$3,410   & \$4,470   & \$5,760   & \$6,800   \\
+  Interest Expense           & \$620     & \$740     & \$890     & \$1,240   \\
+  \rowcolor{RowAlt}
+  EBT                        & \$2,790   & \$3,730   & \$4,870   & \$5,560   \\
+  Net Income (after tax)     & \$2,010   & \$2,660   & \$3,510   & \$4,000   \\
+  \rowcolor{RowAlt}
+  Net Margin                 & 7.1\%     & 8.0\%     & 9.3\%     & 9.7\%     \\
+  \bottomrule
+\end{tabularx}
+
+\vspace{6pt}
+
+\subsection{Balance Sheet Highlights (USD Thousands) — FY2023 Audited}
+
+\renewcommand{\arraystretch}{1.35}
+\begin{tabularx}{\textwidth}{@{} L{4.5cm} R{2.5cm} | L{4.5cm} R{2.5cm} @{}}
+  \toprule
+  \rowcolor{NavyInk}
+  {\color{white}\bfseries\small Asset} &
+  {\color{white}\bfseries\small Amount} &
+  {\color{white}\bfseries\small Liability / Equity} &
+  {\color{white}\bfseries\small Amount} \\
+  \midrule
+  Cash \& Equivalents        & \$3,420   & Accounts Payable         & \$2,180   \\
+  \rowcolor{RowAlt}
+  Accounts Receivable        & \$5,890   & Short-Term Debt          & \$1,500   \\
+  Inventory                  & \$4,210   & Current Portion LTD      & \$980     \\
+  \rowcolor{RowAlt}
+  Prepaid \& Other           & \$620     & Other Current Liab.      & \$640     \\
+  \textbf{Total Current}     & \textbf{\$14,140} & \textbf{Total Current} & \textbf{\$5,300} \\
+  \rowcolor{RowAlt}
+  PP\&E (Net)                & \$18,360  & Long-Term Debt           & \$9,840   \\
+  Intangibles                & \$1,220   & Deferred Tax Liab.       & \$870     \\
+  \rowcolor{RowAlt}
+  Other Long-Term            & \$480     & Other LT Liab.           & \$430     \\
+  \textbf{Total Assets}      & \textbf{\$34,200} & \textbf{Total Equity}   & \textbf{\$17,760} \\
+  \bottomrule
+\end{tabularx}
+
+\vspace{6mm}
+
+%% ── 4. DEBT SERVICE & COVERAGE ────────────────────────────────────────────────
+\section{Debt Service Capacity \& Coverage Analysis}
+
+\subsection{Pro Forma Debt Service Coverage Ratio}
+
+\begin{tcolorbox}[creditbox, title={\faChartBar\enspace DSCR Calculation — Post-Closing Pro Forma}]
+  \small
+  \renewcommand{\arraystretch}{1.30}
+  \begin{tabularx}{\linewidth}{@{} L{6.5cm} R{3.0cm} R{3.0cm} @{}}
+    \toprule
+    \textbf{Item} & \textbf{FY2024P} & \textbf{FY2025F} \\
+    \midrule
+    EBITDA                          & \$8,610,000   & \$9,340,000   \\
+    Less: Cash Taxes                & (1,560,000)   & (1,690,000)   \\
+    Less: Unfunded CapEx            & (680,000)     & (720,000)     \\
+    Less: Changes in Working Capital& (340,000)     & (380,000)     \\
+    \textbf{Adjusted CFADS}         & \textbf{\$6,030,000} & \textbf{\$6,550,000} \\
+    \midrule
+    Annual Debt Service (P+I)       & \$4,070,000   & \$4,070,000   \\
+    \textbf{DSCR}                   & \textbf{1.48$\times$} & \textbf{1.61$\times$} \\
+    Minimum Covenant Threshold      & 1.25$\times$  & 1.25$\times$  \\
+    \textbf{Headroom}               & \textbf{+0.23$\times$} & \textbf{+0.36$\times$} \\
+    \bottomrule
+  \end{tabularx}
+  \vspace{4pt}
+  {\color{GreenOK}\faCheckCircle}\enspace\textit{\color{GreenOK}\small Borrower meets DSCR covenant in base case and moderate stress scenario.}
+\end{tcolorbox}
+
+\vspace{4pt}
+
+\subsection{Sensitivity Analysis}
+
+The table below presents DSCR outcomes under three scenarios reflecting potential revenue
+deterioration or interest rate movements:
+
+\vspace{2pt}
+\renewcommand{\arraystretch}{1.35}
+\begin{tabularx}{\textwidth}{@{} L{3.8cm} R{2.0cm} R{2.0cm} R{2.0cm} C{3.5cm} @{}}
+  \toprule
+  \rowcolor{NavyInk}
+  {\color{white}\bfseries Scenario} &
+  {\color{white}\bfseries Rev.\ Adj.} &
+  {\color{white}\bfseries EBITDA} &
+  {\color{white}\bfseries DSCR} &
+  {\color{white}\bfseries Pass/Fail} \\
+  \midrule
+  Base Case                  & --          & \$8.61M  & 1.48$\times$ & {\color{GreenOK}\bfseries PASS} \\
+  \rowcolor{RowAlt}
+  Moderate Stress (--10\%)   & --10\%      & \$7.40M  & 1.27$\times$ & {\color{GreenOK}\bfseries PASS} \\
+  Severe Stress (--20\%)     & --20\%      & \$6.18M  & 1.06$\times$ & {\color{AlertRed}\bfseries FAIL} \\
+  \rowcolor{RowAlt}
+  Rate Shock (+200 bps)      & --          & \$8.61M  & 1.31$\times$ & {\color{GreenOK}\bfseries PASS} \\
+  Combined Stress            & --15\%      & \$6.79M  & 1.01$\times$ & {\color{AlertRed}\bfseries FAIL} \\
+  \bottomrule
+\end{tabularx}
+
+\vspace{2pt}
+{\small\color{SlateGray}\textit{Note: Severe and Combined Stress scenarios breach the 1.25$\times$ covenant floor.
+Lender may accelerate remediation provisions under the proposed credit agreement.}}
+
+\vspace{6mm}
+
+%% ── 5. COLLATERAL ─────────────────────────────────────────────────────────────
+\section{Collateral Analysis}
+
+\noindent
+\begin{minipage}[t]{0.55\textwidth}
+  \vspace{0pt}
+  \begin{tcolorbox}[goldbox, title={\faBuilding\enspace Collateral Schedule}]
+    \small
+    \renewcommand{\arraystretch}{1.25}
+    \begin{tabular}{@{} L{3.4cm} R{2.4cm} @{}}
+      \textbf{Asset} & \textbf{Appraised Value} \\
+      \midrule
+      Primary Facility (RE)    & \$7,200,000 \\
+      CNC Machinery (Eq.)      & \$3,850,000 \\
+      Secondary Building       & \$2,100,000 \\
+      A/R (Assignment)         & \$5,890,000 \\
+      \midrule
+      \textbf{Gross Collateral}& \textbf{\$19,040,000} \\
+      Advance Rate Applied     & 73\%         \\
+      \textbf{Net Lending Base}& \textbf{\$13,899,200} \\
+    \end{tabular}
+    \vspace{4pt}
+    {\color{GreenOK}\scriptsize\bfseries LTV:\ 61.3\% — Within Policy (Max 75\%)}
+  \end{tcolorbox}
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.41\textwidth}
+  \vspace{0pt}
+  \begin{tcolorbox}[alertbox, title={}]
+    {\color{AlertRed}\bfseries\small\faExclamationTriangle\enspace Collateral Notes}
+    \vspace{4pt}
+
+    \begin{itemize}[leftmargin=14pt, itemsep=2pt, topsep=2pt]
+      \item[\textcolor{AlertRed}{\textbullet}] Real estate appraisal dated Sep 2024; refresh required at Year 3.
+      \item[\textcolor{AlertRed}{\textbullet}] Equipment values subject to \$1.2M annual depreciation.
+      \item[\textcolor{AlertRed}{\textbullet}] A/R assignment requires notice to Apex Aerospace.
+      \item[\textcolor{AlertRed}{\textbullet}] Environmental Phase I report pending (due Dec 2024).
+    \end{itemize}
+  \end{tcolorbox}
+\end{minipage}
+
+\par
+\vspace{6mm}
+
+%% ── 6. RISK ASSESSMENT ────────────────────────────────────────────────────────
+\section{Risk Assessment}
+
+\subsection{Risk Factor Matrix}
+
+\renewcommand{\arraystretch}{1.35}
+\begin{tabularx}{\textwidth}{@{} L{3.5cm} C{1.6cm} C{1.6cm} L{6.0cm} @{}}
+  \toprule
+  \rowcolor{NavyInk}
+  {\color{white}\bfseries Risk Factor} &
+  {\color{white}\bfseries Likelihood} &
+  {\color{white}\bfseries Severity} &
+  {\color{white}\bfseries Mitigant} \\
+  \midrule
+  Customer Concentration    & Medium  & High   & LT contracts; IG-rated counterparties \\
+  \rowcolor{RowAlt}
+  Cyclical End-Markets      & Medium  & Medium & Diversified across 3 verticals \\
+  Key Person Risk (CEO)     & Low     & High   & Life insurance policy; succession plan \\
+  \rowcolor{RowAlt}
+  Commodity Input Costs     & High    & Medium & 60\% inputs on fixed-price contracts \\
+  Interest Rate Exposure    & Medium  & Medium & Rate cap required per loan agreement \\
+  \rowcolor{RowAlt}
+  Environmental Liability   & Low     & High   & Phase I pending; indemnification clause \\
+  Refinancing Risk          & Low     & Medium & Amortizing structure; 7-yr tenor \\
+  \rowcolor{RowAlt}
+  Covenant Breach (stress)  & Low     & High   & Cure periods; cash sweep mechanism \\
+  \bottomrule
+\end{tabularx}
+
+\vspace{6mm}
+
+%% ── 7. TERMS & CONDITIONS ─────────────────────────────────────────────────────
+\section{Proposed Terms, Conditions \& Covenants}
+
+\noindent
+\begin{minipage}[t]{0.47\textwidth}
+  \vspace{0pt}
+  \begin{tcolorbox}[creditbox, title={\faFile\enspace Facility Terms}]
+    \small
+    \renewcommand{\arraystretch}{1.25}
+    \begin{tabular}{@{} L{3.2cm} L{2.8cm} @{}}
+      Facility Type      & Senior Secured Term Loan \\
+      Commitment         & \$8,500,000 \\
+      Tenor              & 84 Months (7 Years) \\
+      Base Rate          & Daily SOFR \\
+      Margin             & + 285 bps \\
+      Effective Rate     & $\approx$8.15\% (current) \\
+      Amortization       & 1\% p.a.\ (Yr 1--3); 15\% p.a.\ (Yr 4--7) \\
+      Balloon Payment    & None (fully amortizing) \\
+      Prepayment Fee     & 2\% / 1\% / None (Yr 1/2/3+) \\
+      Commitment Fee     & 0.40\% on undrawn \\
+      Origination Fee    & 1.00\% (\$85,000) \\
+      Closing Date       & On or before Jan 15, 2025 \\
+    \end{tabular}
+  \end{tcolorbox}
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.47\textwidth}
+  \vspace{0pt}
+  \begin{tcolorbox}[creditbox, title={\faTasks\enspace Financial Covenants}]
+    \small
+    \begin{itemize}[leftmargin=14pt, itemsep=3pt, topsep=2pt]
+      \item \textbf{DSCR:} $\geq 1.25\times$ (tested quarterly)
+      \item \textbf{Total Leverage:} $\leq 4.5\times$ Total Debt/EBITDA
+      \item \textbf{Min.\ Liquidity:} $\geq$ \$1.5M unrestricted cash
+      \item \textbf{Fixed Charge Coverage:} $\geq 1.15\times$
+      \item \textbf{CapEx Limit:} $\leq$ \$3.0M per annum w/o consent
+      \item \textbf{Distributions:} Restricted if DSCR $< 1.35\times$
+      \item \textbf{Senior Debt / TNW:} $\leq 2.5\times$
+    \end{itemize}
+  \end{tcolorbox}
+
+  \par\vspace{2mm}
+
+  \begin{tcolorbox}[goldbox, title={\faClipboardList\enspace Conditions Precedent}]
+    \small
+    \begin{itemize}[leftmargin=14pt, itemsep=3pt, topsep=2pt]
+      \item Environmental Phase I clearance
+      \item Personal guarantee (James R.\ Halloway)
+      \item Interest rate cap agreement (SOFR, 5.0\% floor)
+      \item Updated UCC lien searches (all jurisdictions)
+      \item Executed subordination agreement w/ Nexa Capital
+    \end{itemize}
+  \end{tcolorbox}
+\end{minipage}
+
+\par
+\vspace{6mm}
+
+%% ── 8. SOURCES & USES ─────────────────────────────────────────────────────────
+\section{Sources \& Uses of Funds}
+
+\vspace{2pt}
+\noindent
+\begin{minipage}[t]{0.47\textwidth}
+  \vspace{0pt}
+  \renewcommand{\arraystretch}{1.35}
+  \begin{tabularx}{\linewidth}{@{} L{3.8cm} R{2.5cm} @{}}
+    \toprule
+    \rowcolor{NavyInk}
+    {\color{white}\bfseries\small USES} & {\color{white}\bfseries\small Amount} \\
+    \midrule
+    CNC Machinery Acquisition  & \$5,200,000 \\
+    \rowcolor{RowAlt}
+    Facility Expansion CapEx   & \$2,100,000 \\
+    Installation \& Commissioning & \$480,000 \\
+    \rowcolor{RowAlt}
+    Origination \& Legal Fees  & \$185,000 \\
+    Closing Costs \& Reserves  & \$535,000 \\
+    \rowcolor{RowAlt}
+    \textbf{Total Uses}        & \textbf{\$8,500,000} \\
+    \bottomrule
+  \end{tabularx}
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.47\textwidth}
+  \vspace{0pt}
+  \renewcommand{\arraystretch}{1.35}
+  \begin{tabularx}{\linewidth}{@{} L{3.8cm} R{2.5cm} @{}}
+    \toprule
+    \rowcolor{NavyInk}
+    {\color{white}\bfseries\small SOURCES} & {\color{white}\bfseries\small Amount} \\
+    \midrule
+    MCB Term Loan (this facility)  & \$8,500,000 \\
+    \rowcolor{RowAlt}
+    Borrower Equity Contribution   & \$0 \\
+    \textbf{Total Sources}         & \textbf{\$8,500,000} \\
+    \bottomrule
+  \end{tabularx}
+\end{minipage}
+
+\par
+\vspace{8mm}
+
+%% ── 9. APPROVAL SIGNATURE BLOCK ───────────────────────────────────────────────
+\section{Credit Approval \& Signatures}
+
+\begin{tcolorbox}[
+  enhanced, arc=3pt,
+  colback=white, colframe=NavyInk,
+  boxrule=0.8pt,
+  top=10pt, bottom=12pt, left=12pt, right=12pt,
+]
+  {\small\color{SlateGray}
+  This Credit Analysis Report has been prepared by the Meridian Commercial Bank Credit Analysis
+  Unit for internal underwriting purposes. The findings and recommendation herein are subject to
+  final approval by the Senior Credit Committee. Approval of this facility does not constitute a
+  binding commitment until a fully executed loan agreement is in place.}
+
+  \vspace{10pt}
+
+  \noindent
+  \begin{minipage}[t]{0.28\textwidth}
+    \vspace{0pt}
+    \centering
+    \vspace{20pt}
+    \textcolor{MidRule}{\rule{\linewidth}{0.5pt}}\\[2pt]
+    {\small\bfseries Sophie L.\ Chen}\\
+    {\scriptsize\color{SlateGray} Relationship Manager}\\
+    {\scriptsize\color{SlateGray} \faCalendar\enspace Nov 14, 2024}
+  \end{minipage}%
+  \hfill
+  \begin{minipage}[t]{0.28\textwidth}
+    \vspace{0pt}
+    \centering
+    \vspace{20pt}
+    \textcolor{MidRule}{\rule{\linewidth}{0.5pt}}\\[2pt]
+    {\small\bfseries Marcus T.\ Wren}\\
+    {\scriptsize\color{SlateGray} Senior Credit Officer}\\
+    {\scriptsize\color{SlateGray} \faCalendar\enspace Nov 14, 2024}
+  \end{minipage}%
+  \hfill
+  \begin{minipage}[t]{0.28\textwidth}
+    \vspace{0pt}
+    \centering
+    \vspace{20pt}
+    \textcolor{MidRule}{\rule{\linewidth}{0.5pt}}\\[2pt]
+    {\small\bfseries Patricia A.\ Drummond}\\
+    {\scriptsize\color{SlateGray} Chief Credit Officer}\\
+    {\scriptsize\color{SlateGray} \faCalendar\enspace \underline{\hspace{30pt}}}
+  \end{minipage}
+
+  \vspace{10pt}
+  \noindent\textcolor{MidRule}{\rule{\linewidth}{0.5pt}}
+
+  \vspace{6pt}
+  \noindent
+  \begin{minipage}[t]{0.48\textwidth}
+    \vspace{0pt}
+    {\small\bfseries Senior Credit Committee Disposition:}\\[6pt]
+    \begin{tabular}{@{} l l @{}}
+      $\square$ & Approved as Presented \\
+      $\square$ & Approved with Modifications \\
+      $\square$ & Declined \\
+      $\square$ & Tabled -- Additional Information Required \\
+    \end{tabular}
+  \end{minipage}%
+  \hfill
+  \begin{minipage}[t]{0.46\textwidth}
+    \vspace{0pt}
+    {\small\bfseries Modifications / Conditions (if any):}\\[4pt]
+    \textcolor{MidRule}{\rule{\linewidth}{0.4pt}}\\
+    \textcolor{MidRule}{\rule{\linewidth}{0.4pt}}\\
+    \textcolor{MidRule}{\rule{\linewidth}{0.4pt}}\\
+    \vspace{8pt}
+    {\small\bfseries Committee Chair Signature:}\\[4pt]
+    \textcolor{MidRule}{\rule{0.65\linewidth}{0.4pt}}
+    \quad{\scriptsize\color{SlateGray}Date:}
+    \textcolor{MidRule}{\rule{0.25\linewidth}{0.4pt}}
+  \end{minipage}
+\end{tcolorbox}
+
+\vspace{6mm}
+
+%% ── CONFIDENTIALITY FOOTER ────────────────────────────────────────────────────
+\begin{tcolorbox}[
+  enhanced, arc=0pt,
+  colback=NavyInk, colframe=NavyInk,
+  top=5pt, bottom=5pt, left=10pt, right=10pt,
+]
+  \centering
+  {\color{white}\scriptsize\bfseries CONFIDENTIAL \& PROPRIETARY — MERIDIAN COMMERCIAL BANK}\\
+  {\color{MidRule}\scriptsize
+  This document is prepared solely for internal credit evaluation purposes and may not be
+  reproduced, distributed, or disclosed to any third party without express written consent
+  of the bank's Legal \& Compliance Division.
+  \quad\textbar\quad Loan Ref:\ MCB-2024-CRE-00847}
+\end{tcolorbox}
+
+\end{document}

@@ -1,0 +1,8 @@
+{
+  "name": "University Course Syllabus & Calendar",
+  "compiler": "pdflatex",
+  "description": "University Course Syllabus & Calendar LaTeX template \u2014 university course syllabus & calendar latex template. Elegant, compile-tested, editable online at letx.app.",
+  "author": "LetX",
+  "category": "education",
+  "license": "MIT"
+}

@@ -1,0 +1,8 @@
+{
+  "name": "Calculus & Linear Algebra Worksheet",
+  "compiler": "pdflatex",
+  "description": "Calculus & Linear Algebra Worksheet LaTeX template \u2014 calculus & linear algebra worksheet latex template. Elegant, compile-tested, editable online at letx.app.",
+  "author": "LetX",
+  "category": "assignments",
+  "license": "MIT"
+}

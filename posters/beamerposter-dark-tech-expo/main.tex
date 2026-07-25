@@ -1,0 +1,392 @@
+\documentclass[final]{beamer}
+\usepackage[size=a0,orientation=landscape,scale=1.2]{beamerposter}
+
+% Packages
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage[many]{tcolorbox}
+\usepackage{tikz}
+\usetikzlibrary{positioning,calc,shapes.geometric,decorations.pathmorphing,backgrounds,patterns}
+\usepackage{fontawesome5}
+\usepackage{lmodern}
+
+% Color Definitions (No trailing spaces inside hex codes)
+\definecolor{DarkBg}{HTML}{0B0F19}
+\definecolor{BannerBg}{HTML}{111827}
+\definecolor{CardBg}{HTML}{162032}
+\definecolor{HeaderBg}{HTML}{1E293B}
+\definecolor{BorderCyan}{HTML}{00F0FF}
+\definecolor{BorderPurple}{HTML}{A855F7}
+\definecolor{BorderEmerald}{HTML}{10B981}
+\definecolor{TextWhite}{HTML}{FFFFFF}
+\definecolor{TextLight}{HTML}{E2E8F0}
+\definecolor{TextMuted}{HTML}{94A3B8}
+\definecolor{HighlightCyan}{HTML}{06B6D4}
+\definecolor{HighlightPurple}{HTML}{8B5CF6}
+\definecolor{HighlightGold}{HTML}{F59E0B}
+
+% Beamer Theme Adjustments
+\setbeamercolor{background canvas}{bg=DarkBg}
+\setbeamercolor{normal text}{fg=TextLight}
+\setbeamercolor{structure}{fg=BorderCyan}
+\setbeamertemplate{navigation symbols}{}
+
+% Custom tcolorbox styles
+\tcbset{
+  posterbox/.style={
+    enhanced,
+    colback=CardBg,
+    colframe=BorderCyan,
+    arc=10pt,
+    outer arc=10pt,
+    boxrule=2pt,
+    top=20pt,
+    bottom=20pt,
+    left=22pt,
+    right=22pt,
+    fonttitle=\bfseries\scshape\Large,
+    coltitle=BorderCyan,
+    colbacktitle=HeaderBg,
+    attach boxed title to top left={xshift=20pt, yshift=-14pt},
+    boxed title style={
+      enhanced,
+      colback=HeaderBg,
+      colframe=BorderCyan,
+      arc=6pt,
+      outer arc=6pt,
+      boxrule=1.5pt,
+      left=14pt,
+      right=14pt,
+      top=8pt,
+      bottom=8pt
+    },
+    drop shadow=black!50!DarkBg
+  },
+  purplebox/.style={
+    posterbox,
+    colframe=BorderPurple,
+    coltitle=BorderPurple,
+    boxed title style={
+      enhanced,
+      colback=HeaderBg,
+      colframe=BorderPurple,
+      arc=6pt,
+      outer arc=6pt,
+      boxrule=1.5pt,
+      left=14pt,
+      right=14pt,
+      top=8pt,
+      bottom=8pt
+    }
+  },
+  emeraldbox/.style={
+    posterbox,
+    colframe=BorderEmerald,
+    coltitle=BorderEmerald,
+    boxed title style={
+      enhanced,
+      colback=HeaderBg,
+      colframe=BorderEmerald,
+      arc=6pt,
+      outer arc=6pt,
+      boxrule=1.5pt,
+      left=14pt,
+      right=14pt,
+      top=8pt,
+      bottom=8pt
+    }
+  }
+}
+
+\begin{document}
+\begin{frame}[t]
+
+% ==================== TOP BANNER ====================
+\begin{tcolorbox}[
+  enhanced,
+  colback=BannerBg,
+  colframe=BorderCyan,
+  arc=12pt,
+  boxrule=2.5pt,
+  top=24pt,
+  bottom=24pt,
+  left=30pt,
+  right=30pt
+]
+  \begin{minipage}{0.18\textwidth}
+    \begin{tcolorbox}[
+      enhanced,
+      colback=HeaderBg,
+      colframe=BorderPurple,
+      arc=8pt,
+      boxrule=1.5pt,
+      halign=center
+    ]
+      \textcolor{BorderCyan}{\Large\faMicrochip} \;\textbf{\textcolor{TextWhite}{TECH EXPO 2026}}\\[4pt]
+      \textcolor{TextMuted}{\small Track A: AI Architectures \& Edge Systems}\\[6pt]
+      \textcolor{HighlightGold}{\footnotesize\faAtom ~ International Symposium}
+    \end{tcolorbox}
+  \end{minipage}\hfill
+  \begin{minipage}{0.62\textwidth}
+    \centering
+    {\Huge \bfseries \textcolor{TextWhite}{Nexa-Core: Next-Generation Neuromorphic Architecture}}\\[12pt]
+    {\Large \bfseries \textcolor{BorderCyan}{Sub-Milliwatt Spiking Neural Network Processing with Dynamic Event-Driven Synapse Fabric}}\\[16pt]
+    {\large \textcolor{TextLight}{%
+      \textbf{Dr. Marcus Vance}$^{1}$ \quad
+      \textbf{Dr. Elena Rostova}$^{1}$ \quad
+      \textbf{Sarah Chen}$^{2}$ \quad
+      \textbf{David K. Miller}$^{3}$%
+    }}\\[8pt]
+    {\small \textcolor{TextMuted}{%
+      $^{1}$Nexa AI Research Institute, San Francisco, CA \quad
+      $^{2}$Synapse Systems Laboratory, Zurich, Switzerland \quad
+      $^{3}$Vertex Quantum \& Neuromorphic Center, Austin, TX%
+    }}
+  \end{minipage}\hfill
+  \begin{minipage}{0.16\textwidth}
+    \begin{tcolorbox}[
+      enhanced,
+      colback=HeaderBg,
+      colframe=BorderCyan,
+      arc=8pt,
+      boxrule=1.5pt,
+      halign=left
+    ]
+      \textcolor{BorderCyan}{\faEnvelope} \;\textbf{\textcolor{TextWhite}{\small Contact \& Demo:}}\\[2pt]
+      \textcolor{TextLight}{\footnotesize vance@nexa-ai.org}\\[4pt]
+      \textcolor{BorderCyan}{\faGlobe} \;\textbf{\textcolor{TextWhite}{\small Portal:}}\\[2pt]
+      \textcolor{TextLight}{\footnotesize https://nexa-ai.org/core}\\[4pt]
+      \textcolor{BorderCyan}{\faRocket} \;\textbf{\textcolor{TextWhite}{\small Booth:}} \textcolor{HighlightGold}{\small \#A-104}
+    \end{tcolorbox}
+  \end{minipage}
+\end{tcolorbox}
+
+\vspace{15pt}
+
+% ==================== 3-COLUMN CONTENT GRID ====================
+\begin{minipage}[t]{0.31\textwidth}
+  % BLOCK 1: INTRODUCTION & MOTIVATION
+  \begin{tcolorbox}[posterbox, title={\faBrain \;\; Introduction \& Motivation}]
+    Standard von Neumann architectures and traditional edge GPUs suffer from memory wall bottlenecks and high idle power dissipation during real-time event-stream processing. Edge computing in autonomous robotics and biomedical implants demands ultra-low power envelopes below 1~mW.
+
+    \vspace{8pt}
+    \textbf{\textcolor{TextWhite}{The Nexa-Core Paradigm:}}
+    \begin{itemize}
+      \item[\textcolor{BorderCyan}{\faCheckCircle}] \textbf{Event-Driven Computation:} Operations execute sparsely only upon receiving dynamic Address Event Representation (AER) spikes.
+      \item[\textcolor{BorderCyan}{\faCheckCircle}] \textbf{In-Memory Synaptic Computing:} Non-volatile memristive crossbars perform analog matrix-vector multiplications directly inside memory arrays.
+      \item[\textcolor{BorderCyan}{\faCheckCircle}] \textbf{Sub-Millisecond Inference:} Asynchronous Leaky Integrate-and-Fire (LIF) neurons deliver ultra-fast temporal classification.
+    \end{itemize}
+
+    \vspace{10pt}
+    \begin{tcolorbox}[
+      enhanced,
+      colback=HeaderBg,
+      colframe=BorderEmerald,
+      arc=6pt,
+      boxrule=1pt,
+      top=10pt,
+      bottom=10pt
+    ]
+      \centering
+      \textbf{\textcolor{BorderEmerald}{\faBolt \; Key Architectural Breakthroughs:}}\\[6pt]
+      \textcolor{TextWhite}{\textbf{0.85 mW}} Active Power \quad$\vert$\quad
+      \textcolor{TextWhite}{\textbf{0.42 ms}} Latency \quad$\vert$\quad
+      \textcolor{TextWhite}{\textbf{12.4$\times$}} Energy Efficiency Boost
+    \end{tcolorbox}
+  \end{tcolorbox}
+
+  \vspace{15pt}
+
+  % BLOCK 2: SYSTEM ARCHITECTURE
+  \begin{tcolorbox}[posterbox, title={\faLayerGroup \;\; Microarchitecture \& Synapse Fabric}]
+    The Nexa-Core IC consists of a distributed grid of Neuromorphic Tile Arrays connected via an Asynchronous Network-on-Chip (NoC). Each tile integrates an AER Event Router, a $512 \times 512$ Memristive Synaptic Crossbar, and 256 LIF Digital Neuron Cores.
+
+    \vspace{10pt}
+    \centering
+    \begin{tikzpicture}[
+      node distance=0.8cm and 1.2cm,
+      block/.style={rectangle, draw=BorderCyan, fill=HeaderBg, thick, rounded corners=4pt, text=TextWhite, align=center, minimum height=1.2cm, minimum width=2.4cm, font=\small\bfseries},
+      proc/.style={rectangle, draw=BorderPurple, fill=CardBg, thick, rounded corners=4pt, text=TextWhite, align=center, minimum height=1.2cm, minimum width=2.4cm, font=\small\bfseries},
+      outblock/.style={rectangle, draw=BorderEmerald, fill=HeaderBg, thick, rounded corners=4pt, text=TextWhite, align=center, minimum height=1.2cm, minimum width=2.4cm, font=\small\bfseries},
+      line/.style={draw=BorderCyan, ->, >=stealth, ultra thick}
+    ]
+      % Nodes
+      \node [block] (input) {AER Event\\Stream In};
+      \node [proc, right=of input] (router) {Asynchronous\\NoC Router};
+      \node [proc, right=of router] (crossbar) {Memristive\\Synapse Fabric};
+      \node [outblock, right=of crossbar] (lif) {256-Neuron\\LIF Array};
+
+      % Paths
+      \draw[line] (input) -- (router);
+      \draw[line] (router) -- (crossbar);
+      \draw[line] (crossbar) -- (lif);
+
+      % Feedback loop
+      \draw[draw=BorderPurple, ->, >=stealth, ultra thick, dashed] 
+        (lif.south) -- ++(0,-0.5) -| node[pos=0.25, below, text=TextMuted, font=\footnotesize] {Spike Recirculation Loop} (router.south);
+    \end{tikzpicture}
+
+    \vspace{10pt}
+    \textcolor{TextLight}{\textbf{Synaptic Crossbar Array Details:}} The memristive crossbar utilizes Hafnium Oxide ($\text{HfO}_2$) resistive switching elements, enabling 4-bit synaptic weight quantization with low-drift state retention.
+  \end{tcolorbox}
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.31\textwidth}
+  % BLOCK 3: MATHEMATICAL & ALGORITHMIC FRAMEWORK
+  \begin{tcolorbox}[purplebox, title={\faCogs \;\; Mathematical \& Algorithmic Formulation}]
+    Spiking Neural Networks model membrane dynamics continuously. The internal state $V_i(t)$ of the $i$-th LIF neuron evolves according to the differential equation:
+    \begin{equation*}
+      \tau_m \frac{dV_i(t)}{dt} = -(V_i(t) - V_{\text{rest}}) + R \sum_{j} W_{ij} S_j(t - \Delta_{ij}) + I_{\text{ext}}(t)
+    \end{equation*}
+    where $\tau_m$ represents the membrane time constant, $W_{ij}$ is the synaptic efficacy from neuron $j$ to $i$, and $S_j(t)$ denotes incoming impulse event trains.
+
+    \vspace{8pt}
+    \textbf{\textcolor{TextWhite}{Spike Generation Threshold Condition:}}
+    \begin{equation*}
+      S_i(t) = \delta(t - t_i^k) \quad \text{when } V_i(t) \ge V_{\text{th}}, \quad V_i(t^+) \leftarrow V_{\text{reset}}
+    \end{equation*}
+
+    \vspace{8pt}
+    \textbf{\textcolor{TextWhite}{Surrogate Gradient On-Chip Backpropagation:}}
+    To train SNNs end-to-end despite non-differentiable step functions, we introduce a smooth arc-tangent surrogate gradient operator:
+    \begin{equation*}
+      \frac{\partial S_i}{\partial V_i} = \frac{1}{\pi \gamma \left(1 + \left(\frac{\pi (V_i - V_{\text{th}})}{\gamma}\right)^2\right)}
+    \end{equation*}
+    This formulation minimizes quantization loss and allows on-chip online learning with zero off-line retraining overhead.
+  \end{tcolorbox}
+
+  \vspace{15pt}
+
+  % BLOCK 4: HARDWARE SPECIFICATIONS & COMPARISON
+  \begin{tcolorbox}[purplebox, title={\faServer \;\; Hardware Microarchitecture Benchmarks}]
+    Fabricated in a 16nm FinFET process, Nexa-Core v2 demonstrates superior performance-per-watt metrics over existing embedded AI accelerators.
+
+    \vspace{10pt}
+    \centering
+    \renewcommand{\arraystretch}{1.4}
+\resizebox{\linewidth}{!}{%
+    \begin{tabular}{p{0.34\linewidth} c c c c}
+      \toprule
+      \textbf{\textcolor{BorderCyan}{Architecture}} & \textbf{\textcolor{TextWhite}{Tech Node}} & \textbf{\textcolor{TextWhite}{Power (mW)}} & \textbf{\textcolor{TextWhite}{Latency (ms)}} & \textbf{\textcolor{TextWhite}{Energy (pJ/SOP)}} \\
+      \midrule
+      \textbf{\textcolor{BorderCyan}{Nexa-Core v2}} & \textbf{16 nm} & \textbf{0.85} & \textbf{0.42} & \textbf{1.85} \\
+      Vertex-SNN v1 & 28 nm & 4.20 & 1.15 & 7.40 \\
+      Apex-Edge GPU & 8 nm & 1250.00 & 8.90 & 142.00 \\
+      Meridian TPU-v4e & 7 nm & 350.00 & 3.10 & 48.50 \\
+      \bottomrule
+    \end{tabular}
+}%
+
+    \vspace{12pt}
+    \textcolor{TextMuted}{\footnotesize * SOP: Synaptic Operation (equivalent to MAC in ANN). Evaluated on DVS-Gesture event datasets.}
+  \end{tcolorbox}
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.31\textwidth}
+  % BLOCK 5: EXPERIMENTAL RESULTS
+  \begin{tcolorbox}[emeraldbox, title={\faChartBar \;\; Experimental Results \& Performance}]
+    We benchmarked Nexa-Core against industry-standard embedded hardware platforms across key temporal classification tasks.
+
+    \vspace{8pt}
+    \centering
+    \begin{tikzpicture}
+      % Axis lines
+      \draw[->, color=TextMuted, thick] (0,0) -- (10.5,0) node[right, font=\small, text=TextWhite] {Workload};
+      \draw[->, color=TextMuted, thick] (0,0) -- (0,5.2) node[above, font=\small, text=TextWhite] {Energy / Inf. (pJ)};
+
+      % Grid lines
+      \draw[color=HeaderBg, dashed] (0,1.25) -- (10,1.25);
+      \draw[color=HeaderBg, dashed] (0,2.5) -- (10,2.5);
+      \draw[color=HeaderBg, dashed] (0,3.75) -- (10,3.75);
+
+      % Y-Labels
+      \node[left, font=\footnotesize, text=TextMuted] at (0,1.25) {50};
+      \node[left, font=\footnotesize, text=TextMuted] at (0,2.5) {100};
+      \node[left, font=\footnotesize, text=TextMuted] at (0,3.75) {150};
+
+      % Bars Group 1 (MNIST-DVS)
+      \node[below, font=\footnotesize\bfseries, text=TextWhite] at (1.5,-0.2) {MNIST-DVS};
+      \draw[fill=HighlightCyan, draw=none] (0.6,0) rectangle (1.2,0.8);
+      \draw[fill=HighlightPurple, draw=none] (1.3,0) rectangle (1.9,2.4);
+      \draw[fill=HighlightGold, draw=none] (2.0,0) rectangle (2.6,4.5);
+
+      % Bars Group 2 (DVS-Gesture)
+      \node[below, font=\footnotesize\bfseries, text=TextWhite] at (5.0,-0.2) {DVS-Gesture};
+      \draw[fill=HighlightCyan, draw=none] (4.1,0) rectangle (4.7,1.1);
+      \draw[fill=HighlightPurple, draw=none] (4.8,0) rectangle (5.4,3.1);
+      \draw[fill=HighlightGold, draw=none] (5.5,0) rectangle (6.1,4.8);
+
+      % Bars Group 3 (N-CALTECH)
+      \node[below, font=\footnotesize\bfseries, text=TextWhite] at (8.5,-0.2) {N-CALTECH101};
+      \draw[fill=HighlightCyan, draw=none] (7.6,0) rectangle (8.2,1.6);
+      \draw[fill=HighlightPurple, draw=none] (8.3,0) rectangle (8.9,3.8);
+      \draw[fill=HighlightGold, draw=none] (9.0,0) rectangle (9.6,4.9);
+
+      % Direct TikZ Legend
+      \draw[fill=CardBg, draw=BorderEmerald, rounded corners=4pt, thick] (2.0, 4.3) rectangle (8.8, 5.1);
+
+      \draw[fill=HighlightCyan, draw=none] (2.3, 4.5) rectangle (2.8, 4.9);
+      \node[right, font=\footnotesize\bfseries, text=TextWhite] at (2.8, 4.7) {Nexa-Core};
+
+      \draw[fill=HighlightPurple, draw=none] (4.6, 4.5) rectangle (5.1, 4.9);
+      \node[right, font=\footnotesize\bfseries, text=TextWhite] at (5.1, 4.7) {Vertex-SNN};
+
+      \draw[fill=HighlightGold, draw=none] (6.8, 4.5) rectangle (7.3, 4.9);
+      \node[right, font=\footnotesize\bfseries, text=TextWhite] at (7.3, 4.7) {Apex GPU};
+    \end{tikzpicture}
+
+    \vspace{10pt}
+    \begin{minipage}{0.31\linewidth}
+      \begin{tcolorbox}[enhanced, colback=HeaderBg, colframe=BorderCyan, arc=6pt, boxrule=1pt, halign=center]
+        \textcolor{BorderCyan}{\Large\bfseries 99.1\%}\\[2pt]
+        \textcolor{TextLight}{\small DVS-Gesture Accuracy}
+      \end{tcolorbox}
+    \end{minipage}\hfill
+    \begin{minipage}{0.31\linewidth}
+      \begin{tcolorbox}[enhanced, colback=HeaderBg, colframe=BorderPurple, arc=6pt, boxrule=1pt, halign=center]
+        \textcolor{BorderPurple}{\Large\bfseries 0.42 ms}\\[2pt]
+        \textcolor{TextLight}{\small Ultra-Low Latency}
+      \end{tcolorbox}
+    \end{minipage}\hfill
+    \begin{minipage}{0.31\linewidth}
+      \begin{tcolorbox}[enhanced, colback=HeaderBg, colframe=BorderEmerald, arc=6pt, boxrule=1pt, halign=center]
+        \textcolor{BorderEmerald}{\Large\bfseries 1.85 pJ}\\[2pt]
+        \textcolor{TextLight}{\small Energy per SOP}
+      \end{tcolorbox}
+    \end{minipage}
+  \end{tcolorbox}
+
+  \vspace{15pt}
+
+  % BLOCK 6: CONCLUSION & APPLICATIONS
+  \begin{tcolorbox}[emeraldbox, title={\faRocket \;\; Commercial Applications \& Conclusion}]
+    \textbf{\textcolor{TextWhite}{Target Industry Deployments:}}
+    \begin{itemize}
+      \item[\textcolor{BorderEmerald}{\faCheckCircle}] \textbf{Nimbus-Aero Autonomous Drones:} Real-time vision-based collision avoidance under high velocity flight.
+      \item[\textcolor{BorderEmerald}{\faCheckCircle}] \textbf{Synapse Medical Implants:} Ultra-low power cardiac wave anomaly detection and neural prosthetics control.
+      \item[\textcolor{BorderEmerald}{\faCheckCircle}] \textbf{Meridian Smart Grid:} Microsecond high-frequency voltage fluctuation monitoring.
+    \end{itemize}
+
+    \vspace{6pt}
+    \textbf{\textcolor{TextWhite}{Summary:}} Nexa-Core bridges the gap between biological efficiency and artificial edge intelligence, opening new frontiers for zero-latency, sub-milliwatt autonomous computing.
+  \end{tcolorbox}
+
+  \vspace{15pt}
+
+  % BLOCK 7: REFERENCES & ACKNOWLEDGMENTS
+  \begin{tcolorbox}[posterbox, title={\faGraduationCap \;\; References \& Acknowledgments}]
+    {\footnotesize \textcolor{TextMuted}{%
+      [1] Vance, M. et al. (2025). \emph{Event-Driven Neuromorphic Architecture for Edge AI}. IEEE J. Solid-State Circuits, 60(4), 1102--1115.\\[3pt]
+      [2] Rostova, E. \& Chen, S. (2025). \emph{Surrogate Gradient On-Chip Backpropagation in Memristive Arrays}. Nature Electronics, 8(2), 145--156.\\[3pt]
+      [3] Miller, D. K. (2024). \emph{Asynchronous AER Network-on-Chip Fabrics}. Proc. ISCA 2024, pp. 89--101.%
+    }}
+
+    \vspace{6pt}
+    \textcolor{TextMuted}{\tiny Supported by Nexa AI Research Grant \#NX-2025-99A and Vertex Science Foundation Fellowship.}
+  \end{tcolorbox}
+\end{minipage}
+
+\end{frame}
+\end{document}

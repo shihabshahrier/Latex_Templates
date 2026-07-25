@@ -1,0 +1,419 @@
+\documentclass[11pt]{scrartcl}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[a4paper,landscape,margin=1.6cm,top=1.9cm,bottom=1.9cm]{geometry}
+\usepackage[table]{xcolor}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{tikz}
+\usetikzlibrary{positioning,calc,shapes.geometric,backgrounds}
+\usepackage{tcolorbox}
+\tcbuselibrary{skins}
+\usepackage{fontawesome5}
+\usepackage{enumitem}
+\usepackage{scrlayer-scrpage}
+\usepackage{lastpage}
+
+% ---------------------------------------------------------------------------
+% Palette (4 custom colours) --------------------------------------------------
+\definecolor{meridiannavy}{RGB}{22,38,63}
+\definecolor{trackteal}{RGB}{0,121,107}
+\definecolor{trackamber}{RGB}{198,93,20}
+\definecolor{trackplum}{RGB}{91,58,110}
+\colorlet{trackD}{meridiannavy!55!white}
+\colorlet{trackA}{trackteal}
+\colorlet{trackB}{trackamber}
+\colorlet{trackC}{trackplum}
+\colorlet{panelrow}{meridiannavy!7}
+\colorlet{hairline}{meridiannavy!25}
+
+\renewcommand{\familydefault}{\sfdefault}
+
+\setlength{\parindent}{0pt}
+
+% ---------------------------------------------------------------------------
+% Page furniture --------------------------------------------------------------
+\clearscrheadfoot
+\ihead{\footnotesize\color{meridiannavy!70} Meridian Frontiers Summit 2026}
+\ohead{\footnotesize\color{meridiannavy!70} 14--16 October, Lisbon}
+\ofoot{\footnotesize\color{meridiannavy!70} Page \thepage\ of \pageref{LastPage}}
+\ifoot{\footnotesize\color{meridiannavy!70} \faCalendar\ Schedule Grid}
+\pagestyle{scrheadings}
+\setkomafont{pageheadfoot}{\normalfont}
+\KOMAoptions{headsepline=true,footsepline=true}
+
+% ---------------------------------------------------------------------------
+% Helper commands --------------------------------------------------------------
+\newcommand{\sectiontitle}[2]{%
+  \begin{tcolorbox}[
+      enhanced,colback=meridiannavy,colframe=meridiannavy,
+      colupper=white,boxrule=0pt,arc=1pt,
+      left=10pt,right=10pt,top=6pt,bottom=6pt,
+      before skip=7pt,after skip=5pt
+    ]
+    {\Large\bfseries #1} \hfill {\normalsize\color{white!85!black} #2}
+  \end{tcolorbox}%
+}
+
+\newcommand{\trackswatch}[2]{%
+  \tikz[baseline=-0.55ex]\fill[#1] (0,0) rectangle (0.32cm,0.32cm);~#2%
+}
+
+\newcommand{\slotrow}[2]{%
+  \rowcolor{panelrow}
+  \multicolumn{1}{|l|}{\footnotesize\bfseries #1} &
+  \multicolumn{4}{l|}{\footnotesize\itshape #2} \\ \hline
+}
+
+% header cell content for a room/track column
+\newcommand{\roomhead}[3]{%
+  \cellcolor{#1}\textcolor{white}{\textbf{#2}\newline\footnotesize #3}%
+}
+
+\newcommand{\sess}[3]{%
+  {\footnotesize\textbf{#1}\newline #2 \textbar\ \textit{#3}}%
+}
+
+\begin{document}
+\thispagestyle{empty}
+
+% =============================================================================
+% TITLE PAGE
+% =============================================================================
+\begin{center}
+\begin{tikzpicture}
+  \fill[meridiannavy] (0,0) rectangle (\linewidth,2.5cm);
+  \fill[trackteal] (0,0) rectangle (0.18\linewidth,0.1cm);
+  \fill[trackamber] (0.18\linewidth,0) rectangle (0.36\linewidth,0.1cm);
+  \fill[trackplum] (0.36\linewidth,0) rectangle (0.54\linewidth,0.1cm);
+  \fill[trackD] (0.54\linewidth,0) rectangle (0.72\linewidth,0.1cm);
+  \node[anchor=north west,text width=0.9\linewidth,align=left,inner sep=0pt]
+    at (0.05\linewidth,2.25cm)
+    {\color{white}\fontsize{27}{30}\selectfont\bfseries Meridian Frontiers Summit 2026};
+  \node[anchor=north west,text width=0.9\linewidth,align=left,inner sep=0pt]
+    at (0.05\linewidth,1.05cm)
+    {\color{white!85!black}\large Multi-Track Schedule Grid \,--\, Engineering the Next Decade of Intelligent Systems};
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.35cm}
+
+\noindent
+\faCalendar\ \textbf{14--16 October 2026} \quad
+\faMapMarker\ \textbf{Meridian Convention Centre, Lisbon} \quad
+\faUsers\ \textbf{Approx. 550 attendees, in person \& livestreamed} \quad
+\faMicrophone\ \textbf{48 sessions, 4 tracks + 1 plenary stage}
+
+\vspace{0.3cm}
+
+{\bfseries\large Track legend}
+
+\vspace{0.15cm}
+
+\noindent
+\begin{minipage}[t]{0.235\textwidth}
+\begin{tcolorbox}[colback=white,colframe=trackA,boxrule=1pt,arc=2pt,left=6pt,right=6pt,top=4pt,bottom=4pt]
+\trackswatch{trackA}{\textbf{Track A}} \newline
+{\footnotesize AI \& Machine Intelligence \newline Room 101}
+\end{tcolorbox}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.235\textwidth}
+\begin{tcolorbox}[colback=white,colframe=trackB,boxrule=1pt,arc=2pt,left=6pt,right=6pt,top=4pt,bottom=4pt]
+\trackswatch{trackB}{\textbf{Track B}} \newline
+{\footnotesize Cloud \& Infrastructure \newline Room 204}
+\end{tcolorbox}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.235\textwidth}
+\begin{tcolorbox}[colback=white,colframe=trackC,boxrule=1pt,arc=2pt,left=6pt,right=6pt,top=4pt,bottom=4pt]
+\trackswatch{trackC}{\textbf{Track C}} \newline
+{\footnotesize Security \& Trust \newline Room 118}
+\end{tcolorbox}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.235\textwidth}
+\begin{tcolorbox}[colback=white,colframe=trackD,boxrule=1pt,arc=2pt,left=6pt,right=6pt,top=4pt,bottom=4pt]
+\trackswatch{trackD}{\textbf{Track D}} \newline
+{\footnotesize Product \& Design \newline Room 310}
+\end{tcolorbox}
+\end{minipage}
+\par
+
+\vspace{0.3cm}
+
+\begin{minipage}{0.48\linewidth}
+{\bfseries Programme committee chair}\\
+Elena Bartosz, Chief Scientist, Nexa
+\end{minipage}
+\begin{minipage}{0.48\linewidth}
+{\bfseries Host organisations}\\
+Nexa \,\textbullet\, Synapse \,\textbullet\, Vertex \,\textbullet\, Nimbus \,\textbullet\, Apex
+\end{minipage}
+
+\clearpage
+
+% =============================================================================
+% SCHEDULE AT A GLANCE
+% =============================================================================
+\sectiontitle{Schedule at a Glance}{All three days, plenary blocks and track sessions}
+
+\renewcommand{\arraystretch}{1.35}
+\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{2.6cm}|X|X|X|}
+\hline
+\rowcolor{meridiannavy}
+\textcolor{white}{\bfseries Time} &
+\textcolor{white}{\bfseries Day 1 \,--\, 14 Oct} &
+\textcolor{white}{\bfseries Day 2 \,--\, 15 Oct} &
+\textcolor{white}{\bfseries Day 3 \,--\, 16 Oct} \\
+\hline
+08:00 -- 09:00 & Registration \& coffee, Grand Hall Foyer & Registration \& coffee, Grand Hall Foyer & Registration \& coffee, Grand Hall Foyer \\
+\hline
+09:00 -- 09:45 & \textbf{Opening keynote}: The Next Decade of Distributed Intelligence -- Elena Bartosz (Nexa) & \textbf{Keynote}: Building Infrastructure for a Slower, Safer Internet -- Tomas Reyes (Nimbus) & \textbf{Workshop keynote}: Designing Systems People Can Actually Trust -- Layla Haddad (Apex) \\
+\hline
+09:45 -- 10:15 & Coffee \& networking & Coffee \& networking & Coffee \& networking \\
+\hline
+10:15 -- 11:55 & Track sessions, slots 1--2 (4 tracks) & Track sessions, slots 1--2 (4 tracks) & Workshop block 1 (3 parallel workshops) \\
+\hline
+12:00 -- 13:15 & Lunch, Grand Hall & Lunch, Grand Hall & Working lunch, Grand Hall \\
+\hline
+13:15 -- 14:55 & Track sessions, slots 3--4 (4 tracks) & Track sessions, slots 3--4 (4 tracks) & Workshop block 2 (3 parallel workshops) \\
+\hline
+15:00 -- 15:30 & Coffee \& poster session & Coffee \& poster session & Coffee \& demo showcase \\
+\hline
+15:30 -- 17:10 & Track sessions, slots 5--6 (4 tracks) & Track sessions, slots 5--6 (4 tracks) & Closing brunch wrap-up \\
+\hline
+17:15 -- 18:00 & Fireside panel, Grand Hall & \textbf{Closing panel}: Where Do We Go From Here, Grand Hall & --- \\
+\hline
+19:00 -- 21:30 & Welcome reception, Rooftop Terrace & Gala dinner, Riverside Pavilion & --- \\
+\hline
+\end{tabularx}
+
+\vspace{0.4cm}
+{\footnotesize\itshape Room key: Track A -- Room 101 \,\textbullet\, Track B -- Room 204 \,\textbullet\, Track C -- Room 118 \,\textbullet\, Track D -- Room 310 \,\textbullet\, Plenary -- Grand Hall.}
+
+\clearpage
+
+% =============================================================================
+% DAY 1 DETAILED GRID
+% =============================================================================
+\sectiontitle{Day 1 \,--\, Wednesday, 14 October}{Detailed multi-track schedule}
+
+\renewcommand{\arraystretch}{1.08}
+\setlength{\tabcolsep}{4pt}
+\small
+\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{1.7cm}|X|X|X|X|}
+\hline
+\multicolumn{1}{|l|}{\cellcolor{meridiannavy}\textcolor{white}{\bfseries Time}} &
+\roomhead{trackA}{Room 101}{Track A -- AI \& Machine Intelligence} &
+\roomhead{trackB}{Room 204}{Track B -- Cloud \& Infrastructure} &
+\roomhead{trackC}{Room 118}{Track C -- Security \& Trust} &
+\roomhead{trackD}{Room 310}{Track D -- Product \& Design} \\
+\hline
+\slotrow{08:00 -- 09:00}{\faCoffee\ Registration \& coffee -- Grand Hall Foyer}
+\slotrow{09:00 -- 09:45}{\faMicrophone\ Opening keynote: \textbf{The Next Decade of Distributed Intelligence} -- Elena Bartosz, Chief Scientist, Nexa -- Grand Hall}
+\slotrow{09:45 -- 10:15}{\faCoffee\ Coffee \& networking -- Grand Hall Foyer}
+10:15 -- 11:00 &
+\sess{Retrieval at Scale}{Vector indexing for billion-row corpora}{Grace Kim, Nexa} &
+\sess{Zero-Downtime Migrations}{Multi-region Postgres in practice}{Jonas Weber, Nimbus} &
+\sess{Supply Chain Attestation}{Signing and verifying container images}{Layla Haddad, Apex} &
+\sess{Designing for Trust}{Interface patterns for AI-driven products}{Ana Beaumont, Vertex} \\
+\hline
+11:10 -- 11:55 &
+\sess{Agentic Workflows in Production}{Lessons from six months of live traffic}{Marcus Feld, Synapse} &
+\sess{Cost Modelling for Elastic Compute}{Right-sizing without the guesswork}{Sam Whitfield, Nimbus} &
+\sess{Threat Modelling Workshops}{Formats teams actually finish}{Rui Tanaka, Synapse} &
+\sess{Feature Factory to Outcome Team}{Rewiring a roadmap around metrics}{Owen Castillo, Synapse} \\
+\hline
+\slotrow{12:00 -- 13:15}{\faUsers\ Lunch -- Grand Hall}
+13:15 -- 14:00 &
+\sess{Fine-Tuning Economics}{When not to fine-tune a model}{Chiara Rinaldi, Nexa} &
+\sess{The Sidecar Tax}{Service mesh overhead in practice}{Nadia Petrov, Vertex} &
+\sess{Zero Trust, Real Budget}{Segmentation without a platform team}{Daniel Osei, Meridian Labs} &
+\sess{Onboarding That Survives Users}{Field notes from three redesigns}{Priya Chandran, Vertex} \\
+\hline
+14:10 -- 14:55 &
+\sess{Evaluation Harnesses}{Benchmarks that do not lie to you}{Ben Okafor, Independent} &
+\sess{Edge Caching Budgets}{Meeting a global latency target}{Tomas Reyes, Nimbus} &
+\sess{Incident Postmortems as Culture}{Making the blameless review stick}{Sofia Lindqvist, Apex} &
+\sess{Metrics That Mislead}{A field guide to vanity dashboards}{Grace Kim, Nexa} \\
+\hline
+\slotrow{15:00 -- 15:30}{\faCoffee\ Coffee \& poster session -- Grand Hall Foyer}
+15:30 -- 16:15 &
+\sess{Context Windows at Work}{Long-document reasoning in support tooling}{Marcus Feld, Synapse} &
+\sess{Autoscaling Postmortems}{Three outages, three fixes}{Jonas Weber, Nimbus} &
+\sess{Attesting Third-Party Code}{SBOMs beyond the checkbox}{Rui Tanaka, Synapse} &
+\sess{Research Ops for Small Teams}{Getting signal without a research team}{Ana Beaumont, Vertex} \\
+\hline
+16:25 -- 17:10 &
+\sess{Small Models, Sharp Tasks}{Where distillation beats scale}{Chiara Rinaldi, Nexa} &
+\sess{Storage Tiering on a Budget}{Cold data without the cold shoulder}{Sam Whitfield, Nimbus} &
+\sess{Detecting Drift, Not Noise}{Alert design for security telemetry}{Layla Haddad, Apex} &
+\sess{Design Systems That Scale}{Governance without a committee}{Owen Castillo, Synapse} \\
+\hline
+\slotrow{17:15 -- 18:00}{\faMicrophone\ Fireside panel: \textbf{Shipping Reliable AI Products} -- Grand Hall}
+\slotrow{19:00 -- 21:30}{Welcome reception -- Rooftop Terrace}
+\end{tabularx}
+\normalsize
+\setlength{\tabcolsep}{6pt}
+
+\clearpage
+
+% =============================================================================
+% DAY 2 DETAILED GRID
+% =============================================================================
+\sectiontitle{Day 2 \,--\, Thursday, 15 October}{Detailed multi-track schedule}
+
+\renewcommand{\arraystretch}{1.08}
+\setlength{\tabcolsep}{4pt}
+\small
+\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{1.7cm}|X|X|X|X|}
+\hline
+\multicolumn{1}{|l|}{\cellcolor{meridiannavy}\textcolor{white}{\bfseries Time}} &
+\roomhead{trackA}{Room 101}{Track A -- AI \& Machine Intelligence} &
+\roomhead{trackB}{Room 204}{Track B -- Cloud \& Infrastructure} &
+\roomhead{trackC}{Room 118}{Track C -- Security \& Trust} &
+\roomhead{trackD}{Room 310}{Track D -- Product \& Design} \\
+\hline
+\slotrow{08:00 -- 09:00}{\faCoffee\ Registration \& coffee -- Grand Hall Foyer}
+\slotrow{09:00 -- 09:45}{\faMicrophone\ Keynote: \textbf{Building Infrastructure for a Slower, Safer Internet} -- Tomas Reyes, CTO, Nimbus -- Grand Hall}
+\slotrow{09:45 -- 10:15}{\faCoffee\ Coffee \& networking -- Grand Hall Foyer}
+10:15 -- 11:00 &
+\sess{Multi-Agent Orchestration}{Coordinating specialised models in one pipeline}{Ben Okafor, Independent} &
+\sess{The Queueing Theory You Forgot}{Backpressure design for real systems}{Sam Whitfield, Nimbus} &
+\sess{Zero Trust for Legacy Estates}{Migrating without a rewrite}{Daniel Osei, Meridian Labs} &
+\sess{Trust Signals in Onboarding}{What users actually notice first}{Priya Chandran, Vertex} \\
+\hline
+11:10 -- 11:55 &
+\sess{Evaluation at Enterprise Scale}{Sampling strategies that hold up}{Grace Kim, Nexa} &
+\sess{Multi-Region Failover Drills}{Rehearsing the outage before it happens}{Jonas Weber, Nimbus} &
+\sess{Access Reviews That Finish}{Automating the quarterly audit}{Sofia Lindqvist, Apex} &
+\sess{Research Debt}{What accumulates when nobody talks to users}{Ana Beaumont, Vertex} \\
+\hline
+\slotrow{12:00 -- 13:15}{\faUsers\ Lunch -- Grand Hall}
+13:15 -- 14:00 &
+\sess{Retrieval-Augmented Support}{Grounding answers in live documentation}{Marcus Feld, Synapse} &
+\sess{The Real Cost of Multi-Cloud}{What the invoices do not show}{Tomas Reyes, Nimbus} &
+\sess{Logging Without Leaking}{PII-safe observability pipelines}{Layla Haddad, Apex} &
+\sess{Prototyping With Real Data}{Faster feedback loops for design}{Owen Castillo, Synapse} \\
+\hline
+14:10 -- 14:55 &
+\sess{Model Routing in Production}{Sending each query to the cheapest capable model}{Chiara Rinaldi, Nexa} &
+\sess{Chaos Engineering, Small Team Edition}{Fault injection without a platform org}{Jonas Weber, Nimbus} &
+\sess{Third-Party Risk in Practice}{Vendor reviews that catch real issues}{Rui Tanaka, Synapse} &
+\sess{Accessibility as Default}{Building it in, not bolting it on}{Priya Chandran, Vertex} \\
+\hline
+\slotrow{15:00 -- 15:30}{\faCoffee\ Coffee \& poster session -- Grand Hall Foyer}
+15:30 -- 16:15 &
+\sess{Guardrails That Do Not Annoy}{Balancing safety and usefulness}{Ben Okafor, Independent} &
+\sess{Latency Budgets End to End}{Tracing a request across five services}{Sam Whitfield, Nimbus} &
+\sess{Incident Response Tabletop}{Running the drill your team will remember}{Sofia Lindqvist, Apex} &
+\sess{Naming Things Well}{Information architecture for growing products}{Ana Beaumont, Vertex} \\
+\hline
+16:25 -- 17:10 &
+\sess{The Economics of Context}{Paying for tokens versus paying for latency}{Marcus Feld, Synapse} &
+\sess{Postgres at 10 TB}{Partitioning, vacuum, and the fear of both}{Jonas Weber, Nimbus} &
+\sess{Attack Surface Mapping}{Keeping the inventory honest}{Layla Haddad, Apex} &
+\sess{Design Reviews That Ship}{Critique without gridlock}{Owen Castillo, Synapse} \\
+\hline
+\slotrow{17:15 -- 18:00}{\faMicrophone\ Closing panel: \textbf{Where Do We Go From Here} -- Grand Hall}
+\slotrow{19:00 -- 21:30}{Gala dinner -- Riverside Pavilion}
+\end{tabularx}
+\normalsize
+\setlength{\tabcolsep}{6pt}
+
+\clearpage
+
+% =============================================================================
+% DAY 3 WORKSHOPS + SPEAKER INDEX
+% =============================================================================
+\sectiontitle{Day 3 \,--\, Friday, 16 October}{Workshop day (half-day format, three parallel tracks)}
+
+\renewcommand{\arraystretch}{1.1}
+\setlength{\tabcolsep}{4pt}
+\small
+\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{1.7cm}|X|X|X|}
+\hline
+\multicolumn{1}{|l|}{\cellcolor{meridiannavy}\textcolor{white}{\bfseries Time}} &
+\roomhead{trackA}{Room 101}{AI \& ML hands-on} &
+\roomhead{trackB}{Room 204}{Infrastructure hands-on} &
+\roomhead{trackC}{Room 118}{Security hands-on} \\
+\hline
+\multicolumn{1}{|l|}{\cellcolor{panelrow}\footnotesize\bfseries 08:00 -- 09:00} &
+\multicolumn{3}{l|}{\cellcolor{panelrow}\footnotesize\itshape \faCoffee\ Registration \& coffee -- Grand Hall Foyer} \\
+\hline
+\multicolumn{1}{|l|}{\cellcolor{panelrow}\footnotesize\bfseries 09:00 -- 09:45} &
+\multicolumn{3}{l|}{\cellcolor{panelrow}\footnotesize\itshape \faMicrophone\ Workshop keynote: \textbf{Designing Systems People Can Actually Trust} -- Layla Haddad, Apex -- Grand Hall} \\
+\hline
+09:45 -- 12:00 &
+\sess{Building an Evaluation Harness}{Hands-on lab, laptops required}{Grace Kim \& Ben Okafor} &
+\sess{Zero-Downtime Migration Clinic}{Bring your own schema}{Sam Whitfield \& Jonas Weber} &
+\sess{Threat Modelling in 90 Minutes}{Small-group facilitated exercise}{Rui Tanaka \& Sofia Lindqvist} \\
+\hline
+\multicolumn{1}{|l|}{\cellcolor{panelrow}\footnotesize\bfseries 12:00 -- 13:15} &
+\multicolumn{3}{l|}{\cellcolor{panelrow}\footnotesize\itshape \faUsers\ Working lunch -- Grand Hall} \\
+\hline
+13:15 -- 15:00 &
+\sess{Agent Tooling Deep Dive}{Design patterns for tool-using agents}{Marcus Feld \& Chiara Rinaldi} &
+\sess{Cost Modelling Workshop}{Build a model for your own workload}{Tomas Reyes \& Nadia Petrov} &
+\sess{Container Signing End to End}{From build pipeline to admission control}{Layla Haddad \& Daniel Osei} \\
+\hline
+\multicolumn{1}{|l|}{\cellcolor{panelrow}\footnotesize\bfseries 15:00 -- 15:30} &
+\multicolumn{3}{l|}{\cellcolor{panelrow}\footnotesize\itshape \faCoffee\ Coffee \& demo showcase -- Grand Hall Foyer} \\
+\hline
+\multicolumn{1}{|l|}{\cellcolor{panelrow}\footnotesize\bfseries 15:30 -- 16:30} &
+\multicolumn{3}{l|}{\cellcolor{panelrow}\footnotesize\itshape Closing brunch wrap-up \& next-year preview -- Grand Hall} \\
+\hline
+\end{tabularx}
+\normalsize
+\setlength{\tabcolsep}{6pt}
+
+\vspace{0.1cm}
+
+\sectiontitle{Speaker Index}{Alphabetical -- slide decks posted within 48h at the registration desk}
+
+\renewcommand{\arraystretch}{0.88}
+\setlength{\tabcolsep}{4pt}
+\footnotesize
+\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{3.3cm}|>{\raggedright\arraybackslash}p{3.1cm}|X|>{\centering\arraybackslash}p{1.9cm}|}
+\hline
+\rowcolor{meridiannavy}
+\textcolor{white}{\bfseries Speaker} & \textcolor{white}{\bfseries Affiliation} & \textcolor{white}{\bfseries Featured session} & \textcolor{white}{\bfseries Track} \\
+\hline
+Elena Bartosz & Chief Scientist, Nexa & The Next Decade of Distributed Intelligence (opening keynote) & Plenary \\
+\hline
+Ana Beaumont & Vertex & Designing for Trust / Research Debt & \trackswatch{trackD}{D} \\
+\hline
+Owen Castillo & Synapse & Feature Factory to Outcome Team & \trackswatch{trackD}{D} \\
+\hline
+Priya Chandran & Vertex & Onboarding That Survives Users & \trackswatch{trackD}{D} \\
+\hline
+Layla Haddad & Apex & Supply Chain Attestation / Workshop keynote & \trackswatch{trackC}{C} \\
+\hline
+Grace Kim & Nexa & Metrics That Mislead & \trackswatch{trackA}{A} \\
+\hline
+Sofia Lindqvist & Apex & Incident Postmortems as Culture & \trackswatch{trackC}{C} \\
+\hline
+Ben Okafor & Independent & Evaluation Harnesses & \trackswatch{trackA}{A} \\
+\hline
+Daniel Osei & Meridian Labs & Zero Trust, Real Budget & \trackswatch{trackC}{C} \\
+\hline
+Marcus Feld & Synapse & Agentic Workflows in Production & \trackswatch{trackA}{A} \\
+\hline
+Nadia Petrov & Vertex & The Sidecar Tax & \trackswatch{trackB}{B} \\
+\hline
+Tomas Reyes & CTO, Nimbus & Building Infrastructure for a Slower, Safer Internet (keynote) & Plenary \\
+\hline
+Chiara Rinaldi & Nexa & Fine-Tuning Economics & \trackswatch{trackA}{A} \\
+\hline
+Rui Tanaka & Synapse & Threat Modelling Workshops & \trackswatch{trackC}{C} \\
+\hline
+Jonas Weber & Nimbus & Zero-Downtime Migrations & \trackswatch{trackB}{B} \\
+\hline
+Sam Whitfield & Nimbus & Cost Modelling for Elastic Compute & \trackswatch{trackB}{B} \\
+\hline
+\end{tabularx}
+
+\end{document}

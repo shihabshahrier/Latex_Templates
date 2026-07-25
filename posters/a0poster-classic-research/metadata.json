@@ -1,0 +1,8 @@
+{
+  "name": "A0poster Classic Academic Research Poster",
+  "compiler": "pdflatex",
+  "description": "A0poster Classic Academic Research Poster LaTeX template \u2014 a0poster classic academic research poster latex template. Elegant, compile-tested, editable online at letx.app.",
+  "author": "LetX",
+  "category": "posters",
+  "license": "MIT"
+}

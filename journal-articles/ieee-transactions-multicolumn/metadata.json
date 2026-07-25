@@ -1,0 +1,8 @@
+{
+  "name": "IEEE Transactions Multi-Column Technical Paper",
+  "compiler": "pdflatex",
+  "description": "IEEE Transactions Multi-Column Technical Paper LaTeX template \u2014 ieee transactions multi-column technical paper latex template. Elegant, compile-tested, editable online at letx.app.",
+  "author": "LetX",
+  "category": "journal-articles",
+  "license": "MIT"
+}

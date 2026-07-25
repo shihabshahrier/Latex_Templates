@@ -1,0 +1,633 @@
+\documentclass[11pt,a4paper]{article}
+
+%% ─── PACKAGES ────────────────────────────────────────────────────────────────
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=2.2cm, top=2.5cm, bottom=2.8cm]{geometry}
+\usepackage[table]{xcolor}
+\usepackage{microtype}
+\usepackage{lmodern}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{colortbl}
+\usepackage{enumitem}
+\usepackage{parskip}
+\usepackage{setspace}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{fontawesome5}
+\usepackage{mdframed}
+\usepackage[most]{tcolorbox}
+\usepackage{tikz}
+\usetikzlibrary{positioning, calc, shapes.geometric, backgrounds, patterns, decorations.pathmorphing}
+\usepackage{hyperref}
+\usepackage{lastpage}
+\usepackage{multirow}
+
+%% ─── COLOUR PALETTE ─────────────────────────────────────────────────────────
+\definecolor{NavyDeep}{HTML}{0D2B45}
+\definecolor{SlateBlue}{HTML}{1F5276}
+\definecolor{GoldAccent}{HTML}{C8993A}
+\definecolor{SilverLight}{HTML}{F4F6F9}
+\definecolor{MidGray}{HTML}{8A96A3}
+\definecolor{TextDark}{HTML}{1A1E24}
+\definecolor{RuleGray}{HTML}{D0D7DF}
+\definecolor{WarningAmber}{HTML}{FFF3CD}
+\definecolor{WarningBorder}{HTML}{C8993A}
+
+%% ─── HYPERREF ────────────────────────────────────────────────────────────────
+\hypersetup{
+  colorlinks=true,
+  linkcolor=SlateBlue,
+  urlcolor=SlateBlue,
+  pdfauthor={Nexa Technologies Inc.},
+  pdftitle={Employment Non-Disclosure and Non-Solicitation Agreement},
+  pdfsubject={Legal Agreement},
+}
+
+%% ─── TYPOGRAPHY ──────────────────────────────────────────────────────────────
+\renewcommand{\familydefault}{\sfdefault}
+
+%% ─── SECTION FORMATTING ──────────────────────────────────────────────────────
+\titleformat{\section}
+  {\color{NavyDeep}\large\bfseries}
+  {\color{GoldAccent}\thesection.}
+  {0.55em}
+  {}
+  [\vspace{-4pt}\textcolor{GoldAccent}{\rule{\linewidth}{1.2pt}}\vspace{2pt}]
+
+\titlespacing*{\section}{0pt}{18pt}{6pt}
+
+\titleformat{\subsection}
+  {\color{SlateBlue}\normalsize\bfseries}
+  {\thesubsection.}
+  {0.4em}
+  {}
+
+\titlespacing*{\subsection}{0pt}{10pt}{3pt}
+
+%% ─── PAGE STYLE ──────────────────────────────────────────────────────────────
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\fancyhead[L]{%
+  \small\color{MidGray}%
+  \textbf{\color{NavyDeep}NEXA TECHNOLOGIES INC.}%
+  \enspace\textbar\enspace Employment NDA \& Non-Solicitation Agreement%
+}
+\fancyhead[R]{%
+  \small\color{MidGray}Confidential%
+}
+\fancyfoot[C]{%
+  \small\color{MidGray}Page \thepage\ of \pageref{LastPage}%
+}
+\fancyfoot[R]{%
+  \small\color{MidGray}Rev.\ 2025-A%
+}
+\setlength{\headheight}{15pt}
+
+%% ─── CUSTOM ENVIRONMENTS ─────────────────────────────────────────────────────
+\tcbset{
+  ndabox/.style={
+    colback=SilverLight,
+    colframe=NavyDeep,
+    colbacktitle=NavyDeep,
+    coltitle=white,
+    fonttitle=\bfseries\small,
+    arc=3pt,
+    boxrule=0.8pt,
+    left=10pt, right=10pt, top=8pt, bottom=8pt,
+    toptitle=4pt, bottomtitle=4pt,
+  },
+  warningbox/.style={
+    colback=WarningAmber,
+    colframe=WarningBorder,
+    arc=3pt,
+    boxrule=0.8pt,
+    left=10pt, right=10pt, top=8pt, bottom=8pt,
+  },
+  fieldbox/.style={
+    colback=white,
+    colframe=RuleGray,
+    arc=2pt,
+    boxrule=0.6pt,
+    left=8pt, right=8pt, top=6pt, bottom=6pt,
+  },
+  clausebox/.style={
+    colback=white,
+    colframe=SlateBlue,
+    leftrule=3pt,
+    toprule=0pt, bottomrule=0pt, rightrule=0pt,
+    arc=0pt,
+    left=10pt, right=6pt, top=6pt, bottom=6pt,
+  },
+}
+
+%% ─── DOCUMENT ────────────────────────────────────────────────────────────────
+\begin{document}
+
+%% ═══════════════════════════════════════════════════════════════════════════
+%% HEADER BANNER
+%% ═══════════════════════════════════════════════════════════════════════════
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[NavyDeep]
+    (current page.north west)
+    rectangle
+    ([yshift=-3.6cm] current page.north east);
+  \fill[GoldAccent]
+    ([yshift=-3.6cm] current page.north west)
+    rectangle
+    ([yshift=-3.9cm] current page.north east);
+  \node[anchor=west, text=white] at
+    ([xshift=2.2cm, yshift=-1.3cm] current page.north west)
+    {\fontsize{22}{26}\selectfont\bfseries EMPLOYMENT NON-DISCLOSURE};
+  \node[anchor=west, text=white] at
+    ([xshift=2.2cm, yshift=-2.0cm] current page.north west)
+    {\fontsize{22}{26}\selectfont\bfseries \& NON-SOLICITATION AGREEMENT};
+  \node[anchor=west, text=GoldAccent] at
+    ([xshift=2.2cm, yshift=-2.8cm] current page.north west)
+    {\large\bfseries NEXA TECHNOLOGIES INC.\ \ \textbar\ \ CONFIDENTIAL};
+  \node[anchor=east, text=white] at
+    ([xshift=-2.2cm, yshift=-1.65cm] current page.north east)
+    {%
+      \begin{tikzpicture}
+        \draw[GoldAccent, line width=1.6pt] (0,0) circle (0.8cm);
+        \node[text=white] at (0,0) {\Huge\faLock};
+      \end{tikzpicture}%
+    };
+  \node[anchor=east, text=MidGray!60!white] at
+    ([xshift=-2.2cm, yshift=-3.0cm] current page.north east)
+    {\small Document No.\ NTI-NDA-2025-047};
+\end{tikzpicture}
+
+\vspace*{3.95cm}
+
+%% ─── PREAMBLE INFO BOX ───────────────────────────────────────────────────────
+\begin{tcolorbox}[ndabox, title={\faFile\enspace Agreement Details}]
+  \begin{minipage}[t]{0.48\linewidth}
+    \small
+    \textbf{\color{NavyDeep}Effective Date:}\quad July 14, 2025\\[4pt]
+    \textbf{\color{NavyDeep}Agreement No.:}\quad NTI-NDA-2025-047\\[4pt]
+    \textbf{\color{NavyDeep}Jurisdiction:}\quad State of Delaware, USA\\[4pt]
+    \textbf{\color{NavyDeep}Governing Law:}\quad Delaware General Laws
+  \end{minipage}%
+  \hfill%
+  \begin{minipage}[t]{0.48\linewidth}
+    \small
+    \textbf{\color{NavyDeep}Employer:}\quad Nexa Technologies Inc.\\[4pt]
+    \textbf{\color{NavyDeep}Employee:}\quad Jordan M. Calloway\\[4pt]
+    \textbf{\color{NavyDeep}Position:}\quad Senior Product Engineer\\[4pt]
+    \textbf{\color{NavyDeep}Department:}\quad Platform Engineering
+  \end{minipage}
+\end{tcolorbox}
+
+\vspace{8pt}
+
+\begin{tcolorbox}[warningbox]
+  \small\color{TextDark}
+  \faCalendar\enspace \textbf{Important:} This Agreement takes effect on the Employee's first day
+  of employment or the Effective Date stated above, whichever is earlier.
+  Please read all provisions carefully before signing.
+\end{tcolorbox}
+
+\vspace{12pt}
+
+%% ─── RECITALS ────────────────────────────────────────────────────────────────
+\noindent
+This \textbf{Employment Non-Disclosure and Non-Solicitation Agreement} (the
+\textbf{``Agreement''}) is entered into as of \textbf{July 14, 2025} (the
+\textbf{``Effective Date''}), by and between:
+
+\vspace{8pt}
+
+\begin{minipage}[t]{0.47\linewidth}
+\begin{tcolorbox}[fieldbox]
+  \textbf{\color{NavyDeep}EMPLOYER}\\[4pt]
+  \textbf{Nexa Technologies Inc.}\\
+  a Delaware corporation\\[4pt]
+  \textit{Principal Office:}\\
+  1450 Innovation Drive, Suite 800\\
+  Wilmington, DE 19801, USA\\[4pt]
+  \textit{EIN:} 47-0012983\\
+  \textit{Contact:} hr@nexatechnologies.com
+\end{tcolorbox}
+\end{minipage}%
+\hfill%
+\begin{minipage}[t]{0.47\linewidth}
+\begin{tcolorbox}[fieldbox]
+  \textbf{\color{NavyDeep}EMPLOYEE}\\[4pt]
+  \textbf{Jordan M. Calloway}\\
+  Individual\\[4pt]
+  \textit{Address:}\\
+  88 Cresthaven Lane, Apt 4C\\
+  Wilmington, DE 19802, USA\\[4pt]
+  \textit{SSN (last 4):} \textendash\textendash\textendash\textendash 7741\\
+  \textit{Phone:} (302) 555-0188
+\end{tcolorbox}
+\end{minipage}
+
+\vspace{10pt}
+
+\noindent
+Each individually referred to as a \textbf{``Party''} and collectively as the
+\textbf{``Parties.''}
+
+\medskip
+
+\noindent
+\textbf{WHEREAS}, Employer is engaged in the development and commercialisation of
+enterprise-grade cloud infrastructure software and related services; and
+
+\medskip
+
+\noindent
+\textbf{WHEREAS}, Employer desires to employ Employee in the capacity stated above
+and, in connection with such employment, will disclose to Employee certain Confidential
+Information (as defined herein); and
+
+\medskip
+
+\noindent
+\textbf{WHEREAS}, the Parties wish to set forth their mutual obligations with respect
+to confidentiality, intellectual property, and post-employment restrictions;
+
+\medskip
+
+\noindent
+\textbf{NOW, THEREFORE}, in consideration of the employment and the mutual covenants
+and agreements set forth herein, and for other good and valuable consideration, the
+receipt and sufficiency of which are hereby acknowledged, the Parties agree as follows:
+
+%% ─── SECTION 1 ───────────────────────────────────────────────────────────────
+\section{Definitions}
+
+\subsection{``Confidential Information''}
+\noindent
+The term \textbf{``Confidential Information''} means any and all non-public data,
+information, or material disclosed by Employer to Employee (or which Employee otherwise
+obtains during the course of employment) that is designated as confidential or that
+reasonably should be understood to be confidential given the nature of the information
+and the circumstances of disclosure. Confidential Information includes, without
+limitation:
+
+\begin{enumerate}[label=(\alph*), leftmargin=2em, itemsep=2pt]
+  \item source code, algorithms, software architectures, technical specifications, and
+        engineering documentation;
+  \item business strategies, product roadmaps, pricing models, and financial forecasts;
+  \item customer lists, customer data, and vendor information;
+  \item personnel records, compensation structures, and internal communications;
+  \item research and development data, pending patent applications, and trade secrets;
+  \item any information marked ``Confidential,'' ``Proprietary,'' or ``Internal Use Only.''
+\end{enumerate}
+
+\subsection{Exclusions}
+\noindent
+Confidential Information does not include information that:
+
+\begin{enumerate}[label=(\roman*), leftmargin=2em, itemsep=2pt]
+  \item is or becomes publicly available through no breach of this Agreement by Employee;
+  \item was rightfully known to Employee prior to disclosure by Employer, as evidenced
+        by contemporaneous written records;
+  \item is independently developed by Employee without use of or reference to Confidential
+        Information; or
+  \item is required to be disclosed by applicable law or a valid court order, provided
+        Employee gives Employer prompt prior written notice and cooperates with Employer
+        in seeking a protective order.
+\end{enumerate}
+
+\subsection{Other Defined Terms}
+
+\begin{itemize}[leftmargin=2em, itemsep=3pt]
+  \item \textbf{``Competing Business''} means any entity that develops, markets, or sells
+        cloud infrastructure management, DevOps automation, or enterprise platform software
+        that directly competes with Nexa Technologies Inc.'s products or services.
+  \item \textbf{``Restricted Period''} means the period commencing on the Termination Date
+        and continuing for twenty-four (24) months thereafter.
+  \item \textbf{``Territory''} means the United States of America and Canada.
+  \item \textbf{``Work Product''} means any invention, discovery, development, improvement,
+        process, software, design, or creation that Employee conceives, reduces to practice,
+        or authors during the term of employment.
+\end{itemize}
+
+%% ─── SECTION 2 ───────────────────────────────────────────────────────────────
+\section{Confidentiality Obligations}
+
+\subsection{Non-Disclosure}
+\noindent
+During and after the term of employment, Employee shall hold all Confidential Information
+in strict confidence and shall not, directly or indirectly:
+
+\begin{enumerate}[label=\lbrack\arabic*\rbrack, leftmargin=2.5em, itemsep=3pt]
+  \item disclose, reveal, or publish any Confidential Information to any third party
+        without Employer's prior written consent;
+  \item use any Confidential Information for any purpose outside the scope of Employee's
+        authorised duties at Nexa Technologies Inc.;
+  \item reproduce, copy, or otherwise duplicate any Confidential Information except as
+        strictly required by Employee's job responsibilities; or
+  \item assist any other person or entity in obtaining or using Confidential Information.
+\end{enumerate}
+
+\subsection{Standard of Care}
+\noindent
+Employee shall protect Confidential Information using at least the same degree of care
+used to protect Employee's own confidential information, and in no event less than
+reasonable care. Employee shall promptly notify the Employer's Legal Department upon
+discovery of any unauthorised disclosure or suspected breach of this Agreement.
+
+\subsection{Permitted Disclosures}
+\noindent
+Disclosure is permitted to employees or authorised contractors of Employer who have a
+legitimate need to know and who are bound by substantially similar confidentiality
+obligations. Employee remains responsible for any breach by such recipients.
+
+\begin{tcolorbox}[clausebox]
+  \small\color{TextDark}
+  \textbf{\color{SlateBlue}Survival:}\enspace
+  The confidentiality obligations set forth in this Section 2 shall survive the
+  termination or expiration of this Agreement and the cessation of Employee's employment
+  for a period of five (5) years, or indefinitely with respect to information
+  constituting a trade secret under applicable law.
+\end{tcolorbox}
+
+%% ─── SECTION 3 ───────────────────────────────────────────────────────────────
+\section{Intellectual Property and Work Product}
+
+\subsection{Assignment of Work Product}
+\noindent
+Employee hereby irrevocably assigns to Employer all right, title, and interest,
+including all intellectual property rights, in and to any Work Product made or conceived
+by Employee (alone or jointly) during the term of employment and that:
+
+\begin{enumerate}[label=(\alph*), leftmargin=2em, itemsep=2pt]
+  \item relates to the actual or reasonably anticipated business of Employer; or
+  \item results from or is suggested by any task assigned to Employee; or
+  \item is developed using Employer's resources, equipment, data, or facilities.
+\end{enumerate}
+
+\subsection{Moral Rights Waiver}
+\noindent
+To the maximum extent permitted by law, Employee waives any and all moral rights, artist's
+rights, or droit moral with respect to Work Product assigned hereunder.
+
+\subsection{Prior Inventions}
+\noindent
+Employee represents that any inventions or intellectual property created prior to employment
+(``\textbf{Prior Inventions}''), if any, are listed in \textbf{Exhibit A} attached hereto.
+No ownership interest in Prior Inventions is transferred to Employer by this Agreement.
+
+\subsection{Cooperation}
+\noindent
+Employee agrees to execute any additional documents and take all actions reasonably requested
+by Employer to perfect, record, or enforce Employer's rights in Work Product, including
+executing patent applications, assignments, and copyright registrations.
+
+%% ─── SECTION 4 ───────────────────────────────────────────────────────────────
+\section{Non-Solicitation of Employees and Clients}
+
+\subsection{Non-Solicitation of Employees}
+\noindent
+During the term of employment and throughout the Restricted Period, Employee shall not,
+directly or indirectly, on Employee's own behalf or on behalf of any third party:
+
+\begin{enumerate}[label=(\alph*), leftmargin=2em, itemsep=3pt]
+  \item solicit, recruit, induce, or attempt to induce any employee or independent
+        contractor of Employer to terminate their relationship with Employer;
+  \item hire or engage any such person who was employed or engaged by Employer at any
+        time during the twelve (12) months preceding the Termination Date; or
+  \item assist any Competing Business in soliciting or hiring Employer's personnel.
+\end{enumerate}
+
+\subsection{Non-Solicitation of Clients and Prospects}
+\noindent
+During the term of employment and throughout the Restricted Period, Employee shall not,
+directly or indirectly:
+
+\begin{enumerate}[label=(\alph*), leftmargin=2em, itemsep=3pt]
+  \item solicit or contact any customer, client, or prospective client of Employer with
+        whom Employee had material contact during the twenty-four (24) months preceding
+        the Termination Date, for the purpose of offering goods or services competitive
+        with those of Employer;
+  \item encourage any customer or client to reduce or terminate its relationship with
+        Employer; or
+  \item divert or attempt to divert any business from Employer to any Competing Business.
+\end{enumerate}
+
+\subsection{Non-Interference with Vendors}
+\noindent
+Employee shall not, during the Restricted Period, induce any vendor, supplier, or
+business partner of Employer to alter or terminate its commercial relationship with
+Employer in a manner adverse to Employer's interests.
+
+%% ─── SECTION 5 ───────────────────────────────────────────────────────────────
+\section{Severance and Enforcement}
+
+\subsection{Garden Leave and Severance}
+
+\begin{tcolorbox}[ndabox, title={\faPen\enspace Severance Terms at a Glance}]
+  \small
+  \begin{tabularx}{\linewidth}{@{}lXl@{}}
+    \toprule
+    \rowcolor{NavyDeep!12}
+    \textbf{Trigger Event} & \textbf{Condition} & \textbf{Severance Pay} \\
+    \midrule
+    Termination Without Cause & After 12 months' service & 3 months' base salary \\
+    \rowcolor{SilverLight}
+    Termination Without Cause & After 36 months' service & 6 months' base salary \\
+    Redundancy / Reduction in Force & Any tenure & 4 months' base salary \\
+    \rowcolor{SilverLight}
+    Resignation by Employee & Voluntary; no breach & Nil \\
+    Termination for Cause & Material breach of Agreement & Nil; legal remedies reserved \\
+    \bottomrule
+  \end{tabularx}
+\end{tcolorbox}
+
+\vspace{6pt}
+
+\noindent
+Severance payments are conditioned upon Employee's execution of a mutual release and
+continued compliance with all post-employment obligations under this Agreement. Employer
+reserves the right to place Employee on Garden Leave during any notice period, during
+which Employee's salary and benefits shall continue but Employee shall not be required
+to perform duties.
+
+\subsection{Reasonableness of Restrictions}
+\noindent
+Employee acknowledges that the restrictions contained in Sections 2, 3, and 4 are
+reasonable and necessary to protect Employer's legitimate business interests, considering
+the nature of the role, access to Confidential Information, and the competitive landscape
+of the technology sector. Employee further acknowledges receipt of adequate consideration.
+
+\subsection{Injunctive Relief}
+\noindent
+Employee agrees that any breach of Sections 2 or 4 would cause irreparable harm to
+Employer for which monetary damages would be an inadequate remedy, and Employer shall
+therefore be entitled to seek injunctive or other equitable relief in addition to all
+other remedies available at law or in equity, without the requirement to post a bond.
+
+\subsection{Severability and Blue-Pencil}
+\noindent
+If any provision of this Agreement is held invalid or unenforceable by a court of
+competent jurisdiction, such provision shall be modified to the minimum extent necessary
+to make it enforceable, and the remaining provisions shall continue in full force and
+effect. In particular, if the Restricted Period or Territory is deemed excessive, the
+court may reduce it to the maximum enforceable scope.
+
+%% ─── SECTION 6 ───────────────────────────────────────────────────────────────
+\section{General Provisions}
+
+\subsection{Return of Property}
+\noindent
+Upon termination of employment or upon Employer's written request at any time, Employee
+shall promptly return all Employer property, including all documents, electronic files,
+equipment, access credentials, and any materials containing Confidential Information,
+and shall permanently delete any Confidential Information stored on personal devices or
+accounts.
+
+\subsection{Governing Law and Dispute Resolution}
+\noindent
+This Agreement shall be governed by the laws of the State of Delaware, without regard
+to conflicts-of-law principles. The Parties agree to submit to the exclusive jurisdiction
+of the state and federal courts located in New Castle County, Delaware for any dispute
+arising under this Agreement, except that either Party may seek emergency injunctive
+relief in any court of competent jurisdiction.
+
+\subsection{Entire Agreement; Amendments}
+\noindent
+This Agreement, together with any exhibits hereto and Employee's offer letter, constitutes
+the entire agreement between the Parties with respect to its subject matter and supersedes
+all prior discussions or understandings. No amendment shall be effective unless made in
+writing and signed by authorised representatives of both Parties.
+
+\subsection{Waiver}
+\noindent
+The failure of either Party to enforce any provision of this Agreement shall not constitute
+a waiver of such Party's right to enforce that or any other provision in the future.
+
+\subsection{Assignment}
+\noindent
+This Agreement shall inure to the benefit of Employer and its successors and assigns.
+Employee may not assign this Agreement or any obligations hereunder without Employer's
+prior written consent.
+
+\subsection{Counterparts; Electronic Signatures}
+\noindent
+This Agreement may be executed in counterparts, each of which shall be deemed an original.
+Electronic signatures shall be deemed valid and binding to the same extent as original
+ink signatures under applicable e-signature legislation.
+
+%% ─── EXHIBITS ────────────────────────────────────────────────────────────────
+
+\vspace{16pt}
+\begin{tcolorbox}[ndabox, title={\faFile\enspace Exhibit A --- Prior Inventions Disclosure}]
+  \small
+  \textbf{Instructions:} List below any inventions, software, creative works, or intellectual
+  property created prior to employment that Employee wishes to exclude from the scope of
+  Section 3. If none, write ``None.''
+
+  \vspace{8pt}
+
+  \begin{tabularx}{\linewidth}{@{}lXl@{}}
+    \toprule
+    \rowcolor{NavyDeep!12}
+    \textbf{\#} & \textbf{Description of Prior Invention} & \textbf{Date Created} \\
+    \midrule
+    1 & Open-source CLI tool for Docker container orchestration (``Kontrol'') & Jan 2023 \\
+    \rowcolor{SilverLight}
+    2 & Personal portfolio website and blog engine (MIT licensed) & Sep 2021 \\
+    3 & \textit{(None further)} & --- \\
+    \bottomrule
+  \end{tabularx}
+\end{tcolorbox}
+
+%% ─── SIGNATURE BLOCK ─────────────────────────────────────────────────────────
+
+\vspace{20pt}
+
+\begin{tcolorbox}[ndabox, title={\faPen\enspace Signatures}]
+
+  \small
+  \noindent
+  By signing below, each Party agrees to be bound by the terms of this Agreement.
+
+  \vspace{16pt}
+
+  \noindent
+  \begin{minipage}[t]{0.45\linewidth}
+    \textbf{\color{NavyDeep}NEXA TECHNOLOGIES INC.}\\[24pt]
+    \hrule
+    \vspace{4pt}
+    \textit{Signature}\\[14pt]
+    \hrule
+    \vspace{4pt}
+    \textit{Printed Name:}\enspace Rachel A. Donovan\\[8pt]
+    \hrule
+    \vspace{4pt}
+    \textit{Title:}\enspace Chief People Officer\\[8pt]
+    \hrule
+    \vspace{4pt}
+    \textit{Date:}\enspace \rule{4cm}{0.4pt}
+  \end{minipage}%
+  \hfill%
+  \begin{minipage}[t]{0.45\linewidth}
+    \textbf{\color{NavyDeep}EMPLOYEE}\\[24pt]
+    \hrule
+    \vspace{4pt}
+    \textit{Signature}\\[14pt]
+    \hrule
+    \vspace{4pt}
+    \textit{Printed Name:}\enspace Jordan M. Calloway\\[8pt]
+    \hrule
+    \vspace{4pt}
+    \textit{Title:}\enspace Senior Product Engineer\\[8pt]
+    \hrule
+    \vspace{4pt}
+    \textit{Date:}\enspace \rule{4cm}{0.4pt}
+  \end{minipage}
+
+  \vspace{16pt}
+
+  \noindent
+  \begin{minipage}[t]{0.45\linewidth}
+    \textbf{\color{NavyDeep}WITNESS (Employer Side)}\\[20pt]
+    \hrule
+    \vspace{4pt}
+    \textit{Signature}\\[14pt]
+    \hrule
+    \vspace{4pt}
+    \textit{Printed Name:}\enspace \rule{4.5cm}{0.4pt}\\[8pt]
+    \hrule
+    \vspace{4pt}
+    \textit{Date:}\enspace \rule{4cm}{0.4pt}
+  \end{minipage}%
+  \hfill%
+  \begin{minipage}[t]{0.45\linewidth}
+    \textbf{\color{NavyDeep}WITNESS (Employee Side)}\\[20pt]
+    \hrule
+    \vspace{4pt}
+    \textit{Signature}\\[14pt]
+    \hrule
+    \vspace{4pt}
+    \textit{Printed Name:}\enspace \rule{4.5cm}{0.4pt}\\[8pt]
+    \hrule
+    \vspace{4pt}
+    \textit{Date:}\enspace \rule{4cm}{0.4pt}
+  \end{minipage}
+
+\end{tcolorbox}
+
+\vspace{12pt}
+
+%% ─── FOOTER NOTE ─────────────────────────────────────────────────────────────
+\begin{center}
+  \small\color{MidGray}
+  \textbf{Nexa Technologies Inc.} \textbar\ 1450 Innovation Drive, Suite 800,
+  Wilmington, DE 19801 \textbar\ hr@nexatechnologies.com\\
+  \textit{This document is confidential and intended solely for the named parties.
+  Unauthorised reproduction or distribution is strictly prohibited.}
+\end{center}
+
+\end{document}

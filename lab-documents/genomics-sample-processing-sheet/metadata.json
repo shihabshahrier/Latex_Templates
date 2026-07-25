@@ -1,0 +1,8 @@
+{
+  "name": "Genomics Sample Processing Sheet",
+  "compiler": "pdflatex",
+  "description": "Genomics Sample Processing Sheet LaTeX template \u2014 genomics sample processing sheet latex template. Elegant, compile-tested, editable online at letx.app.",
+  "author": "LetX",
+  "category": "lab-documents",
+  "license": "MIT"
+}

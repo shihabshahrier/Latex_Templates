@@ -1,0 +1,510 @@
+\documentclass[11pt,a4paper,oneside,headings=big,chapterprefix=true]{scrreprt}
+
+% ---------- Core packages ----------
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[left=2.6cm,right=2.6cm,top=2.8cm,bottom=2.8cm,headheight=28pt]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{xcolor}
+\usepackage[table]{xcolor}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{colortbl}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{enumitem}
+\usepackage{tikz}
+\usetikzlibrary{positioning,calc,shapes.geometric,decorations.pathmorphing,backgrounds,patterns}
+\usepackage[most]{tcolorbox}
+\usepackage{fontawesome5}
+\usepackage{scrlayer-scrpage}
+\usepackage{hyperref}
+
+% ---------- Palette ----------
+\definecolor{steel}{RGB}{33,69,94}
+\definecolor{amberaccent}{RGB}{198,138,42}
+\definecolor{fogbg}{RGB}{238,241,243}
+\definecolor{inkgray}{RGB}{45,49,54}
+
+% ---------- Typography ----------
+\addtokomafont{disposition}{\color{steel}}
+\addtokomafont{chapter}{\color{steel}\bfseries}
+\addtokomafont{chapterprefix}{\normalfont\normalsize\color{amberaccent}\bfseries}
+\setkomafont{chapterentry}{\color{steel}}
+\setkomafont{caption}{\small\color{inkgray}}
+\setkomafont{captionlabel}{\small\bfseries\color{steel}}
+\renewcommand*{\chapterformat}{\mbox{\chapappifchapterprefix{\ }\thechapter\autodot\enskip}}
+
+\clearpairofpagestyles
+\ihead{\small\color{steel}\slshape\leftmark}
+\ohead{\small\color{steel}\thepage}
+\ofoot{\small\color{inkgray}\textsc{Nexa Systems} \textbar\ Atlas-7 Field Guide}
+\ifoot{\small\color{inkgray}Rev.\ 3.2}
+\setkomafont{pageheadfoot}{\normalfont}
+\automark[section]{chapter}
+\pagestyle{scrheadings}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=steel,
+  urlcolor=amberaccent,
+  citecolor=steel,
+  pdftitle={Atlas-7 Field Telemetry Unit --- Technical Manual and Field Guide},
+  pdfauthor={Nexa Systems Technical Publications}
+}
+
+% ---------- Alert boxes ----------
+\newtcolorbox{dangerbox}[1][]{%
+  colback=amberaccent!10,colframe=amberaccent!85!black,coltitle=white,
+  fonttitle=\bfseries,boxrule=0.9pt,arc=1.5pt,left=6pt,right=6pt,top=4pt,bottom=4pt,
+  title=\faExclamationTriangle\ \ DANGER,#1
+}
+\newtcolorbox{warnbox}[1][]{%
+  colback=amberaccent!8,colframe=amberaccent,coltitle=inkgray,
+  fonttitle=\bfseries,boxrule=0.8pt,arc=1.5pt,left=6pt,right=6pt,top=4pt,bottom=4pt,
+  title=\faExclamationTriangle\ \ WARNING,#1
+}
+\newtcolorbox{notebox}[1][]{%
+  colback=steel!6,colframe=steel,coltitle=white,
+  fonttitle=\bfseries,boxrule=0.8pt,arc=1.5pt,left=6pt,right=6pt,top=4pt,bottom=4pt,
+  title=\faInfoCircle\ \ NOTE,#1
+}
+\newtcolorbox{tipbox}[1][]{%
+  colback=fogbg,colframe=steel!60,coltitle=steel,
+  fonttitle=\bfseries,boxrule=0.7pt,arc=1.5pt,left=6pt,right=6pt,top=4pt,bottom=4pt,
+  title=\faWrench\ \ FIELD TIP,#1
+}
+
+\setlist[itemize,1]{label=\textcolor{steel}{\small\faCheckCircle},leftmargin=1.6em}
+\setlist[itemize,2]{label=\textcolor{amberaccent}{\textbullet},leftmargin=1.4em}
+\setlist[enumerate,1]{label=\textcolor{steel}{\bfseries\arabic*.},leftmargin=1.8em}
+
+\newcommand{\revtable}[4]{#1 & #2 & #3 & #4 \\}
+
+\begin{document}
+
+% ============================================================
+% TITLE PAGE
+% ============================================================
+\begin{titlepage}
+\begin{tikzpicture}[remember picture,overlay]
+  \fill[steel] (current page.north west) rectangle ([yshift=-4.2cm]current page.north east);
+  \fill[amberaccent] ([yshift=-4.2cm]current page.north west) rectangle ([yshift=-4.32cm]current page.north east);
+  \node[anchor=north west,text=white,font=\bfseries\Large] at ([xshift=2.4cm,yshift=-1.5cm]current page.north west) {NEXA SYSTEMS};
+  \node[anchor=north west,text=white!85!steel,font=\small] at ([xshift=2.4cm,yshift=-2.5cm]current page.north west) {Technical Publications Division};
+\end{tikzpicture}
+
+\vspace*{5.6cm}
+
+\begin{center}
+{\color{steel}\rule{0.55\textwidth}{1.4pt}}\\[0.6cm]
+{\fontsize{30}{34}\selectfont\bfseries\color{steel} Atlas-7}\\[0.15cm]
+{\Large\color{inkgray} Field Telemetry Unit}\\[0.5cm]
+{\large\color{amberaccent}\bfseries TECHNICAL MANUAL \& FIELD GUIDE}\\[0.6cm]
+{\color{steel}\rule{0.55\textwidth}{1.4pt}}
+\end{center}
+
+\vspace{1.6cm}
+\begin{center}
+\begin{tikzpicture}
+  \node[draw=steel,rounded corners=2pt,inner sep=10pt,text width=9.4cm,align=left,fill=fogbg] {%
+    \small
+    \begin{tabular}{@{}ll@{}}
+      \textbf{\color{steel}Document Number:} & NX-ATL7-TM-032 \\
+      \textbf{\color{steel}Revision:} & 3.2 \\
+      \textbf{\color{steel}Issue Date:} & 14 March 2026 \\
+      \textbf{\color{steel}Applicable Hardware:} & Atlas-7 Rev.\ C and later \\
+      \textbf{\color{steel}Classification:} & Customer Field Documentation \\
+    \end{tabular}
+  };
+\end{tikzpicture}
+\end{center}
+
+\vfill
+\begin{center}
+{\small\color{inkgray} Prepared by the Nexa Systems Technical Publications Team\\
+Reviewed by Elena Vasquez, Lead Field Engineer, Meridian Deployment Group\\[0.3cm]
+\copyright\ Nexa Systems. All rights reserved. Unauthorized reproduction prohibited.}
+\end{center}
+\vspace{1cm}
+\end{titlepage}
+
+% ============================================================
+% REVISION HISTORY
+% ============================================================
+\chapter*{Revision History}
+\addcontentsline{toc}{chapter}{Revision History}
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\textwidth}{@{}l l l X@{}}
+\toprule
+\rowcolor{steel}
+\textcolor{white}{\bfseries Rev.} & \textcolor{white}{\bfseries Date} & \textcolor{white}{\bfseries Author} & \textcolor{white}{\bfseries Summary of Changes} \\
+\midrule
+\revtable{1.0}{02 Jun 2025}{J.\ Okafor}{Initial release for Atlas-7 Rev.\ A hardware.}
+\revtable{2.0}{19 Nov 2025}{J.\ Okafor}{Added LoRaWAN provisioning chapter; revised specifications.}
+\revtable{3.0}{08 Feb 2026}{E.\ Vasquez}{New troubleshooting matrix; updated safety notices.}
+\rowcolor{fogbg}
+\revtable{3.2}{14 Mar 2026}{E.\ Vasquez}{Corrected mounting torque values; added quick reference card.}
+\bottomrule
+\end{tabularx}
+\end{center}
+
+% ============================================================
+\tableofcontents
+
+% ============================================================
+\chapter{About This Guide}
+\label{ch:about}
+
+This manual documents the installation, operation, and maintenance of the \textbf{Nexa Atlas-7 Field Telemetry Unit}, a ruggedized environmental and asset-monitoring device intended for unattended outdoor deployment. It is written for field technicians, systems integrators, and site operators who install or service Atlas-7 units in the course of their work.
+
+\section{Who Should Use This Manual}
+
+\begin{itemize}
+  \item \textbf{Field technicians} performing initial installation, commissioning, or scheduled maintenance.
+  \item \textbf{Systems integrators} incorporating the Atlas-7 into a larger sensor network or SCADA environment.
+  \item \textbf{Site operators} responsible for day-to-day monitoring and first-line troubleshooting.
+\end{itemize}
+
+No specialized electronics training is required to complete standard installation procedures; however, Chapter~\ref{ch:maintenance} assumes familiarity with basic hand tools and low-voltage DC wiring practice.
+
+\section{How This Manual Is Organized}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.25}
+\begin{tabularx}{\textwidth}{@{}l X@{}}
+\toprule
+\rowcolor{steel}
+\textcolor{white}{\bfseries Chapter} & \textcolor{white}{\bfseries Contents} \\
+\midrule
+2 & System overview, key features, and hardware architecture \\
+\rowcolor{fogbg}
+3 & Pre-installation planning, mounting, and network setup \\
+4 & Day-to-day operation, control indicators, and operating modes \\
+\rowcolor{fogbg}
+5 & Maintenance schedule and troubleshooting reference \\
+App.~A & Full technical specifications \\
+\rowcolor{fogbg}
+App.~B & Quick reference card (tear-out summary) \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\section{Notice Conventions}
+
+Throughout this guide, callouts flag information that affects safety, data integrity, or successful commissioning. Each type is used consistently:
+
+\begin{dangerbox}
+Indicates a hazard that \textbf{will} result in serious injury or permanent equipment damage if ignored. Danger notices always precede the step they apply to, never follow it.
+\end{dangerbox}
+
+\begin{warnbox}
+Indicates a hazard or action that \textbf{may} result in injury, data loss, or equipment damage if precautions are not observed.
+\end{warnbox}
+
+\begin{notebox}
+Supplementary information that clarifies a procedure but carries no safety implication.
+\end{notebox}
+
+\begin{tipbox}
+Practical, field-tested advice that speeds up a task or avoids a common mistake.
+\end{tipbox}
+
+% ============================================================
+\chapter{System Overview}
+\label{ch:overview}
+
+\section{Product Description}
+
+The Atlas-7 is a self-contained, solar-assisted telemetry node designed for multi-year unattended operation in remote or harsh environments. It combines a modular sensor bay, an industrial communications stack, and a weatherproof enclosure rated to IP66. A single Atlas-7 unit can host up to six interchangeable sensor modules and report readings over cellular LTE-M, LoRaWAN, or a wired RS-485 backhaul, depending on the communications card fitted.
+
+\subsection*{Key Features}
+\begin{itemize}
+  \item Modular sensor bay accepting up to six field-swappable probes (temperature, humidity, soil moisture, vibration, water level, or custom analog input).
+  \item Dual-radio communications card: LTE-M/NB-IoT primary link with LoRaWAN failover.
+  \item Solar trickle-charge system rated for 90 days of full function with zero sunlight.
+  \item Tamper-evident enclosure latch with optional tilt and open-door alarms.
+  \item Over-the-air firmware updates via the Nexa Cloud fleet console.
+\end{itemize}
+
+\section{Hardware Architecture}
+
+Figure~\ref{fig:architecture} shows the functional blocks of a fully provisioned Atlas-7 unit and how it exchanges data with Nexa Cloud.
+
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}[
+  node distance=10mm and 14mm,
+  block/.style={draw=steel,rounded corners=3pt,fill=fogbg,minimum height=1cm,minimum width=3.1cm,align=center,font=\small,thick},
+  core/.style={draw=steel,rounded corners=3pt,fill=steel,text=white,minimum height=1.2cm,minimum width=3.3cm,align=center,font=\small\bfseries,thick},
+  cloud/.style={draw=amberaccent,rounded corners=3pt,fill=amberaccent!12,minimum height=1.1cm,minimum width=3.3cm,align=center,font=\small,thick}
+]
+  \node[block] (sensors) {Sensor Bay\\(up to 6 probes)};
+  \node[core, right=of sensors] (core) {Atlas-7\\Core Unit};
+  \node[block, above right=of core] (comms) {Comms Card\\LTE-M / LoRaWAN};
+  \node[block, below right=of core] (power) {Power \& Solar\\Management};
+  \node[cloud, right=24mm of comms] (cloud) {Nexa Cloud\\Fleet Console};
+
+  \draw[->,thick,steel] (sensors) -- (core);
+  \draw[->,thick,steel] (core) -- (comms);
+  \draw[->,thick,steel] (core) -- (power);
+  \draw[->,thick,amberaccent] (comms) -- (cloud);
+\end{tikzpicture}
+\caption{Atlas-7 functional block diagram.}
+\label{fig:architecture}
+\end{figure}
+
+\section{Specifications Summary}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.25}
+\begin{tabularx}{\textwidth}{@{}l X@{}}
+\toprule
+\rowcolor{steel}
+\textcolor{white}{\bfseries Parameter} & \textcolor{white}{\bfseries Value} \\
+\midrule
+Enclosure rating & IP66, UV-stabilized polycarbonate \\
+\rowcolor{fogbg}
+Operating temperature & $-30\,^{\circ}\mathrm{C}$ to $+60\,^{\circ}\mathrm{C}$ \\
+Power input & 12\,V DC nominal, integrated 8\,W solar panel \\
+\rowcolor{fogbg}
+Battery & 18\,Ah LiFePO4, field-replaceable \\
+Sensor bay & 6 ports, screw-terminal, hot-swappable \\
+\rowcolor{fogbg}
+Primary radio & LTE-M / NB-IoT, 3GPP Release 13 \\
+Failover radio & LoRaWAN 1.0.3, EU868 / US915 selectable \\
+\rowcolor{fogbg}
+Dimensions & 340\,mm $\times$ 220\,mm $\times$ 118\,mm \\
+Weight (unpopulated) & 2.4\,kg \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+A complete specification listing, including tolerances and certification marks, appears in Appendix~\ref{app:specs}.
+
+% ============================================================
+\chapter{Installation and Setup}
+\label{ch:install}
+
+\section{Pre-Installation Checklist}
+
+Before travelling to a deployment site, confirm the following:
+
+\begin{itemize}
+  \item Mounting location provides a clear southern sky view for the solar panel (northern sky view in the southern hemisphere).
+  \item Cellular coverage or a LoRaWAN gateway is confirmed within range using the Nexa Cloud coverage map.
+  \item The unit has been pre-registered in Nexa Cloud with its unique device ID (printed on the enclosure label).
+  \item A torque driver (2--6\,N\textperiodcentered m) and M8 stainless mounting hardware are on hand.
+\end{itemize}
+
+\begin{warnbox}
+Do not power on the Atlas-7 indoors under fluorescent lighting for extended periods. The ambient-light sensor may falsely trigger daylight calibration, producing a skewed offset for the first 24 hours of field operation.
+\end{warnbox}
+
+\section{Mounting Procedure}
+
+\begin{enumerate}
+  \item Select a pole or wall location between 1.5\,m and 3\,m above grade, clear of overhanging vegetation.
+  \item Attach the mounting bracket using the supplied M8 bolts, torqued to 4.5\,N\textperiodcentered m.
+  \item Orient the enclosure so the solar panel faces true south ($\pm 15^{\circ}$) and is tilted to the site latitude.
+  \item Insert sensor probes into the desired bay ports and hand-tighten the compression glands.
+  \item Close and latch the enclosure door; confirm the tamper switch reads \emph{closed} on the status LED.
+\end{enumerate}
+
+\begin{dangerbox}
+Never mount the Atlas-7 within 3\,m of overhead power lines. The mounting bracket is conductive stainless steel and provides no electrical isolation.
+\end{dangerbox}
+
+\section{Network Provisioning}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.25}
+\begin{tabularx}{\textwidth}{@{}l X@{}}
+\toprule
+\rowcolor{steel}
+\textcolor{white}{\bfseries Step} & \textcolor{white}{\bfseries Action} \\
+\midrule
+1 & Power on the unit; hold the pairing button for 3 seconds until the status LED pulses blue. \\
+\rowcolor{fogbg}
+2 & In Nexa Cloud, open \textbf{Fleet~\textgreater~Add Device} and scan the QR code on the enclosure label. \\
+3 & Select the communications profile: \texttt{LTE-PRIMARY}, \texttt{LORA-ONLY}, or \texttt{DUAL-FAILOVER}. \\
+\rowcolor{fogbg}
+4 & Confirm first telemetry packet arrives in the console (typically within 90 seconds). \\
+5 & Lock the configuration to prevent accidental profile changes from the local button. \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\begin{tipbox}
+If first telemetry does not arrive within five minutes, check signal strength on the status LED (see Table~\ref{tab:leds} in Chapter~\ref{ch:operation}) before assuming a network fault --- most delayed first-packets are solar-panel shading issues, not radio problems.
+\end{tipbox}
+
+% ============================================================
+\chapter{Operation}
+\label{ch:operation}
+
+\section{Startup Sequence}
+
+On power-up, the Atlas-7 performs a self-test lasting approximately 45 seconds: sensor bay enumeration, battery health check, and a radio handshake attempt. The status LED reports progress as summarized in Table~\ref{tab:leds}.
+
+\begin{table}[h]
+\centering
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\textwidth}{@{}l l X@{}}
+\toprule
+\rowcolor{steel}
+\textcolor{white}{\bfseries LED State} & \textcolor{white}{\bfseries Color} & \textcolor{white}{\bfseries Meaning} \\
+\midrule
+Solid & \textcolor{amberaccent!80!black}{\bfseries Amber} & Self-test in progress \\
+\rowcolor{fogbg}
+Slow pulse & \textcolor{steel}{\bfseries Blue} & Pairing mode, awaiting Nexa Cloud handshake \\
+Solid & \textcolor{steel}{\bfseries Green} & Normal operation, strong signal \\
+\rowcolor{fogbg}
+Slow pulse & \textcolor{steel}{\bfseries Green} & Normal operation, marginal signal \\
+Fast pulse & \textcolor{amberaccent!80!black}{\bfseries Amber} & Sensor fault detected, telemetry continues \\
+\rowcolor{fogbg}
+Solid & Red & Battery critical or radio failure \\
+\bottomrule
+\end{tabularx}
+\caption{Status LED reference.}
+\label{tab:leds}
+\end{table}
+
+\section{Operating Modes}
+
+\begin{itemize}
+  \item \textbf{Continuous mode} --- reports all sensor channels every 5 minutes. Highest power draw; recommended only where solar exposure exceeds 4 peak-sun-hours daily.
+  \item \textbf{Scheduled mode} --- reports at configurable intervals (default 30 minutes), with event-triggered reports for threshold breaches.
+  \item \textbf{Low-power mode} --- reports every 4 hours and disables the failover radio. Automatically engaged when battery state of charge falls below 25\%.
+\end{itemize}
+
+\begin{notebox}
+Mode transitions are logged to Nexa Cloud with a timestamp and triggering condition, allowing post-deployment review of power events without a site visit.
+\end{notebox}
+
+% ============================================================
+\chapter{Maintenance and Troubleshooting}
+\label{ch:maintenance}
+
+\section{Scheduled Maintenance}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\textwidth}{@{}l l X@{}}
+\toprule
+\rowcolor{steel}
+\textcolor{white}{\bfseries Interval} & \textcolor{white}{\bfseries Task} & \textcolor{white}{\bfseries Notes} \\
+\midrule
+Monthly & Visual inspection & Check for debris on solar panel, gland integrity \\
+\rowcolor{fogbg}
+Quarterly & Sensor probe cleaning & Use soft brush; never use solvents on probe housings \\
+Annually & Battery capacity test & Via Nexa Cloud \textbf{Diagnostics} tab; replace below 80\% rated capacity \\
+\rowcolor{fogbg}
+Annually & Enclosure gasket check & Replace if compression set exceeds 30\% \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\section{Troubleshooting Reference}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.35}
+\begin{tabularx}{\textwidth}{@{}X X X@{}}
+\toprule
+\rowcolor{steel}
+\textcolor{white}{\bfseries Symptom} & \textcolor{white}{\bfseries Probable Cause} & \textcolor{white}{\bfseries Recommended Action} \\
+\midrule
+No telemetry, LED off & Battery fully discharged & Verify solar panel is unshaded; check panel output with a multimeter ($>$14\,V DC in daylight expected) \\
+\rowcolor{fogbg}
+LED red, radio failure & SIM or LoRaWAN key mismatch & Re-run provisioning in Section~\ref{ch:install}, Network Provisioning \\
+Sensor reads \texttt{NULL} & Probe not seated or compression gland loose & Reseat probe; hand-tighten gland, then quarter-turn with strap wrench \\
+\rowcolor{fogbg}
+Erratic humidity readings & Condensation inside sensor bay & Inspect gasket seal; replace desiccant sachet (Part No.\ NX-DES-04) \\
+Frequent low-power mode & Panel shaded or misaligned & Re-check southern exposure per Section~\ref{ch:install} \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\begin{warnbox}
+Never open the enclosure while the internal battery is under active solar charge in direct sunlight. Disconnect the panel lead at the MC4 connector first, or perform maintenance in shade / after dusk.
+\end{warnbox}
+
+\begin{tipbox}
+Keep a spare desiccant sachet (Part No.\ NX-DES-04) in your field kit --- condensation is the single most common cause of erratic sensor readings reported to Nexa support.
+\end{tipbox}
+
+% ============================================================
+\appendix
+\chapter{Technical Specifications}
+\label{app:specs}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.25}
+\begin{tabularx}{\textwidth}{@{}l X@{}}
+\toprule
+\rowcolor{steel}
+\textcolor{white}{\bfseries Category} & \textcolor{white}{\bfseries Detail} \\
+\midrule
+Mechanical & Polycarbonate enclosure, IP66, UV-stabilized; 340 $\times$ 220 $\times$ 118\,mm; 2.4\,kg unpopulated \\
+\rowcolor{fogbg}
+Environmental & $-30\,^{\circ}\mathrm{C}$ to $+60\,^{\circ}\mathrm{C}$ operating; $-40\,^{\circ}\mathrm{C}$ to $+70\,^{\circ}\mathrm{C}$ storage; up to 100\% RH condensing \\
+Power & 12\,V DC nominal input; 8\,W integrated monocrystalline solar panel; 18\,Ah LiFePO4 battery, field-replaceable \\
+\rowcolor{fogbg}
+Sensor bay & 6 $\times$ screw-terminal ports, hot-swappable, 0--5\,V and 4--20\,mA compatible \\
+Communications & LTE-M/NB-IoT (3GPP Rel.\ 13); LoRaWAN 1.0.3 (EU868/US915); RS-485 optional add-on card \\
+\rowcolor{fogbg}
+Data retention & 30 days on-device buffer (flash), synced on reconnect after outage \\
+Certifications & CE, FCC Part 15, IP66 (IEC 60529) \\
+\rowcolor{fogbg}
+Warranty & 3 years, hardware; battery consumable, 1 year \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+% ============================================================
+\chapter{Quick Reference Card}
+\label{app:quickref}
+
+\noindent
+\begin{minipage}[t]{0.48\textwidth}
+\begin{tcolorbox}[colback=steel!6,colframe=steel,title=\textcolor{white}{\bfseries\faSignal\ \ Status LED},fonttitle=\bfseries,arc=1.5pt]
+\small
+\textbf{Green solid} --- normal, strong signal\\
+\textbf{Green pulse} --- normal, weak signal\\
+\textbf{Amber pulse} --- sensor fault\\
+\textbf{Red solid} --- battery / radio failure
+\end{tcolorbox}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.48\textwidth}
+\begin{tcolorbox}[colback=amberaccent!8,colframe=amberaccent,title=\bfseries\faBatteryFull\ \ Power Notes,fonttitle=\bfseries,arc=1.5pt]
+\small
+Low-power mode below 25\% charge\\
+Full recharge: approx.\ 6 sunlight hours\\
+Replace battery below 80\% rated capacity\\
+Panel output check: $>$14\,V DC in daylight
+\end{tcolorbox}
+\end{minipage}
+
+\par\vspace{0.5cm}
+
+\noindent
+\begin{minipage}[t]{0.48\textwidth}
+\begin{tcolorbox}[colback=steel!6,colframe=steel,title=\textcolor{white}{\bfseries\faTools\ \ Torque Values},fonttitle=\bfseries,arc=1.5pt]
+\small
+Mounting bracket bolts: 4.5\,N\textperiodcentered m\\
+Sensor compression glands: hand-tight $+$ 1/4 turn\\
+Enclosure latch: hand-tight only, do not overtighten
+\end{tcolorbox}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.48\textwidth}
+\begin{tcolorbox}[colback=amberaccent!8,colframe=amberaccent,title=\bfseries\faPhone\ \ Support,fonttitle=\bfseries,arc=1.5pt]
+\small
+Nexa Systems Field Support\\
+Reference this unit's Device ID (enclosure label)\\
+Have Nexa Cloud diagnostics export ready before calling
+\end{tcolorbox}
+\end{minipage}
+
+\end{document}

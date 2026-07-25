@@ -1,0 +1,8 @@
+{
+  "name": "Product Datasheet One-Pager",
+  "compiler": "pdflatex",
+  "description": "Product Datasheet One-Pager LaTeX template \u2014 product datasheet latex template. Elegant, compile-tested, editable online at letx.app.",
+  "author": "LetX",
+  "category": "tech-docs",
+  "license": "MIT"
+}

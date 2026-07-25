@@ -1,0 +1,256 @@
+\documentclass[
+  paper=a4,
+  fontsize=10pt,
+  foldmarks=true,
+  foldmarks=BmLNT,
+  fromalign=right,
+  fromrule=false,
+  parskip=half,
+  locfield=wide
+]{scrlttr2}
+
+\usepackage[top=22mm, bottom=20mm, left=20mm, right=20mm]{geometry}
+
+% --- KOMA PSEUDOLENGTHS ---
+\setplength{firstheadvpos}{8mm}
+\setplength{firstheadwidth}{\textwidth}
+\setplength{firstfootvpos}{274mm}
+\setplength{firstfootwidth}{\textwidth}
+\setplength{toaddrvpos}{32mm}
+\setplength{toaddrheight}{36mm}
+\setplength{toaddrwidth}{92mm}
+\setplength{toaddrindent}{0mm}
+\setplength{refvpos}{72mm}
+\setplength{refaftervskip}{2mm}
+\setplength{sigbeforevskip}{0.5cm}
+\setplength{sigindent}{0pt}
+
+% --- PACKAGES ---
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[sfdefault]{sourcesanspro}
+\usepackage{microtype}
+\usepackage[table]{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{calc,positioning,backgrounds}
+\usepackage[many]{tcolorbox}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{fontawesome5}
+\usepackage{scrlayer-scrpage}
+\usepackage[hidelinks]{hyperref}
+
+% --- COLOR PALETTE ---
+\definecolor{ExecutiveNavy}{RGB}{26,43,76}      % #1A2B4C - Primary Executive Navy
+\definecolor{AccentGold}{RGB}{197,155,39}      % #C59B27 - Accent Gold
+\definecolor{SlateGray}{RGB}{71,85,105}        % #475569 - Secondary text
+\definecolor{CharcoalText}{RGB}{30,41,59}      % #1E293B - Body text
+\definecolor{LightTint}{RGB}{248,250,252}      % #F8FAFC - Card background
+\definecolor{BorderGray}{RGB}{226,232,240}     % #E2E8F0 - Borders
+
+% --- SENDER METADATA ---
+\setkomavar{fromname}{Jonathan Vance}
+\setkomavar{fromaddress}{Meridian Global Holdings Inc.\\100 Financial Center Plaza, Suite 4200\\New York, NY 10005, USA}
+\setkomavar{fromphone}{+1 (212) 555-0198}
+\setkomavar{fromemail}{j.vance@meridianglobal.com}
+\setkomavar{fromurl}{www.meridianglobal.com}
+\setkomavar{place}{New York}
+\setkomavar{date}{July 24, 2026}
+
+% Reference variables
+\setkomavar{yourref}{VTX-BD-2026-04}
+\setkomavar{myref}{MGH-CEO-2026-894}
+\setkomavar{subject}{\textbf{CONFIDENTIAL: Non-Binding Proposal for Strategic Acquisition and Joint Integration of Vertex Technologies Inc.}}
+
+% --- HEADER & FOOTER DEFINITION ---
+\setkomavar{firsthead}{%
+  \begin{tikzpicture}[remember picture, overlay]
+    % Header top color accent bar
+    \fill[ExecutiveNavy] ($(current page.north west)+(0,0)$) rectangle ($(current page.north east)+(0,-0.6cm)$);
+    \fill[AccentGold] ($(current page.north west)+(0,-0.6cm)$) rectangle ($(current page.north east)+(0,-0.72cm)$);
+  \end{tikzpicture}%
+  \vspace{-2mm}%
+  \begin{minipage}[t]{0.52\textwidth}
+    \begin{minipage}[c]{1.0cm}
+      \begin{tikzpicture}
+        \fill[ExecutiveNavy, rounded corners=3pt] (0,0) rectangle (0.9,0.9);
+        \draw[AccentGold, line width=1.3pt] (0.2,0.2) -- (0.45,0.7) -- (0.7,0.2);
+        \draw[AccentGold, line width=1.3pt] (0.28,0.38) -- (0.62,0.38);
+      \end{tikzpicture}
+    \end{minipage}%
+    \hfill
+    \begin{minipage}[c]{\dimexpr\textwidth-1.2cm\relax}
+      {\sffamily\bfseries\fontsize{13}{15}\selectfont\color{ExecutiveNavy} MERIDIAN GLOBAL HOLDINGS}\\[1pt]
+      {\sffamily\bfseries\fontsize{7}{8.5}\selectfont\color{AccentGold} OFFICE OF THE CHIEF EXECUTIVE OFFICER \textbar\ STRATEGIC GROWTH}
+    \end{minipage}
+  \end{minipage}%
+  \hfill
+  \begin{minipage}[t]{0.46\textwidth}
+    \raggedleft\sffamily\fontsize{8}{10}\selectfont\color{SlateGray}
+    \faBuilding\ 100 Financial Center Plaza, Suite 4200, New York, NY 10005\\
+    \faPhone\ +1 (212) 555-0198 \quad \faEnvelope\ \href{mailto:j.vance@meridianglobal.com}{j.vance@meridianglobal.com}\\
+    \faGlobe\ \href{https://www.meridianglobal.com}{www.meridianglobal.com}
+  \end{minipage}%
+  \vfill
+  \textcolor{BorderGray}{\hrule height 0.8pt}
+}
+
+\setkomavar{firstfoot}{%
+  \centering\sffamily\fontsize{7.5}{9.5}\selectfont\color{SlateGray}
+  \textcolor{BorderGray}{\hrule height 0.5pt}\vspace{3pt}
+  \textbf{MERIDIAN GLOBAL HOLDINGS INC.} \textbar\ SEC CIK: 0001894022 \textbar\ Meridex: MGH \textbar\ CONFIDENTIAL \& PROPRIETARY\\
+  Registered Office: 100 Financial Center Plaza, Suite 4200, New York, NY 10005 USA \textbar\ Clearing Node: MGH-NY-FED-99\\
+  Page 1 of 2
+}
+
+% Running header and footer for page 2+
+\clearpairofpagestyles
+\ihead{\small\sffamily\color{SlateGray}\faBuilding\ \textbf{MERIDIAN GLOBAL HOLDINGS} \textbar\ Executive Acquisition Proposal}
+\ohead{\small\sffamily\color{SlateGray}Ref: MGH-CEO-2026-894}
+\ifoot{\small\sffamily\color{SlateGray}Confidential -- For Vertex Executive Committee Only}
+\ofoot{\small\sffamily\color{SlateGray}Page \thepage\ of 2}
+\addtokomafont{pageheadfoot}{\sffamily}
+
+% Custom section command for scrlttr2
+\newcommand{\lettersection}[2][]{%
+  \vspace{1.8mm}%
+  {\noindent\large\sffamily\bfseries\color{ExecutiveNavy}%
+  \ifx&#1&\else\color{AccentGold}#1\quad\fi#2}%
+  \par\vspace{0.8mm}%
+  {\color{AccentGold}\hrule height 0.6pt}%
+  \vspace{1.2mm}%
+}
+
+% Custom styling for signature
+\setkomavar{signature}{%
+  \vspace{-0.1cm}%
+  \begin{minipage}[t]{0.45\textwidth}
+    \textbf{\color{ExecutiveNavy}Jonathan Vance}\\[2pt]
+    {\small\color{SlateGray}Chief Executive Officer\\Meridian Global Holdings Inc.}
+  \end{minipage}%
+  \hfill
+  \begin{minipage}[t]{0.45\textwidth}
+    \textbf{\color{ExecutiveNavy}Marcus Thorne}\\[2pt]
+    {\small\color{SlateGray}Executive Vice President \& CFO\\Meridian Global Holdings Inc.}
+  \end{minipage}
+}
+
+% --- TCOLORBOX STYLES ---
+\tcbset{
+  executivebox/.style={
+    enhanced,
+    colback=LightTint,
+    colframe=ExecutiveNavy,
+    arc=4pt,
+    boxrule=0.8pt,
+    left=8pt,
+    right=8pt,
+    top=5pt,
+    bottom=5pt,
+    fonttitle=\bfseries\sffamily\color{white},
+    coltitle=white,
+    attach boxed title to top left={xshift=10pt, yshift=-8pt},
+    boxed title style={colback=ExecutiveNavy, arc=2pt, boxrule=0pt, top=2.5pt, bottom=2.5pt, left=6pt, right=6pt}
+  }
+}
+
+\begin{document}
+\begin{letter}{%
+  \textbf{Vertex Technologies Inc.}\\
+  \textbf{Attn: Executive Committee \& Board of Directors}\\
+  c/o Ms. Eleanor Sterling, Managing Director\\
+  500 Innovation Boulevard, Suite 1800\\
+  San Francisco, CA 94105\\
+  United States
+}
+
+\opening{Dear Ms. Sterling and Members of the Executive Committee,}
+
+On behalf of Meridian Global Holdings Inc. ("Meridian"), I am pleased to submit this formal proposal regarding a strategic business combination between Meridian and Vertex Technologies Inc. ("Vertex"). Following extensive analysis of Vertex's cloud orchestration architecture and market position, our Board of Directors has authorized this proposal to acquire 100\% of the issued and outstanding common stock of Vertex.
+
+We hold the technical leadership, management team, and customer-centric culture of Vertex in the highest regard. We strongly believe that combining Vertex's distributed edge capabilities with Meridian's enterprise global reach will create an industry-defining cloud infrastructure platform.
+
+\vspace{0.5mm}
+\begin{tcolorbox}[executivebox, title={\faChartLine\ Transaction Highlights \& Proposed Valuation}]
+  \begin{minipage}[t]{0.48\textwidth}
+    \begin{itemize}\setlength{\itemsep}{1pt}\parskip0pt\parsep0pt
+      \item[\small\color{AccentGold}\faCheckCircle] \textbf{Enterprise Valuation:} \$420,000,000 USD
+      \item[\small\color{AccentGold}\faCheckCircle] \textbf{Implied Multiple:} 14.5x LTM ARR
+      \item[\small\color{AccentGold}\faCheckCircle] \textbf{Equity Premium:} +32.4\% over 30-Day VWAP
+    \end{itemize}
+  \end{minipage}%
+  \hfill
+  \begin{minipage}[t]{0.48\textwidth}
+    \begin{itemize}\setlength{\itemsep}{1pt}\parskip0pt\parsep0pt
+      \item[\small\color{AccentGold}\faCheckCircle] \textbf{Consideration Mix:} 70\% Cash / 30\% MGH Stock
+      \item[\small\color{AccentGold}\faCheckCircle] \textbf{Retention Pool:} \$35,000,000 Key Talent Pool
+      \item[\small\color{AccentGold}\faCheckCircle] \textbf{Target Closing:} Q4 2026 (Subject to Approval)
+    \end{itemize}
+  \end{minipage}
+\end{tcolorbox}
+
+\lettersection[\faLayerGroup]{1. Strategic Rationale \& Synergy Potential}
+The proposed combination offers transformative value for both organizations, driven by three core strategic pillars:
+\begin{itemize}\setlength{\itemsep}{1.5pt}
+  \item[\color{ExecutiveNavy}\faChevronRight] \textbf{Global Enterprise Scale:} Vertex's proprietary micro-service orchestration matrix will immediately integrate into Meridian's Tier-1 data center network spanning 42 countries, accelerating Vertex's enterprise roadmap by an estimated 24 months.
+  \item[\color{ExecutiveNavy}\faChevronRight] \textbf{Commercial Cross-Selling:} Meridian's existing client base of over 450 Fortune 500 enterprises provides an immediate expansion vector for Vertex's premium security compliance suite.
+  \item[\color{ExecutiveNavy}\faChevronRight] \textbf{Accelerated R\&D Investment:} Meridian commits to establishing an initial \$85,000,000 dedicated R\&D innovation fund over 36 months to advance next-generation autonomous edge networks.
+\end{itemize}
+
+\newpage % Clean transition to Page 2
+
+\lettersection[\faUsers]{2. Governance \& Leadership Structure}
+Preserving Vertex's innovation engine is paramount to this transaction. Under the proposed structure:
+\begin{enumerate}\setlength{\itemsep}{1.5pt}
+  \item Vertex will operate as a distinct, wholly-owned business unit within Meridian, retaining the Vertex brand identity and core operational autonomy.
+  \item Vertex's current executive leadership team will remain in place, with Ms. Eleanor Sterling assuming the role of Chief Executive Officer of the Vertex Infrastructure Division and joining Meridian's Senior Executive Council.
+  \item Two designated seats on Meridian's Board of Directors will be allocated to Vertex founders.
+\end{enumerate}
+
+\lettersection[\faCalendar]{3. Indicative Transaction Timeline \& Key Milestones}
+We are prepared to deploy dedicated legal, financial, and technical teams immediately upon execution of an exclusivity agreement. Below is our proposed timeline to achieve a definitive closing:
+
+\vspace{0.5mm}
+\par\noindent
+\begin{tabularx}{\textwidth}{l l X c}
+  \toprule
+  \textbf{\color{ExecutiveNavy}Phase} & \textbf{\color{ExecutiveNavy}Target Period} & \textbf{\color{ExecutiveNavy}Key Deliverables \& Objectives} & \textbf{\color{ExecutiveNavy}Status} \\
+  \midrule
+  \rowcolor{LightTint}
+  \textbf{Phase I} & Weeks 1--2 & Exclusivity Agreement Execution \& Virtual Data Room Setup & \color{AccentGold}\faClock\ Pending \\
+  \textbf{Phase II} & Weeks 3--5 & Confirmatory Legal, Financial, Tax \& Technical Diligence & \color{SlateGray}\faCircle\ Scheduled \\
+  \rowcolor{LightTint}
+  \textbf{Phase III} & Weeks 6--7 & Negotiation \& Drafting of Definitive Merger Agreement & \color{SlateGray}\faCircle\ Scheduled \\
+  \textbf{Phase IV} & Weeks 8--10 & Regulatory Submissions (FTC / CFIUS) \& Board Approval & \color{SlateGray}\faCircle\ Scheduled \\
+  \rowcolor{LightTint}
+  \textbf{Phase V} & Target Q4 2026 & Transaction Closing, Share Transfer \& Joint Integration Kickoff & \color{SlateGray}\faCircle\ Target \\
+  \bottomrule
+\end{tabularx}
+\vspace{1mm}
+
+\lettersection[\faLock]{4. Confirmatory Due Diligence \& Exclusivity}
+This proposal is conditioned upon the completion of customary confirmatory due diligence, which will focus primarily on technical architecture validation, key contract review, and financial audit reconciliation. 
+
+To enable both parties to dedicate the necessary executive resources to finalize definitive agreements expeditiously, we request an exclusivity period of \textbf{45 days} from the signing of the attached Exclusivity Memorandum. During this period, Meridian and its advisors will work diligently toward transaction execution.
+
+\lettersection[\faFile]{5. Confidentiality \& Non-Binding Effect}
+This letter constitutes an expression of mutual interest and does not create any legally binding obligations between Meridian and Vertex, save for the provisions of the Non-Disclosure Agreement executed between the parties on June 12, 2026. Legally binding obligations will arise only upon the execution of definitive transaction documentation approved by both respective Boards of Directors.
+
+\vspace{1.5mm}
+We are genuinely excited about the prospect of bringing our two companies together to build the definitive market leader in enterprise cloud infrastructure. We look forward to discussing this proposal with your Board of Directors at your earliest convenience.
+
+\vspace{2mm}
+\closing{Respectfully submitted,}
+
+\vspace{1mm}
+\encl{%
+  \small\sffamily\color{SlateGray}
+  \begin{enumerate}\setlength{\itemsep}{1pt}\parskip0pt
+    \item[\small\color{ExecutiveNavy}\faFilePdf] Appendix A: Comprehensive Valuation Methodology \& Financial Model Summary
+    \item[\small\color{ExecutiveNavy}\faFilePdf] Appendix B: Draft Exclusivity Agreement \& Confirmatory Diligence Request List
+    \item[\small\color{ExecutiveNavy}\faFilePdf] Appendix C: Executive Retention Pool Structure \& Governance Charter
+  \end{enumerate}
+}
+
+\end{letter}
+\end{document}

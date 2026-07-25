@@ -1,0 +1,370 @@
+\documentclass[11pt,a4paper]{article}
+
+% --- CORE PACKAGES ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{charter} % Serif body font
+\usepackage[scaled=0.92]{helvet} % Sans-serif header font
+\usepackage{amsmath,amssymb}
+\usepackage[table,dvipsnames]{xcolor}
+\usepackage[top=0.65in,bottom=0.65in,left=0.65in,right=0.65in]{geometry}
+\usepackage{tcolorbox}
+\tcbuselibrary{skins,breakable}
+\usepackage{tikz}
+\usetikzlibrary{calc,positioning,shapes.geometric,patterns,backgrounds}
+\usepackage{fontawesome5}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage{microtype}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage[hidelinks,pdfencoding=auto]{hyperref}
+
+% --- COLOR PALETTE ---
+\definecolor{PrimaryNavy}{RGB}{27,42,74}      % Deep Navy Header/Primary
+\definecolor{AccentTeal}{RGB}{15,118,110}     % Academic Teal Accent
+\definecolor{AccentGold}{RGB}{180,83,9}       % Warm Ochre / Accent Gold
+\definecolor{NeutralDark}{RGB}{51,65,85}      % Slate Gray Text
+\definecolor{NeutralLight}{RGB}{248,250,252}   % Card Light Background
+\definecolor{BorderGray}{RGB}{226,232,240}    % Table / Card Borders
+\definecolor{HighlightBg}{RGB}{240,253,250}    % Soft Teal Fill
+\definecolor{AltRowBg}{RGB}{241,245,249}      % Table Alternate Row
+
+% --- SECTION TYPOGRAPHY ---
+\titleformat{\section}
+  {\fontfamily{phv}\fontseries{b}\fontsize{12}{15}\selectfont\color{PrimaryNavy}}
+  {\thesection.}{0.4em}{}
+  [\color{AccentTeal}\vspace{1.5pt}\hrule height 0.8pt]
+
+\titleformat{\subsection}
+  {\fontfamily{phv}\fontseries{bc}\fontsize{10}{12}\selectfont\color{AccentTeal}}
+  {\thesubsection}{0.4em}{}
+
+\titlespacing*{\section}{0pt}{10pt}{5pt}
+\titlespacing*{\subsection}{0pt}{8pt}{3pt}
+
+% --- PAGE HEADERS & FOOTERS ---
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+\fancyhfoffset{0pt}
+\chead{\fontfamily{phv}\fontsize{8.5}{10}\selectfont\color{NeutralDark} Dr. Elena Rostova --- Teaching Philosophy \& Portfolio Narrative}
+\rhead{\fontfamily{phv}\fontsize{8.5}{10}\selectfont\color{NeutralDark} Apex University}
+\lfoot{\fontfamily{phv}\fontsize{8.5}{10}\selectfont\color{NeutralDark} Department of Computational Sciences}
+\rfoot{\fontfamily{phv}\fontsize{8.5}{10}\selectfont\color{NeutralDark} Page \thepage}
+
+% --- CUSTOM BOX STYLING ---
+\newtcolorbox{quotecard}[1][]{
+  enhanced, breakable,
+  colback=NeutralLight,
+  colframe=AccentTeal!70!PrimaryNavy,
+  arc=3pt,
+  boxrule=0.7pt,
+  left=10pt, right=10pt, top=6pt, bottom=6pt,
+  #1
+}
+
+\newtcolorbox{pillarbox}[2][]{
+  enhanced, breakable,
+  colback=NeutralLight,
+  colframe=PrimaryNavy,
+  arc=3pt,
+  boxrule=0.8pt,
+  top=6pt, bottom=6pt, left=9pt, right=9pt,
+  title={\fontfamily{phv}\fontseries{b}\fontsize{9.5}{11.5}\selectfont #2},
+  coltitle=white,
+  colbacktitle=PrimaryNavy,
+  #1
+}
+
+\newtcolorbox{calloutbox}[1]{
+  enhanced, breakable,
+  colback=HighlightBg,
+  colframe=AccentTeal,
+  arc=3pt,
+  boxrule=0.7pt,
+  left=9pt, right=9pt, top=7pt, bottom=7pt,
+  title={\fontfamily{phv}\fontseries{b}\fontsize{9}{11}\selectfont #1},
+  coltitle=PrimaryNavy,
+  colbacktitle=HighlightBg,
+  attach boxed title to top left={xshift=8pt, yshift=-6pt},
+  boxed title style={colback=HighlightBg, colframe=AccentTeal, arc=2pt, boxrule=0.5pt}
+}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{4pt}
+
+\begin{document}
+
+% --- HEADER / TITLE BANNER ---
+\begin{tcolorbox}[
+  enhanced,
+  colback=PrimaryNavy,
+  colframe=PrimaryNavy,
+  arc=6pt,
+  boxrule=0pt,
+  top=12pt, bottom=12pt, left=14pt, right=14pt
+]
+  \begin{minipage}[c]{0.65\textwidth}
+    {\fontfamily{phv}\fontseries{b}\fontsize{18}{21}\selectfont\color{white} Dr. Elena Rostova} \\[3pt]
+    {\fontfamily{phv}\fontseries{m}\fontsize{10.5}{13}\selectfont\color{AccentGold!40!white} Associate Professor of Computer Science \& Data Analytics} \\[2pt]
+    {\fontfamily{phv}\fontsize{9}{11}\selectfont\color{white!85} Department of Computational Sciences \textperiodcentered{} Apex University}
+  \end{minipage}%
+  \hfill
+  \begin{minipage}[c]{0.33\textwidth}
+    \raggedleft
+    {\fontfamily{phv}\fontsize{8.5}{11}\selectfont\color{white!90}
+      \faEnvelope\ \href{mailto:e.rostova@apex.edu}{\color{white}e.rostova@apex.edu} \\
+      \faGlobe\ \href{https://www.elenarostova-academic.org}{\color{white}elenarostova-academic.org} \\
+      \faBuilding\ Turing Hall, Suite 402 \\
+      \faPhone\ +1 (555) 019-2834
+    }
+  \end{minipage}
+\end{tcolorbox}
+
+\vspace{-2pt}
+
+% --- EXECUTIVE SUMMARY ---
+\begin{tcolorbox}[
+  enhanced,
+  colback=HighlightBg,
+  colframe=AccentTeal,
+  arc=4pt,
+  boxrule=0.8pt,
+  top=7pt, bottom=7pt, left=11pt, right=11pt
+]
+  {\fontfamily{phv}\fontseries{b}\fontsize{9}{11}\selectfont\color{AccentTeal} EXECUTIVE SUMMARY \& TEACHING STATEMENT} \\[3pt]
+  {\color{NeutralDark}\small
+    My pedagogical mission centers on transforming abstract computational theory into empowering, real-world analytical capability. By bridging rigorous computer science fundamentals with inclusive studio-based learning, interactive live-coding, and ethically conscious software engineering, I cultivate students who are not merely proficient coders, but critical thinkers, collaborative problem-solvers, and resilient digital architects. Over nine years of university instruction across undergraduate and graduate levels, I have maintained an average overall teaching evaluation of \textbf{4.88 / 5.00}, recognized with the Apex University Excellence in Undergraduate Teaching Award (2024).
+  }
+\end{tcolorbox}
+
+\vspace{3pt}
+
+% --- SECTION 1: CORE PILLARS OF TEACHING PHILOSOPHY ---
+\section{Core Pillars of Teaching Philosophy}
+
+My teaching methodology is structured around four interconnected pedagogical pillars designed to engage diverse learner profiles, instill deep conceptual mastery, and foster long-term professional self-efficacy:
+
+\begin{pillarbox}{Pillar I: Active Learning \& Inquiry-Driven Studio Synthesis}
+  Lectures should never be passive transmissions of static information. I structure every course around the \textbf{"Studio-Lab" model}, replacing standard multi-hour slide presentations with targeted 15-minute conceptual overviews followed immediately by peer-based collaborative coding sprints and interactive live debugging sessions. 
+  
+  In \textit{CS 201: Data Structures \& Algorithms}, for instance, rather than simply writing pseudocode for graph traversal on a whiteboard, students construct visual graph algorithms in real time using custom web tools, deliberately introducing edge cases (e.g., disconnected subgraphs, cyclic loops) to observe algorithmic breakdown. This hands-on inquiry transforms abstract mathematical properties into concrete mental models.
+\end{pillarbox}
+
+\vspace{2pt}
+
+\begin{pillarbox}{Pillar II: Universal Design for Learning (UDL) \& Inclusive Pedagogy}
+  Computational fields often suffer from high barrier perceptions that discourage non-traditional and underrepresented students. I embed Universal Design for Learning principles into all curriculum design by providing \textbf{multimodal learning pathways}:
+  \begin{itemize}[leftmargin=1.5em, labelsep=0.5em, itemsep=2pt, topsep=2pt]
+    \item \textbf{Multiple Modes of Representation:} Core concepts are presented simultaneously through formal mathematical proofs, visual architectural diagrams, and runnable open-source codebases.
+    \item \textbf{Flexible Assessment Frameworks:} Major project deliverables offer choice in application domain (e.g., climate data analysis, bio-informatics sequencing, or algorithmic music synthesis), allowing students to connect core algorithms to personal intellectual passions.
+    \item \textbf{Low-Floor, High-Ceiling Scaffolding:} Introductory assignments begin with intuitive starter code and step-by-step diagnostic checks, while optional extension modules challenge advanced students with research-grade optimization problems.
+  \end{itemize}
+\end{pillarbox}
+
+\vspace{2pt}
+
+\begin{pillarbox}{Pillar III: Industry-Aligned Engineering \& Ethical Synthesis}
+  Modern software engineering demands more than syntactical fluency; it requires software hygiene, system architecture awareness, and societal responsibility. In upper-division courses such as \textit{CS 412: Applied Machine Learning}, students operate in simulated agile teams utilizing industry-standard Git version control, continuous integration pipelines, and peer code review workflows.
+  
+  Crucially, technical assignments incorporate \textbf{Ethical Impact Audits}. When training classification models, students must quantify demographic parity metrics, evaluate dataset bias, and submit a formal societal impact statement alongside their technical benchmark logs.
+\end{pillarbox}
+
+\vspace{2pt}
+
+\begin{pillarbox}{Pillar IV: Mentorship, Growth Mindset, \& Student Self-Efficacy}
+  Errors in computer science are not failures; they are diagnostic data points. I actively cultivate a "growth mindset" classroom culture where bug hunting is celebrated as a core learning vector. Through structured rubric feedback, low-stakes iterative draft submissions, and dedicated office-hour mentoring, I empower students to build independent troubleshooting capabilities and confidence in handling ambiguous technical challenges.
+\end{pillarbox}
+
+\vspace{4pt}
+
+% --- SECTION 2: TEACHING RECORD & COURSE PORTFOLIO ---
+\section{Teaching Record \& Course Portfolio}
+
+I have instructed a broad spectrum of courses ranging from large-enrollment introductory core requirements to specialized graduate research seminars. The table below summarizes my primary teaching assignments at Apex University:
+
+\vspace{2pt}
+
+\bgroup
+\def\arraystretch{1.2}
+\begin{tabularx}{\textwidth}{l X c c c r}
+  \toprule
+  \rowcolor{PrimaryNavy}
+  \color{white}\textbf{Code} & \color{white}\textbf{Course Title \& Description} & \color{white}\textbf{Level} & \color{white}\textbf{Terms Taught} & \color{white}\textbf{Avg Size} & \color{white}\textbf{Eval (/5.0)} \\
+  \midrule
+  \textbf{CS 201} & \textbf{Data Structures \& Algorithms} \newline {\small Core memory layout, trees, graphs, sorting, complexity analysis.} & Undergrad (Core) & Fall \& Spring & 180 & \textbf{4.86} \\
+  \rowcolor{AltRowBg}
+  \textbf{CS 412} & \textbf{Applied Machine Learning \& Data Mining} \newline {\small Supervised/unsupervised learning, deep networks, PyTorch.} & Upper Undergrad & Fall \& Spring & 85 & \textbf{4.91} \\
+  \textbf{CS 635} & \textbf{Advanced Distributed Systems} \newline {\small Consensus algorithms, Paxos/Raft, microservices, fault tolerance.} & Graduate & Fall Term & 38 & \textbf{4.94} \\
+  \rowcolor{AltRowBg}
+  \textbf{DS 105} & \textbf{Foundations of Data Science for All} \newline {\small Interdisciplinary intro to data literacy, Python, and visualizations.} & Gen Ed / Intro & Spring \& Fall & 140 & \textbf{4.82} \\
+  \textbf{CS 490} & \textbf{Senior Software Engineering Capstone} \newline {\small Year-long client-sponsored software synthesis \& team delivery.} & Capstone & Annually & 45 & \textbf{4.89} \\
+  \bottomrule
+\end{tabularx}
+\egroup
+
+\vspace{6pt}
+
+% --- SECTION 3: QUANTITATIVE TEACHING EFFECTIVENESS ---
+\section{Quantitative Teaching Effectiveness \& Student Metrics}
+
+Student evaluation data collected consistently over the past five academic years demonstrates high student satisfaction, strong perception of learning outcomes, and instructor accessibility.
+
+% STAT CARDS ROW
+\begin{center}
+  \begin{minipage}[t]{0.22\textwidth}
+    \begin{tcolorbox}[enhanced, colback=HighlightBg, colframe=AccentTeal, arc=4pt, boxrule=0.8pt, halign=center, top=6pt, bottom=6pt, left=2pt, right=2pt]
+      {\fontfamily{phv}\fontsize{17}{19}\bfseries\color{PrimaryNavy} 4.88 / 5.0} \\[2pt]
+      {\fontfamily{phv}\fontsize{8}{10}\selectfont\color{NeutralDark}\bfseries Overall Instructor Rating} \par
+      {\fontfamily{phv}\fontsize{7.5}{9}\selectfont\color{AccentTeal} Dept Avg: 4.31}
+    \end{tcolorbox}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[t]{0.22\textwidth}
+    \begin{tcolorbox}[enhanced, colback=HighlightBg, colframe=AccentTeal, arc=4pt, boxrule=0.8pt, halign=center, top=6pt, bottom=6pt, left=2pt, right=2pt]
+      {\fontfamily{phv}\fontsize{17}{19}\bfseries\color{PrimaryNavy} 4.92 / 5.0} \\[2pt]
+      {\fontfamily{phv}\fontsize{8}{10}\selectfont\color{NeutralDark}\bfseries Course Organization} \par
+      {\fontfamily{phv}\fontsize{7.5}{9}\selectfont\color{AccentTeal} Dept Avg: 4.38}
+    \end{tcolorbox}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[t]{0.22\textwidth}
+    \begin{tcolorbox}[enhanced, colback=HighlightBg, colframe=AccentTeal, arc=4pt, boxrule=0.8pt, halign=center, top=6pt, bottom=6pt, left=2pt, right=2pt]
+      {\fontfamily{phv}\fontsize{17}{19}\bfseries\color{PrimaryNavy} 4.95 / 5.0} \\[2pt]
+      {\fontfamily{phv}\fontsize{8}{10}\selectfont\color{NeutralDark}\bfseries Helpfulness \& Access} \par
+      {\fontfamily{phv}\fontsize{7.5}{9}\selectfont\color{AccentTeal} Dept Avg: 4.42}
+    \end{tcolorbox}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[t]{0.22\textwidth}
+    \begin{tcolorbox}[enhanced, colback=HighlightBg, colframe=AccentTeal, arc=4pt, boxrule=0.8pt, halign=center, top=6pt, bottom=6pt, left=2pt, right=2pt]
+      {\fontfamily{phv}\fontsize{17}{19}\bfseries\color{PrimaryNavy} 4.87 / 5.0} \\[2pt]
+      {\fontfamily{phv}\fontsize{8}{10}\selectfont\color{NeutralDark}\bfseries Intellectual Challenge} \par
+      {\fontfamily{phv}\fontsize{7.5}{9}\selectfont\color{AccentTeal} Dept Avg: 4.25}
+    \end{tcolorbox}
+  \end{minipage}
+\end{center}
+
+\vspace{2pt}
+
+\subsection{Detailed Multi-Year Metric Breakdown (Scale 1.00 -- 5.00)}
+
+The comparative matrix below illustrates survey evaluations aggregated across 1,200+ student responses against departmental and college benchmarks:
+
+\vspace{2pt}
+
+\bgroup
+\def\arraystretch{1.2}
+\begin{tabularx}{\textwidth}{X c c c c}
+  \toprule
+  \rowcolor{PrimaryNavy}
+  \color{white}\textbf{Evaluation Metric Domain} & \color{white}\textbf{Dr. Rostova} & \color{white}\textbf{CS Dept Avg} & \color{white}\textbf{College of Sci Avg} & \color{white}\textbf{Percentile} \\
+  \midrule
+  Clear Explanation of Complex Concepts & \textbf{4.91} & 4.30 & 4.22 & 98th \\
+  \rowcolor{AltRowBg}
+  Fairness \& Transparency in Grading Rubrics & \textbf{4.89} & 4.35 & 4.28 & 96th \\
+  Encouragement of Inclusivity \& Classroom Discussion & \textbf{4.96} & 4.41 & 4.35 & 99th \\
+  \rowcolor{AltRowBg}
+  Timeliness \& Constructiveness of Project Feedback & \textbf{4.85} & 4.18 & 4.12 & 95th \\
+  Fostering Critical Problem-Solving \& Analytical Thinking & \textbf{4.93} & 4.39 & 4.30 & 97th \\
+  \rowcolor{AltRowBg}
+  Overall Learning Value of the Course & \textbf{4.90} & 4.32 & 4.25 & 98th \\
+  \bottomrule
+\end{tabularx}
+\egroup
+
+\vspace{6pt}
+
+% --- SECTION 4: REPRESENTATIVE QUALITATIVE STUDENT FEEDBACK ---
+\section{Representative Student Feedback \& Narrative Testimonials}
+
+Selected qualitative comments from anonymous end-of-term evaluations reflect the impact of these pedagogical strategies:
+
+\begin{quotecard}
+  \color{NeutralDark}\small
+  \faQuoteLeft\ \textit{"Data Structures used to terrify me because I didn't see myself as a 'hardcore programmer.' Dr. Rostova’s studio-lab approach completely transformed my perception. She breaks down complex graph traversals into intuitive visual steps and never makes you feel silly for asking questions. Her office hours were the single most supportive academic space I experienced at Apex."} \par
+  \raggedleft\fontfamily{phv}\fontsize{8.5}{10}\selectfont\color{AccentTeal}\textbf{--- Student, CS 201: Data Structures \& Algorithms (Fall 2024)}
+\end{quotecard}
+
+\vspace{3pt}
+
+\begin{quotecard}
+  \color{NeutralDark}\small
+  \faQuoteLeft\ \textit{"CS 412 was by far the best course of my undergraduate career. Integrating bias audits into our machine learning projects opened my eyes to the real-world consequences of software engineering. Dr. Rostova doesn't just teach code; she teaches you how to be an ethical, thorough scientist."} \par
+  \raggedleft\fontfamily{phv}\fontsize{8.5}{10}\selectfont\color{AccentTeal}\textbf{--- Senior Computer Science Major, CS 412 (Spring 2025)}
+\end{quotecard}
+
+\vspace{3pt}
+
+\begin{quotecard}
+  \color{NeutralDark}\small
+  \faQuoteLeft\ \textit{"In CS 635, Dr. Rostova treats graduate students as junior colleagues. Her breakdown of Paxos consensus was masterclass-level pedagogy. She created an environment where high-level architectural debates were productive, rigorous, and deeply engaging."} \par
+  \raggedleft\fontfamily{phv}\fontsize{8.5}{10}\selectfont\color{AccentTeal}\textbf{--- M.S. Student, CS 635: Advanced Distributed Systems (Fall 2025)}
+\end{quotecard}
+
+\vspace{6pt}
+
+% --- SECTION 5: STUDENT MENTORSHIP & UNDERGRADUATE RESEARCH ---
+\section{Student Mentorship \& Academic Development}
+
+Beyond classroom instruction, I am deeply committed to advising, research mentorship, and championing diversity, equity, and inclusion in computational fields.
+
+\subsection{Undergraduate \& Graduate Research Supervision}
+\begin{itemize}[leftmargin=1.5em, labelsep=0.5em, itemsep=3pt]
+  \item \textbf{Ph.D. Thesis Advisor:} Marcus Vance (Graduated 2025; now Assistant Professor at Meridian Institute). Dissertation: \textit{"Fairness-Aware Distributed Consensus in Heterogeneous Edge Networks."}
+  \item \textbf{M.S. Thesis Advisor:} 6 Master's students completed thesis research under my supervision, resulting in 4 peer-reviewed workshop publications at IEEE/ACM venues.
+  \item \textbf{Undergraduate Research Mentorship (REU):} Supervised 14 undergraduate researchers over 5 years. 8 students co-authored publications; 11 transitioned into top-tier Ph.D. or M.S. programs (e.g., Vertex Tech, Apex Graduate School).
+\end{itemize}
+
+\subsection{Diversity, Equity, \& Inclusive Excellence Initiatives}
+\begin{itemize}[leftmargin=1.5em, labelsep=0.5em, itemsep=3pt]
+  \item \textbf{Faculty Advisor, Apex ACM-W Chapter (2022--Present):} Expanded chapter membership by 140\%, organized annual hackathons targeting non-traditional coders, and established a peer-mentoring network for first-year women in STEM.
+  \item \textbf{Coordinator, Apex CodeBridge Workshop:} Designed a free 4-week summer bridge program in Python and data literacy for incoming first-generation college students, increasing retention in introductory CS core by 22\%.
+\end{itemize}
+
+\vspace{4pt}
+
+% --- SECTION 6: CURRICULAR LEADERSHIP & PEDAGOGICAL INNOVATION ---
+\section{Curricular Leadership \& Pedagogical Development}
+
+I continuously refine course offerings to reflect emerging technical paradigms and pedagogical best practices:
+
+\begin{enumerate}[leftmargin=1.5em, labelsep=0.5em, itemsep=4pt]
+  \item \textbf{Total Redesign of CS 201 Core (2023):} Led departmental committee to modernize data structures curriculum. Replaced legacy C++ templates with modern memory-safe paradigms, created 12 interactive Jupyter lab modules, and built an automated feedback autograder utilized department-wide.
+  \item \textbf{Creation of DS 105 (Interdisciplinary Gen-Ed):} Authored new syllabus designed to provide non-STEM majors (humanities, social sciences, business) with actionable data literacy, ethical AI awareness, and introductory Python skills. Course enrollment grew from 35 to 140 within three semesters.
+  \item \textbf{Pedagogy Workshops \& Faculty Development:}
+    \begin{itemize}[leftmargin=1.2em, labelsep=0.4em, itemsep=2pt, topsep=2pt]
+      \item Invited Speaker, \textit{"Active Learning Strategies in Large Computer Science Lecture Halls,"} Apex Faculty Development Symposium (2024).
+      \item Participant, \textit{National Effective Teaching Institute (NETI-1)} Workshop (2023).
+      \item Co-Principal Investigator, Apex Instructional Innovation Grant (\$25,000) for integrating AI-assisted debugging tutors into introductory programming workflows.
+    \end{itemize}
+\end{enumerate}
+
+\vspace{6pt}
+
+% --- SECTION 7: FUTURE TEACHING GOALS ---
+\section{Future Pedagogical Horizons \& Teaching Goals}
+
+As computational tools and student demographics continue to evolve, I aim to expand my teaching practice across three primary vectors:
+
+\begin{calloutbox}{1. Integrating Generative AI as a Pedagogical Partner (Not a Shortcut)}
+  Rather than banning AI assistance tools, I am developing exercises where students analyze, critique, and refactor code generated by Large Language Models. Teaching students how to systematically audit machine-generated outputs for edge-case failures, security vulnerabilities, and inefficiency prepares them directly for future industry realities.
+\end{calloutbox}
+
+\vspace{4pt}
+
+\begin{calloutbox}{2. Expanding Cross-Disciplinary Computational Labs}
+  I am collaborating with the Department of Bio-Engineering and the Department of Digital Humanities to launch joint studio modules. Allowing computer science students to collaborate directly with humanities and biology majors on shared datasets builds essential cross-disciplinary communication skills.
+\end{calloutbox}
+
+\vspace{4pt}
+
+\begin{calloutbox}{3. Open-Access Educational Resource Creation}
+  I am currently drafting an open-access interactive digital textbook for \textit{Applied Machine Learning \& Data Ethics}, making high-quality, ethically grounded computer science materials accessible to institutions worldwide without cost barriers.
+\end{calloutbox}
+
+\end{document}

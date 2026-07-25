@@ -1,0 +1,447 @@
+\documentclass[10pt,a4paper]{article}
+
+% --- PACKAGES ---
+\usepackage[utf8]{inputenc}
+\usepackage[margin=0.5in, top=0.65in, bottom=0.65in, headheight=20pt, headsep=12pt]{geometry}
+\usepackage[table]{xcolor}
+\usepackage[scaled=0.92]{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage{tcolorbox}
+\tcbuselibrary{skins,breakable}
+\usepackage{tikz}
+\usetikzlibrary{calc,positioning,shapes.geometric,backgrounds,patterns}
+\usepackage{fontawesome5}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage[hidelinks]{hyperref}
+
+% --- TABULARX COLUMN DEFINITIONS ---
+\newcolumntype{L}{>{\raggedright\arraybackslash}X}
+\newcolumntype{C}{>{\centering\arraybackslash}X}
+\newcolumntype{R}{>{\raggedleft\arraybackslash}X}
+
+% --- COLOR PALETTE ---
+\definecolor{NavyPrimary}{HTML}{0F172A}   % Deep Slate / Dark Navy
+\definecolor{TealAccent}{HTML}{0D9488}    % Academic Teal
+\definecolor{BlueAccent}{HTML}{2563EB}    % Royal Blue Accent
+\definecolor{AmberStatus}{HTML}{D97706}   % Pending/Warning Gold
+\definecolor{GreenStatus}{HTML}{16A34A}   % Complete/Success Green
+\definecolor{LightBg}{HTML}{F8FAFC}       % Soft Card Background
+\definecolor{CardBorder}{HTML}{CBD5E1}    % Subtitle & Box Border
+\definecolor{TextDark}{HTML}{1E293B}      % Primary Text
+\definecolor{TextMuted}{HTML}{64748B}     % Secondary/Muted Text
+\definecolor{RowEven}{HTML}{F1F5F9}       % Alternating Table Row
+
+% --- PAGE SETUP & HEADER/FOOTER ---
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\headrule}{\hbox to\headwidth{\color{CardBorder}\line(1,0){\headwidth}}}
+\renewcommand{\footrulewidth}{0.4pt}
+\renewcommand{\footrule}{\hbox to\headwidth{\color{CardBorder}\line(1,0){\headwidth}}}
+
+\fancyhead[L]{\small \textcolor{TextMuted}{\faGraduationCap\ \textbf{Meridian University} \,|\, Office of Academic Advising}}
+\fancyhead[R]{\small \textcolor{TextMuted}{\textbf{Student Record:} Marcus Vance (ID: \#MU-8492041)}}
+\fancyfoot[L]{\small \textcolor{TextMuted}{\faLock\ \textit{Confidential Academic Record --- For Internal \& Student Advising Use Only}}}
+\fancyfoot[R]{\small \textcolor{TextMuted}{\textbf{Page \thepage\ of \pageref{LastPage}}}}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{3pt}
+
+% --- CUSTOM COMMANDS & STYLES ---
+\newcommand{\sectiontitle}[2]{%
+  \vspace{4pt}%
+  \begin{tcolorbox}[
+    enhanced,
+    colback=NavyPrimary,
+    colframe=NavyPrimary,
+    arc=3pt,
+    top=3.5pt, bottom=3.5pt, left=8pt, right=8pt,
+    boxrule=0pt
+  ]
+    \textcolor{white}{\textbf{\large #1}} \hfill \textcolor{TealAccent!40}{\small #2}
+  \end{tcolorbox}%
+  \vspace{-2pt}%
+}
+
+\newcommand{\subsectiontitle}[1]{%
+  \vspace{3pt}%
+  {\color{NavyPrimary}\textbf{\normalsize #1}}%
+  \vspace{1.5pt}%
+  \hrule height 0.5pt color CardBorder%
+  \vspace{3pt}%
+}
+
+\newcommand{\statusbadge}[2]{%
+  \tcbox[
+    on line,
+    colback=#1!12,
+    colframe=#1!80!black,
+    fontupper=\bfseries\tiny,
+    top=1.5pt, bottom=1.5pt, left=4pt, right=4pt,
+    arc=2pt, boxrule=0.5pt
+  ]{\textcolor{#1!90!black}{#2}}%
+}
+
+\newcommand{\progressbar}[2]{% #1 = percentage (0 to 100), #2 = color
+  \begin{tikzpicture}[baseline=-0.6ex]
+    \draw[fill=CardBorder!50, draw=none, rounded corners=2pt] (0,0) rectangle (3.2, 0.18);
+    \draw[fill=#2, draw=none, rounded corners=2pt] (0,0) rectangle ({3.2*#1/100}, 0.18);
+  \end{tikzpicture}%
+}
+
+\newtcolorbox{infocard}[1][]{
+  enhanced,
+  colback=LightBg,
+  colframe=CardBorder,
+  arc=4pt,
+  boxrule=0.6pt,
+  top=5pt, bottom=5pt, left=7pt, right=7pt,
+  #1
+}
+
+\newtcolorbox{alertbox}[2][AmberStatus]{
+  enhanced,
+  colback=#1!8,
+  colframe=#1!60,
+  arc=3pt,
+  boxrule=0.6pt,
+  top=4.5pt, bottom=4.5pt, left=7pt, right=7pt,
+  title={\small\bfseries\textcolor{#1!90!black}{#2}},
+  coltitle=#1!90!black,
+  attach title to upper
+}
+
+\begin{document}
+
+% ==============================================================================
+% PAGE 1: STUDENT PROFILE, DEGREE AUDIT SUMMARY & CURRENT ENROLLMENT
+% ==============================================================================
+
+% --- HEADER BANNER ---
+\begin{tcolorbox}[
+  enhanced,
+  colback=NavyPrimary,
+  colframe=NavyPrimary,
+  arc=4pt,
+  top=8pt, bottom=8pt, left=10pt, right=10pt
+]
+  \begin{minipage}[c]{0.68\textwidth}
+    {\color{white}\LARGE \textbf{MERIDIAN UNIVERSITY}} \\[2pt]
+    {\color{TealAccent!30}\fontfamily{phv}\selectfont \textbf{\large College of Engineering \& Computer Science}} \\[3pt]
+    {\color{white}\small \faClipboardList\ Official Academic Advising Record \& Degree Progress Audit}
+  \end{minipage}%
+  \hfill
+  \begin{minipage}[c]{0.30\textwidth}
+    \raggedleft
+    \statusbadge{GreenStatus}{\faCheckCircle\ ACTIVE ENROLLMENT}\\[3pt]
+    \textcolor{white}{\small \textbf{Catalog Year:} 2023--2024}\\[2pt]
+    \textcolor{TealAccent!30}{\scriptsize Audit Date: October 24, 2026}
+  \end{minipage}
+\end{tcolorbox}
+
+\vspace{-4pt}
+
+% --- STUDENT & ADVISOR PROFILE CARD ---
+\begin{infocard}
+  \begin{tabularx}{\textwidth}{@{} X X X @{}}
+    \textcolor{TextMuted}{\scriptsize STUDENT NAME} & \textcolor{TextMuted}{\scriptsize STUDENT ID} & \textcolor{TextMuted}{\scriptsize ACADEMIC ADVISOR} \\
+    \textbf{\large Marcus Vance} & \textbf{\large \#MU-8492041} & \textbf{\large Dr. Elena Rostova} \\[4pt]
+    \textcolor{TextMuted}{\scriptsize DEGREE PROGRAM} & \textcolor{TextMuted}{\scriptsize CONCENTRATION / TRACK} & \textcolor{TextMuted}{\scriptsize MINOR} \\
+    \textbf{B.S. Computer Science} & Software Engineering Track & Data Science \& Analytics \\[4pt]
+    \textcolor{TextMuted}{\scriptsize ACADEMIC STANDING} & \textcolor{TextMuted}{\scriptsize CUMULATIVE GPA} & \textcolor{TextMuted}{\scriptsize EXPECTED GRADUATION} \\
+    \statusbadge{GreenStatus}{GOOD STANDING --- DEAN'S LIST} & \textbf{3.82 / 4.00} (84 Cr. Earned) & \textbf{May 2027} (Senior Year)
+  \end{tabularx}
+\end{infocard}
+
+% --- DEGREE AUDIT PROGRESS OVERVIEW ---
+\sectiontitle{1. Degree Completion Summary}{Degree Requirement: 120 Total Credits}
+
+\vspace{1pt}
+
+\begin{minipage}[t]{0.48\textwidth}
+  \begin{infocard}[title={\small\bfseries\color{NavyPrimary}\faChartBar\ Credit Breakdown by Category}]
+    \small
+    \begin{tabular}{@{} l r r r r @{}}
+      \textbf{Category} & \textbf{Req.} & \textbf{Earned} & \textbf{IP} & \textbf{Rem.} \\
+      \midrule
+      General Education & 36 & 36 & 0 & 0 \\
+      CS Core & 45 & 33 & 6 & 6 \\
+      SE Track Electives & 18 & 9 & 3 & 6 \\
+      Data Science Minor & 15 & 6 & 3 & 6 \\
+      Free Electives & 6 & 0 & 3 & 3 \\
+      \midrule
+      \textbf{Total Progress} & \textbf{120} & \textbf{84} & \textbf{15} & \textbf{21} \\
+      \bottomrule
+    \end{tabular}
+  \end{infocard}
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.49\textwidth}
+  \begin{infocard}[title={\small\bfseries\color{NavyPrimary}\faTasks\ Visual Degree Requirements Progress}]
+    \small
+    \begin{tabular}{@{} l l @{}}
+      \textbf{Core Requirements (73\%)} & \\[1pt]
+      \progressbar{73}{TealAccent} & \textcolor{TextMuted}{\scriptsize 33 / 45 Credits} \\[3pt]
+      \textbf{General Education (100\%)} & \\[1pt]
+      \progressbar{100}{GreenStatus} & \textcolor{TextMuted}{\scriptsize 36 / 36 Credits} \\[3pt]
+      \textbf{Software Eng. Track (50\%)} & \\[1pt]
+      \progressbar{50}{BlueAccent} & \textcolor{TextMuted}{\scriptsize 9 / 18 Credits} \\[3pt]
+      \textbf{Data Science Minor (40\%)} & \\[1pt]
+      \progressbar{40}{AmberStatus} & \textcolor{TextMuted}{\scriptsize 6 / 15 Credits}
+    \end{tabular}
+  \end{infocard}
+\end{minipage}
+
+\vspace{3pt}
+
+% --- CURRENT SEMESTER ENROLLMENT ---
+\sectiontitle{2. Current Semester Course Schedule}{Term: Fall 2026 (15 Credit Hours)}
+
+\vspace{1pt}
+
+\rowcolors{2}{RowEven}{white}
+\begin{tabularx}{\textwidth}{@{} l L c c c L @{}}
+  \toprule
+  \rowcolor{NavyPrimary}
+  \textcolor{white}{\textbf{Code}} & \textcolor{white}{\textbf{Course Title}} & \textcolor{white}{\textbf{Cr.}} & \textcolor{white}{\textbf{Type}} & \textcolor{white}{\textbf{Midterm}} & \textcolor{white}{\textbf{Advisor Notes \& Milestones}} \\
+  \midrule
+  \textbf{CS 401} & Software Architecture \& Patterns & 3.0 & Core & A & Senior Capstone I prerequisite met \\
+  \textbf{CS 435} & Database Management Systems & 3.0 & Core & A- & Project lead; SQL optimization module complete \\
+  \textbf{CS 480} & Operating Systems Internals & 3.0 & Core & B+ & Kernel lab 2 submitted; lab group lead \\
+  \textbf{DS 310} & Applied Machine Learning & 3.0 & Minor & A & Outstanding performance; recommended for research \\
+  \textbf{ENG 305} & Technical Writing for Engineers & 3.0 & GenEd & A & Fulfills upper-division writing requirement \\
+  \bottomrule
+\end{tabularx}
+
+\vspace{4pt}
+
+% --- ADVISOR NOTICE BOX ---
+\begin{alertbox}[BlueAccent]{\faCommentDots\ Academic Advisor Evaluation \& Term Remarks}
+  Student exhibits exemplary academic consistency. Current GPA (3.82) maintains eligibility for the \textbf{Meridian Engineering Honors Society} and departmental scholarship renewal. Primary focus for upcoming advisement: registration for Senior Capstone sequence (CS 490/491) and completion of prerequisite verification for Data Science Minor capstone project.
+\end{alertbox}
+
+\newpage
+
+% ==============================================================================
+% PAGE 2: DEGREE AUDIT PROGRESS CHECKLIST & ADVISING SESSION LOG
+% ==============================================================================
+
+\sectiontitle{3. Comprehensive Degree Audit Checklist}{Catalog Year 2023--2024}
+
+\vspace{1pt}
+
+\subsectiontitle{A. Computer Science Core Requirements (45 Credits Required)}
+
+\rowcolors{2}{RowEven}{white}
+\begin{tabularx}{\textwidth}{@{} l L c c c c @{}}
+  \toprule
+  \rowcolor{NavyPrimary}
+  \textcolor{white}{\textbf{Code}} & \textcolor{white}{\textbf{Course Title}} & \textcolor{white}{\textbf{Cr.}} & \textcolor{white}{\textbf{Term Passed}} & \textcolor{white}{\textbf{Grade}} & \textcolor{white}{\textbf{Status}} \\
+  \midrule
+  CS 101 & Introduction to Computer Science & 3.0 & Fall 2023 & A & \statusbadge{GreenStatus}{PASSED} \\
+  CS 102 & Data Structures \& Algorithms I & 3.0 & Spring 2024 & A & \statusbadge{GreenStatus}{PASSED} \\
+  CS 201 & Data Structures \& Algorithms II & 3.0 & Fall 2024 & A- & \statusbadge{GreenStatus}{PASSED} \\
+  CS 240 & Computer Organization \& Assembly & 3.0 & Spring 2025 & B+ & \statusbadge{GreenStatus}{PASSED} \\
+  CS 310 & Object-Oriented Software Design & 3.0 & Spring 2025 & A & \statusbadge{GreenStatus}{PASSED} \\
+  CS 330 & Theoretical Foundations of Computing & 3.0 & Fall 2025 & A & \statusbadge{GreenStatus}{PASSED} \\
+  CS 350 & Algorithms \& Complexity Analysis & 3.0 & Spring 2026 & A- & \statusbadge{GreenStatus}{PASSED} \\
+  CS 401 & Software Architecture \& Patterns & 3.0 & Fall 2026 & -- & \statusbadge{BlueAccent}{IN PROGRESS} \\
+  CS 435 & Database Management Systems & 3.0 & Fall 2026 & -- & \statusbadge{BlueAccent}{IN PROGRESS} \\
+  CS 480 & Operating Systems Internals & 3.0 & Fall 2026 & -- & \statusbadge{BlueAccent}{IN PROGRESS} \\
+  CS 490 & Senior Capstone Design I & 3.0 & Planned: Spr 2027 & -- & \statusbadge{AmberStatus}{PLANNED} \\
+  CS 491 & Senior Capstone Design II & 3.0 & Planned: Fall 2027 & -- & \statusbadge{AmberStatus}{PLANNED} \\
+  \bottomrule
+\end{tabularx}
+
+\vspace{4pt}
+
+\subsectiontitle{B. Software Engineering Track \& Data Science Minor Electives (33 Credits Required)}
+
+\rowcolors{2}{RowEven}{white}
+\begin{tabularx}{\textwidth}{@{} l L c c c c @{}}
+  \toprule
+  \rowcolor{NavyPrimary}
+  \textcolor{white}{\textbf{Code}} & \textcolor{white}{\textbf{Course Title}} & \textcolor{white}{\textbf{Cr.}} & \textcolor{white}{\textbf{Category}} & \textcolor{white}{\textbf{Grade}} & \textcolor{white}{\textbf{Status}} \\
+  \midrule
+  SE 320 & Software Testing \& Quality Assurance & 3.0 & SE Track & A & \statusbadge{GreenStatus}{PASSED} \\
+  SE 360 & Web Application Architecture & 3.0 & SE Track & A & \statusbadge{GreenStatus}{PASSED} \\
+  SE 410 & Agile Development Methodologies & 3.0 & SE Track & B+ & \statusbadge{GreenStatus}{PASSED} \\
+  SE 450 & Cloud Computing \& DevOps & 3.0 & SE Elective & Planned: Spr 2027 & \statusbadge{AmberStatus}{PLANNED} \\
+  DS 201 & Introduction to Data Science & 3.0 & DS Core & A & \statusbadge{GreenStatus}{PASSED} \\
+  DS 250 & Data Visualization \& Storytelling & 3.0 & DS Core & A & \statusbadge{GreenStatus}{PASSED} \\
+  DS 310 & Applied Machine Learning & 3.0 & DS Elective & -- & \statusbadge{BlueAccent}{IN PROGRESS} \\
+  DS 420 & Big Data Analytics & 3.0 & DS Elective & Planned: Spr 2027 & \statusbadge{AmberStatus}{PLANNED} \\
+  \bottomrule
+\end{tabularx}
+
+\vspace{4pt}
+
+% --- ADVISING SESSION LOG ---
+\sectiontitle{4. Official Adviser Session Log \& Action Plan}{Chronological History}
+
+\vspace{1pt}
+
+% SESSION 1
+\begin{infocard}[title={\small\bfseries\color{NavyPrimary}\faCalendar\ Session 4: October 24, 2026 --- Mid-Semester Progress \& Senior Year Plan}]
+  \small
+  \begin{tabularx}{\textwidth}{@{} l L l L @{}}
+    \textbf{Session Type:} & Mandatory Junior/Senior Advising & \textbf{Location:} & Engineering Bldg, Office 304 \\
+    \textbf{Adviser Present:} & Dr. Elena Rostova & \textbf{Student Present:} & Marcus Vance
+  \end{tabularx}
+  \vspace{2pt}
+  \hrule height 0.4pt color CardBorder
+  \vspace{2pt}
+  \textbf{\textcolor{NavyPrimary}{Discussion Summary:}}
+  \begin{itemize}[leftmargin=12pt, topsep=1pt, itemsep=1pt]
+    \item Reviewed midterm evaluation grades (3 A's, 1 A-, 1 B+). Student maintains a 3.82 cumulative GPA.
+    \item Confirmed eligibility for Senior Capstone I (CS 490) for Spring 2027. All prerequisite courses completed.
+    \item Discussed summer 2027 internship opportunities with industry partner Apex Systems and Meridian Research Lab.
+  \end{itemize}
+  \vspace{1pt}
+  \textbf{\textcolor{NavyPrimary}{Agreed Student Action Items:}}
+  \begin{enumerate}[label=\lbrack\small\faCheckSquare\rbrack, leftmargin=18pt, topsep=1pt, itemsep=1pt]
+    \item Submit formal Senior Capstone team preference form by November 15, 2026.
+    \item Meet with Dr. Aris Thorne regarding Data Science Minor research project waiver for DS 499.
+    \item Complete online graduation audit clearance request on Meridian Student Portal.
+  \end{enumerate}
+\end{infocard}
+
+\vspace{3pt}
+
+% SESSION 2
+\begin{infocard}[title={\small\bfseries\color{NavyPrimary}\faCalendar\ Session 3: March 18, 2026 --- Fall 2026 Course Registration \& Minor Approval}]
+  \small
+  \begin{tabularx}{\textwidth}{@{} l L l L @{}}
+    \textbf{Session Type:} & Course Planning \& Minor Declaration & \textbf{Location:} & Virtual (Zoom Advising Room) \\
+    \textbf{Adviser Present:} & Dr. Elena Rostova & \textbf{Student Present:} & Marcus Vance
+  \end{tabularx}
+  \vspace{2pt}
+  \hrule height 0.4pt color CardBorder
+  \vspace{2pt}
+  \textbf{\textcolor{NavyPrimary}{Discussion Summary:}}
+  \begin{itemize}[leftmargin=12pt, topsep=1pt, itemsep=1pt]
+    \item Approved formal declaration of Data Science \& Analytics Minor. Transferred MATH 240 toward quantitative foundation.
+    \item Formulated Fall 2026 schedule prioritizing CS 401 and CS 480 to balance technical workload.
+  \end{itemize}
+\end{infocard}
+
+\newpage
+
+% ==============================================================================
+% PAGE 3: SPECIAL APPROVALS, 4-YEAR ROADMAP & SIGN-OFF AGREEMENT
+% ==============================================================================
+
+\sectiontitle{5. Course Substitutions, Waivers \& Honors Approvals}{Administrative Actions}
+
+\vspace{1pt}
+
+\rowcolors{2}{RowEven}{white}
+\begin{tabularx}{\textwidth}{@{} c L L L c @{}}
+  \toprule
+  \rowcolor{NavyPrimary}
+  \textcolor{white}{\textbf{Date}} & \textcolor{white}{\textbf{Approved Action}} & \textcolor{white}{\textbf{Course / Requirement}} & \textcolor{white}{\textbf{Justification / Details}} & \textcolor{white}{\textbf{Status}} \\
+  \midrule
+  09/12/2023 & AP Exam Credit Waiver & MATH 151 (Calculus I) & AP Calculus BC Score: 5 (4 Cr. Granted) & \statusbadge{GreenStatus}{APPROVED} \\
+  01/20/2025 & Course Substitution & GEN 210 $\rightarrow$ HUM 280 & World Literature transfer from State College & \statusbadge{GreenStatus}{APPROVED} \\
+  04/10/2026 & Honors Thesis Clearance & CS 498 (Undergrad Research) & Approved under supervision of Dr. Rostova & \statusbadge{GreenStatus}{APPROVED} \\
+  10/24/2026 & Prerequisite Override & DS 420 Enrollment Waiver & Concurrent enrollment in CS 435 granted & \statusbadge{AmberStatus}{PENDING DEAN} \\
+  \bottomrule
+\end{tabularx}
+
+\vspace{4pt}
+
+% --- 4-YEAR GRADUATION ROADMAP STATUS ---
+\sectiontitle{6. Four-Year Degree Completion Roadmap}{Academic Plan Overview}
+
+\vspace{1pt}
+
+\begin{minipage}[t]{0.48\textwidth}
+  \begin{infocard}[title={\small\bfseries\color{NavyPrimary}\faCheckCircle\ Completed Academic Years}]
+    \small
+    \textbf{YEAR 1: FRESHMAN (2023--2024)} \hfill \statusbadge{GreenStatus}{32 CR. COMPLETED}
+    \begin{itemize}[leftmargin=10pt, topsep=1pt, itemsep=1pt]
+      \item Fall 2023: CS 101, MATH 152, ENG 101, PHY 101 (16 Cr.)
+      \item Spring 2024: CS 102, MATH 240, PHY 102, GEN 105 (16 Cr.)
+    \end{itemize}
+
+    \vspace{2pt}
+    \textbf{YEAR 2: SOPHOMORE (2024--2025)} \hfill \statusbadge{GreenStatus}{32 CR. COMPLETED}
+    \begin{itemize}[leftmargin=10pt, topsep=1pt, itemsep=1pt]
+      \item Fall 2024: CS 201, MATH 310, SE 320, STAT 201 (16 Cr.)
+      \item Spring 2025: CS 240, CS 310, DS 201, SE 360 (16 Cr.)
+    \end{itemize}
+  \end{infocard}
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.49\textwidth}
+  \begin{infocard}[title={\small\bfseries\color{NavyPrimary}\faClock\ Remaining Academic Years}]
+    \small
+    \textbf{YEAR 3: JUNIOR (2025--2026)} \hfill \statusbadge{BlueAccent}{35 CR. IN PROGRESS}
+    \begin{itemize}[leftmargin=10pt, topsep=1pt, itemsep=1pt]
+      \item Fall 2025: CS 330, SE 410, DS 250, HUM 280, ECO 101 (15 Cr.)
+      \item Spring 2026: CS 350, CS 401, CS 435, CS 480, ENG 305 (15 Cr.)
+    \end{itemize}
+
+    \vspace{2pt}
+    \textbf{YEAR 4: SENIOR (2026--2027)} \hfill \statusbadge{AmberStatus}{21 CR. PLANNED}
+    \begin{itemize}[leftmargin=10pt, topsep=1pt, itemsep=1pt]
+      \item Spring 2027: CS 490 (Capstone I), SE 450, DS 310, Elective (12 Cr.)
+      \item Fall 2027: CS 491 (Capstone II), DS 420, Free Elective (9 Cr.)
+    \end{itemize}
+  \end{infocard}
+\end{minipage}
+
+\vspace{4pt}
+
+% --- ACADEMIC POLICY & ADVISING AGREEMENT ---
+\sectiontitle{7. Academic Advising Verification \& Sign-off}{Official Record Signatures}
+
+\vspace{1pt}
+
+\begin{infocard}
+  \small
+  \textcolor{TextDark}{\textbf{Statement of Student Responsibility:}} \\
+  \textcolor{TextMuted}{\textit{By signing below, the student acknowledges receipt of this academic degree audit and agrees to the course sequence planned above. The student understands that failure to complete prerequisite courses with a grade of `C' or higher may result in delayed graduation. Final graduation clearance remains subject to official audit by the Registrar.}}
+
+  \vspace{12pt}
+
+  \begin{tabularx}{\textwidth}{@{} X c X @{}}
+    \rule{0.8\linewidth}{0.6pt} & \hspace{20pt} & \rule{0.8\linewidth}{0.6pt} \\
+    \textbf{Marcus Vance} & & \textbf{Dr. Elena Rostova} \\
+    Student Signature & & Academic Advisor Signature \\[4pt]
+    \textcolor{TextMuted}{\scriptsize Date: October 24, 2026} & & \textcolor{TextMuted}{\scriptsize Date: October 24, 2026}
+  \end{tabularx}
+\end{infocard}
+
+\vspace{4pt}
+
+% --- OFFICIAL STAMP / FOOTER BOX ---
+\begin{tcolorbox}[
+  enhanced,
+  colback=LightBg,
+  colframe=CardBorder,
+  arc=3pt,
+  boxrule=0.6pt,
+  top=3pt, bottom=3pt, left=8pt, right=8pt
+]
+  \begin{minipage}[c]{0.68\textwidth}
+    \scriptsize \textcolor{TextMuted}{
+      \textbf{Meridian University Office of the Registrar} \,|\, Academic Records Division \\
+      Administration Building, Suite 102 \,|\, Email: \texttt{advising@meridian.edu} \,|\, Phone: (555) 019-2831
+    }
+  \end{minipage}%
+  \hfill
+  \begin{minipage}[c]{0.30\textwidth}
+    \raggedleft
+    \statusbadge{NavyPrimary}{\faSignature\ OFFICIAL RECORD VERIFIED}
+  \end{minipage}
+\end{tcolorbox}
+
+\end{document}

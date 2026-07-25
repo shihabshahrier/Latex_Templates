@@ -1,0 +1,8 @@
+{
+  "name": "Project Gantt Timeline",
+  "compiler": "pdflatex",
+  "description": "Project Gantt Timeline LaTeX template \u2014 gantt chart latex template. Elegant, compile-tested, editable online at letx.app.",
+  "author": "LetX",
+  "category": "tech-docs",
+  "license": "MIT"
+}

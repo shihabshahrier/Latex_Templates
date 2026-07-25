@@ -1,0 +1,476 @@
+\documentclass[10pt,a4paper]{article}
+
+% ==============================================================================
+% PACKAGES & CORE SETUP
+% ==============================================================================
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+\usepackage{microtype}
+
+\usepackage[top=0.6in, bottom=0.65in, left=0.65in, right=0.65in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{xcolor}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{hyperref}
+
+% --- TikZ & tcolorbox ---
+\usepackage{tikz}
+\usetikzlibrary{positioning, calc, shapes.geometric, backgrounds, patterns}
+\usepackage[many]{tcolorbox}
+
+% --- Icons ---
+\usepackage{fontawesome5}
+
+% ==============================================================================
+% COLOR PALETTE (Modern Slate & Indigo SaaS Palette)
+% ==============================================================================
+\definecolor{brandDark}{HTML}{0F172A}       % Slate 900
+\definecolor{brandPrimary}{HTML}{1E293B}    % Slate 800
+\definecolor{brandAccent}{HTML}{2563EB}     % Blue 600
+\definecolor{brandAccentLight}{HTML}{EFF6FF}% Blue 50
+\definecolor{brandTeal}{HTML}{0D9488}       % Teal 600
+\definecolor{neutralBg}{HTML}{F8FAFC}      % Slate 50
+\definecolor{neutralBorder}{HTML}{E2E8F0}  % Slate 200
+\definecolor{textDark}{HTML}{1E293B}       % Primary Text
+\definecolor{textMuted}{HTML}{64748B}      % Secondary Text
+
+% Badge Specific Colors
+\definecolor{badgeAddedBg}{HTML}{DCFCE7}
+\definecolor{badgeAddedFg}{HTML}{15803D}
+
+\definecolor{badgeImprovedBg}{HTML}{DBEAFE}
+\definecolor{badgeImprovedFg}{HTML}{1D4ED8}
+
+\definecolor{badgeFixedBg}{HTML}{F3E8FF}
+\definecolor{badgeFixedFg}{HTML}{6B21A8}
+
+\definecolor{badgeSecurityBg}{HTML}{FEE2E2}
+\definecolor{badgeSecurityFg}{HTML}{B91C1C}
+
+\definecolor{badgeDeprecatedBg}{HTML}{FEF3C7}
+\definecolor{badgeDeprecatedFg}{HTML}{B45309}
+
+% ==============================================================================
+% TABULARX COLUMN DEFINITIONS
+% ==============================================================================
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\arraybackslash}p{#1}}
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+
+% ==============================================================================
+% HYPERREF CONFIGURATION
+% ==============================================================================
+\hypersetup{
+    colorlinks=true,
+    linkcolor=brandAccent,
+    urlcolor=brandAccent,
+    citecolor=brandAccent,
+    pdftitle={Nexa Cloud Platform v4.8.0 Release Notes \& Changelog},
+    pdfauthor={Nexa Engineering Team}
+}
+
+% ==============================================================================
+% PAGE HEADER & FOOTER
+% ==============================================================================
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+\headheight=14pt
+
+\renewcommand{\headrule}{\color{neutralBorder}\hrule width\headwidth height\headrulewidth \vspace{1pt}}
+\renewcommand{\footrule}{\color{neutralBorder}\hrule width\headwidth height\footrulewidth \vspace{1pt}}
+
+\lhead{\small\textcolor{textMuted}{\bfseries NEXA CLOUD PLATFORM} \ \textcolor{neutralBorder}{|} \ \small\textcolor{textMuted}{System Release Notes \& Changelog}}
+\rhead{\small\textcolor{textMuted}{Version 4.8.0 \textcolor{neutralBorder}{|} July 2026}}
+\lfoot{\small\textcolor{textMuted}{Confidential -- For Internal \& Enterprise Customer Distribution}}
+\rfoot{\small\textcolor{textMuted}{Page \thepage\ of \pageref{LastPage}}}
+
+% ==============================================================================
+% CUSTOM MACROS & BADGES
+% ==============================================================================
+\newcommand{\badge}[3]{%
+  \tcbox[on line, arc=2pt, boxsep=0pt, left=4pt, right=4pt, top=1pt, bottom=1pt,
+         colback=#1, colframe=#1, boxrule=0pt, coltext=#2,
+         fontupper=\bfseries\tiny\sffamily]{#3}%
+}
+
+\newcommand{\tagAdded}{\badge{badgeAddedBg}{badgeAddedFg}{\faPlus\ ADDED}}
+\newcommand{\tagImproved}{\badge{badgeImprovedBg}{badgeImprovedFg}{\faSync\ IMPROVED}}
+\newcommand{\tagFixed}{\badge{badgeFixedBg}{badgeFixedFg}{\faCheck\ FIXED}}
+\newcommand{\tagSecurity}{\badge{badgeSecurityBg}{badgeSecurityFg}{\faLock\ SECURITY}}
+\newcommand{\tagBreaking}{\badge{badgeSecurityBg}{badgeSecurityFg}{\faExclamationTriangle\ BREAKING}}
+\newcommand{\tagDeprecated}{\badge{badgeDeprecatedBg}{badgeDeprecatedFg}{\faClock\ DEPRECATED}}
+
+\newcommand{\sectionTitle}[2]{%
+  \vspace{7pt}
+  \begin{tcolorbox}[
+    enhanced,
+    colback=brandPrimary,
+    colframe=brandPrimary,
+    arc=3pt,
+    left=8pt, right=8pt, top=4pt, bottom=4pt,
+    boxrule=0pt
+  ]
+    \textcolor{white}{\large\bfseries #1} \hfill \textcolor{brandAccentLight}{\small\sffamily #2}
+  \end{tcolorbox}
+  \vspace{1pt}
+}
+
+\newcommand{\subsectionTitle}[1]{%
+  \vspace{5pt}
+  {\normalsize\bfseries\textcolor{brandDark}{#1}}
+  \vspace{1pt}
+  \hrule height 0.4pt \color{neutralBorder}
+  \vspace{3pt}
+}
+
+\tcbset{
+  codebox/.style={
+    enhanced,
+    colback=brandDark,
+    colframe=brandPrimary,
+    coltext=white,
+    arc=3pt,
+    boxrule=0.5pt,
+    left=8pt, right=8pt, top=5pt, bottom=5pt,
+    fontupper=\small\ttfamily
+  },
+  infobox/.style={
+    enhanced,
+    colback=brandAccentLight,
+    colframe=brandAccent,
+    boxrule=0.8pt,
+    arc=3pt,
+    left=8pt, right=8pt, top=5pt, bottom=5pt,
+    fontupper=\small\sffamily
+  },
+  warningbox/.style={
+    enhanced,
+    colback=badgeSecurityBg,
+    colframe=badgeSecurityFg,
+    boxrule=0.8pt,
+    arc=3pt,
+    left=8pt, right=8pt, top=5pt, bottom=5pt,
+    fontupper=\small\sffamily
+  }
+}
+
+% ==============================================================================
+% DOCUMENT BODY
+% ==============================================================================
+\begin{document}
+
+% --- HERO HEADER BANNER ---
+\begin{tcolorbox}[
+  enhanced,
+  colback=brandDark,
+  colframe=brandDark,
+  arc=5pt,
+  boxrule=0pt,
+  left=14pt, right=14pt, top=10pt, bottom=10pt
+]
+  \begin{minipage}{0.65\textwidth}
+    \begin{tikzpicture}
+      % Nexa Brand Logo Emblem
+      \fill[brandAccent] (0,0) -- (0.35,0.606) -- (0.7,0) -- (0.35,-0.606) -- cycle;
+      \fill[brandTeal] (0.35,0.606) -- (1.05,0.606) -- (0.7,0) -- cycle;
+      \fill[white!90] (0.7,0) -- (1.05,0.606) -- (1.4,0) -- (1.05,-0.606) -- cycle;
+    \end{tikzpicture}
+    \hspace{8pt}
+    \begin{minipage}[b]{0.75\textwidth}
+      {\Huge\bfseries\textcolor{white}{NEXA PLATFORM}}\\[2pt]
+      {\textcolor{brandAccentLight}{\small\sffamily Enterprise SaaS Release Notes \& System Changelog}}
+    \end{minipage}
+  \end{minipage}
+  \hfill
+  \begin{minipage}{0.30\textwidth}
+    \begin{tcolorbox}[
+      enhanced,
+      colback=brandPrimary,
+      colframe=neutralBorder!20,
+      arc=3pt,
+      boxrule=0.5pt,
+      left=6pt, right=6pt, top=4pt, bottom=4pt
+    ]
+      \textcolor{white}{\small\bfseries Release Metadata}\\[2pt]
+      \textcolor{neutralBorder}{\tiny Version:} \hfill \textcolor{white}{\small\bfseries v4.8.0}\\[1pt]
+      \textcolor{neutralBorder}{\tiny Date:} \hfill \textcolor{white}{\small July 24, 2026}\\[1pt]
+      \textcolor{neutralBorder}{\tiny Track:} \hfill \textcolor{badgeAddedBg}{\small\bfseries General Availability}\\[1pt]
+      \textcolor{neutralBorder}{\tiny Build:} \hfill \textcolor{neutralBorder}{\ttfamily \#nexa-4.8.0-r89412}
+    \end{tcolorbox}
+  \end{minipage}
+\end{tcolorbox}
+
+\vspace{3pt}
+
+% --- EXECUTIVE SUMMARY ---
+\sectionTitle{1. Executive Summary \& Highlights}{Q3 Infrastructure Milestone}
+
+Nexa Platform Version 4.8.0 represents our most significant architectural update of Q3 2026. This release delivers our next-generation Real-Time Streaming Analytics Engine (v2), Zero-Trust Automated API Key Rotation, and high-concurrency GraphQL Subscriptions over HTTP/2. Designed for high-throughput enterprise workloads, v4.8.0 improves ingestion throughput by 54\% while reducing P99 API latency across global edge points of presence.
+
+\vspace{4pt}
+
+% Stat cards side-by-side using minipages
+\noindent
+\begin{minipage}[t]{0.235\textwidth}
+  \begin{tcolorbox}[enhanced, colback=neutralBg, colframe=neutralBorder, boxrule=0.8pt, arc=3pt, halign=center, top=5pt, bottom=5pt, left=2pt, right=2pt]
+    {\LARGE\bfseries\textcolor{brandAccent}{+54\%}}\\[2pt]
+    {\bfseries\small\textcolor{textDark}{Ingestion Rate}}\\[1pt]
+    {\tiny\textcolor{textMuted}{Up to 185k events/sec}}
+  \end{tcolorbox}
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.235\textwidth}
+  \begin{tcolorbox}[enhanced, colback=neutralBg, colframe=neutralBorder, boxrule=0.8pt, arc=3pt, halign=center, top=5pt, bottom=5pt, left=2pt, right=2pt]
+    {\LARGE\bfseries\textcolor{brandTeal}{-60\%}}\\[2pt]
+    {\bfseries\small\textcolor{textDark}{P99 API Latency}}\\[1pt]
+    {\tiny\textcolor{textMuted}{Reduced from 48ms to 19ms}}
+  \end{tcolorbox}
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.235\textwidth}
+  \begin{tcolorbox}[enhanced, colback=neutralBg, colframe=neutralBorder, boxrule=0.8pt, arc=3pt, halign=center, top=5pt, bottom=5pt, left=2pt, right=2pt]
+    {\LARGE\bfseries\textcolor{brandAccent}{99.999\%}}\\[2pt]
+    {\bfseries\small\textcolor{textDark}{SLA Target}}\\[1pt]
+    {\tiny\textcolor{textMuted}{Multi-region active-active}}
+  \end{tcolorbox}
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.235\textwidth}
+  \begin{tcolorbox}[enhanced, colback=neutralBg, colframe=neutralBorder, boxrule=0.8pt, arc=3pt, halign=center, top=5pt, bottom=5pt, left=2pt, right=2pt]
+    {\LARGE\bfseries\textcolor{brandTeal}{0 ms}}\\[2pt]
+    {\bfseries\small\textcolor{textDark}{Migration Downtime}}\\[1pt]
+    {\tiny\textcolor{textMuted}{Zero-downtime schema rollout}}
+  \end{tcolorbox}
+\end{minipage}
+
+\vspace{4pt}
+
+% --- MAJOR FEATURE DEEP DIVES ---
+\sectionTitle{2. Core Feature Deep Dives}{Technical Architectural Upgrades}
+
+\subsectionTitle{2.1 Real-Time Streaming Analytics Engine v2}
+The streaming engine has been re-architected around a zero-copy memory layout and asynchronous event pipelines. Built on Apache Flink and Rust-native micro-workers, Engine v2 supports dynamic partition reassignment without dropping inflight WebSocket client connections.
+
+\begin{tcolorbox}[infobox]
+  \begin{minipage}{\textwidth}
+    \textcolor{brandAccent}{\faInfoCircle\ \bfseries Key Architectural Improvements:}
+    \begin{itemize}[leftmargin=16pt, topsep=1pt, itemsep=1pt]
+      \item \textbf{Sub-millisecond State Evaluation:} In-memory sliding windows now evaluate up to 10M keys/sec per node.
+      \item \textbf{Adaptive Backpressure Management:} Automatically throttles downstream sinks during downstream cloud service degradation without failing upstream requests.
+      \item \textbf{Native Parquet Storage Sync:} Direct stream-to-S3/GCS archival with automatic snappy compression and partition pruning.
+    \end{itemize}
+  \end{minipage}
+\end{tcolorbox}
+
+\vspace{2pt}
+\noindent\textcolor{textMuted}{\small\bfseries Example Streaming Analytics Pipeline Definition (\texttt{nexa-stream-v2.json}):}
+\begin{tcolorbox}[codebox]
+\{ \\
+\ \ "pipeline\_id": "pl\_analytics\_realtime\_v2", \\
+\ \ "source": \{ "provider": "kinesis", "stream\_name": "nexa-events-prod" \}, \\
+\ \ "window\_spec": \{ "type": "tumbling", "duration\_seconds": 60 \}, \\
+\ \ "transformations": [ \\
+\ \ \ \ \{ "type": "enrich\_geoip", "cache\_ttl\_seconds": 3600 \}, \\
+\ \ \ \ \{ "type": "aggregate", "metrics": ["count", "p95\_latency", "error\_rate"] \} \\
+\ \ ], \\
+\ \ "sink": \{ "target": "timescale\_db", "auto\_create\_table": true \} \\
+\}
+\end{tcolorbox}
+
+\subsectionTitle{2.2 Zero-Trust API Key Lifecycle \& Scope Enforcer}
+To strengthen security compliance (SOC2 Type II, ISO 27001), Nexa v4.8.0 introduces automated short-lived API tokens and granular privilege scope enforcement. Administrators can now mandate automatic 30-day token expiration cycles with zero client disruption via grace-period overlap keys.
+
+\begin{itemize}[leftmargin=15pt, topsep=1pt, itemsep=2pt]
+  \item \textbf{Dual-Key Overlap Window:} Old API keys remain valid for a configurable grace period (e.g., 24 hours) after new key generation.
+  \item \textbf{Fine-Grained Scopes:} Over 85 granular permission strings (e.g., \texttt{analytics:read}, \texttt{cluster:deploy}, \texttt{billing:admin}).
+  \item \textbf{Audit Logging:} Every key generation, rotation, and revocation event is signed with SHA-256 and pushed to immutable audit ledgers.
+\end{itemize}
+
+\vspace{4pt}
+
+% --- DETAILED CHANGELOG ---
+\sectionTitle{3. Detailed Version Changelog (v4.8.0)}{Complete Categorized Updates}
+
+\subsectionTitle{Platform Core \& Infrastructure}
+\begin{itemize}[leftmargin=15pt, topsep=1pt, itemsep=2.5pt]
+  \item \tagAdded \textbf{Distributed Caching Layer:} Integrated Redis 7.2 cluster topology with automatic primary failover detection and pre-warmed cache hydration upon container boot.
+  \item \tagAdded \textbf{Multi-Region Read Replicas:} Introduced read-replica routing for Database Gateways in Frankfurt (\texttt{eu-central-1}) and Tokyo (\texttt{ap-northeast-1}).
+  \item \tagImproved \textbf{Serverless Edge Boot Time:} Reduced cold-start container initialization latency from 140ms down to 42ms via optimized V8 isolate snapshots.
+  \item \tagFixed \textbf{TCP Pool Exhaustion:} Resolved intermittent socket starvation under sustained burst traffic exceeding 250,000 requests per second.
+  \item \tagSecurity \textbf{TLS 1.3 Enforced by Default:} Deprecated TLS 1.1 and legacy cipher suites across all inter-service gRPC communication backbones.
+\end{itemize}
+
+\subsectionTitle{API Gateway \& Developer Tools}
+\begin{itemize}[leftmargin=15pt, topsep=1pt, itemsep=2.5pt]
+  \item \tagAdded \textbf{GraphQL Subscription Multiplexing:} Allows up to 10,000 client queries to share a single upstream WebSocket connection.
+  \item \tagImproved \textbf{CLI Dry-Run Schema Diffing:} The \texttt{nexa deploy} command now displays a full side-by-side colorized diff before committing production migrations.
+  \item \tagFixed \textbf{CORS Preflight Header Stripping:} Fixed an edge case where custom domain proxies stripped CORS preflight headers.
+  \item \tagBreaking \textbf{Standardized Error Payload Schema:} The top-level REST response key \texttt{error\_message} has been renamed to \texttt{message} across all v2 endpoints.
+\end{itemize}
+
+\subsectionTitle{Control Plane \& Analytics Dashboard}
+\begin{itemize}[leftmargin=15pt, topsep=1pt, itemsep=2.5pt]
+  \item \tagAdded \textbf{Customizable Dashboard Widgets:} Drag-and-drop metric cards with real-time refresh rates down to 500ms.
+  \item \tagImproved \textbf{Frontend Bundle Optimization:} Reduced initial Javascript bundle size by 32\% through aggressive tree-shaking and dynamic component loading.
+  \item \tagDeprecated \textbf{Legacy Telemetry Endpoint v1:} Endpoint \texttt{/v1/telemetry/metrics} is officially marked deprecated and will be sunset in Version 5.0.
+\end{itemize}
+
+\vspace{4pt}
+
+% --- HISTORICAL CHANGELOG SECTION ---
+\sectionTitle{4. Historical Release Log (v4.7.x -- v4.6.x)}{Previous Product Iterations}
+
+\subsectionTitle{Version 4.7.2 (Maintenance Release -- June 12, 2026)}
+\begin{itemize}[leftmargin=15pt, topsep=1pt, itemsep=2pt]
+  \item \tagFixed Memory leak in Redis connection pool under long-running async background jobs.
+  \item \tagSecurity Patched OpenSSL library dependency to address CVE-2026-3891.
+  \item \tagImproved Enhanced export speed for CSV/Parquet bulk data downloads by 28\%.
+\end{itemize}
+
+\subsectionTitle{Version 4.7.0 (Minor Feature Release -- May 03, 2026)}
+\begin{itemize}[leftmargin=15pt, topsep=1pt, itemsep=2pt]
+  \item \tagAdded Native Cloud Data Warehouse export connectors for Snowflake, Nexa BigQuery, and ClickHouse.
+  \item \tagAdded Automated SSL certificate provisioning for custom white-label enterprise domains.
+  \item \tagImproved Upgraded internal Kubernetes ingress controller to Envoy 1.28.
+\end{itemize}
+
+\subsectionTitle{Version 4.6.0 (Enterprise Auth Milestone -- March 18, 2026)}
+\begin{itemize}[leftmargin=15pt, topsep=1pt, itemsep=2pt]
+  \item \tagAdded Enterprise Single Sign-On (SSO) with Okta, Azure AD, and generic SAML 2.0 / OIDC identity providers.
+  \item \tagAdded Role-Based Access Control (RBAC) supporting custom user role definitions and team namespace isolation.
+\end{itemize}
+
+\vspace{4pt}
+
+% --- BREAKING CHANGES & MIGRATION MATRIX ---
+\sectionTitle{5. Breaking Changes \& Migration Matrix}{Deprecation \& Upgrade Schedule}
+
+Please review the following table carefully before updating production clusters to Version 4.8.0. Breaking changes are isolated to legacy endpoints and specified payload fields.
+
+\vspace{4pt}
+
+\noindent
+\begin{tabularx}{\textwidth}{@{}>{\bfseries\small}L{0.25\textwidth} >{\small}C{0.12\textwidth} >{\small}C{0.12\textwidth} >{\small}Y @{}}
+  \toprule
+  \textcolor{brandDark}{Affected API / Component} & \textcolor{brandDark}{Deprecated} & \textcolor{brandDark}{Removal In} & \textcolor{brandDark}{Required Migration Action} \\
+  \midrule
+  \texttt{/v1/telemetry/metrics} & v4.8.0 & v5.0.0 & Migrate to \texttt{/v2/telemetry/stream} using WebSockets or SSE streaming. \\{}
+  \texttt{error\_message} field & v4.8.0 & v4.9.0 & Update JSON response parsers to read top-level key \texttt{message}. \\{}
+  Basic Auth Header & v4.6.0 & v4.8.0 & Replace with \texttt{Authorization: Bearer \textless{}Nexa\_API\_Token\textgreater{}}. \\{}
+  SDK Node.js v2.x & v4.5.0 & v4.8.0 & Upgrade to \texttt{@nexa/sdk@3.1.0} or higher via \texttt{npm install}. \\
+  \bottomrule
+\end{tabularx}
+
+\vspace{6pt}
+
+\noindent\textcolor{textMuted}{\small\bfseries API Payload Migration Example (Before vs After):}
+
+\vspace{3pt}
+\noindent
+\begin{minipage}[t]{0.48\textwidth}
+  \begin{tcolorbox}[codebox, title={\small Legacy Payload Format (v4.7.x)}]
+\{ \\
+\ \ "status": "error", \\
+\ \ "error\_code": 403, \\
+\ \ \textcolor{badgeSecurityFg}{\textbf{"error\_message": "Invalid token"}} \\
+\}
+  \end{tcolorbox}
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.48\textwidth}
+  \begin{tcolorbox}[codebox, title={\small Standardized Payload Format (v4.8.0+)}]
+\{ \\
+\ \ "status": "error", \\
+\ \ "code": "UNAUTHORIZED\_ACCESS", \\
+\ \ \textcolor{badgeAddedFg}{\textbf{"message": "Invalid token"}}, \\
+\ \ "request\_id": "req\_8921dfa92" \\
+\}
+  \end{tcolorbox}
+\end{minipage}
+
+\vspace{6pt}
+
+% --- PERFORMANCE BENCHMARKS ---
+\sectionTitle{6. Performance Benchmarks}{Empirical Load Testing Results}
+
+Load testing conducted on standard production hardware clusters (16-node Kubernetes cluster, 8 vCPU, 32GB RAM per node, AWS \texttt{c6i.2xlarge}).
+
+\vspace{4pt}
+
+\noindent
+\begin{tabularx}{\textwidth}{@{}>{\bfseries\small}Y >{\small}C{0.20\textwidth} >{\small}C{0.20\textwidth} >{\bfseries\small\textcolor{brandAccent}}C{0.18\textwidth} @{}}
+  \toprule
+  \textcolor{brandDark}{Metric / Benchmark Scenario} & \textcolor{brandDark}{v4.7.2 Baseline} & \textcolor{brandDark}{v4.8.0 Release} & \textcolor{brandDark}{Net Improvement} \\
+  \midrule
+  Event Ingestion Throughput & 120,000 req/sec & 185,000 req/sec & +54.1\% \\{}
+  P95 API Response Latency & 22 ms & 9 ms & -59.0\% \\{}
+  P99 API Response Latency & 48 ms & 19 ms & -60.4\% \\{}
+  Cluster CPU Utilization (Idle) & 18.2\% & 11.5\% & -36.8\% \\{}
+  Memory Footprint per Node & 4.2 GB & 3.1 GB & -26.2\% \\{}
+  Cold-Start Initialization Time & 142 ms & 42 ms & -70.4\% \\
+  \bottomrule
+\end{tabularx}
+
+\vspace{6pt}
+
+% --- UPGRADE & DEPLOYMENT PROTOCOL ---
+\sectionTitle{7. Upgrade \& Deployment Protocol}{Step-by-Step Production Guide}
+
+\begin{tcolorbox}[warningbox]
+  \textcolor{badgeSecurityFg}{\faExclamationTriangle\ \bfseries Production Deployment Caution:}
+  Before executing the upgrade, ensure all active database backups are verified. While schema changes are non-destructive, database key rotation requires clients to update SDK versions to avoid authorization drops.
+\end{tcolorbox}
+
+\vspace{2pt}
+
+\noindent\textcolor{textMuted}{\small\bfseries Recommended CLI Upgrade Sequence:}
+\begin{tcolorbox}[codebox]
+\# 1. Verify current cluster version \\
+\$ nexa-cli cluster info \\
+Current Version: 4.7.2-r77102 \ (Healthy) \\[3pt]
+\# 2. Run pre-flight compatibility check \\
+\$ nexa-cli cluster check-upgrade --target 4.8.0 \\{}
+[SUCCESS] Database schema compatible. \\{}
+[SUCCESS] All worker nodes report ready status. \\[3pt]
+\# 3. Execute rolling zero-downtime deployment \\
+\$ nexa-cli cluster upgrade --version 4.8.0 --strategy rolling --max-surge 25\% \\
+Updating control plane... [DONE] \\
+Updating edge router pods... [DONE] \\[3pt]
+\# 4. Verify deployment status \\
+\$ nexa-cli cluster status \\
+Cluster Status: HEALTHY \ (16/16 Nodes running v4.8.0)
+\end{tcolorbox}
+
+\vspace{4pt}
+
+\begin{tcolorbox}[
+  enhanced,
+  colback=neutralBg,
+  colframe=neutralBorder,
+  arc=4pt,
+  boxrule=0.8pt,
+  left=8pt, right=8pt, top=5pt, bottom=5pt
+]
+  \begin{minipage}{0.70\textwidth}
+    {\bfseries\textcolor{brandDark}{Need Assistance or Enterprise Upgrade Support?}}\\[2pt]
+    {\small\textcolor{textMuted}{Our Dedicated Solutions Engineering team is available 24/7 for zero-downtime deployment planning and custom migration audits.}}
+  \end{minipage}
+  \hfill
+  \begin{minipage}{0.26\textwidth}
+    \raggedleft
+    \href{mailto:support@nexa.example.com}{\badge{badgeImprovedBg}{badgeImprovedFg}{\faEnvelope\ Contact Support}}\\[3pt]
+    \href{https://docs.nexa.example.com}{\badge{brandAccentLight}{brandAccent}{\faBook\ Documentation}}
+  \end{minipage}
+\end{tcolorbox}
+
+\end{document}

@@ -1,0 +1,8 @@
+{
+  "name": "TikZposter Colorful Student Symposium Poster",
+  "compiler": "pdflatex",
+  "description": "TikZposter Colorful Student Symposium Poster LaTeX template \u2014 tikzposter colorful student symposium poster latex template. Elegant, compile-tested, editable online at letx.app.",
+  "author": "LetX",
+  "category": "posters",
+  "license": "MIT"
+}

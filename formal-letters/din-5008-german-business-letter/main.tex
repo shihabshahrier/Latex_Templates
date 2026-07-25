@@ -1,0 +1,231 @@
+\documentclass[11pt,a4paper]{dinbrief}
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[scaled=0.92]{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+\usepackage{xcolor}
+
+% Color stack and table line compatibility fixes for dinbrief + xcolor + booktabs
+\makeatletter
+\def\set@color{%
+  \ifx\current@color\@undefined\else
+    \pdfcolorstack 0 push {\current@color}%
+    \aftergroup\reset@color
+  \fi
+}
+\def\reset@color{%
+  \pdfcolorstack 0 pop\relax
+}
+\def\CT@arc@{}
+\makeatother
+
+\usepackage[many]{tcolorbox}
+\usepackage{tikz}
+\usetikzlibrary{positioning,calc,shapes.geometric,backgrounds,patterns}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{enumitem}
+\usepackage{fontawesome5}
+\usepackage{microtype}
+
+% Brand Color Palette (4-color theme)
+\definecolor{navyprimary}{RGB}{18, 48, 86}      % Primary Corporate Navy
+\definecolor{accentteal}{RGB}{0, 136, 145}     % Accent Vibrant Teal
+\definecolor{darkslate}{RGB}{45, 55, 72}       % Dark Slate Body Text
+\definecolor{lightbg}{RGB}{245, 247, 250}      % Soft Background Surface
+\definecolor{bordergray}{RGB}{210, 218, 230}    % Divider & Border Lines
+
+% DIN 5008 Sender Address Header
+\address{%
+  \textcolor{navyprimary}{\textbf{\Large Vertex Solutions GmbH}}\\[2pt]%
+  \textcolor{darkslate}{\small Enterprise Cloud \& Digital Infrastructure}\\[6pt]%
+  \small\textcolor{darkslate}{%
+    Technologiepark 12 $\cdot$ Haus B\\%
+    D-80331 München\\[4pt]%
+    \faPhone~+49 (0)89 4521 8900\\%
+    \faEnvelope~kontakt@vertex-solutions.de\\%
+    \faGlobe~www.vertex-solutions.de%
+  }%
+}
+
+% Window Envelope Return Address Line
+\backaddress{Vertex Solutions GmbH · Technologiepark 12 · 80331 München}
+
+% Signatures and Reference Information
+\signature{Dr. Martin Weber\\Geschäftsführer \hspace{3.5cm} Dipl.-Ing. Stefan Bauer\\Chief Technology Officer}
+\place{München}
+\date{23. Juli 2026}
+\yourmail{12. Juli 2026}
+\sign{VX-2026-9042}
+\phone{+49 89}{4521-8900}
+\writer{Dr. M. Weber}
+
+% DIN 5008 Commercial Letter Footer
+\bottomtext{%
+  \textcolor{bordergray}{\rule{\textwidth}{0.6pt}}\\[4pt]%
+  \tiny\color{darkslate}%
+  \begin{minipage}[t]{0.31\textwidth}
+    \textbf{Vertex Solutions GmbH}\\
+    Technologiepark 12 $\cdot$ Haus B\\
+    D-80331 München\\
+    Web: www.vertex-solutions.de
+  \end{minipage}\hfill
+  \begin{minipage}[t]{0.31\textwidth}
+    \textbf{Geschäftsführung \& Sitz}\\
+    Dr. Martin Weber (Sprecher)\\
+    Dipl.-Ing. Stefan Bauer (CTO)\\
+    Sitz der Gesellschaft: München
+  \end{minipage}\hfill
+  \begin{minipage}[t]{0.31\textwidth}
+    \textbf{Register \& Bankverbindung}\\
+    Amtsgericht München: HRB 248901\\
+    USt-ID: DE 319 482 105\\
+    IBAN: DE89 7002 0270 0012 3456 78
+  \end{minipage}%
+}
+
+\begin{document}
+\begin{letter}{%
+  Nexa Digital Group AG\\
+  z. Hd. Frau Dipl.-Kfm. Sarah Kurz\\
+  Leiterin IT-Transformation \& Infrastruktur\\
+  Innovationsallee 45\\
+  10115 Berlin
+}
+
+% Subject Line (DIN 5008 format: bold, no ending period)
+\subject{\textcolor{navyprimary}{\textbf{Angebot: Modernisierung \& Migration der Enterprise Cloud-Infrastruktur}}}
+
+\opening{Sehr geehrte Frau Kurz,}
+
+vielen Dank für das änderungsintensive und gewinnbringende Erstgespräch am 12. Juli 2026 sowie die Übermittlung Ihrer detaillierten Anforderungskataloge für das digitale Transformationsprojekt der Nexa Digital Group AG.
+
+Auf Basis unserer gemeinsamen Bedarfsanalyse unterbreiten wir Ihnen nachfolgend ein maßgeschneidertes Festpreisangebot für die durchgängige Modernisierung, Automatisierung und sichere Migration Ihrer Kerninfrastruktur in eine hochverfügbare Hybrid-Cloud-Architektur.
+
+\vspace{0.2cm}
+\begin{tcolorbox}[%
+  colback=lightbg,%
+  colframe=navyprimary,%
+  arc=3pt,%
+  boxrule=0.8pt,%
+  top=6pt,bottom=6pt,left=8pt,right=8pt,%
+  title=\textbf{\textcolor{white}{\faCheckCircle~Projektziele \& Strategischer Nutzen für Nexa Digital}}%
+]
+\textcolor{darkslate}{%
+Durch die Migration auf die von Vertex entwickelte Automatisierungsplattform realisiert die Nexa Digital Group AG signifikante Performance-, Sicherheits- und Effizienzvorteile:
+\begin{itemize}[leftmargin=1.5em,itemsep=2pt,parsep=0pt,label=\textcolor{accentteal}{\small\faAngleRight}]
+  \item \textbf{Reduktion der Betriebskosten:} Senkung der Infrastruktur-Mietkosten um geschätzte 28\% durch automatisierte dynamische Skalierung.
+  \item \textbf{Höchste Ausfallsicherheit:} Multi-Region-Redundanz mit einem garantierten Service Level Agreement (SLA) von 99,99\% Verfügbarkeit.
+  \item \textbf{DIN/ISO \& DSGVO-Konformität:} Vollständige Datenhaltung in nach ISO-27001 zertifizierten deutschen Rechenzentren.
+  \item \textbf{Zukunftssichere DevSecOps-Pipelines:} Vollautomatisierte CI/CD-Pipelines mit integrierten Echtzeit-Sicherheits-Scans.
+\end{itemize}
+}
+\end{tcolorbox}
+
+\vspace{0.3cm}
+\textcolor{navyprimary}{\large\textbf{1. Phasenplan und Leistungsumfang}}
+
+Das Gesamtprojekt gliedert sich in vier strukturierte Phasen über einen Durchführungszeitraum von insgesamt 16 Wochen:
+
+\begin{enumerate}[leftmargin=1.8em,itemsep=3pt,parsep=0pt,label=\textcolor{navyprimary}{\textbf{Phase \arabic*:}}]
+  \item \textbf{Architektur-Audit \& Cloud-Design (Woche 1--3):}\\%{}
+    Bestandsaufnahme aller 142 Legacy-Microservices, Erstellung des Zielbildes, Sicherheits-Audit und Ausarbeitung des DSGVO-Datenschutzkonzepts.
+  \item \textbf{Aufbau Zielumgebung \& Pipeline-Automatisierung (Woche 4--7):}\\%{}
+    Einrichtung der Kubernetes-Cluster (Staging \& Production), Implementierung von Infrastructure-as-Code (Terraform) sowie automatisierter Security-Checks.
+  \item \textbf{Stufenweise Migration \& Lasttests (Woche 8--13):}\\%{}
+    Unterbrechungsfreie Daten- und Anwendungs-Migration im Blue-Green-Verfahren inklusive umfassender Stresstests hoher Nutzerlasten.
+  \item \textbf{Go-Live, Schulung \& Betriebsübergang (Woche 14--16):}\\%{}
+    Finaler Cutover mit 24/7-Hypercare-Support sowie dreitägigem Intensiv-Workshop für das IT-Team der Nexa Digital Group AG.
+\end{enumerate}
+
+\vspace{0.3cm}
+\textcolor{navyprimary}{\large\textbf{2. Detaillierte Kostenaufstellung}}
+
+Nachfolgend finden Sie die transparente Aufschlüsselung aller Einzelleistungen und Konditionen für die Realisierung des Projekts:
+
+\vspace{0.2cm}
+\noindent
+\begin{tabularx}{\textwidth}{c X c r r}
+\toprule
+\textbf{Pos.} & \textbf{Leistungsbeschreibung} & \textbf{Umfang} & \textbf{Stundensatz} & \textbf{Gesamtpreis} \\
+\midrule
+1.0 & Architektur-Audit \& Sicherheitsanalyse & 80 Std. & 145,00 € & 11.600,00 € \\
+2.0 & Setup Cloud-Infrastruktur \& Kubernetes & 160 Std. & 155,00 € & 24.800,00 € \\
+3.0 & CI/CD Pipeline Automation \& Security & 120 Std. & 150,00 € & 18.000,00 € \\
+4.0 & Datenmigrations-Skripte \& Cutover & 140 Std. & 150,00 € & 21.000,00 € \\
+5.0 & IT-Schulung (3 Tage, max. 12 Personen) & Pauschal & -- & 4.500,00 € \\
+6.0 & 24/7 Hypercare Support (4 Wochen post Go-Live) & Pauschal & -- & 8.500,00 € \\
+\midrule
+\multicolumn{4}{r}{\textbf{Zwischensumme (Netto):}} & \textbf{88.400,00 €} \\
+\multicolumn{4}{r}{Zzgl. 19\% Umsatzsteuer (USt.):} & 16.796,00 € \\
+\midrule
+\multicolumn{4}{r}{\textbf{\Large Gesamtbetrag (Brutto):}} & \textbf{\Large 105.196,00 €} \\
+\bottomrule
+\end{tabularx}
+
+\vspace{0.3cm}
+\textcolor{navyprimary}{\large\textbf{3. Service Level Agreement (SLA) Key-Performance-Indikatoren}}
+
+Um höchste Qualität und Zuverlässigkeit im laufenden Betrieb zu garantieren, verpflichten wir uns zu folgenden Kennzahlen:
+
+\vspace{0.2cm}
+\noindent
+\begin{minipage}[t]{0.48\textwidth}
+  \begin{tcolorbox}[colback=lightbg,colframe=navyprimary!40,arc=3pt,boxrule=0.8pt,top=4pt,bottom=4pt]
+    \small
+    \textcolor{navyprimary}{\textbf{\faServer~Verfügbarkeit \& System-SLA}}\\
+    Garantierte Uptime von \textbf{99,99\%} im Jahresdurchschnitt. Maximale geplante Wartungsfenster außerhalb der Kernarbeitszeiten.
+  \end{tcolorbox}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.48\textwidth}
+  \begin{tcolorbox}[colback=lightbg,colframe=navyprimary!40,arc=3pt,boxrule=0.8pt,top=4pt,bottom=4pt]
+    \small
+    \textcolor{navyprimary}{\textbf{\faLock~Sicherheit \& Disaster Recovery}}\\
+    RPO (Recovery Point Objective) $< 5$ Min.\\
+    RTO (Recovery Time Objective) $< 15$ Min.\\
+    Vollautomatische tägliche Backups.
+  \end{tcolorbox}
+\end{minipage}
+
+\vspace{0.3cm}
+\textcolor{navyprimary}{\large\textbf{4. Zahlungsbedingungen, Gewährleistung \& Fristen}}
+
+\begin{itemize}[leftmargin=1.5em,itemsep=2pt,parsep=0pt,label=\textcolor{accentteal}{\small\faCheck}]
+  \item \textbf{Meilenstein-Zahlungsplan:} 30\% bei Auftragserteilung, 40\% nach erfolgreichem Abschluss von Phase 2 (Staging-Freigabe), 30\% nach erfolgreichem Go-Live und Abnahme.
+  \item \textbf{Skonto-Option:} Bei Zahlung innerhalb von 14 Tagen nach Rechnungsstellung gewähren wir 2\% Skonto auf den Netto-Rechnungsbetrag.
+  \item \textbf{Qualitätsgarantie:} Wir gewähren eine Gewährleistungsfrist von 24 Monaten auf alle von uns erstellten Skripte, Quellcodes und Infrastruktur-Konfigurationen.
+  \item \textbf{Angebotsgültigkeit:} Dieses Angebot bleibt bis zum \textbf{31. August 2026} verbindlich.
+\end{itemize}
+
+\vspace{0.3cm}
+Wir freuen uns sehr auf die gemeinsame Umsetzung dieses zukunftsweisenden Projekts mit der Nexa Digital Group AG und stehen Ihnen für Fragen jederzeit persönlich zur Verfügung.
+
+\closing{Mit freundlichen Grüßen}
+
+\vspace{0.6cm}
+\noindent
+\begin{minipage}[t]{0.45\textwidth}
+  \rule{\textwidth}{0.4pt}\\[4pt]
+  \textbf{Dr. Martin Weber}\\
+  Geschäftsführer\\
+  Vertex Solutions GmbH
+\end{minipage}\hfill
+\begin{minipage}[t]{0.45\textwidth}
+  \rule{\textwidth}{0.4pt}\\[4pt]
+  \textbf{Dipl.-Ing. Stefan Bauer}\\
+  Chief Technology Officer\\
+  Vertex Solutions GmbH
+\end{minipage}
+
+\vspace{0.4cm}
+\ps{P.S.: Das optionale SLA-Premium-Wartungspaket (24/7-Reaktionszeit unter 15 Minuten) kann für 1.850,00 €/Monat flexibel hinzugebucht werden.}
+
+\encl{%
+  Anlage 1: Detaillierter Meilenstein- \& Ressourcenplan (Ref. MP-2026-A)\\
+  Anlage 2: Service Level Agreement (SLA) \& Datenschutzvereinbarung (DSGVO)\\
+  Anlage 3: Allgemeine Geschäftsbedingungen (AGB der Vertex Solutions GmbH)
+}
+
+\end{letter}
+\end{document}

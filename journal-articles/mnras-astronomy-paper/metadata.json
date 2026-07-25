@@ -1,0 +1,8 @@
+{
+  "name": "MNRAS Astronomy Research Paper",
+  "compiler": "pdflatex",
+  "description": "MNRAS Astronomy Research Paper LaTeX template \u2014 mnras astronomy research paper latex template. Elegant, compile-tested, editable online at letx.app.",
+  "author": "LetX",
+  "category": "journal-articles",
+  "license": "MIT"
+}

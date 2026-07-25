@@ -1,0 +1,292 @@
+\documentclass[11pt,a4paper]{scrartcl}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=2.2cm,top=2.4cm,bottom=2.6cm]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage[table]{xcolor}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{enumitem}
+\usepackage{tcolorbox}
+\tcbuselibrary{skins,breakable}
+\usepackage{tikz}
+\usetikzlibrary{positioning,calc,shapes.geometric,backgrounds,patterns}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.17}
+\usepackage{fontawesome5}
+\usepackage[headsepline,footsepline]{scrlayer-scrpage}
+\usepackage{lastpage}
+\usepackage{hyperref}
+
+\definecolor{meridianblue}{RGB}{20,54,94}
+\definecolor{apexteal}{RGB}{0,120,130}
+\definecolor{cloudgray}{RGB}{243,246,249}
+\definecolor{emberorange}{RGB}{201,92,36}
+
+\addtokomafont{disposition}{\color{meridianblue}}
+\addtokomafont{section}{\color{meridianblue}\Large\scshape}
+\addtokomafont{subsection}{\color{apexteal}\normalfont\bfseries\large}
+\addtokomafont{subsubsection}{\color{meridianblue}\normalfont\bfseries}
+
+\pagestyle{scrheadings}
+\clearpairofpagestyles
+\ihead{\small\color{meridianblue}\bfseries Time Allocation Request --- Apex Petascale Facility}
+\ohead{\small\color{apexteal} NEXA-2026-LS-0847}
+\ifoot{\small\color{gray} VertexCFD / Meridian Institute of Technology}
+\ofoot{\small\color{gray} Page \thepage\ of \pageref{LastPage}}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=apexteal,
+  urlcolor=apexteal,
+  citecolor=apexteal,
+  pdftitle={Supercomputing Time Allocation Request},
+  pdfauthor={Elena Castillo}
+}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt}
+
+\newtcolorbox{statbox}[2]{
+  colback=cloudgray,
+  colframe=meridianblue,
+  boxrule=0.4pt,
+  arc=1.5mm,
+  left=8pt,right=8pt,top=7pt,bottom=7pt,
+  width=\linewidth
+}
+
+\newcommand{\statitem}[3]{%
+  {\color{apexteal}\Large #1}\quad
+  {\color{meridianblue}\bfseries\Large #2}\\[1pt]
+  {\small\color{gray!70!black} #3}
+}
+
+\begin{document}
+
+%------------------------------------------------------------
+% TITLE BAND
+%------------------------------------------------------------
+\begin{tcolorbox}[colback=meridianblue,colframe=meridianblue,arc=0mm,boxrule=0pt,left=16pt,right=16pt,top=14pt,bottom=14pt]
+{\color{white}\fontsize{21}{25}\selectfont\bfseries Supercomputing Time Allocation Request}\\[4pt]
+{\color{apexteal!35!white}\large Apex Petascale Computing Facility \textbar\ Nexa National HPC Allocation Program, Large-Scale Track}\\[2pt]
+{\color{white!70!black}\small Direct Numerical Simulation of Extinction and Reignition Dynamics in Hypersonic Scramjet Combustors}
+\end{tcolorbox}
+
+\vspace{4pt}
+
+\begin{tabularx}{\linewidth}{@{}Xr@{}}
+\textbf{Request ID:} NEXA-2026-LS-0847 \quad \textbf{Cycle:} 14 \quad \textbf{Track:} Large-Scale (\,$>$1M SU\,) &
+\small\color{gray!60!black} Submitted 2026-07-23 \\
+\end{tabularx}
+
+\vspace{2pt}
+\noindent\begin{tabularx}{\linewidth}{@{}X X@{}}
+\faUser\ \textbf{Principal Investigator:} Dr.\ Elena Castillo --- Dept.\ of Aerospace Engineering, Meridian Institute of Technology &
+\faUser\ \textbf{Co-Investigator:} Dr.\ Rajiv Patel --- Computational Combustion Group, Synapse National Laboratory \\
+\faCalendar\ \textbf{Requested period:} 2026-10-01 -- 2027-09-30 (12 months) &
+\faMicrochip\ \textbf{Target resource:} Apex Phase-II GPU Partition, Nimbus Computing Center \\
+\end{tabularx}
+
+\vspace{6pt}
+
+%------------------------------------------------------------
+% STATS AT A GLANCE
+%------------------------------------------------------------
+\noindent
+\begin{minipage}[t]{0.245\linewidth}
+\begin{statbox}{}{}
+\statitem{\faRocket}{4.20M}{GPU-hours (H100) requested}
+\end{statbox}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.245\linewidth}
+\begin{statbox}{}{}
+\statitem{\faMicrochip}{1.80M}{CPU core-hours (pre/post)}
+\end{statbox}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.245\linewidth}
+\begin{statbox}{}{}
+\statitem{\faDatabase}{725 TB}{Peak scratch + archive storage}
+\end{statbox}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.245\linewidth}
+\begin{statbox}{}{}
+\statitem{\faChartLine}{1024}{Max.\ GPU concurrency demonstrated}
+\end{statbox}
+\end{minipage}
+\par
+\vspace{8pt}
+
+%------------------------------------------------------------
+\section*{Executive Summary}
+\begin{tcolorbox}[colback=cloudgray,colframe=meridianblue,boxrule=0.5pt,arc=1.5mm,left=10pt,right=10pt,top=8pt,bottom=8pt]
+We request \textbf{4,200,000 GPU-hours} on the Apex Phase-II partition (Lumina H100, Nimbus Computing Center) to conduct the first suite of wall-resolved direct numerical simulations (DNS) of local extinction and reignition in a Mach~6.5 hydrogen-fueled scramjet combustor. These flows govern the practical operability limits of hypersonic air-breathing propulsion, yet no existing simulation campaign has resolved the coupled turbulence--chemistry interaction at engine-relevant Reynolds and Damk\"ohler numbers. Our solver, \textbf{VertexCFD}, has been benchmarked to 1{,}024 H100 GPUs at 74\% parallel efficiency (Section~\ref{sec:scaling}) and has consumed a prior Apex Phase-I allocation productively (Section~\ref{sec:prior}). The requested allocation funds six production DNS configurations spanning the extinction/reignition boundary, together with the grid-convergence and reduced-mechanism validation studies required to certify each result.
+\end{tcolorbox}
+
+%------------------------------------------------------------
+\section{Project Summary}
+Scramjet combustors operate in a narrow, poorly characterized envelope between blow-out and thermal choking. Small perturbations in fuel--air mixing --- a bow-shock/boundary-layer interaction, an injector wake, a transient equivalence-ratio excursion --- can locally extinguish the flame; whether it reignites downstream determines whether the vehicle sustains thrust or loses the engine entirely. Reduced-order models (flamelet, PDF-transport) are calibrated against subsonic or low-Damk\"ohler data and are known to mispredict extinction onset by a factor of two or more at hypersonic conditions. The only way to build a trustworthy predictive model is to resolve the full range of turbulent and chemical scales directly, without closure assumptions, in geometry-accurate combustor sections. That computation is only tractable at the scale of a national allocation.
+
+This project performs six such DNS campaigns, each independently converged, spanning a sweep of core flow Damk\"ohler number and injector staging geometry, using \textbf{VertexCFD}, a compressible, finite-rate-chemistry, block-structured AMR solver developed jointly by the Castillo group at Meridian Institute of Technology and the Synapse National Laboratory combustion program.
+
+\subsection{Scientific and Technical Justification}
+The governing system is the fully compressible, multi-species, reacting Navier--Stokes equations,
+\begin{align}
+\frac{\partial \rho}{\partial t} + \nabla\cdot(\rho \mathbf{u}) &= 0, \\
+\frac{\partial (\rho \mathbf{u})}{\partial t} + \nabla\cdot(\rho \mathbf{u}\otimes\mathbf{u} + p\mathbb{I}) &= \nabla\cdot\boldsymbol{\tau}, \\
+\frac{\partial (\rho E)}{\partial t} + \nabla\cdot\big[(\rho E + p)\mathbf{u}\big] &= \nabla\cdot(\boldsymbol{\tau}\cdot\mathbf{u} - \mathbf{q}), \\
+\frac{\partial (\rho Y_k)}{\partial t} + \nabla\cdot(\rho Y_k \mathbf{u}) &= -\nabla\cdot\mathbf{J}_k + \dot{\omega}_k, \qquad k = 1,\ldots,N_s,
+\end{align}
+closed with a 32-species / 48-reaction reduced hydrogen--air mechanism derived by directed relation graph reduction from a detailed 9-species master mechanism, validated to within 4\% of ignition-delay data across the target pressure--temperature envelope (2--6\,atm, 900--1400\,K).
+
+Spatial discretization uses a fifth-order WENO scheme for the convective fluxes and a fourth-order central scheme for viscous terms, on a block-structured adaptive mesh (block size $32^3$) refined dynamically on density-gradient and heat-release-rate sensors. Time integration is an explicit third-order strong-stability-preserving Runge--Kutta scheme with point-implicit sub-stepping of the stiff chemical source term. Finest-level resolution is 4\,\textmu m in the shear layer, chosen to place the Kolmogorov scale within the top AMR level across the full sweep.
+
+\subsection{Computational Approach}
+Each of the six production configurations requires:
+\begin{itemize}[leftmargin=16pt,itemsep=2pt]
+  \item A domain of $180 \times 40 \times 32$\,mm at up to 4\,\textmu m finest spacing, giving an equivalent uniform-grid count of $\sim$14.6 billion cells, realized as $\sim$1.1 billion cells under AMR (7--9\% refined fraction at steady operating condition).
+  \item 800--1{,}200 flow-through times to accumulate converged extinction/reignition statistics, at a time step of $\sim$1.8\,ns (acoustic-CFL limited).
+  \item In-situ computation of scalar dissipation rate, flame index, and conditional species means to avoid saturating I/O with full 3-D dumps at every step.
+\end{itemize}
+
+\section{Computational Readiness: The VertexCFD Code}
+
+\subsection{Software Stack and Performance Portability}
+VertexCFD is written in C++17 on the Kokkos performance-portability layer, giving a single source tree that targets Lumina (CUDA), AMD (HIP), and CPU (OpenMP) back ends without code duplication. Distributed-memory parallelism uses MPI with GPU-aware point-to-point exchange over the Apex NDR InfiniBand fabric; checkpoint and diagnostic I/O go through \textbf{Nexa-IO}, an asynchronous parallel-I/O library that overlaps compressed checkpoint writes with the next RK sub-step so that I/O is fully hidden behind compute at the requested scale.
+
+\begin{figure}[h!]
+\centering
+\begin{tikzpicture}[
+  layer/.style={rectangle, rounded corners=2pt, minimum width=6.4cm, minimum height=0.95cm, align=center, draw=meridianblue, thick, font=\small},
+  sidebox/.style={rectangle, rounded corners=2pt, minimum width=3.1cm, minimum height=0.95cm, align=center, draw=apexteal, thick, font=\small, fill=apexteal!12}
+]
+  \node[layer, fill=meridianblue!85, text=white] (physics) {VertexCFD physics kernels \\ \footnotesize (WENO5, finite-rate chemistry, AMR)};
+  \node[layer, fill=meridianblue!65, text=white, below=0.28cm of physics] (kokkos) {Kokkos performance-portability layer};
+  \node[layer, fill=meridianblue!45, text=white, below=0.28cm of kokkos] (hal) {CUDA / HIP / OpenMP hardware abstraction};
+  \node[layer, fill=meridianblue!25, below=0.28cm of hal] (mpi) {MPI + GPU-aware NDR InfiniBand (Apex fabric)};
+  \node[sidebox, right=0.55cm of physics] (io) {Nexa-IO \\ \footnotesize async checkpoint / compression};
+  \draw[->, apexteal, thick] (io.west) -- (physics.east);
+\end{tikzpicture}
+\caption{VertexCFD software stack on the Apex Phase-II partition.}
+\label{fig:stack}
+\end{figure}
+
+\subsection{Scaling and Performance Benchmarks}
+\label{sec:scaling}
+Table~\ref{tab:scaling} reports a strong-scaling study on the target production case (single scramjet inlet section, 1.1 billion active cells under AMR) from 16 to 1{,}024 Apex nodes (4$\times$H100 per node). Figure~\ref{fig:scaling} plots the resulting parallel efficiency against the ideal linear reference. Efficiency remains above 89\% through 1{,}024 GPUs and degrades gracefully thereafter, dominated by halo-exchange latency at the AMR level-transition boundaries rather than load imbalance (load imbalance is held under 6\% at all scales by the recursive-coordinate-bisection repartitioner, invoked every 200 steps).
+
+\begin{table}[h!]
+\centering
+\caption{Strong-scaling benchmark, VertexCFD DNS combustor case, Apex Phase-II.}
+\label{tab:scaling}
+\begin{tabular}{@{}lrrrr@{}}
+\toprule
+\textbf{Nodes} & \textbf{GPUs (H100)} & \textbf{Wall time (s/step)} & \textbf{Speedup} & \textbf{Efficiency} \\
+\midrule
+16   & 64   & 148.2 & 1.00$\times$  & 100.0\% \\
+32   & 128  & 75.6  & 1.96$\times$  & 98.0\%  \\
+64   & 256  & 38.6  & 3.84$\times$  & 96.0\%  \\
+128  & 512  & 19.9  & 7.44$\times$  & 93.0\%  \\
+256  & 1024 & 10.41 & 14.24$\times$ & 89.0\%  \\
+512  & 2048 & 5.58  & 26.56$\times$ & 83.0\%  \\
+1024 & 4096 & 3.13  & 47.36$\times$ & 74.0\%  \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[h!]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+  width=13.5cm, height=6.7cm,
+  xmode=log, log basis x=2,
+  xtick={64,128,256,512,1024,2048,4096},
+  xticklabels={64,128,256,512,1024,2048,4096},
+  xlabel={GPUs (Lumina H100)},
+  ylabel={Parallel efficiency (\%)},
+  ymin=0, ymax=110,
+  grid=major, grid style={gray!20},
+  axis lines=left,
+  tick label style={font=\small},
+  label style={font=\small},
+  legend pos=south west,
+  legend style={font=\footnotesize, draw=gray!40}
+]
+\addplot[color=apexteal, mark=*, thick] coordinates {(64,100)(128,98)(256,96)(512,93)(1024,89)(2048,83)(4096,74)};
+\addlegendentry{Measured (VertexCFD combustor case)}
+\addplot[color=gray, dashed, thick] coordinates {(64,100)(4096,100)};
+\addlegendentry{Ideal linear scaling}
+\end{axis}
+\end{tikzpicture}
+\caption{Parallel efficiency of VertexCFD versus GPU count on Apex Phase-II, relative to the 64-GPU baseline.}
+\label{fig:scaling}
+\end{figure}
+
+At the requested production scale of 1{,}024 GPUs, each of the six configurations sustains $\sim$10.4\,s per RK sub-step; 950 flow-through times at this rate consumes approximately 700{,}000 GPU-hours per configuration, consistent with the resource breakdown in Table~\ref{tab:budget}.
+
+\section{Requested Allocation}
+
+\subsection{Resource Breakdown}
+\begin{table}[h!]
+\centering
+\caption{Requested resources by project phase, 12-month allocation period.}
+\label{tab:budget}
+\begin{tabular}{@{}p{6.3cm}rrr@{}}
+\toprule
+\textbf{Task / Phase} & \textbf{GPU-hours (H100)} & \textbf{CPU-hours} & \textbf{Storage (TB)} \\
+\midrule
+Production DNS campaigns (6 configurations) & 3,150,000 & 420,000 & 380 \\
+AMR grid-convergence studies                & 640,000   & 180,000 & 95 \\
+Reduced-mechanism validation runs           & 280,000   & 260,000 & 40 \\
+Post-processing \& data reduction (Nexa-IO) & 130,000   & 940,000 & 210 \\
+\midrule
+\textbf{Total}                              & \textbf{4,200,000} & \textbf{1,800,000} & \textbf{725} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+CPU-hours are drawn on the Apex CPU partition (Nimbus AMD EPYC nodes) for mesh generation, chemistry mechanism reduction, and the conditional-statistics post-processing pipeline, which is CPU-bound and does not benefit from GPU offload.
+
+\subsection{Data Management and Storage Plan}
+Checkpoints are written in compressed Nexa-IO format at 210\,GB per full-domain snapshot; only sparse in-situ statistics (flame index, scalar dissipation, conditional means) are retained at every 50 steps, with full restart checkpoints retained at every 5,000 steps for the two most recent cycles only. Peak scratch usage is 380\,TB during active production; reduced statistical products (est.\ 45\,TB) are migrated to the Nimbus HPSS tape archive within 14 days of campaign completion and retained for 5 years per the Nexa data-management policy. Raw restart checkpoints beyond the rolling two-cycle window are not retained --- runs are reproducible from the archived statistical products and the versioned input decks, which are mirrored to the Meridian institutional repository.
+
+\section{Project Timeline and Milestones}
+\begin{table}[h!]
+\centering
+\caption{Quarterly milestones and planned resource draw.}
+\label{tab:timeline}
+\begin{tabularx}{\linewidth}{@{}lXr@{}}
+\toprule
+\textbf{Quarter} & \textbf{Milestone} & \textbf{Draw} \\
+\midrule
+Q1 (Oct--Dec 2026) & Facility onboarding, Nexa-IO checkpoint pipeline validation, baseline grid-convergence suite & 15\% \\
+Q2 (Jan--Mar 2027) & Reduced-mechanism production campaign; first extinction/reignition dataset & 30\% \\
+Q3 (Apr--Jun 2027) & Full-scale scramjet inlet DNS at design Mach 6.5 condition & 35\% \\
+Q4 (Jul--Sep 2027) & High-Mach off-design sweep, archival, manuscript preparation & 20\% \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Prior Allocation History and Broader Impacts}
+\label{sec:prior}
+The team held a Phase-I allocation on Apex (Cycle 12, 2025; 850,000 GPU-hours) to develop and validate the reduced chemical mechanism and to perform the grid-convergence study underlying Table~\ref{tab:scaling}. That allocation was fully utilized (97.3\% of awarded core-hours), produced two manuscripts currently under review at the \emph{International Journal of Reacting Flow Simulation}, and supported an invited presentation at the 2025 Meridian Combustion Symposium. Reduced-order combustion models calibrated against the DNS data from this proposal will be released as open validation targets for the wider hypersonic propulsion community through the Synapse National Laboratory data portal, and the AMR/chemistry infrastructure developed for VertexCFD is being generalized for use by two other Apex allocation holders working on rotating detonation engines.
+
+\section{Investigator Team}
+\textbf{Dr.\ Elena Castillo} (PI) is an Associate Professor of Aerospace Engineering at Meridian Institute of Technology, where she leads the Computational Aerothermodynamics Group. Her research addresses turbulence--chemistry interaction in high-speed reacting flows, and she has served as a co-developer on VertexCFD since its inception in 2021.
+
+\textbf{Dr.\ Rajiv Patel} (Co-PI) is a Senior Computational Scientist in the Combustion Program at Synapse National Laboratory, responsible for the Kokkos performance-portability layer and the Nexa-IO integration underlying the scaling results in Section~\ref{sec:scaling}.
+
+\vspace{10pt}
+\section*{Certification and Signatures}
+\noindent
+\begin{tabular}{@{}p{7.3cm}p{7.3cm}@{}}
+\rule{7cm}{0.4pt} & \rule{7cm}{0.4pt} \\
+Dr.\ Elena Castillo, Principal Investigator \quad Date & Dr.\ Rajiv Patel, Co-Investigator \quad Date \\[18pt]
+\rule{7cm}{0.4pt} & \\
+Nexa Allocation Committee, Approving Reviewer \quad Date & \\
+\end{tabular}
+
+\end{document}

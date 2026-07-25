@@ -1,0 +1,8 @@
+{
+  "name": "Memoir Classic Fiction Novel",
+  "compiler": "pdflatex",
+  "description": "Memoir Classic Fiction Novel LaTeX template \u2014 memoir classic fiction novel latex template. Elegant, compile-tested, editable online at letx.app.",
+  "author": "LetX",
+  "category": "books",
+  "license": "MIT"
+}

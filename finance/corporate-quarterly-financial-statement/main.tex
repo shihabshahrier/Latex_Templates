@@ -1,0 +1,419 @@
+\documentclass[10pt,a4paper]{article}
+
+% --- Package Imports ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+\usepackage{microtype}
+\usepackage[margin=0.55in, top=0.65in, bottom=0.65in]{geometry}
+\usepackage[table]{xcolor}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{tcolorbox}
+\tcbuselibrary{skins,breakable}
+\usepackage{tikz}
+\usetikzlibrary{calc,positioning,shapes.geometric,backgrounds}
+\usepackage{fontawesome5}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{lastpage}
+
+% --- Color Palette (Corporate Slate, Navy & Teal) ---
+\definecolor{BrandNavy}{RGB}{15, 32, 67}
+\definecolor{BrandBlue}{RGB}{30, 88, 158}
+\definecolor{BrandTeal}{RGB}{0, 150, 166}
+\definecolor{DarkCharcoal}{RGB}{45, 52, 60}
+\definecolor{LightBg}{RGB}{244, 247, 251}
+\definecolor{SubtleBorder}{RGB}{218, 225, 235}
+\definecolor{PositiveGreen}{RGB}{20, 130, 70}
+\definecolor{TableRowAlt}{RGB}{249, 251, 254}
+
+% --- Page Setup & Header/Footer ---
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+\fancyhead[L]{\small\bfseries\color{BrandNavy} MERIDIAN TECHNOLOGIES INC. \quad\normalfont\color{DarkCharcoal}{\small| \quad Q3 2024 FINANCIAL STATEMENT}}
+\fancyhead[R]{\small\color{DarkCharcoal}\faCalendar\ September 30, 2024}
+\fancyfoot[L]{\small\color{DarkCharcoal}Audited Condensed Consolidated Financial Statements}
+\fancyfoot[C]{\small\color{DarkCharcoal}Form 10-Q Equivalent -- Fictional Disclosure}
+\fancyfoot[R]{\small\color{DarkCharcoal}Page \thepage\ of \pageref{LastPage}}
+
+% --- Section Formatting ---
+\titleformat{\section}
+  {\color{BrandNavy}\large\bfseries}
+  {\thesection.}{0.5em}{}
+  [\color{BrandTeal}\titlerule]
+\titlespacing*{\section}{0pt}{8pt}{3pt}
+
+\titleformat{\subsection}
+  {\color{BrandBlue}\bfseries\normalsize}
+  {\thesubsection}{0.5em}{}
+\titlespacing*{\subsection}{0pt}{5pt}{2pt}
+
+% Custom Column Types for Financial Tables
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+\newcolumntype{Z}{>{\raggedleft\arraybackslash}X}
+\newcolumntype{M}{>{\raggedleft\arraybackslash}p{2.3cm}}
+\newcolumntype{K}{>{\raggedright\arraybackslash}p{5.8cm}}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{2pt}
+
+\begin{document}
+
+% ==========================================
+% PAGE 1: EXECUTIVE HIGHLIGHTS & INCOME STATEMENT
+% ==========================================
+
+% --- Top Branding & Document Header ---
+\begin{tcolorbox}[
+  enhanced,
+  colback=BrandNavy,
+  colframe=BrandNavy,
+  arc=2.5mm,
+  left=12pt, right=12pt, top=7pt, bottom=7pt
+]
+  \begin{minipage}[c]{0.62\textwidth}
+    {\color{white}\huge\bfseries MERIDIAN} \\[1pt]
+    {\color{BrandTeal}\Large\bfseries TECHNOLOGIES INC.} \\[3pt]
+    {\color{white}\small\faBuilding\ 500 Enterprise Way, Suite 400 $\cdot$ San Jose, CA 95110} \\
+    {\color{white}\small\faGlobe\ www.meridiantech-example.com $\cdot$ SEC File No. 001-38912}
+  \end{minipage}%
+  \begin{minipage}[c]{0.38\textwidth}
+    \raggedleft
+    \begin{tcolorbox}[
+      colback=white,
+      colframe=BrandTeal,
+      arc=1.5mm,
+      halign=center,
+      top=4pt, bottom=4pt, left=4pt, right=4pt
+    ]
+      {\color{BrandNavy}\bfseries\small CONDENSED CONSOLIDATED}\\[1pt]
+      {\color{BrandNavy}\bfseries\large FINANCIAL STATEMENT}\\[2pt]
+      {\color{DarkCharcoal}\footnotesize\bfseries THIRD QUARTER FY2024}\\[1pt]
+      {\color{DarkCharcoal}\tiny (Three and Nine Months Ended Sep 30, 2024)}
+    \end{tcolorbox}
+  \end{minipage}
+\end{tcolorbox}
+
+\vspace{-2pt}
+
+% --- Executive Financial Highlights KPIs ---
+\begin{center}
+\begin{minipage}[t]{0.235\textwidth}
+  \begin{tcolorbox}[colback=LightBg, colframe=SubtleBorder, boxrule=0.8pt, arc=1.5mm, halign=center, top=3pt, bottom=3pt]
+    {\tiny\bfseries\color{DarkCharcoal} TOTAL REVENUE (Q3)}\\[1pt]
+    {\Large\bfseries\color{BrandNavy} \$1,428.5M}\\[1pt]
+    {\footnotesize\color{PositiveGreen}\faArrowUp\ +14.2\% YoY}
+  \end{tcolorbox}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.235\textwidth}
+  \begin{tcolorbox}[colback=LightBg, colframe=SubtleBorder, boxrule=0.8pt, arc=1.5mm, halign=center, top=3pt, bottom=3pt]
+    {\tiny\bfseries\color{DarkCharcoal} OPERATING INCOME}\\[1pt]
+    {\Large\bfseries\color{BrandNavy} \$380.8M}\\[1pt]
+    {\footnotesize\color{PositiveGreen}\faArrowUp\ +19.4\% YoY}
+  \end{tcolorbox}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.235\textwidth}
+  \begin{tcolorbox}[colback=LightBg, colframe=SubtleBorder, boxrule=0.8pt, arc=1.5mm, halign=center, top=3pt, bottom=3pt]
+    {\tiny\bfseries\color{DarkCharcoal} NET MARGIN}\\[1pt]
+    {\Large\bfseries\color{BrandNavy} 22.4\%}\\[1pt]
+    {\footnotesize\color{PositiveGreen}\faArrowUp\ +190 bps YoY}
+  \end{tcolorbox}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.235\textwidth}
+  \begin{tcolorbox}[colback=LightBg, colframe=SubtleBorder, boxrule=0.8pt, arc=1.5mm, halign=center, top=3pt, bottom=3pt]
+    {\tiny\bfseries\color{DarkCharcoal} DILUTED EPS}\\[1pt]
+    {\Large\bfseries\color{BrandNavy} \$1.42}\\[1pt]
+    {\footnotesize\color{PositiveGreen}\faArrowUp\ +21.4\% YoY}
+  \end{tcolorbox}
+\end{minipage}
+\end{center}
+
+\vspace{-4pt}
+
+% --- Section 1: Executive Commentary & Audit Overview ---
+\section{Management Commentary \& Audit Overview}
+
+\begin{tcolorbox}[colback=LightBg, colframe=BrandBlue, boxrule=0.6pt, arc=1.5mm, left=8pt, right=8pt, top=4pt, bottom=4pt]
+  {\small\bfseries Audit Summary \& Basis of Presentation:} The condensed consolidated financial statements included herein have been prepared in accordance with U.S. Generally Accepted Accounting Principles (GAAP) for interim financial information and SEC Regulation S-X. In the opinion of management, all adjustments (consisting of normal recurring accruals) considered necessary for a fair presentation have been included. Independent audit procedures for Q3 FY2024 were conducted by \textbf{Apex \& Meridian Advisory Services LLP}, who issued an unqualified (clean) audit opinion on October 22, 2024.
+\end{tcolorbox}
+
+% --- Section 2: Income Statement ---
+\section{Consolidated Statements of Operations (Unaudited)}
+{\small\itshape (In millions of USD, except per share amounts)}
+
+\vspace{-2pt}
+\rowcolors{3}{white}{TableRowAlt}
+\begin{tabularx}{\textwidth}{K M M M M}
+\toprule
+\rowcolor{BrandNavy}
+\color{white}\bfseries Revenue \& Expense Breakdown & 
+\color{white}\bfseries Three Months Sep 30, 2024 & 
+\color{white}\bfseries Three Months Sep 30, 2023 & 
+\color{white}\bfseries Nine Months Sep 30, 2024 & 
+\color{white}\bfseries Nine Months Sep 30, 2023 \\
+\midrule
+Enterprise Cloud Solutions & \$ 895.4 & \$ 762.1 & \$ 2,580.2 & \$ 2,215.0 \\{}
+Hardware Infrastructure & 382.1 & 361.5 & 1,120.4 & 1,058.2 \\{}
+NextGen AI \& Analytics Services & 151.0 & 127.4 & 424.1 & 348.8 \\
+\midrule
+\textbf{Total Net Revenues} & \textbf{\$ 1,428.5} & \textbf{\$ 1,251.0} & \textbf{\$ 4,124.7} & \textbf{\$ 3,622.0} \\
+\midrule
+Cost of Cloud Solutions & 268.2 & 235.0 & 774.1 & 682.0 \\{}
+Cost of Hardware Infrastructure & 175.4 & 168.0 & 518.2 & 495.0 \\{}
+Cost of Services \& Analytics & 48.3 & 42.1 & 136.0 & 118.5 \\
+\midrule
+\textbf{Total Cost of Revenues} & \textbf{491.9} & \textbf{445.1} & \textbf{1,428.3} & \textbf{1,295.5} \\
+\midrule
+\textbf{Gross Profit} & \textbf{936.6} & \textbf{805.9} & \textbf{2,696.4} & \textbf{2,326.5} \\
+\midrule
+Research \& Development (R\&D) & 285.0 & 248.2 & 830.5 & 725.0 \\{}
+Sales \& Marketing (S\&M) & 178.4 & 162.0 & 524.0 & 478.1 \\{}
+General \& Administrative (G\&A) & 78.4 & 62.8 & 221.4 & 189.5 \\{}
+Amortization of Intangibles & 14.0 & 14.0 & 42.0 & 42.0 \\
+\midrule
+\textbf{Total Operating Expenses} & \textbf{555.8} & \textbf{487.0} & \textbf{1,617.9} & \textbf{1,434.6} \\
+\midrule
+\textbf{Operating Income} & \textbf{380.8} & \textbf{318.9} & \textbf{1,078.5} & \textbf{891.9} \\
+\midrule
+Interest Income & 18.5 & 11.2 & 48.2 & 28.4 \\{}
+Interest Expense \& Debt Amortization & (14.2) & (15.8) & (43.5) & (48.0) \\{}
+Other Non-Operating Income / (Expense) & 4.1 & (1.5) & 8.9 & (2.2) \\
+\midrule
+\textbf{Income Before Income Taxes} & \textbf{389.2} & \textbf{312.8} & \textbf{1,092.1} & \textbf{870.1} \\{}
+Provision for Income Taxes & (69.2) & (55.7) & (194.4) & (154.9) \\
+\midrule
+\textbf{Net Income} & \textbf{\$ 320.0} & \textbf{\$ 257.1} & \textbf{\$ 897.7} & \textbf{\$ 715.2} \\
+\bottomrule
+\end{tabularx}
+
+\vspace{3pt}
+{\small\bfseries Earnings Per Share (EPS) Data:}
+
+\vspace{1pt}
+\rowcolors{2}{white}{TableRowAlt}
+\begin{tabularx}{\textwidth}{K M M M M}
+\toprule
+Basic Net Income Per Share & \$ 1.48 & \$ 1.21 & \$ 4.16 & \$ 3.36 \\{}
+Diluted Net Income Per Share & \$ 1.42 & \$ 1.17 & \$ 3.98 & \$ 3.25 \\{}
+Weighted Average Shares -- Basic & 216.2 & 212.5 & 215.8 & 212.8 \\{}
+Weighted Average Shares -- Diluted & 225.4 & 219.7 & 225.5 & 220.1 \\
+\bottomrule
+\end{tabularx}
+
+\clearpage
+
+% ==========================================
+% PAGE 2: BALANCE SHEET
+% ==========================================
+
+\section{Consolidated Balance Sheets}
+{\small\itshape (In millions of USD, except share count and par values)}
+
+\vspace{-2pt}
+\rowcolors{3}{white}{TableRowAlt}
+\begin{tabularx}{\textwidth}{K M M}
+\toprule
+\rowcolor{BrandNavy}
+\color{white}\bfseries Assets & \color{white}\bfseries As of Sep 30, 2024 & \color{white}\bfseries As of Dec 31, 2023 \\
+\midrule
+\textbf{Current Assets:} & & \\{}
+\quad Cash and Cash Equivalents & \$ 1,240.5 & \$ 985.2 \\{}
+\quad Short-Term Marketable Securities & 850.0 & 620.0 \\{}
+\quad Accounts Receivable (net of allowance of \$12.4M and \$10.1M) & 742.8 & 684.5 \\{}
+\quad Inventories & 185.4 & 162.0 \\{}
+\quad Prepaid Expenses and Other Current Assets & 94.2 & 81.5 \\
+\cmidrule(lr){2-3}
+\quad \textbf{Total Current Assets} & \textbf{3,112.9} & \textbf{2,533.2} \\{}
+Property, Plant, and Equipment, Net & 1,480.2 & 1,320.6 \\{}
+Operating Lease Right-of-Use Assets & 310.5 & 335.0 \\{}
+Goodwill & 1,845.0 & 1,845.0 \\{}
+Intangible Assets, Net & 280.4 & 322.4 \\{}
+Other Non-Current Assets & 165.2 & 142.8 \\
+\midrule
+\textbf{TOTAL ASSETS} & \textbf{\$ 7,194.2} & \textbf{\$ 6,499.0} \\
+\bottomrule
+\end{tabularx}
+
+\vspace{4pt}
+\rowcolors{3}{white}{TableRowAlt}
+\begin{tabularx}{\textwidth}{K M M}
+\toprule
+\rowcolor{BrandNavy}
+\color{white}\bfseries Liabilities and Shareholders' Equity & \color{white}\bfseries As of Sep 30, 2024 & \color{white}\bfseries As of Dec 31, 2023 \\
+\midrule
+\textbf{Current Liabilities:} & & \\{}
+\quad Accounts Payable & \$ 312.4 & \$ 285.0 \\{}
+\quad Accrued Compensation and Benefits & 245.8 & 210.4 \\{}
+\quad Deferred Revenue -- Short Term & 580.2 & 495.6 \\{}
+\quad Current Portion of Senior Notes & 200.0 & 150.0 \\{}
+\quad Other Current Liabilities & 142.5 & 128.0 \\
+\cmidrule(lr){2-3}
+\quad \textbf{Total Current Liabilities} & \textbf{1,480.9} & \textbf{1,269.0} \\{}
+Long-Term Debt, Net & 1,150.0 & 1,250.0 \\{}
+Operating Lease Liabilities -- Non-Current & 282.4 & 305.2 \\{}
+Deferred Income Tax Liabilities & 115.6 & 108.4 \\{}
+Other Long-Term Liabilities & 88.0 & 82.1 \\
+\midrule
+\textbf{Total Liabilities} & \textbf{3,116.9} & \textbf{3,014.7} \\
+\midrule
+\textbf{Shareholders' Equity:} & & \\{}
+\quad Common Stock, \$0.001 par value; 500M shares authorized & 0.2 & 0.2 \\{}
+\quad Additional Paid-in Capital & 2,450.8 & 2,210.5 \\{}
+\quad Retained Earnings & 1,745.8 & 1,365.2 \\{}
+\quad Accumulated Other Comprehensive Loss & (119.5) & (91.6) \\
+\cmidrule(lr){2-3}
+\quad \textbf{Total Shareholders' Equity} & \textbf{4,077.3} & \textbf{3,484.3} \\
+\midrule
+\textbf{TOTAL LIABILITIES AND SHAREHOLDERS' EQUITY} & \textbf{\$ 7,194.2} & \textbf{\$ 6,499.0} \\
+\bottomrule
+\end{tabularx}
+
+\clearpage
+
+% ==========================================
+% PAGE 3: CASH FLOW STATEMENT & SEGMENTS
+% ==========================================
+
+\section{Consolidated Statements of Cash Flows (Unaudited)}
+{\small\itshape (In millions of USD)}
+
+\vspace{-2pt}
+\rowcolors{3}{white}{TableRowAlt}
+\begin{tabularx}{\textwidth}{K M M}
+\toprule
+\rowcolor{BrandNavy}
+\color{white}\bfseries Cash Flow Activities & \color{white}\bfseries Nine Months Sep 30, 2024 & \color{white}\bfseries Nine Months Sep 30, 2023 \\
+\midrule
+\textbf{Cash Flows from Operating Activities:} & & \\{}
+\quad Net Income & \$ 897.7 & \$ 715.2 \\{}
+\quad Adjustments: Depreciation \& Amortization & 158.4 & 142.0 \\{}
+\quad Adjustments: Stock-Based Compensation & 182.5 & 155.0 \\{}
+\quad Changes in Operating Assets and Liabilities & (118.2) & (98.4) \\
+\cmidrule(lr){2-3}
+\quad \textbf{Net Cash Provided by Operating Activities} & \textbf{1,120.4} & \textbf{913.8} \\
+\midrule
+\textbf{Cash Flows from Investing Activities:} & & \\{}
+\quad Capital Expenditures (Property, Plant \& Equipment) & (295.0) & (240.0) \\{}
+\quad Purchase of Marketable Securities & (450.0) & (310.0) \\{}
+\quad Sales/Maturities of Marketable Securities & 220.0 & 180.0 \\
+\cmidrule(lr){2-3}
+\quad \textbf{Net Cash Used in Investing Activities} & \textbf{(525.0)} & \textbf{(370.0)} \\
+\midrule
+\textbf{Cash Flows from Financing Activities:} & & \\{}
+\quad Repayment of Senior Debt Notes & (50.0) & (100.0) \\{}
+\quad Repurchase of Common Stock & (215.0) & (180.0) \\{}
+\quad Proceeds from Employee Stock Purchase Plans & 24.9 & 21.2 \\
+\cmidrule(lr){2-3}
+\quad \textbf{Net Cash Used in Financing Activities} & \textbf{(240.1)} & \textbf{(258.8)} \\
+\midrule
+Net Increase in Cash and Cash Equivalents & 355.3 & 285.0 \\{}
+Cash and Cash Equivalents at Beginning of Period & 885.2 & 642.0 \\
+\midrule
+\textbf{Cash and Cash Equivalents at End of Period} & \textbf{\$ 1,240.5} & \textbf{\$ 927.0} \\
+\bottomrule
+\end{tabularx}
+
+\vspace{6pt}
+
+\section{Segment Performance \& Geographical Breakdown}
+
+\begin{minipage}[t]{0.48\textwidth}
+  \begin{tcolorbox}[colback=white, colframe=BrandNavy, title={\bfseries Segment Revenue Distribution (Q3 FY24)}, fonttitle=\small\bfseries, arc=1.5mm]
+    \small
+    \begin{tabularx}{\textwidth}{Y M M}
+      \textbf{Segment} & \textbf{Revenue} & \textbf{YoY Growth} \\
+      \hline
+      Cloud Solutions & \$ 895.4M & +17.5\% \\
+      Hardware Infra & \$ 382.1M & +5.7\% \\
+      AI Services & \$ 151.0M & +18.5\% \\
+      \hline
+      \textbf{Total} & \textbf{\$ 1,428.5M} & \textbf{+14.2\%} \\
+    \end{tabularx}
+  \end{tcolorbox}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.48\textwidth}
+  \begin{tcolorbox}[colback=white, colframe=BrandBlue, title={\bfseries Geographical Revenue Mix (Q3 FY24)}, fonttitle=\small\bfseries, arc=1.5mm]
+    \small
+    \begin{tabularx}{\textwidth}{Y M M}
+      \textbf{Region} & \textbf{Revenue} & \textbf{\% of Total} \\
+      \hline
+      North America & \$ 742.8M & 52.0\% \\
+      EMEA & \$ 399.8M & 28.0\% \\
+      Asia-Pacific & \$ 285.9M & 20.0\% \\
+      \hline
+      \textbf{Total} & \textbf{\$ 1,428.5M} & \textbf{100.0\%} \\
+    \end{tabularx}
+  \end{tcolorbox}
+\end{minipage}
+
+\clearpage
+
+% ==========================================
+% PAGE 4: NOTES & CERTIFICATION
+% ==========================================
+
+\section{Notes to Condensed Consolidated Financial Statements}
+
+\begin{description}[font=\color{BrandBlue}\bfseries, leftmargin=0.5em, itemsep=2pt, parsep=0pt]
+  \item[Note 1 -- Organization and Summary of Significant Accounting Policies]
+    Meridian Technologies Inc. ("Meridian" or the "Company") is a global leader in enterprise cloud architecture, high-performance hardware, and machine learning analytics. The accompanying interim financial statements are unaudited but reflect all adjustments that, in the opinion of management, are necessary for a fair statement of results for the intermediate periods.
+
+  \item[Note 2 -- Revenue Recognition (ASC 606)]
+    Revenue from software subscriptions and cloud service contracts is recognized ratably over the contractual term as performance obligations are satisfied. Hardware revenue is recognized upon transfer of control to the customer (point in time). Deferred revenue represents customer billings prior to service rendering and amounted to \$580.2 million at September 30, 2024.
+
+  \item[Note 3 -- Financing Arrangements \& Debt Obligations]
+    As of September 30, 2024, the Company maintained \$1,350.0 million in aggregate principal amount of Senior Notes due between 2025 and 2030, with a weighted average fixed coupon interest rate of 4.15\%. The Company was in compliance with all financial debt covenants as of September 30, 2024.
+
+  \item[Note 4 -- Stock-Based Compensation \& Capital Structure]
+    Stock-based compensation expense recognized for the nine months ended September 30, 2024 and 2023 was \$182.5 million and \$155.0 million, respectively. As of September 30, 2024, there was \$412.0 million of total unrecognized compensation cost related to non-vested equity awards.
+
+  \item[Note 5 -- Commitments and Contingencies]
+    From time to time, the Company is involved in legal proceedings, claims, and litigation arising in the ordinary course of business. Management evaluates these items based on current information and believes that the ultimate resolution of these matters will not have a material adverse effect on the consolidated financial position or cash flows.
+\end{description}
+
+\vspace{6pt}
+
+% --- Executive Sign-off & Audit Certification Box ---
+\begin{tcolorbox}[
+  enhanced,
+  colback=LightBg,
+  colframe=BrandNavy,
+  boxrule=1pt,
+  arc=2mm,
+  title={\bfseries\color{white}\faCheckCircle\ Management Certification \& Auditor Attestation},
+  coltitle=white,
+  fonttitle=\bfseries\small,
+  top=6pt, bottom=6pt
+]
+  \small
+  In accordance with Rule 13a-14(a) under the Securities Exchange Act of 1934, the undersigned executive officers and lead independent auditor certify that this quarterly financial statement fully complies with disclosure requirements and fairly presents the financial condition of Meridian Technologies Inc.
+
+  \vspace{10pt}
+  \begin{minipage}[t]{0.31\textwidth}
+    \rule{\textwidth}{0.5pt}\\[2pt]
+    \textbf{Sarah L. Jenkins}\\
+    Chief Executive Officer\\
+    {\tiny Meridian Technologies Inc.}
+  \end{minipage}\hfill
+  \begin{minipage}[t]{0.31\textwidth}
+    \rule{\textwidth}{0.5pt}\\[2pt]
+    \textbf{Marcus Vance}\\
+    Chief Financial Officer\\
+    {\tiny Meridian Technologies Inc.}
+  \end{minipage}\hfill
+  \begin{minipage}[t]{0.31\textwidth}
+    \rule{\textwidth}{0.5pt}\\[2pt]
+    \textbf{Apex \& Meridian Advisory LLP}\\
+    Independent Registered Audit Firm\\
+    {\tiny Audit Engagement Principal: D. Thornton}
+  \end{minipage}
+\end{tcolorbox}
+
+\end{document}

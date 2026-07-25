@@ -1,0 +1,493 @@
+\documentclass[11pt,a4paper]{scrartcl}
+
+%% ─── ENCODING & FONTS ────────────────────────────────────────────────────────
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{textcomp}
+
+%% ─── MATHEMATICS ─────────────────────────────────────────────────────────────
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+%% ─── PAGE GEOMETRY ───────────────────────────────────────────────────────────
+\usepackage[
+  top=28mm, bottom=28mm,
+  left=30mm, right=30mm,
+  headheight=20mm,
+  headsep=8mm,
+  footskip=14mm
+]{geometry}
+
+%% ─── COLOURS ─────────────────────────────────────────────────────────────────
+\usepackage[table]{xcolor}
+\definecolor{NavyDeep}{HTML}{0D1F3C}
+\definecolor{GoldAccent}{HTML}{B8963E}
+\definecolor{SlateGray}{HTML}{4A5568}
+\definecolor{CreamBg}{HTML}{F9F7F4}
+\definecolor{RuleGray}{HTML}{CBD5E0}
+\definecolor{AlertAmber}{HTML}{FFF8E7}
+\definecolor{AlertBorder}{HTML}{D4A020}
+
+%% ─── GRAPHICS & TIKZ ─────────────────────────────────────────────────────────
+\usepackage{graphicx}
+\usepackage{tikz}
+\usetikzlibrary{positioning,calc,shapes.geometric,backgrounds,patterns}
+
+%% ─── TCOLORBOX ───────────────────────────────────────────────────────────────
+\usepackage[most]{tcolorbox}
+
+%% ─── TABLES ──────────────────────────────────────────────────────────────────
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{colortbl}
+\usepackage{array}
+\usepackage{multirow}
+
+%% ─── LISTS ───────────────────────────────────────────────────────────────────
+\usepackage{enumitem}
+\setlist[itemize]{leftmargin=1.6em, itemsep=3pt, topsep=4pt}
+\setlist[enumerate]{leftmargin=1.6em, itemsep=3pt, topsep=4pt}
+
+%% ─── TYPOGRAPHY ──────────────────────────────────────────────────────────────
+\usepackage{setspace}
+\usepackage{ragged2e}
+\usepackage{parskip}
+\setlength{\parskip}{7pt}
+\setlength{\parindent}{0pt}
+
+%% ─── HEADER & FOOTER ─────────────────────────────────────────────────────────
+\usepackage{scrlayer-scrpage}
+\clearpairofpagestyles
+\setkomafont{pageheadfoot}{\small\color{SlateGray}}
+\ohead{\textcolor{GoldAccent}{\rule[-2pt]{0.5pt}{10pt}}\quad\textit{Meridian Legal Partners LLP}\quad\textcolor{GoldAccent}{\rule[-2pt]{0.5pt}{10pt}}}
+\ofoot{\thepage}
+\ifoot{\textit{Privileged \& Confidential --- Attorney--Client Communication}}
+
+%% ─── HYPERREF ────────────────────────────────────────────────────────────────
+\usepackage[hidelinks,
+  pdftitle={Legal Opinion Letter --- Nexa Dynamics Acquisition},
+  pdfauthor={Meridian Legal Partners LLP}
+]{hyperref}
+
+%% ─── FONT AWESOME ────────────────────────────────────────────────────────────
+\usepackage{fontawesome5}
+
+%% ─── SECTION FORMATTING ──────────────────────────────────────────────────────
+\usepackage{titlesec}
+\titleformat{\section}
+  {\color{NavyDeep}\large\bfseries\scshape}
+  {\thesection.}{0.6em}{}[{\color{GoldAccent}\titlerule[0.8pt]}]
+\titlespacing{\section}{0pt}{18pt}{8pt}
+
+\titleformat{\subsection}
+  {\color{NavyDeep}\normalsize\bfseries}
+  {}{0pt}{}
+\titlespacing{\subsection}{0pt}{12pt}{4pt}
+
+%% ─── CUSTOM TCOLORBOX STYLES ─────────────────────────────────────────────────
+\tcbset{
+  opinionbox/.style={
+    enhanced,
+    colback=CreamBg,
+    colframe=NavyDeep,
+    boxrule=1.2pt,
+    arc=3pt,
+    left=10pt, right=10pt, top=8pt, bottom=8pt,
+    fonttitle=\bfseries\color{white},
+    coltitle=white,
+    attach boxed title to top left={xshift=12pt, yshift=-\tcboxedtitleheight/2},
+    boxed title style={colback=NavyDeep, colframe=NavyDeep, arc=2pt,
+      left=6pt, right=6pt, top=3pt, bottom=3pt}
+  },
+  cautionbox/.style={
+    enhanced,
+    colback=AlertAmber,
+    colframe=AlertBorder,
+    boxrule=1.2pt,
+    arc=3pt,
+    left=10pt, right=10pt, top=8pt, bottom=8pt,
+    fonttitle=\bfseries\color{AlertBorder},
+    coltitle=AlertBorder,
+    attach boxed title to top left={xshift=12pt, yshift=-\tcboxedtitleheight/2},
+    boxed title style={colback=AlertAmber, colframe=AlertBorder, arc=2pt,
+      left=6pt, right=6pt, top=3pt, bottom=3pt}
+  },
+  sideline/.style={
+    enhanced,
+    colback=white,
+    colframe=white,
+    borderline west={3pt}{0pt}{GoldAccent},
+    left=10pt, right=0pt, top=2pt, bottom=2pt,
+    boxrule=0pt,
+    arc=0pt
+  }
+}
+
+%% ─── HELPER MACROS ───────────────────────────────────────────────────────────
+\newcommand{\goldbar}{\textcolor{GoldAccent}{\rule[2pt]{18pt}{1.5pt}}}
+\newcommand{\riskbadge}[2]{%
+  \begin{tikzpicture}[baseline=(t.base)]
+    \node[
+      fill=#1, text=white,
+      inner xsep=6pt, inner ysep=3pt,
+      rounded corners=2pt,
+      font=\footnotesize\bfseries
+    ] (t) {#2};
+  \end{tikzpicture}%
+}
+\newcommand{\lowrisk}{\riskbadge{green!55!black}{LOW RISK}}
+\newcommand{\medrisk}{\riskbadge{GoldAccent}{MODERATE}}
+\newcommand{\highrisk}{\riskbadge{red!70!black}{HIGH RISK}}
+
+%% ═══════════════════════════════════════════════════════════════════════════ %%
+\begin{document}
+\pagestyle{scrheadings}
+
+%% ─── LETTERHEAD ──────────────────────────────────────────────────────────────
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[NavyDeep]
+    (current page.north west)
+    rectangle
+    ([yshift=-18mm]current page.north east);
+  \fill[GoldAccent]
+    ([yshift=-18mm]current page.north west)
+    rectangle
+    ([yshift=-20.5mm]current page.north east);
+\end{tikzpicture}
+
+\vspace*{-14mm}
+\noindent
+\begin{minipage}[t]{0.55\textwidth}
+  \vspace{4mm}
+  {\color{white}\fontsize{17}{20}\selectfont\textbf{MERIDIAN LEGAL PARTNERS}\,\textcolor{GoldAccent}{\textbf{LLP}}}\\[1.5mm]
+  {\color{white!75!NavyDeep}\small Corporate \& Transactional Law\enspace\textbullet\enspace Capital Markets\enspace\textbullet\enspace Regulatory Compliance}
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.38\textwidth}
+  \vspace{4mm}
+  \RaggedLeft
+  {\color{white}\small
+    \faBuilding\enspace 88 Harborview Plaza, Suite 1400\\
+    Boston, MA~02110\quad USA\\[1mm]
+    \faPhone\enspace +1\,(617)\,555-0182\\
+    \faEnvelope\enspace opinions@meridianlegallp.com
+  }
+\end{minipage}
+
+\vspace{16mm}
+
+%% ─── DATE & REFERENCE ────────────────────────────────────────────────────────
+\noindent
+\begin{minipage}[t]{0.48\textwidth}
+  {\color{SlateGray}\small\faCalendar\enspace\textit{Date}}\par
+  {\color{NavyDeep}\bfseries July~22,~2026}
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.48\textwidth}
+  \RaggedLeft
+  {\color{SlateGray}\small\faFile\enspace\textit{File Reference}}\par
+  {\color{NavyDeep}\bfseries MLP/OPN/2026-0417}
+\end{minipage}
+
+\vspace{4mm}
+{\color{RuleGray}\rule{\textwidth}{0.6pt}}
+\vspace{6mm}
+
+%% ─── ADDRESSEE ───────────────────────────────────────────────────────────────
+\noindent
+{\color{SlateGray}\small\textsc{Delivered~By~Secure~Electronic~Transmission}}\par\vspace{4mm}
+
+\noindent
+\textbf{Ms.~Claire Ashworth}\\
+Chief Executive Officer\\
+\textbf{Nexa Dynamics Corporation}\\
+350 Innovation Drive, Suite 800\\
+Cambridge, MA~02139\quad USA
+
+\vspace{7mm}
+
+%% ─── SUBJECT LINE ────────────────────────────────────────────────────────────
+\begin{tcolorbox}[
+  sideline,
+  left=12pt
+]
+  {\color{NavyDeep}\bfseries Re:\enspace Legal Opinion --- Proposed Acquisition of Vertex~Bio\-Sciences,~Inc.}\\
+  {\color{SlateGray}\small Transaction File No.~NDC-ACQ-2026-07\quad\textbullet\quad
+   Purchase Price: USD~285,000,000\quad\textbullet\quad Closing Target: September~15,~2026}
+\end{tcolorbox}
+
+\vspace{4mm}
+
+%% ─── SALUTATION ──────────────────────────────────────────────────────────────
+Dear Ms.~Ashworth:
+
+We are pleased to deliver this legal opinion letter in connection with the proposed acquisition
+by \textbf{Nexa Dynamics Corporation} (``\textbf{Nexa}'' or the ``\textbf{Acquiror}'') of all
+issued and outstanding equity interests of \textbf{Vertex BioSciences, Inc.} (``\textbf{Vertex}''
+or the ``\textbf{Target}'') pursuant to the Agreement and Plan of Merger (the
+``\textbf{Merger Agreement}'') dated July~18,~2026 (the ``\textbf{Transaction}''). This opinion
+has been prepared by \textbf{Meridian Legal Partners LLP} (``\textbf{Meridian}'',
+``\textbf{we}'', or ``\textbf{us}'') at your direction and is addressed solely to Nexa.
+
+%% ─── SECTION 1 ───────────────────────────────────────────────────────────────
+\section{Scope of Engagement and Documents Examined}
+
+In rendering this opinion, we have examined and relied upon originals, certified copies, or
+copies otherwise certified to our satisfaction of the following documents and instruments:
+
+\begin{enumerate}[label=(\roman*)]
+  \item The Merger Agreement and all exhibits, schedules, and disclosure letters attached thereto;
+  \item The Amended and Restated Certificate of Incorporation of Vertex BioSciences, Inc., as
+    filed with the Delaware Secretary of State on March~4,~2018;
+  \item The Second Amended and Restated Bylaws of Vertex, dated February~28,~2022;
+  \item The Audited Financial Statements of Vertex for fiscal years 2023, 2024, and 2025,
+    prepared by Nimbus Audit \& Assurance LLP;
+  \item All material contracts disclosed in Schedule~3.15 of the Merger Agreement, comprising
+    forty-seven~(47) agreements reviewed in full;
+  \item Certificates of Good Standing issued by the Delaware Secretary of State and each
+    jurisdiction in which Vertex is qualified to do business, each dated within thirty~(30)
+    days of the date hereof;
+  \item Intellectual property assignment records filed with the United States Patent and Trademark
+    Office (USPTO) and the European Patent Office (EPO);
+  \item Environmental site assessment reports prepared by Synapse Environmental Consulting Group
+    dated April~2026; and
+  \item Such other documents, instruments, certificates of public officials, and records as we
+    have deemed necessary or appropriate as a basis for the opinions expressed herein.
+\end{enumerate}
+
+We have not independently verified the factual matters set forth in the documents listed above.
+For purposes of this opinion, we have assumed, with your permission, the authenticity of all
+documents submitted to us as originals and the conformity to originals of all documents
+submitted as copies.
+
+%% ─── SECTION 2 ───────────────────────────────────────────────────────────────
+\section{Assumptions}
+
+Our opinions are based upon and subject to the following assumptions, each of which we have
+adopted without independent verification:
+
+\begin{itemize}
+  \item All parties to the Transaction have full legal capacity, power, and authority to execute,
+    deliver, and perform their respective obligations under the Merger Agreement;
+  \item The Merger Agreement constitutes the legally binding obligation of each party thereto
+    and has been duly authorized, executed, and delivered by all parties;
+  \item No party to the Transaction is subject to any law, rule, or regulation of any
+    jurisdiction outside the United States that would restrict or prohibit the consummation
+    of the Transaction;
+  \item All governmental consents, approvals, and filings required in connection with the
+    Transaction will be obtained or made on a timely basis and without conditions materially
+    adverse to Nexa; and
+  \item The Transaction will be consummated in accordance with the terms of the Merger Agreement,
+    without waiver of any material condition or covenant.
+\end{itemize}
+
+%% ─── SECTION 3 ───────────────────────────────────────────────────────────────
+\section{Risk Assessment Summary}
+
+The following table summarises our legal risk assessment across the primary diligence workstreams.
+Risk ratings reflect our professional judgment as of the date of this letter.
+
+\vspace{4pt}
+
+\begin{tcolorbox}[opinionbox, title={\faLock\enspace Transaction Risk Matrix}]
+\renewcommand{\arraystretch}{1.45}
+\begin{tabularx}{\linewidth}{>{\bfseries\color{NavyDeep}}p{3.8cm} X >{\centering\arraybackslash}p{2.8cm}}
+\rowcolor{NavyDeep!12}
+\textbf{\color{NavyDeep}Workstream} & \textbf{\color{NavyDeep}Key Finding} & \textbf{\color{NavyDeep}Risk Level}\\
+\midrule
+Corporate Structure & Delaware merger mechanics are procedurally sound; board approval unanimous & \lowrisk\\[2pt]
+IP Portfolio & 38 issued patents, 14 pending; assignment chain verified; no encumbrances & \lowrisk\\[2pt]
+Material Contracts & 3 agreements contain change-of-control provisions requiring third-party consent & \medrisk\\[2pt]
+Regulatory / Antitrust & HSR filing required; estimated 30-day waiting period; no second request anticipated & \medrisk\\[2pt]
+Employment \& Benefits & Two executive severance triggers; WARN Act obligations analysed & \medrisk\\[2pt]
+Environmental & Phase~I ESA clean; one historical solvent site requires Phase~II evaluation & \highrisk\\[2pt]
+Litigation Exposure & Two pending patent inter partes review proceedings; contingent liability USD~4.2M & \medrisk\\[2pt]
+Tax Matters & Section~338(h)(10) election available; net operating losses subject to IRC~\S382 limitation & \lowrisk\\
+\end{tabularx}
+\end{tcolorbox}
+
+\vspace{6pt}
+
+%% ─── SECTION 4 ───────────────────────────────────────────────────────────────
+\section{Legal Opinions}
+
+Based upon our examination of the foregoing documents and subject to the assumptions,
+qualifications, and limitations set forth herein, we are of the opinion that:
+
+\subsection{Corporate Authorization and Validity}
+
+\begin{tcolorbox}[sideline]
+The Merger Agreement has been duly authorized by all requisite corporate action on the part of
+Vertex. The execution, delivery, and performance of the Merger Agreement by Vertex do not and
+will not (a)~violate any provision of its Certificate of Incorporation or Bylaws; (b)~conflict
+with or result in a breach of any material contract to which Vertex is a party, except as
+identified in Section~5.3(c) of this opinion; or (c)~violate any applicable provision of
+Delaware corporate law, federal securities law, or applicable state regulatory statutes.
+\end{tcolorbox}
+
+\subsection{Intellectual Property}
+
+Vertex holds good and marketable title to all patents, trade secrets, and proprietary software
+forming part of the IP Portfolio as defined in Schedule~A of the Merger Agreement. Our review
+of USPTO and EPO records confirms that Vertex or its predecessors are recorded as the sole
+assignees for all 38~issued utility patents. No patent is subject to any licence that is
+terminable upon a change of control, and no inter partes review proceeding has resulted in
+a final written decision adverse to Vertex as of the date hereof. The two pending IPR
+proceedings (IPR2025-00714 and IPR2025-00881) concern non-core claims in patents
+\textbf{US~11,234,567} and \textbf{US~11,456,789} respectively; in our judgment, an adverse
+outcome in either proceeding would not materially impair the commercial value of the IP~Portfolio.
+
+\subsection{Material Contracts and Change-of-Control Provisions}
+
+Our review of the 47~material contracts disclosed in Schedule~3.15 identified three agreements
+containing change-of-control consent requirements:
+
+\begin{enumerate}[label=\lbrack\arabic*\rbrack]
+  \item \textbf{Master Research Collaboration Agreement} with Apex Genomics Institute, dated
+    September~1,~2023 --- consent of Apex required within 30~days of signing of the Merger
+    Agreement; consequence of non-consent: termination right, with 90-day wind-down period;
+  \item \textbf{Exclusive Distribution Agreement} with Synapse Diagnostics B.V., dated
+    March~15,~2022 --- consent of Synapse required prior to Closing; consequence of
+    non-consent: conversion to non-exclusive licence for 24~months; and
+  \item \textbf{Software Licence Agreement} with Nimbus Analytics LLC, dated June~7,~2024 ---
+    consent not unreasonably to be withheld; Meridian's assessment is that consent will be
+    forthcoming; consequence of non-consent: licence terminates with 60-day notice.
+\end{enumerate}
+
+We recommend that Nexa commence consent solicitation for all three agreements no later than
+\textbf{July~29,~2026}, and that the representations and warranties in the Merger Agreement
+be updated to reflect the consent status of each agreement at Closing.
+
+\subsection{Regulatory and Antitrust Clearance}
+
+The Transaction meets the notification thresholds under the Hart--Scott--Rodino Antitrust
+Improvements Act of 1976, as amended (``\textbf{HSR Act}''). The combined revenues of Nexa
+and Vertex exceed USD~400~million, and the transaction value exceeds USD~100~million. We
+recommend filing HSR notification forms no later than August~4,~2026, to allow adequate time
+for the 30-day waiting period to expire prior to the targeted Closing Date of September~15,~2026.
+
+Based upon our review of the current market landscape for next-generation diagnostics and
+analytical instrumentation, we do not anticipate a Second Request from the Federal Trade
+Commission or the Department of Justice. However, Meridian advises Nexa to prepare a
+substantive response package in the event of a Second Request, which would require independent
+counsel in Washington, D.C. to coordinate directly with the reviewing agency.
+
+\subsection{Environmental Matters}
+
+\begin{tcolorbox}[cautionbox, title={\faExclamationTriangle\enspace Environmental Risk~--- Phase II Evaluation Required}]
+The Phase~I Environmental Site Assessment conducted by Synapse Environmental Consulting Group
+identified a recognized environmental condition (``\textbf{REC}'') at Vertex's former
+manufacturing facility located at 75~Industrial Way, Woburn,~MA~01801. Historical records
+indicate solvent storage operations conducted by a prior occupant between 1988 and 1997.
+Meridian \textbf{strongly recommends} that Nexa commission a Phase~II Environmental Site
+Assessment prior to Closing. We further recommend negotiating a specific indemnification
+escrow of no less than \textbf{USD~5,000,000} from the merger consideration, held for a
+period of no less than five~(5) years, to address potential remediation costs.
+\end{tcolorbox}
+
+\vspace{4pt}
+
+\subsection{Employment, Compensation, and Benefits}
+
+Vertex maintains a workforce of 312~employees. Two named executive officers --- the Chief
+Technology Officer and the Chief Scientific Officer --- are party to employment agreements
+containing double-trigger change-of-control severance provisions. Aggregate severance
+exposure is estimated at USD~3.8~million. The Transaction will not constitute a ``plan
+termination'' under ERISA Section~4041 with respect to Vertex's defined-contribution
+401(k) plan, which may be assumed by Nexa upon Closing. We advise that Nexa's human
+resources and benefits counsel conduct a detailed WARN Act analysis no later than
+August~15,~2026, if any workforce reductions are anticipated within 90~days of Closing.
+
+%% ─── SECTION 5 ───────────────────────────────────────────────────────────────
+\section{Qualifications and Limitations}
+
+The opinions expressed in this letter are subject to the following qualifications and limitations:
+
+\begin{itemize}
+  \item Our opinions are limited to the laws of the State of Delaware, the laws of the
+    Commonwealth of Massachusetts, and applicable federal laws of the United States. We express
+    no opinion with respect to the laws of any other jurisdiction.
+
+  \item Our opinions are rendered as of the date of this letter. We assume no obligation to
+    supplement, update, or revise this opinion to reflect any subsequent changes in applicable
+    law or in the facts or circumstances upon which our opinions are based.
+
+  \item We express no opinion with respect to the accuracy or completeness of the financial
+    statements reviewed by Nimbus Audit \& Assurance LLP, or to any tax opinions or
+    representations made by Vertex's independent tax advisors.
+
+  \item This opinion letter is solely for the benefit of Nexa Dynamics Corporation in connection
+    with the Transaction and may not be relied upon by, or furnished to, any other person or
+    entity without our prior written consent. Accordingly, this opinion letter may not be quoted
+    or otherwise referred to in any financial statement, prospectus, or other document, nor may
+    it be filed with or furnished to any governmental agency or other regulatory body, without
+    our prior written consent in each instance.
+\end{itemize}
+
+%% ─── SECTION 6 ───────────────────────────────────────────────────────────────
+\section{Recommended Next Steps}
+
+\begin{tcolorbox}[opinionbox, title={\faPen\enspace Action Plan --- Priority Items}]
+\renewcommand{\arraystretch}{1.45}
+\begin{tabularx}{\linewidth}{>{\centering\arraybackslash}p{2.6cm}
+                              >{\bfseries\color{NavyDeep}}p{4.2cm}
+                              X}
+\rowcolor{NavyDeep!12}
+\textbf{\color{NavyDeep}Deadline} & \textbf{\color{NavyDeep}Action Item} & \textbf{\color{NavyDeep}Responsible Party}\\
+\midrule
+July~29, 2026 & Commence change-of-control consent solicitation & Nexa~/ Meridian\\[2pt]
+Aug.~4, 2026 & File HSR notification with DOJ \& FTC & Antitrust Counsel\\[2pt]
+Aug.~15, 2026 & Commission Phase~II Environmental Site Assessment & Nexa Env. Counsel\\[2pt]
+Aug.~15, 2026 & Complete WARN Act analysis & HR~/ Benefits Counsel\\[2pt]
+Aug.~30, 2026 & Negotiate environmental indemnification escrow & Meridian\\[2pt]
+Sept.~5, 2026 & Deliver updated representations and warranties & Meridian\\[2pt]
+Sept.~15, 2026 & \textit{Targeted Closing Date} & All Parties\\
+\end{tabularx}
+\end{tcolorbox}
+
+\vspace{8pt}
+
+%% ─── CLOSING ─────────────────────────────────────────────────────────────────
+We trust that this opinion letter addresses the matters requested by Nexa. Please do not hesitate
+to contact the undersigned or any member of the Meridian transaction team should you have any
+questions regarding the matters discussed herein or require further elaboration on any specific
+point. We appreciate the confidence Nexa has placed in Meridian Legal Partners and look forward
+to supporting you through Closing.
+
+\vspace{10mm}
+
+Respectfully submitted,
+
+\vspace{14mm}
+
+\begin{minipage}[t]{0.48\textwidth}
+  {\color{GoldAccent}\rule{6cm}{1pt}}\\[3pt]
+  \textbf{Jonathan R. Caldwell}\\
+  {\color{SlateGray}Partner, Corporate \& M\&A Practice}\\
+  {\color{SlateGray}\small j.caldwell@meridianlegallp.com}\\
+  {\color{SlateGray}\small +1\,(617)\,555-0182 ext.~201}
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.48\textwidth}
+  {\color{GoldAccent}\rule{6cm}{1pt}}\\[3pt]
+  \textbf{Dr.~Priya Nair}\\
+  {\color{SlateGray}Partner, Regulatory \& Life Sciences}\\
+  {\color{SlateGray}\small p.nair@meridianlegallp.com}\\
+  {\color{SlateGray}\small +1\,(617)\,555-0182 ext.~215}
+\end{minipage}
+
+\vspace{14mm}
+{\color{RuleGray}\rule{\textwidth}{0.6pt}}
+\vspace{4pt}
+
+\noindent{\color{SlateGray}\footnotesize
+\textbf{CONFIDENTIALITY NOTICE:}\enspace This opinion letter and all attachments are protected by
+attorney--client privilege and constitute confidential attorney work product. They are intended
+solely for the use of Nexa Dynamics Corporation. Any review, retransmission, dissemination,
+or other use of, or taking of any action in reliance upon, this information by persons or
+entities other than the intended recipient is prohibited. If you have received this letter in
+error, please notify the sender immediately and destroy all copies.}
+
+\end{document}

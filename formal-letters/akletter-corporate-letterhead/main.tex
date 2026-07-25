@@ -1,0 +1,194 @@
+\documentclass[a4paper,11pt,oneside,foldmarks,rightdate]{akletter}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{positioning,calc,shapes.geometric,backgrounds}
+\usepackage{tcolorbox}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage{fontawesome5}
+\usepackage{microtype}
+
+\definecolor{vxnavy}{HTML}{16233F}
+\definecolor{vxgold}{HTML}{A67C3D}
+\definecolor{vxslate}{HTML}{5B6472}
+\definecolor{vxpale}{HTML}{F5F2EC}
+
+\newcommand{\vxmonthname}[1]{%
+  \ifcase#1\or January\or February\or March\or April\or May\or June\or
+  July\or August\or September\or October\or November\or December\fi}
+
+\makeatletter
+\def\@date{\today}
+\makeatother
+
+\newcommand{\vxjobtitle}[1]{\def\vxjobtitlevalue{#1}}
+\def\vxjobtitlevalue{}
+
+\newcommand{\vxsection}[1]{%
+  \par\vspace{10pt}\noindent
+  {\color{vxnavy}\bfseries\fontsize{11}{13}\selectfont #1}\par
+  \vspace{2pt}\noindent{\color{vxgold}\rule{\linewidth}{0.7pt}}\par
+  \vspace{6pt}}
+
+\renewcommand*\pnumfont   {\color{vxnavy}\bfseries}
+\renewcommand*\headfont   {\color{vxslate}\itshape}
+\renewcommand*\reffont    {\color{vxslate}}
+\renewcommand*\reftextfont{\color{vxnavy}}
+
+\begin{document}
+\pagestyle{headings}
+\renewcommand{\today}{\vxmonthname{\the\month}\ \the\day, \the\year}
+
+\sbox{\FIRM}{%
+  \parbox[t]{\leftfield}{%
+    \raisebox{-0.28\height}{\begin{tikzpicture}
+      \fill[vxnavy] (0,0) -- (0.3,0.45) -- (0,0.9) -- (0.12,0.9) -- (0.42,0.45) -- (0.12,0) -- cycle;
+      \fill[vxgold] (0.22,0) -- (0.52,0.45) -- (0.22,0.9) -- (0.34,0.9) -- (0.64,0.45) -- (0.34,0) -- cycle;
+    \end{tikzpicture}}%
+    \hspace{6pt}%
+    \parbox[b]{0.78\leftfield}{%
+      {\bfseries\fontsize{18}{20}\selectfont\color{vxnavy}Vertex\,\color{vxgold}Advisory}\\[2pt]
+      {\fontsize{7.5}{9}\selectfont\color{vxslate}\MakeUppercase{Strategy \textperiodcentered\ Operations \textperiodcentered\ Capital}}
+    }
+  }}
+
+\sbox{\firm}{\fontsize{8.5}{10}\selectfont\color{vxslate}Vertex Advisory Group}
+
+\sbox{\firmaddress}{%
+  \parbox[t]{\rightfield}{\raggedleft\fontsize{8}{9.5}\selectfont\color{vxslate}
+    228 Franklin Avenue, Suite 1400\\
+    Chicago, IL 60604\\
+    vertexadv.com}}
+
+\sbox{\FIRMHEAD}{\usebox{\FIRM}\raisebox{4mm}{\usebox{\firmaddress}}}
+
+\sbox{\firmreturn}{\underline{\fontsize{6}{7}\selectfont\color{vxslate}%
+  \hskip3mm Vertex Advisory Group \textperiodcentered\ Chicago, IL 60604\hskip3mm}}
+
+\sbox{\firmfoot}{%
+  \parbox{\textwidth}{\centering
+    {\color{vxgold}\rule{0.5\textwidth}{0.5pt}}\\[3pt]
+    {\fontsize{7.5}{9}\selectfont\color{vxslate}
+     Vertex Advisory Group \textperiodcentered\ 228 Franklin Avenue, Suite 1400, Chicago, IL 60604 \textperiodcentered\ vertexadv.com\\
+     Registered Delaware C-Corp \textperiodcentered\ EIN 87-4419500}
+  }}
+
+\makeatletter
+\renewcommand{\rightbox}{%
+  \parbox[t]{\rightfield}{\raggedright
+    {\color{vxnavy}\bfseries\fontsize{10}{12}\selectfont \fromname}\\[1pt]
+    {\color{vxgold}\fontsize{8}{9.5}\selectfont \vxjobtitlevalue}\\[7pt]
+    {\color{vxslate}\fontsize{8.5}{11}\selectfont
+     \faPhone\ \telephonenum\\[4pt]
+     \faEnvelope\ \@email
+    }%
+    \if@rightdate
+      \\[9pt]{\color{vxnavy}\fontsize{8.5}{10.5}\selectfont\itshape \@date}
+    \fi
+  }}
+\makeatother
+
+\name{Jonathan Reyes}
+\vxjobtitle{Senior Partner, Retail \& Consumer Practice}
+\telephone{+1 312 555 0148}
+\email{jreyes@vertexadv.com}
+\signature{Jonathan Reyes\\\textit{Senior Partner}}
+
+\begin{letter}{Meridian Retail Holdings, Inc.\\Attn: Ms. Elena Cho, Chief Operating Officer\\900 Harbor View Drive, Suite 500\\Seattle, WA 98101}
+
+\myref{VX/JR-2026-0417}
+\yref{MER-RFP-2026-118}
+
+\subject{Renewal and Expansion of Strategic Advisory Engagement --- Project Northbridge}
+
+\opening{Dear Ms. Cho,}
+
+On behalf of everyone at Vertex Advisory Group, thank you for a productive first phase of Project Northbridge. Over the nine months since our engagement letter of October 2025, our joint team has completed the network footprint diagnostic, closed 340,000 square feet of underperforming floor space across the Pacific Northwest region, and renegotiated logistics contracts that reduced regional distribution costs by 14.2 percent against the fiscal year 2025 baseline. Your operations team, and in particular Mr.\ Owen Vasquez, was an exceptional partner throughout.
+
+This letter confirms our proposal to renew the engagement and expand its scope for the twelve months beginning September 1, 2026, and sets out the commercial terms governing that work.
+
+\vxsection{Recap of Phase I}
+
+Phase I concentrated on three deliverables agreed in the original statement of work: a store-level contribution analysis across all 612 Meridian locations, a distribution-network redesign for the western region, and an initial vendor-spend audit. All three were delivered on schedule. The store-level analysis identified 47 locations operating below contribution threshold, of which 21 have since been closed or converted to fulfillment-only format. The distribution redesign consolidated four regional warehouses into two, and the vendor audit surfaced \$2.1 million in near-term renegotiation opportunity, a portion of which is already reflected in the cost reduction noted above.
+
+\begin{tcolorbox}[
+  colback=vxpale, colframe=vxgold, colbacktitle=vxnavy, coltitle=white,
+  fonttitle=\bfseries\fontsize{10}{12}\selectfont,
+  title=Engagement Snapshot,
+  boxrule=0.5pt, arc=1.5pt,
+  left=8pt, right=8pt, top=6pt, bottom=6pt,
+  width=\linewidth
+]
+\begin{tabular}{@{}p{4.1cm}p{8.7cm}@{}}
+\textbf{\color{vxnavy}Client} & Meridian Retail Holdings, Inc. \\[3pt]
+\textbf{\color{vxnavy}Engagement Lead} & Jonathan Reyes, Senior Partner \\[3pt]
+\textbf{\color{vxnavy}Proposed Term} & September 1, 2026 -- August 31, 2027 \\[3pt]
+\textbf{\color{vxnavy}Estimated Fees} & \$1,840,000 fixed fee across three phases \\[3pt]
+\textbf{\color{vxnavy}Reporting Cadence} & Biweekly steering committee; monthly executive summary \\
+\end{tabular}
+\end{tcolorbox}
+
+\vxsection{Proposed Scope for Phase II}
+
+Building on these results, we propose three concurrent workstreams for Phase II, summarized below and described in full in the enclosed Statement of Work.
+
+\begin{tabularx}{\linewidth}{@{}l l l X@{}}
+\toprule
+\textbf{Workstream} & \textbf{Lead} & \textbf{Duration} & \textbf{Key Deliverable}\\
+\midrule
+Network Footprint II & Priya Natarajan & 10 weeks & Updated store-tier model covering 340 additional locations across the Mountain and Central regions\\
+Vendor Consolidation & Marcus Webb & 8 weeks & Renegotiated terms across the top 25 suppliers by spend, with target savings of 6--9 percent\\
+Digital Fulfillment & Sara Lindqvist & 14 weeks & Regional micro-fulfillment pilot design for three metropolitan markets\\
+\bottomrule
+\end{tabularx}
+
+\vspace{4pt}
+Each workstream will report into the existing steering committee, chaired jointly by you and Mr.\ Reyes, with working sessions held on alternating Tuesdays beginning September 8, 2026.
+
+\vxsection{Commercial Terms}
+
+The table below sets out the fixed fee associated with each phase of the proposed engagement. Fees are quoted in United States dollars and exclude reasonable travel expenses, which are billed at cost with prior approval.
+
+\begin{tabularx}{\linewidth}{@{}X r r@{}}
+\toprule
+\textbf{Phase} & \textbf{Fee (USD)} & \textbf{Billing}\\
+\midrule
+Phase II.a --- Network Footprint II & 640,000 & Fixed, invoiced monthly\\
+Phase II.b --- Vendor Consolidation & 560,000 & Fixed, invoiced monthly\\
+Phase II.c --- Digital Fulfillment Pilot & 640,000 & Fixed, invoiced monthly\\
+\midrule
+\textbf{Total} & \textbf{1,840,000} & \\
+\bottomrule
+\end{tabularx}
+
+\vspace{6pt}
+The following terms apply to the renewed engagement and supersede the corresponding sections of the October 2025 engagement letter:
+
+\begin{itemize}[leftmargin=14pt, itemsep=4pt, topsep=4pt]
+\item \textbf{Confidentiality.} Both parties will continue to treat all data, models, and work product exchanged under this engagement as confidential for a period of five years following termination.
+\item \textbf{Termination.} Either party may terminate any individual workstream on 30 days' written notice; fees for work performed through the termination date remain payable.
+\item \textbf{Expenses.} Travel and third-party data costs are billed at cost, itemized monthly, and capped at 8 percent of the relevant workstream fee absent prior written approval.
+\item \textbf{Invoicing.} Invoices are issued on the first business day of each month and are payable within 30 days of receipt to the account specified on the invoice.
+\item \textbf{Governing Law.} This engagement is governed by the laws of the State of Illinois, consistent with the original engagement letter.
+\end{itemize}
+
+\vxsection{Next Steps}
+
+We ask that you countersign both copies of the enclosed engagement letter and return one copy to my attention by \textbf{August 15, 2026}, so that our team can complete staffing and begin the kickoff workshop as scheduled. Ms.\ Natarajan will circulate a detailed workshop agenda during the week of August 24.
+
+Please do not hesitate to call or write with any questions in the meantime. We are genuinely grateful for Meridian's continued confidence in Vertex, and we look forward to a second phase that builds meaningfully on what the two teams accomplished together this year.
+
+\closing{Yours sincerely,}
+
+\cc{Priya Natarajan, Head of Client Engagements, Vertex Advisory Group\\Owen Vasquez, VP Operations, Meridian Retail Holdings, Inc.}
+\encl{Engagement Letter (two copies)\\Phase II Statement of Work\\Updated Fee Schedule}
+
+\ps P.S.\ The Phase II kickoff workshop is provisionally scheduled for September 9--10, 2026, at Meridian's Seattle headquarters; we will confirm the agenda alongside the countersigned engagement letter.
+
+\end{letter}
+\end{document}

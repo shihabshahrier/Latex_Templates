@@ -1,0 +1,405 @@
+\makeatletter
+\let\pd@OrigRequirePackage\RequirePackage
+\def\pd@dvipsname{dvips}
+\def\RequirePackage{\@ifnextchar[\pd@RP@i{\pd@RP@i[\@empty]}}
+\def\pd@RP@i[#1]#2{\@ifnextchar[{\pd@RP@ii{#1}{#2}}{\pd@RP@ii{#1}{#2}[\@empty]}}
+\def\pd@RP@ii#1#2[#3]{%
+  \def\pd@rpname{#2}%
+  \ifx\pd@rpname\pd@hyperrefname
+    \def\pd@newopts{}%
+    \def\pd@first{1}%
+    \ifx#1\@empty\else
+      \@for\pd@tempopt:=#1\do{%
+        \ifx\pd@tempopt\pd@dvipsname\else
+          \ifx\pd@first\@empty
+            \edef\pd@newopts{\pd@newopts,\pd@tempopt}%
+          \else
+            \edef\pd@newopts{\pd@tempopt}%
+            \def\pd@first{}%
+          \fi
+        \fi
+      }%
+    \fi
+    \ifx#3\@empty
+      \pd@OrigRequirePackage[\pd@newopts]{#2}%
+    \else
+      \pd@OrigRequirePackage[\pd@newopts]{#2}[#3]%
+    \fi
+  \else
+    \ifx#3\@empty
+      \pd@OrigRequirePackage[#1]{#2}%
+    \else
+      \pd@OrigRequirePackage[#1]{#2}[#3]%
+    \fi
+  \fi
+}
+\def\pd@hyperrefname{hyperref}
+\def\c@lor@to@ps#1 #2\@@{}%
+\def\pdfmark#1{}%
+\makeatother
+\documentclass[
+  style=simple,
+  size=11pt,
+  paper=screen,
+  orient=landscape
+]{powerdot}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{colortbl}
+\usepackage{tabularx}
+\usepackage{fontawesome5}
+\usepackage[most]{tcolorbox}
+\usepackage{tikz}
+\usetikzlibrary{positioning,calc,shapes.geometric,backgrounds}
+
+% Color definitions (no trailing spaces)
+\definecolor{monoBlack}{RGB}{18,18,18}
+\definecolor{monoDark}{RGB}{35,39,47}
+\definecolor{monoMuted}{RGB}{90,95,103}
+\definecolor{monoLight}{RGB}{246,248,250}
+\definecolor{monoBorder}{RGB}{210,215,222}
+
+% TColorBox custom styles
+\tcbset{
+  monobox/.style={
+    colback=monoLight,
+    colframe=monoBlack,
+    boxrule=0.8pt,
+    arc=2pt,
+    left=6pt,
+    right=6pt,
+    top=5pt,
+    bottom=5pt,
+    fonttitle=\bfseries\color{white},
+    coltitle=white,
+    colbacktitle=monoBlack
+  },
+  cardbox/.style={
+    colback=white,
+    colframe=monoBorder,
+    boxrule=0.6pt,
+    arc=2pt,
+    left=6pt,
+    right=6pt,
+    top=4pt,
+    bottom=4pt
+  }
+}
+
+% Global Powerdot Setup
+\pdsetup{
+  lf={Meridian Systems Lab},
+  cf={High-Scale Event-Driven Architecture},
+  rf={\arabic{slide} / \pageref*{lastslide}}
+}
+
+\title{High-Scale Event-Driven Architecture\\[0.4em]\normalsize\mdseries Design Patterns for Zero-Downtime Financial Processing}
+\author{Dr. Aris Thorne \and Elena Rostova\\[0.3em]\small Meridian Architecture \& Systems Lab}
+\date{\today}
+
+\begin{document}
+
+% -----------------------------------------------------------------------------
+% SLIDE 1: Title
+% -----------------------------------------------------------------------------
+\maketitle
+
+% -----------------------------------------------------------------------------
+% SLIDE 2: Agenda
+% -----------------------------------------------------------------------------
+\begin{slide}{Agenda \& Presentation Structure}
+\begin{itemize}
+  \item \textbf{System Foundations \& SLA Guarantees}: Core objectives, throughput targets, and sub-10ms p99 requirements.
+  \item \textbf{Event Sourcing \& CQRS Pattern}: Decoupling state mutations from read-side query materialization.
+  \item \textbf{Consensus \& Storage Architecture}: Raft-backed metadata consensus and partitioned event stream stores.
+  \item \textbf{Topology \& Stream Engine}: End-to-end pipeline design from regional gateways to workers.
+  \item \textbf{Resilience \& Operating Patterns}: Backpressure mechanisms, circuit breaking, and zero-downtime rollouts.
+  \item \textbf{Architectural Takeaways}: Proven engineering guidelines for mission-critical financial systems.
+\end{itemize}
+\end{slide}
+
+% -----------------------------------------------------------------------------
+% SLIDE 3: Section Divider 1
+% -----------------------------------------------------------------------------
+\begin{wideslide}{Section 1: System Foundations \& SLA Guarantees}
+\vspace{1.5em}
+\begin{tcolorbox}[monobox,title=Architectural Core Focus]
+Establishing the foundational pillars for high-throughput, low-latency, linearizable event processing across distributed financial nodes.
+\end{tcolorbox}
+\end{wideslide}
+
+% -----------------------------------------------------------------------------
+% SLIDE 4: Architectural Drivers
+% -----------------------------------------------------------------------------
+\begin{slide}{Architectural Drivers \& SLA Requirements}
+\begin{minipage}{0.48\textwidth}
+\begin{tcolorbox}[monobox,title=Throughput \& Latency SLAs]
+\small
+\begin{itemize}
+  \item \textbf{Peak Volume}: 500,000 ops / sec continuous stream ingestion.
+  \item \textbf{p99 Latency}: Sub-8ms end-to-end processing across regions.
+  \item \textbf{Ingestion Gateway}: Distributed Nexa API gateway clusters with TLS termination.
+\end{itemize}
+\end{tcolorbox}
+\end{minipage}%
+\hfill
+\begin{minipage}{0.48\textwidth}
+\begin{tcolorbox}[monobox,title=Correctness \& Availability]
+\small
+\begin{itemize}
+  \item \textbf{Consensus Model}: Strict linearizable state machine replication.
+  \item \textbf{Uptime SLA}: 99.999\% availability with zero planned downtime.
+  \item \textbf{Auditing}: Immutable cryptographic ledger append for all transactions.
+\end{itemize}
+\end{tcolorbox}
+\end{minipage}
+\end{slide}
+
+% -----------------------------------------------------------------------------
+% SLIDE 5: Event Sourcing & CQRS
+% -----------------------------------------------------------------------------
+\begin{slide}{Event Sourcing \& CQRS Pattern}
+\begin{itemize}
+  \item \textbf{Write-Path Isolation}: Commands mutate domain state strictly by appending immutable events to the stream store.
+  \item \textbf{Optimistic Concurrency Control}: Sequence numbers validate state transitions without locking database tables.
+  \item \textbf{Read-Path Projections}: Asynchronous projection workers consume events to populate read-optimized indexes.
+  \item \textbf{Auditability \& Time Travel}: Complete historical sequence retention enables exact point-in-time state reconstruction.
+\end{itemize}
+
+\vspace{0.5em}
+\begin{tcolorbox}[cardbox]
+\centering
+\small \textbf{Design Rule}: \textit{Never allow read-side queries to contend with write-side event log appends.}
+\end{tcolorbox}
+\end{slide}
+
+% -----------------------------------------------------------------------------
+% SLIDE 6: Section Divider 2
+% -----------------------------------------------------------------------------
+\begin{wideslide}{Section 2: Consensus \& Storage Architecture}
+\vspace{1.5em}
+\begin{tcolorbox}[monobox,title=Storage Engine Architecture]
+Deep dive into Raft consensus, log partitioning, and comparative benchmark metrics across Meridian platform components.
+\end{tcolorbox}
+\end{wideslide}
+
+% -----------------------------------------------------------------------------
+% SLIDE 7: Raft Consensus State Machine
+% -----------------------------------------------------------------------------
+\begin{slide}{Raft-Backed Replicated State Machine}
+\begin{minipage}{0.48\textwidth}
+\begin{tcolorbox}[monobox,title=Consensus Mechanics]
+\small
+\begin{itemize}
+  \item \textbf{Leader Election}: Heartbeat interval of 150ms with randomized election timeouts.
+  \item \textbf{Log Replication}: Two-phase commit protocol guaranteeing quorum consensus before acknowledgment.
+  \item \textbf{Membership Changes}: Single-server configuration changes to prevent split-brain states.
+\end{itemize}
+\end{tcolorbox}
+\end{minipage}%
+\hfill
+\begin{minipage}{0.48\textwidth}
+\begin{tcolorbox}[monobox,title=Log Compaction \& Snapshots]
+\small
+\begin{itemize}
+  \item \textbf{Snapshot Trigger}: Automatic memory compaction every 100,000 committed entries.
+  \item \textbf{Recovery Speed}: Fast startup initialization from state snapshot + recent log segment.
+  \item \textbf{Storage Bounding}: Bounded disk memory consumption across node clusters.
+\end{itemize}
+\end{tcolorbox}
+\end{minipage}
+\end{slide}
+
+% -----------------------------------------------------------------------------
+% SLIDE 8: Storage Engine Benchmarks (Table Slide)
+% -----------------------------------------------------------------------------
+\begin{slide}{Storage Engine Benchmark Comparison}
+\footnotesize
+\centering
+\begin{tabularx}{0.96\textwidth}{l X X c c}
+\toprule
+\textbf{Engine} & \textbf{Primary Use Case} & \textbf{Consensus Protocol} & \textbf{Read (p99)} & \textbf{Write (p99)} \\
+\midrule
+Nexa-Store & Immutable Event Ledger & Raft Quorum & 2.1 ms & 4.5 ms \\{}
+Vertex-Log & Partitioned Stream Bus & Segment Lock & 1.4 ms & 3.1 ms \\{}
+Nimbus-KV & Materialized Read Cache & Eventual Sync & 0.8 ms & 1.9 ms \\{}
+Meridian-DB & Operational State Store & Multi-Paxos & 3.2 ms & 6.8 ms \\
+\bottomrule
+\end{tabularx}
+
+\vspace{0.8em}
+\begin{tcolorbox}[cardbox]
+\small \textbf{Benchmark Summary}: Nexa-Store and Vertex-Log deliver consistent single-digit millisecond latency under 500k ops / sec load testing.
+\end{tcolorbox}
+\end{slide}
+
+% -----------------------------------------------------------------------------
+% SLIDE 9: System Topology Diagram (TikZ Slide)
+% -----------------------------------------------------------------------------
+\begin{slide}{End-to-End System Topology}
+\centering
+\vspace{-0.5em}
+\begin{tikzpicture}[
+  node distance=0.8cm and 0.9cm,
+  box/.style={draw=monoBlack, thick, rectangle, rounded corners=3pt, fill=monoLight, inner sep=4pt, font=\scriptsize, align=center},
+  arrow/.style={->, >=stealth, thick, draw=monoBlack}
+]
+  % Nodes
+  \node[box] (client) {\faGlobe\\ \textbf{Client Apps}\\ (gRPC/HTTP)};
+  \node[box, right=of client] (gw) {\faServer\\ \textbf{Nexa Gateway}\\ (TLS Layer)};
+  \node[box, right=of gw] (bus) {\faProjectDiagram\\ \textbf{Vertex Bus}\\ (Event Stream)};
+  \node[box, right=of bus] (worker) {\faCogs\\ \textbf{Stream Workers}\\ (Business Logic)};
+  \node[box, below=0.8cm of worker] (store) {\faDatabase\\ \textbf{Nexa Store}\\ (Raft Ledger)};
+  \node[box, left=0.9cm of store] (read) {\faLayerGroup\\ \textbf{Nimbus Cache}\\ (Read Models)};
+
+  % Connections
+  \draw[arrow] (client) -- (gw);
+  \draw[arrow] (gw) -- (bus);
+  \draw[arrow] (bus) -- (worker);
+  \draw[arrow] (worker) -- (store);
+  \draw[arrow] (worker) -- (read);
+  \draw[arrow] (read) -- (gw);
+\end{tikzpicture}
+
+\vspace{0.2em}
+\begin{tcolorbox}[cardbox]
+\centering
+\tiny \textbf{Data Flow}: Ingestion via Nexa Gateway $\rightarrow$ Vertex Stream Bus $\rightarrow$ Stream Workers $\rightarrow$ Nexa Store (Write) \& Nimbus Cache (Read).
+\end{tcolorbox}
+\end{slide}
+
+% -----------------------------------------------------------------------------
+% SLIDE 10: Section Divider 3
+% -----------------------------------------------------------------------------
+\begin{wideslide}{Section 3: Resilience \& Operating Patterns}
+\vspace{1.5em}
+\begin{tcolorbox}[monobox,title=Operational Reliability]
+Implementation of reactive backpressure, automated circuit breaking, and canary deployment pipelines for zero-downtime operations.
+\end{tcolorbox}
+\end{wideslide}
+
+% -----------------------------------------------------------------------------
+% SLIDE 11: Fault Tolerance & Backpressure
+% -----------------------------------------------------------------------------
+\begin{slide}{Fault Tolerance \& Backpressure Strategies}
+\begin{itemize}
+  \item \textbf{Credit-Based Backpressure}: Downstream worker capacity dynamically signals ingestion gateways to adjust TCP window sizes.
+  \item \textbf{Automated Circuit Breaking}: Triggers fallback routing if node error rate exceeds 0.05\% over a 10-second rolling window.
+  \item \textbf{Dead Letter Queues (DLQ)}: Malformed poison-pill payloads are isolated to DLQs without stalling partition streams.
+  \item \textbf{Self-Healing Partition Rebalance}: Failed cluster nodes trigger immediate partition reassignment within 3 seconds.
+\end{itemize}
+\end{slide}
+
+% -----------------------------------------------------------------------------
+% SLIDE 12: Zero-Downtime Deployment
+% -----------------------------------------------------------------------------
+\begin{slide}{Zero-Downtime Canary Deployment Pipeline}
+\begin{minipage}{0.32\textwidth}
+\begin{tcolorbox}[monobox,title=Phase 1: Shadow]
+\small
+\begin{itemize}
+  \item 1\% traffic shadow.
+  \item Compare response.
+  \item Zero regression.
+\end{itemize}
+\end{tcolorbox}
+\end{minipage}%
+\hfill
+\begin{minipage}{0.32\textwidth}
+\begin{tcolorbox}[monobox,title=Phase 2: Canary]
+\small
+\begin{itemize}
+  \item 25\% traffic shift.
+  \item Monitor latency.
+  \item Automated SLAs.
+\end{itemize}
+\end{tcolorbox}
+\end{minipage}%
+\hfill
+\begin{minipage}{0.32\textwidth}
+\begin{tcolorbox}[monobox,title=Phase 3: Rollout]
+\small
+\begin{itemize}
+  \item 100\% promotion.
+  \item DNS cutover.
+  \item Auto-rollback.
+\end{itemize}
+\end{tcolorbox}
+\end{minipage}
+\end{slide}
+
+% -----------------------------------------------------------------------------
+% SLIDE 13: Scale Metrics
+% -----------------------------------------------------------------------------
+\begin{slide}{Production Scale \& Operational Metrics}
+\begin{minipage}{0.48\textwidth}
+\begin{tcolorbox}[cardbox]
+\small
+\textbf{Daily Ingestion Volume}\\[0.3em]
+\Large \textbf{14.2 Billion Events / Day}\\[0.2em]
+\tiny Continuous global processing across 8 regional data centers.
+\end{tcolorbox}
+\end{minipage}%
+\hfill
+\begin{minipage}{0.48\textwidth}
+\begin{tcolorbox}[cardbox]
+\small
+\textbf{Event Replay Performance}\\[0.3em]
+\Large \textbf{1,200,000 Events / sec}\\[0.2em]
+\tiny Per-node recovery throughput during cold-start rebuilds.
+\end{tcolorbox}
+\end{minipage}
+
+\vspace{0.8em}
+\begin{minipage}{0.48\textwidth}
+\begin{tcolorbox}[cardbox]
+\small
+\textbf{Recovery Time Objective (RTO)}\\[0.3em]
+\Large \textbf{$<$ 5 Seconds}\\[0.2em]
+\tiny Automatic failover and consensus recovery window.
+\end{tcolorbox}
+\end{minipage}%
+\hfill
+\begin{minipage}{0.48\textwidth}
+\begin{tcolorbox}[cardbox]
+\small
+\textbf{Data Integrity SLA}\\[0.3em]
+\Large \textbf{Zero Loss (RPO = 0)}\\[0.2em]
+\tiny Guaranteed by Raft synchronous multi-region quorum write.
+\end{tcolorbox}
+\end{minipage}
+\end{slide}
+
+% -----------------------------------------------------------------------------
+% SLIDE 14: Architectural Takeaways
+% -----------------------------------------------------------------------------
+\begin{slide}{Architectural Takeaways \& Engineering Guidelines}
+\begin{itemize}
+  \item \faCheck\ \textbf{Strict CQRS Separation}: Keep write-side state log append isolated from read-side projection serving.
+  \item \faCheck\ \textbf{Bounded Snapshot Compaction}: Always bound event log recovery time with automated periodic snapshotting.
+  \item \faCheck\ \textbf{Schema Evolution Contracts}: Enforce backward and forward schema compatibility across message schemas.
+  \item \faCheck\ \textbf{End-to-End Idempotency}: Ensure consumers handle duplicate message delivery without state corruption.
+\end{itemize}
+\end{slide}
+
+% -----------------------------------------------------------------------------
+% SLIDE 15: Closing Slide & Q&A
+% -----------------------------------------------------------------------------
+\begin{wideslide}{Summary \& Engineering Q\&A}
+\vspace{1.0em}
+\begin{tcolorbox}[monobox,title=Meridian Architecture \& Engineering Lab]
+\centering
+\vspace{0.5em}
+\Large \textbf{Thank You for Attending}\\[0.8em]
+\small
+\textbf{Dr. Aris Thorne} --- Principal Systems Architect \textbar\ \faEnvelope\ aris.thorne@meridian-systems.internal\\[0.3em]
+\textbf{Elena Rostova} --- Lead Platform Engineer \textbar\ \faEnvelope\ elena.rostova@meridian-systems.internal\\[1.0em]
+\tiny
+Architecture Repository: \texttt{https://arch.meridian-systems.internal/docs/event-driven}
+\vspace{0.5em}
+\end{tcolorbox}
+\end{wideslide}
+
+\end{document}

@@ -1,0 +1,474 @@
+\documentclass[11pt,a4paper]{scrartcl}
+
+% Language & Encoding
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+
+% Fonts & Typography
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{inconsolata}
+
+% Math Packages
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{bm}
+
+% Page Layout & Margins
+\usepackage[top=1.5cm, bottom=1.5cm, left=1.6cm, right=1.6cm, headheight=20pt]{geometry}
+\usepackage{lastpage}
+
+% Colors
+\usepackage[table,x11names]{xcolor}
+\definecolor{navyprimary}{RGB}{20,40,75}
+\definecolor{tealaccent}{RGB}{0,135,135}
+\definecolor{bgsoft}{RGB}{246,248,252}
+\definecolor{charcoal}{RGB}{45,55,70}
+\definecolor{amberaccent}{RGB}{215,125,15}
+\definecolor{crimsonaccent}{RGB}{185,45,45}
+\definecolor{codebg}{RGB}{248,249,252}
+\definecolor{codeframe}{RGB}{215,222,235}
+\definecolor{commentgreen}{RGB}{40,135,75}
+\definecolor{stringorange}{RGB}{195,85,25}
+\definecolor{keywordblue}{RGB}{25,75,185}
+
+% Headers & Footers
+\usepackage{scrlayer-scrpage}
+\pagestyle{scrheadings}
+\clearpairofpagestyles
+\ihead{\small\sffamily\bfseries\color{navyprimary} STAT 4820: Applied Data Analysis \& Statistical Modeling}
+\ohead{\small\sffamily\color{charcoal} Homework 4: Diagnostics \& Resampling}
+\ifoot{\small\sffamily\color{charcoal}\faGraduationCap\ Alex Mercer (ID: STAT-892401)}
+\ofoot{\small\sffamily\bfseries\color{navyprimary} Page \thepage\ of \pageref{LastPage}}
+
+% Graphics & TikZ
+\usepackage{graphicx}
+\usepackage{tikz}
+\usetikzlibrary{calc,positioning,shapes.geometric,backgrounds,patterns}
+
+% Tables
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{multirow}
+
+\newcolumntype{L}{>{\raggedright\arraybackslash}X}
+\newcolumntype{C}{>{\centering\arraybackslash}X}
+\newcolumntype{R}{>{\raggedleft\arraybackslash}X}
+
+% Code Snippets Setup
+\usepackage{listings}
+\lstdefinestyle{statscode}{
+  backgroundcolor=\color{codebg},
+  basicstyle=\ttfamily\footnotesize\color{charcoal},
+  breakatwhitespace=false,
+  breaklines=true,
+  captionpos=b,
+  commentstyle=\color{commentgreen}\itshape,
+  escapeinside={\%*}{*)},
+  frame=single,
+  framesep=3pt,
+  rulecolor=\color{codeframe},
+  frameround=tttt,
+  keepspaces=true,
+  keywordstyle=\color{keywordblue}\bfseries,
+  language=R,
+  morekeywords={lm, summary, vif, boot, boot.ci, glm, predict, confusionMatrix, roc, auc},
+  numbers=left,
+  numbersep=6pt,
+  numberstyle=\tiny\color{gray},
+  showspaces=false,
+  showstringspaces=false,
+  showtabs=false,
+  stringstyle=\color{stringorange},
+  tabsize=2
+}
+\lstset{style=statscode}
+
+% Custom Box Environments (tcolorbox)
+\usepackage[many]{tcolorbox}
+
+\newtcolorbox{problembox}[2][]{%
+  enhanced,
+  colback=bgsoft,
+  colframe=navyprimary,
+  arc=2mm,
+  boxrule=0.7pt,
+  fonttitle=\sffamily\bfseries\small,
+  coltitle=white,
+  title={#2},
+  attach boxed title to top left={yshift=-2.5mm, xshift=4mm},
+  boxed title style={colback=navyprimary, arc=1mm, outer arc=1mm, boxrule=0pt, top=1.5pt, bottom=1.5pt, left=6pt, right=6pt},
+  top=6pt, bottom=4pt, left=7pt, right=7pt,
+  #1
+}
+
+\newtcolorbox{statbox}[1][Summary]{%
+  enhanced,
+  colback=white,
+  colframe=tealaccent,
+  arc=1.5mm,
+  boxrule=0.7pt,
+  fonttitle=\sffamily\bfseries\small,
+  coltitle=white,
+  title={#1},
+  attach boxed title to top left={yshift=-2.2mm, xshift=4mm},
+  boxed title style={colback=tealaccent, arc=1mm, outer arc=1mm, boxrule=0pt, top=1pt, bottom=1pt, left=5pt, right=5pt},
+  top=5pt, bottom=3pt, left=6pt, right=6pt,
+}
+
+% Lists & Formatting
+\usepackage{enumitem}
+\setlist[enumerate,1]{label=\sffamily\bfseries(\alph*), leftmargin=*, itemsep=1pt, topsep=1pt}
+\setlist[itemize,1]{label=\color{tealaccent}$\bullet$, leftmargin=*, itemsep=0.5pt, topsep=0.5pt}
+
+\usepackage{fontawesome5}
+\usepackage{hyperref}
+\hypersetup{
+  colorlinks=true,
+  linkcolor=navyprimary,
+  citecolor=tealaccent,
+  urlcolor=tealaccent
+}
+
+% Paragraph Formatting
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{2pt}
+
+\begin{document}
+
+% =============================================================================
+% PAGE 1: PROBLEM 1
+% =============================================================================
+
+% HEADER BLOCK / TITLE
+\begin{tcolorbox}[
+  enhanced,
+  colback=navyprimary,
+  colframe=navyprimary,
+  arc=2.5mm,
+  top=5pt, bottom=5pt, left=8pt, right=8pt
+]
+  \color{white}
+  \begin{minipage}[t]{0.62\textwidth}
+    {\sffamily\footnotesize\color{tealaccent!35}\textbf{Department of Statistics \& Data Science}} \\[1pt]
+    {\sffamily\LARGE\bfseries STAT 4820: Homework 4} \\[1pt]
+    {\sffamily\small Applied Multiple Regression, Diagnostics \& Resampling}
+  \end{minipage}%
+  \hfill
+  \begin{minipage}[t]{0.35\textwidth}
+    \raggedleft\sffamily\footnotesize
+    \textbf{Student:} Alex Mercer \\
+    \textbf{ID:} STAT-892401 \\
+    \textbf{Date:} October 24, 2025 \\
+    \textbf{Instructor:} Dr. Elena Rostova
+  \end{minipage}
+\end{tcolorbox}
+
+\vspace{-4pt}
+
+% Metadata Bar
+\begin{tcolorbox}[
+  enhanced,
+  colback=bgsoft,
+  colframe=codeframe,
+  arc=1mm,
+  boxrule=0.5pt,
+  top=2pt, bottom=2pt, left=6pt, right=6pt
+]
+  \sffamily\footnotesize\color{charcoal}
+  \begin{minipage}{0.33\textwidth}
+    \faFile\ \textbf{Datasets:} \texttt{vertex\_sales.csv}, \texttt{synapse\_churn.csv}
+  \end{minipage}\hfill
+  \begin{minipage}{0.32\textwidth}
+    \faCode\ \textbf{Stack:} R 4.4.1 / Python 3.11
+  \end{minipage}\hfill
+  \begin{minipage}{0.31\textwidth}
+    \raggedleft\faCheckCircle\ \textbf{Total Points:} 100 (3 Problems)
+  \end{minipage}
+\end{tcolorbox}
+
+\vspace{1pt}
+
+% PROBLEM 1
+\begin{problembox}{Problem 1: Multiple Regression Diagnostics \& Collinearity [30 Points]}
+An empirical study of $N = 120$ regional tech hardware markets for \textbf{Vertex Pro-10} investigates quarterly sales revenue ($Y$, in \$100k) based on Advertising Spend ($X_1$, \$10k), Retail Density ($X_2$, stores/100k hab), Competitor Price Index ($X_3$), and Regional Median Income ($X_4$, \$k).
+\end{problembox}
+
+\begin{enumerate}
+  \item \textbf{Model Specification \& Matrix Formulation}
+  
+  Consider the additive linear regression model with an interaction term:
+  \begin{equation}
+    Y_i = \beta_0 + \beta_1 X_{i1} + \beta_2 X_{i2} + \beta_3 X_{i3} + \beta_4 X_{i4} + \beta_5 (X_{i1} \cdot X_{i3}) + \varepsilon_i, \quad \varepsilon_i \overset{\text{i.i.d.}}{\sim} \mathcal{N}(0, \sigma^2)
+  \end{equation}
+  In vector-matrix form, $\bm{Y} = \bm{X}\bm{\beta} + \bm{\varepsilon}$, where the design matrix $\bm{X} \in \mathbb{R}^{120 \times 6}$ has $i$-th row $\bm{x}_i^\top = \begin{bmatrix} 1 & X_{i1} & X_{i2} & X_{i3} & X_{i4} & X_{i1}X_{i3} \end{bmatrix}$. The OLS estimator and its covariance matrix are:
+  \begin{equation}
+    \hat{\bm{\beta}} = (\bm{X}^\top \bm{X})^{-1} \bm{X}^\top \bm{Y}, \quad \text{Var}(\hat{\bm{\beta}}) = \sigma^2 (\bm{X}^\top \bm{X})^{-1}
+  \end{equation}
+
+  \item \textbf{R Data Analysis Script \& Summary Output}
+
+\begin{lstlisting}[language=R, caption={Multiple Linear Regression \& Collinearity Analysis in R}]
+vertex_df <- read.csv("vertex_sales.csv")
+fit_vertex <- lm(Sales ~ AdvSpend + StoreDensity + CompPrice + MedIncome + AdvSpend:CompPrice, data = vertex_df)
+summary(fit_vertex); car::vif(fit_vertex)
+\end{lstlisting}
+
+  \begin{center}
+  \footnotesize
+  \begin{tabular}{l l r r r r}
+    \toprule
+    \textbf{Variable} & \textbf{Description} & \textbf{Estimate ($\hat{\beta}$)} & \textbf{Std. Error} & \textbf{$t$-statistic} & \textbf{$p$-value} \\
+    \midrule
+    \texttt{(Intercept)} & Baseline Sales Intercept & $12.450$ & $2.140$ & $5.818$ & $< 0.0001^{***}$ \\{}
+    \texttt{AdvSpend} ($X_1$) & Quarterly Ad Spend (\$10k) & $3.820$ & $0.415$ & $9.205$ & $< 0.0001^{***}$ \\{}
+    \texttt{StoreDensity} ($X_2$) & Stores per 100k population & $0.945$ & $0.210$ & $4.500$ & $0.0002^{***}$ \\{}
+    \texttt{CompPrice} ($X_3$) & Competitor Price Index & $-1.860$ & $0.530$ & $-3.509$ & $0.0006^{***}$ \\{}
+    \texttt{MedIncome} ($X_4$) & Regional Median Income (\$k) & $0.125$ & $0.088$ & $1.420$ & $0.1582^{\text{n.s.}}$ \\{}
+    \texttt{AdvSpend:CompPrice} & Interaction Term ($X_1 X_3$) & $0.640$ & $0.145$ & $4.414$ & $0.0003^{***}$ \\
+    \bottomrule
+    \multicolumn{6}{l}{\scriptsize $R^2 = 0.842$, Adjusted $R^2 = 0.835$, $F(5, 114) = 121.6$, $p < 0.0001$, Residual Std Error: $1.428$ on $114$ d.f.}
+  \end{tabular}
+  \end{center}
+
+  \item \textbf{Diagnostic Plots: Residual Analysis \& Heteroscedasticity Test}
+
+  \begin{center}
+  \begin{tikzpicture}[scale=0.68, every node/.style={transform shape}]
+    % Left Plot: Residuals vs Fitted
+    \begin{scope}[shift={(0,0)}]
+      \draw[->, thick, color=charcoal] (0,0) -- (5.8,0) node[right, font=\small\sffamily] {Fitted $\hat{Y}$};
+      \draw[->, thick, color=charcoal] (0,-1.8) -- (0,1.8) node[above, font=\small\sffamily] {Residuals $e_i$};
+      \draw[dashed, color=tealaccent, thick] (0,0) -- (5.4,0);
+      \draw[dotted, color=crimsonaccent, thick] (0.5,0.3) -- (5.2,1.6);
+      \draw[dotted, color=crimsonaccent, thick] (0.5,-0.3) -- (5.2,-1.6);
+
+      \foreach \x/\y in {0.8/0.2, 1.1/-0.3, 1.4/0.4, 1.8/-0.2, 2.1/0.5, 2.5/-0.6, 2.9/0.8, 3.2/-0.7, 3.6/1.1, 4.0/-0.9, 4.3/1.3, 4.7/-1.2, 5.0/1.4, 1.5/0.1, 2.8/-0.3, 3.9/0.4, 4.8/-0.8} {
+        \fill[navyprimary!85] (\x,\y) circle (2pt);
+      }
+      \node[font=\bfseries\sffamily\small, color=navyprimary] at (2.8, 2.1) {(A) Residuals vs. Fitted Values};
+    \end{scope}
+
+    % Right Plot: Normal Q-Q Plot
+    \begin{scope}[shift={(7.5,0)}]
+      \draw[->, thick, color=charcoal] (-1.8,-1.8) -- (1.8,-1.8) node[right, font=\small\sffamily] {Theoretical Quantiles};
+      \draw[->, thick, color=charcoal] (-1.8,-1.8) -- (-1.8,1.8) node[above, font=\small\sffamily] {Sample Quantiles};
+      \draw[thick, color=tealaccent] (-1.6,-1.6) -- (1.6,1.6);
+      
+      \foreach \x/\y in {-1.5/-1.7, -1.2/-1.3, -0.9/-0.9, -0.6/-0.6, -0.3/-0.3, 0.0/0.0, 0.3/0.3, 0.6/0.6, 0.9/0.9, 1.2/1.2, 1.5/1.6} {
+        \fill[amberaccent!90!black] (\x,\y) circle (2pt);
+      }
+      \node[font=\bfseries\sffamily\small, color=navyprimary] at (0, 2.1) {(B) Normal Q-Q Plot};
+    \end{scope}
+  \end{tikzpicture}
+  \end{center}
+
+  \item \textbf{Statistical Evaluation \& Multicollinearity Analysis}
+
+  \begin{statbox}[Key Findings \& Diagnostic Interpretation]
+    \begin{itemize}
+      \item \textbf{Main Effects:} Advertising spend ($\hat{\beta}_1 = 3.820, p < 0.0001$) and store density ($\hat{\beta}_2 = 0.945, p = 0.0002$) exhibit strong positive impacts. Competitor price index displays a significant negative effect ($\hat{\beta}_3 = -1.860, p = 0.0006$).
+      \item \textbf{Interaction \& Collinearity:} The term $\text{AdvSpend} \times \text{CompPrice}$ ($\hat{\beta}_5 = 0.640, p = 0.0003$) confirms advertising efficacy increases when competitor pricing rises. VIFs for all predictors remain under $4.85$, ruling out severe multicollinearity.
+    \end{itemize}
+  \end{statbox}
+\end{enumerate}
+
+\clearpage
+
+% =============================================================================
+% PAGE 2: PROBLEM 2
+% =============================================================================
+\begin{problembox}{Problem 2: Logistic Regression \& Classification Threshold Evaluation [35 Points]}
+We analyze customer retention data for fictional SaaS platform \textbf{Synapse Analytics}. The target binary outcome $Y_i \in \{0, 1\}$ represents customer churn ($1 = \text{Churned}, 0 = \text{Retained}$) over a 12-month period across $N = 500$ corporate accounts.
+\end{problembox}
+
+\begin{enumerate}
+  \item \textbf{Logistic Model Formulation \& Log-Likelihood}
+  
+  The probability of customer churn $p_i = P(Y_i = 1 \mid \bm{x}_i)$ is modeled using the logit link function:
+  \begin{equation}
+    \text{logit}(p_i) = \ln \left( \frac{p_i}{1 - p_i} \right) = \bm{x}_i^\top \bm{\beta} = \beta_0 + \beta_1 X_{i1} + \beta_2 X_{i2} + \beta_3 X_{i3} + \beta_4 X_{i4}
+  \end{equation}
+  where $X_1 =$ Monthly Active Hours, $X_2 =$ Support Ticket Count, $X_3 =$ Contract Tenure (months), and $X_4 =$ Average Session Length. The Bernoulli log-likelihood function maximizes:
+  \begin{equation}
+    \ell(\bm{\beta}) = \sum_{i=1}^{N} \left[ Y_i \ln(p_i) + (1 - Y_i) \ln(1 - p_i) \right] = \sum_{i=1}^{N} \left[ Y_i \bm{x}_i^\top \bm{\beta} - \ln \left( 1 + \exp(\bm{x}_i^\top \bm{\beta}) \right) \right]
+  \end{equation}
+
+  \item \textbf{Python Modeling Code (Statsmodels / Scikit-Learn)}
+
+\begin{lstlisting}[language=Python, caption={Logistic Regression Fitting \& ROC Analysis in Python}]
+import pandas as pd, statsmodels.api as sm
+from sklearn.metrics import roc_curve, auc
+
+df_synapse = pd.read_csv("synapse_churn.csv")
+X = sm.add_constant(df_synapse[['ActiveHours', 'SupportTickets', 'TenureMonths', 'AvgSessionLen']])
+y = df_synapse['Churned']
+logit_mod = sm.Logit(y, X).fit()
+fpr, tpr, _ = roc_curve(y, logit_mod.predict(X))
+print(f"Model ROC-AUC Score: {auc(fpr, tpr):.4f}")
+\end{lstlisting}
+
+  \item \textbf{Confusion Matrix \& ROC Curve Visualization}
+
+  \begin{minipage}[t]{0.48\textwidth}
+    \vspace{0pt}
+    {\sffamily\bfseries\small\color{navyprimary} Classification Confusion Matrix ($\tau = 0.50$)}
+    \vspace{2pt}
+    
+    \footnotesize
+    \begin{tabular}{c c c c}
+      \toprule
+      & & \multicolumn{2}{c}{\textbf{Predicted Class}} \\
+      \cmidrule(lr){3-4}
+      & & \textbf{Retained (0)} & \textbf{Churned (1)} \\
+      \midrule
+      \multirow{2}{*}{\rotatebox[origin=c]{90}{\textbf{Actual}}} 
+      & \textbf{Retained (0)} & $335$ (TN) & $25$ (FP) \\{}
+      & \textbf{Churned (1)} & $32$ (FN) & $108$ (TP) \\
+      \bottomrule
+    \end{tabular}
+
+    \vspace{3pt}
+    \begin{statbox}[Performance Metrics]
+      \footnotesize
+      \begin{itemize}
+        \item \textbf{Accuracy:} $(335+108)/500 = 88.6\%$
+        \item \textbf{Sensitivity (Recall):} $108/140 = 77.1\%$
+        \item \textbf{Specificity:} $335/360 = 93.1\%$
+        \item \textbf{Precision:} $108/133 = 81.2\%$
+        \item \textbf{F1-Score:} $2 \times \frac{0.812 \times 0.771}{0.812 + 0.771} = 0.791$
+      \end{itemize}
+    \end{statbox}
+  \end{minipage}%
+  \hfill
+  \begin{minipage}[t]{0.48\textwidth}
+    \vspace{0pt}
+    \centering
+    {\sffamily\bfseries\small\color{navyprimary} Receiver Operating Characteristic (ROC)}
+    \vspace{2pt}
+
+    \begin{tikzpicture}[scale=0.64, every node/.style={transform shape}]
+      \draw[->, thick, color=charcoal] (0,0) -- (4.5,0) node[right, font=\small\sffamily] {FPR ($1-\text{Spec}$)};
+      \draw[->, thick, color=charcoal] (0,0) -- (0,4.5) node[above, font=\small\sffamily] {TPR ($\text{Sens}$)};
+      \draw[lightgray!40, very thin] (0,0) grid (4.2,4.2);
+
+      \draw[dashed, color=gray, thick] (0,0) -- (4.2,4.2) node[above right, font=\tiny\sffamily] {Random ($\text{AUC}=0.50$)};
+      \draw[very thick, color=navyprimary] (0,0) .. controls (0.2, 2.3) and (0.8, 3.7) .. (1.7, 4.0) .. controls (2.6, 4.2) .. (4.2,4.2);
+      
+      \fill[crimsonaccent] (0.7, 3.6) circle (3.5pt) node[above left, font=\bfseries\tiny\sffamily, color=crimsonaccent] {Optimal Cutoff $\tau^*=0.38$};
+      \draw[dotted, crimsonaccent, thick] (0.7,0) -- (0.7,3.6) -- (0,3.6);
+
+      \node[draw=tealaccent, fill=bgsoft, rounded corners=2pt, font=\sffamily\small] at (2.7, 1.5) {
+        \textbf{ROC-AUC = 0.885}
+      };
+    \end{tikzpicture}
+  \end{minipage}
+
+  \par\vspace{1pt}
+
+  \item \textbf{Decision Threshold Optimization under Asymmetric Costs}
+
+  In subscription SaaS modeling, customer churn incurs a high replacement cost ($C_{FN} = \$1,200$), whereas preemptive retention incentives cost significantly less ($C_{FP} = \$150$). The expected loss function $\mathcal{L}(\tau)$ for threshold $\tau$ is:
+  \begin{equation}
+    \mathcal{L}(\tau) = C_{FN} \cdot P(Y=1, \hat{Y}=0 \mid \tau) + C_{FP} \cdot P(Y=0, \hat{Y}=1 \mid \tau)
+  \end{equation}
+
+  By lowering the classification cutoff from the default $\tau = 0.50$ to the empirical cost-optimal threshold $\tau^* = 0.38$, Sensitivity improves from $77.1\%$ to $89.3\%$, reducing total quarterly revenue churn risk by an estimated $\$34,200$.
+\end{enumerate}
+
+\clearpage
+
+% =============================================================================
+% PAGE 3: PROBLEM 3
+% =============================================================================
+\begin{problembox}{Problem 3: Non-parametric Bootstrap Resampling \& Interval Estimation [35 Points]}
+We evaluate latency response times (milliseconds) for \textbf{Nexa Cloud Storage} clusters before and after an infrastructure upgrade. The sample sizes are $n_1 = 45$ (baseline) and $n_2 = 45$ (upgraded). Response times exhibit significant right-skewness, violating standard Gaussian assumptions.
+\end{problembox}
+
+\begin{enumerate}
+  \item \textbf{Bootstrap Algorithmic Procedure}
+
+  We target estimation of the ratio of median response times $\theta = \frac{\text{Med}(X_{\text{after}})}{\text{Med}(X_{\text{before}})}$. The non-parametric empirical bootstrap procedure executes as follows:
+  \begin{enumerate}[label=\roman*.]
+    \item Draw $B = 5,000$ bootstrap resamples $\bm{X}_1^{*(b)}$ and $\bm{X}_2^{*(b)}$ with replacement from observed samples.
+    \item Compute the bootstrap replicate statistic: $\hat{\theta}^{*(b)} = \frac{\text{Med}(\bm{X}_2^{*(b)})}{\text{Med}(\bm{X}_1^{*(b)})}, \quad b = 1, \dots, B$.
+    \item Construct 95\% BCa (Bias-Corrected and Accelerated) confidence intervals to account for skewness and acceleration.
+  \end{enumerate}
+
+  \item \textbf{R Parallel Bootstrap Implementation Script}
+
+\begin{lstlisting}[language=R, caption={Non-parametric Percentile \& BCa Bootstrap in R}]
+library(boot)
+
+median_ratio_fn <- function(data, indices) {
+  d <- data[indices, ]
+  return(median(d$latency[d$group == "After"]) / median(d$latency[d$group == "Before"]))
+}
+
+nexa_data <- read.csv("nexa_latency.csv")
+set.seed(4820)
+boot_results <- boot(data = nexa_data, statistic = median_ratio_fn, R = 5000)
+boot_ci <- boot.ci(boot_results, type = c("perc", "bca"))
+print(boot_ci)
+\end{lstlisting}
+
+  \item \textbf{Bootstrap Distribution \& Confidence Limits Plot}
+
+  \begin{center}
+  \begin{tikzpicture}[scale=0.74, every node/.style={transform shape}]
+    % Coordinates and Axes
+    \draw[->, thick, color=charcoal] (0,0) -- (8.8,0) node[right, font=\small\sffamily] {Replicates $\hat{\theta}^*$};
+    \draw[->, thick, color=charcoal] (0,0) -- (0,3.2) node[above, font=\small\sffamily] {Density};
+
+    % Density Curve
+    \draw[very thick, color=navyprimary, fill=bgsoft, fill opacity=0.85] 
+      (0.5,0) .. controls (1.5,0.2) and (2.2,1.2) .. (3.0,2.3)
+              .. controls (3.6,3.2) and (4.2,3.3) .. (4.8,2.6)
+              .. controls (5.5,1.6) and (6.2,0.8) .. (7.5,0.3)
+              .. controls (8.3,0.1) .. (8.5,0);
+
+    % Point Estimate Line
+    \draw[ultra thick, color=navyprimary] (4.2,0) -- (4.2,3.15) node[above, font=\bfseries\small\sffamily] {$\hat{\theta} = 0.642$};
+
+    % BCa 95% CI Bands
+    \draw[dashed, ultra thick, color=crimsonaccent] (2.4,0) -- (2.4,2.4);
+    \draw[dashed, ultra thick, color=crimsonaccent] (6.5,0) -- (6.5,1.9);
+
+    \fill[crimsonaccent!15, opacity=0.5] (2.4,0) rectangle (6.5,2.6);
+
+    % Callouts
+    \node[color=crimsonaccent, font=\bfseries\small\sffamily] at (2.4,-0.32) {BCa Lower: $0.528$};
+    \node[color=crimsonaccent, font=\bfseries\small\sffamily] at (6.5,-0.32) {BCa Upper: $0.781$};
+    
+    \node[draw=tealaccent, fill=white, rounded corners=2pt, font=\sffamily\small, align=center] at (7.5, 2.2) {
+      \textbf{95\% BCa Interval} \\
+      $[0.528, \: 0.781]$ \\
+      \tiny Null $\theta=1.0$ Excluded
+    };
+  \end{tikzpicture}
+  \end{center}
+
+  \item \textbf{Comparative Method Synthesis \& Conclusions}
+
+  \begin{center}
+  \footnotesize
+  \begin{tabularx}{\textwidth}{l L c c R}
+    \toprule
+    \textbf{Method} & \textbf{Assumptions} & \textbf{Point Est. ($\hat{\theta}$)} & \textbf{95\% CI Bounds} & \textbf{Inference Result} \\
+    \midrule
+    Standard Student $t$-test & Normality, Homoscedasticity & $0.685$ & $[0.541, 0.829]$ & $p = 0.0018$ (Assumptions Violated) \\{}
+    Percentile Bootstrap & Empirical Resampling & $0.642$ & $[0.535, 0.774]$ & Rejects $H_0: \theta = 1.0$ \\{}
+    BCa Bootstrap (Preferred) & Corrects Skewness \& Bias & $0.642$ & $[0.528, 0.781]$ & Significant $35.8\%$ Latency Reduction \\
+    \bottomrule
+  \end{tabularx}
+  \end{center}
+
+  \begin{statbox}[Final Conclusion]
+    The non-parametric BCa bootstrap confirms a statistically significant reduction in median response latency following the infrastructure release ($\hat{\theta} = 0.642$, 95\% BCa CI $[0.528, 0.781]$). Because the 95\% CI strictly excludes 1.0, we reject the null hypothesis of equal median performance at $\alpha = 0.05$.
+  \end{statbox}
+\end{enumerate}
+
+\end{document}

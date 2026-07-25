@@ -1,0 +1,500 @@
+\documentclass[11pt,oneside,a4paper]{scrbook}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage[a4paper,margin=2.3cm,headsep=10pt,footskip=28pt]{geometry}
+\usepackage[table]{xcolor}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{colortbl}
+\usepackage{enumitem}
+\usepackage{fontawesome5}
+\usepackage{tikz}
+\usetikzlibrary{positioning,calc,shapes.geometric,backgrounds}
+\usepackage[skins,breakable]{tcolorbox}
+\usepackage[headsepline,footsepline]{scrlayer-scrpage}
+
+% ---------------------------------------------------------------------------
+% Palette
+% ---------------------------------------------------------------------------
+\definecolor{merNavy}{RGB}{18,36,62}
+\definecolor{merGold}{RGB}{176,141,87}
+\definecolor{merSlate}{RGB}{95,104,116}
+\definecolor{merPaper}{RGB}{246,244,239}
+\colorlet{merNavyLink}{merNavy}
+
+\usepackage[colorlinks,linkcolor=merNavyLink,urlcolor=merNavyLink,citecolor=merNavyLink]{hyperref}
+
+% ---------------------------------------------------------------------------
+% Type / headings
+% ---------------------------------------------------------------------------
+\addtokomafont{disposition}{\color{merNavy}}
+\addtokomafont{chapter}{\normalfont\huge\bfseries\color{merNavy}}
+\setkomafont{chapterprefix}{\normalfont\small\color{merGold}}
+\renewcommand*{\chapterformat}{}
+\setkomafont{pageheadfoot}{\normalfont\footnotesize\color{merSlate}}
+\setkomafont{pagenumber}{\normalfont\footnotesize\color{merSlate}}
+
+\clearpairofpagestyles
+\ihead{\textsc{Meridian Group}}
+\ohead{Annual Report \textperiodcentered\ Fiscal Year 2025}
+\ofoot{\pagemark}
+\ifoot{\textit{Building resilient infrastructure}}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{7pt}
+
+% ---------------------------------------------------------------------------
+% Reusable elements
+% ---------------------------------------------------------------------------
+\newcommand{\goldrule}{\noindent{\color{merGold}\rule{\linewidth}{1.1pt}}\par\vspace{2pt}\noindent{\color{merNavy!25}\rule{\linewidth}{0.4pt}}\vspace{10pt}\par}
+
+\newcommand{\sectionlede}[1]{{\color{merSlate}\large #1}\par\vspace{6pt}}
+
+\newtcolorbox{kpibox}[1]{
+  colback=white,
+  colbacktitle=merNavy,
+  coltitle=white,
+  colframe=merNavy,
+  fonttitle=\bfseries\small,
+  title={#1},
+  boxrule=0.4pt,
+  arc=1.5pt,
+  left=6pt,right=6pt,top=5pt,bottom=7pt,
+  halign=center
+}
+
+\newtcolorbox{pullquote}{
+  colback=merPaper,
+  colframe=merGold,
+  boxrule=0pt,
+  leftrule=3pt,
+  arc=0pt,
+  left=14pt,right=14pt,top=9pt,bottom=9pt
+}
+
+\newtcolorbox{esgbox}{
+  colback=merPaper,
+  colframe=merNavy!30,
+  boxrule=0.5pt,
+  arc=1.5pt,
+  left=10pt,right=10pt,top=8pt,bottom=8pt
+}
+
+\newcommand{\dchange}[1]{{\small\color{merGold!55!black}\faArrowUp\ #1}}
+
+% ---------------------------------------------------------------------------
+\begin{document}
+
+% =============================================================================
+% TITLE PAGE
+% =============================================================================
+\begin{titlepage}
+\thispagestyle{empty}
+\begin{tikzpicture}[remember picture,overlay]
+  \fill[merNavy] (current page.north west) rectangle ([yshift=-8.6cm]current page.north east);
+  \fill[merGold] ([yshift=-8.6cm]current page.north west) rectangle ([yshift=-8.75cm]current page.north east);
+  \node[anchor=north west,text=merGold,font=\sffamily\bfseries\fontsize{11}{13}\selectfont] at ([xshift=2.4cm,yshift=-2.1cm]current page.north west) {MERIDIAN GROUP};
+  \node[anchor=north west,text=white,font=\bfseries\fontsize{34}{40}\selectfont,align=left] at ([xshift=2.4cm,yshift=-3.2cm]current page.north west) {Annual Report\\[2pt] Fiscal Year 2025};
+  \node[anchor=north west,text=white!80!merNavy,font=\itshape\fontsize{13}{16}\selectfont,align=left] at ([xshift=2.4cm,yshift=-7.1cm]current page.north west) {Building resilient infrastructure for a connected world};
+\end{tikzpicture}
+\vspace*{9.6cm}
+\begin{center}
+{\color{merSlate}\large Fiscal Year Ended December 31, 2025}\\[4pt]
+{\color{merSlate} Filed with shareholders March 2026}\\[28pt]
+{\color{merNavy}\rule{6cm}{0.5pt}}\\[28pt]
+{\color{merNavy}\bfseries Segments}\\[4pt]
+{\color{merSlate} Meridian Cloud \& Data \textbar\ Meridian Materials \textbar\ Meridian Logistics \textbar\ Meridian Financial Services}\\[40pt]
+{\color{merSlate}\small Prepared for the annual general meeting of shareholders}\\
+{\color{merSlate}\small Independent auditor: Apex \& Partners LLP}
+\end{center}
+\vfill
+\begin{center}
+{\color{merSlate}\footnotesize Meridian Group is a diversified infrastructure and technology holding company.\\
+This report contains forward-looking statements; see \textit{Shareholder Information} for the full disclaimer.}
+\end{center}
+\end{titlepage}
+
+% =============================================================================
+\frontmatter
+\tableofcontents
+
+% =============================================================================
+\mainmatter
+
+% -----------------------------------------------------------------------------
+\addchap{Letter to Shareholders}
+\goldrule
+
+\sectionlede{A year of disciplined growth across every segment we operate.}
+
+Dear Fellow Shareholders,
+
+Fiscal year 2025 was, by most measures we track internally, the strongest year in Meridian Group's history. Consolidated revenue grew 12.4\% to \$4,286.4 million, operating income expanded to \$612.7 million, and we returned \$242.7 million to shareholders through dividends and share repurchases while still closing the year with \$812.4 million in cash and equivalents on the balance sheet. More importantly, we made that progress while investing meaningfully in the capacity and reliability our customers depend on.
+
+Meridian Cloud \& Data was the standout performer of the year, with revenue up 19.8\% as enterprise customers continued migrating latency-sensitive workloads onto our regional points of presence. We completed the build-out of our third availability zone in Southeast Asia in the third quarter and began commissioning capacity for a fourth in the first weeks of 2026. Alongside that expansion, we closed a joint venture with Synapse Technologies to co-develop energy-efficient cooling systems for high-density compute -- an investment we expect to reduce facility power usage effectiveness by roughly 8\% over the next two fiscal years.
+
+Meridian Materials and Meridian Logistics both delivered steady, profitable growth in a macro environment that was, at best, mixed. Materials benefited from disciplined pricing and a full year of contribution from the Nimbus Capital-backed recycled-composites facility we brought online in late 2024. Logistics grew capacity utilization across our regional distribution network while holding operating margin roughly flat, a result we are proud of given the freight rate volatility that defined much of the year.
+
+Meridian Financial Services, our youngest segment, crossed \$590 million in annual revenue for the first time and reached segment operating margin of 16.0\%, ahead of the internal target we set at the start of the year. Embedded lending and treasury-management products for our Materials and Logistics customers continue to be the primary growth driver, and we see meaningful room to extend the same model to Cloud \& Data customers in 2026.
+
+\begin{pullquote}
+{\color{merGold}\faQuoteLeft}\ \textit{``We do not measure a good year by revenue alone. We measure it by whether the balance sheet, the workforce, and the customer relationships we hold at the end of it are stronger than when it began. On all three counts, 2025 was a good year.''}
+\end{pullquote}
+
+None of this happened without cost discipline. We held SG\&A growth below revenue growth for the third consecutive year, and free cash flow of \$501.3 million funded our capital program without incremental net borrowing. Net debt declined for the second straight year, and our board approved a 12.5\% increase in the quarterly dividend, effective in the first quarter of fiscal 2026.
+
+Looking ahead, we are guiding to revenue of \$4.65 billion to \$4.80 billion for fiscal 2026, with continued investment in Cloud \& Data capacity and the early integration work for the Synapse Technologies joint venture. We are grateful, as always, for the trust our shareholders, customers, and the more than 14,600 people of Meridian Group place in this company, and we look forward to reporting further progress throughout the year.
+
+\vspace{14pt}
+\begin{minipage}[t]{0.46\linewidth}
+{\bfseries Richard Voss}\\
+Non-Executive Chairman
+\end{minipage}\hfill
+\begin{minipage}[t]{0.46\linewidth}
+{\bfseries Elena Marchetti}\\
+Chief Executive Officer
+\end{minipage}
+\par
+
+% -----------------------------------------------------------------------------
+\addchap{Financial Highlights}
+\goldrule
+
+\sectionlede{Fiscal 2025 at a glance, against the year prior.}
+
+\noindent
+\begin{minipage}[t]{0.235\linewidth}
+\begin{kpibox}{Revenue}
+{\Large\bfseries\color{merNavy}\$4,286.4M}\\[3pt]
+\dchange{+12.4\% YoY}
+\end{kpibox}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.235\linewidth}
+\begin{kpibox}{Net Income}
+{\Large\bfseries\color{merNavy}\$438.9M}\\[3pt]
+\dchange{+18.2\% YoY}
+\end{kpibox}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.235\linewidth}
+\begin{kpibox}{Diluted EPS}
+{\Large\bfseries\color{merNavy}\$3.42}\\[3pt]
+\dchange{+17.5\% YoY}
+\end{kpibox}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.235\linewidth}
+\begin{kpibox}{Free Cash Flow}
+{\Large\bfseries\color{merNavy}\$501.3M}\\[3pt]
+\dchange{+14.9\% YoY}
+\end{kpibox}
+\end{minipage}
+\par
+\vspace{18pt}
+
+{\bfseries\color{merNavy} Revenue, five-year trend (\$ millions)}\par
+\vspace{4pt}
+\begin{center}
+\begin{tikzpicture}[x=1.9cm,y=1cm]
+  \foreach \y in {0,2,4,6}{
+    \draw[merSlate!20] (-0.4,\y) -- (5.5,\y);
+  }
+  \draw[merNavy] (-0.4,0) -- (5.5,0);
+  \foreach \i/\yr/\h/\val in {0/2021/4.1/2910.2, 1/2022/4.5/3204.6, 2/2023/4.9/3512.8, 3/2024/5.3/3812.1}{
+    \draw[fill=merNavy!78,draw=none] (\i,0) rectangle ++(0.9,\h);
+    \node[below,font=\small,color=merSlate] at (\i+0.45,-0.15) {\yr};
+    \node[above,font=\scriptsize\bfseries,color=merNavy] at (\i+0.45,\h+0.05) {\$\val};
+  }
+  \draw[fill=merGold!88,draw=none] (4,0) rectangle ++(0.9,6.0);
+  \node[below,font=\small\bfseries,color=merNavy] at (4.45,-0.15) {2025};
+  \node[above,font=\scriptsize\bfseries,color=merGold!55!black] at (4.45,6.05) {\$4286.4};
+\end{tikzpicture}
+\end{center}
+
+\vspace{10pt}
+{\bfseries\color{merNavy} Revenue by segment, fiscal 2025}\par
+\vspace{6pt}
+\begin{tikzpicture}[y=1.05cm,x=1cm]
+  \node[anchor=east,font=\small,color=merNavy,text width=4.6cm,align=right] at (-0.15,3) {Meridian Cloud \& Data};
+  \draw[fill=merNavy!85,draw=none] (0,2.72) rectangle ++(8.0,0.56);
+  \node[anchor=west,font=\scriptsize\bfseries,color=merNavy] at (8.15,3) {39.9\% \textbar\ \$1,712.6M};
+
+  \node[anchor=east,font=\small,color=merNavy,text width=4.6cm,align=right] at (-0.15,2) {Meridian Materials};
+  \draw[fill=merGold!80,draw=none] (0,1.72) rectangle ++(5.1,0.56);
+  \node[anchor=west,font=\scriptsize\bfseries,color=merNavy] at (5.25,2) {25.3\% \textbar\ \$1,086.3M};
+
+  \node[anchor=east,font=\small,color=merNavy,text width=4.6cm,align=right] at (-0.15,1) {Meridian Logistics};
+  \draw[fill=merSlate!65,draw=none] (0,0.72) rectangle ++(4.2,0.56);
+  \node[anchor=west,font=\scriptsize\bfseries,color=merNavy] at (4.35,1) {20.9\% \textbar\ \$897.4M};
+
+  \node[anchor=east,font=\small,color=merNavy,text width=4.6cm,align=right] at (-0.15,0) {Meridian Financial Services};
+  \draw[fill=merNavy!40,draw=none] (0,-0.28) rectangle ++(2.8,0.56);
+  \node[anchor=west,font=\scriptsize\bfseries,color=merNavy] at (2.95,0) {13.8\% \textbar\ \$590.1M};
+\end{tikzpicture}
+\par
+\vspace{10pt}
+
+{\bfseries\color{merNavy} Five-year summary}\par
+\vspace{4pt}
+\begin{tabular}{lrrrrr}
+\toprule
+\rowcolor{merNavy}
+\textcolor{white}{\bfseries \$ millions, except per share} & \textcolor{white}{\bfseries FY21} & \textcolor{white}{\bfseries FY22} & \textcolor{white}{\bfseries FY23} & \textcolor{white}{\bfseries FY24} & \textcolor{white}{\bfseries FY25} \\
+\midrule
+Revenue & 2,910.2 & 3,204.6 & 3,512.8 & 3,812.1 & 4,286.4 \\
+Operating income & 401.6 & 452.3 & 487.9 & 529.4 & 612.7 \\
+Net income & 268.4 & 302.1 & 334.6 & 371.2 & 438.9 \\
+Diluted EPS (\$) & 2.14 & 2.39 & 2.63 & 2.91 & 3.42 \\
+Dividend per share (\$) & 0.72 & 0.80 & 0.90 & 0.96 & 1.08 \\
+\bottomrule
+\end{tabular}
+
+% -----------------------------------------------------------------------------
+\addchap{Business Segment Review}
+\goldrule
+
+\sectionlede{Four segments, one operating discipline.}
+
+{\bfseries\color{merNavy} Segment performance, fiscal 2025}\par
+\vspace{4pt}
+\begin{tabularx}{\linewidth}{@{}Xrrrr@{}}
+\toprule
+\rowcolor{merNavy}
+\textcolor{white}{\bfseries Segment} & \textcolor{white}{\bfseries Revenue} & \textcolor{white}{\bfseries Op. income} & \textcolor{white}{\bfseries Margin} & \textcolor{white}{\bfseries YoY} \\
+\midrule
+Meridian Cloud \& Data & 1,712.6 & 342.1 & 20.0\% & +19.8\% \\
+Meridian Materials & 1,086.3 & 152.4 & 14.0\% & +6.1\% \\
+Meridian Logistics & 897.4 & 89.7 & 10.0\% & +9.4\% \\
+Meridian Financial Services & 590.1 & 94.6 & 16.0\% & +11.2\% \\
+\midrule
+Corporate \& eliminations & --- & (66.1) & --- & --- \\
+\midrule
+\rowcolor{merPaper}
+\textbf{Total} & \textbf{4,286.4} & \textbf{612.7} & \textbf{14.3\%} & \textbf{+12.4\%} \\
+\bottomrule
+\end{tabularx}
+\par\vspace{10pt}
+{\footnotesize\color{merSlate} Figures in \$ millions unless otherwise noted. Segment margin is operating income divided by segment revenue.}
+
+\vspace{14pt}
+{\bfseries\color{merNavy} Meridian Cloud \& Data}\par
+Our data-infrastructure and managed-cloud segment grew revenue 19.8\% as enterprise customers continued shifting latency-sensitive workloads to regional points of presence. We commissioned a third availability zone in Southeast Asia during the third quarter and began early build-out of a fourth. The Synapse Technologies joint venture on high-density cooling is expected to begin contributing to facility efficiency metrics in fiscal 2026.
+
+{\bfseries\color{merNavy} Meridian Materials}\par
+Revenue grew 6.1\% on stable volumes and disciplined pricing. The recycled-composites facility, financed in partnership with Nimbus Capital, delivered its first full year of contribution and reached target utilization in the fourth quarter.
+
+{\bfseries\color{merNavy} Meridian Logistics}\par
+Segment revenue grew 9.4\% despite freight-rate volatility across the year. Network utilization improved on the back of route consolidation completed in the second quarter, holding operating margin roughly flat year over year.
+
+{\bfseries\color{merNavy} Meridian Financial Services}\par
+Our youngest segment surpassed \$590 million in revenue for the first time, growing 11.2\% and expanding margin to 16.0\%. Embedded lending and treasury-management products for Materials and Logistics customers remain the primary growth driver, with early design work underway to extend the offering to Cloud \& Data customers in fiscal 2026.
+
+% -----------------------------------------------------------------------------
+\addchap{Consolidated Financial Statements}
+\goldrule
+
+\sectionlede{Unaudited summary statements; complete audited statements accompany the notice of annual meeting.}
+
+{\bfseries\color{merNavy} Consolidated statement of operations}\par
+\vspace{4pt}
+\begin{tabular}{lrr}
+\toprule
+\rowcolor{merNavy}
+\textcolor{white}{\bfseries \$ millions} & \textcolor{white}{\bfseries FY2025} & \textcolor{white}{\bfseries FY2024} \\
+\midrule
+Revenue & 4,286.4 & 3,812.1 \\
+Cost of revenue & (2,489.7) & (2,238.4) \\
+\midrule
+Gross profit & 1,796.7 & 1,573.7 \\
+Selling, general \& administrative & (798.3) & (701.2) \\
+Research \& development & (312.4) & (271.8) \\
+Depreciation \& amortization & (73.3) & (71.3) \\
+\midrule
+Operating income & 612.7 & 529.4 \\
+Interest expense, net & (58.2) & (61.7) \\
+Other income, net & 12.1 & 9.8 \\
+\midrule
+Income before tax & 566.6 & 477.5 \\
+Income tax expense & (127.7) & (106.3) \\
+\midrule
+\rowcolor{merPaper}
+\textbf{Net income} & \textbf{438.9} & \textbf{371.2} \\
+\bottomrule
+\end{tabular}
+\par\vspace{4pt}
+{\footnotesize\color{merSlate} Diluted EPS: \$3.42 (FY2025) vs. \$2.91 (FY2024), on weighted-average diluted shares of approximately 128.3 million.}
+
+\vspace{16pt}
+{\bfseries\color{merNavy} Consolidated balance sheet}\par
+\vspace{4pt}
+\begin{tabular}{lrr}
+\toprule
+\rowcolor{merNavy}
+\textcolor{white}{\bfseries \$ millions, as of December 31} & \textcolor{white}{\bfseries FY2025} & \textcolor{white}{\bfseries FY2024} \\
+\midrule
+\multicolumn{3}{l}{\itshape Assets} \\
+Cash and cash equivalents & 812.4 & 654.2 \\
+Accounts receivable, net & 596.8 & 531.0 \\
+Inventory & 341.2 & 318.6 \\
+Other current assets & 128.9 & 112.4 \\
+\midrule
+Total current assets & 1,879.3 & 1,616.2 \\
+Property, plant \& equipment, net & 1,204.6 & 1,142.8 \\
+Goodwill and intangibles & 986.3 & 968.1 \\
+Other long-term assets & 214.7 & 198.4 \\
+\midrule
+\rowcolor{merPaper}
+\textbf{Total assets} & \textbf{4,284.9} & \textbf{3,925.5} \\
+\midrule
+\multicolumn{3}{l}{\itshape Liabilities} \\
+Accounts payable & 412.6 & 389.7 \\
+Accrued liabilities & 298.4 & 267.1 \\
+Current portion of long-term debt & 150.0 & 120.0 \\
+\midrule
+Total current liabilities & 861.0 & 776.8 \\
+Long-term debt & 980.5 & 1,046.2 \\
+Other long-term liabilities & 186.3 & 171.9 \\
+\midrule
+Total liabilities & 2,027.8 & 1,994.9 \\
+\midrule
+\multicolumn{3}{l}{\itshape Shareholders' equity} \\
+Common stock and additional paid-in capital & 612.4 & 598.1 \\
+Retained earnings & 1,687.2 & 1,371.0 \\
+Accumulated other comprehensive loss & (42.5) & (38.5) \\
+\midrule
+Total shareholders' equity & 2,257.1 & 1,930.6 \\
+\midrule
+\rowcolor{merPaper}
+\textbf{Total liabilities and equity} & \textbf{4,284.9} & \textbf{3,925.5} \\
+\bottomrule
+\end{tabular}
+
+\vspace{16pt}
+{\bfseries\color{merNavy} Free cash flow bridge}\par
+\vspace{4pt}
+\begin{tabular}{lr}
+\toprule
+\rowcolor{merNavy}
+\textcolor{white}{\bfseries \$ millions, FY2025} & \textcolor{white}{\bfseries Amount} \\
+\midrule
+Cash flow from operations & 587.9 \\
+Capital expenditures & (86.6) \\
+\midrule
+\rowcolor{merPaper}
+\textbf{Free cash flow} & \textbf{501.3} \\
+\midrule
+Dividends paid & (122.7) \\
+Share repurchases & (120.0) \\
+Debt repayment, net & (35.7) \\
+\bottomrule
+\end{tabular}
+
+% -----------------------------------------------------------------------------
+\addchap{Corporate Governance}
+\goldrule
+
+\sectionlede{An independent board overseeing a diversified operating group.}
+
+{\bfseries\color{merNavy} Board of directors}\par
+\vspace{4pt}
+\begin{tabularx}{\linewidth}{@{}llX@{}}
+\toprule
+\rowcolor{merNavy}
+\textcolor{white}{\bfseries Name} & \textcolor{white}{\bfseries Role} & \textcolor{white}{\bfseries Key committees} \\
+\midrule
+Richard Voss & Non-Executive Chairman & Nominating \& Governance (Chair) \\
+Elena Marchetti & Chief Executive Officer & --- \\
+Priya Anand & Independent Director & Audit (Chair), Risk \\
+Thomas Okafor & Independent Director & Compensation (Chair) \\
+Margit Lindqvist & Independent Director & Audit, Nominating \& Governance \\
+David Ferreira & Independent Director & Risk (Chair), Compensation \\
+\bottomrule
+\end{tabularx}
+
+\vspace{6pt}
+{\footnotesize\color{merSlate} Karin Solberg serves as Chief Financial Officer and attends board meetings by invitation; she is not a director. Five of six directors are independent under the board's governance guidelines.}
+
+\vspace{16pt}
+{\bfseries\color{merNavy} Board committees}\par
+The Audit Committee oversees financial reporting integrity, internal controls, and the relationship with our independent auditor, Apex \& Partners LLP. The Compensation Committee sets executive pay and oversees succession planning. The Nominating \& Governance Committee manages board composition and evaluates director independence annually. The Risk Committee reviews cybersecurity posture, supply-chain concentration, and treasury risk on a quarterly cadence.
+
+\vspace{14pt}
+\begin{esgbox}
+{\bfseries\color{merNavy}\faLeaf\ Environmental, social \& governance highlights}\\[6pt]
+\begin{tabularx}{\linewidth}{@{}Xr@{}}
+Facilities powered by renewable energy & 64\% \\
+Board gender diversity & 43\% \\
+Employee engagement score & 81 / 100 \\
+Carbon intensity, YoY reduction & 18\% \\
+\end{tabularx}
+\end{esgbox}
+
+% -----------------------------------------------------------------------------
+\addchap{Outlook \& Risk Factors}
+\goldrule
+
+\sectionlede{Guidance for fiscal 2026 and the factors that could change it.}
+
+{\bfseries\color{merNavy} Fiscal 2026 guidance}\par
+\begin{tabular}{lr}
+\toprule
+\rowcolor{merNavy}
+\textcolor{white}{\bfseries Metric} & \textcolor{white}{\bfseries Guidance} \\
+\midrule
+Revenue & \$4.65B -- \$4.80B \\
+Diluted EPS & \$3.70 -- \$3.90 \\
+Capital expenditure & \textasciitilde 2.2\% of revenue \\
+\bottomrule
+\end{tabular}
+
+\vspace{14pt}
+{\bfseries\color{merNavy} Strategic priorities}\par
+\begin{itemize}[leftmargin=1.4em,label={\color{merGold}\faBullseye}]
+\item Expand Meridian Cloud \& Data capacity in Southeast Asia and begin site selection for a fifth availability zone.
+\item Integrate the Synapse Technologies joint venture and begin realizing facility-efficiency gains.
+\item Extend embedded financial-services products from Materials and Logistics customers to Cloud \& Data customers.
+\item Continue the share repurchase program while maintaining net debt to EBITDA below 1.5x.
+\end{itemize}
+
+\vspace{10pt}
+{\bfseries\color{merNavy} Risk factors}\par
+\begin{itemize}[leftmargin=1.4em,label={\color{merSlate}\faLock}]
+\item Macroeconomic conditions, including inflation and interest-rate movements, could affect customer demand across all four segments.
+\item A meaningful share of revenue is denominated in currencies other than the U.S. dollar, creating translation exposure.
+\item Cybersecurity incidents affecting Cloud \& Data infrastructure could disrupt customer operations and damage trust.
+\item Regulatory change across the jurisdictions in which we operate could increase compliance costs or restrict specific product lines.
+\item Concentration in a limited number of raw-material suppliers exposes Meridian Materials to supply disruption.
+\item Competitive pressure from larger technology providers could compress Cloud \& Data pricing.
+\item Retention of specialized engineering and logistics talent remains a persistent operating risk.
+\item A meaningful portion of long-term debt carries a variable rate, exposing net interest expense to rate movements.
+\end{itemize}
+
+% =============================================================================
+\backmatter
+\addchap{Shareholder Information}
+\goldrule
+
+\begin{minipage}[t]{0.48\linewidth}
+{\bfseries\color{merNavy} Annual meeting}\\
+The annual general meeting of shareholders will be held virtually; details are available through Investor Relations.\\[10pt]
+{\bfseries\color{merNavy} Independent auditor}\\
+Apex \& Partners LLP\\[10pt]
+{\bfseries\color{merNavy} Transfer agent}\\
+Apex Trust \& Transfer Services
+\end{minipage}\hfill
+\begin{minipage}[t]{0.48\linewidth}
+{\bfseries\color{merNavy} Investor contact}\\
+\faEnvelope\ investors@meridiangroup.example\\
+\faPhone\ +1 (555) 019-2200\\
+\faGlobe\ www.meridiangroup.example\\
+\faMapMarker\ 400 Founders Quay, Suite 1800
+\end{minipage}
+\par
+\vspace{18pt}
+
+{\footnotesize\color{merSlate}
+This report contains forward-looking statements, including statements regarding fiscal 2026 guidance, capacity expansion, and the anticipated benefits of the Synapse Technologies joint venture. These statements are based on current expectations and are subject to risks and uncertainties, including those described in \textit{Outlook \& Risk Factors}, that could cause actual results to differ materially. Meridian Group, Meridian Cloud \& Data, Meridian Materials, Meridian Logistics, and Meridian Financial Services are used throughout this document as illustrative segment and company names. Nexa, Synapse, Vertex, Nimbus, and Apex, where referenced, denote fictional counterparties used for illustrative purposes only.}
+
+\end{document}

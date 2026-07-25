@@ -1,0 +1,437 @@
+\documentclass[10pt]{article}
+
+\usepackage[a4paper,landscape,margin=1.5cm]{geometry}
+\usepackage[table]{xcolor}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{tikz}
+\usepackage[most]{tcolorbox}
+\usepackage{fontawesome5}
+\usepackage{ragged2e}
+
+\setlength{\parindent}{0pt}
+\pagestyle{empty}
+
+% ---------- palette ----------
+\definecolor{inknavy}{HTML}{1C2B4A}
+\definecolor{catgold}{HTML}{C9972E}
+\definecolor{catteal}{HTML}{2E7A6B}
+\definecolor{catrose}{HTML}{B24C5B}
+
+% ---------- calendar cell helpers ----------
+\newcommand{\hl}[2]{\cellcolor{#1!25}\textbf{#2}}
+\newcommand{\wknd}[1]{\cellcolor{inknavy!6}#1}
+
+\newcolumntype{C}{>{\centering\arraybackslash}p{1.5cm}}
+
+\newcommand{\dowrow}{%
+\rowcolor{inknavy}
+\textcolor{white}{\footnotesize\textbf{Su}} & \textcolor{white}{\footnotesize\textbf{Mo}} & \textcolor{white}{\footnotesize\textbf{Tu}} & \textcolor{white}{\footnotesize\textbf{We}} & \textcolor{white}{\footnotesize\textbf{Th}} & \textcolor{white}{\footnotesize\textbf{Fr}} & \textcolor{white}{\footnotesize\textbf{Sa}} \\
+}
+
+\tcbset{
+  monthbox/.style={
+    enhanced,
+    colback=white,
+    colframe=inknavy,
+    colbacktitle=inknavy,
+    coltitle=white,
+    fonttitle=\bfseries\normalsize,
+    halign title=center,
+    boxrule=0.4pt,
+    arc=1mm,
+    left=1.5mm,right=1.5mm,top=0.5mm,bottom=1.5mm,
+    toptitle=1mm,bottomtitle=1mm,
+    width=\linewidth,
+  }
+}
+
+\newcommand{\monthtable}{%
+\renewcommand{\arraystretch}{1.18}%
+\setlength{\tabcolsep}{1.5pt}%
+\small
+}
+
+\newcommand{\footerbar}{%
+\vfill
+\begin{center}
+{\scriptsize\textcolor{inknavy!75}{\faCalendar\ \ Meridian University \ \textbullet\ \ Academic Year 2026--2027 \ \textbullet\ \ Office of the Registrar}}
+\end{center}
+}
+
+\begin{document}
+
+% ============================================================
+% COVER PAGE
+% ============================================================
+\begin{center}
+\begin{tikzpicture}
+\foreach \i/\c in {0/catteal,1/catgold,2/catrose,3/inknavy} {
+  \fill[\c] (\i*3.05,0) rectangle ++(2.8,0.3);
+}
+\end{tikzpicture}
+\end{center}
+
+\vspace{4mm}
+\begin{center}
+{\fontsize{34}{40}\selectfont\bfseries\textcolor{inknavy}{Academic Year Wall Calendar}}\\[3mm]
+{\Large\textcolor{catrose}{\faCalendar} \ \textcolor{inknavy!85}{Fall 2026 \ -- \ Summer 2027}}\\[2mm]
+{\large\textcolor{inknavy!70}{Meridian University \ \textbullet\ \ Office of the Registrar}}
+\end{center}
+
+\vspace{9mm}
+
+\noindent
+\begin{minipage}[t]{0.52\linewidth}
+{\large\bfseries\textcolor{inknavy}{About This Calendar}}\\[2mm]
+\RaggedRight
+\small
+This twelve-month wall calendar tracks every academic milestone from New Student
+Orientation through the close of Summer Session II. Each month is laid out as a
+full grid with color-coded markers for orientation events, exams, breaks, and
+key deadlines, followed by a compact list of that month's dates. Post it above
+your desk, in a department office, or in a residence hall common room to keep
+the whole term visible at a glance.\par
+\vspace{3mm}
+\small
+Dates reflect the official Meridian University Registrar calendar as published
+for the 2026--2027 academic year. Individual schools and colleges may observe
+additional deadlines; consult your advising office for program-specific dates.
+
+\vspace{5mm}
+{\large\bfseries\textcolor{inknavy}{Legend}}\\[2mm]
+\begin{tabular}{@{}l l@{}}
+\tikz{\fill[catteal] (0,0) rectangle (0.32,0.32);} & \small Orientation \& Campus Events \\[2mm]
+\tikz{\fill[catgold] (0,0) rectangle (0.32,0.32);} & \small Exams \& Assessments \\[2mm]
+\tikz{\fill[catrose] (0,0) rectangle (0.32,0.32);} & \small Breaks \& Holidays \\[2mm]
+\tikz{\fill[inknavy] (0,0) rectangle (0.32,0.32);} & \small Key Academic Deadlines \\
+\end{tabular}
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.42\linewidth}
+{\large\bfseries\textcolor{inknavy}{Term Overview}}\\[2mm]
+\small
+\begin{tabular}{@{}l l@{}}
+\toprule
+\textbf{Term} & \textbf{Dates} \\
+\midrule
+Fall Semester 2026 & Aug 31 -- Dec 11 \\
+Winter Break & Dec 14 -- Jan 10 \\
+Spring Semester 2027 & Jan 11 -- Apr 30 \\
+Spring Break & Mar 8 -- Mar 12 \\
+Summer Session I & Jun 1 -- Jun 25 \\
+Summer Session II & Jul 6 -- Jul 30 \\
+\bottomrule
+\end{tabular}
+
+\vspace{6mm}
+{\large\bfseries\textcolor{inknavy}{Commencements}}\\[2mm]
+\small
+\begin{tabular}{@{}l l@{}}
+\toprule
+\textbf{Ceremony} & \textbf{Date} \\
+\midrule
+Fall Commencement & Sat, Dec 12, 2026 \\
+Spring Commencement & Sat, May 8, 2027 \\
+\bottomrule
+\end{tabular}
+
+\vspace{6mm}
+\small\textcolor{inknavy!70}{Pages 2--4 present the full August--July grid,\\
+four months per page, in landscape format.}
+\end{minipage}
+
+\footerbar
+
+\newpage
+
+% ============================================================
+% PAGE 2: AUGUST -- NOVEMBER 2026
+% ============================================================
+\noindent
+\begin{minipage}[t]{0.49\linewidth}
+
+\begin{tcolorbox}[monthbox,title=August 2026]
+\monthtable
+\begin{tabular}{CCCCCCC}
+\dowrow
+ & & & & & & \wknd{1} \\
+\wknd{2} & 3 & 4 & 5 & 6 & 7 & \wknd{8} \\
+\wknd{9} & 10 & 11 & 12 & 13 & 14 & \wknd{15} \\
+\wknd{16} & 17 & 18 & 19 & 20 & 21 & \wknd{22} \\
+\wknd{23} & \hl{catteal}{24} & 25 & 26 & 27 & \hl{catteal}{28} & \wknd{29} \\
+\wknd{30} & \hl{inknavy}{31} & & & & & \\
+\end{tabular}
+\par\vspace{2mm}
+{\scriptsize\RaggedRight
+\textcolor{catteal}{\textbullet} \ Aug 24 -- New Student Orientation Begins\\
+\textcolor{catteal}{\textbullet} \ Aug 28 -- Faculty Convocation\\
+\textcolor{inknavy}{\textbullet} \ Aug 31 -- Fall Semester Classes Begin
+}
+\end{tcolorbox}
+
+\vspace{4mm}
+\par
+
+\begin{tcolorbox}[monthbox,title=October 2026]
+\monthtable
+\begin{tabular}{CCCCCCC}
+\dowrow
+ & & & & 1 & 2 & \wknd{3} \\
+\wknd{4} & 5 & 6 & 7 & 8 & 9 & \wknd{10} \\
+\wknd{11} & \hl{catrose}{12} & \hl{catrose}{13} & 14 & 15 & 16 & \wknd{17} \\
+\wknd{18} & 19 & 20 & 21 & 22 & \hl{catgold}{23} & \wknd{24} \\
+\wknd{25} & 26 & 27 & 28 & 29 & \hl{catgold}{30} & \wknd{31} \\
+ & & & & & & \\
+\end{tabular}
+\par\vspace{2mm}
+{\scriptsize\RaggedRight
+\textcolor{catrose}{\textbullet} \ Oct 12--13 -- Fall Break\\
+\textcolor{catgold}{\textbullet} \ Oct 23 -- Midterm Exams Begin\\
+\textcolor{catgold}{\textbullet} \ Oct 30 -- Midterm Exams End
+}
+\end{tcolorbox}
+
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.49\linewidth}
+
+\begin{tcolorbox}[monthbox,title=September 2026]
+\monthtable
+\begin{tabular}{CCCCCCC}
+\dowrow
+ & & 1 & 2 & 3 & 4 & \wknd{5} \\
+\wknd{6} & \hl{catrose}{7} & 8 & 9 & 10 & 11 & \wknd{12} \\
+\wknd{13} & 14 & 15 & 16 & 17 & \hl{inknavy}{18} & \wknd{19} \\
+\wknd{20} & 21 & 22 & 23 & 24 & \hl{inknavy}{25} & \wknd{26} \\
+\wknd{27} & 28 & 29 & 30 & & & \\
+\end{tabular}
+\par\vspace{2mm}
+{\scriptsize\RaggedRight
+\textcolor{catrose}{\textbullet} \ Sep 7 -- Labor Day, No Classes\\
+\textcolor{inknavy}{\textbullet} \ Sep 18 -- Add/Drop Deadline\\
+\textcolor{inknavy}{\textbullet} \ Sep 25 -- Financial Aid Verification Deadline
+}
+\end{tcolorbox}
+
+\vspace{4mm}
+\par
+
+\begin{tcolorbox}[monthbox,title=November 2026]
+\monthtable
+\begin{tabular}{CCCCCCC}
+\dowrow
+\wknd{1} & 2 & 3 & 4 & 5 & \hl{inknavy}{6} & \wknd{7} \\
+\wknd{8} & 9 & 10 & \hl{catrose}{11} & 12 & 13 & \wknd{14} \\
+\wknd{15} & 16 & 17 & 18 & 19 & 20 & \wknd{21} \\
+\wknd{22} & 23 & 24 & \hl{catrose}{25} & \hl{catrose}{26} & \hl{catrose}{27} & \wknd{28} \\
+\wknd{29} & 30 & & & & & \\
+\end{tabular}
+\par\vspace{2mm}
+{\scriptsize\RaggedRight
+\textcolor{inknavy}{\textbullet} \ Nov 6 -- Spring Registration Opens\\
+\textcolor{catrose}{\textbullet} \ Nov 11 -- Veterans Day Observed\\
+\textcolor{catrose}{\textbullet} \ Nov 25--27 -- Thanksgiving Break
+}
+\end{tcolorbox}
+
+\end{minipage}
+\par
+
+\footerbar
+
+\newpage
+
+% ============================================================
+% PAGE 3: DECEMBER 2026 -- MARCH 2027
+% ============================================================
+\noindent
+\begin{minipage}[t]{0.49\linewidth}
+
+\begin{tcolorbox}[monthbox,title=December 2026]
+\monthtable
+\begin{tabular}{CCCCCCC}
+\dowrow
+ & & 1 & 2 & 3 & \hl{inknavy}{4} & \wknd{5} \\
+\wknd{6} & \hl{catgold}{7} & \hl{catgold}{8} & \hl{catgold}{9} & \hl{catgold}{10} & \hl{catgold}{11} & \hl{catteal}{12} \\
+\wknd{13} & \hl{catrose}{14} & 15 & 16 & 17 & 18 & \wknd{19} \\
+\wknd{20} & 21 & 22 & 23 & \hl{catrose}{24} & \hl{catrose}{25} & \wknd{26} \\
+\wknd{27} & 28 & 29 & 30 & 31 & & \\
+\end{tabular}
+\par\vspace{2mm}
+{\scriptsize\RaggedRight
+\textcolor{inknavy}{\textbullet} \ Dec 4 -- Last Day of Fall Classes\\
+\textcolor{catgold}{\textbullet} \ Dec 7--11 -- Final Exams Week\\
+\textcolor{catteal}{\textbullet} \ Dec 12 -- Fall Commencement\\
+\textcolor{catrose}{\textbullet} \ Dec 14 -- Winter Break Begins\\
+\textcolor{catrose}{\textbullet} \ Dec 25 -- Christmas Day, Offices Closed
+}
+\end{tcolorbox}
+
+\vspace{4mm}
+\par
+
+\begin{tcolorbox}[monthbox,title=February 2027]
+\monthtable
+\begin{tabular}{CCCCCCC}
+\dowrow
+ & 1 & 2 & 3 & 4 & 5 & \wknd{6} \\
+\wknd{7} & 8 & 9 & 10 & 11 & \hl{catteal}{12} & \wknd{13} \\
+\wknd{14} & \hl{catrose}{15} & 16 & 17 & 18 & 19 & \wknd{20} \\
+\wknd{21} & 22 & 23 & 24 & 25 & \hl{catgold}{26} & \wknd{27} \\
+\wknd{28} & & & & & & \\
+\end{tabular}
+\par\vspace{2mm}
+{\scriptsize\RaggedRight
+\textcolor{catteal}{\textbullet} \ Feb 12 -- Founders' Day Symposium\\
+\textcolor{catrose}{\textbullet} \ Feb 15 -- Presidents' Day, No Classes\\
+\textcolor{catgold}{\textbullet} \ Feb 26 -- Midterm Exams Begin
+}
+\end{tcolorbox}
+
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.49\linewidth}
+
+\begin{tcolorbox}[monthbox,title=January 2027]
+\monthtable
+\begin{tabular}{CCCCCCC}
+\dowrow
+ & & & & & \hl{catrose}{1} & \wknd{2} \\
+\wknd{3} & 4 & 5 & 6 & 7 & 8 & \wknd{9} \\
+\wknd{10} & \hl{inknavy}{11} & 12 & 13 & 14 & 15 & \wknd{16} \\
+\wknd{17} & \hl{catrose}{18} & 19 & 20 & 21 & \hl{inknavy}{22} & \wknd{23} \\
+\wknd{24} & 25 & 26 & 27 & 28 & 29 & \wknd{30} \\
+\wknd{31} & & & & & & \\
+\end{tabular}
+\par\vspace{2mm}
+{\scriptsize\RaggedRight
+\textcolor{catrose}{\textbullet} \ Jan 1 -- New Year's Day\\
+\textcolor{inknavy}{\textbullet} \ Jan 11 -- Spring Semester Classes Begin\\
+\textcolor{catrose}{\textbullet} \ Jan 18 -- MLK Day, No Classes\\
+\textcolor{inknavy}{\textbullet} \ Jan 22 -- Add/Drop Deadline
+}
+\end{tcolorbox}
+
+\vspace{4mm}
+\par
+
+\begin{tcolorbox}[monthbox,title=March 2027]
+\monthtable
+\begin{tabular}{CCCCCCC}
+\dowrow
+ & 1 & 2 & 3 & 4 & \hl{catgold}{5} & \wknd{6} \\
+\wknd{7} & \hl{catrose}{8} & \hl{catrose}{9} & \hl{catrose}{10} & \hl{catrose}{11} & \hl{catrose}{12} & \wknd{13} \\
+\wknd{14} & 15 & 16 & 17 & 18 & \hl{inknavy}{19} & \wknd{20} \\
+\wknd{21} & 22 & 23 & 24 & 25 & 26 & \wknd{27} \\
+\wknd{28} & 29 & 30 & 31 & & & \\
+\end{tabular}
+\par\vspace{2mm}
+{\scriptsize\RaggedRight
+\textcolor{catgold}{\textbullet} \ Mar 5 -- Midterm Exams End\\
+\textcolor{catrose}{\textbullet} \ Mar 8--12 -- Spring Break\\
+\textcolor{inknavy}{\textbullet} \ Mar 19 -- Fall Registration Opens
+}
+\end{tcolorbox}
+
+\end{minipage}
+\par
+
+\footerbar
+
+\newpage
+
+% ============================================================
+% PAGE 4: APRIL -- JULY 2027
+% ============================================================
+\noindent
+\begin{minipage}[t]{0.49\linewidth}
+
+\begin{tcolorbox}[monthbox,title=April 2027]
+\monthtable
+\begin{tabular}{CCCCCCC}
+\dowrow
+ & & & & 1 & 2 & \wknd{3} \\
+\wknd{4} & 5 & 6 & 7 & 8 & \hl{catteal}{9} & \wknd{10} \\
+\wknd{11} & 12 & 13 & 14 & 15 & 16 & \wknd{17} \\
+\wknd{18} & 19 & 20 & 21 & 22 & \hl{inknavy}{23} & \wknd{24} \\
+\wknd{25} & \hl{catgold}{26} & \hl{catgold}{27} & \hl{catgold}{28} & \hl{catgold}{29} & \hl{catgold}{30} & \\
+\end{tabular}
+\par\vspace{2mm}
+{\scriptsize\RaggedRight
+\textcolor{catteal}{\textbullet} \ Apr 9 -- Honors Thesis Symposium\\
+\textcolor{inknavy}{\textbullet} \ Apr 23 -- Last Day of Spring Classes\\
+\textcolor{catgold}{\textbullet} \ Apr 26--30 -- Final Exams Week
+}
+\end{tcolorbox}
+
+\vspace{4mm}
+\par
+
+\begin{tcolorbox}[monthbox,title=June 2027]
+\monthtable
+\begin{tabular}{CCCCCCC}
+\dowrow
+ & & \hl{inknavy}{1} & 2 & 3 & 4 & \wknd{5} \\
+\wknd{6} & 7 & 8 & 9 & 10 & 11 & \wknd{12} \\
+\wknd{13} & 14 & 15 & 16 & 17 & 18 & \hl{catrose}{19} \\
+\wknd{20} & 21 & 22 & 23 & 24 & \hl{inknavy}{25} & \wknd{26} \\
+\wknd{27} & 28 & 29 & 30 & & & \\
+\end{tabular}
+\par\vspace{2mm}
+{\scriptsize\RaggedRight
+\textcolor{inknavy}{\textbullet} \ Jun 1 -- Summer Session I Begins\\
+\textcolor{catrose}{\textbullet} \ Jun 19 -- Juneteenth Observed\\
+\textcolor{inknavy}{\textbullet} \ Jun 25 -- Summer Session I Ends
+}
+\end{tcolorbox}
+
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.49\linewidth}
+
+\begin{tcolorbox}[monthbox,title=May 2027]
+\monthtable
+\begin{tabular}{CCCCCCC}
+\dowrow
+ & & & & & & \wknd{1} \\
+\wknd{2} & 3 & 4 & 5 & 6 & 7 & \hl{catteal}{8} \\
+\wknd{9} & 10 & 11 & 12 & 13 & 14 & \wknd{15} \\
+\wknd{16} & 17 & 18 & 19 & 20 & 21 & \wknd{22} \\
+\wknd{23} & 24 & 25 & 26 & 27 & 28 & \wknd{29} \\
+\wknd{30} & \hl{catrose}{31} & & & & & \\
+\end{tabular}
+\par\vspace{2mm}
+{\scriptsize\RaggedRight
+\textcolor{catteal}{\textbullet} \ May 8 -- Spring Commencement\\
+\textcolor{catrose}{\textbullet} \ May 31 -- Memorial Day, No Classes
+}
+\end{tcolorbox}
+
+\vspace{4mm}
+\par
+
+\begin{tcolorbox}[monthbox,title=July 2027]
+\monthtable
+\begin{tabular}{CCCCCCC}
+\dowrow
+ & & & & 1 & 2 & \wknd{3} \\
+\hl{catrose}{4} & 5 & \hl{inknavy}{6} & 7 & 8 & 9 & \wknd{10} \\
+\wknd{11} & 12 & 13 & 14 & 15 & 16 & \wknd{17} \\
+\wknd{18} & 19 & 20 & 21 & 22 & 23 & \wknd{24} \\
+\wknd{25} & 26 & 27 & 28 & 29 & \hl{inknavy}{30} & \wknd{31} \\
+\end{tabular}
+\par\vspace{2mm}
+{\scriptsize\RaggedRight
+\textcolor{catrose}{\textbullet} \ Jul 4 -- Independence Day\\
+\textcolor{inknavy}{\textbullet} \ Jul 6 -- Summer Session II Begins\\
+\textcolor{inknavy}{\textbullet} \ Jul 30 -- Summer Session II Ends
+}
+\end{tcolorbox}
+
+\end{minipage}
+\par
+
+\footerbar
+
+\end{document}

@@ -1,0 +1,408 @@
+\documentclass[final]{beamer}
+
+% Poster dimensions & scale setup
+\usepackage[size=a0,orientation=landscape,scale=1.2]{beamerposter}
+
+% Language and font encodings
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+
+% Essential mathematics & symbols
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{mathtools}
+
+% Colors and graphics
+\usepackage[table]{xcolor}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{colortbl}
+
+% TikZ and tcolorbox
+\usepackage{tikz}
+\usetikzlibrary{positioning,calc,shapes.geometric,decorations.pathmorphing,backgrounds,patterns}
+\usepackage[most]{tcolorbox}
+\tcbuselibrary{skins}
+
+% Icons
+\usepackage{fontawesome5}
+
+% Define color palette (no trailing spaces in color definitions)
+\definecolor{posterbg}{HTML}{F8FAFC}
+\definecolor{navyprimary}{HTML}{0F172A}
+\definecolor{tealaccent}{HTML}{0EA5E9}
+\definecolor{darkteal}{HTML}{0369A1}
+\definecolor{cardbg}{HTML}{FFFFFF}
+\definecolor{cardborder}{HTML}{CBD5E1}
+\definecolor{textdark}{HTML}{1E293B}
+\definecolor{textmuted}{HTML}{64748B}
+\definecolor{lightgraybg}{HTML}{F1F5F9}
+
+% Set Beamer background and colors
+\setbeamercolor{background canvas}{bg=posterbg}
+\setbeamercolor{headline}{bg=navyprimary,fg=white}
+\setbeamercolor{footline}{bg=navyprimary,fg=white}
+
+% Custom tcolorbox style for poster blocks
+\tcbset{
+  posterblock/.style={
+    enhanced,
+    colback=cardbg,
+    colframe=navyprimary,
+    coltitle=white,
+    fonttitle=\bfseries\Large,
+    attach boxed title to top left={yshift=-2mm, xshift=4mm},
+    boxed title style={
+      colback=tealaccent,
+      colframe=tealaccent,
+      arc=4pt,
+      outer arc=4pt,
+      boxsep=5pt,
+      top=3pt,
+      bottom=3pt,
+      left=10pt,
+      right=10pt
+    },
+    boxrule=1.5pt,
+    arc=6pt,
+    outer arc=6pt,
+    left=14pt,
+    right=14pt,
+    top=20pt,
+    bottom=14pt,
+    shadow={3pt}{-3pt}{0pt}{black!12}
+  },
+  accentblock/.style={
+    enhanced,
+    colback=lightgraybg,
+    colframe=tealaccent,
+    coltitle=white,
+    fonttitle=\bfseries\Large,
+    attach boxed title to top left={yshift=-2mm, xshift=4mm},
+    boxed title style={
+      colback=navyprimary,
+      colframe=navyprimary,
+      arc=4pt,
+      outer arc=4pt,
+      boxsep=5pt,
+      top=3pt,
+      bottom=3pt,
+      left=10pt,
+      right=10pt
+    },
+    boxrule=1.5pt,
+    arc=6pt,
+    outer arc=6pt,
+    left=14pt,
+    right=14pt,
+    top=20pt,
+    bottom=14pt,
+    shadow={3pt}{-3pt}{0pt}{black!12}
+  }
+}
+
+% Remove navigation symbols
+\beamertemplatenavigationsymbolsempty
+
+\begin{document}
+\begin{frame}[t]
+
+% Top Header Banner
+\begin{tcolorbox}[
+  enhanced,
+  colback=navyprimary,
+  colframe=navyprimary,
+  arc=0pt,
+  boxrule=0pt,
+  top=20pt,
+  bottom=20pt,
+  left=25pt,
+  right=25pt
+]
+  \begin{columns}[c]
+    \begin{column}{0.76\textwidth}
+      {\color{white}\Huge \bfseries Synapse-Net: Scalable Multi-Modal Graph Embeddings for Biomedical Discovery \par}
+      \vspace{12pt}
+      {\color{tealaccent}\Large \bfseries Dr. Elena Vance$^{1}$, Marcus Thorne$^{1,2}$, Dr. Sarah Lin$^{2}$, Prof. Arthur Pendelton$^{1}$ \par}
+      \vspace{8pt}
+      {\color{gray!30}\large $^{1}$Department of Computational Biology, Synapse Research Institute \quad---\quad $^{2}$Vertex AI Healthcare Labs \par}
+    \end{column}
+    \begin{column}{0.20\textwidth}
+      \begin{tcolorbox}[
+        colback=white!10,
+        colframe=tealaccent,
+        arc=6pt,
+        boxrule=1pt,
+        halign=center
+      ]
+        {\color{white}\bfseries \Large ICMLB 2026 \par}
+        \vspace{4pt}
+        {\color{tealaccent}\small Annual Conference on Machine Learning in Biomedicine \par}
+        \vspace{4pt}
+        {\color{gray!30}\footnotesize \faCalendar\ July 24--28, 2026 \par}
+      \end{tcolorbox}
+    \end{column}
+  \end{columns}
+\end{tcolorbox}
+
+\vspace{15pt}
+
+% 3-Column Grid Layout
+\begin{columns}[t]
+
+  % =========================================================================
+  % COLUMN 1: Background, Problem Formulation & Architecture
+  % =========================================================================
+  \begin{column}{0.315\textwidth}
+
+    % Box 1: Executive Summary
+    \begin{tcolorbox}[posterblock, title=\faFile\ Executive Summary]
+      \large
+      Modern biomedical discovery relies heavily on mapping heterogeneous graph structures, such as protein-protein interaction networks, gene regulatory circuits, and compound-target bindings. Traditional graph neural networks (GNNs) suffer from over-smoothing and high computational latency when processing multi-modal graphs with over $10^7$ nodes.
+
+      \vspace{8pt}
+      \textbf{Key Innovations of Synapse-Net:}
+      \begin{itemize}
+        \item \textbf{Dual-Attention Graph Routing:} Dynamically weights edge importance across disparate biological data modes.
+        \item \textbf{Linear Memory Scaling:} Reduces spatial complexity from $\mathcal{O}(|V|^2)$ to $\mathcal{O}(|V| \cdot d)$ using spectral sparsity kernels.
+        \item \textbf{Targeted Drug-Gene Association:} Improves binding affinity prediction accuracy by $24.8\%$ over state-of-the-art baselines.
+      \end{itemize}
+    \end{tcolorbox}
+
+    \vspace{14pt}
+
+    % Box 2: Problem Formulation
+    \begin{tcolorbox}[posterblock, title=\faLock\ Mathematical Formulation]
+      \large
+      Let $\mathcal{G} = (\mathcal{V}, \mathcal{E}, \mathcal{T})$ represent a multi-modal biomedical graph where $\mathcal{V}$ denotes nodes (genes, proteins, compounds), $\mathcal{E}$ denotes edge relations, and $\mathcal{T}$ represents node-type attributes.
+
+      \vspace{6pt}
+      The layer-wise representation update for node $v_i \in \mathcal{V}$ at layer $l+1$ is defined as:
+      \begin{equation*}
+        h_i^{(l+1)} = \sigma \left( \sum_{m \in \mathcal{M}} \sum_{j \in \mathcal{N}_i^m} \alpha_{ij}^{m(l)} \mathbf{W}_m^{(l)} h_j^{(l)} + \mathbf{B}^{(l)} h_i^{(l)} \right)
+      \end{equation*}
+
+      where $\alpha_{ij}^{m(l)}$ is the cross-modal attention weight computed via scaled dot-product:
+      \begin{equation*}
+        \alpha_{ij}^{m(l)} = \frac{\exp \left( \text{LeakyReLU} \left( \mathbf{a}_m^T [\mathbf{W}_m h_i \parallel \mathbf{W}_m h_j] \right) \right)}{\sum_{k \in \mathcal{N}_i^m} \exp \left( \text{LeakyReLU} \left( \mathbf{a}_m^T [\mathbf{W}_m h_i \parallel \mathbf{W}_m h_k] \right) \right)}
+      \end{equation*}
+
+      \vspace{4pt}
+      This formulation guarantees invariant representation learning under permutation of non-isomorphic biological subgraphs.
+    \end{tcolorbox}
+
+    \vspace{14pt}
+
+    % Box 3: System Pipeline Diagram
+    \begin{tcolorbox}[posterblock, title=\faPen\ Synapse-Net Architecture Pipeline]
+      \centering
+      \vspace{6pt}
+      \begin{tikzpicture}[node distance=1.4cm, auto, >=stealth, scale=1.1, transform shape]
+        % Styles
+        \tikzstyle{data} = [rectangle, draw=navyprimary, fill=tealaccent!15, thick, rounded corners=4pt, minimum width=2.8cm, minimum height=1.1cm, align=center, font=\bfseries\small]
+        \tikzstyle{process} = [rectangle, draw=darkteal, fill=navyprimary, text=white, thick, rounded corners=4pt, minimum width=3.2cm, minimum height=1.2cm, align=center, font=\bfseries\small]
+        \tikzstyle{output} = [rectangle, draw=navyprimary, fill=darkteal!20, thick, rounded corners=4pt, minimum width=2.8cm, minimum height=1.1cm, align=center, font=\bfseries\small]
+
+        % Nodes
+        \node (input1) [data] {Genomic Graphs \\ ($10^6$ Nodes)};
+        \node (input2) [data, right=0.6cm of input1] {Compound Structures \\ ($10^5$ Molecules)};
+
+        \node (fusion) [process, below=1.2cm of $(input1)!0.5!(input2)$] {Dual-Attention \\ Fusion Engine};
+        \node (embed) [process, below=1.2cm of fusion] {Sparse Spectral \\ Encoder};
+
+        \node (out1) [output, below left=1.2cm and 0.2cm of embed] {Target Affinity \\ ($\text{ROC}=0.942$)};
+        \node (out2) [output, below right=1.2cm and 0.2cm of embed] {Pathway Mapping \\ (F1 $=0.916$)};
+
+        % Paths
+        \draw[->, ultra thick, navyprimary] (input1) -- (fusion);
+        \draw[->, ultra thick, navyprimary] (input2) -- (fusion);
+        \draw[->, ultra thick, tealaccent] (fusion) -- (embed);
+        \draw[->, ultra thick, darkteal] (embed) -- (out1);
+        \draw[->, ultra thick, darkteal] (embed) -- (out2);
+      \end{tikzpicture}
+      \vspace{6pt}
+    \end{tcolorbox}
+
+  \end{column}
+
+  % =========================================================================
+  % COLUMN 2: Methods, Benchmark Results & Visual Analytics
+  % =========================================================================
+  \begin{column}{0.34\textwidth}
+
+    % Box 4: Multi-Modal Integration Methods
+    \begin{tcolorbox}[posterblock, title=\faFile\ Multi-Modal Integration Strategy]
+      \large
+      Synapse-Net integrates heterogeneous data modes into a unified Riemannian latent space. Biological networks from the Meridian Data Repository were tokenized across three primary facets:
+      \begin{enumerate}
+        \item \textbf{Transcriptomic Profiles:} Single-cell RNA sequencing matrices mapped onto gene co-expression edges.
+        \item \textbf{Proteomic Interactions:} High-confidence physical interaction graphs from Synapse-DB.
+        \item \textbf{Chemical SMILES Graphs:} Atom-bond graphs derived from Vertex-774 compound candidate libraries.
+      \end{enumerate}
+
+      \vspace{6pt}
+      To prevent modal dominance, we apply dynamic gradient scaling during backpropagation:
+      \begin{equation*}
+        g_m = \gamma_m \cdot \nabla_{\mathbf{W}_m} \mathcal{L}_{\text{total}}, \quad \text{where } \gamma_m = \frac{\exp(-\mathcal{L}_m / \tau)}{\sum_k \exp(-\mathcal{L}_k / \tau)}
+      \end{equation*}
+    \end{tcolorbox}
+
+    \vspace{14pt}
+
+    % Box 5: Empirical Benchmarks Table
+    \begin{tcolorbox}[posterblock, title=\faFile\ Quantitative Performance Evaluation]
+      \large
+      We benchmarked Synapse-Net against four state-of-the-art graph architectures across three canonical benchmark datasets: Nexa-Gene, Apex-Target, and Nimbus-Bio.
+
+      \vspace{10pt}
+      \centering
+      \small
+      \begin{tabular}{lcccccc}
+        \toprule
+        \textbf{Model Architecture} & \textbf{ROC-AUC} & \textbf{PR-AUC} & \textbf{F1-Score} & \textbf{Latency (ms)} & \textbf{Params (M)} \\
+        \midrule
+        Standard GCN & $0.782$ & $0.741$ & $0.725$ & $142.5$ & $4.2$ \\{}
+        GraphSAGE & $0.814$ & $0.789$ & $0.768$ & $98.3$ & $6.8$ \\{}
+        GAT (Multi-Head) & $0.856$ & $0.823$ & $0.811$ & $184.1$ & $12.4$ \\{}
+        HeteroGNN & $0.881$ & $0.854$ & $0.842$ & $215.0$ & $18.6$ \\
+        \rowcolor{tealaccent!15}
+        \textbf{Synapse-Net (Ours)} & $\mathbf{0.942}$ & $\mathbf{0.928}$ & $\mathbf{0.916}$ & $\mathbf{42.1}$ & $\mathbf{8.5}$ \\
+        \bottomrule
+      \end{tabular}
+
+      \vspace{10pt}
+      \raggedright \normalsize
+      \textit{Note: All metrics evaluated over $5$-fold cross-validation on Vertex-A100 clusters.}
+    \end{tcolorbox}
+
+    \vspace{14pt}
+
+    % Box 6: TikZ Performance Visualization Chart
+    \begin{tcolorbox}[posterblock, title=\faPen\ Scalability \& Throughput Analysis]
+      \centering
+      \vspace{6pt}
+      \begin{tikzpicture}[scale=1.1, transform shape]
+        % Axes
+        \draw[->, thick, textdark] (0,0) -- (10.5,0) node[right, font=\bfseries] {Graph Size ($10^6$ Nodes)};
+        \draw[->, thick, textdark] (0,0) -- (0,6.5) node[above, font=\bfseries] {Execution Time (sec)};
+
+        % Grid lines
+        \foreach \y in {1,2,3,4,5,6}
+          \draw[dashed, gray!30] (0,\y) -- (10,\y);
+        \foreach \x in {2,4,6,8,10}
+          \draw[dashed, gray!30] (\x,0) -- (\x,6);
+
+        % Axis ticks
+        \foreach \x/\label in {2/2M, 4/4M, 6/6M, 8/8M, 10/10M}
+          \node[below, font=\small] at (\x,0) {\label};
+        \foreach \y/\label in {1/10s, 2/20s, 3/30s, 4/40s, 5/50s, 6/60s}
+          \node[left, font=\small] at (0,\y) {\label};
+
+        % Data curves
+        % Standard GAT (quadratic scaling)
+        \draw[ultra thick, red!70!black, mark=*] plot coordinates {(1,0.6) (2,1.4) (4,3.2) (6,5.8)};
+        \node[red!70!black, font=\bfseries\small, right] at (6,5.8) {GAT (OOM at 8M)};
+
+        % GraphSAGE
+        \draw[ultra thick, orange!80!black, mark=square*] plot coordinates {(1,0.4) (2,0.9) (4,2.1) (6,3.6) (8,5.2)};
+        \node[orange!80!black, font=\bfseries\small, right] at (8,5.2) {GraphSAGE};
+
+        % Synapse-Net (Ours) - Sublinear/Linear scaling
+        \draw[line width=2.5pt, darkteal, mark=triangle*] plot coordinates {(1,0.2) (2,0.4) (4,0.8) (6,1.2) (8,1.6) (10,2.1)};
+        \node[darkteal, font=\bfseries\large, right] at (10,2.1) {\textbf{Synapse-Net (Ours)}};
+
+        % Key Callout Box inside plot
+        \node[draw=navyprimary, fill=white, rounded corners=4pt, thick, inner sep=6pt] at (3.5, 4.8) {
+          \begin{tabular}{l}
+            \small \textbf{Throughput Gain:} $\mathbf{4.3\times}$ faster at 10M nodes \\
+            \small \textbf{Peak VRAM:} $14.2$ GB vs $78.6$ GB (GAT)
+          \end{tabular}
+        };
+      \end{tikzpicture}
+      \vspace{6pt}
+    \end{tcolorbox}
+
+  \end{column}
+
+  % =========================================================================
+  % COLUMN 3: Case Studies, Ablation, Conclusions & References
+  % =========================================================================
+  \begin{column}{0.315\textwidth}
+
+    % Box 7: Case Study
+    \begin{tcolorbox}[accentblock, title=\faFile\ Case Study: Vertex-774 Drug Discovery]
+      \large
+      We validated Synapse-Net in an end-to-end drug discovery pipeline targeting novel kinase inhibitors for oncology applications in collaboration with Apex Pharmaceuticals.
+
+      \vspace{6pt}
+      \begin{itemize}
+        \item \textbf{Screening Library:} $450,000$ small molecule candidates evaluated in silico.
+        \item \textbf{Candidate Identification:} Identified compound candidate \textbf{Vertex-774} with predicted $K_i = 1.4\text{ nM}$.
+        \item \textbf{In Vitro Confirmation:} High-throughput assay confirmed binding affinity at $1.8\text{ nM}$ ($96\%$ prediction fidelity).
+        \item \textbf{Off-Target Toxicity:} Predicted zero high-risk interactions across $1,200$ human off-target proteins.
+      \end{itemize}
+    \end{tcolorbox}
+
+    \vspace{14pt}
+
+    % Box 8: Ablation Study
+    \begin{tcolorbox}[posterblock, title=\faLock\ Architectural Ablation Study]
+      \large
+      Systematic removal of core components highlights the critical contribution of dual-attention and spectral routing.
+
+      \vspace{8pt}
+      \centering
+      \small
+      \begin{tabular}{lccc}
+        \toprule
+        \textbf{Variant Configuration} & \textbf{ROC-AUC} & \textbf{$\Delta$ ROC} & \textbf{F1-Score} \\
+        \midrule
+        Full Synapse-Net Model & $\mathbf{0.942}$ & --- & $\mathbf{0.916}$ \\{}
+        w/o Dual-Attention Routing & $0.879$ & $-0.063$ & $0.851$ \\{}
+        w/o Spectral Sparsity Kernel & $0.894$ & $-0.048$ & $0.868$ \\{}
+        w/o Dynamic Gradient Scaling & $0.908$ & $-0.034$ & $0.882$ \\{}
+        Single-Modal Embedding Only & $0.835$ & $-0.107$ & $0.804$ \\
+        \bottomrule
+      \end{tabular}
+      \vspace{6pt}
+    \end{tcolorbox}
+
+    \vspace{14pt}
+
+    % Box 9: Conclusion & Impact
+    \begin{tcolorbox}[posterblock, title=\faPen\ Conclusions \& Future Directions]
+      \large
+      \begin{itemize}
+        \item \textbf{Scalability Milestone:} Synapse-Net demonstrates superior scaling properties up to 10+ million node biological graphs.
+        \item \textbf{Translational Impact:} Successfully accelerated lead compound validation timeline from 14 months to 3 weeks at Apex Research.
+        \item \textbf{Future Work:} Extending the framework to temporal cellular dynamics and single-cell spatial transcriptomics.
+      \end{itemize}
+    \end{tcolorbox}
+
+    \vspace{14pt}
+
+    % Box 10: References & Acknowledgments
+    \begin{tcolorbox}[posterblock, title=\faFile\ Selected References \& Acknowledgments]
+      \footnotesize
+      \begin{enumerate}
+        \item Vance, E., Thorne, M., \& Pendelton, A. (2025). \textit{Multi-Modal Graph Representation in Computational Biology}. Journal of Biomedical Informatics, 42(3), 112--128.
+        \item Lin, S. et al. (2024). \textit{Accelerated Compound Screening via Spectral Graph Convolution}. Nature Computational Science, 8, 401--415.
+        \item Thorne, M. \& Vance, E. (2025). \textit{Attention Mechanisms over Biological Networks}. Neural Information Processing Systems (NeurIPS).
+      \end{enumerate}
+
+      \vspace{6pt}
+      \hrule
+      \vspace{6pt}
+      \textit{\textbf{Acknowledgments:} Supported by Meridian Research Grant \#BD-2025-998 and computational infrastructure donated by Nimbus Cloud Systems. All data available via Synapse Open Access Initiative.}
+    \end{tcolorbox}
+
+  \end{column}
+
+\end{columns}
+
+\end{frame}
+\end{document}

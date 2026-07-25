@@ -1,0 +1,254 @@
+\documentclass[totpages,helvetica,openbib,english,nologo,nobranding,notitle]{europecv}
+
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage[a4paper,top=1.0cm,left=1cm,right=1cm,bottom=1.4cm]{geometry}
+\usepackage[english]{babel}
+\usepackage{url}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage{fontawesome5}
+\usepackage{tikz}
+\usepackage{tcolorbox}
+\usepackage{bookmark}
+
+\definecolor{marineblue}{HTML}{16324F}
+\definecolor{ecrugold}{HTML}{B08D57}
+\definecolor{steelgray}{HTML}{5B6B73}
+\definecolor{paleblue}{HTML}{EEF3F7}
+
+\hypersetup{colorlinks=true,urlcolor=marineblue,linkcolor=marineblue,pdfborder={0 0 0}}
+
+\renewcommand{\ttdefault}{phv} % Uses Helvetica instead of a fixed-width font
+
+\setlist[itemize]{topsep=2pt,itemsep=2pt,parsep=0pt,leftmargin=*}
+
+\newcommand*{\SignatureAndDate}[1]{%
+	\par\noindent\makebox[3in]{Bologna \textsc{(Italy)}, \today}
+	\par\noindent\makebox[3in]{\hrulefill}\hfill\makebox[2in]{\hrulefill}%
+	\par\noindent\hfill\makebox[3in][l]{\hspace{1cm}Place and date}\makebox[2in][l]{#1}%
+}%
+
+\newcommand*{\accentrule}{%
+	\noindent\begin{tikzpicture}\draw[marineblue,line width=1.4pt,line cap=round] (0,0) -- (\linewidth,0);\end{tikzpicture}\\[-4pt]
+	{\footnotesize\color{steelgray}\textit{Curriculum Vitae -- Europass Format}}%
+}%
+
+\newcommand*{\statbox}[2]{%
+	\begin{tcolorbox}[colback=paleblue,colframe=marineblue,boxrule=0.5pt,arc=2pt,
+		left=4pt,right=4pt,top=5pt,bottom=5pt,valign=center]
+		\centering{\color{marineblue}\textbf{\large #1}}\\[2pt]{\footnotesize\color{steelgray}#2}
+	\end{tcolorbox}%
+}%
+
+\ecvname{Elena Marchetti}
+\ecvfootername{Elena Marchetti}
+\ecvaddress{Via dei Mille 24, 40121 Bologna, Italy}
+\ecvtelephone[+39 345 872 1190]{+39 051 209 4477}
+\ecvemail{\href{mailto:e.marchetti@example-mail.eu}{e.marchetti@example-mail.eu}}
+\ecvhomepage{\url{www.elenamarchetti-research.eu}}
+\ecvnationality{Italian}
+\ecvdate{\today}
+
+\begin{document}
+\selectlanguage{english}
+
+\begin{europecv}
+
+\ecvpersonalinfo[10pt]
+
+\ecvitem{}{\accentrule}
+
+\ecvitem{\large\textbf{Desired employment /\\ Occupational field}}{\large\textbf{Senior Researcher / Associate Professor in Computational Linguistics --- multilingual NLP and language technology for under-resourced European languages}}
+
+\ecvitem{}{%
+\noindent
+\begin{minipage}[t]{0.32\linewidth}
+\statbox{9}{Years of NLP research experience}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.32\linewidth}
+\statbox{EUR 1.4M}{Competitive grant funding secured}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.32\linewidth}
+\statbox{21}{Peer-reviewed publications}
+\end{minipage}
+\par}
+
+\pdfbookmark{Work experience}{Work experience}
+\section{\textcolor{ecrugold}{\faBriefcase}\ \textcolor{marineblue}{Work Experience}}
+
+\ecvitem{04/2023 -- present}{\textbf{Marie Curie Individual Fellow}, Nimbus Institute for Advanced Study, Leuven, Belgium.}
+\ecvitem{Main activities and responsibilities}{Lead researcher on cross-lingual transfer learning for morphologically rich European languages; supervise two doctoral students; convene a graduate research seminar; manage the fellowship's EUR 212,933 budget.}
+\ecvitem{Type of business or sector}{Public research institute -- higher education and advanced research.}
+
+\ecvitem{09/2019 -- 03/2023}{\textbf{Postdoctoral Researcher}, Department of Computational Linguistics, University of Meridian, Bologna, Italy.}
+\ecvitem{Main activities and responsibilities}{Co-investigator on the Horizon Europe project SYNAPSE; designed and evaluated low-resource machine-translation pipelines for Sardinian, Friulian, and Occitan; authored six peer-reviewed papers; co-supervised three MSc theses.}
+\ecvitem{Type of business or sector}{Public university -- research and doctoral training.}
+
+\ecvitem{01/2016 -- 08/2019}{\textbf{Doctoral Researcher / Teaching Assistant}, Vertex Institute of Technology, Z\"urich, Switzerland.}
+\ecvitem{Main activities and responsibilities}{Doctoral research on neural morphological analysis; teaching assistant for \textit{Introduction to Computational Linguistics} (three cohorts, ca.\ 80 students each); built the group's first shared annotation toolchain.}
+\ecvitem{Type of business or sector}{Higher education -- computational linguistics research group.}
+
+\ecvitem{06/2014 -- 12/2015}{\textbf{Junior NLP Engineer}, Apex Language Technologies, Milan, Italy.}
+\ecvitem{Main activities and responsibilities}{Built rule-based and statistical NLP components for a commercial machine-translation product line; integrated a custom morphological analyser into the production pipeline.}
+\ecvitem{Type of business or sector}{Language-technology software company.}
+
+\pdfbookmark{Education and training}{Education and training}
+\section{\textcolor{ecrugold}{\faGraduationCap}\ \textcolor{marineblue}{Education and Training}}
+
+\ecvitem{01/2016 -- 11/2019}{\textbf{PhD in Computational Linguistics}, Vertex Institute of Technology, Z\"urich, Switzerland.}
+\ecvitem{Thesis}{\textit{Neural Approaches to Morphological Segmentation in Low-Resource European Languages} (summa cum laude). Supervisor: Prof.\ Martina Roth.}
+\ecvitem{Principal subjects}{Computational morphology, statistical and neural machine translation, corpus linguistics, formal language theory.}
+
+\ecvitem{09/2012 -- 07/2014}{\textbf{MSc in Language Technology}, University of Meridian, Bologna, Italy -- 110/110 cum laude.}
+\ecvitem{Principal subjects}{Computational syntax, statistical machine translation, corpus linguistics, speech processing.}
+
+\ecvitem{09/2009 -- 07/2012}{\textbf{BA in Modern Languages and Linguistics}, University of Meridian, Bologna, Italy -- 108/110.}
+\ecvitem{Principal subjects}{General and historical linguistics, Romance philology, English and French language and literature.}
+
+\pdfbookmark{Academic appointments}{Academic appointments}
+\section{\textcolor{ecrugold}{\faUniversity}\ \textcolor{marineblue}{Academic Appointments}}
+
+\ecvitem{10/2023 -- present}{\textbf{Visiting Lecturer}, Faculty of Arts, Nimbus Institute for Advanced Study, Leuven, Belgium -- graduate seminar \textit{Neural Methods for Endangered and Minority Languages}.}
+\ecvitem{09/2020 -- 06/2023}{\textbf{Adjunct Professor}, Department of Computational Linguistics, University of Meridian, Bologna, Italy -- undergraduate course \textit{Introduction to Natural Language Processing} (48 contact hours/year).}
+
+\pdfbookmark{Professional and scientific appointments}{Professional and scientific appointments}
+\section{\textcolor{ecrugold}{\faCertificate}\ \textcolor{marineblue}{Professional and Scientific Appointments}}
+
+\ecvitem{Since 2022}{\textbf{Member}, Association for Computational Linguistics (ACL) and European Language Resources Association (ELRA).}
+\ecvitem{Since 2021}{\textbf{Elected Member}, Meridian Young Academy of Sciences -- interdisciplinary panel on digital language preservation.}
+
+\pdfbookmark{Research areas}{Research areas}
+\section{\textcolor{ecrugold}{\faFlask}\ \textcolor{marineblue}{Research Areas}}
+
+\ecvitem{}{Multilingual and low-resource natural language processing; neural morphology and cross-lingual transfer; language technology for endangered and minority European languages; ethical and participatory design of NLP datasets.}
+
+\pdfbookmark{Personal skills and competences}{Personal skills and competences}
+\section{\textcolor{ecrugold}{\faUser}\ \textcolor{marineblue}{Personal Skills and Competences}}
+
+\ecvmothertongue[5pt]{Italian}
+\ecvitem{\large Other language(s)}{}
+\ecvlanguageheader{(*)}
+\ecvlanguage{English}{C2}{C2}{C1}{C1}{C1}
+\ecvlanguage{French}{B2}{B2}{B1}{B1}{B1}
+\ecvlanguage{German}{B1}{B1}{A2}{A2}{A2}
+\ecvlanguagefooter[10pt]{(*)}
+
+\ecvitem[10pt]{\large Social skills and competences}{Strong cross-cultural collaboration skills developed through four multinational Horizon Europe consortia spanning nine countries; experienced in mentoring early-career researchers and coordinating multilingual annotation teams of up to twelve contributors.}
+\ecvitem[10pt]{\large Organisational skills and competences}{Coordinated the data-collection work package (WP3) of the SYNAPSE project across five partner institutions; managed a EUR 340,000 sub-budget and the associated reporting to the funding agency.}
+\ecvitem[10pt]{\large Technical skills and competences}{Corpus design and annotation for low-resource languages; statistical and neural machine translation; morphological analysis and tagging; reproducible experiment design.}
+\ecvitem[10pt]{\large Computer skills and competences}{Python (PyTorch, Hugging Face Transformers), advanced SQL, Docker, Git/GitHub Actions, \LaTeX, Linux server administration; working knowledge of R and Julia for statistical analysis.}
+\ecvitem[10pt]{\large Artistic skills and competences}{Amateur classical guitarist; occasional public speaker on science communication for local youth outreach programmes.}
+\ecvitem[10pt]{\large Other skills and competences}{Grant writing and project budgeting for Horizon Europe and national funding calls; scientific illustration for data visualisation.}
+\ecvitem{\large Driving licence(s)}{Category B (car), held since 2011.}
+
+\pdfbookmark{Research projects and collaborations}{Research projects and collaborations}
+\section{\textcolor{ecrugold}{\faProjectDiagram}\ \textcolor{marineblue}{Research Projects and Collaborations}}
+
+\ecvitem{01/2021 -- 12/2024}{\textbf{SYNAPSE} -- Scalable Syntactic and Semantic Processing for Underrepresented European Languages (Horizon Europe, Grant Agreement No.\ 101087654). Role: Co-Investigator and WP3 lead. Total budget: EUR 3.1 million; Meridian sub-award EUR 620,000. Partners: University of Meridian, Nimbus Institute for Advanced Study, Apex Language Technologies, Synapse Digital Humanities Lab.}
+\ecvitem{09/2019 -- 08/2021}{\textbf{MERIDIAN-DIALECT} -- national grant for dialectal corpus construction (Sardinian, Friulian). PI: Prof.\ Carla Beninati. Role: Postdoctoral Researcher.}
+\ecvitem{04/2023 -- 03/2025}{\textbf{CROSSLING} -- Marie Curie Individual Fellowship, ``Cross-Lingual Transfer for Low-Resource Morphology.'' Grant Agreement No.\ 890432, EUR 212,933. Host: Nimbus Institute for Advanced Study.}
+
+\pdfbookmark{Research visits}{Research visits}
+\section{\textcolor{ecrugold}{\faPlane}\ \textcolor{marineblue}{Research Visits}\footnote{At least one week.}}
+
+\ecvitem{03/2022 (3 weeks)}{Synapse Digital Humanities Lab, Berlin, Germany -- hosted by Dr.\ Thomas Reinholt; collaborative annotation-scheme design.}
+\ecvitem{07/2018 (6 weeks)}{Vertex Institute of Technology, satellite laboratory, Lausanne, Switzerland -- hosted by Prof.\ Anne-Sophie Girard; joint work on morphological segmentation benchmarks.}
+
+\pdfbookmark{Invited talks}{Invited talks}
+\section{\textcolor{ecrugold}{\faMicrophone}\ \textcolor{marineblue}{Invited Talks}}
+
+\ecvitem{2024}{``Neural Morphology for Europe's Minority Languages,'' Nimbus Institute Colloquium Series, Leuven, Belgium.}
+\ecvitem{2023}{``Cross-Lingual Transfer Beyond High-Resource Languages,'' panel keynote, European Chapter Conference of the ACL, Valletta, Malta.}
+\ecvitem{2021}{``Building NLP Datasets Ethically,'' Meridian Digital Humanities Seminar, Bologna, Italy.}
+
+\pdfbookmark{Scientific and editorial activity}{Scientific and editorial activity}
+\section{\textcolor{ecrugold}{\faPen}\ \textcolor{marineblue}{Scientific and Editorial Activity}}
+
+\subpdfbookmark{Editorial board}{Editorial board}
+\ecvitem{}{\textbf{Editorial Board Member}}
+\ecvitem{Since 2023}{\textit{Journal of Multilingual Language Technology} -- editorial board member.}
+
+\vspace*{0.1em}
+
+\subpdfbookmark{Guest-edited special issues}{Guest-edited special issues}
+\ecvitem{}{\textbf{Guest-Edited Special Issues}}
+\ecvitem{2022}{``Low-Resource NLP for European Languages,'' special issue, \textit{Journal of Multilingual Language Technology} (co-editor with Dr.\ Thomas Reinholt).}
+
+\pdfbookmark{Conference services}{Conference services}
+\section{\textcolor{ecrugold}{\faUsers}\ \textcolor{marineblue}{Conference Services}}
+
+\subpdfbookmark{Program committees}{Program committees}
+\ecvitem{}{\textbf{Programme Committee Member}}
+\ecvitem{2021 -- 2024}{ACL, European Chapter Conference of the ACL, and LREC -- peer reviewer.}
+
+\vspace*{0.1em}
+
+\subpdfbookmark{Session chairing}{Session chairing}
+\ecvitem{}{\textbf{Session Chair}}
+\ecvitem{2023}{``Multilingual and Low-Resource NLP'' track, European Chapter Conference of the ACL, Valletta, Malta.}
+
+\pdfbookmark{Teaching activity}{Teaching activity}
+\section{\textcolor{ecrugold}{\faChalkboardTeacher}\ \textcolor{marineblue}{Teaching Activity}}
+
+\ecvitem{AY 2020/21 -- 2022/23}{\textit{Introduction to Natural Language Processing}, undergraduate, 6 ECTS, University of Meridian.}
+\ecvitem{AY 2023/24 -- present}{\textit{Neural Methods for Endangered and Minority Languages}, graduate seminar, 4 ECTS, Nimbus Institute for Advanced Study.}
+\ecvitem{Supervision}{Two doctoral students (ongoing); seven completed MSc theses (2019 -- 2024).}
+
+\pdfbookmark{Grants and awards}{Grants and awards}
+\section{\textcolor{ecrugold}{\faAward}\ \textcolor{marineblue}{Grants and Awards}}
+
+\ecvitem{2023}{Marie Curie Individual Fellowship, EUR 212,933.}
+\ecvitem{2021}{Meridian Young Researcher Prize for Digital Humanities, Meridian Academic Foundation.}
+\ecvitem{2019}{Best Doctoral Thesis Award, Vertex Institute of Technology.}
+\ecvitem{2018}{Travel Grant, European Language Resources Association (ELRA), EUR 1,200.}
+
+\pdfbookmark{Publications}{Publications}
+\section{\textcolor{ecrugold}{\faBook}\ \textcolor{marineblue}{Publications}}
+
+\subpdfbookmark{Peer-reviewed journal articles}{Peer-reviewed journal articles}
+\ecvitem{}{\textbf{Peer-Reviewed Journal Articles}}
+\ecvitem[6pt]{}{%
+\begin{itemize}
+\item Marchetti, E., Reinholt, T. (2024). ``Cross-Lingual Morphological Transfer for Under-Resourced Romance Varieties.'' \textit{Journal of Multilingual Language Technology}, 12(3), 145--168.
+\item Marchetti, E., Beninati, C. (2023). ``Annotation Schemes for Endangered Dialects: A Participatory Approach.'' \textit{Computational Linguistics Quarterly}, 9(1), 22--47.
+\item Marchetti, E. (2022). ``Neural Segmentation Meets Morphological Typology.'' \textit{Language Technology and Evaluation Review}, 15(2), 201--226.
+\item Marchetti, E., Roth, M. (2021). ``Benchmarking Low-Resource MT for Regional European Languages.'' \textit{Journal of Multilingual Language Technology}, 8(4), 301--329.
+\item Marchetti, E. (2020). ``A Survey of Morphological Segmentation Approaches for Romance Languages.'' \textit{Computational Linguistics Quarterly}, 6(2), 88--114.
+\end{itemize}}
+
+\vspace*{0.1em}
+
+\subpdfbookmark{Peer-reviewed conference proceedings}{Peer-reviewed conference proceedings}
+\ecvitem{}{\textbf{Peer-Reviewed Conference Proceedings}}
+\ecvitem[6pt]{}{%
+\begin{itemize}
+\item Marchetti, E., Reinholt, T. (2023). ``Cross-Lingual Transfer Beyond High-Resource Languages.'' \textit{Proceedings of the European Chapter Conference of the ACL}, Valletta, Malta, 210--222.
+\item Marchetti, E. (2022). ``Data-Efficient Fine-Tuning for Minority-Language NER.'' \textit{Proceedings of LREC}, Marseille, France, 3301--3310.
+\item Marchetti, E., Girard, A.-S. (2019). ``Morphological Segmentation Benchmarks for Romance Varieties.'' \textit{Proceedings of the ACL Student Research Workshop}, Florence, Italy, 55--63.
+\item Marchetti, E., Roth, M. (2018). ``Neural Models for Sardinian Morphology.'' \textit{Proceedings of LREC}, Miyazaki, Japan, 1904--1911.
+\end{itemize}}
+
+\vspace*{0.1em}
+
+\subpdfbookmark{Book chapters}{Book chapters}
+\ecvitem{}{\textbf{Book Chapters}}
+\ecvitem[6pt]{}{%
+\begin{itemize}
+\item Marchetti, E. (2023). ``Digital Revitalisation of Minority European Languages.'' In T.\ Reinholt (Ed.), \textit{Language Technology and Cultural Heritage}, Nexa Academic Press, 133--156.
+\item Marchetti, E., Beninati, C. (2020). ``Corpus Construction for Under-Documented Dialects.'' In M.\ Roth (Ed.), \textit{Handbook of Computational Dialectology}, Vertex University Press, 45--68.
+\end{itemize}}
+
+\pdfbookmark{Additional information}{Additional information}
+\section{\textcolor{ecrugold}{\faInfoCircle}\ \textcolor{marineblue}{Additional Information}}
+
+\ecvitem{}{Full publication list, datasets, and code are available at the homepage listed above.}
+\ecvitem{References}{Available upon request, including from Prof.\ Martina Roth (PhD supervisor, Vertex Institute of Technology) and Dr.\ Thomas Reinholt (Synapse Digital Humanities Lab).}
+\ecvitem[10pt]{}{\footnotesize\color{steelgray}I hereby authorise the processing of my personal data pursuant to Regulation (EU) 2016/679 (GDPR) for the purposes of the present recruitment procedure.}
+
+\end{europecv}
+
+\vspace{0.2cm}
+\SignatureAndDate{Elena Marchetti}
+
+\end{document}

@@ -1,0 +1,323 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[margin=0.6in,top=0.6in,bottom=0.6in]{geometry}
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+\usepackage{microtype}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{calc,positioning,shapes.geometric}
+\usepackage[most]{tcolorbox}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{colortbl}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage{fontawesome5}
+\usepackage[hidelinks]{hyperref}
+
+% Color Palette Definition
+\definecolor{primary}{HTML}{0F172A}      % Deep Navy / Slate
+\definecolor{accent}{HTML}{2563EB}       % Electric Royal Blue
+\definecolor{emerald}{HTML}{059669}      % Growth/Finance Green
+\definecolor{darktext}{HTML}{334155}     % Charcoal Text
+\definecolor{lightbg}{HTML}{F8FAFC}      % Card / Box Soft Gray
+\definecolor{cardborder}{HTML}{E2E8F0}   % Subtle Border
+\definecolor{subtletext}{HTML}{64748B}   % Muted Subtitle Text
+
+\color{darktext}
+
+% Custom Column Types
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+
+% Section Formatting
+\titleformat{\section}
+  {\color{primary}\large\bfseries}
+  {}{0pt}{}
+  [\color{accent}\titlerule]
+\titlespacing*{\section}{0pt}{10pt}{6pt}
+
+\titleformat{\subsection}
+  {\color{primary}\bfseries\normalsize}
+  {}{0pt}{}
+\titlespacing*{\subsection}{0pt}{6pt}{4pt}
+
+% Header & Footer setup
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0.5pt}
+\renewcommand{\footrule}{\color{cardborder}\hrule height 0.5pt\vspace{2pt}}
+\fancyfoot[L]{\color{subtletext}\footnotesize\textbf{APEX VENTURE PARTNERS} \quad|\quad CONFIDENTIAL INVESTMENT MEMORANDUM}
+\fancyfoot[R]{\color{subtletext}\footnotesize Page \thepage\ of 2}
+
+% Custom tcolorbox styles
+\tcbset{
+  metricbox/.style={
+    enhanced,
+    colback=lightbg,
+    colframe=cardborder,
+    arc=4pt,
+    boxrule=0.8pt,
+    top=6pt,bottom=6pt,left=8pt,right=8pt,
+    halign=center
+  },
+  dealbox/.style={
+    enhanced,
+    colback=lightbg,
+    colframe=primary,
+    arc=4pt,
+    boxrule=1.2pt,
+    top=8pt,bottom=8pt,left=10pt,right=10pt
+  }
+}
+
+\setlist[itemize]{noitemsep, topsep=2pt, parsep=2pt, partopsep=0pt, leftmargin=14pt}
+
+\begin{document}
+
+% MEMO HEADER BLOCK
+\begin{tcolorbox}[dealbox]
+  \begin{minipage}[t]{0.58\textwidth}
+    {\color{accent}\small\bfseries\faBuilding\ APEX VENTURE PARTNERS — FUND IV}\\[2pt]
+    {\color{primary}\Huge\bfseries Nexa Systems, Inc.}\\[2pt]
+    {\color{subtletext}\small\faTag\ Series A Investment Committee Recommendation}
+  \end{minipage}%
+  \hfill
+  \begin{minipage}[t]{0.38\textwidth}
+    \raggedleft
+    {\color{subtletext}\footnotesize \textbf{DATE:} October 24, 2026}\\[2pt]
+    {\color{subtletext}\footnotesize \textbf{LEAD PARTNER:} Marcus Vance}\\[2pt]
+    {\color{subtletext}\footnotesize \textbf{DEAL TEAM:} Elena Rostova, David Chen}\\[2pt]
+    {\color{subtletext}\footnotesize \textbf{STATUS:} Final IC Review}
+  \end{minipage}
+\end{tcolorbox}
+
+\vspace{-4pt}
+
+% EXECUTIVE SUMMARY & KEY TERMS TABLE
+\begin{minipage}[t]{0.48\textwidth}
+  \section*{1. EXECUTIVE SUMMARY}
+  \textbf{Nexa Systems} provides an enterprise-grade AI orchestrator that automates complex multi-step workflows across legacy ERP and modern SaaS stacks. Founded by former Synapse and Meridian engineers, Nexa has achieved \textbf{\$2.4M ARR} in 14 months with 210\% YoY growth and 138\% Net Revenue Retention.
+
+  We recommend a \textbf{\$5.0M investment} in Nexa's \$15.0M Series A round alongside Vertex Capital, securing an 11.1\% ownership stake at a \$45.0M post-money valuation. Nexa's unique zero-shot integration architecture cuts enterprise deployment cycles from 6 months to 4 days.
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.49\textwidth}
+  \section*{2. KEY DEAL TERMS}
+  \small
+  \rowcolors{2}{lightbg}{white}
+  \begin{tabularx}{\textwidth}{@{} X r @{}}
+    \toprule
+    \textbf{Term} & \textbf{Detail} \\
+    \midrule
+    Round Size & \$15.0M Series A \\{}
+    Apex Allocation & \$5.0M (33.3\% of round) \\{}
+    Pre-Money Valuation & \$30.0M \\{}
+    Post-Money Valuation & \$45.0M \\{}
+    Target Ownership & 11.1\% (Post-money) \\{}
+    Lead Investor & Vertex Capital (\$8.0M) \\{}
+    Liquidation Preference & 1x Non-Participating \\{}
+    Board Representation & 1 Director (M. Vance), 1 Observer \\
+    \bottomrule
+  \end{tabularx}
+\end{minipage}
+
+\vspace{4pt}
+
+% MARKET OPPORTUNITY & CALLOUT METRICS
+\section*{3. MARKET OPPORTUNITY \& TAM CALLOUTS}
+
+\begin{minipage}[t]{0.31\textwidth}
+  \begin{tcolorbox}[metricbox]
+    {\color{subtletext}\scriptsize\bfseries TOTAL ADDRESSABLE MARKET}\\[2pt]
+    {\color{primary}\Huge\bfseries \$48B}\\[2pt]
+    {\color{darktext}\tiny Global Enterprise Automation Software}
+  \end{tcolorbox}
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.31\textwidth}
+  \begin{tcolorbox}[metricbox]
+    {\color{subtletext}\scriptsize\bfseries SERVICEABLE ADDRESSABLE MARKET}\\[2pt]
+    {\color{accent}\Huge\bfseries \$14B}\\[2pt]
+    {\color{darktext}\tiny Fortune 2000 Financial \& Logistics Workflows}
+  \end{tcolorbox}
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.31\textwidth}
+  \begin{tcolorbox}[metricbox]
+    {\color{subtletext}\scriptsize\bfseries SERVICEABLE OBTAINABLE MARKET}\\[2pt]
+    {\color{emerald}\Huge\bfseries \$1.8B}\\[2pt]
+    {\color{darktext}\tiny Mid-Market Banking \& Supply Chain (NA)}
+  \end{tcolorbox}
+\end{minipage}
+
+\par\vspace{4pt}
+
+\begin{itemize}
+  \item \textbf{Tailwinds:} Legacy Robotic Process Automation (RPA) tools fail at non-deterministic tasks. Enterprises spend over \$120B annually on custom API glue code and manual exception handling.
+  \item \textbf{Urgency:} 74\% of Global 2000 CIOs survey AI agent orchestration as a top-3 priority for FY2027 IT budgets.
+\end{itemize}
+
+\vspace{2pt}
+
+% PRODUCT & TECHNOLOGY ADVANTAGE
+\section*{4. PRODUCT \& PROPRIETARY TECHNOLOGY}
+Nexa's core platform, \textbf{Synapse-Engine v3}, acts as an autonomous semantic broker across disparate IT systems.
+
+\begin{minipage}[t]{0.48\textwidth}
+  \subsection*{Key Differentiators}
+  \begin{itemize}
+    \item \textbf{Autonomous API Synthesizer:} Generates robust synthetic connectors on-the-fly without manual schema mapping.
+    \item \textbf{Sub-100ms Latency:} Edge-optimized inference pipeline ensures real-time transaction processing.
+    \item \textbf{Bank-Grade Security:} SOC2 Type II certified, zero-data-retention execution sandbox.
+  \end{itemize}
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.49\textwidth}
+  \subsection*{Customer Traction Highlights}
+  \begin{itemize}
+    \item \textbf{Nimbus Logistics:} Replaced 14 legacy RPA scripts; reduced invoice processing cost by 68\%.
+    \item \textbf{Meridian Financial:} Automated regulatory compliance checks, saving 12,000 auditor hours annually.
+    \item \textbf{ACV Health:} Expanded contract value from \$45k pilot to \$240k annual contract within 5 months.
+  \end{itemize}
+\end{minipage}
+
+\newpage
+
+% FINANCIAL PERFORMANCE & UNIT ECONOMICS
+\section*{5. FINANCIAL METRICS \& UNIT ECONOMICS}
+
+\begin{minipage}[t]{0.52\textwidth}
+  \subsection*{Historical \& Projected Financials (\$M)}
+  \small
+  \rowcolors{2}{lightbg}{white}
+  \begin{tabularx}{\textwidth}{@{} X r r r r @{}}
+    \toprule
+    \textbf{Metric} & \textbf{FY25A} & \textbf{FY26E} & \textbf{FY27P} & \textbf{FY28P} \\
+    \midrule
+    ARR & \$0.8M & \$2.4M & \$7.5M & \$18.2M \\{}
+    ARR YoY Growth & --- & 200\% & 212.5\% & 142.7\% \\{}
+    Gross Margin & 74\% & 81\% & 84\% & 85\% \\{}
+    Net Retention Rate & 124\% & 138\% & 135\% & 130\% \\{}
+    CAC Payback & 14 mo & 10 mo & 8.5 mo & 8 mo \\{}
+    Burn Multiple & 1.8x & 1.1x & 0.7x & Profitable \\
+    \bottomrule
+  \end{tabularx}
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.45\textwidth}
+  \subsection*{Unit Economics Breakdown}
+  \begin{tcolorbox}[enhanced, colback=lightbg, colframe=cardborder, arc=4pt, boxrule=0.8pt, top=6pt, bottom=6pt]
+    \small
+    \begin{itemize}[leftmargin=10pt]
+      \item \textbf{Average Contract Value (ACV):} \$85,000 / year
+      \item \textbf{LTV / CAC Ratio:} 5.4x (Industry Benchmark: $>$3.0x)
+      \item \textbf{Gross Margin:} 81\% (driven by custom LLM caching layer)
+      \item \textbf{Net Dollar Retention:} 138\% (land-and-expand model)
+    \end{itemize}
+  \end{tcolorbox}
+\end{minipage}
+
+\vspace{4pt}
+
+% RISK ANALYSIS & MITIGATION MATRIX
+\section*{6. RISK ANALYSIS \& MITIGATION MATRIX}
+
+\small
+\rowcolors{2}{lightbg}{white}
+\begin{tabularx}{\textwidth}{@{} L{2.6cm} Y @{}}
+  \toprule
+  \textbf{Risk Category} & \textbf{Identified Risk \& Mitigation Strategy} \\
+  \midrule
+  \textbf{Big-Tech Competition} & \textbf{Risk:} Hyperscalers (Nimbus, AWS) launching native agent workflows.\\[1pt]
+  & \textbf{Mitigation:} Nexa focuses on complex cross-vendor, multi-cloud legacy enterprise integrations where single ecosystem tools lack permission and visibility. \\{}
+  \textbf{Key Person Risk} & \textbf{Risk:} Heavy reliance on co-founders for core algorithmic IP.\\[1pt]
+  & \textbf{Mitigation:} Series A capital funds 3 Senior AI Researcher hires from Vertex Labs; all core IP is fully assigned to Nexa with 4-year unvested founder stock acceleration clauses. \\{}
+  \textbf{Sales Cycle Friction} & \textbf{Risk:} Enterprise security reviews delaying closure by 60+ days.\\[1pt]
+  & \textbf{Mitigation:} Pre-built SOC2, HIPAA, and ISO27001 compliance modules cut security review timelines to under 14 days. \\
+  \bottomrule
+\end{tabularx}
+
+\vspace{4pt}
+
+% TEAM OVERVIEW
+\section*{7. MANAGEMENT TEAM \& ADVISORS}
+
+\begin{minipage}[t]{0.48\textwidth}
+  \subsection*{Key Leadership}
+  \begin{itemize}
+    \item \textbf{Dr. Julian Vance (CEO \& Co-Founder):} Ex-Head of AI at Synapse Systems; Ph.D. in CS from MIT. Led 0-to-1 product team generating \$40M ARR.
+    \item \textbf{Sarah Jenkins (CTO \& Co-Founder):} Former Staff Engineer at Meridian; holds 12 patents in distributed systems.
+    \item \textbf{Robert Sterling (CRO):} Former VP Sales at Apex Software; scaled enterprise ARR from \$5M to \$50M in 4 years.
+  \end{itemize}
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.49\textwidth}
+  \subsection*{Syndicate \& Advisory Board}
+  \begin{itemize}
+    \item \textbf{Vertex Capital (Lead):} Investing \$8.0M; represented on Board by Senior Partner Claire Thorne.
+    \item \textbf{Angel Investors:} Includes former CIO of Nimbus Global and Founder of Nexa Cloud.
+    \item \textbf{Apex Value Add:} GTM enterprise sales acceleration, introducing 12 portfolio companies for immediate pilot deployment.
+  \end{itemize}
+\end{minipage}
+
+\vspace{4pt}
+
+% EXIT SCENARIOS & RECOMMENDATION
+\section*{8. RETURNS MODEL \& FINAL RECOMMENDATION}
+
+\begin{minipage}[t]{0.52\textwidth}
+  \subsection*{Return Scenarios (5-Year Horizon)}
+  \small
+  \rowcolors{2}{lightbg}{white}
+  \begin{tabularx}{\textwidth}{@{} X r r r @{}}
+    \toprule
+    \textbf{Scenario} & \textbf{Exit EV} & \textbf{Apex Value} & \textbf{MOIC / IRR} \\
+    \midrule
+    \textbf{Bull Case} (M\&A/IPO) & \$600M & \$66.6M & \textbf{13.3x / 68\%} \\{}
+    \textbf{Base Case} (Strategic M\&A) & \$250M & \$27.7M & \textbf{5.5x / 41\%} \\{}
+    \textbf{Bear Case} (Recap/Growth) & \$80M & \$8.8M & \textbf{1.8x / 12\%} \\
+    \bottomrule
+  \end{tabularx}
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.45\textwidth}
+  \subsection*{Investment Committee Recommendation}
+  \begin{tcolorbox}[enhanced, colback=lightbg, colframe=emerald, arc=4pt, boxrule=1pt, top=6pt, bottom=6pt]
+    \small
+    \textbf{\color{emerald}\faCheckCircle\ UNANIMOUS APPROVAL RECOMMENDED}
+
+    Nexa presents an exceptional opportunity to back a top-tier technical team disrupting a \$48B market with clear product-market fit and best-in-class NDR (138\%).
+  \end{tcolorbox}
+\end{minipage}
+
+\vspace{8pt}
+
+% SIGNATURE BLOCK
+\begin{tcolorbox}[enhanced, colback=white, colframe=cardborder, arc=2pt, boxrule=0.5pt, top=6pt, bottom=6pt]
+  \centering\small
+  \begin{minipage}[t]{0.28\textwidth}
+    \centering
+    \rule{0.8\textwidth}{0.4pt}\\[2pt]
+    \textbf{Marcus Vance}\\ Lead Partner
+  \end{minipage}%
+  \hfill
+  \begin{minipage}[t]{0.28\textwidth}
+    \centering
+    \rule{0.8\textwidth}{0.4pt}\\[2pt]
+    \textbf{Elena Rostova}\\ Principal
+  \end{minipage}%
+  \hfill
+  \begin{minipage}[t]{0.28\textwidth}
+    \centering
+    \rule{0.8\textwidth}{0.4pt}\\[2pt]
+    \textbf{Investment Committee}\\ Apex Venture Partners
+  \end{minipage}
+\end{tcolorbox}
+
+\end{document}

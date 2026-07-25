@@ -1,0 +1,658 @@
+\documentclass[10pt, landscape]{article}
+
+% --- Packages ---
+\usepackage[a4paper, margin=0.35in, top=0.3in, bottom=0.3in]{geometry}
+\usepackage[table]{xcolor}
+\usepackage{amsmath, amssymb}
+\usepackage{tikz}
+\usetikzlibrary{calc, positioning, shapes.geometric, backgrounds}
+\usepackage[most]{tcolorbox}
+\usepackage{fontawesome5}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{colortbl}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage{multicol}
+\usepackage{microtype}
+\usepackage{helvet}
+
+\renewcommand{\familydefault}{\sfdefault}
+
+% --- Color Palette (2-4 Core Theme Colors + Accent Tints) ---
+\definecolor{ExecNavy}{HTML}{1E293B}     % Core Theme Primary: Slate Navy
+\definecolor{ExecTeal}{HTML}{0D9488}     % Core Theme Secondary: Teal Accent
+\definecolor{ExecGold}{HTML}{D97706}     % Core Theme Accent: Warm Amber
+\definecolor{ExecIndigo}{HTML}{4F46E5}   % Core Theme Highlight: Deep Indigo
+\definecolor{ExecBg}{HTML}{F8FAFC}       % Soft Background Slate Tint
+\definecolor{ExecCardBg}{HTML}{FFFFFF}   % Card Background White
+\definecolor{ExecBorder}{HTML}{CBD5E1}   % Subtle Line Border
+\definecolor{ExecText}{HTML}{0F172A}     % Dark Primary Text
+\definecolor{ExecMuted}{HTML}{64748B}    % Secondary Muted Text
+
+% Category Highlight Color Tints
+\definecolor{DeepWorkBg}{HTML}{E0F2FE}
+\definecolor{DeepWorkTxt}{HTML}{0369A1}
+\definecolor{MeetingBg}{HTML}{CCFBF1}
+\definecolor{MeetingTxt}{HTML}{0F766E}
+\definecolor{ClientBg}{HTML}{FEF3C7}
+\definecolor{ClientTxt}{HTML}{B45309}
+\definecolor{AdminBg}{HTML}{E0E7FF}
+\definecolor{AdminTxt}{HTML}{4338CA}
+\definecolor{PersonalBg}{HTML}{F1F5F9}
+\definecolor{PersonalTxt}{HTML}{475569}
+
+% --- Page Header & Footer Setup ---
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0.4pt}
+\lfoot{\small\color{ExecMuted}\faCalendar~ \textbf{Nexa Executive Time-Blocking System} \quad|\quad Leadership Operating Framework}
+\cfoot{\small\color{ExecMuted}Page \thepage\ of 4}
+\rfoot{\small\color{ExecMuted}Confidential -- Internal Executive Use Only}
+
+% --- Custom Box Styles ---
+\tcbset{
+  execbox/.style={
+    colback=white,
+    colframe=ExecNavy,
+    coltitle=white,
+    fonttitle=\bfseries\sffamily\small,
+    boxrule=0.8pt,
+    arc=3pt,
+    left=5pt, right=5pt, top=4pt, bottom=4pt,
+    toptitle=3pt, bottomtitle=3pt
+  },
+  lightbox/.style={
+    colback=ExecBg,
+    colframe=ExecBorder,
+    coltitle=ExecNavy,
+    fonttitle=\bfseries\sffamily\small,
+    boxrule=0.5pt,
+    arc=3pt,
+    left=5pt, right=5pt, top=4pt, bottom=4pt,
+    toptitle=2pt, bottomtitle=2pt
+  }
+}
+
+\begin{document}
+
+% ==========================================
+% PAGE 1: WEEK 42 EXECUTIVE STRATEGY & TIME-BLOCKING GRID
+% ==========================================
+
+% --- Top Banner Header ---
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[ExecNavy] (current page.north west) rectangle ($(current page.north east)+(0,-1.1in)$);
+  \node[anchor=west, text=white] at ($(current page.north west)+(0.4in,-0.55in)$) {
+    \begin{minipage}{0.45\paperwidth}
+      {\fontsize{18}{22}\selectfont\bfseries WEEKLY TIME-BLOCKING CALENDAR}\\[2pt]
+      {\small\color{ExecTeal!40}\faBriefcase~ EXECUTIVE OPERATING DASHBOARD \quad|\quad Q4 WEEK 42}
+    \end{minipage}
+  };
+  \node[anchor=east, text=white] at ($(current page.north east)+(-0.4in,-0.55in)$) {
+    \begin{minipage}{0.45\paperwidth}
+      \begin{flushright}
+        {\small\bfseries EXECUTIVE: Marcus Vance, VP Operations}\\[2pt]
+        {\footnotesize\color{white!80} ORGANIZATION: Nexa Global Solutions \quad|\quad DATES: Oct 19 -- Oct 25, 2026}
+      \end{flushright}
+    \end{minipage}
+  };
+\end{tikzpicture}
+
+\vspace{0.75in}
+
+% --- Layout: Left Sidebar + Main Matrix ---
+\begin{minipage}[t]{0.26\linewidth}
+
+  \begin{tcolorbox}[execbox, title={\faBullseye~ WEEKLY STRATEGIC OUTCOMES}]
+    \begin{enumerate}[leftmargin=12pt, label=\bfseries\arabic*., itemsep=2pt, topsep=1pt]
+      \footnotesize
+      \item \textbf{Nexa Cloud Migration}: Complete final architectural sign-off with Vertex Tech engineering team.
+      \item \textbf{Synapse AI Q4 Budget}: Secure \$1.2M executive board approval for expansion.
+      \item \textbf{Operations Restructuring}: Finalize leadership succession plan with HR.
+    \end{enumerate}
+  \end{tcolorbox}
+
+  \vspace{3pt}
+
+  \begin{tcolorbox}[lightbox, title={\faChartLine~ KEY PERFORMANCE INDICATORS}]
+    \small
+    \begin{tabularx}{\linewidth}{X r}
+      \hline
+      \textbf{Metric Target} & \textbf{Status} \\
+      \hline
+      Deep Work Hours ($\ge 15$h) & \textbf{16.5h} \color{ExecTeal}\faCheck \\
+      Executive 1-on-1s (6 slots) & \textbf{6/6} \color{ExecTeal}\faCheck \\
+      Critical Decision Slips & \textbf{0} \color{ExecTeal}\faCheck \\
+      Inbox Zero EOD & \textbf{4/5 days} \\
+      \hline
+    \end{tabularx}
+  \end{tcolorbox}
+
+  \vspace{3pt}
+
+  \begin{tcolorbox}[lightbox, title={\faCheckSquare~ DAILY EXECUTIVE DISCIPLINES}]
+    \footnotesize
+    \begin{tabularx}{\linewidth}{X c c c c c}
+      \hline
+      \textbf{Habit / Discipline} & \textbf{M} & \textbf{T} & \textbf{W} & \textbf{T} & \textbf{F} \\
+      \hline
+      Morning Focus (07:00--08:30) & \color{ExecTeal}\faCheckSquare & \color{ExecTeal}\faCheckSquare & \color{ExecTeal}\faCheckSquare & \color{ExecTeal}\faCheckSquare & \color{ExecTeal}\faCheckSquare \\
+      Deep Work Block (No Slack) & \color{ExecTeal}\faCheckSquare & \color{ExecTeal}\faCheckSquare & \color{ExecTeal}\faCheckSquare & \color{ExecMuted}\faSquare & \color{ExecTeal}\faCheckSquare \\
+      Midday Walk / Wellness & \color{ExecTeal}\faCheckSquare & \color{ExecMuted}\faSquare & \color{ExecTeal}\faCheckSquare & \color{ExecTeal}\faCheckSquare & \color{ExecTeal}\faCheckSquare \\
+      Daily Shutdown / Review & \color{ExecTeal}\faCheckSquare & \color{ExecTeal}\faCheckSquare & \color{ExecTeal}\faCheckSquare & \color{ExecTeal}\faCheckSquare & \color{ExecTeal}\faCheckSquare \\
+      \hline
+    \end{tabularx}
+  \end{tcolorbox}
+
+  \vspace{3pt}
+
+  \begin{tcolorbox}[execbox, title={\faExclamationTriangle~ CRITICAL FOLLOW-UPS}]
+    \begin{itemize}[leftmargin=10pt, itemsep=2pt, topsep=1pt]
+      \tiny
+      \item \textbf{Elena Rostova} (Meridian): Confirm Q4 expansion timeline \& logistics.
+      \item \textbf{David Chen} (Nimbus): Review security audit compliance for Nexa Core.
+      \item \textbf{Sarah Jenkins} (Apex): Finalize vendor contract SLA terms by Thu 15:00.
+    \end{itemize}
+  \end{tcolorbox}
+
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.72\linewidth}
+
+  % Category Legend Bar
+  \begin{tcolorbox}[colback=ExecBg, colframe=ExecBorder, boxrule=0.4pt, arc=2pt, left=4pt, right=4pt, top=3pt, bottom=3pt]
+    \centering\footnotesize
+    \textbf{\faTags~ Time-Block Categories:} \quad
+    \colorbox{DeepWorkBg}{\color{DeepWorkTxt}\textbf{\, Deep Work / Strategy \,}} \quad
+    \colorbox{MeetingBg}{\color{MeetingTxt}\textbf{\, Leadership / Team \,}} \quad
+    \colorbox{ClientBg}{\color{ClientTxt}\textbf{\, Stakeholders / Clients \,}} \quad
+    \colorbox{AdminBg}{\color{AdminTxt}\textbf{\, Buffer / Ops / Admin \,}} \quad
+    \colorbox{PersonalBg}{\color{PersonalTxt}\textbf{\, Personal / Health \,}}
+  \end{tcolorbox}
+
+  \vspace{2pt}
+
+  % Weekly Time Grid Table
+  \setlength{\extrarowheight}{1.5pt}
+  \begin{tabularx}{\linewidth}{|c|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}X|}
+    \hline
+    \rowcolor{ExecNavy}
+    \color{white}\textbf{Time} & \color{white}\textbf{MON (10/19)} & \color{white}\textbf{TUE (10/20)} & \color{white}\textbf{WED (10/21)} & \color{white}\textbf{THU (10/22)} & \color{white}\textbf{FRI (10/23)} \\
+    \hline
+    \textbf{07:00} &
+    \colorbox{PersonalBg}{\parbox[t]{0.92\linewidth}{\tiny\color{PersonalTxt}\textbf{Morning Routine}\\Gym \& Mindset}} &
+    \colorbox{PersonalBg}{\parbox[t]{0.92\linewidth}{\tiny\color{PersonalTxt}\textbf{Morning Routine}\\30m Run \& Prep}} &
+    \colorbox{PersonalBg}{\parbox[t]{0.92\linewidth}{\tiny\color{PersonalTxt}\textbf{Morning Routine}\\Gym \& Reading}} &
+    \colorbox{PersonalBg}{\parbox[t]{0.92\linewidth}{\tiny\color{PersonalTxt}\textbf{Morning Routine}\\Cardio \& Podcast}} &
+    \colorbox{PersonalBg}{\parbox[t]{0.92\linewidth}{\tiny\color{PersonalTxt}\textbf{Morning Routine}\\Gym \& Meditate}} \\
+    \hline
+    \textbf{08:00} &
+    \colorbox{AdminBg}{\parbox[t]{0.92\linewidth}{\tiny\color{AdminTxt}\textbf{Daily Kickoff}\\Inbox \& Priorities}} &
+    \colorbox{AdminBg}{\parbox[t]{0.92\linewidth}{\tiny\color{AdminTxt}\textbf{Daily Kickoff}\\Exec Triage}} &
+    \colorbox{AdminBg}{\parbox[t]{0.92\linewidth}{\tiny\color{AdminTxt}\textbf{Daily Kickoff}\\Calendar Alignment}} &
+    \colorbox{AdminBg}{\parbox[t]{0.92\linewidth}{\tiny\color{AdminTxt}\textbf{Daily Kickoff}\\Comms \& Slack}} &
+    \colorbox{AdminBg}{\parbox[t]{0.92\linewidth}{\tiny\color{AdminTxt}\textbf{Weekly Review}\\Prep \& Triage}} \\
+    \hline
+    \textbf{09:00} &
+    \colorbox{DeepWorkBg}{\parbox[t]{0.92\linewidth}{\tiny\color{DeepWorkTxt}\textbf{DEEP WORK (2h)}\\Cloud Arch Plan}} &
+    \colorbox{MeetingBg}{\parbox[t]{0.92\linewidth}{\tiny\color{MeetingTxt}\textbf{Nexa Leadership}\\Weekly Operations}} &
+    \colorbox{DeepWorkBg}{\parbox[t]{0.92\linewidth}{\tiny\color{DeepWorkTxt}\textbf{DEEP WORK (2h)}\\Synapse AI Deck}} &
+    \colorbox{MeetingBg}{\parbox[t]{0.92\linewidth}{\tiny\color{MeetingTxt}\textbf{Board Alignment}\\Q4 Strategy Sync}} &
+    \colorbox{DeepWorkBg}{\parbox[t]{0.92\linewidth}{\tiny\color{DeepWorkTxt}\textbf{DEEP WORK (2h)}\\Q1 Roadmap Draft}} \\
+    \hline
+    \textbf{10:00} &
+    \colorbox{DeepWorkBg}{\parbox[t]{0.92\linewidth}{\tiny\color{DeepWorkTxt}\textbf{Deep Work Cont.}\\Nexa Specs}} &
+    \colorbox{MeetingBg}{\parbox[t]{0.92\linewidth}{\tiny\color{MeetingTxt}\textbf{Operations Sync}\\Dept Heads Update}} &
+    \colorbox{DeepWorkBg}{\parbox[t]{0.92\linewidth}{\tiny\color{DeepWorkTxt}\textbf{Deep Work Cont.}\\Financial Models}} &
+    \colorbox{ClientBg}{\parbox[t]{0.92\linewidth}{\tiny\color{ClientTxt}\textbf{Vertex Tech Sync}\\Partner Executive}} &
+    \colorbox{DeepWorkBg}{\parbox[t]{0.92\linewidth}{\tiny\color{DeepWorkTxt}\textbf{Deep Work Cont.}\\Succession Doc}} \\
+    \hline
+    \textbf{11:00} &
+    \colorbox{MeetingBg}{\parbox[t]{0.92\linewidth}{\tiny\color{MeetingTxt}\textbf{1-on-1: E. Rostova}\\Meridian Lead}} &
+    \colorbox{ClientBg}{\parbox[t]{0.92\linewidth}{\tiny\color{ClientTxt}\textbf{Apex Corp Call}\\Sarah Jenkins}} &
+    \colorbox{MeetingBg}{\parbox[t]{0.92\linewidth}{\tiny\color{MeetingTxt}\textbf{1-on-1: D. Chen}\\Nimbus Tech Lead}} &
+    \colorbox{AdminBg}{\parbox[t]{0.92\linewidth}{\tiny\color{AdminTxt}\textbf{Ops Triage}\\Procurement Review}} &
+    \colorbox{MeetingBg}{\parbox[t]{0.92\linewidth}{\tiny\color{MeetingTxt}\textbf{All-Hands Sync}\\Nexa Q4 Townhall}} \\
+    \hline
+    \textbf{12:00} &
+    \colorbox{PersonalBg}{\parbox[t]{0.92\linewidth}{\tiny\color{PersonalTxt}\textbf{Executive Lunch}\\Rest \& Walk}} &
+    \colorbox{PersonalBg}{\parbox[t]{0.92\linewidth}{\tiny\color{PersonalTxt}\textbf{Lunch w/ Partner}\\Vertex CEO Sync}} &
+    \colorbox{PersonalBg}{\parbox[t]{0.92\linewidth}{\tiny\color{PersonalTxt}\textbf{Executive Lunch}\\Rest \& Walk}} &
+    \colorbox{PersonalBg}{\parbox[t]{0.92\linewidth}{\tiny\color{PersonalTxt}\textbf{Executive Lunch}\\Rest \& Walk}} &
+    \colorbox{PersonalBg}{\parbox[t]{0.92\linewidth}{\tiny\color{PersonalTxt}\textbf{Team Lunch}\\Nexa Ops Squad}} \\
+    \hline
+    \textbf{13:00} &
+    \colorbox{MeetingBg}{\parbox[t]{0.92\linewidth}{\tiny\color{MeetingTxt}\textbf{Synapse Steering}\\AI Rollout Review}} &
+    \colorbox{DeepWorkBg}{\parbox[t]{0.92\linewidth}{\tiny\color{DeepWorkTxt}\textbf{DEEP WORK (2h)}\\Process Design}} &
+    \colorbox{MeetingBg}{\parbox[t]{0.92\linewidth}{\tiny\color{MeetingTxt}\textbf{Product Roadmap}\\Nexa Suite 2.0}} &
+    \colorbox{DeepWorkBg}{\parbox[t]{0.92\linewidth}{\tiny\color{DeepWorkTxt}\textbf{DEEP WORK (2h)}\\Budget Realloc.}} &
+    \colorbox{AdminBg}{\parbox[t]{0.92\linewidth}{\tiny\color{AdminTxt}\textbf{Weekly Buffer}\\Email \& Approvals}} \\
+    \hline
+    \textbf{14:00} &
+    \colorbox{AdminBg}{\parbox[t]{0.92\linewidth}{\tiny\color{AdminTxt}\textbf{Approval Queue}\\CapEx Signoffs}} &
+    \colorbox{DeepWorkBg}{\parbox[t]{0.92\linewidth}{\tiny\color{DeepWorkTxt}\textbf{Deep Work Cont.}\\SOP Documentation}} &
+    \colorbox{ClientBg}{\parbox[t]{0.92\linewidth}{\tiny\color{ClientTxt}\textbf{Client Briefing}\\Meridian Key Acct}} &
+    \colorbox{DeepWorkBg}{\parbox[t]{0.92\linewidth}{\tiny\color{DeepWorkTxt}\textbf{Deep Work Cont.}\\Contract Review}} &
+    \colorbox{MeetingBg}{\parbox[t]{0.92\linewidth}{\tiny\color{MeetingTxt}\textbf{1-on-1: HR Dir.}\\Talent Review}} \\
+    \hline
+    \textbf{15:00} &
+    \colorbox{ClientBg}{\parbox[t]{0.92\linewidth}{\tiny\color{ClientTxt}\textbf{Vendor Audit}\\Vertex Systems}} &
+    \colorbox{MeetingBg}{\parbox[t]{0.92\linewidth}{\tiny\color{MeetingTxt}\textbf{1-on-1: Finance}\\Q4 Forecast Sync}} &
+    \colorbox{AdminBg}{\parbox[t]{0.92\linewidth}{\tiny\color{AdminTxt}\textbf{Email Processing}\\Zero Inbox Block}} &
+    \colorbox{MeetingBg}{\parbox[t]{0.92\linewidth}{\tiny\color{MeetingTxt}\textbf{Cross-Dept Sync}\\Ops \& Engineering}} &
+    \colorbox{DeepWorkBg}{\parbox[t]{0.92\linewidth}{\tiny\color{DeepWorkTxt}\textbf{Weekly Retro}\\System Audit}} \\
+    \hline
+    \textbf{16:00} &
+    \colorbox{AdminBg}{\parbox[t]{0.92\linewidth}{\tiny\color{AdminTxt}\textbf{Executive Admin}\\Correspondence}} &
+    \colorbox{AdminBg}{\parbox[t]{0.92\linewidth}{\tiny\color{AdminTxt}\textbf{Slack Clearing}\\Urgent Escalations}} &
+    \colorbox{MeetingBg}{\parbox[t]{0.92\linewidth}{\tiny\color{MeetingTxt}\textbf{Risk Committee}\\Quarterly Review}} &
+    \colorbox{AdminBg}{\parbox[t]{0.92\linewidth}{\tiny\color{AdminTxt}\textbf{Exec Admin}\\Document Signings}} &
+    \colorbox{AdminBg}{\parbox[t]{0.92\linewidth}{\tiny\color{AdminTxt}\textbf{Week 43 Planning}\\Calendar Lock}} \\
+    \hline
+    \textbf{17:00} &
+    \colorbox{PersonalBg}{\parbox[t]{0.92\linewidth}{\tiny\color{PersonalTxt}\textbf{Shutdown Routine}\\Plan Tomorrow}} &
+    \colorbox{PersonalBg}{\parbox[t]{0.92\linewidth}{\tiny\color{PersonalTxt}\textbf{Shutdown Routine}\\Plan Tomorrow}} &
+    \colorbox{PersonalBg}{\parbox[t]{0.92\linewidth}{\tiny\color{PersonalTxt}\textbf{Shutdown Routine}\\Plan Tomorrow}} &
+    \colorbox{PersonalBg}{\parbox[t]{0.92\linewidth}{\tiny\color{PersonalTxt}\textbf{Shutdown Routine}\\Plan Tomorrow}} &
+    \colorbox{PersonalBg}{\parbox[t]{0.92\linewidth}{\tiny\color{PersonalTxt}\textbf{Shutdown Routine}\\Week Wrap Up}} \\
+    \hline
+  \end{tabularx}
+
+\end{minipage}
+
+\newpage
+
+% ==========================================
+% PAGE 2: WEEK 42 DAILY HOURLY BREAKDOWN & RETROSPECTIVE
+% ==========================================
+
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[ExecNavy] (current page.north west) rectangle ($(current page.north east)+(0,-0.8in)$);
+  \node[anchor=west, text=white] at ($(current page.north west)+(0.4in,-0.4in)$) {
+    {\fontsize{14}{16}\selectfont\bfseries DETAILED HOURLY EXECUTION LOG \quad|\quad WEEK 42}
+  };
+  \node[anchor=east, text=white] at ($(current page.north east)+(-0.4in,-0.4in)$) {
+    {\small\color{ExecTeal!40}\faClock~ Time Audit \& Daily Priority Tracking}
+  };
+\end{tikzpicture}
+
+\vspace{0.55in}
+
+\begin{minipage}[t]{0.68\linewidth}
+  \tcbset{boxrule=0.5pt, left=4pt, right=4pt, top=3pt, bottom=3pt}
+
+  \begin{tcolorbox}[execbox, title={\faCalendarCheck~ WEEKDAY HOURLY ACTION ITEMS \& MEETING NOTES}]
+    \setlength{\extrarowheight}{2pt}
+    \begin{tabularx}{\linewidth}{c c X c}
+      \hline
+      \rowcolor{ExecNavy!10}
+      \textbf{Day / Time} & \textbf{Type} & \textbf{Meeting / Activity Description \& Deliverables} & \textbf{Owner / Lead} \\
+      \hline
+      \textbf{Mon 09:00} & \color{DeepWorkTxt}\textbf{DEEP} & Nexa Cloud Infrastructure Migration -- Architecture Review & M. Vance \\
+      \textbf{Mon 11:00} & \color{MeetingTxt}\textbf{SYNC} & Meridian Expansion Alignment w/ Elena Rostova (Office 402) & E. Rostova \\
+      \textbf{Mon 13:00} & \color{MeetingTxt}\textbf{EXEC} & Synapse AI Steering Committee -- Q4 Milestone & Board Room \\
+      \textbf{Tue 09:00} & \color{MeetingTxt}\textbf{TEAM} & Nexa Operations Weekly Alignment -- Dept Heads & Ops Squad \\
+      \textbf{Tue 11:00} & \color{ClientTxt}\textbf{EXT} & Apex Corp Contract SLA Review w/ Sarah Jenkins & S. Jenkins \\
+      \textbf{Tue 13:00} & \color{DeepWorkTxt}\textbf{DEEP} & Executive Process Optimization \& SOP Standardization & M. Vance \\
+      \textbf{Wed 09:00} & \color{DeepWorkTxt}\textbf{DEEP} & Synapse AI Funding Pitch Deck \& Financial Projections & M. Vance \\
+      \textbf{Wed 11:00} & \color{MeetingTxt}\textbf{SYNC} & Nimbus Security Compliance Audit w/ David Chen & D. Chen \\
+      \textbf{Thu 09:00} & \color{MeetingTxt}\textbf{BOARD} & Q4 Board Strategy Alignment Meeting (Main Conference) & Exec Board \\
+      \textbf{Thu 10:30} & \color{ClientTxt}\textbf{EXT} & Vertex Technology Partner Executive Briefing & Partner Team \\
+      \textbf{Fri 09:00} & \color{DeepWorkTxt}\textbf{DEEP} & Q1 Strategic Roadmap Draft \& Talent Allocation & M. Vance \\
+      \textbf{Fri 11:00} & \color{MeetingTxt}\textbf{TOWNHALL} & Nexa Global Company Quarterly All-Hands & All Staff \\
+      \hline
+    \end{tabularx}
+  \end{tcolorbox}
+
+  \vspace{4pt}
+
+  \begin{tcolorbox}[lightbox, title={\faSync~ WEEKLY RETROSPECTIVE \& TIME AUDIT ANALYSIS}]
+    \begin{multicols}{2}
+      \textbf{\color{ExecNavy}\faCheckCircle~ What Went Well This Week:}
+      \begin{itemize}[leftmargin=10pt, itemsep=1pt, topsep=1pt]
+        \tiny
+        \item Exceeded Deep Work target: 16.5h vs 15h goal.
+        \item Nexa Cloud architecture sign-off completed early.
+        \item Successful Synapse AI board pitch prep.
+      \end{itemize}
+
+      \columnbreak
+
+      \textbf{\color{ExecGold}\faExclamationCircle~ Bottlenecks \& Adjustments:}
+      \begin{itemize}[leftmargin=10pt, itemsep=1pt, topsep=1pt]
+        \tiny
+        \item Slack interruptions high on Tuesday afternoon.
+        \item Apex Corp SLA negotiations delayed by legal.
+        \item Action: Enforce 2h strict off-grid blocks daily.
+      \end{itemize}
+    \end{multicols}
+  \end{tcolorbox}
+
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.30\linewidth}
+
+  \begin{tcolorbox}[execbox, title={\faCoffee~ WEEKEND SCHEDULE \& RESTORATION}]
+    \textbf{\color{ExecNavy}SATURDAY (10/24)}
+    \begin{itemize}[leftmargin=10pt, itemsep=1pt, topsep=1pt]
+      \tiny
+      \item \textbf{08:00} Trail Run \& Outdoor Cardio
+      \item \textbf{10:30} Family Brunch \& Reading Block
+      \item \textbf{14:00} Personal Project / Woodworking
+      \item \textbf{18:30} Dinner w/ Family at Bistro
+    \end{itemize}
+    \vspace{2pt}
+    \textbf{\color{ExecNavy}SUNDAY (10/25)}
+    \begin{itemize}[leftmargin=10pt, itemsep=1pt, topsep=1pt]
+      \tiny
+      \item \textbf{09:00} Morning Reflection \& Journaling
+      \item \textbf{11:00} Farmers Market \& Meal Prep
+      \item \textbf{16:00} \textbf{Week 43 Strategic Prep} (1h)
+      \item \textbf{17:30} Calendar Lock \& Digital Detox
+    \end{itemize}
+  \end{tcolorbox}
+
+  \vspace{3pt}
+
+  \begin{tcolorbox}[lightbox, title={\faBookmark~ EXECUTIVE READING \& THOUGHTS}]
+    \tiny
+    \textbf{Current Book:} \emph{High Output Management}\\
+    \textbf{Key Insight:} "A manager's output is the output of the organizational units under his supervision or influence."\\
+    \textbf{Application:} Focus Week 43 on empowering department leads at Meridian and Vertex.
+  \end{tcolorbox}
+
+  \vspace{3pt}
+
+  \begin{tcolorbox}[execbox, title={\faPaperPlane~ UNFINISHED ITEMS $\rightarrow$ WEEK 43}]
+    \begin{itemize}[leftmargin=10pt, itemsep=2pt, topsep=1pt]
+      \tiny
+      \item [\color{ExecMuted}\faSquare] Apex Corp SLA final redline review.
+      \item [\color{ExecMuted}\faSquare] Vertex Cloud cost optimization audit.
+      \item [\color{ExecMuted}\faSquare] Q1 Hiring reqs for Synapse AI team.
+    \end{itemize}
+  \end{tcolorbox}
+
+\end{minipage}
+
+\newpage
+
+% ==========================================
+% PAGE 3: WEEK 43 TIME-BLOCKING EXECUTION SPREAD
+% ==========================================
+
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[ExecNavy] (current page.north west) rectangle ($(current page.north east)+(0,-1.1in)$);
+  \node[anchor=west, text=white] at ($(current page.north west)+(0.4in,-0.55in)$) {
+    \begin{minipage}{0.45\paperwidth}
+      {\fontsize{18}{22}\selectfont\bfseries WEEKLY TIME-BLOCKING CALENDAR}\\[2pt]
+      {\small\color{ExecTeal!40}\faBriefcase~ EXECUTIVE OPERATING DASHBOARD \quad|\quad Q4 WEEK 43}
+    \end{minipage}
+  };
+  \node[anchor=east, text=white] at ($(current page.north east)+(-0.4in,-0.55in)$) {
+    \begin{minipage}{0.45\paperwidth}
+      \begin{flushright}
+        {\small\bfseries EXECUTIVE: Marcus Vance, VP Operations}\\[2pt]
+        {\footnotesize\color{white!80} FOCUS: Meridian Expansion \& Synapse Rollout \quad|\quad DATES: Oct 26 -- Nov 1, 2026}
+      \end{flushright}
+    \end{minipage}
+  };
+\end{tikzpicture}
+
+\vspace{0.75in}
+
+\begin{minipage}[t]{0.26\linewidth}
+
+  \begin{tcolorbox}[execbox, title={\faBullseye~ WEEK 43 PRIORITIES}]
+    \begin{enumerate}[leftmargin=12pt, label=\bfseries\arabic*., itemsep=2pt, topsep=1pt]
+      \footnotesize
+      \item \textbf{Meridian Launch}: Kick off Phase 1 expansion in EMEA region.
+      \item \textbf{Vertex SLA}: Close final contract terms with Sarah Jenkins.
+      \item \textbf{Talent Acquisition}: Conduct 4 executive interviews for AI leads.
+    \end{enumerate}
+  \end{tcolorbox}
+
+  \vspace{3pt}
+
+  \begin{tcolorbox}[lightbox, title={\faCoins~ BUDGET \& RESOURCE TRACKER}]
+    \small
+    \begin{tabularx}{\linewidth}{X r}
+      \hline
+      \textbf{Project Alloc.} & \textbf{Budget} \\
+      \hline
+      Nexa Cloud Migration & \$420,000 \\
+      Synapse AI Q4 Expansion & \$1,200,000 \\
+      Meridian Logistics & \$180,000 \\
+      Vertex Consulting & \$95,000 \\
+      \hline
+    \end{tabularx}
+  \end{tcolorbox}
+
+  \vspace{3pt}
+
+  \begin{tcolorbox}[lightbox, title={\faCheckSquare~ WEEK 43 DISCIPLINES}]
+    \footnotesize
+    \begin{tabularx}{\linewidth}{X c c c c c}
+      \hline
+      \textbf{Habit / Target} & \textbf{M} & \textbf{T} & \textbf{W} & \textbf{T} & \textbf{F} \\
+      \hline
+      Morning Gym (07:00) & \color{ExecMuted}\faSquare & \color{ExecMuted}\faSquare & \color{ExecMuted}\faSquare & \color{ExecMuted}\faSquare & \color{ExecMuted}\faSquare \\
+      Deep Work 3h Block & \color{ExecMuted}\faSquare & \color{ExecMuted}\faSquare & \color{ExecMuted}\faSquare & \color{ExecMuted}\faSquare & \color{ExecMuted}\faSquare \\
+      No Meetings Wed PM & \color{ExecMuted}\faSquare & \color{ExecMuted}\faSquare & \color{ExecTeal}\faCheckSquare & \color{ExecMuted}\faSquare & \color{ExecMuted}\faSquare \\
+      EOD Inbox Clearance & \color{ExecMuted}\faSquare & \color{ExecMuted}\faSquare & \color{ExecMuted}\faSquare & \color{ExecMuted}\faSquare & \color{ExecMuted}\faSquare \\
+      \hline
+    \end{tabularx}
+  \end{tcolorbox}
+
+  \vspace{3pt}
+
+  \begin{tcolorbox}[execbox, title={\faFolderOpen~ KEY UPCOMING MILESTONES}]
+    \begin{itemize}[leftmargin=10pt, itemsep=2pt, topsep=1pt]
+      \tiny
+      \item \textbf{Nov 02}: Synapse AI Beta Internal Release.
+      \item \textbf{Nov 10}: Q4 Mid-Quarter Board Presentation.
+      \item \textbf{Nov 15}: Vertex Integration Cutover Date.
+    \end{itemize}
+  \end{tcolorbox}
+
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.72\linewidth}
+
+  % Category Legend Bar
+  \begin{tcolorbox}[colback=ExecBg, colframe=ExecBorder, boxrule=0.4pt, arc=2pt, left=4pt, right=4pt, top=3pt, bottom=3pt]
+    \centering\footnotesize
+    \textbf{\faTags~ Time-Block Categories:} \quad
+    \colorbox{DeepWorkBg}{\color{DeepWorkTxt}\textbf{\, Deep Work / Strategy \,}} \quad
+    \colorbox{MeetingBg}{\color{MeetingTxt}\textbf{\, Leadership / Team \,}} \quad
+    \colorbox{ClientBg}{\color{ClientTxt}\textbf{\, Stakeholders / Clients \,}} \quad
+    \colorbox{AdminBg}{\color{AdminTxt}\textbf{\, Buffer / Ops / Admin \,}} \quad
+    \colorbox{PersonalBg}{\color{PersonalTxt}\textbf{\, Personal / Health \,}}
+  \end{tcolorbox}
+
+  \vspace{2pt}
+
+  % Weekly Time Grid Table - Week 43
+  \setlength{\extrarowheight}{1.5pt}
+  \begin{tabularx}{\linewidth}{|c|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}X|}
+    \hline
+    \rowcolor{ExecNavy}
+    \color{white}\textbf{Time} & \color{white}\textbf{MON (10/26)} & \color{white}\textbf{TUE (10/27)} & \color{white}\textbf{WED (10/28)} & \color{white}\textbf{THU (10/29)} & \color{white}\textbf{FRI (10/30)} \\
+    \hline
+    \textbf{07:00} &
+    \colorbox{PersonalBg}{\parbox[t]{0.92\linewidth}{\tiny\color{PersonalTxt}\textbf{Morning Routine}\\Gym \& Mindset}} &
+    \colorbox{PersonalBg}{\parbox[t]{0.92\linewidth}{\tiny\color{PersonalTxt}\textbf{Morning Routine}\\30m Run \& Prep}} &
+    \colorbox{PersonalBg}{\parbox[t]{0.92\linewidth}{\tiny\color{PersonalTxt}\textbf{Morning Routine}\\Gym \& Reading}} &
+    \colorbox{PersonalBg}{\parbox[t]{0.92\linewidth}{\tiny\color{PersonalTxt}\textbf{Morning Routine}\\Cardio \& Podcast}} &
+    \colorbox{PersonalBg}{\parbox[t]{0.92\linewidth}{\tiny\color{PersonalTxt}\textbf{Morning Routine}\\Gym \& Meditate}} \\
+    \hline
+    \textbf{08:00} &
+    \colorbox{AdminBg}{\parbox[t]{0.92\linewidth}{\tiny\color{AdminTxt}\textbf{Daily Kickoff}\\Inbox \& Priorities}} &
+    \colorbox{AdminBg}{\parbox[t]{0.92\linewidth}{\tiny\color{AdminTxt}\textbf{Daily Kickoff}\\Exec Triage}} &
+    \colorbox{AdminBg}{\parbox[t]{0.92\linewidth}{\tiny\color{AdminTxt}\textbf{Daily Kickoff}\\Calendar Alignment}} &
+    \colorbox{AdminBg}{\parbox[t]{0.92\linewidth}{\tiny\color{AdminTxt}\textbf{Daily Kickoff}\\Comms \& Slack}} &
+    \colorbox{AdminBg}{\parbox[t]{0.92\linewidth}{\tiny\color{AdminTxt}\textbf{Weekly Review}\\Prep \& Triage}} \\
+    \hline
+    \textbf{09:00} &
+    \colorbox{MeetingBg}{\parbox[t]{0.92\linewidth}{\tiny\color{MeetingTxt}\textbf{Meridian Kickoff}\\EMEA Launch Sync}} &
+    \colorbox{MeetingBg}{\parbox[t]{0.92\linewidth}{\tiny\color{MeetingTxt}\textbf{Nexa Leadership}\\Weekly Operations}} &
+    \colorbox{DeepWorkBg}{\parbox[t]{0.92\linewidth}{\tiny\color{DeepWorkTxt}\textbf{FOCUS BLOCK (3h)}\\Zero-Distraction Strategy}} &
+    \colorbox{MeetingBg}{\parbox[t]{0.92\linewidth}{\tiny\color{MeetingTxt}\textbf{Talent Pipeline}\\Exec Interviews}} &
+    \colorbox{DeepWorkBg}{\parbox[t]{0.92\linewidth}{\tiny\color{DeepWorkTxt}\textbf{DEEP WORK (2h)}\\Q4 Financial Re-align}} \\
+    \hline
+    \textbf{10:00} &
+    \colorbox{MeetingBg}{\parbox[t]{0.92\linewidth}{\tiny\color{MeetingTxt}\textbf{Meridian Cont.}\\Logistics Review}} &
+    \colorbox{MeetingBg}{\parbox[t]{0.92\linewidth}{\tiny\color{MeetingTxt}\textbf{Ops Alignment}\\Dept Head Sync}} &
+    \colorbox{DeepWorkBg}{\parbox[t]{0.92\linewidth}{\tiny\color{DeepWorkTxt}\textbf{Focus Block Cont.}\\Synapse AI Spec}} &
+    \colorbox{MeetingBg}{\parbox[t]{0.92\linewidth}{\tiny\color{MeetingTxt}\textbf{Interview 2}\\Sr AI Architect}} &
+    \colorbox{DeepWorkBg}{\parbox[t]{0.92\linewidth}{\tiny\color{DeepWorkTxt}\textbf{Deep Work Cont.}\\Quarterly Audit}} \\
+    \hline
+    \textbf{11:00} &
+    \colorbox{ClientBg}{\parbox[t]{0.92\linewidth}{\tiny\color{ClientTxt}\textbf{Apex SLA Sign-off}\\Sarah Jenkins Call}} &
+    \colorbox{MeetingBg}{\parbox[t]{0.92\linewidth}{\tiny\color{MeetingTxt}\textbf{1-on-1: E. Rostova}\\Meridian Ops}} &
+    \colorbox{DeepWorkBg}{\parbox[t]{0.92\linewidth}{\tiny\color{DeepWorkTxt}\textbf{Focus Block Cont.}\\Org Design}} &
+    \colorbox{MeetingBg}{\parbox[t]{0.92\linewidth}{\tiny\color{MeetingTxt}\textbf{1-on-1: D. Chen}\\Nimbus Tech Audit}} &
+    \colorbox{MeetingBg}{\parbox[t]{0.92\linewidth}{\tiny\color{MeetingTxt}\textbf{Nexa Ops Sync}\\Weekly Closure}} \\
+    \hline
+    \textbf{12:00} &
+    \colorbox{PersonalBg}{\parbox[t]{0.92\linewidth}{\tiny\color{PersonalTxt}\textbf{Executive Lunch}\\Rest \& Walk}} &
+    \colorbox{PersonalBg}{\parbox[t]{0.92\linewidth}{\tiny\color{PersonalTxt}\textbf{Lunch w/ Director}\\Nimbus VP Sync}} &
+    \colorbox{PersonalBg}{\parbox[t]{0.92\linewidth}{\tiny\color{PersonalTxt}\textbf{Executive Lunch}\\Rest \& Walk}} &
+    \colorbox{PersonalBg}{\parbox[t]{0.92\linewidth}{\tiny\color{PersonalTxt}\textbf{Executive Lunch}\\Rest \& Walk}} &
+    \colorbox{PersonalBg}{\parbox[t]{0.92\linewidth}{\tiny\color{PersonalTxt}\textbf{Executive Lunch}\\Rest \& Walk}} \\
+    \hline
+    \textbf{13:00} &
+    \colorbox{DeepWorkBg}{\parbox[t]{0.92\linewidth}{\tiny\color{DeepWorkTxt}\textbf{DEEP WORK (2h)}\\Vertex Integration}} &
+    \colorbox{DeepWorkBg}{\parbox[t]{0.92\linewidth}{\tiny\color{DeepWorkTxt}\textbf{DEEP WORK (2h)}\\Risk Framework}} &
+    \colorbox{AdminBg}{\parbox[t]{0.92\linewidth}{\tiny\color{AdminTxt}\textbf{Buffer Block}\\Approvals \& Signoff}} &
+    \colorbox{DeepWorkBg}{\parbox[t]{0.92\linewidth}{\tiny\color{DeepWorkTxt}\textbf{DEEP WORK (2h)}\\Board Deck Finalize}} &
+    \colorbox{AdminBg}{\parbox[t]{0.92\linewidth}{\tiny\color{AdminTxt}\textbf{Weekly Buffer}\\Zero Inbox Goal}} \\
+    \hline
+    \textbf{14:00} &
+    \colorbox{DeepWorkBg}{\parbox[t]{0.92\linewidth}{\tiny\color{DeepWorkTxt}\textbf{Deep Work Cont.}\\Data Pipelines}} &
+    \colorbox{DeepWorkBg}{\parbox[t]{0.92\linewidth}{\tiny\color{DeepWorkTxt}\textbf{Deep Work Cont.}\\Mitigation Plan}} &
+    \colorbox{MeetingBg}{\parbox[t]{0.92\linewidth}{\tiny\color{MeetingTxt}\textbf{Vendor Sync}\\Vertex Tech Team}} &
+    \colorbox{DeepWorkBg}{\parbox[t]{0.92\linewidth}{\tiny\color{DeepWorkTxt}\textbf{Deep Work Cont.}\\Slide Design}} &
+    \colorbox{MeetingBg}{\parbox[t]{0.92\linewidth}{\tiny\color{MeetingTxt}\textbf{1-on-1: HR Dir.}\\Performance Review}} \\
+    \hline
+    \textbf{15:00} &
+    \colorbox{MeetingBg}{\parbox[t]{0.92\linewidth}{\tiny\color{MeetingTxt}\textbf{Synapse Demo}\\Internal Stakeholders}} &
+    \colorbox{ClientBg}{\parbox[t]{0.92\linewidth}{\tiny\color{ClientTxt}\textbf{Partner Briefing}\\Apex Key Account}} &
+    \colorbox{AdminBg}{\parbox[t]{0.92\linewidth}{\tiny\color{AdminTxt}\textbf{Email Processing}\\Triage Inbox}} &
+    \colorbox{MeetingBg}{\parbox[t]{0.92\linewidth}{\tiny\color{MeetingTxt}\textbf{Cross-Dept Sync}\\Product \& Ops}} &
+    \colorbox{DeepWorkBg}{\parbox[t]{0.92\linewidth}{\tiny\color{DeepWorkTxt}\textbf{Weekly Retro}\\System Audit}} \\
+    \hline
+    \textbf{16:00} &
+    \colorbox{AdminBg}{\parbox[t]{0.92\linewidth}{\tiny\color{AdminTxt}\textbf{Exec Admin}\\Legal Approvals}} &
+    \colorbox{AdminBg}{\parbox[t]{0.92\linewidth}{\tiny\color{AdminTxt}\textbf{Slack Clearing}\\Team Queries}} &
+    \colorbox{MeetingBg}{\parbox[t]{0.92\linewidth}{\tiny\color{MeetingTxt}\textbf{Steering Comm.}\\Meridian EMEA}} &
+    \colorbox{AdminBg}{\parbox[t]{0.92\linewidth}{\tiny\color{AdminTxt}\textbf{Exec Admin}\\Signoff Packets}} &
+    \colorbox{AdminBg}{\parbox[t]{0.92\linewidth}{\tiny\color{AdminTxt}\textbf{Week 44 Planning}\\Lock Schedule}} \\
+    \hline
+    \textbf{17:00} &
+    \colorbox{PersonalBg}{\parbox[t]{0.92\linewidth}{\tiny\color{PersonalTxt}\textbf{Shutdown Routine}\\Plan Tomorrow}} &
+    \colorbox{PersonalBg}{\parbox[t]{0.92\linewidth}{\tiny\color{PersonalTxt}\textbf{Shutdown Routine}\\Plan Tomorrow}} &
+    \colorbox{PersonalBg}{\parbox[t]{0.92\linewidth}{\tiny\color{PersonalTxt}\textbf{Shutdown Routine}\\Plan Tomorrow}} &
+    \colorbox{PersonalBg}{\parbox[t]{0.92\linewidth}{\tiny\color{PersonalTxt}\textbf{Shutdown Routine}\\Plan Tomorrow}} &
+    \colorbox{PersonalBg}{\parbox[t]{0.92\linewidth}{\tiny\color{PersonalTxt}\textbf{Shutdown Routine}\\Week Wrap Up}} \\
+    \hline
+  \end{tabularx}
+
+\end{minipage}
+
+\newpage
+
+% ==========================================
+% PAGE 4: EXECUTIVE TIME-BLOCKING FRAMEWORK & SYSTEM TOOLKIT
+% ==========================================
+
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[ExecNavy] (current page.north west) rectangle ($(current page.north east)+(0,-0.8in)$);
+  \node[anchor=west, text=white] at ($(current page.north west)+(0.4in,-0.4in)$) {
+    {\fontsize{14}{16}\selectfont\bfseries EXECUTIVE TIME-BLOCKING FRAMEWORK \& SYSTEM TOOLKIT}
+  };
+  \node[anchor=east, text=white] at ($(current page.north east)+(-0.4in,-0.4in)$) {
+    {\small\color{ExecTeal!40}\faCog~ Nexa Leadership Operating System}
+  };
+\end{tikzpicture}
+
+\vspace{0.55in}
+
+\begin{minipage}[t]{0.48\linewidth}
+
+  \begin{tcolorbox}[execbox, title={\faChartPie~ IDEAL EXECUTIVE TIME AUDIT BREAKDOWN}]
+    \small
+    High-performing executives structure their weekly capacity into dedicated strategic categories to prevent reactive firefights:
+
+    \vspace{4pt}
+    \begin{tabularx}{\linewidth}{X c r}
+      \hline
+      \textbf{Category} & \textbf{Target \%} & \textbf{Target Weekly Hours} \\
+      \hline
+      \textbf{\color{DeepWorkTxt}Deep Work / Strategy} & 35\% & 15.0 -- 17.5 Hours \\
+      \textbf{\color{MeetingTxt}Leadership \& 1-on-1s} & 25\% & 10.0 -- 12.5 Hours \\
+      \textbf{\color{ClientTxt}External \& Stakeholders} & 20\% & 8.0 -- 10.0 Hours \\
+      \textbf{\color{AdminTxt}Ops, Buffer \& Triage} & 10\% & 4.0 -- 5.0 Hours \\
+      \textbf{\color{PersonalTxt}Restoration \& Health} & 10\% & 4.0 -- 5.0 Hours \\
+      \hline
+      \textbf{Total Executive Capacity} & \textbf{100\%} & \textbf{45.0 -- 50.0 Hours} \\
+      \hline
+    \end{tabularx}
+  \end{tcolorbox}
+
+  \vspace{4pt}
+
+  \begin{tcolorbox}[lightbox, title={\faLightbulb~ TIME-BLOCKING OPERATING RULES}]
+    \begin{enumerate}[leftmargin=12pt, label=\bfseries Rule \arabic*:, itemsep=2pt, topsep=1pt]
+      \small
+      \item \textbf{Protect Morning Deep Work}: Schedule high-cognitive strategy tasks before 11:00 AM. Zero email/Slack during Deep Work.
+      \item \textbf{Batch Administrative Buffer}: Process emails and routine approvals in two strict 30-minute windows (08:00 and 15:00).
+      \item \textbf{Meeting-Free Wednesday Afternoon}: Reserve 13:00--17:00 on Wednesdays for uninterrupted system design and strategic execution.
+      \item \textbf{Hard Evening Shutdown}: Conclude daily operations by 17:30 with a 15-minute review and calendar lock for the next day.
+    \end{enumerate}
+  \end{tcolorbox}
+
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.48\linewidth}
+
+  \begin{tcolorbox}[execbox, title={\faTasks~ EXECUTIVE DELEGATION \& FOLLOW-UP REGISTER}]
+    \setlength{\extrarowheight}{1.5pt}
+    \begin{tabularx}{\linewidth}{X c c c}
+      \hline
+      \rowcolor{ExecNavy!10}
+      \textbf{Delegated Action Item} & \textbf{Owner} & \textbf{Due Date} & \textbf{Status} \\
+      \hline
+      Nexa Cloud API Security Audit & D. Chen & Oct 27 & \color{ExecTeal}\textbf{In Progress} \\
+      Meridian Warehouse Lease Draft & E. Rostova & Oct 29 & \color{ExecTeal}\textbf{In Progress} \\
+      Synapse AI Q4 Hiring Req Packet & HR Team & Oct 30 & \color{ExecGold}\textbf{Pending} \\
+      Vertex Vendor SLA Redline & Legal & Oct 28 & \color{ExecTeal}\textbf{Reviewing} \\
+      Q4 Expense Audit Report & Finance & Nov 02 & \color{ExecMuted}Scheduled \\
+      Nexa Suite 2.0 User Beta Feedback & Product & Nov 05 & \color{ExecMuted}Scheduled \\
+      \hline
+    \end{tabularx}
+  \end{tcolorbox}
+
+  \vspace{4pt}
+
+  \begin{tcolorbox}[lightbox, title={\faListUl~ QUARTERLY MILESTONE TRACKER (Q4 2026)}]
+    \small
+    \begin{tabularx}{\linewidth}{X c c r}
+      \hline
+      \textbf{Project Initiative} & \textbf{Lead Org} & \textbf{Target Date} & \textbf{Status} \\
+      \hline
+      Cloud Migration Sign-off & Nexa / Vertex & Oct 21 & \color{ExecTeal}\textbf{Completed} \\
+      Synapse Board Approval & Nexa / Synapse & Oct 22 & \color{ExecTeal}\textbf{Completed} \\
+      Meridian Expansion Launch & Meridian & Nov 01 & \color{ExecTeal}\textbf{On Track} \\
+      Apex Contract Renewal & Apex / Nexa & Nov 15 & \color{ExecGold}\textbf{At Risk} \\
+      Q4 Financial Close & Executive Board & Dec 20 & \color{ExecMuted}Upcoming \\
+      \hline
+    \end{tabularx}
+  \end{tcolorbox}
+
+\end{minipage}
+
+\end{document}

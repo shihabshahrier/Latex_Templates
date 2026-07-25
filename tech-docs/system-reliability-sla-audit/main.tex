@@ -1,0 +1,504 @@
+\documentclass[11pt,a4paper]{scrartcl}
+
+% Encoding & Typeface
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+
+% Margins & Geometry
+\usepackage[top=1.6cm,bottom=1.8cm,left=1.6cm,right=1.6cm]{geometry}
+
+% Colors
+\usepackage[table]{xcolor}
+\definecolor{navyblue}{HTML}{0F172A}
+\definecolor{brandblue}{HTML}{1E40AF}
+\definecolor{tealaccent}{HTML}{0D9488}
+\definecolor{lightbg}{HTML}{F8FAFC}
+\definecolor{cardbg}{HTML}{F1F5F9}
+\definecolor{cardborder}{HTML}{CBD5E1}
+\definecolor{textdark}{HTML}{1E293B}
+\definecolor{textmuted}{HTML}{64748B}
+\definecolor{statusgreen}{HTML}{15803D}
+\definecolor{statusgreenbg}{HTML}{DCFCE7}
+\definecolor{statusamber}{HTML}{B45309}
+\definecolor{statusamberbg}{HTML}{FEF3C7}
+\definecolor{statusred}{HTML}{B91C1C}
+\definecolor{statusredbg}{HTML}{FEE2E2}
+
+% Mathematics & Layout
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{colortbl}
+\usepackage{enumitem}
+\setlist{noitemsep,topsep=2pt,parsep=1pt,partopsep=0pt}
+
+% Graphics & TikZ
+\usepackage{graphicx}
+\usepackage{tikz}
+\usetikzlibrary{positioning,calc,shapes.geometric,backgrounds}
+
+% tcolorbox setup
+\usepackage[most]{tcolorbox}
+\tcbuselibrary{skins,breakable}
+
+% Icons & Typography
+\usepackage{fontawesome5}
+\usepackage{microtype}
+\usepackage{lastpage}
+
+% Header & Footer Setup
+\usepackage{scrlayer-scrpage}
+\clearpairofpagestyles
+\ihead{\footnotesize \textcolor{textmuted}{\textbf{CONFIDENTIAL} \textbar{} Vertex System Reliability SLA Audit}}
+\ohead{\footnotesize \textcolor{textmuted}{Client: Apex Financial Technologies}}
+\ifoot{\footnotesize \textcolor{textmuted}{Audit Ref: SLA-2025-NX9 \textbar{} Meridian Assurance}}
+\ofoot{\footnotesize \textcolor{textmuted}{Page \thepage\ of \pageref{LastPage}}}
+\addtokomafont{pageheadfoot}{\sffamily}
+
+\begin{document}
+
+% ==========================================
+% PAGE 1: TITLE BANNER, KPIS & MONTHLY LOG
+% ==========================================
+
+% HEADER / TITLE BANNER
+\begin{tcolorbox}[
+    enhanced,
+    colback=navyblue,
+    colframe=navyblue,
+    arc=4pt,
+    boxrule=0pt,
+    left=14pt, right=14pt, top=8pt, bottom=8pt
+]
+\begin{minipage}[t]{0.65\textwidth}
+    \textcolor{tealaccent}{\small\textbf{\faLock\ AUDIT \& ASSURANCE REPORT}} \\[2pt]
+    \textcolor{white}{\LARGE \textbf{System Reliability \& SLA Audit}} \\[2pt]
+    \textcolor{cardborder}{\large \textbf{Annual Verification Report — CY2025}} \\[3pt]
+    \textcolor{lightbg}{\small Target System: \textbf{Synapse Enterprise Cloud Platform (US-East \& EU-West)}}
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.31\textwidth}
+    \raggedleft
+    \begin{tcolorbox}[
+        enhanced,
+        colback=statusgreenbg,
+        colframe=statusgreen,
+        arc=3pt,
+        boxrule=1pt,
+        left=6pt, right=6pt, top=4pt, bottom=4pt
+    ]
+        \centering
+        \textcolor{statusgreen}{\small\textbf{\faCheckCircle\ AUDIT VERDICT}} \\[2pt]
+        \textcolor{statusgreen}{\large\textbf{FULLY COMPLIANT}} \\[1pt]
+        \textcolor{statusgreen}{\tiny Achieved 99.982\% vs 99.950\% SLA}
+    \end{tcolorbox}
+\end{minipage}
+\end{tcolorbox}
+
+\vspace{-6pt}
+
+% AUDIT METADATA BLOCK
+\begin{tcolorbox}[
+    enhanced,
+    colback=cardbg,
+    colframe=cardborder,
+    arc=3pt,
+    boxrule=0.5pt,
+    left=10pt, right=10pt, top=4pt, bottom=4pt
+]
+\begin{tabularx}{\textwidth}{@{}X X X X@{}}
+    \textcolor{textmuted}{\tiny SERVICE PROVIDER} & 
+    \textcolor{textmuted}{\tiny AUDIT BENEFICIARY} & 
+    \textcolor{textmuted}{\tiny INDEPENDENT AUDITOR} & 
+    \textcolor{textmuted}{\tiny AUDIT PERIOD} \\
+    \textbf{\small Vertex Infrastructure Corp.} & 
+    \textbf{\small Apex Financial Tech} & 
+    \textbf{\small Meridian Assurance LLC} & 
+    \textbf{\small Jan 1, 2025 – Dec 31, 2025}
+\end{tabularx}
+\end{tcolorbox}
+
+\vspace{1pt}
+
+% SECTION 1: EXECUTIVE SUMMARY & KPIS
+\subsection*{\textcolor{navyblue}{\faChartLine\ 1. Executive Summary \& Key Reliability Metrics}}
+\hrule
+\vspace{2pt}
+
+This audit evaluates the availability, latency, disaster recovery readiness, and Service Level Agreement (SLA) compliance of the \textbf{Synapse Enterprise Cloud Platform}, operated by \textbf{Vertex Infrastructure Corp.}, for the benefit of \textbf{Apex Financial Technologies}. Meridian Assurance LLC conducted this independent verification in accordance with ISO/IEC 20000-1 and SOC 2 Type II trust criteria standards.
+
+\vspace{3pt}
+
+% 4 Metric Cards
+\noindent
+\begin{minipage}[t]{0.235\textwidth}
+    \begin{tcolorbox}[
+        enhanced, colback=lightbg, colframe=brandblue, arc=3pt, boxrule=1pt, left=4pt, right=4pt, top=4pt, bottom=4pt
+    ]
+        \centering
+        \textcolor{textmuted}{\tiny CONTRACTUAL SLA} \\[1pt]
+        \textcolor{navyblue}{\Large\textbf{99.950\%}} \\[1pt]
+        \textcolor{textmuted}{\tiny Max Allowed Outage:} \\[1pt]
+        \textcolor{textdark}{\small\textbf{262.8 min / yr}}
+    \end{tcolorbox}
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.235\textwidth}
+    \begin{tcolorbox}[
+        enhanced, colback=statusgreenbg, colframe=statusgreen, arc=3pt, boxrule=1pt, left=4pt, right=4pt, top=4pt, bottom=4pt
+    ]
+        \centering
+        \textcolor{statusgreen}{\tiny ACHIEVED UPTIME} \\[1pt]
+        \textcolor{statusgreen}{\Large\textbf{99.982\%}} \\[1pt]
+        \textcolor{statusgreen}{\tiny Total Outage Time:} \\[1pt]
+        \textcolor{statusgreen}{\small\textbf{94.6 min / yr}}
+    \end{tcolorbox}
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.235\textwidth}
+    \begin{tcolorbox}[
+        enhanced, colback=lightbg, colframe=tealaccent, arc=3pt, boxrule=1pt, left=4pt, right=4pt, top=4pt, bottom=4pt
+    ]
+        \centering
+        \textcolor{textmuted}{\tiny AVG MTTR (RECOVERY)} \\[1pt]
+        \textcolor{tealaccent}{\Large\textbf{14.2 min}} \\[1pt]
+        \textcolor{textmuted}{\tiny Contractual Target:} \\[1pt]
+        \textcolor{textdark}{\small\textbf{$<$ 30.0 min}}
+    \end{tcolorbox}
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.235\textwidth}
+    \begin{tcolorbox}[
+        enhanced, colback=lightbg, colframe=navyblue, arc=3pt, boxrule=1pt, left=4pt, right=4pt, top=4pt, bottom=4pt
+    ]
+        \centering
+        \textcolor{textmuted}{\tiny SLA PENALTY CREDIT} \\[1pt]
+        \textcolor{navyblue}{\Large\textbf{\$0.00}} \\[1pt]
+        \textcolor{textmuted}{\tiny Compliance Status:} \\[1pt]
+        \textcolor{statusgreen}{\small\textbf{100\% Compliant}}
+    \end{tcolorbox}
+\end{minipage}
+
+\vspace{2pt}
+
+% Auditor Opinion Callout
+\begin{tcolorbox}[
+    enhanced,
+    colback=lightbg,
+    colframe=tealaccent,
+    arc=3pt,
+    boxrule=0.5pt,
+    leftrule=4pt,
+    left=8pt, right=8pt, top=4pt, bottom=4pt
+]
+    \textcolor{navyblue}{\textbf{\faCheck\ Auditor Opinion Statement:}} \small Meridian Assurance LLC certifies that Vertex Infrastructure Corp. maintained an effective uptime of \textbf{99.982\%} across production API clusters in CY2025. Unplanned downtime totaled 94.6 minutes, remaining well below the contractual limit of 262.8 minutes. No service penalty credits were triggered.
+\end{tcolorbox}
+
+\vspace{2pt}
+
+% SECTION 2: MONTHLY UPTIME BREAKDOWN
+\subsection*{\textcolor{navyblue}{\faCalendar\ 2. Monthly Service Availability Log (CY2025)}}
+\hrule
+\vspace{2pt}
+
+\begin{footnotesize}
+\begin{tabularx}{\textwidth}{@{} >{\raggedright\arraybackslash}X c c c c c c @{}}
+    \toprule
+    \rowcolor{navyblue}
+    \textcolor{white}{\textbf{Month}} & 
+    \textcolor{white}{\textbf{Total Hours}} & 
+    \textcolor{white}{\textbf{Planned Maint.}} & 
+    \textcolor{white}{\textbf{Unplanned Outage}} & 
+    \textcolor{white}{\textbf{Availability}} & 
+    \textcolor{white}{\textbf{SLA Target}} & 
+    \textcolor{white}{\textbf{Status}} \\
+    \midrule
+    \rowcolor{cardbg} January 2025   & 744 hrs & 1.5 hrs & 0.0 min  & 100.000\% & 99.950\% & \textcolor{statusgreen}{\textbf{PASS}} \\
+    \rowcolor{white} February 2025  & 672 hrs & 2.0 hrs & 14.2 min & 99.965\%  & 99.950\% & \textcolor{statusgreen}{\textbf{PASS}} \\
+    \rowcolor{cardbg} March 2025     & 744 hrs & 1.0 hrs & 0.0 min  & 100.000\% & 99.950\% & \textcolor{statusgreen}{\textbf{PASS}} \\
+    \rowcolor{white} April 2025     & 720 hrs & 3.0 hrs & 42.1 min & 99.902\%* & 99.950\% & \textcolor{statusamber}{\textbf{EXCUSED}}** \\
+    \rowcolor{cardbg} May 2025       & 744 hrs & 1.5 hrs & 0.0 min  & 100.000\% & 99.950\% & \textcolor{statusgreen}{\textbf{PASS}} \\
+    \rowcolor{white} June 2025      & 720 hrs & 2.0 hrs & 6.8 min  & 99.984\%  & 99.950\% & \textcolor{statusgreen}{\textbf{PASS}} \\
+    \rowcolor{cardbg} July 2025      & 744 hrs & 1.0 hrs & 0.0 min  & 100.000\% & 99.950\% & \textcolor{statusgreen}{\textbf{PASS}} \\
+    \rowcolor{white} August 2025    & 744 hrs & 2.5 hrs & 18.5 min & 99.958\%  & 99.950\% & \textcolor{statusgreen}{\textbf{PASS}} \\
+    \rowcolor{cardbg} September 2025 & 720 hrs & 1.0 hrs & 0.0 min  & 100.000\% & 99.950\% & \textcolor{statusgreen}{\textbf{PASS}} \\
+    \rowcolor{white} October 2025   & 744 hrs & 2.0 hrs & 13.0 min & 99.971\%  & 99.950\% & \textcolor{statusgreen}{\textbf{PASS}} \\
+    \rowcolor{cardbg} November 2025  & 720 hrs & 1.5 hrs & 0.0 min  & 100.000\% & 99.950\% & \textcolor{statusgreen}{\textbf{PASS}} \\
+    \rowcolor{white} December 2025  & 744 hrs & 1.0 hrs & 0.0 min  & 100.000\% & 99.950\% & \textcolor{statusgreen}{\textbf{PASS}} \\
+    \midrule
+    \rowcolor{cardbg} \textbf{Annual Total} & \textbf{8,760 hrs} & \textbf{20.5 hrs} & \textbf{94.6 min} & \textbf{99.982\%} & \textbf{99.950\%} & \textcolor{statusgreen}{\textbf{COMPLIANT}} \\
+    \bottomrule
+\end{tabularx}
+\end{footnotesize}
+
+\vspace{1pt}
+\noindent\begin{minipage}{\textwidth}
+    \tiny \textcolor{textmuted}{*April downtime included 28.5 min upstream Tier-1 transit carrier outage classified as Excused Force Majeure under SLA Section 8.2.} \\
+    \tiny \textcolor{textmuted}{**Net billable downtime for April: 13.6 min (99.968\% adjusted availability).}
+\end{minipage}
+
+\clearpage
+
+% ==========================================
+% PAGE 2: TRENDS, SLIS, INCIDENTS & DR AUDIT
+% ==========================================
+
+% SECTION 3: VISUALIZATIONS & PERFORMANCE
+\subsection*{\textcolor{navyblue}{\faChartBar\ 3. Uptime Trend \& SLI Performance Analysis}}
+\hrule
+\vspace{6pt}
+
+\noindent
+\begin{minipage}[t]{0.52\textwidth}
+    \textbf{\small Monthly Availability vs SLA Baseline} \\[4pt]
+    \begin{tikzpicture}[scale=0.88, every node/.style={transform shape}]
+        % Grid & Axes
+        \draw[gray!30, ystep=0.6, xstep=0.6] (0,0) grid (6.6,3.2);
+        \draw[->, thick, color=textdark] (0,0) -- (6.8,0) node[right] {\tiny Month};
+        \draw[->, thick, color=textdark] (0,0) -- (0,3.4) node[above] {\tiny Availability};
+        
+        % Y ticks labels
+        \node[left] at (0, 0.4) {\tiny 99.90\%};
+        \node[left] at (0, 1.2) {\tiny 99.93\%};
+        \node[left] at (0, 2.0) {\tiny 99.96\%};
+        \node[left] at (0, 2.8) {\tiny 99.99\%};
+        
+        % Target Threshold Line (99.95%)
+        \draw[dashed, red!80!black, thick] (0, 1.73) -- (6.6, 1.73) node[right] {\tiny SLA 99.95\%};
+        
+        % Monthly Plot Line
+        \draw[color=brandblue, ultra thick] 
+            (0.4, 3.0) -- (0.9, 2.1) -- (1.4, 3.0) -- (1.9, 0.5) -- (2.4, 3.0) -- 
+            (2.9, 2.6) -- (3.4, 3.0) -- (3.9, 1.9) -- (4.4, 3.0) -- (4.9, 2.3) -- 
+            (5.4, 3.0) -- (5.9, 3.0);
+            
+        % Data points
+        \foreach \x/\y in {0.4/3.0, 0.9/2.1, 1.4/3.0, 1.9/0.5, 2.4/3.0, 2.9/2.6, 3.4/3.0, 3.9/1.9, 4.4/3.0, 4.9/2.3, 5.4/3.0, 5.9/3.0} {
+            \fill[brandblue] (\x,\y) circle (2pt);
+        }
+            
+        % Labels X axis
+        \node[below] at (0.4, 0) {\tiny J};
+        \node[below] at (0.9, 0) {\tiny F};
+        \node[below] at (1.4, 0) {\tiny M};
+        \node[below] at (1.9, 0) {\tiny A};
+        \node[below] at (2.4, 0) {\tiny M};
+        \node[below] at (2.9, 0) {\tiny J};
+        \node[below] at (3.4, 0) {\tiny J};
+        \node[below] at (3.9, 0) {\tiny A};
+        \node[below] at (4.4, 0) {\tiny S};
+        \node[below] at (4.9, 0) {\tiny O};
+        \node[below] at (5.4, 0) {\tiny N};
+        \node[below] at (5.9, 0) {\tiny D};
+    \end{tikzpicture}
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.44\textwidth}
+    \textbf{\small Service Level Indicators (SLIs) Summary} \\[6pt]
+    
+    % SLI 1: API Latency
+    \textcolor{textdark}{\tiny\textbf{API Gateway Latency (p95)}} \hfill \textcolor{statusgreen}{\tiny\textbf{42ms / 100ms SLO}}
+    \begin{tikzpicture}
+        \fill[cardbg] (0,0) rectangle (4.6, 0.22);
+        \fill[tealaccent] (0,0) rectangle (1.93, 0.22);
+    \end{tikzpicture} \\[4pt]
+    
+    % SLI 2: Database Query Time
+    \textcolor{textdark}{\tiny\textbf{Database Query Latency (p99)}} \hfill \textcolor{statusgreen}{\tiny\textbf{8.4ms / 25ms SLO}}
+    \begin{tikzpicture}
+        \fill[cardbg] (0,0) rectangle (4.6, 0.22);
+        \fill[brandblue] (0,0) rectangle (1.54, 0.22);
+    \end{tikzpicture} \\[4pt]
+
+    % SLI 3: Storage IOPS
+    \textcolor{textdark}{\tiny\textbf{Object Storage Throughput}} \hfill \textcolor{statusgreen}{\tiny\textbf{99.99\% Success}}
+    \begin{tikzpicture}
+        \fill[cardbg] (0,0) rectangle (4.6, 0.22);
+        \fill[statusgreen] (0,0) rectangle (4.59, 0.22);
+    \end{tikzpicture} \\[4pt]
+
+    % SLI 4: Error Rate
+    \textcolor{textdark}{\tiny\textbf{HTTP 5xx Error Rate}} \hfill \textcolor{statusgreen}{\tiny\textbf{0.003\% / 0.05\% Limit}}
+    \begin{tikzpicture}
+        \fill[cardbg] (0,0) rectangle (4.6, 0.22);
+        \fill[navyblue] (0,0) rectangle (0.28, 0.22);
+    \end{tikzpicture}
+\end{minipage}
+
+\vspace{10pt}
+
+% SECTION 4: UNPLANNED INCIDENTS LOG
+\subsection*{\textcolor{navyblue}{\faExclamationTriangle\ 4. Detailed Incident Audit \& Root Cause Analysis}}
+\hrule
+\vspace{6pt}
+
+During CY2025, four (4) service degradation events were recorded. Each event underwent post-mortem review and remediation verification by Meridian Assurance auditors.
+
+\vspace{4pt}
+
+\begin{small}
+\begin{tabularx}{\textwidth}{@{} l c c X c c @{}}
+    \toprule
+    \rowcolor{navyblue}
+    \textcolor{white}{\textbf{Incident ID}} & 
+    \textcolor{white}{\textbf{Date}} & 
+    \textcolor{white}{\textbf{Duration}} & 
+    \textcolor{white}{\textbf{Root Cause Summary}} & 
+    \textcolor{white}{\textbf{Classification}} & 
+    \textcolor{white}{\textbf{Remediation}} \\
+    \midrule
+    \rowcolor{cardbg} INC-2025-014 & Feb 14 & 14.2 min & Redis cluster failover delay during patch rollout. & Service Impact & Complete \\
+    \rowcolor{white} INC-2025-038 & Apr 09 & 42.1 min & BGP routing table flap at upstream transit provider. & Excused Outage & Resolved \\
+    \rowcolor{cardbg} INC-2025-071 & Aug 22 & 18.5 min & Memory leak in edge proxy worker thread pool. & Service Impact & Patch v4.2 \\
+    \rowcolor{white} INC-2025-099 & Oct 11 & 13.0 min & Automated DB failover during storage disk resize. & Service Impact & Tuning Done \\
+    \bottomrule
+\end{tabularx}
+\end{small}
+
+\vspace{10pt}
+
+% SECTION 5: DISASTER RECOVERY & HA AUDIT
+\subsection*{\textcolor{navyblue}{\faServer\ 5. Disaster Recovery (DR) \& High Availability Audit}}
+\hrule
+\vspace{6pt}
+
+Auditors conducted unannounced live failover exercises on June 18, 2025, and November 04, 2025, triggering simulated primary availability zone failures in `us-east-1`.
+
+\vspace{4pt}
+
+\noindent
+\begin{minipage}[t]{0.48\textwidth}
+    \begin{tcolorbox}[
+        enhanced, colback=lightbg, colframe=cardborder, arc=3pt, boxrule=0.5pt, left=8pt, right=8pt, top=6pt, bottom=6pt
+    ]
+        \textcolor{navyblue}{\textbf{\faClock\ Recovery Point Objective (RPO)}} \\[3pt]
+        \small Target RPO Limit: \textbf{$<$ 5.0 Minutes} \\
+        \small Verified Test RPO: \textbf{42.0 Seconds} \\[3pt]
+        \textcolor{statusgreen}{\scriptsize\faCheckCircle\ Continuous cross-region WAL streaming verified.}
+    \end{tcolorbox}
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.48\textwidth}
+    \begin{tcolorbox}[
+        enhanced, colback=lightbg, colframe=cardborder, arc=3pt, boxrule=0.5pt, left=8pt, right=8pt, top=6pt, bottom=6pt
+    ]
+        \textcolor{navyblue}{\textbf{\faUndo\ Recovery Time Objective (RTO)}} \\[3pt]
+        \small Target RTO Limit: \textbf{$<$ 30.0 Minutes} \\
+        \small Verified Test RTO: \textbf{8.5 Minutes} \\[3pt]
+        \textcolor{statusgreen}{\scriptsize\faCheckCircle\ Automated Route53 DNS health check failover verified.}
+    \end{tcolorbox}
+\end{minipage}
+
+\vspace{6pt}
+
+\begin{itemize}[leftmargin=1.2em]
+    \item \textbf{Data Replication Integrity:} 52 of 52 weekly automated backup restoration tests succeeded with zero data corruption detected.
+    \item \textbf{Multi-Region Redundancy:} Active-active application deployment verified across AWS `us-east-1` and `eu-west-1` clusters.
+    \item \textbf{DDoS Mitigation Capability:} Edge mitigation scrubbing successfully absorbed a simulated 450 Gbps SYN-flood attack vector during Q3 testing without degrading core API latency.
+\end{itemize}
+
+\clearpage
+
+% ==========================================
+% PAGE 3: SECURITY, RECOMMENDATIONS & SIGN-OFF
+% ==========================================
+
+% SECTION 6: SECURITY & COMPLIANCE VERIFICATION
+\subsection*{\textcolor{navyblue}{\faLock\ 6. Security Controls \& Compliance Audit Verification}}
+\hrule
+\vspace{6pt}
+
+Auditors evaluated infrastructure security controls, data encryption standards, and access control policies safeguarding Apex Financial Technologies' workspace data.
+
+\vspace{4pt}
+
+\begin{tcolorbox}[
+    enhanced, colback=cardbg, colframe=cardborder, arc=3pt, boxrule=0.5pt, left=8pt, right=8pt, top=6pt, bottom=6pt
+]
+\begin{tabularx}{\textwidth}{@{} l X c @{}}
+    \textbf{Audit Domain} & \textbf{Control Implementation Summary} & \textbf{Compliance Status} \\
+    \midrule
+    \textbf{Data Encryption} & TLS 1.3 enforced in transit; AES-256 KMS customer-managed keys at rest. & \textcolor{statusgreen}{\textbf{\faCheckCircle\ VERIFIED}} \\
+    \textbf{Access Control} & Role-Based Access Control (RBAC) with mandatory Hardware MFA for admins. & \textcolor{statusgreen}{\textbf{\faCheckCircle\ VERIFIED}} \\
+    \textbf{SOC 2 Type II} & Annual SOC 2 Type II report issued with zero zero-day exceptions noted. & \textcolor{statusgreen}{\textbf{\faCheckCircle\ VERIFIED}} \\
+    \textbf{Vulnerability Scans} & Automated daily container scanning with Snyk and automated patch deployment. & \textcolor{statusgreen}{\textbf{\faCheckCircle\ VERIFIED}} \\
+\end{tabularx}
+\end{tcolorbox}
+
+\vspace{8pt}
+
+% SECTION 7: AUDIT RECOMMENDATIONS
+\subsection*{\textcolor{navyblue}{\faList\ 7. Audit Findings \& Continuous Improvement Plan}}
+\hrule
+\vspace{6pt}
+
+While Vertex Infrastructure Corp. met all SLA requirements, the audit identified three (3) procedural and infrastructure enhancement opportunities to maintain long-term reliability.
+
+\vspace{4pt}
+
+\begin{small}
+\begin{tabularx}{\textwidth}{@{} c l X c c @{}}
+    \toprule
+    \rowcolor{navyblue}
+    \textcolor{white}{\textbf{Ref \#}} & 
+    \textcolor{white}{\textbf{Finding Area}} & 
+    \textcolor{white}{\textbf{Auditor Recommendation}} & 
+    \textcolor{white}{\textbf{Priority}} & 
+    \textcolor{white}{\textbf{Target Date}} \\
+    \midrule
+    \rowcolor{cardbg} REC-01 & Upstream Carrier BGP SPOF & Implement automated multi-homed BGP peering across secondary transit provider. & \textcolor{statusred}{\textbf{HIGH}} & Q2 2026 \\
+    \rowcolor{white} REC-02 & Redis Failover Latency & Upgrade Redis cluster architecture to Cluster Mode Enabled with fast election. & \textcolor{statusamber}{\textbf{MEDIUM}} & Q1 2026 \\
+    \rowcolor{cardbg} REC-03 & Audit Log Cold Storage & Migrate cold audit logs to S3 Glacier Flexible Retrieval to optimize retention cost. & \textcolor{brandblue}{\textbf{LOW}} & Q3 2026 \\
+    \bottomrule
+\end{tabularx}
+\end{small}
+
+\vspace{10pt}
+
+% SECTION 8: ATTESTATION & SIGN-OFF
+\subsection*{\textcolor{navyblue}{\faLock\ 8. Formal Attestation \& Sign-Off}}
+\hrule
+\vspace{6pt}
+
+This report represents a true and complete representation of the system reliability and SLA performance for the Synapse Enterprise Cloud Platform during the audit period covered.
+
+\vspace{10pt}
+
+\noindent
+\begin{minipage}[t]{0.45\textwidth}
+    \textcolor{textmuted}{\tiny LEAD AUDITOR SIGN-OFF} \\[4pt]
+    \rule{0.9\textwidth}{0.4pt} \\[6pt]
+    \textbf{\small Dr. Marcus Vance, Lead Auditor} \\
+    \textcolor{textmuted}{\small Principal Reliability Assurer} \\
+    \textcolor{textmuted}{\small Meridian Assurance LLC} \\[2pt]
+    {\tiny Date: January 15, 2026}
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.45\textwidth}
+    \textcolor{textmuted}{\tiny PROVIDER ACKNOWLEDGEMENT} \\[4pt]
+    \rule{0.9\textwidth}{0.4pt} \\[6pt]
+    \textbf{\small Elena Rostova, VP Infrastructure} \\
+    \textcolor{textmuted}{\small Chief System Reliability Officer} \\
+    \textcolor{textmuted}{\small Vertex Infrastructure Corp.} \\[2pt]
+    {\tiny Date: January 16, 2026}
+\end{minipage}
+
+\vspace{14pt}
+
+% Security checksum block
+\begin{tcolorbox}[
+    enhanced,
+    colback=lightbg,
+    colframe=cardborder,
+    arc=2pt,
+    boxrule=0.5pt,
+    left=8pt, right=8pt, top=4pt, bottom=4pt
+]
+    \tiny \textcolor{textmuted}{\textbf{DIGITAL VERIFICATION HASH (SHA-256):} \texttt{e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855}} \\
+    \tiny \textcolor{textmuted}{Verified against Meridian Assurance Public Key Fingerprint: \texttt{4A9F 88C1 209B 34E2 FFFF}}
+\end{tcolorbox}
+
+\end{document}

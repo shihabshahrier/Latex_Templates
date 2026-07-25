@@ -1,0 +1,8 @@
+{
+  "name": "DevOps Infrastructure Runbook",
+  "compiler": "pdflatex",
+  "description": "DevOps Infrastructure Runbook LaTeX template \u2014 devops infrastructure runbook latex template. Elegant, compile-tested, editable online at letx.app.",
+  "author": "LetX",
+  "category": "tech-docs",
+  "license": "MIT"
+}

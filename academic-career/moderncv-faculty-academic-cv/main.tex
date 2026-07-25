@@ -1,0 +1,234 @@
+\documentclass[11pt,a4paper]{moderncv}
+
+\moderncvstyle{classic}
+\moderncvcolor{blue}
+
+\usepackage[scale=0.78,top=1.6cm,bottom=1.8cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{xcolor}
+\usepackage{tcolorbox}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{array}
+
+% ----------------------------------------------------------------------
+% Custom palette (overrides moderncv's built-in blue scheme)
+% ----------------------------------------------------------------------
+\definecolor{cvnavy}{RGB}{24,53,89}
+\definecolor{cvgold}{RGB}{169,132,58}
+\definecolor{cvslate}{RGB}{95,101,110}
+\definecolor{cvpaper}{RGB}{250,248,244}
+
+\colorlet{color0}{cvnavy}
+\colorlet{color1}{cvnavy}
+\colorlet{color2}{cvgold}
+\colorlet{color3}{cvslate}
+
+\renewcommand*{\namefont}{\fontsize{26}{30}\selectfont\color{cvnavy}}
+\renewcommand*{\titlefont}{\fontsize{12}{14}\selectfont\color{cvgold}\itshape}
+\renewcommand*{\addressfont}{\footnotesize\color{cvslate}}
+
+\setlength{\hintscolumnwidth}{3.1cm}
+
+% ----------------------------------------------------------------------
+% Personal data
+% ----------------------------------------------------------------------
+\firstname{Helena}
+\familyname{Marsh}
+\title{Associate Professor of Materials Science and Engineering}
+\address{Department of Materials Science and Engineering, Meridian University}{412 Kessler Hall, 8 Founders Walk}{Ashford, ME 04910}
+\phone[office]{+1~(207)~555~0142}
+\email{h.marsh@meridian.edu}
+\homepage{materials.meridian.edu/marsh-lab}
+\extrainfo{ORCID: 0000-0002-4471-9038}
+
+\begin{document}
+\makecvtitle
+
+\vspace{-0.6cm}
+\begin{tcolorbox}[
+  colback=cvpaper,
+  colframe=cvnavy,
+  boxrule=0.6pt,
+  arc=1.5pt,
+  left=8pt,right=8pt,top=6pt,bottom=6pt
+]
+\small\color{cvslate}
+\textbf{\color{cvnavy}Research overview.} I direct the Ionic Interfaces Laboratory at Meridian University, where my group studies charge transport at grain boundaries and electrode--electrolyte interfaces in solid-state battery materials. Our work combines synthesis, operando spectroscopy, and machine-learning-guided screening to design layered-oxide cathodes and ceramic electrolytes with improved cycling stability. I teach undergraduate and graduate courses in materials thermodynamics and electrochemical energy storage, and I have advised eleven graduate students to degree completion.
+\end{tcolorbox}
+\vspace{0.3cm}
+
+%----------------------------------------------------------------------
+\section{Education}
+%----------------------------------------------------------------------
+\cventry{2007--2011}{Ph.D., Materials Science and Engineering}{Vertex Institute of Technology}{Ashford, ME}{}{Dissertation: \textit{Ionic Transport Mechanisms in Layered Oxide Cathodes for Solid-State Batteries}. Advisor: Prof.\ Daniel Okafor.}
+\cventry{2005--2007}{M.S., Materials Science and Engineering}{Vertex Institute of Technology}{Ashford, ME}{}{Thesis: \textit{Sol-Gel Synthesis of Nickel-Rich Cathode Precursors}.}
+\cventry{2001--2005}{B.S., Chemistry, \textit{magna cum laude}}{Apex University}{Rowanfield, NJ}{}{Minor in Physics. Departmental Honors Thesis on lithium intercalation kinetics.}
+
+%----------------------------------------------------------------------
+\section{Academic Appointments}
+%----------------------------------------------------------------------
+\cventry{2021--present}{Associate Professor (tenured)}{Department of Materials Science and Engineering, Meridian University}{Ashford, ME}{}{}
+\cventry{2015--2021}{Assistant Professor}{Department of Materials Science and Engineering, Meridian University}{Ashford, ME}{}{}
+\cventry{2012--2015}{Postdoctoral Research Associate}{Nimbus College, Solid-State Chemistry Group}{Redgate, MA}{}{Advisor: Prof.\ Sarah Lindqvist. Developed operando X-ray diffraction protocols for tracking phase transitions in cathode materials during cycling.}
+\cventry{2011--2012}{Visiting Research Fellow}{Synapse Foundation Materials Institute}{Corwin City, IL}{}{Collaborative appointment supporting transition from doctoral to postdoctoral research.}
+
+%----------------------------------------------------------------------
+\section{Honors and Awards}
+%----------------------------------------------------------------------
+\cvitem{2024}{Distinguished Teaching Award, Meridian University}
+\cvitem{2022}{Early-Career Faculty Fellowship, Synapse Foundation}
+\cvitem{2019}{Young Investigator Award, Nexa Research Council}
+\cvitem{2017}{CAREER Award, Nexa Research Council (Directorate for Materials Research)}
+\cvitem{2016}{Rising Star in Materials Chemistry, Materials Research Society}
+\cvitem{2013}{Postdoctoral Excellence Prize, Nimbus College}
+\cvitem{2011}{Outstanding Doctoral Dissertation Award, Vertex Institute of Technology}
+\cvitem{2005}{Chemistry Department Medal, Apex University}
+
+%----------------------------------------------------------------------
+\section{Research Funding}
+%----------------------------------------------------------------------
+\cventry{2023--2026}{Interfacial Engineering of Solid Electrolytes for Next-Generation Batteries}{Nexa Research Council}{Role: Principal Investigator}{\$685{,}000}{}
+\cventry{2022--2025}{Collaborative Research on Battery Degradation Diagnostics}{Apex University / Vertex Institute of Technology Consortium}{Role: Senior Personnel (Meridian share)}{\$275{,}000}{}
+\cventry{2021--2024}{Scalable Synthesis of Layered Oxide Cathode Materials}{Synapse Foundation}{Role: Principal Investigator}{\$420{,}000}{}
+\cventry{2020--2023}{Machine-Learning-Guided Discovery of Ionic Conductors}{Nimbus Industries, Industry Partnership Program}{Role: Co-Principal Investigator}{\$310{,}000}{}
+\cventry{2017--2022}{CAREER: Grain Boundary Transport in Solid-State Electrolytes}{Nexa Research Council}{Role: Principal Investigator}{\$550{,}000}{}
+\cventry{2016--2017}{Seed Grant: Novel Cathode Surface Coatings}{Meridian University Office of Research}{Role: Principal Investigator}{\$45{,}000}{}
+\cvitem{\textbf{Total}}{Extramural funding as PI/Co-PI since 2016: \textbf{\$2{,}285{,}000}}
+
+%----------------------------------------------------------------------
+\section{Publications}
+%----------------------------------------------------------------------
+\subsection{Peer-Reviewed Journal Articles}
+{\small \noindent (\dag\ denotes graduate student mentee; \(^{*}\) denotes corresponding author)}
+\begin{enumerate}[leftmargin=*,itemsep=3pt,topsep=6pt,label={[J\arabic*]}]
+\item Marsh, H.\(^{*}\), Whitfield, R.\dag, Cho, J.\dag\ (2025). Grain-boundary segregation and its effect on ionic conductivity in garnet-type solid electrolytes. \textit{Journal of Applied Materials Chemistry}, 41(3), 1122--1136.
+\item Okonkwo, L.\dag, Marsh, H.\(^{*}\), Reyes, P. (2024). Operando neutron diffraction study of nickel-rich layered cathodes under fast charge. \textit{Energy Storage Science}, 12(2), 245--259.
+\item Marsh, H.\(^{*}\), Torbin, A.\dag\ (2024). Machine-learning screening of halide solid electrolytes for interfacial stability. \textit{Ionics and Interfaces}, 8(1), 33--48.
+\item Whitfield, R.\dag, Marsh, H.\(^{*}\), Lindqvist, S. (2023). Coating chemistry effects on cycling stability of NMC811 cathodes. \textit{Journal of Applied Materials Chemistry}, 39(11), 4410--4423.
+\item Marsh, H.\(^{*}\), Cho, J.\dag, Dumont, F. (2023). Sodium-substituted layered oxides as low-cost cathode candidates. \textit{Materials Horizons Quarterly}, 10(4), 891--904.
+\item Torbin, A.\dag, Marsh, H.\(^{*}\) (2022). Deep-learning prediction of activation energies in ceramic ion conductors. \textit{Ionics and Interfaces}, 6(3), 210--226.
+\item Marsh, H.\(^{*}\), Okafor, D., Reyes, P. (2022). Interfacial resistance evolution at cathode/garnet interfaces: a five-year retrospective. \textit{Energy Storage Science}, 10(1), 55--71.
+\item Cho, J.\dag, Whitfield, R.\dag, Marsh, H.\(^{*}\) (2021). Atomic layer deposition of alumina buffer layers for solid-state cathodes. \textit{Journal of Applied Materials Chemistry}, 37(6), 2201--2214.
+\item Marsh, H.\(^{*}\), Lindqvist, S. (2021). Revisiting the role of oxygen vacancies in high-voltage spinel cathodes. \textit{Materials Horizons Quarterly}, 8(2), 402--417.
+\item Dumont, F.\dag, Marsh, H.\(^{*}\) (2020). Solvent-free mechanochemical synthesis of sulfide solid electrolytes. \textit{Ionics and Interfaces}, 4(4), 301--315.
+\item Marsh, H.\(^{*}\), Reyes, P., Torbin, A.\dag\ (2019). CAREER perspective: bridging grain boundary chemistry and macroscopic conductivity. \textit{Energy Storage Science}, 7(3), 188--201.
+\item Marsh, H.\(^{*}\), Whitfield, R.\dag\ (2018). Thermal stability of nickel-rich cathodes under abuse conditions. \textit{Journal of Applied Materials Chemistry}, 34(9), 3390--3402.
+\item Reyes, P., Marsh, H.\(^{*}\) (2017). A comparative study of wet-chemical routes to lithium garnet electrolytes. \textit{Ionics and Interfaces}, 2(1), 44--58.
+\item Marsh, H.\(^{*}\), Okonkwo, L.\dag\ (2016). Surface reconstruction of layered oxides upon air exposure. \textit{Materials Horizons Quarterly}, 3(2), 155--167.
+\item Marsh, H., Lindqvist, S.\(^{*}\) (2014). Operando X-ray diffraction cell design for cathode phase-transition studies. \textit{Journal of Applied Materials Chemistry}, 30(7), 2650--2661.
+\item Marsh, H., Okafor, D.\(^{*}\) (2013). Lithium diffusion pathways in doped layered oxides: a combined experimental and computational study. \textit{Ionics and Interfaces}, 1(1), 12--27.
+\item Marsh, H., Okafor, D.\(^{*}\) (2011). Sol-gel derived nickel-rich cathode precursors: particle morphology control. \textit{Energy Storage Science}, 1(1), 3--14.
+\end{enumerate}
+
+\subsection{Book Chapters}
+\begin{enumerate}[leftmargin=*,itemsep=3pt,topsep=6pt,label={[B\arabic*]}]
+\item Marsh, H. (2023). Interfacial degradation in solid-state batteries. In \textit{Advances in Ceramic Electrolyte Design}, eds.\ Reyes, P.\ \& Lindqvist, S. Meridian Academic Press, pp.\ 118--147.
+\item Marsh, H., Okafor, D. (2016). Characterization techniques for layered oxide cathodes. In \textit{Handbook of Electrode Materials}, 2nd ed., ed.\ Dumont, F. Vertex University Press, pp.\ 63--90.
+\end{enumerate}
+
+\subsection{Selected Conference Proceedings}
+\begin{enumerate}[leftmargin=*,itemsep=3pt,topsep=6pt,label={[C\arabic*]}]
+\item Marsh, H., Whitfield, R.\dag\ (2024). Grain boundary engineering in garnet electrolytes. \textit{Proceedings of the Materials Research Society Fall Meeting}, Corwin City, IL.
+\item Torbin, A.\dag, Marsh, H. (2022). ML-guided ionic conductor discovery. \textit{Proceedings of the Electrochemical Society Spring Meeting}, Redgate, MA.
+\item Marsh, H., Cho, J.\dag\ (2019). Cathode coating strategies for fast-charge applications. \textit{Proceedings of the International Battery Materials Symposium}, Ashford, ME.
+\item Marsh, H. (2014). Operando diffraction of layered oxide cathodes. \textit{Proceedings of the Materials Research Society Spring Meeting}, Rowanfield, NJ.
+\end{enumerate}
+
+%----------------------------------------------------------------------
+\section{Invited Talks and Presentations}
+%----------------------------------------------------------------------
+\cvitem{2025}{``Interfacial Chemistry in Solid-State Batteries,'' Colloquium, Vertex Institute of Technology}
+\cvitem{2024}{``Grain Boundaries as Design Variables,'' Keynote, International Battery Materials Symposium, Ashford, ME}
+\cvitem{2023}{``Machine Learning Meets Solid Electrolytes,'' Invited Seminar, Apex University}
+\cvitem{2022}{``A Decade of Cathode Interfaces,'' Distinguished Lecture, Nimbus College}
+\cvitem{2021}{``Coatings and Cycling Stability,'' Materials Research Society Fall Meeting, Corwin City, IL}
+\cvitem{2019}{``CAREER Perspectives on Ionic Transport,'' Nexa Research Council PI Meeting, Washington Analogue}
+\cvitem{2017}{``Operando Methods for Battery Materials,'' Invited Talk, Synapse Foundation Materials Institute}
+\cvitem{2015}{``From Precursors to Performance,'' Early Career Symposium, Electrochemical Society Meeting}
+
+%----------------------------------------------------------------------
+\section{Teaching}
+%----------------------------------------------------------------------
+\subsection{Courses Taught}
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\small
+\begin{tabular}{@{}l p{5.4cm} l l@{}}
+\toprule
+\textbf{Course} & \textbf{Title} & \textbf{Level} & \textbf{Offered} \\
+\midrule
+MSE 210 & Materials Thermodynamics & Undergraduate & Spring, 2016--2019 \\
+MSE 301 & Introduction to Materials Science & Undergraduate & Fall, 2015--present \\
+MSE 415 & Electrochemical Energy Storage & Undergrad./Grad. & Spring, 2017--present \\
+MSE 610 & Advanced Solid-State Ionics & Graduate & Fall, 2019, 2021, 2023 \\
+MSE 690 & Graduate Research Seminar & Graduate & Fall, 2020--present \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Doctoral Students Advised (degree completed)}
+\cvitem{2024}{Anya Torbin, Ph.D. --- \textit{Data-Driven Discovery of Ionic Conductors}; now Research Scientist, Nimbus Industries}
+\cvitem{2023}{Rowan Whitfield, Ph.D. --- \textit{Coating Strategies for Nickel-Rich Cathodes}; now Assistant Professor, Apex University}
+\cvitem{2022}{Jin Cho, Ph.D. --- \textit{Atomic Layer Deposition for Solid-State Interfaces}; now Process Engineer, Synapse Foundation Labs}
+\cvitem{2020}{Lucia Okonkwo, Ph.D. --- \textit{Neutron Diffraction Studies of Fast-Charge Cathodes}; now Postdoctoral Fellow, Vertex Institute of Technology}
+\cvitem{2018}{Felix Dumont, Ph.D. --- \textit{Mechanochemical Routes to Sulfide Electrolytes}; now Staff Scientist, Nexa Research Council}
+
+\subsection{Current Graduate Students}
+\cvlistitem{Marguerite Fenn (Ph.D.\ candidate, 3rd year) --- interfacial coatings for halide electrolytes}
+\cvlistitem{Owen Petrakis (Ph.D.\ candidate, 2nd year) --- machine-learning force fields for garnet conductors}
+\cvlistitem{Ines Kowalczyk (M.S.\ student, 2nd year) --- thermal abuse testing of layered oxides}
+
+%----------------------------------------------------------------------
+\section{Service}
+%----------------------------------------------------------------------
+\subsection{Departmental}
+\cvitem{2022--present}{Chair, Graduate Admissions Committee}
+\cvitem{2020, 2023}{Member, Faculty Search Committee}
+\cvitem{2018--2021}{Member, Undergraduate Curriculum Committee}
+\cvitem{2016--2018}{Faculty Advisor, Materials Science Undergraduate Society}
+
+\subsection{University}
+\cvitem{2021--present}{Member, Meridian University Research Council}
+\cvitem{2019--2021}{Member, Faculty Senate}
+\cvitem{2017--2019}{Reviewer, Meridian University Internal Seed Grant Program}
+
+\subsection{Professional}
+\cvitem{2022--present}{Associate Editor, \textit{Journal of Applied Materials Chemistry}}
+\cvitem{2019, 2021, 2023}{Panelist, Nexa Research Council Merit Review Panels}
+\cvitem{2018--present}{Ad-hoc Reviewer: \textit{Energy Storage Science}, \textit{Ionics and Interfaces}, \textit{Materials Horizons Quarterly}}
+\cvitem{2021, 2024}{Session Chair, Materials Research Society Meeting}
+
+%----------------------------------------------------------------------
+\section{Professional Memberships}
+%----------------------------------------------------------------------
+\cvitem{}{Materials Research Society (member since 2011)}
+\cvitem{}{American Chemical Society, Division of Inorganic Chemistry (member since 2009)}
+\cvitem{}{Electrochemical Society, Battery Division (member since 2013)}
+
+%----------------------------------------------------------------------
+\section{References}
+%----------------------------------------------------------------------
+\begin{minipage}[t]{0.32\textwidth}
+\textbf{Prof.\ Daniel Okafor}\\
+Department of Materials Science\\
+Vertex Institute of Technology\\
+d.okafor@vertex.edu
+\end{minipage}\hfill
+\begin{minipage}[t]{0.32\textwidth}
+\textbf{Prof.\ Sarah Lindqvist}\\
+Solid-State Chemistry Group\\
+Nimbus College\\
+s.lindqvist@nimbus.edu
+\end{minipage}\hfill
+\begin{minipage}[t]{0.32\textwidth}
+\textbf{Dr.\ Priya Reyes}\\
+Materials Institute\\
+Synapse Foundation\\
+p.reyes@synapsefdn.org
+\end{minipage}
+
+\end{document}

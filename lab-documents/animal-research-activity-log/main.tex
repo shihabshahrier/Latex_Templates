@@ -1,0 +1,323 @@
+\documentclass[11pt]{scrreprt}
+
+\usepackage[letterpaper,top=2.3cm,bottom=2.4cm,left=2.2cm,right=2.2cm]{geometry}
+\usepackage[table]{xcolor}
+\usepackage{colortbl}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{tabularx}
+\usepackage{tikz}
+\usetikzlibrary{positioning,calc,shapes.geometric,backgrounds}
+\usepackage[most]{tcolorbox}
+\usepackage{fontawesome5}
+\usepackage{enumitem}
+\usepackage{ragged2e}
+\usepackage{parskip}
+\usepackage{scrlayer-scrpage}
+\usepackage{hyperref}
+
+\definecolor{vivteal}{HTML}{1B5E56}
+\definecolor{vivslate}{HTML}{3C4A52}
+\definecolor{vivamber}{HTML}{C97B2E}
+\definecolor{vivalert}{HTML}{A8342A}
+\definecolor{vivbg}{HTML}{F4F1EA}
+\definecolor{vivline}{HTML}{D8D2C4}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=vivteal,
+  urlcolor=vivteal
+}
+
+\setcounter{secnumdepth}{0}
+\addtokomafont{section}{\color{vivteal}\scshape\Large}
+\addtokomafont{subsection}{\color{vivslate}\bfseries\large}
+\addtokomafont{paragraph}{\color{vivteal}\bfseries}
+
+\setlist[itemize]{leftmargin=1.4em,itemsep=0.25em,topsep=0.3em}
+\setlist[enumerate]{leftmargin=1.6em,itemsep=0.25em,topsep=0.3em}
+
+\newtcolorbox{infobox}[1][]{
+  colback=vivbg,
+  colframe=vivline,
+  boxrule=0.4pt,
+  arc=1.5pt,
+  left=8pt,right=8pt,top=6pt,bottom=6pt,
+  #1
+}
+
+\newtcolorbox{noteslip}[1][]{
+  colback=white,
+  colframe=vivteal,
+  boxrule=0.6pt,
+  arc=1.5pt,
+  left=8pt,right=8pt,top=6pt,bottom=6pt,
+  fonttitle=\bfseries\color{white},
+  colbacktitle=vivteal,
+  coltitle=white,
+  #1
+}
+
+\pagestyle{scrheadings}
+\clearpairofpagestyles
+\ihead{\small\color{vivslate}\scshape Meridian Comparative Medicine Center}
+\ohead{\small\color{vivslate} Vivarium Activity Log \textbar\ IACUC-2026-0447}
+\ofoot{\small\color{vivslate}\thepage}
+\ifoot{\small\color{vivslate} Building 3 -- Room 214}
+\setkomafont{pageheadfoot}{\normalfont}
+\setkomafont{pagefoot}{\normalfont}
+
+\renewcommand{\arraystretch}{1.15}
+
+\newcommand{\statusdot}[2]{%
+  \begin{tikzpicture}[baseline=-0.6ex]
+    \node[circle,fill=#1,minimum size=8pt,inner sep=0pt] (d) {};
+  \end{tikzpicture}\ #2%
+}
+
+\begin{document}
+
+%--------------------------------------------------------------------
+% TITLE BLOCK
+%--------------------------------------------------------------------
+\begin{center}
+\begin{tikzpicture}
+\node[fill=vivteal,text=white,text width=\dimexpr\textwidth-28pt\relax,
+      inner xsep=14pt,inner ysep=16pt,align=center] (banner) {
+  {\scshape\Large Meridian Comparative Medicine Center}\\[2pt]
+  {\small\itshape Division of Laboratory Animal Resources}\\[12pt]
+  {\LARGE\bfseries Animal Facility Research Activity Log}\\[5pt]
+  {\large Vivarium Building 3, Room 214 -- Rodent Barrier Suite}
+};
+\draw[vivamber,line width=3pt] (banner.south west) -- (banner.south east);
+\end{tikzpicture}
+\end{center}
+\vspace{0.6cm}
+
+\begin{infobox}
+\begin{tabularx}{\textwidth}{@{}l X l X@{}}
+\textbf{Protocol No.:} & IACUC-2026-0447 & \textbf{Approval Date:} & 15 Jan 2026 \\
+\textbf{Principal Investigator:} & Dr. Elena Kowalski, Dept.\ of Comparative Medicine & \textbf{Expiration:} & 14 Jan 2029 \\
+\textbf{Study Title:} & Efficacy of NX-2210 in a Murine Model of Chronic Neuroinflammation & \textbf{Pain Category:} & USDA Category D \\
+\textbf{Sponsor:} & Vertex Biosciences, Preclinical Neuroscience Unit & \textbf{Species:} & Mice, Rats \\
+\end{tabularx}
+\end{infobox}
+
+\vspace{0.4cm}
+
+\section*{\faFile\ Protocol Overview and Scope}
+
+This log documents all husbandry, clinical observation, procedural, and enrichment
+activity associated with Protocol IACUC-2026-0447 within the rodent barrier suite of
+Building 3. Entries must be completed in real time by the technician performing the
+activity and countersigned by the attending veterinarian at the intervals specified in
+the approved protocol. No retroactive entries are permitted; corrections must be made
+with a single strike-through, initialed and dated.
+
+\begin{infobox}
+\textbf{Approved animal population}
+\begin{itemize}
+\item C57BL/6J mice, male and female, 8--12 weeks at enrollment (n = 48)
+\item Sprague-Dawley rats, male, 10--14 weeks at enrollment (n = 20)
+\item Housing: individually ventilated caging, 4--5 mice per cage or 2 rats per cage
+\item Approved procedures: intraperitoneal injection, tail-vein blood draw, oral gavage,
+  terminal perfusion under deep anesthesia
+\end{itemize}
+\end{infobox}
+
+\paragraph{Status legend used throughout this log.}\mbox{}\\[4pt]
+\statusdot{vivteal}{Normal -- within expected range} \hfill
+\statusdot{vivamber}{Watch -- monitor next check} \hfill
+\statusdot{vivalert}{Concern -- veterinary review required} \hfill
+\begin{tikzpicture}[baseline=-0.6ex]
+  \node[regular polygon,regular polygon sides=3,fill=vivalert,minimum size=8pt,inner sep=0pt] {};
+\end{tikzpicture}\ Emergency escalation
+
+\section*{\faCalendar\ Daily Husbandry and Environmental Log}
+
+\begin{footnotesize}
+\begin{longtable}{@{}p{1.55cm}p{1.05cm}p{1.7cm}p{2.0cm}p{2.5cm}p{1.7cm}p{1.0cm}@{}}
+\toprule
+\rowcolor{vivteal}
+\textcolor{white}{\textbf{Date}} & \textcolor{white}{\textbf{Time}} &
+\textcolor{white}{\textbf{Temp / RH}} & \textcolor{white}{\textbf{Technician}} &
+\textcolor{white}{\textbf{Cage condition}} & \textcolor{white}{\textbf{Food / water}} &
+\textcolor{white}{\textbf{Init.}} \\
+\midrule
+\endfirsthead
+\rowcolor{vivteal}
+\textcolor{white}{\textbf{Date}} & \textcolor{white}{\textbf{Time}} &
+\textcolor{white}{\textbf{Temp / RH}} & \textcolor{white}{\textbf{Technician}} &
+\textcolor{white}{\textbf{Cage condition}} & \textcolor{white}{\textbf{Food / water}} &
+\textcolor{white}{\textbf{Init.}} \\
+\midrule
+\endhead
+\bottomrule
+\multicolumn{7}{r}{\footnotesize\itshape continued on next page}\\
+\endfoot
+\bottomrule
+\endlastfoot
+01 Jun 2026 & 07:40 & 21.2\,\textdegree C / 48\% & Sofia Marchetti & Clean, dry bedding & Adequate, topped & SM \\
+01 Jun 2026 & 16:15 & 21.3\,\textdegree C / 47\% & James Okafor & Clean & Adequate & JO \\
+02 Jun 2026 & 07:35 & 21.1\,\textdegree C / 49\% & James Okafor & Clean & Adequate & JO \\
+02 Jun 2026 & 16:20 & 21.4\,\textdegree C / 46\% & Grace Liu & Slight soiling, cage 14 & Adequate & GL \\
+03 Jun 2026 & 07:50 & 20.9\,\textdegree C / 50\% & Sofia Marchetti & Changed, cage 14 & Adequate, topped & SM \\
+03 Jun 2026 & 16:05 & 21.0\,\textdegree C / 48\% & Daniel Reyes & Clean & Adequate & DR \\
+04 Jun 2026 & 07:45 & 21.2\,\textdegree C / 47\% & Daniel Reyes & Clean & Adequate & DR \\
+04 Jun 2026 & 16:10 & 21.5\,\textdegree C / 45\% & James Okafor & Clean & Water bottle refilled & JO \\
+05 Jun 2026 & 07:38 & 21.0\,\textdegree C / 49\% & Sofia Marchetti & Clean & Adequate & SM \\
+05 Jun 2026 & 16:00 & 21.1\,\textdegree C / 48\% & Grace Liu & Clean & Adequate & GL \\
+08 Jun 2026 & 07:42 & 21.3\,\textdegree C / 46\% & James Okafor & Full cage change, weekly & Adequate, topped & JO \\
+08 Jun 2026 & 16:18 & 21.2\,\textdegree C / 47\% & Daniel Reyes & Clean & Adequate & DR \\
+09 Jun 2026 & 07:36 & 20.8\,\textdegree C / 51\% & Sofia Marchetti & Clean & Adequate & SM \\
+09 Jun 2026 & 16:12 & 21.0\,\textdegree C / 49\% & Grace Liu & Clean & Adequate & GL \\
+10 Jun 2026 & 07:44 & 21.1\,\textdegree C / 48\% & James Okafor & Clean & Adequate & JO \\
+10 Jun 2026 & 16:20 & 21.3\,\textdegree C / 46\% & Daniel Reyes & Clean & Adequate & DR \\
+\end{longtable}
+\end{footnotesize}
+
+\section*{\faPen\ Clinical and Health Observation Log}
+
+\begin{footnotesize}
+\begin{longtable}{@{}p{1.5cm}p{1.6cm}p{1.4cm}p{1.3cm}p{4.6cm}p{1.9cm}@{}}
+\toprule
+\rowcolor{vivteal}
+\textcolor{white}{\textbf{Date}} & \textcolor{white}{\textbf{Animal ID}} &
+\textcolor{white}{\textbf{Weight (g)}} & \textcolor{white}{\textbf{Score}} &
+\textcolor{white}{\textbf{Observation}} & \textcolor{white}{\textbf{Observer}} \\
+\midrule
+\endfirsthead
+\rowcolor{vivteal}
+\textcolor{white}{\textbf{Date}} & \textcolor{white}{\textbf{Animal ID}} &
+\textcolor{white}{\textbf{Weight (g)}} & \textcolor{white}{\textbf{Score}} &
+\textcolor{white}{\textbf{Observation}} & \textcolor{white}{\textbf{Observer}} \\
+\midrule
+\endhead
+\bottomrule
+\multicolumn{6}{r}{\footnotesize\itshape continued on next page}\\
+\endfoot
+\bottomrule
+\endlastfoot
+01 Jun 2026 & M-1042 & 24.8 & \cellcolor{vivteal!25}Normal & Alert, grooming normal, no signs of distress & S.\ Marchetti \\
+01 Jun 2026 & R-0207 & 318.4 & \cellcolor{vivteal!25}Normal & Ambulatory, coat smooth, eating well & J.\ Okafor \\
+02 Jun 2026 & M-1058 & 22.1 & \cellcolor{vivamber!35}Watch & Slightly hunched posture at AM check, resolved by PM & G.\ Liu \\
+03 Jun 2026 & M-1058 & 22.6 & \cellcolor{vivteal!25}Normal & Posture normal, weight recovering & D.\ Reyes \\
+03 Jun 2026 & R-0214 & 305.2 & \cellcolor{vivamber!35}Watch & Reduced water intake noted, bottle checked and free-flowing & S.\ Marchetti \\
+04 Jun 2026 & R-0214 & 309.0 & \cellcolor{vivteal!25}Normal & Intake normal overnight & J.\ Okafor \\
+05 Jun 2026 & M-1071 & 21.4 & \cellcolor{vivalert!30}Concern & Piloerection and 8\% weight loss from baseline; vet notified & G.\ Liu \\
+06 Jun 2026 & M-1071 & 22.0 & \cellcolor{vivamber!35}Watch & Improved after supportive hydration gel per Dr.\ Webb & D.\ Reyes \\
+08 Jun 2026 & M-1071 & 22.9 & \cellcolor{vivteal!25}Normal & Weight and behavior fully recovered & S.\ Marchetti \\
+09 Jun 2026 & R-0233 & 296.7 & \cellcolor{vivteal!25}Normal & Routine check, no findings & J.\ Okafor \\
+10 Jun 2026 & M-1090 & 23.5 & \cellcolor{vivteal!25}Normal & Routine check, no findings & G.\ Liu \\
+\end{longtable}
+\end{footnotesize}
+
+\section*{\faLock\ Procedure and Intervention Log}
+
+\begin{footnotesize}
+\begin{tabularx}{\textwidth}{@{}p{1.5cm}p{1.5cm}X p{2.0cm}p{2.5cm}p{1.3cm}@{}}
+\toprule
+\rowcolor{vivteal}
+\textcolor{white}{\textbf{Date}} & \textcolor{white}{\textbf{Animal ID}} &
+\textcolor{white}{\textbf{Procedure}} & \textcolor{white}{\textbf{Personnel}} &
+\textcolor{white}{\textbf{Anesth./Analg.}} & \textcolor{white}{\textbf{Dur.}} \\
+\midrule
+02 Jun 2026 & M-1001--1048 & Intraperitoneal dosing, NX-2210 vs.\ vehicle & Dr.\ E.\ Kowalski, S.\ Marchetti & None required & 45 min \\
+04 Jun 2026 & R-0201--0220 & Tail-vein blood draw, PK timepoint & J.\ Okafor, D.\ Reyes & Topical warming only & 30 min \\
+06 Jun 2026 & M-1071 & Supportive subcutaneous fluids & Dr.\ M.\ Webb, DVM & N/A -- therapeutic & 10 min \\
+09 Jun 2026 & M-1001--1024 & Oral gavage, terminal dose confirmation & Dr.\ E.\ Kowalski, G.\ Liu & None required & 40 min \\
+11 Jun 2026 & M-1001--1010 & Terminal perfusion, tissue collection & Dr.\ M.\ Webb, Dr.\ E.\ Kowalski & Ketamine/xylazine, deep plane confirmed & 90 min \\
+\bottomrule
+\end{tabularx}
+\end{footnotesize}
+
+\vspace{0.3cm}
+
+\begin{noteslip}[title={\faPhone\ Adverse Event Note -- 05 Jun 2026, Animal M-1071}]
+Piloerection and 8\% acute weight loss identified during morning rounds. Attending
+veterinarian Dr.\ Marcus Webb examined the animal within 40 minutes of notification,
+authorized subcutaneous fluid support, and placed the animal on twice-daily monitoring.
+Full recovery confirmed and documented by 08 Jun 2026. No protocol deviation filed;
+managed under approved humane endpoint contingencies, Section 7.2.
+\end{noteslip}
+
+\section*{\faFile\ Enrichment and Environmental Welfare Notes}
+
+\begin{infobox}
+\begin{itemize}
+\item Nestlets and gnawing blocks refreshed at each full cage change; verified present
+  and in use during 100\% of AM checks this reporting period.
+\item Rat enrichment tubes rotated weekly between cages to maintain novelty without
+  introducing unapproved materials into the barrier suite.
+\item Social housing maintained throughout; no animals singly housed except M-1071
+  during its 05--08 Jun observation window, per veterinary recommendation, with
+  visual and olfactory contact preserved.
+\item Noise and light-cycle logs cross-checked against facility building-management
+  system weekly; no deviations recorded this period.
+\item Enrichment review conducted jointly by facility manager and IACUC liaison on
+  10 Jun 2026; no corrective actions required.
+\end{itemize}
+\end{infobox}
+
+\section*{\faPen\ Personnel Authorization and Training Sign-Off}
+
+\begin{footnotesize}
+\begin{tabularx}{\textwidth}{@{}X l l l@{}}
+\toprule
+\rowcolor{vivteal}
+\textcolor{white}{\textbf{Name}} & \textcolor{white}{\textbf{Role}} &
+\textcolor{white}{\textbf{Training Cert.\ No.}} & \textcolor{white}{\textbf{Date}} \\
+\midrule
+Dr.\ Elena Kowalski & Principal Investigator & LAT-2024-0091 & 01 Jun 2026 \\
+Dr.\ Marcus Webb, DVM & Attending Veterinarian & DVM-LAM-0037 & 01 Jun 2026 \\
+Priya Nair & Facility Manager & LAT-2023-0154 & 01 Jun 2026 \\
+Sofia Marchetti & Animal Care Technician II & LAT-2025-0208 & 01 Jun 2026 \\
+James Okafor & Animal Care Technician II & LAT-2025-0212 & 01 Jun 2026 \\
+Daniel Reyes & Animal Care Technician I & LAT-2026-0033 & 03 Jun 2026 \\
+Grace Liu & Animal Care Technician I & LAT-2026-0041 & 03 Jun 2026 \\
+\bottomrule
+\end{tabularx}
+\end{footnotesize}
+
+\vspace{0.5cm}
+
+\noindent
+\begin{minipage}[t]{0.47\textwidth}
+\begin{noteslip}[title={\faPhone\ Veterinary Emergency Contact}]
+Dr.\ Marcus Webb, DVM \\
+Attending Veterinarian, Comparative Medicine \\
+Direct: (555) 019-2044 \\
+After hours / on-call: (555) 019-2091 \\
+Facility Manager: Priya Nair, (555) 019-2077
+\end{noteslip}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.47\textwidth}
+\begin{noteslip}[title={\faLock\ IACUC and Compliance}]
+IACUC Office, Meridian University \\
+Protocol Liaison: Dr.\ Anitra Sood \\
+Line: (555) 019-3300 \\
+Report suspected non-compliance: iacuc-report@meridian-research.example
+\end{noteslip}
+\end{minipage}
+\par
+
+\vspace{0.8cm}
+
+\begin{center}
+\begin{tikzpicture}
+\draw[vivline,line width=0.6pt] (0,0) -- (5.2,0);
+\draw[vivline,line width=0.6pt] (7.2,0) -- (12.4,0);
+\node[below,vivslate] at (2.6,-0.15) {\small Attending Veterinarian Signature / Date};
+\node[below,vivslate] at (9.8,-0.15) {\small Principal Investigator Signature / Date};
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.3cm}
+\begin{center}
+{\small\itshape This log is a record subject to IACUC and USDA/APHIS inspection.
+Retain for institutional record per Meridian University records-retention policy,
+Section 12.}
+\end{center}
+
+\end{document}

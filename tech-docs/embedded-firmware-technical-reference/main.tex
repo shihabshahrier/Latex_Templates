@@ -1,0 +1,507 @@
+\documentclass[11pt,a4paper,parskip=half]{scrartcl}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage[a4paper,left=2.2cm,right=2.2cm,top=2.4cm,bottom=2.6cm,headsep=10pt]{geometry}
+\usepackage{xcolor}
+\usepackage[table]{xcolor}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{colortbl}
+\usepackage{enumitem}
+\usepackage{tikz}
+\usetikzlibrary{positioning,calc,shapes.geometric,backgrounds,patterns,arrows.meta}
+\usepackage[most]{tcolorbox}
+\usepackage{fontawesome5}
+\usepackage[headsepline,footsepline]{scrlayer-scrpage}
+\usepackage{caption}
+\usepackage{lastpage}
+\usepackage{hyperref}
+
+% ---------- palette ----------
+\definecolor{fwnavy}{HTML}{1B2A4A}
+\definecolor{fwteal}{HTML}{0E7C86}
+\definecolor{fwamber}{HTML}{C97A1F}
+\definecolor{fwgray}{HTML}{F2F4F7}
+\definecolor{fwline}{HTML}{D8DEE6}
+
+\addtokomafont{section}{\color{fwnavy}\sffamily}
+\addtokomafont{subsection}{\color{fwnavy}\sffamily}
+\addtokomafont{subsubsection}{\color{fwteal}\sffamily}
+\addtokomafont{disposition}{\color{fwnavy}}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=fwteal,
+  urlcolor=fwteal,
+  citecolor=fwteal,
+  pdftitle={SY32L-S1 Firmware Technical Reference},
+  pdfauthor={Synapse Microsystems -- Firmware Platform Team}
+}
+
+% ---------- page style ----------
+\clearpairofpagestyles
+\ihead{\small\sffamily\color{fwnavy} SY32L-S1 Firmware Technical Reference}
+\ohead{\small\sffamily\color{fwteal} FPT-2026-0114}
+\ifoot{\small\sffamily\color{gray} Synapse Microsystems -- Confidential}
+\ofoot{\small\sffamily\color{gray} Page \pagemark\ of \pageref{LastPage}}
+\setkomafont{headsepline}{\color{fwline}}
+\setkomafont{footsepline}{\color{fwline}}
+
+\setlength{\parindent}{0pt}
+
+% ---------- small helpers ----------
+\newtcolorbox{noticebox}[1][]{%
+  enhanced,
+  colback=fwgray,
+  colframe=fwteal,
+  boxrule=0.6pt,
+  left=8pt,right=8pt,top=5pt,bottom=5pt,
+  arc=1.5pt,
+  fonttitle=\sffamily\bfseries,
+  coltitle=fwnavy,
+  #1
+}
+
+\newtcolorbox{warnbox}[1][]{%
+  enhanced,
+  colback=white,
+  colframe=fwamber,
+  boxrule=0.7pt,
+  left=8pt,right=8pt,top=5pt,bottom=5pt,
+  arc=1.5pt,
+  fonttitle=\sffamily\bfseries,
+  coltitle=fwamber,
+  title={\faExclamationTriangle\ Firmware Note},
+  #1
+}
+
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+
+\begin{document}
+
+% ============================================================
+% TITLE BLOCK
+% ============================================================
+\begin{tikzpicture}[remember picture,overlay]
+  \fill[fwnavy] ($(current page.north west)$) rectangle ($(current page.north west)+(\paperwidth,-3.1cm)$);
+  \fill[fwteal] ($(current page.north west)+(0,-3.1cm)$) rectangle ($(current page.north west)+(\paperwidth,-3.16cm)$);
+\end{tikzpicture}
+
+\vspace*{-1.55cm}
+\begin{minipage}{0.68\textwidth}
+  \color{white}\sffamily
+  {\fontsize{11}{13}\selectfont \faFile\ TECHNICAL REFERENCE MANUAL}\\[6pt]
+  {\fontsize{22}{26}\selectfont\bfseries SY32L-S1 Microcontroller}\\[2pt]
+  {\fontsize{15}{18}\selectfont Firmware Register \& Interrupt Reference}
+\end{minipage}
+\hfill
+\begin{minipage}{0.27\textwidth}
+  \raggedleft\color{white}\sffamily\small
+  Synapse Microsystems\\
+  Firmware Platform Team\\[4pt]
+  \faLock\ Confidential -- NDA Distribution
+\end{minipage}
+
+\vspace{0.9cm}
+
+\begin{center}
+\begin{tabularx}{\textwidth}{|Y|Y|Y|Y|}
+\hline
+\rowcolor{fwgray}
+\textbf{\small Document ID} & \textbf{\small Revision} & \textbf{\small Applies To} & \textbf{\small Status} \\
+\hline
+\small FPT-2026-0114 & \small v2.3.0 & \small SY32L-S1, Rev.\ C silicon & \small Released \\
+\hline
+\end{tabularx}
+\end{center}
+
+\vspace{0.4cm}
+
+% ============================================================
+% SCOPE
+% ============================================================
+\section*{Scope and Audience}
+\addcontentsline{toc}{section}{Scope and Audience}
+
+This document is the firmware-facing register and interrupt reference for the
+Synapse SY32L-S1 microcontroller family. It is written for embedded engineers
+who are bringing up board support packages, writing peripheral drivers, or
+debugging interrupt latency on Rev.\ C silicon. It does not cover electrical
+characteristics, package mechanicals, or qualification data -- those live in
+the SY32L-S1 Datasheet (FPT-2026-0110). Register bit layouts, reset values,
+and access types below are normative for firmware and take precedence over
+any inline code comments in the reference driver package.
+
+Readers are assumed to be comfortable with ARM Cortex-M0+ programming,
+memory-mapped I/O, and nested vectored interrupt controllers. Address values
+are given in hexadecimal without separators (e.g.\ \texttt{0x08000000}).
+Bit ranges are written \texttt{[MSB:LSB]}; a single-bit field is written with
+one index only.
+
+\begin{noticebox}[title={\faInfoCircle\ Register Notation}]
+\small
+\textbf{RW} read/write \quad
+\textbf{RO} read-only \quad
+\textbf{RC} read-clears (write ignored) \quad
+\textbf{W1C} write-1-to-clear \quad
+\textbf{Res.} reserved, must be written as reset value.
+Undefined behaviour results from writing reserved bits to anything other
+than their reset value.
+\end{noticebox}
+
+% ============================================================
+% ARCHITECTURE
+% ============================================================
+\section{Device Architecture}
+
+The SY32L-S1 pairs a Cortex-M0+ core running at up to 64\,MHz with a
+single-cycle AHB matrix and two APB peripheral bridges. Firmware talks to
+every peripheral in this document through memory-mapped registers on APB1
+or APB2; there are no port-mapped I/O instructions on this core.
+
+\begin{center}
+\begin{tikzpicture}[
+  node distance=6mm and 10mm,
+  block/.style={draw=fwnavy, thick, rounded corners=1.5pt, fill=fwgray,
+    minimum height=9mm, minimum width=28mm, align=center, font=\small\sffamily},
+  core/.style={block, fill=fwnavy, text=white, minimum width=36mm},
+  bus/.style={draw=fwteal, thick, -{Latex[length=2mm]}},
+]
+  \node[core] (cpu) {Cortex-M0+ Core\\[-1pt]\footnotesize 64\,MHz, NVIC};
+  \node[block, above left=6mm and -2mm of cpu] (flash) {Flash\\[-1pt]\footnotesize 128\,KB};
+  \node[block, above right=6mm and -2mm of cpu] (sram) {SRAM\\[-1pt]\footnotesize 32\,KB};
+
+  \node[block, below=14mm of cpu, minimum width=110mm, fill=white] (bridge) {AHB / APB1 / APB2 Bridge Matrix};
+
+  \node[block, below left=10mm and -26mm of bridge, minimum width=24mm] (gpio) {GPIO};
+  \node[block, right=4mm of gpio, minimum width=24mm] (usart) {USART1/2};
+  \node[block, right=4mm of usart, minimum width=24mm] (tim) {TIM1--TIM3};
+  \node[block, right=4mm of tim, minimum width=24mm] (adc) {ADC1};
+  \node[block, right=4mm of adc, minimum width=24mm] (rcc) {Clock Ctrl};
+
+  \draw[bus] (flash.south) -- (cpu.north -| flash.south);
+  \draw[bus] (sram.south) -- (cpu.north -| sram.south);
+  \draw[bus] (cpu.south) -- (bridge.north);
+  \draw[bus] (bridge.south -| gpio.north) -- (gpio.north);
+  \draw[bus] (bridge.south -| usart.north) -- (usart.north);
+  \draw[bus] (bridge.south -| tim.north) -- (tim.north);
+  \draw[bus] (bridge.south -| adc.north) -- (adc.north);
+  \draw[bus] (bridge.south -| rcc.north) -- (rcc.north);
+\end{tikzpicture}
+\end{center}
+
+\subsection{Memory Map}
+
+\begin{center}
+\begin{tabularx}{\textwidth}{@{}l l l Y@{}}
+\toprule
+\textbf{Region} & \textbf{Start} & \textbf{End} & \textbf{Notes} \\
+\midrule
+Boot ROM (System) & 0x1FFF0000 & 0x1FFF3FFF & Factory bootloader, read-only, entered when \texttt{BOOT0}=1 \\
+Option Bytes & 0x1FFFF800 & 0x1FFFF80F & Read protection, watchdog-on-reset, BOR level \\
+Main Flash & 0x08000000 & 0x0801FFFF & 128\,KB application code, erase page = 1\,KB \\
+SRAM & 0x20000000 & 0x20007FFF & 32\,KB, includes stack and .bss \\
+APB1 Peripherals & 0x40000000 & 0x40007FFF & TIM2--TIM3, USART2, I2C1 \\
+APB2 Peripherals & 0x40010000 & 0x40017FFF & GPIO, USART1, TIM1, ADC1, EXTI \\
+AHB Peripherals & 0x40020000 & 0x40023FFF & DMA1, RCC (clock control), CRC \\
+Cortex-M0+ Private Bus & 0xE000E000 & 0xE000EFFF & NVIC, SysTick, SCB \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\newpage
+
+% ============================================================
+% CLOCK CONTROL REGISTER
+% ============================================================
+\section{Peripheral Registers}
+
+Base addresses for each peripheral instance are given in
+Table~\ref{tab:regmap}; all offsets below are relative to that base.
+
+\begin{center}
+\begin{tabularx}{\textwidth}{@{}l l Y@{}}
+\toprule
+\textbf{Peripheral} & \textbf{Base Address} & \textbf{Instance Notes} \\
+\midrule
+RCC (Clock Control) & 0x40021000 & Single instance, AHB \\
+GPIOA & 0x40010800 & 16 pins, APB2 \\
+GPIOB & 0x40010C00 & 16 pins, APB2 \\
+USART1 & 0x40013800 & APB2, up to 4\,Mbit/s \\
+USART2 & 0x40004400 & APB1, up to 2\,Mbit/s \\
+TIM1 & 0x40012C00 & Advanced, APB2 \\
+TIM2, TIM3 & 0x40000000, 0x40000400 & General-purpose, APB1 \\
+ADC1 & 0x40012400 & 12-bit, APB2 \\
+\bottomrule
+\end{tabularx}
+\captionof{table}{Peripheral base addresses.}
+\label{tab:regmap}
+\end{center}
+
+\subsection{RCC\_CFGR -- Clock Control Register (offset 0x04)}
+
+Reset value: \texttt{0x00000000}. Controls the PLL multiplier, AHB
+prescaler, and reports which oscillator currently drives the system clock.
+
+\begin{center}
+\small
+\begin{tabular}{|*{16}{c|}}
+\hline
+15 & 14 & 13 & 12 & 11 & 10 & 9 & 8 & 7 & 6 & 5 & 4 & 3 & 2 & 1 & 0 \\
+\hline
+\multicolumn{4}{c|}{PLLMUL} & \multicolumn{3}{c|}{AHBPRE} & HSEON & HSERDY & HSION & HSIRDY & \multicolumn{3}{c|}{SWS} & \multicolumn{2}{c|}{SW} \\
+\hline
+\end{tabular}
+\end{center}
+
+\begin{center}
+\begin{tabularx}{\textwidth}{@{}l l l l Y@{}}
+\toprule
+\textbf{Field} & \textbf{Bits} & \textbf{Access} & \textbf{Reset} & \textbf{Description} \\
+\midrule
+PLLMUL & [15:12] & RW & 0x0 & PLL multiplier, output = HSI/2 $\times$ (PLLMUL+2), clamped to 64\,MHz \\
+AHBPRE & [11:9] & RW & 0x0 & AHB prescaler: 000=/1 ... 111=/512 \\
+HSEON & [8] & RW & 0 & Enable external 8\,MHz crystal oscillator \\
+HSERDY & [7] & RO & 0 & Set by hardware once HSE is stable \\
+HSION & [6] & RW & 1 & Enable internal 8\,MHz RC oscillator \\
+HSIRDY & [5] & RO & 1 & Set by hardware once HSI is stable \\
+SWS & [4:2] & RO & 0x0 & System clock actually in use: 000=HSI, 001=HSE, 010=PLL \\
+SW & [1:0] & RW & 0x0 & Requested system clock switch, mirrored into SWS once locked \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\begin{warnbox}
+Firmware must poll \texttt{HSERDY} (or \texttt{HSIRDY}) before writing
+\texttt{SW}. Switching to an oscillator that has not reported ready leaves
+\texttt{SWS} at its previous value and silently ignores the write -- this
+has been the root cause of two field returns where the bootloader appeared
+to hang for exactly the HSE startup timeout.
+\end{warnbox}
+
+\subsection{USART\_CR1 -- Control Register 1 (offset 0x0C)}
+
+Reset value: \texttt{0x00000000}. Applies to both USART1 and USART2.
+
+\begin{center}
+\small
+\begin{tabular}{|*{16}{c|}}
+\hline
+15 & 14 & 13 & 12 & 11 & 10 & 9 & 8 & 7 & 6 & 5 & 4 & 3 & 2 & 1 & 0 \\
+\hline
+OVER8 & \multicolumn{2}{c|}{Res.} & M & WAKE & PCE & PS & PEIE & TXEIE & TCIE & RXNEIE & IDLEIE & TE & RE & RWU & SBK \\
+\hline
+\end{tabular}
+\end{center}
+
+\begin{center}
+\begin{tabularx}{\textwidth}{@{}l l l l Y@{}}
+\toprule
+\textbf{Field} & \textbf{Bits} & \textbf{Access} & \textbf{Reset} & \textbf{Description} \\
+\midrule
+OVER8 & [15] & RW & 0 & 0: 16$\times$ oversampling, 1: 8$\times$ oversampling (higher baud rates) \\
+M & [12] & RW & 0 & Word length: 0 = 8 data bits, 1 = 9 data bits \\
+PCE & [10] & RW & 0 & Parity control enable \\
+PS & [9] & RW & 0 & Parity selection: 0 = even, 1 = odd \\
+TXEIE & [7] & RW & 0 & Interrupt when TDR is empty \\
+TCIE & [6] & RW & 0 & Interrupt on transmission complete \\
+RXNEIE & [5] & RW & 0 & Interrupt when RDR has unread data \\
+TE & [3] & RW & 0 & Transmitter enable \\
+RE & [2] & RW & 0 & Receiver enable \\
+SBK & [0] & RW & 0 & Send break; cleared by hardware once the break has been sent \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\subsection{TIMx\_CR1 -- Timer Control Register 1 (offset 0x00)}
+
+Reset value: \texttt{0x00000000}. Applies to TIM1, TIM2, and TIM3.
+
+\begin{center}
+\small
+\begin{tabular}{|*{16}{c|}}
+\hline
+15 & 14 & 13 & 12 & 11 & 10 & 9 & 8 & 7 & 6 & 5 & 4 & 3 & 2 & 1 & 0 \\
+\hline
+\multicolumn{6}{c|}{Res.} & \multicolumn{2}{c|}{CKD} & ARPE & \multicolumn{2}{c|}{CMS} & DIR & OPM & URS & UDIS & CEN \\
+\hline
+\end{tabular}
+\end{center}
+
+\begin{center}
+\begin{tabularx}{\textwidth}{@{}l l l l Y@{}}
+\toprule
+\textbf{Field} & \textbf{Bits} & \textbf{Access} & \textbf{Reset} & \textbf{Description} \\
+\midrule
+CKD & [9:8] & RW & 0x0 & Clock division for dead-time and filter sampling \\
+ARPE & [7] & RW & 0 & Auto-reload preload enable; buffers ARR writes until next update \\
+CMS & [6:5] & RW & 0x0 & Center-aligned mode selection (TIM1 only; 0x0 on TIM2/3) \\
+DIR & [4] & RW & 0 & Counter direction: 0 = up, 1 = down \\
+OPM & [3] & RW & 0 & One-pulse mode: counter stops at next update event \\
+URS & [2] & RW & 0 & Update request source restricted to overflow/underflow \\
+UDIS & [1] & RW & 0 & Update event disable \\
+CEN & [0] & RW & 0 & Counter enable \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\newpage
+
+% ============================================================
+% INTERRUPT VECTOR TABLE
+% ============================================================
+\section{Interrupt Vector Table}
+
+The vector table below is placed at \texttt{0x08000000} at reset (or
+relocated via \texttt{SCB\_VTOR} for the bootloader's application slot at
+\texttt{0x08002000}). Priorities are 2-bit (0 = highest) as implemented by
+this core's reduced NVIC.
+
+\begin{center}
+\small
+\begin{tabularx}{\textwidth}{@{}c l l c Y@{}}
+\toprule
+\textbf{\#} & \textbf{Offset} & \textbf{Exception / IRQ} & \textbf{Prio} & \textbf{Description} \\
+\midrule
+--- & 0x00 & Initial Stack Pointer & --- & Loaded into \texttt{MSP} before Reset\_Handler runs \\
+1 & 0x04 & Reset & $-3$ & Fixed highest priority, not configurable \\
+2 & 0x08 & NMI & $-2$ & Clock security system failure routes here \\
+3 & 0x0C & HardFault & $-1$ & Bus/usage faults with no dedicated handler \\
+11 & 0x2C & SVCall & configurable & Used by the reference RTOS for context switch \\
+14 & 0x38 & PendSV & configurable & RTOS tail-chaining hook \\
+15 & 0x3C & SysTick & configurable & 1\,ms tick, drives the software timebase \\
+16 & 0x40 & WWDG & 1 & Window watchdog early-warning \\
+17 & 0x44 & PVD & 2 & Programmable voltage detector threshold crossed \\
+18 & 0x48 & RTC & 1 & Alarm or wakeup from the always-on domain \\
+19 & 0x4C & FLASH & 2 & End-of-write / end-of-erase from the flash controller \\
+20 & 0x50 & RCC & 2 & Oscillator or PLL ready \\
+21 & 0x54 & EXTI0\_1 & 0 & External lines 0 and 1 \\
+22 & 0x58 & EXTI2\_3 & 0 & External lines 2 and 3 \\
+23 & 0x5C & EXTI4\_15 & 0 & External lines 4 through 15 \\
+25 & 0x64 & DMA1\_CH1 & 1 & DMA channel 1 complete/half/error \\
+28 & 0x70 & ADC1 & 1 & End-of-conversion, watchdog, overrun \\
+29 & 0x74 & TIM1\_UP & 0 & TIM1 update event \\
+31 & 0x7C & TIM2 & 0 & TIM2 global interrupt \\
+32 & 0x80 & TIM3 & 0 & TIM3 global interrupt \\
+34 & 0x88 & I2C1 & 1 & Combined event and error \\
+35 & 0x8C & SPI1 & 1 & TX/RX buffer and error \\
+36 & 0x90 & USART1 & 0 & TX empty, RX not empty, framing/overrun errors \\
+37 & 0x94 & USART2 & 0 & Same as USART1, second instance \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\begin{noticebox}[title={\faInfoCircle\ Shared Handlers}]
+\small
+\texttt{EXTI4\_15} covers twelve GPIO lines. Drivers must read
+\texttt{EXTI\_PR} inside the handler and clear only the bit they own --
+clearing the whole register has caused missed edges on adjacent pins in the
+motor-control reference design.
+\end{noticebox}
+
+% ============================================================
+% BOOT SEQUENCE
+% ============================================================
+\section{Boot Sequence}
+
+\begin{minipage}{0.58\textwidth}
+\begin{enumerate}[label=\textbf{\arabic*.}, leftmargin=1.6em, itemsep=3pt]
+  \item Power-on reset holds the core until \texttt{VDD} crosses the
+    brown-out threshold latched in the option bytes.
+  \item Boot ROM samples \texttt{BOOT0}. High selects the system
+    bootloader at \texttt{0x1FFF0000}; low proceeds to the application.
+  \item Core fetches the initial stack pointer from offset
+    \texttt{0x00} of the active vector table, then the Reset\_Handler
+    address from offset \texttt{0x04}.
+  \item \texttt{SystemInit()} configures HSE, starts the PLL, and only
+    then switches \texttt{RCC\_CFGR.SW} -- see the notice in
+    Section~2.1.
+  \item \texttt{.data} is copied from flash to SRAM and \texttt{.bss}
+    is zeroed by the startup file.
+  \item \texttt{main()} is called with interrupts still globally
+    masked; application code unmasks them once peripheral clocks and
+    NVIC priorities are configured.
+  \item Independent watchdog, if enabled by option bytes, must receive
+    its first refresh within 26\,ms of this point.
+\end{enumerate}
+\end{minipage}
+\hfill
+\begin{minipage}{0.38\textwidth}
+\begin{tcolorbox}[colback=fwgray,colframe=fwnavy,boxrule=0.5pt,arc=1.5pt,
+  title={Cold Boot Timing},fonttitle=\sffamily\bfseries\small,
+  coltitle=white,colbacktitle=fwnavy]
+\small
+\begin{tabular}{@{}l r@{}}
+Reset to HSI stable & 2\,\textmu s \\
+HSE crystal startup & 1.8\,ms \\
+PLL lock & 90\,\textmu s \\
+Flash wait-state calc & 4\,\textmu s \\
+\texttt{main()} entry & 2.1\,ms \\
+\end{tabular}
+\end{tcolorbox}
+\end{minipage}
+\par
+
+\newpage
+
+% ============================================================
+% POWER MODES
+% ============================================================
+\section{Power Modes}
+
+\begin{center}
+\begin{tabularx}{\textwidth}{@{}l l l Y@{}}
+\toprule
+\textbf{Mode} & \textbf{Typ. Current} & \textbf{Wake Latency} & \textbf{Wake Sources} \\
+\midrule
+Run & 4.8\,mA @ 64\,MHz & --- & --- \\
+Sleep & 1.6\,mA & 1 cycle & Any enabled interrupt \\
+Stop & 3.2\,\textmu A & 4\,\textmu s & EXTI lines, RTC alarm, USART wake \\
+Standby & 0.4\,\textmu A & 60\,\textmu s & WKUP pins, RTC alarm, IWDG reset only \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\begin{warnbox}
+SRAM contents are lost in Standby. Any driver state that must survive
+(calibration constants, communication sequence counters) has to be pushed
+to the 128-byte backup register block before entering this mode -- there
+is no automatic retention.
+\end{warnbox}
+
+Entry to Stop or Standby is via \texttt{PWR\_CR} followed by the Cortex-M0+
+\texttt{WFI} instruction. Firmware should disable the SysTick interrupt
+before \texttt{WFI} in Stop mode; a pending SysTick otherwise wakes the
+core every 1\,ms and defeats the purpose of the low-power entry.
+
+% ============================================================
+% REVISION HISTORY
+% ============================================================
+\section{Revision History}
+
+\begin{center}
+\begin{tabularx}{\textwidth}{@{}l l Y@{}}
+\toprule
+\textbf{Rev.} & \textbf{Date} & \textbf{Change} \\
+\midrule
+v1.0.0 & 2025-02-10 & Initial release, Rev.\ A silicon \\
+v2.0.0 & 2025-09-04 & Added TIM1 advanced-timer fields, Rev.\ B silicon \\
+v2.2.0 & 2026-03-18 & Corrected \texttt{RCC\_CFGR.SWS} reset behaviour after HSE fallback \\
+v2.3.0 & 2026-07-01 & Rev.\ C silicon: added \texttt{EXTI4\_15} shared-handler notice, updated Stop-mode current \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\vspace{0.6cm}
+\begin{center}
+\small\color{gray}
+Synapse Microsystems -- Firmware Platform Team \hspace{4pt}|\hspace{4pt} FPT-2026-0114 \hspace{4pt}|\hspace{4pt} Confidential, NDA distribution only
+\end{center}
+
+\end{document}

@@ -1,0 +1,567 @@
+\documentclass[10pt]{article}
+
+% ---------- Layout ----------
+\usepackage[a4paper, top=1.7cm, bottom=1.9cm, left=2.1cm, right=2.1cm]{geometry}
+\usepackage{parskip}
+\setlength{\parindent}{0pt}
+
+% ---------- Color & Tables ----------
+\usepackage[table]{xcolor}
+\usepackage{colortbl}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{longtable}
+
+% ---------- Fonts / Icons ----------
+\usepackage{fontawesome5}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+% ---------- Diagrams / Boxes ----------
+\usepackage{tikz}
+\usetikzlibrary{positioning, calc, shapes.geometric, backgrounds}
+\usepackage[most]{tcolorbox}
+
+% ---------- Code ----------
+\usepackage{listings}
+
+% ---------- Lists ----------
+\usepackage{enumitem}
+
+% ---------- Section styling ----------
+\usepackage{titlesec}
+
+% ---------- Header/Footer ----------
+\usepackage{fancyhdr}
+
+% ---------- Links ----------
+\usepackage{hyperref}
+
+% ================= Palette =================
+\definecolor{nexanavy}{HTML}{1B2A4A}
+\definecolor{nexateal}{HTML}{0E7C86}
+\definecolor{nexaamber}{HTML}{D98E04}
+\definecolor{codebg}{HTML}{F5F7FA}
+\definecolor{codeborder}{HTML}{D7DEE5}
+\definecolor{muted}{HTML}{5B6672}
+\definecolor{softline}{HTML}{E3E8ED}
+\definecolor{getgreen}{HTML}{157A5C}
+\definecolor{postblue}{HTML}{1D5FA8}
+\definecolor{putamber}{HTML}{B5750A}
+\definecolor{delred}{HTML}{B23A3A}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=nexateal,
+  urlcolor=nexateal,
+  citecolor=nexateal,
+  pdftitle={Nexa Connect API -- Integration Guide},
+  pdfauthor={Nexa Platform Engineering}
+}
+
+% ================= Section styling =================
+\titleformat{\section}
+  {\normalfont\Large\bfseries\color{nexanavy}}
+  {\thesection}{0.6em}{}[{\color{softline}\titlerule[0.8pt]}]
+\titlespacing*{\section}{0pt}{1.0em}{0.55em}
+
+\titleformat{\subsection}
+  {\normalfont\large\bfseries\color{nexateal}}
+  {\thesubsection}{0.6em}{}
+\titlespacing*{\subsection}{0pt}{0.8em}{0.35em}
+
+% ================= Header / Footer =================
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0.6pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyhead[L]{\small\color{muted}\textsf{Nexa Connect API}}
+\fancyhead[R]{\small\color{muted}\textsf{Integration Guide \textbar\ v2.4.0}}
+\fancyfoot[L]{\small\color{muted}\textsf{\copyright\ Nexa Technologies}}
+\fancyfoot[R]{\small\color{muted}\textsf{Page \thepage\ of \pageref{LastPage}}}
+\usepackage{lastpage}
+
+% ================= Listings styles =================
+\lstdefinelanguage{jsonc}{
+  morestring=[b]",
+  morecomment=[l]{//},
+  literate=
+    *{0}{{{\color{nexateal}0}}}{1}
+     {1}{{{\color{nexateal}1}}}{1}
+     {2}{{{\color{nexateal}2}}}{1}
+     {3}{{{\color{nexateal}3}}}{1}
+     {4}{{{\color{nexateal}4}}}{1}
+     {5}{{{\color{nexateal}5}}}{1}
+     {6}{{{\color{nexateal}6}}}{1}
+     {7}{{{\color{nexateal}7}}}{1}
+     {8}{{{\color{nexateal}8}}}{1}
+     {9}{{{\color{nexateal}9}}}{1},
+}
+
+\lstdefinestyle{nexacode}{
+  backgroundcolor=\color{codebg},
+  basicstyle=\ttfamily\footnotesize,
+  keywordstyle=\color{nexanavy}\bfseries,
+  stringstyle=\color{nexaamber},
+  commentstyle=\color{muted}\itshape,
+  numberstyle=\tiny\color{muted},
+  identifierstyle=\color{black},
+  showstringspaces=false,
+  breaklines=true,
+  breakatwhitespace=false,
+  tabsize=2,
+  columns=fullflexible,
+  keepspaces=true,
+  frame=none,
+  xleftmargin=2pt,
+  xrightmargin=2pt,
+  aboveskip=2pt,
+  belowskip=2pt
+}
+
+\lstdefinestyle{nexajson}{
+  style=nexacode,
+  language=jsonc,
+  keywordstyle=\color{postblue}\bfseries
+}
+
+\lstdefinestyle{nexapython}{
+  style=nexacode,
+  language=Python,
+  morekeywords={self, async, await}
+}
+
+\lstdefinelanguage{NexaJS}{
+  keywords={const, let, var, function, return, async, await, import, from,
+            export, default, new, class, extends, this, if, else, for, while,
+            try, catch, throw, typeof, null, true, false},
+  sensitive=true,
+  comment=[l]{//},
+  morecomment=[s]{/*}{*/},
+  string=[b]",
+  morestring=[b]'
+}
+
+\lstdefinestyle{nexajs}{
+  style=nexacode,
+  language=NexaJS
+}
+
+\lstdefinestyle{nexabash}{
+  style=nexacode,
+  language=bash
+}
+
+% code panel wrapper
+\newtcolorbox{codepanel}[2][]{
+  enhanced,
+  breakable,
+  colback=codebg,
+  colframe=codeborder,
+  boxrule=0.6pt,
+  arc=2.5pt,
+  top=1mm, bottom=1mm, left=1mm, right=1mm,
+  title={\faCode\ \ \textsf{\textbf{#2}}},
+  fonttitle=\color{white}\small,
+  colbacktitle=nexanavy,
+  coltitle=white,
+  boxsep=1.2mm,
+  #1
+}
+
+% callout boxes
+\newtcolorbox{infobox}[1][]{
+  enhanced, breakable, colback=nexateal!6, colframe=nexateal,
+  boxrule=0.6pt, arc=2pt, left=2.4mm, right=2.4mm, top=1.6mm, bottom=1.6mm,
+  title={\faInfoCircle\ \ Note}, fonttitle=\bfseries\small, coltitle=white,
+  colbacktitle=nexateal, #1
+}
+
+\newtcolorbox{warnbox}[1][]{
+  enhanced, breakable, colback=nexaamber!8, colframe=nexaamber,
+  boxrule=0.6pt, arc=2pt, left=2.4mm, right=2.4mm, top=1.6mm, bottom=1.6mm,
+  title={\faExclamationTriangle\ \ Caution}, fonttitle=\bfseries\small, coltitle=white,
+  colbacktitle=nexaamber, #1
+}
+
+\newtcolorbox{statbox}[1]{
+  enhanced, colback=white, colframe=softline, boxrule=0.7pt, arc=3pt,
+  left=3mm, right=3mm, top=2.4mm, bottom=2.4mm, valign=center,
+  title={#1}, fonttitle=\bfseries\footnotesize\color{muted}, coltitle=muted,
+  colbacktitle=white, top=6mm,
+  attach boxed title to top left={xshift=3mm, yshift=-2.5mm},
+  boxed title style={colback=white, boxrule=0pt}
+}
+
+% method badge
+\newcommand{\methodbadge}[2]{%
+  \tikz[baseline=-0.6ex]{\node[fill=#2, text=white, font=\scriptsize\bfseries\ttfamily,
+    rounded corners=1.5pt, inner sep=2.5pt, minimum width=1.55cm, align=center] {#1};}%
+}
+
+\begin{document}
+\thispagestyle{empty}
+
+% ================= Title Block =================
+\begin{tcolorbox}[
+  enhanced, colback=nexanavy, colframe=nexanavy, arc=4pt,
+  boxrule=0pt, left=8mm, right=8mm, top=7mm, bottom=7mm
+]
+\begin{minipage}[c]{0.14\textwidth}
+  \begin{tikzpicture}
+    \node[circle, fill=nexateal, minimum size=1.55cm] (c) {};
+    \node[white, font=\Large\bfseries\sffamily] at (c.center) {N};
+  \end{tikzpicture}
+\end{minipage}%
+\begin{minipage}[c]{0.86\textwidth}
+  {\color{white}\sffamily\Huge\bfseries Nexa Connect API}\\[2pt]
+  {\color{nexateal!60!white}\sffamily\Large Integration Guide for Server-Side SDKs}\\[6pt]
+  {\color{white!80!black}\sffamily\small \faTag\ Version 2.4.0 \quad\textbar\quad \faCalendar\ Revised March 2026 \quad\textbar\quad \faGlobe\ api.nexa.dev}
+\end{minipage}
+\end{tcolorbox}
+
+\vspace{2mm}
+
+% ================= Overview =================
+\section*{\color{nexanavy}\Large\bfseries Overview}
+\vspace{-2mm}
+{\color{softline}\hrule height 0.8pt}
+\vspace{2mm}
+
+Nexa Connect is the unified API for payments, identity verification, and ledger
+reconciliation used by finance teams building on the Nexa platform. This guide covers
+authentication, the core REST endpoints, official SDKs for Python and Node.js, webhook
+signature verification, and error-handling conventions. It is written for backend engineers
+integrating Nexa Connect into an existing service --- prior familiarity with REST and JSON is
+assumed. All requests are made over HTTPS to the single base URL \texttt{https://api.nexa.dev/v2};
+there is no per-feature subdomain. Responses are JSON, timestamps are ISO~8601 in UTC, and
+monetary amounts are always integer minor units (e.g.\ cents) to avoid floating-point rounding
+errors.
+
+\vspace{1mm}
+\begin{minipage}[t]{0.32\textwidth}
+\begin{statbox}{\faClock\ Median Latency}
+  \centering
+  {\color{nexanavy}\LARGE\bfseries 118\,ms}\\
+  \small\color{muted} p50, create-payment
+\end{statbox}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.32\textwidth}
+\begin{statbox}{\faLock\ Auth Model}
+  \centering
+  {\color{nexanavy}\LARGE\bfseries HMAC + Key}\\
+  \small\color{muted} signed webhooks
+\end{statbox}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.32\textwidth}
+\begin{statbox}{\faBolt\ Rate Limit}
+  \centering
+  {\color{nexanavy}\LARGE\bfseries 600 / min}\\
+  \small\color{muted} per API key
+\end{statbox}
+\end{minipage}
+\par
+\vspace{1.5mm}
+
+% ================= Authentication =================
+\section{Authentication}
+
+Every request must carry a bearer API key issued from the Nexa Dashboard under
+\textbf{Settings \textrightarrow\ API Keys}. Keys are environment-scoped: a \texttt{test\_}
+key never touches production data, and a \texttt{live\_} key cannot be used against the
+sandbox host.
+
+\begin{codepanel}{Authenticated request}
+\begin{lstlisting}[style=nexabash]
+curl https://api.nexa.dev/v2/payments \
+  -H "Authorization: Bearer live_9k2Lp7XwQrT4vB1nZcHf" \
+  -H "Content-Type: application/json"
+\end{lstlisting}
+\end{codepanel}
+
+\begin{warnbox}
+Do not embed \texttt{live\_} keys in client-side or mobile code. Keys are shown once at
+creation time; a lost key must be revoked and reissued, since Nexa does not store the
+plaintext value after generation.
+\end{warnbox}
+
+\subsection{Key rotation}
+\begin{itemize}[itemsep=2pt, topsep=2pt, leftmargin=1.4em]
+  \item[\faSync] Rotate keys at least every 180 days; old and new keys overlap for 24 hours.
+  \item[\faSync] Revoking a key invalidates it within 30 seconds across all edge regions.
+\end{itemize}
+
+% ================= Endpoints =================
+\section{Endpoint Reference}
+
+The table below covers the core resources exposed under \texttt{/v2}. Full parameter
+schemas for each endpoint are listed in the OpenAPI document linked from the developer
+dashboard.
+
+\renewcommand{\arraystretch}{1.15}
+\begin{longtable}{@{}p{1.6cm} p{3.55cm} p{8.65cm} c@{}}
+\toprule
+\textbf{Method} & \textbf{Path} & \textbf{Description} & \textbf{Auth} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Method} & \textbf{Path} & \textbf{Description} & \textbf{Auth} \\
+\midrule
+\endhead
+\methodbadge{GET}{getgreen} & \texttt{/payments} & List payments, filterable by status and date range. & \faLock \\
+\methodbadge{POST}{postblue} & \texttt{/payments} & Create a payment intent for a customer or card token. & \faLock \\
+\methodbadge{GET}{getgreen} & \texttt{/payments/\{id\}} & Retrieve a single payment by its identifier. & \faLock \\
+\methodbadge{PUT}{putamber} & \texttt{/payments/\{id\}} & Update metadata or capture an authorized payment. & \faLock \\
+\methodbadge{DELETE}{delred} & \texttt{/payments/\{id\}} & Cancel a payment that has not yet settled. & \faLock \\
+\methodbadge{GET}{getgreen} & \texttt{/customers} & List customers with pagination cursors. & \faLock \\
+\methodbadge{POST}{postblue} & \texttt{/customers} & Create a customer record with contact and tax details. & \faLock \\
+\methodbadge{POST}{postblue} & \texttt{/webhooks/endpoints} & Register a URL to receive signed event callbacks. & \faLock \\
+\methodbadge{GET}{getgreen} & \texttt{/ledger/entries} & Fetch reconciliation entries for a settlement period. & \faLock \\
+\bottomrule
+\end{longtable}
+
+\vspace{1mm}
+\begin{infobox}
+All list endpoints are cursor-paginated via \texttt{?after=\{cursor\}} and return at most
+100 records per page. Use the \texttt{has\_more} field in the response envelope to decide
+whether to continue paging --- do not infer completion from an empty-looking page size.
+\end{infobox}
+
+% ================= SDK Quickstart =================
+\section{SDK Quickstart}
+
+Official SDKs are published for Python and Node.js and wrap retry logic, idempotency-key
+generation, and typed response models. Both snippets below perform the same action:
+creating a \$42.50 payment for an existing customer.
+
+\begin{minipage}[t]{0.485\textwidth}
+\begin{codepanel}{Python -- \texttt{nexa-connect}}
+\begin{lstlisting}[style=nexapython]
+from nexa_connect import Client
+
+client = Client(api_key="live_9k2Lp7XwQrT4vB1nZcHf")
+
+payment = client.payments.create(
+    amount=4250,
+    currency="usd",
+    customer="cus_82nF3kLp",
+    description="Invoice 10432",
+    idempotency_key="inv-10432-charge",
+)
+
+print(payment.id, payment.status)
+\end{lstlisting}
+\end{codepanel}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.485\textwidth}
+\begin{codepanel}{Node.js -- \texttt{@nexa/connect}}
+\begin{lstlisting}[style=nexajs]
+import { NexaConnect } from "@nexa/connect";
+
+const client = new NexaConnect({
+  apiKey: "live_9k2Lp7XwQrT4vB1nZcHf",
+});
+
+const payment = await client.payments.create({
+  amount: 4250,
+  currency: "usd",
+  customer: "cus_82nF3kLp",
+  description: "Invoice 10432",
+  idempotencyKey: "inv-10432-charge",
+});
+
+console.log(payment.id, payment.status);
+\end{lstlisting}
+\end{codepanel}
+\end{minipage}
+\par
+
+\vspace{1mm}
+\begin{warnbox}
+Always pass an explicit \texttt{idempotency\_key} on payment creation. Without one, a
+retried request after a network timeout can create a duplicate charge; both SDKs surface
+this parameter directly for that reason.
+\end{warnbox}
+
+% ================= Response Schema =================
+\section{Response Schema}
+
+A successful \texttt{POST /payments} call returns a \texttt{payment} object. Field names
+and types are stable across API versions; new fields may be added but existing ones are
+never removed or repurposed within a major version.
+
+\begin{minipage}[t]{0.56\textwidth}
+\renewcommand{\arraystretch}{1.15}
+\begin{tabularx}{\textwidth}{@{}l l X@{}}
+\toprule
+\textbf{Field} & \textbf{Type} & \textbf{Description} \\
+\midrule
+\texttt{id} & string & Unique ID, prefixed \texttt{pay\_}. \\
+\texttt{amount} & integer & Minor units (cents). \\
+\texttt{currency} & string & ISO 4217, lowercase. \\
+\texttt{status} & enum & See status values below. \\
+\texttt{customer} & string & Customer identifier. \\
+\texttt{created\_at} & string & ISO 8601 UTC timestamp. \\
+\bottomrule
+\end{tabularx}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.42\textwidth}
+\begin{codepanel}{Example response}
+\begin{lstlisting}[style=nexajson]
+{
+  "id": "pay_5xQ9mKz1TdRp",
+  "amount": 4250,
+  "currency": "usd",
+  "status": "requires_capture",
+  "customer": "cus_82nF3kLp",
+  "created_at": "2026-03-11T09:14:02Z"
+}
+\end{lstlisting}
+\end{codepanel}
+\end{minipage}
+\par
+
+\subsection{Status values}
+\begin{itemize}[itemsep=2pt, topsep=2pt, leftmargin=1.4em]
+  \item \texttt{requires\_capture} --- authorized, awaiting the merchant to capture funds.
+  \item \texttt{succeeded} --- funds captured and settlement scheduled.
+  \item \texttt{failed} --- the issuer or ledger declined the transaction.
+  \item \texttt{canceled} --- voided before capture; no funds were moved.
+\end{itemize}
+
+% ================= Error Handling =================
+\section{Error Handling}
+
+Nexa Connect uses conventional HTTP status codes: \texttt{2xx} for success, \texttt{4xx}
+for client-side request errors, and \texttt{5xx} for platform-side failures. Every error
+body includes a machine-readable \texttt{code} in addition to the HTTP status, since a
+single status like \texttt{402} can map to several distinct \texttt{code} values.
+
+\renewcommand{\arraystretch}{1.15}
+\begin{longtable}{@{}>{\centering\arraybackslash}p{1.3cm} p{4.5cm} p{9.2cm}@{}}
+\toprule
+\textbf{HTTP} & \textbf{code} & \textbf{Meaning} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{HTTP} & \textbf{code} & \textbf{Meaning} \\
+\midrule
+\endhead
+400 & \texttt{invalid\_request} & A required field was missing or malformed. \\
+401 & \texttt{invalid\_api\_key} & The bearer key is missing, revoked, or from the wrong environment. \\
+402 & \texttt{card\_declined} & The issuer declined authorization; safe to retry with a different instrument. \\
+402 & \texttt{insufficient\_funds} & Declined specifically for balance; do not silently retry. \\
+404 & \texttt{resource\_missing} & The referenced ID does not exist in this environment. \\
+409 & \texttt{idempotency\_conflict} & Same idempotency key reused with different parameters. \\
+429 & \texttt{rate\_limited} & Too many requests; back off per the \texttt{Retry-After} header. \\
+500 & \texttt{internal\_error} & Unexpected platform fault; safe to retry with backoff. \\
+\bottomrule
+\end{longtable}
+
+\vspace{1mm}
+\begin{codepanel}{Error response shape}
+\begin{lstlisting}[style=nexajson]
+{
+  "error": {
+    "code": "card_declined",
+    "message": "The card was declined by the issuing bank.",
+    "request_id": "req_3Lm8pQxV2n"
+  }
+}
+\end{lstlisting}
+\end{codepanel}
+
+\begin{infobox}
+Always log \texttt{request\_id} alongside application errors. Support cannot look up a
+failed call without it, since request bodies are not retained beyond 72 hours.
+\end{infobox}
+
+% ================= Webhooks =================
+\section{Webhooks}
+
+Register an HTTPS endpoint under \texttt{/webhooks/endpoints} to receive asynchronous
+events --- settlement, chargebacks, and payouts all arrive this way instead of through
+polling. Every delivery is signed with HMAC-SHA256 so the endpoint can verify it
+genuinely originated from Nexa.
+
+\begin{codepanel}{Verifying the signature (Node.js)}
+\begin{lstlisting}[style=nexajs]
+import crypto from "crypto";
+
+function verifySignature(rawBody, header, secret) {
+  const [tPart, sigPart] = header.split(",");
+  const timestamp = tPart.split("=")[1];
+  const signature = sigPart.split("=")[1];
+
+  const expected = crypto
+    .createHmac("sha256", secret)
+    .update(`${timestamp}.${rawBody}`)
+    .digest("hex");
+
+  return crypto.timingSafeEqual(
+    Buffer.from(expected),
+    Buffer.from(signature)
+  );
+}
+\end{lstlisting}
+\end{codepanel}
+
+\subsection{Key event types}
+\begin{minipage}[t]{0.5\textwidth}
+\begin{itemize}[itemsep=1.5pt, topsep=1.5pt, leftmargin=1.4em]
+  \item \texttt{payment.succeeded} --- capture completes, funds scheduled for settlement.
+  \item \texttt{payment.failed} --- an authorization or capture attempt is declined.
+\end{itemize}
+\end{minipage}%
+\begin{minipage}[t]{0.5\textwidth}
+\begin{itemize}[itemsep=1.5pt, topsep=1.5pt, leftmargin=1.4em]
+  \item \texttt{payout.paid} --- a scheduled payout to the merchant's bank clears.
+  \item \texttt{chargeback.opened} --- a cardholder disputes a settled payment.
+\end{itemize}
+\end{minipage}
+\par
+
+\begin{warnbox}
+Respond to webhook deliveries with a \texttt{2xx} within 10 seconds. Nexa retries
+undelivered events with exponential backoff for 72 hours, then marks the event as
+permanently failed and surfaces it in the dashboard's delivery log.
+\end{warnbox}
+
+\subsection{Rate limits \& pagination}
+
+Rate limits are enforced per API key on a rolling 60-second window; usage is always
+returned on every response via headers, so clients need no separate endpoint to check
+remaining quota. \texttt{X-RateLimit-Limit} and \texttt{X-RateLimit-Remaining} report the
+window totals, and a \texttt{429} response adds \texttt{Retry-After} with the seconds to
+wait before retrying. Bulk operations (customer imports, ledger exports) should use
+\texttt{/ledger/entries} cursor pagination rather than requesting a higher ceiling ---
+600/min is rarely the real bottleneck once paging is implemented.
+
+% ================= Changelog =================
+\section{Changelog}
+
+\renewcommand{\arraystretch}{1.15}
+\begin{tabularx}{\textwidth}{@{}l l X@{}}
+\toprule
+\textbf{Version} & \textbf{Date} & \textbf{Summary} \\
+\midrule
+2.4.0 & 2026-03-02 & Added \texttt{idempotency\_conflict} error code; SDKs auto-retry \texttt{5xx} with jitter. \\
+2.3.0 & 2025-11-18 & Introduced \texttt{/ledger/entries} for settlement reconciliation. \\
+2.1.0 & 2025-02-14 & Initial public release of the Node.js SDK alongside Python. \\
+\bottomrule
+\end{tabularx}
+
+\vspace{2mm}
+\begin{tcolorbox}[
+  enhanced, colback=nexanavy, colframe=nexanavy, arc=3pt, boxrule=0pt,
+  left=5mm, right=5mm, top=3mm, bottom=3mm
+]
+\centering
+{\color{white}\small\sffamily
+\faLifeRing\ Developer support: \href{mailto:api-support@nexa.dev}{api-support@nexa.dev}
+\quad\textbar\quad \faBook\ Full reference: api.nexa.dev/docs
+\quad\textbar\quad \faComments\ Status: status.nexa.dev}
+\end{tcolorbox}
+
+\end{document}

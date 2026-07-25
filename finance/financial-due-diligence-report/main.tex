@@ -1,0 +1,458 @@
+\documentclass[10pt,a4paper,oneside]{scrreprt}
+
+% ---------------------------------------------------------------
+% Core Packages
+% ---------------------------------------------------------------
+\usepackage[T1]{fontenc}
+\usepackage[scaled=0.92]{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+
+\usepackage[top=1.2cm, bottom=1.3cm, left=1.3cm, right=1.3cm, headheight=24pt]{geometry}
+\usepackage[table]{xcolor}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{multirow}
+\usepackage{array}
+\usepackage{colortbl}
+\usepackage{enumitem}
+\usepackage{fontawesome5}
+\usepackage[tracking=true]{microtype}
+\usepackage{caption}
+\usepackage{etoolbox}
+\usepackage{float}
+
+% TikZ & tcolorbox
+\usepackage{tikz}
+\usetikzlibrary{calc,positioning,shapes.geometric,backgrounds}
+\usepackage[many]{tcolorbox}
+
+% Header & Footer
+\usepackage{scrlayer-scrpage}
+
+% Hyperref & LastPage
+\usepackage{lastpage}
+\usepackage[hidelinks]{hyperref}
+
+% ---------------------------------------------------------------
+% Suppress Chapter Page Breaks for Controlled Multi-page Layout
+% ---------------------------------------------------------------
+\makeatletter
+\patchcmd{\scr@startchapter}{\clearpage}{}{}{}
+\patchcmd{\scr@startchapter}{\cleardoublepage}{}{}{}
+\makeatother
+
+% ---------------------------------------------------------------
+% Color Palette Definition
+% ---------------------------------------------------------------
+\definecolor{NavyBlue}{HTML}{0A2540}
+\definecolor{TealAccent}{HTML}{007B8A}
+\definecolor{WarmAmber}{HTML}{D97706}
+\definecolor{Charcoal}{HTML}{2D3748}
+\definecolor{IceGray}{HTML}{F7FAFC}
+\definecolor{LightBorder}{HTML}{E2E8F0}
+\definecolor{MutedGray}{HTML}{718096}
+\definecolor{SoftRed}{HTML}{C53030}
+\definecolor{SoftGreen}{HTML}{2F855A}
+
+% ---------------------------------------------------------------
+% KOMA-Script Headings & Typography
+% ---------------------------------------------------------------
+\setcounter{secnumdepth}{3}
+\setcounter{tocdepth}{2}
+
+\addtokomafont{chapter}{\color{NavyBlue}\fontsize{11}{13.5}\selectfont\bfseries}
+\addtokomafont{section}{\color{NavyBlue}\fontsize{9.8}{12}\selectfont\bfseries}
+\addtokomafont{subsection}{\color{TealAccent}\fontsize{8.8}{11}\selectfont\bfseries}
+
+\RedeclareSectionCommand[
+  beforeskip=0.3eM,
+  afterskip=0.15eM
+]{chapter}
+
+\RedeclareSectionCommand[
+  beforeskip=0.2eM,
+  afterskip=0.1eM
+]{section}
+
+\RedeclareSectionCommand[
+  beforeskip=0.15eM,
+  afterskip=0.06eM
+]{subsection}
+
+\renewcommand{\thechapter}{\arabic{chapter}}
+\renewcommand{\chapterformat}{SECTION \thechapter\quad|\quad}
+
+% Caption styling
+\captionsetup{font=scriptsize, labelfont={bf,color=NavyBlue}, skip=2pt}
+
+% ---------------------------------------------------------------
+% Header and Footer Setup
+% ---------------------------------------------------------------
+\clearpairofpagestyles
+
+\ihead{%
+  \small\textcolor{MutedGray}{\textbf{STRICTLY CONFIDENTIAL} \quad|\quad PROJECT SYNAPSE — M\&A FINANCIAL DUE DILIGENCE REPORT}%
+}
+\ohead{%
+  \small\textcolor{NavyBlue}{\textbf{MERIDIAN ADVISORY GROUP}}%
+}
+\ifoot{%
+  \small\textcolor{MutedGray}{Target: Synapse Systems Inc. \quad|\quad Buyer: Apex Global Holdings}%
+}
+\ofoot{%
+  \small\textcolor{NavyBlue}{\textbf{Page \thepage\ of \pageref{LastPage}}}%
+}
+
+\addtokomafont{pageheadfoot}{\upshape}
+\setkomafont{headsepline}{\color{LightBorder}}
+\KOMAoptions{headsepline=0.5pt}
+
+% ---------------------------------------------------------------
+% Table & Column Commands
+% ---------------------------------------------------------------
+\newcolumntype{R}{>{\raggedleft\arraybackslash}X}
+\newcolumntype{L}{>{\raggedright\arraybackslash}X}
+\newcolumntype{C}{>{\centering\arraybackslash}X}
+
+\newcommand{\tablehdr}[1]{\fontseries{b}\selectfont\textcolor{white}{#1}}
+\rowcolors{2}{white}{IceGray}
+
+% ---------------------------------------------------------------
+% Custom tcolorbox Styles
+% ---------------------------------------------------------------
+\tcbset{
+  metricbox/.style={
+    enhanced,
+    colback=IceGray,
+    colframe=LightBorder,
+    arc=3pt,
+    boxrule=0.8pt,
+    left=3pt, right=3pt, top=2.5pt, bottom=2.5pt,
+    fonttitle=\bfseries\small,
+    coltitle=NavyBlue
+  },
+  calloutbox/.style={
+    enhanced,
+    colback=NavyBlue!5,
+    colframe=NavyBlue,
+    arc=3pt,
+    boxrule=0pt,
+    leftrule=3.5pt,
+    left=6pt, right=6pt, top=3.5pt, bottom=3.5pt
+  }
+}
+
+% ---------------------------------------------------------------
+% Document Content Starts Here
+% ---------------------------------------------------------------
+\begin{document}
+
+% ===============================================================
+% COVER BANNER HEADER (Top of Page 1)
+% ===============================================================
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[NavyBlue] (current page.north west) rectangle ($(current page.north east)+(0,-2.2cm)$);
+  \fill[TealAccent] ($(current page.north west)+(0,-2.2cm)$) rectangle ($(current page.north east)+(0,-2.31cm)$);
+\end{tikzpicture}
+
+\vspace*{-0.9cm}
+\begin{color}{white}
+\begin{minipage}[t]{0.65\textwidth}
+  {\fontsize{14.5}{17}\selectfont\textbf{M\&A FINANCIAL DUE DILIGENCE REPORT}}\\[2pt]
+  {\fontsize{9}{11.5}\selectfont\textcolor{IceGray}{Acquisition Financial Audit \& Quality of Earnings Analysis}} \\[4pt]
+  {\small \faBuilding\ Target: \textbf{Synapse Systems Inc.} \quad|\quad \faBriefcase\ Buyer: \textbf{Apex Global Holdings}}
+\end{minipage}%
+\begin{minipage}[t]{0.35\textwidth}
+  \raggedleft
+  {\small \textbf{STRICTLY CONFIDENTIAL}}\\[2pt]
+  {\small Date: July 24, 2026}\\[2pt]
+  {\small Advisor: Meridian Advisory Group}\\[2pt]
+  {\small Status: Final Investment Committee Brief}
+\end{minipage}
+\end{color}
+
+\vspace{0.6cm}
+
+% ---------------------------------------------------------------
+% Executive Summary KPI Metric Cards
+% ---------------------------------------------------------------
+\noindent
+\begin{minipage}[t]{0.19\textwidth}
+  \begin{tcolorbox}[metricbox]
+    \centering
+    \textcolor{MutedGray}{\fontsize{5.8}{7.2}\selectfont ENTERPRISE VALUE}\\[2pt]
+    {\fontsize{10.5}{12.5}\selectfont\textbf{\$138.5M}}\\[2pt]
+    \textcolor{TealAccent}{\fontsize{5.8}{7.2}\selectfont Agreed Headline EV}
+  \end{tcolorbox}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.19\textwidth}
+  \begin{tcolorbox}[metricbox]
+    \centering
+    \textcolor{MutedGray}{\fontsize{5.8}{7.2}\selectfont ADJ. EBITDA (FY25)}\\[2pt]
+    {\fontsize{10.5}{12.5}\selectfont\textbf{\$18.4M}}\\[2pt]
+    \textcolor{SoftGreen}{\fontsize{5.8}{7.2}\selectfont +\$4.2M vs Reported}
+  \end{tcolorbox}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.19\textwidth}
+  \begin{tcolorbox}[metricbox]
+    \centering
+    \textcolor{MutedGray}{\fontsize{5.8}{7.2}\selectfont IMPLIED MULTIPLE}\\[2pt]
+    {\fontsize{10.5}{12.5}\selectfont\textbf{7.53x}}\\[2pt]
+    \textcolor{Charcoal}{\fontsize{5.8}{7.2}\selectfont EV / Adj. EBITDA}
+  \end{tcolorbox}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.19\textwidth}
+  \begin{tcolorbox}[metricbox]
+    \centering
+    \textcolor{MutedGray}{\fontsize{5.8}{7.2}\selectfont ADJUSTED NET DEBT}\\[2pt]
+    {\fontsize{10.5}{12.5}\selectfont\textbf{\$12.8M}}\\[2pt]
+    \textcolor{SoftRed}{\fontsize{5.8}{7.2}\selectfont Incl. Debt-like Items}
+  \end{tcolorbox}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.19\textwidth}
+  \begin{tcolorbox}[metricbox]
+    \centering
+    \textcolor{MutedGray}{\fontsize{5.8}{7.2}\selectfont RECOMMENDED NWC}\\[2pt]
+    {\fontsize{10.5}{12.5}\selectfont\textbf{\$8.5M}}\\[2pt]
+    \textcolor{WarmAmber}{\fontsize{5.8}{7.2}\selectfont Proposed Target Peg}
+  \end{tcolorbox}
+\end{minipage}
+
+\vspace{0.12cm}
+
+% ===============================================================
+% SECTION 1: EXECUTIVE SUMMARY & TRANSACTION OVERVIEW
+% ===============================================================
+\chapter{Executive Summary \& Transaction Architecture}
+
+Meridian Advisory Group was engaged by \textbf{Apex Global Holdings} (``Buyer'') to perform a comprehensive financial due diligence audit of \textbf{Synapse Systems Inc.} (``Target'' or ``Synapse'') in connection with the proposed acquisition of 100\% of the issued share capital. Synapse is a provider of cloud-native workflow automation software and data integration platforms serving mid-tier financial institutions.
+
+\begin{tcolorbox}[calloutbox]
+  \textbf{\textcolor{NavyBlue}{\faCheckCircle\ Key Audit Summary \& Investment Committee Verdict:}} \\
+  Our Quality of Earnings (QoE) analysis confirms an \textbf{Adjusted FY25 EBITDA of \$18.4M} (a net positive addback of \textbf{+\$4.2M} over reported EBITDA of \$14.2M). Historical revenue grew at a 22.4\% CAGR (FY23--FY25). Key deal risks include \textbf{31.2\% customer concentration} across the top 3 accounts and \textbf{\$1.8M/yr of capitalized R\&D software costs} that require ongoing operational expense treatment. We recommend executing the transaction with an adjusted Purchase Price incorporating a \textbf{\$12.8M Net Debt deduction} and a \textbf{\$8.5M Working Capital Target Peg}.
+\end{tcolorbox}
+
+\vspace{0.02cm}
+
+\subsection*{Transaction Valuation \& Implied Multiple Bridge}
+\begin{table}[H]
+\centering
+\fontsize{8.5}{10.5}\selectfont
+\renewcommand{\arraystretch}{1.02}
+\begin{tabularx}{\textwidth}{L r r X}
+\hline
+\rowcolor{NavyBlue}
+\tablehdr{Valuation Component} & \tablehdr{Reported Basis} & \tablehdr{Adjusted Basis} & \tablehdr{Diligence Audit Rationale \& SPA Guidance} \\
+\hline
+Headline Purchase Price (Equity Value) & \$125.7M & \$125.7M & Subject to closing cash/debt purchase price adjustment \\
+Reported Debt \& Capital Lease Liabilities & \$8.5M & \$12.8M & Includes \$4.3M in off-balance sheet debt-like reserves \\
+Less: Cash \& Cash Equivalents & (\$4.2M) & (\$3.6M) & Reclassifies \$0.6M restricted operational cash buffer \\
+\textbf{Implied Enterprise Value (EV)} & \textbf{\$130.0M} & \textbf{\$134.9M} & \textbf{Effective EV increases by \$4.9M post-audit adjustments} \\
+FY25 Revenue & \$64.8M & \$62.4M & Reallocates \$2.4M out-of-period software license revenue \\
+FY25 EBITDA & \$14.2M & \$18.4M & Reflects net QoE normalization addbacks of +\$4.2M \\
+\textbf{Implied EV / EBITDA Multiple} & \textbf{9.15x} & \textbf{7.33x} & \textbf{Normalized multiple de-risks entry valuation} \\
+\hline
+\end{tabularx}
+\caption{Transaction Valuation \& Implied Multiples Overview (USD)}
+\end{table}
+
+\vspace{-0.2cm}
+\subsection*{Scope of Financial Due Diligence Audit}
+Our investigation encompassed: (i) Quality of Earnings (QoE) analysis for FY23, FY24, FY25, and LTM Q2-2026; (ii) Revenue quality, ARR persistence, and customer retention metrics; (iii) Net Debt and debt-like item identification; (iv) Net Working Capital (NWC) seasonality and peg calculation; and (v) Internal control environment assessment.
+
+\clearpage
+
+% ===============================================================
+% SECTION 2: QUALITY OF EARNINGS & EBITDA NORMALIZATION
+% ===============================================================
+\chapter{Quality of Earnings (QoE) \& EBITDA Adjustments}
+
+Management reported FY25 EBITDA of \$14.20M. Based on detailed audit testing of revenue recognition contracts, payroll allocations, discontinued operations, and capitalization policies, we identified net addbacks of \textbf{+\$4.20M}, establishing \textbf{Normalized FY25 EBITDA of \$18.40M}.
+
+\subsection*{EBITDA Adjustment Bridge Schedule}
+
+\begin{table}[H]
+\centering
+\fontsize{8.5}{10.5}\selectfont
+\renewcommand{\arraystretch}{1.02}
+\begin{tabularx}{\textwidth}{L r r r r L}
+\hline
+\rowcolor{NavyBlue}
+\tablehdr{Adjustment Category (in \$000s)} & \tablehdr{FY23} & \tablehdr{FY24} & \tablehdr{FY25} & \tablehdr{LTM Q2-26} & \tablehdr{Diligence Audit Rationale} \\
+\hline
+\textbf{Reported EBITDA (Management)} & \textbf{9,850} & \textbf{12,100} & \textbf{14,200} & \textbf{15,600} & As presented in audited financials \\
+\hline
+1. Out-of-Period Revenue Recognition & (850) & 350 & (2,400) & 1,100 & ASC 606 ratable software alignment \\
+2. Founder Excess Compensation & 1,200 & 1,250 & 1,300 & 1,350 & Adjustment to market C-suite salary \\
+3. Non-Recurring Litigation Defense & 450 & 1,100 & 850 & 120 & Settled IP litigation defense costs \\
+4. Discontinued Hardware Unit Loss & 680 & 420 & 1,650 & 400 & Closure of legacy hardware division \\
+5. R\&D Software Capitalization Reversal & (1,100) & (1,450) & (1,800) & (2,100) & Reclassification of bug fix maintenance \\
+6. Duplicate Vendor Contract Synergies & 0 & 0 & 4,600 & 4,800 & Contracted post-closing IT synergies \\
+\hline
+\rowcolor{NavyBlue!10}
+\textbf{Total QoE EBITDA Adjustments} & \textbf{380} & \textbf{1,670} & \textbf{4,200} & \textbf{5,670} & \textbf{Net Quality of Earnings Addbacks} \\
+\hline
+\rowcolor{TealAccent!15}
+\textbf{Adjusted Normalized EBITDA} & \textbf{10,230} & \textbf{13,770} & \textbf{18,400} & \textbf{21,270} & \textbf{24.2\% CAGR (FY23--FY25 Normalized)} \\
+\hline
+\end{tabularx}
+\caption{Detailed EBITDA Normalization \& QoE Adjustments Breakdown (USD 000s)}
+\end{table}
+
+\vspace{0.02cm}
+
+\subsection*{Detailed Rationale for Primary QoE Adjustments}
+
+\begin{enumerate}[label=\textbf{\arabic*.}, leftmargin=1.4em, itemsep=0.5pt, parsep=0pt]
+  \item \textbf{Out-of-Period Revenue Alignment (\$-2.40M in FY25):} Synapse recognized multi-year cloud contract fees upfront upon signing under legacy ASC 605 rules. Under ASC 606 ratable principles, \$2.4M of FY25 revenue belongs to FY26 contract periods.
+  \item \textbf{Founder Excess Compensation (+\$1.30M in FY25):} Founding executives drew \$2.5M in annual compensation. Executive search benchmarking establishes replacement executive compensation at \$1.2M annually, creating a recurring \$1.3M cost reduction.
+  \item \textbf{Capitalized R\&D Software Reversal (\$-1.80M in FY25):} Management capitalized 65\% of software engineering payroll. Audit testing determined 40\% of this work involves maintenance and bug fixes, requiring ongoing OpEx treatment.
+\end{enumerate}
+
+\vspace{0.04cm}
+
+% ===============================================================
+% SECTION 3: REVENUE QUALITY & CUSTOMER CONCENTRATION
+% ===============================================================
+\chapter{Revenue Quality \& Customer Concentration}
+
+Synapse generates revenue across two principal streams: \textbf{SaaS Cloud Subscriptions} (78.4\%) and \textbf{Professional Services} (21.6\%). Annual Recurring Revenue (ARR) reached \textbf{\$51.2M} as of Q2-2026, with an annual net revenue retention rate of \textbf{112.4\%}.
+
+\begin{table}[H]
+\centering
+\fontsize{8.5}{10.5}\selectfont
+\renewcommand{\arraystretch}{1.02}
+\begin{tabularx}{\textwidth}{L C C C r C}
+\hline
+\rowcolor{NavyBlue}
+\tablehdr{Account Code} & \tablehdr{Industry Sector} & \tablehdr{FY25 ARR (\$M)} & \tablehdr{\% Total ARR} & \tablehdr{Contract Expiry} & \tablehdr{Renewal Risk Assessment} \\
+\hline
+Client Nexa Corp & Wealth Management & \$6.8M & 13.3\% & Nov 2027 & Low risk; core platform deployment \\
+Client Vertex Financial & Capital Markets & \$5.2M & 10.2\% & Mar 2027 & Medium risk; pending CTO leadership change \\
+Client Nimbus Insurance & InsurTech & \$4.0M & 7.7\% & Dec 2026 & \textcolor{SoftRed}{\textbf{High risk; client running vendor RFP}} \\
+Client Apex Advisory & Asset Management & \$3.1M & 6.1\% & Aug 2028 & Low risk; expanded user seat licensing \\
+Client Meridian Capital & Private Equity & \$2.4M & 4.7\% & Jan 2027 & Low risk; multi-year lockup agreement \\
+\hline
+\rowcolor{IceGray}
+\textbf{Top 5 Accounts Total} & \textbf{Financial Services} & \textbf{\$21.5M} & \textbf{42.0\%} & -- & \textbf{Concentration requires SPA indemnity} \\
+\hline
+\end{tabularx}
+\caption{Top Customer Concentration \& Key Account Renewal Risk Analysis}
+\end{table}
+
+\clearpage
+
+% ===============================================================
+% SECTION 4: NET DEBT & WORKING CAPITAL ANALYSIS
+% ===============================================================
+\chapter{Net Debt Schedule \& Working Capital Peg}
+
+To establish the cash-free, debt-free equity purchase price adjustment at closing, Meridian audited balance sheet debt, capital leases, and off-balance sheet commitments.
+
+\subsection*{Adjusted Net Debt Schedule}
+
+\begin{table}[H]
+\centering
+\fontsize{8.2}{10}\selectfont
+\renewcommand{\arraystretch}{1.0}
+\begin{tabularx}{\textwidth}{L r r L}
+\hline
+\rowcolor{NavyBlue}
+\tablehdr{Balance Sheet \& Debt-like Item} & \tablehdr{Reported (\$000s)} & \tablehdr{Adjusted (\$000s)} & \tablehdr{Diligence Adjustment Rationale} \\
+\hline
+Senior Secured Revolving Credit Facility & \$5,000 & \$5,000 & Principal outstanding balance at Q2-2026 \\
+Equipment Leases (ASC 842 Capital Leases) & \$3,500 & \$3,500 & Office hardware and server infrastructure leases \\
+Unfunded Employee Pension Liability & \$0 & \$1,450 & Actuarial valuation deficit in European subsidiary \\
+State Sales Tax Audit Contingency Reserve & \$0 & \$1,200 & Potential historical nexus tax liability (FY22--FY24) \\
+Deferred Transaction Executive Bonuses & \$0 & \$1,650 & Change-of-control bonus pool payable at closing \\
+Less: Unrestricted Cash \& Equivalents & (\$4,200) & (\$3,600) & Reclassifies \$600k trapped operational cash buffer \\
+\hline
+\rowcolor{TealAccent!15}
+\textbf{Total Net Debt \& Debt-like Obligations} & \textbf{\$4,300} & \textbf{\$12,800} & \textbf{Recommended SPA Purchase Price Deduction: \$12.8M} \\
+\hline
+\end{tabularx}
+\caption{Comprehensive Net Debt \& Debt-like Items Adjustment Schedule}
+\end{table}
+
+\vspace{-0.1cm}
+
+\subsection*{Net Working Capital (NWC) Target Peg Recommendation}
+
+Historical working capital shows seasonal expansion in Q4 due to annual enterprise subscription billings. The 12-month trailing average NWC is \textbf{\$8.50M}. We advise establishing an NWC Target Peg of \textbf{\$8.50M} in the Stock Purchase Agreement (SPA).
+
+\begin{table}[H]
+\centering
+\fontsize{8.2}{10}\selectfont
+\renewcommand{\arraystretch}{1.0}
+\begin{tabularx}{\textwidth}{L C C C C C}
+\hline
+\rowcolor{NavyBlue}
+\tablehdr{Working Capital Metric (\$000s)} & \tablehdr{Q3-2025} & \tablehdr{Q4-2025} & \tablehdr{Q1-2026} & \tablehdr{Q2-2026} & \tablehdr{12-Mo Avg} \\
+\hline
+Accounts Receivable (A/R) & 9,400 & 12,200 & 8,900 & 10,100 & 10,150 \\
+Prepaid Expenses \& Current Assets & 1,200 & 1,500 & 1,100 & 1,300 & 1,275 \\
+Less: Accounts Payable (A/P) & (3,100) & (4,200) & (2,900) & (3,400) & (3,400) \\
+Less: Accrued Expenses \& Payroll & (1,100) & (1,600) & (1,200) & (1,400) & (1,325) \\
+\hline
+\rowcolor{NavyBlue!10}
+\textbf{Reported Net Working Capital} & \textbf{\$6,400} & \textbf{\$7,900} & \textbf{\$5,900} & \textbf{\$6,600} & \textbf{\$6,700} \\
+\hline
+Addback: Normalization for Deferred Revenue & \$1,800 & \$1,800 & \$1,800 & \$1,800 & \$1,800 \\
+\hline
+\rowcolor{TealAccent!15}
+\textbf{Adjusted Operational NWC} & \textbf{\$8,200} & \textbf{\$9,700} & \textbf{\$7,700} & \textbf{\$8,400} & \textbf{\$8,500} \\
+\hline
+\end{tabularx}
+\caption{Historical Working Capital Analysis \& Proposed NWC Target Peg}
+\end{table}
+
+\vspace{-0.1cm}
+
+% ===============================================================
+% SECTION 5: KEY TRANSACTION RISKS & SPA RECOMMENDATIONS
+% ===============================================================
+\chapter{Key Transaction Risks \& SPA Protections}
+
+\begin{table}[H]
+\centering
+\fontsize{8.2}{10}\selectfont
+\renewcommand{\arraystretch}{1.02}
+\begin{tabularx}{\textwidth}{L C C L}
+\hline
+\rowcolor{NavyBlue}
+\tablehdr{Risk Area} & \tablehdr{Severity} & \tablehdr{Exposure} & \tablehdr{Recommended SPA Mechanism / Negotiation Action} \\
+\hline
+Client Concentration Churn & \textcolor{SoftRed}{\textbf{HIGH}} & \$4.0M ARR & Specific indemnity or earn-out structure tied to Client Nimbus renewal. \\
+Sales Tax Audit Exposure & \textcolor{WarmAmber}{\textbf{MEDIUM}} & \$1.2M & Special tax indemnity backed by 100\% cash escrow held for 18 months. \\
+Capitalized R\&D Reversal & \textcolor{WarmAmber}{\textbf{MEDIUM}} & \$1.8M/yr & Incorporate maintenance OpEx into post-close buyer budget models. \\
+Pension Deficit & \textcolor{SoftGreen}{\textbf{LOW}} & \$1.45M & Deduct full \$1.45M from Purchase Price as a Debt-like item at closing. \\
+\hline
+\end{tabularx}
+\caption{Summary Risk Matrix \& SPA Protection Recommendations}
+\end{table}
+
+\vspace{0.02cm}
+
+% ---------------------------------------------------------------
+% Sign-off Execution Block
+% ---------------------------------------------------------------
+\noindent
+\begin{tcolorbox}[enhanced, colback=IceGray, colframe=NavyBlue, arc=3pt, boxrule=0.8pt, left=6pt, right=6pt, top=3pt, bottom=3pt]
+  \begin{minipage}[t]{0.48\textwidth}
+    \textbf{\textcolor{NavyBlue}{Prepared By: Meridian Advisory Group LLP}}\\[2pt]
+    \small
+    \textbf{Lead Diligence Partner:} Marcus Vance, CPA, CFA\\
+    \textbf{Financial Audit Director:} Sarah Jenkins, ACA\\
+    \textbf{Contact:} m.vance@meridian-advisory.com \quad|\quad +1 (555) 019-2834
+  \end{minipage}\hfill
+  \begin{minipage}[t]{0.48\textwidth}
+    \textbf{\textcolor{NavyBlue}{Accepted \& Acknowledged: Apex Global Holdings}}\\[2pt]
+    \small
+    \textbf{Managing Director, M\&A:} David Sterling\\
+    \textbf{Signature:} \underline{\hspace{4.5cm}}\\
+    \textbf{Date:} July 24, 2026
+  \end{minipage}
+\end{tcolorbox}
+
+\end{document}

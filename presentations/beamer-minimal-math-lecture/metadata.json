@@ -1,0 +1,8 @@
+{
+  "name": "Beamer Minimalist Math Lecture Slides",
+  "compiler": "pdflatex",
+  "description": "Beamer Minimalist Math Lecture Slides LaTeX template \u2014 beamer minimalist math lecture slides latex template. Elegant, compile-tested, editable online at letx.app.",
+  "author": "LetX",
+  "category": "presentations",
+  "license": "MIT"
+}

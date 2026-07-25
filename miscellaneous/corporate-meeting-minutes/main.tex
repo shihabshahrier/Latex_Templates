@@ -1,0 +1,338 @@
+\documentclass[11pt,a4paper]{article}
+
+% --- Packages ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+\usepackage[top=2.0cm, bottom=2.0cm, left=1.8cm, right=1.8cm, headheight=32pt, headsep=12pt]{geometry}
+\usepackage[table]{xcolor}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{enumitem}
+\usepackage{tcolorbox}
+\tcbuselibrary{skins,breakable}
+\usepackage{fontawesome5}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{array}
+\usepackage{microtype}
+\usepackage{lastpage}
+\usepackage{hyperref}
+
+% --- Custom Color Palette ---
+\definecolor{NavyPrimary}{HTML}{0F2C59}
+\definecolor{TealAccent}{HTML}{008080}
+\definecolor{SlateDark}{HTML}{2D3748}
+\definecolor{SlateLight}{HTML}{F8FAFC}
+\definecolor{BorderGray}{HTML}{CBD5E1}
+\definecolor{TextMuted}{HTML}{64748B}
+\definecolor{PassGreen}{HTML}{166534}
+\definecolor{PassBg}{HTML}{DCFCE7}
+\definecolor{PendingOrange}{HTML}{9A3412}
+\definecolor{PendingBg}{HTML}{FFEDD5}
+\definecolor{BlueTag}{HTML}{1E40AF}
+\definecolor{BlueBg}{HTML}{DBEAFE}
+
+% --- Hyperref Setup ---
+\hypersetup{
+    colorlinks=true,
+    linkcolor=NavyPrimary,
+    urlcolor=TealAccent,
+    pdftitle={Corporate Meeting Minutes - Vertex Dynamics},
+    pdfauthor={Vertex Dynamics Secretariat}
+}
+
+% --- Header and Footer ---
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{\small\textcolor{TextMuted}{\textbf{VERTEX DYNAMICS CORPORATION} \textbar{} Executive Steering Committee}}
+\lhead{\small\textcolor{TextMuted}{\faCalendar\ \ October 24, 2026}}
+\rfoot{\small\textcolor{TextMuted}{Page \thepage\ of \pageref{LastPage}}}
+\lfoot{\small\textcolor{TextMuted}{\faLock\ \ Strictly Confidential --- Internal Executive Distribution Only}}
+\renewcommand{\headrulewidth}{0.5pt}
+\renewcommand{\footrulewidth}{0.5pt}
+\renewcommand{\headrule}{\color{BorderGray}\hrule width\headwidth height\headrulewidth \vspace{1pt}}
+\renewcommand{\footrule}{\color{BorderGray}\hrule width\headwidth height\headrulewidth \vspace{1pt}}
+
+% --- Section Heading Formatting ---
+\titleformat{\section}
+  {\color{NavyPrimary}\normalfont\Large\bfseries}
+  {\thesection.}{0.5em}{}
+  [\color{TealAccent}\titlerule]
+\titlespacing*{\section}{0pt}{14pt}{8pt}
+
+\titleformat{\subsection}
+  {\color{NavyPrimary}\normalfont\large\bfseries}
+  {\thesubsection}{0.5em}{}
+\titlespacing*{\subsection}{0pt}{10pt}{4pt}
+
+% --- Custom Command Definitions ---
+\newcommand{\statusbadge}[2]{%
+  \tcbox[on line, arc=3pt, colback=#1, colframe=#1, top=1.5pt, bottom=1.5pt, left=5pt, right=5pt, boxsep=0pt, fontupper=\bfseries\tiny]{#2}%
+}
+
+% --- Table Row Height Customization ---
+\setlength{\extrarowheight}{3.5pt}
+
+% --- Document Content ---
+\begin{document}
+
+% ==================== HEADER / TITLE BLOCK ====================
+\begin{tcolorbox}[
+    enhanced,
+    colback=NavyPrimary,
+    colframe=NavyPrimary,
+    arc=4pt,
+    boxrule=0pt,
+    left=16pt, right=16pt, top=14pt, bottom=14pt
+]
+    \begin{minipage}[c]{0.68\textwidth}
+        \textcolor{white}{\fontseries{b}\selectfont\Huge VERTEX DYNAMICS} \\[2pt]
+        \textcolor{TealAccent}{\rule{\textwidth}{1.2pt}} \\[4pt]
+        \textcolor{white}{\large\bfseries Executive Board \& Technical Steering Committee} \\[2pt]
+        \textcolor{white}{\small\faFile\ \ Q3 2026 Strategic Architecture \& Operations Review}
+    \end{minipage}%
+    \hfill
+    \begin{minipage}[c]{0.28\textwidth}
+        \begin{tcolorbox}[
+            colback=white,
+            colframe=white,
+            arc=3pt,
+            left=8pt, right=8pt, top=6pt, bottom=6pt
+        ]
+            \centering
+            \textcolor{NavyPrimary}{\small\bfseries DOCUMENT REF} \\[1pt]
+            \textcolor{SlateDark}{\footnotesize MIN-2026-Q3-EX} \\[3pt]
+            \textcolor{NavyPrimary}{\small\bfseries CLASSIFICATION} \\[2pt]
+            \statusbadge{PendingBg}{\textcolor{PendingOrange}{CONFIDENTIAL}}
+        \end{tcolorbox}
+    \end{minipage}
+\end{tcolorbox}
+
+\vspace{0.15cm}
+
+% ==================== METADATA GRID ====================
+\begin{tcolorbox}[
+    enhanced,
+    colback=SlateLight,
+    colframe=BorderGray,
+    arc=4pt,
+    boxrule=0.8pt,
+    left=12pt, right=12pt, top=8pt, bottom=8pt
+]
+    \begin{tabularx}{\textwidth}{@{}l X l X@{}}
+        \textcolor{NavyPrimary}{\textbf{\faCalendar\ Date:}} & October 24, 2026 &
+        \textcolor{NavyPrimary}{\textbf{\faClock\ Time:}} & 10:00 AM -- 12:30 PM EST \\
+        \textcolor{NavyPrimary}{\textbf{\faMapMarker\ Location:}} & Executive Boardroom 4A / Hybrid &
+        \textcolor{NavyPrimary}{\textbf{\faUser\ Chair:}} & Dr. Elena Rostova (CTO) \\
+        \textcolor{NavyPrimary}{\textbf{\faPen\ Secretary:}} & Marcus Vance (Corp. Sec.) &
+        \textcolor{NavyPrimary}{\textbf{\faTag\ Type:}} & Quarterly Executive Review \\
+    \end{tabularx}
+\end{tcolorbox}
+
+\vspace{0.15cm}
+
+% ==================== ATTENDANCE SECTION ====================
+\section{\texorpdfstring{\faUsers\ Attendance \& Roll Call}{1. Attendance \& Roll Call}}
+
+\begin{tcolorbox}[
+    enhanced,
+    colback=white,
+    colframe=BorderGray,
+    arc=3pt,
+    boxrule=0.6pt,
+    left=10pt, right=10pt, top=8pt, bottom=8pt
+]
+    \begin{tabularx}{\textwidth}{@{}X X@{}}
+        \textcolor{NavyPrimary}{\textbf{\faCheckCircle\ Present (Executive Board \& Steering)}} &
+        \textcolor{NavyPrimary}{\textbf{\faTimesCircle\ Apologies / Regrets}} \\
+        \cmidrule(r){1-1} \cmidrule(l){2-2}
+        \begin{itemize}[leftmargin=12pt, itemsep=1.5pt, topsep=2pt, parsep=0pt]
+            \item \textbf{Dr. Elena Rostova} -- Chief Technology Officer (Chair)
+            \item \textbf{Julian Vance} -- Chief Executive Officer
+            \item \textbf{Sarah Jenkins} -- VP of Engineering (Nexa Platform)
+            \item \textbf{David K. Chen} -- VP of Enterprise Security (Vertex)
+            \item \textbf{Amara Okafor} -- Head of Data Intelligence (Synapse)
+            \item \textbf{Robert Sterling} -- Chief Financial Officer
+        \end{itemize} &
+        \begin{itemize}[leftmargin=12pt, itemsep=1.5pt, topsep=2pt, parsep=0pt]
+            \item \textbf{Claire Sterling} -- VP of Operations (Sabbatical Leave)
+            \item \textbf{Michael Ross} -- General Counsel (Client Arbitration)
+        \end{itemize}
+        \vspace{4pt}
+        \textcolor{NavyPrimary}{\textbf{\faUserPlus\ Guests \& Observers}} \\
+        \cmidrule(r){1-1}
+        \begin{itemize}[leftmargin=12pt, itemsep=1.5pt, topsep=2pt, parsep=0pt]
+            \item \textbf{Vikram Patel} -- Lead Cloud Architect (Nimbus Infrastructure Integration)
+            \item \textbf{Laura Lindqvist} -- Senior Regulatory \& AI Governance Advisor, Meridian Risk Group
+        \end{itemize} & \\
+    \end{tabularx}
+\end{tcolorbox}
+
+\vspace{0.15cm}
+
+% ==================== EXECUTIVE SUMMARY ====================
+\begin{tcolorbox}[
+    enhanced,
+    colback=BlueBg,
+    colframe=BlueTag,
+    arc=3pt,
+    boxrule=0.8pt,
+    title={\small\bfseries\faInfoCircle\ Executive Meeting Objective},
+    coltitle=white,
+    top=5pt, bottom=5pt
+]
+    \small
+    The primary objectives of this meeting were to evaluate the Q3 technical roadmap performance for the Nexa Enterprise Platform, approve the multi-cloud infrastructure migration plan under Project Nimbus, establish AI data governance standards for the Synapse v3 roll-out, and review preliminary SOC2 Type II compliance audit findings.
+\end{tcolorbox}
+
+\vspace{0.15cm}
+
+% ==================== AGENDA & DISCUSSIONS ====================
+\section{\texorpdfstring{\faListOl\ Meeting Agenda \& Key Discussions}{2. Meeting Agenda \& Key Discussions}}
+
+\subsection{2.1 Call to Order \& Approval of Previous Minutes}
+\begin{itemize}[leftmargin=15pt, itemsep=2.5pt]
+    \item \textbf{Opening Remarks:} Dr. Elena Rostova called the meeting to order at 10:02 AM EST and verified that a quorum was present.
+    \item \textbf{Review of Minutes:} Minutes from the previous Q2 Executive Strategy Meeting held on July 18, 2026, were reviewed. No amendments were requested.
+    \item \textbf{Resolution:} The Q2 meeting minutes were formally approved unanimously as recorded.
+\end{itemize}
+
+\subsection{2.2 Project Nimbus: Cloud Infrastructure Migration \& Cost Optimization}
+\begin{itemize}[leftmargin=15pt, itemsep=2.5pt]
+    \item \textbf{Presentation:} Vikram Patel presented the technical milestone report for Project Nimbus, focusing on migrating core microservices from legacy on-premises datacenters to distributed cloud environments across Vertex and Meridian clusters.
+    \item \textbf{Key Highlights \& Metric Milestones:}
+    \begin{itemize}[leftmargin=12pt, itemsep=1.5pt]
+        \item Phase I migration completed 14 days ahead of schedule with 99.995\% uptime recorded during cutover.
+        \item Projected annual infrastructure expenditure reduced by 22\% (\$1.4M annual cost avoidance).
+        \item Automated failover testing across US-East and EU-Central nodes achieved latency under 45ms.
+    \end{itemize}
+    \item \textbf{Discussion \& Risk Analysis:}
+    David Chen raised security concerns regarding third-party API exposure during live database replication. Vikram clarified that multi-layer end-to-end TLS 1.3 encryption with dedicated hardware security modules (HSM) was fully enforced across all data pipes.
+    \item \textbf{Consensus:} The committee commended the cloud architecture team and authorized initiation of Phase II.
+\end{itemize}
+
+\subsection{2.3 Synapse Engine v3: Enterprise AI Governance \& Data Integrity}
+\begin{itemize}[leftmargin=15pt, itemsep=2.5pt]
+    \item \textbf{Overview:} Amara Okafor introduced the operational blueprint for Synapse Engine v3, incorporating retrieval-augmented generation (RAG) and domain-specific foundation models for enterprise financial analytics.
+    \item \textbf{Governance Framework:}
+    Laura Lindqvist emphasized the necessity of strict compliance with emerging international AI transparency guidelines and EU AI Act classification standards.
+    \item \textbf{Key Technical Decisions Required:}
+    \begin{itemize}[leftmargin=12pt, itemsep=1.5pt]
+        \item \textit{Data Retention Policy:} Mandatory zero-data-retention (ZDR) agreements with foundational model providers.
+        \item \textit{Audit Logging:} Implementation of immutable ledger-based audit trails for all algorithmic decisions generated by Synapse modules.
+    \end{itemize}
+    \item \textbf{Outcome:} The board requested a formalized compliance whitepaper prior to public beta release scheduled for November 15, 2026.
+\end{itemize}
+
+\subsection{2.4 SOC2 Type II Audit Progress \& Enterprise Security Posture}
+\begin{itemize}[leftmargin=15pt, itemsep=2.5pt]
+    \item \textbf{Audit Status:} David K. Chen provided an interim update on the ongoing SOC2 Type II compliance audit conducted by Apex Audit Partners.
+    \item \textbf{Key Findings:}
+    \begin{itemize}[leftmargin=12pt, itemsep=1.5pt]
+        \item 14 out of 16 Trust Services Criteria (TSC) categories have achieved complete remediation and sign-off.
+        \item Remaining items involve third-party vendor risk scoring and identity provider (IdP) session timeout standardization across legacy Apex tools.
+    \end{itemize}
+    \item \textbf{Corrective Action Plan:} Remediation sprint scheduled for the engineering team from October 28 to November 8, 2026.
+\end{itemize}
+
+\vspace{0.2cm}
+
+% ==================== DECISIONS TABLE ====================
+\section{\texorpdfstring{\faGavel\ Key Decisions \& Formal Resolutions}{3. Key Decisions \& Formal Resolutions}}
+
+\begin{tcolorbox}[
+    enhanced,
+    colback=white,
+    colframe=BorderGray,
+    arc=3pt,
+    boxrule=0.6pt,
+    top=0pt, bottom=0pt, left=0pt, right=0pt
+]
+    \small
+    \begin{tabularx}{\textwidth}{>{\bfseries\color{NavyPrimary}\centering\arraybackslash}p{1.4cm} X >{\centering\arraybackslash}p{1.8cm} >{\centering\arraybackslash}p{1.8cm} >{\centering\arraybackslash}p{2.4cm}}
+        \rowcolor{NavyPrimary}
+        \textcolor{white}{Ref \#} & \textcolor{white}{Resolution / Motion Summary} & \textcolor{white}{Moved By} & \textcolor{white}{Seconded} & \textcolor{white}{Vote Result} \\
+        \midrule
+        RES-01 & Approve Q2 2026 Executive Meeting Minutes as presented without modification. & J. Vance & R. Sterling & \statusbadge{PassBg}{\textcolor{PassGreen}{UNANIMOUS}} \\
+        \rowcolor{SlateLight}
+        RES-02 & Authorize \$450,000 capital expenditure allocation for Project Nimbus Phase II deployment. & E. Rostova & R. Sterling & \statusbadge{PassBg}{\textcolor{PassGreen}{PASSED (5-1)}} \\
+        RES-03 & Adopt Zero-Data-Retention (ZDR) policy across all external API LLM endpoints for Synapse v3. & A. Okafor & D. Chen & \statusbadge{PassBg}{\textcolor{PassGreen}{UNANIMOUS}} \\
+        \rowcolor{SlateLight}
+        RES-04 & Mandate multi-factor authentication (MFA) enforcement across all legacy internal endpoints by Nov 1. & D. Chen & S. Jenkins & \statusbadge{PassBg}{\textcolor{PassGreen}{UNANIMOUS}} \\
+        \bottomrule
+    \end{tabularx}
+\end{tcolorbox}
+
+\vspace{0.2cm}
+
+% ==================== ACTION ITEMS TABLE ====================
+\section{\texorpdfstring{\faTasks\ Action Items \& Responsibility Matrix}{4. Action Items \& Responsibility Matrix}}
+
+\begin{tcolorbox}[
+    enhanced,
+    colback=white,
+    colframe=BorderGray,
+    arc=3pt,
+    boxrule=0.6pt,
+    top=0pt, bottom=0pt, left=0pt, right=0pt
+]
+    \small
+    \begin{tabularx}{\textwidth}{>{\centering\arraybackslash}p{1.3cm} X >{\raggedright\arraybackslash}p{2.3cm} >{\centering\arraybackslash}p{2.0cm} >{\centering\arraybackslash}p{2.0cm} >{\centering\arraybackslash}p{2.4cm}}
+        \rowcolor{NavyPrimary}
+        \textcolor{white}{Item \#} & \textcolor{white}{Action Item / Task Description} & \textcolor{white}{Owner} & \textcolor{white}{Dept.} & \textcolor{white}{Due Date} & \textcolor{white}{Status} \\
+        \midrule
+        ACT-101 & Finalize vendor SLA contracts for Nimbus Phase II multi-cloud connectivity. & Vikram Patel & Architecture & Nov 05, 2026 & \statusbadge{PendingBg}{\textcolor{PendingOrange}{IN PROGRESS}} \\
+        \rowcolor{SlateLight}
+        ACT-102 & Publish Synapse v3 AI Ethics \& Transparency Compliance Whitepaper. & Amara Okafor & Data AI & Nov 10, 2026 & \statusbadge{BlueBg}{\textcolor{BlueTag}{SCHEDULED}} \\
+        ACT-103 & Complete IdP session timeout remediation across legacy Apex administrative portals. & Sarah Jenkins & Engineering & Nov 08, 2026 & \statusbadge{PendingBg}{\textcolor{PendingOrange}{IN PROGRESS}} \\
+        \rowcolor{SlateLight}
+        ACT-104 & Execute mock SOC2 audit walkthrough with external auditors (Apex Audit Partners). & David K. Chen & Security & Nov 12, 2026 & \statusbadge{BlueBg}{\textcolor{BlueTag}{SCHEDULED}} \\
+        ACT-105 & Submit Q4 updated budget forecast reflecting Nimbus infrastructure savings. & Robert Sterling & Finance & Nov 15, 2026 & \statusbadge{PassBg}{\textcolor{PassGreen}{COMPLETED}} \\
+        \bottomrule
+    \end{tabularx}
+\end{tcolorbox}
+
+\vspace{0.2cm}
+
+% ==================== NEXT STEPS & ADJOURNMENT ====================
+\section{\texorpdfstring{\faCalendarCheck\ Next Steps \& Adjournment}{5. Next Steps \& Adjournment}}
+
+\begin{itemize}[leftmargin=15pt, itemsep=3pt]
+    \item \textbf{Next Meeting Date:} The next regular meeting of the Executive Steering Committee is scheduled for \textbf{Thursday, November 19, 2026, at 10:00 AM EST} in Executive Boardroom 4A.
+    \item \textbf{Special Topics for Next Agenda:}
+    \begin{enumerate}[label=\lbrack\arabic*\rbrack, leftmargin=18pt, itemsep=2pt]
+        \item Review of Synapse Engine v3 Beta performance telemetry and customer onboarding.
+        \item FY27 Strategic R\&D Capital Allocation Plan presentation by CFO.
+    \end{enumerate}
+    \item \textbf{Adjournment:} There being no further business, the meeting was adjourned at 12:28 PM EST by Dr. Elena Rostova.
+\end{itemize}
+
+\vspace{0.3cm}
+
+% ==================== SIGNATURE BLOCK ====================
+\begin{tcolorbox}[
+    enhanced,
+    colback=SlateLight,
+    colframe=BorderGray,
+    arc=4pt,
+    boxrule=0.8pt,
+    title={\small\bfseries\faCheckSquare\ Minutes Authorization \& Approval},
+    coltitle=NavyPrimary,
+    top=8pt, bottom=8pt, left=12pt, right=12pt
+]
+    \small
+    \textit{These minutes are hereby certified as an accurate and complete record of the proceedings of the Vertex Dynamics Corporation Executive Board \& Technical Steering Committee meeting held on October 24, 2026.}
+    \vspace{0.6cm}
+
+    \begin{tabularx}{\textwidth}{@{}X c X@{}}
+        \rule{0.8\linewidth}{0.6pt} & \hspace{1cm} & \rule{0.8\linewidth}{0.6pt} \\
+        \textbf{Marcus Vance} & & \textbf{Dr. Elena Rostova} \\
+        Principal Corporate Secretary & & Chief Technology Officer \& Committee Chair \\
+        Date: October 26, 2026 & & Date: October 26, 2026 \\
+    \end{tabularx}
+\end{tcolorbox}
+
+\end{document}

@@ -1,0 +1,451 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=0.55in,top=0.6in,bottom=0.6in]{geometry}
+\usepackage[table]{xcolor}
+\usepackage{amsmath,amssymb}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{tcolorbox}
+\tcbuselibrary{skins,breakable}
+\usepackage{tikz}
+\usetikzlibrary{calc,positioning}
+\usepackage{fontawesome5}
+\usepackage[hidelinks]{hyperref}
+
+% --- Color Palette ---
+\definecolor{NavyDark}{HTML}{0F172A}
+\definecolor{NavyPrimary}{HTML}{1E293B}
+\definecolor{AccentRed}{HTML}{991B1B}
+\definecolor{AccentAmber}{HTML}{D97706}
+\definecolor{AccentTeal}{HTML}{0D9488}
+\definecolor{SlateLight}{HTML}{F8FAFC}
+\definecolor{SlateMid}{HTML}{E2E8F0}
+\definecolor{TextDark}{HTML}{334155}
+\definecolor{TextMuted}{HTML}{64748B}
+
+% --- Global Page Style ---
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0.5pt}
+\renewcommand{\footrulewidth}{0.5pt}
+\fancyhead[L]{\small\bfseries\color{NavyPrimary} VERTEX RESEARCH INSTITUTE \quad \vline \quad \normalfont\color{TextMuted} Chemical Hazard \& Waste Disposal Register}
+\fancyhead[R]{\small\color{TextMuted} SOP-EHS-2026-04 \quad \vline \quad Ref: REG-EHS-88C}
+\fancyfoot[L]{\small\color{TextMuted}\faLock~Confidential --- Environmental Health \& Safety Regulatory Log}
+\fancyfoot[C]{\small\color{TextMuted}Form EHS-WDR-v4.2}
+\fancyfoot[R]{\small\color{NavyPrimary}\bfseries Page \thepage\ of \pageref{LastPage}}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{4pt}
+
+% --- Custom Badge Commands ---
+\newcommand{\statusbadge}[2]{%
+  \tcbox[on line, arc=2pt, colback=#1!12!white, colframe=#1!80!black,
+         top=1pt, bottom=1pt, left=3pt, right=3pt, boxrule=0.4pt]{%
+    \fontsize{6.5}{7.5}\selectfont\bfseries\color{#1!90!black}#2%
+  }%
+}
+
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+\newcolumntype{C}{>{\centering\arraybackslash}X}
+\newcolumntype{R}{>{\raggedleft\arraybackslash}X}
+
+\begin{document}
+
+% ==========================================
+% PAGE 1: HEADER, OVERVIEW & INVENTORY MATRIX
+% ==========================================
+
+% Header Box
+\begin{tcolorbox}[
+  enhanced,
+  colback=NavyDark,
+  colframe=NavyDark,
+  arc=3pt,
+  boxsep=3pt,
+  left=8pt, right=8pt, top=6pt, bottom=6pt
+]
+  \begin{minipage}[c]{0.68\textwidth}
+    \color{white}
+    {\fontsize{14}{16}\selectfont\bfseries CHEMICAL HAZARD \& WASTE DISPOSAL REGISTER}\\[2pt]
+    {\small\color{SlateMid}\faBuilding~Vertex Research Institute --- Synthetic \& Bio-Organic Facility (Building 4)}\\[1pt]
+    {\fontsize{8}{9.5}\selectfont\color{SlateMid}Regulatory Compliance Tracking Log under OSHA 29 CFR 1910.1450 \& EPA RCRA Guidelines}
+  \end{minipage}%
+  \hfill
+  \begin{minipage}[c]{0.28\textwidth}
+    \raggedleft
+    \tcbox[colback=white!10, colframe=white!30, arc=2pt, boxrule=0.5pt, top=2pt, bottom=2pt]{%
+      \color{white}\small
+      \begin{tabular}{@{}r@{\hspace{4pt}}l@{}}
+        \textbf{EPA ID:} & NYD982049182 \\
+        \textbf{Qtr/Yr:} & Q2 / 2026 \\
+        \textbf{Status:} & \color{green!40!white}\textbf{ACTIVE LOG}
+      \end{tabular}
+    }
+  \end{minipage}
+\end{tcolorbox}
+
+\vspace{-2pt}
+
+% Key Compliance Metrics Bar
+\begin{tcolorbox}[
+  enhanced,
+  colback=SlateLight,
+  colframe=SlateMid,
+  arc=3pt,
+  boxrule=0.5pt,
+  top=4pt, bottom=4pt, left=6pt, right=6pt
+]
+  \begin{minipage}[t]{0.23\textwidth}
+    \centering
+    {\fontsize{6.5}{7.5}\selectfont\bfseries\color{TextMuted}ACTIVE SAA CONTAINERS}\\[1pt]
+    {\fontsize{12}{14}\selectfont\bfseries\color{NavyPrimary}14 Drums}\\[1pt]
+    {\tiny\color{TextMuted}Satellite Accumulation Area}
+  \end{minipage}%
+  \vline \hfill
+  \begin{minipage}[t]{0.23\textwidth}
+    \centering
+    {\fontsize{6.5}{7.5}\selectfont\bfseries\color{TextMuted}TOTAL Q2 ACCUMULATION}\\[1pt]
+    {\fontsize{12}{14}\selectfont\bfseries\color{AccentAmber}482.5 L / 94 kg}\\[1pt]
+    {\tiny\color{TextMuted}Liquid Vol \& Solid Mass}
+  \end{minipage}%
+  \vline \hfill
+  \begin{minipage}[t]{0.23\textwidth}
+    \centering
+    {\fontsize{6.5}{7.5}\selectfont\bfseries\color{TextMuted}LAST MANIFEST DISPOSAL}\\[1pt]
+    {\fontsize{12}{14}\selectfont\bfseries\color{AccentTeal}18-MAY-2026}\\[1pt]
+    {\tiny\color{TextMuted}Manifest \#MNF-2026-0881}
+  \end{minipage}%
+  \vline \hfill
+  \begin{minipage}[t]{0.23\textwidth}
+    \centering
+    {\fontsize{6.5}{7.5}\selectfont\bfseries\color{TextMuted}EHS COMPLIANCE AUDIT}\\[1pt]
+    {\fontsize{12}{14}\selectfont\bfseries\color{AccentTeal}PASSED}\\[1pt]
+    {\tiny\color{TextMuted}Next Audit: 15-AUG-2026}
+  \end{minipage}
+\end{tcolorbox}
+
+\vspace{1pt}
+
+% Section 1 Header
+\begin{tcolorbox}[colback=NavyPrimary, colframe=NavyPrimary, arc=2pt, top=2.5pt, bottom=2.5pt, left=6pt]
+  \color{white}\bfseries\small\faFlask\quad SECTION 1: Active High-Hazard Chemical Inventory \& Storage Matrix
+\end{tcolorbox}
+
+\vspace{-4pt}
+
+{\fontsize{8}{9.5}\selectfont\color{TextDark}
+This section logs highly regulated chemical stocks maintained in synthetic laboratories 401--404. All materials listed require GHS labeling, secondary containment, and daily SAA inspection.
+}
+
+\vspace{-2pt}
+
+\setlength{\extrarowheight}{1.5pt}
+{\fontsize{7.5}{9}\selectfont
+\begin{tabularx}{\textwidth}{@{} c p{2.8cm} c p{2.4cm} p{2.2cm} c c c @{}}
+\toprule
+\rowcolor{SlateMid!60}
+\textbf{Reg ID} & \textbf{Chemical / Material} & \textbf{CAS No.} & \textbf{GHS Class} & \textbf{Location} & \textbf{Max Cap} & \textbf{Cur Qty} & \textbf{Status} \\
+\midrule
+CH-1021 & Dichloromethane & 75-09-2 & Toxic / Carcinogen & Cab-4A (Vent) & 50.0 L & 32.5 L & \statusbadge{AccentTeal}{COMPLIANT} \\
+CH-1022 & Hydrofluoric Acid (48\%) & 7664-39-3 & Acute Tox / Corrosive & Acid Cab 2 & 5.0 L & 2.5 L & \statusbadge{AccentAmber}{SECURED} \\
+CH-1025 & Sodium Hydride (60\%) & 7646-69-7 & Water Reactive & Dry Box 1 & 2.5 kg & 1.2 kg & \statusbadge{AccentTeal}{COMPLIANT} \\
+CH-1029 & Tetrahydrofuran (Anhyd) & 109-99-9 & Flammable / Peroxide & Flamm Cab 3 & 40.0 L & 28.0 L & \statusbadge{AccentAmber}{TEST DUE} \\
+CH-1033 & Nitromethane & 75-52-5 & Explosive Hazard & Flamm Cab 1 & 10.0 L & 4.0 L & \statusbadge{AccentTeal}{COMPLIANT} \\
+CH-1040 & Osmium Tetroxide & 20816-12-0 & Severe Toxicity & Tox Safe B & 25.0 g & 10.0 g & \statusbadge{AccentRed}{RESTRICTED} \\
+CH-1044 & Pyridine & 110-86-1 & Flammable / Harmful & Flamm Cab 4 & 20.0 L & 11.5 L & \statusbadge{AccentTeal}{COMPLIANT} \\
+CH-1051 & Trifluoroacetic Acid & 76-05-1 & Corrosive Liquid & Acid Cab 1 & 15.0 L & 8.0 L & \statusbadge{AccentTeal}{COMPLIANT} \\
+\bottomrule
+\end{tabularx}
+}
+
+\vspace{3pt}
+
+% Section 2 Header
+\begin{tcolorbox}[colback=NavyPrimary, colframe=NavyPrimary, arc=2pt, top=2.5pt, bottom=2.5pt, left=6pt]
+  \color{white}\bfseries\small\faTrash\quad SECTION 2: Satellite Accumulation Area (SAA) Container Log
+\end{tcolorbox}
+
+\vspace{-4pt}
+
+{\fontsize{8}{9.5}\selectfont\color{TextDark}
+Continuous tracking of active waste accumulation drums located in Building 4 SAA. Containers must be capped except when receiving waste and transferred to central storage within 55 days of start date or when reaching 95\% capacity.
+}
+
+\vspace{-2pt}
+
+{\fontsize{7.5}{9}\selectfont
+\begin{tabularx}{\textwidth}{@{} c p{3.0cm} Y c p{1.8cm} c c c @{}}
+\toprule
+\rowcolor{SlateMid!60}
+\textbf{Drum ID} & \textbf{Waste Stream Category} & \textbf{Primary Constituents} & \textbf{Cap.} & \textbf{Current Fill} & \textbf{Start Date} & \textbf{Max Date} & \textbf{Action} \\
+\midrule
+W-2026-01 & Non-Halogen Solvent & Acetone, EtOAc, Hexanes (60:30:10) & 200 L & 175 L (87.5\%) & 02-APR-2026 & 27-MAY-2026 & \statusbadge{AccentAmber}{PREP XFER} \\
+W-2026-02 & Halogenated Solvent & CH2Cl2, Chloroform, TFA trace & 200 L & 140 L (70.0\%) & 10-APR-2026 & 05-JUN-2026 & \statusbadge{AccentTeal}{ACTIVE} \\
+W-2026-03 & Corrosive Acid Waste & Dilute HNO3, H2SO4, Aqueous & 50 L & 38 L (76.0\%) & 15-APR-2026 & 10-JUN-2026 & \statusbadge{AccentTeal}{ACTIVE} \\
+W-2026-04 & Corrosive Base Waste & NaOH, KOH, Ethanol Aqueous & 50 L & 42 L (84.0\%) & 18-APR-2026 & 13-JUN-2026 & \statusbadge{AccentTeal}{ACTIVE} \\
+W-2026-05 & Heavy Metal Aqueous & Pd/C residues, Ni, Cu salts in H2O & 20 L & 11 L (55.0\%) & 22-APR-2026 & 17-JUN-2026 & \statusbadge{AccentTeal}{ACTIVE} \\
+W-2026-06 & Toxic Solid Debris & Pipette tips, silica gel, vials & 100 L & 85 L (85.0\%) & 05-APR-2026 & 30-MAY-2026 & \statusbadge{AccentAmber}{PREP XFER} \\
+W-2026-07 & Reactive Solid & Quenched NaH, Raney Ni solids & 10 L & 4.5 L (45.0\%) & 28-APR-2026 & 23-JUN-2026 & \statusbadge{AccentTeal}{ACTIVE} \\
+\bottomrule
+\end{tabularx}
+}
+
+\vspace{4pt}
+
+\begin{tcolorbox}[
+  enhanced,
+  colback=SlateLight,
+  colframe=AccentAmber!60!black,
+  arc=3pt,
+  boxrule=0.5pt,
+  left=6pt, right=6pt, top=3pt, bottom=3pt
+]
+  \fontsize{7.5}{9}\selectfont\color{TextDark}
+  \faExclamationTriangle\quad \textbf{Mandatory SAA Compliance Check Notice:} Drum \textbf{W-2026-01} and \textbf{W-2026-06} are approaching their 55-day regulatory transfer threshold. EHS Operations has scheduled Main Storage Vault transfer for \textbf{26-MAY-2026}. Contact EHS Officer Marcus Vance (Ext. 4409) prior to sealed container transport.
+\end{tcolorbox}
+
+\newpage
+
+% ==========================================
+% PAGE 2: DISPOSAL MANIFEST & CHAIN OF CUSTODY
+% ==========================================
+
+% Section 3 Header
+\begin{tcolorbox}[colback=NavyPrimary, colframe=NavyPrimary, arc=2pt, top=2.5pt, bottom=2.5pt, left=6pt]
+  \color{white}\bfseries\small\faFile\quad SECTION 3: Certified Waste Disposal Manifest \& Chain of Custody Log
+\end{tcolorbox}
+
+\vspace{-4pt}
+
+{\fontsize{8}{9.5}\selectfont\color{TextDark}
+Official Record of Off-Site Waste Shipments under EPA Hazardous Waste Manifest Regulations (40 CFR Part 262). All shipments must be transported by licensed hazardous material haulers to certified Treatment, Storage, and Disposal Facilities (TSDF).
+}
+
+\vspace{-2pt}
+
+\begin{tcolorbox}[
+  enhanced,
+  colback=SlateLight,
+  colframe=SlateMid,
+  arc=3pt,
+  boxrule=0.5pt,
+  left=6pt, right=6pt, top=3.5pt, bottom=3.5pt
+]
+  \fontsize{7.5}{9}\selectfont
+  \begin{tabularx}{\textwidth}{@{} r Y r Y r Y @{}}
+    \textbf{Transporter:} & Apex Env. Logistics LLC & \textbf{Transporter EPA ID:} & NYR000293841 & \textbf{Driver Name:} & Robert Thorne \\
+    \textbf{TSDF Facility:} & CleanEarth Remediation & \textbf{TSDF EPA ID:} & NJD002182049 & \textbf{Vehicle ID:} & HazMat Rig \#409 \\
+    \textbf{Manifest \#:} & \textbf{019482011-JJK} & \textbf{Shipment Date:} & \textbf{18-MAY-2026} & \textbf{Cert. Rec'd:} & 22-MAY-2026
+  \end{tabularx}
+\end{tcolorbox}
+
+\vspace{-2pt}
+
+\setlength{\extrarowheight}{1.5pt}
+{\fontsize{7.2}{8.5}\selectfont
+\begin{tabularx}{\textwidth}{@{} c p{2.2cm} Y p{2.2cm} c p{2.0cm} c c @{}}
+\toprule
+\rowcolor{SlateMid!60}
+\textbf{Item} & \textbf{Container ID} & \textbf{Chemical Composition \& Profile} & \textbf{DOT Hazard Class} & \textbf{Qty/Vol} & \textbf{Package Type} & \textbf{TSDF Code} & \textbf{Status} \\
+\midrule
+01 & Drum M-2026-88 & Waste Organics (Acetone 40\%, MeOH 40\%, Toluene 20\%) & Class 3 (Flammable) & 205 L & Steel Drum (1A1) & H040 (Incin.) & \statusbadge{AccentTeal}{VERIFIED} \\
+02 & Drum M-2026-89 & Dichloromethane 85\%, Triethylamine 15\% & Class 6.1 (Toxic) & 205 L & Steel Drum (1A1) & H040 (Incin.) & \statusbadge{AccentTeal}{VERIFIED} \\
+03 & Carboy M-2026-90 & Waste Nitric Acid 25\%, HCl 15\%, Water 60\% & Class 8 (Corrosive) & 50 L & Poly Carboy (1H1) & H132 (Neut.) & \statusbadge{AccentTeal}{VERIFIED} \\
+04 & Drum M-2026-91 & Contaminated Lab Debris (Gloves, Absorbents, Vials) & Class 9 (Misc Haz) & 110 L & Fiber Drum (1G) & H141 (Landfill) & \statusbadge{AccentTeal}{VERIFIED} \\
+05 & Pail M-2026-92 & Mercury Thermometers \& Hg Apparatus in Vermiculite & Class 8 (Corrosive/Hg) & 15 L & Steel Pail (1A2) & H010 (Hg Rec.) & \statusbadge{AccentTeal}{VERIFIED} \\
+06 & Cyl M-2026-93 & Spent Anhydrous Ammonia Cylinder (Lecture Bottle) & Class 2.3 (Poison Gas) & 2.5 kg & Steel Cyl (3AA) & H081 (Recycle) & \statusbadge{AccentTeal}{VERIFIED} \\
+\bottomrule
+\end{tabularx}
+}
+
+\vspace{3pt}
+
+% Section 4 Header
+\begin{tcolorbox}[colback=NavyPrimary, colframe=NavyPrimary, arc=2pt, top=2.5pt, bottom=2.5pt, left=6pt]
+  \color{white}\bfseries\small\faFlask\quad SECTION 4: In-House Chemical Neutralization \& Deactivation Protocol Log
+\end{tcolorbox}
+
+\vspace{-4pt}
+
+{\fontsize{8}{9.5}\selectfont\color{TextDark}
+Pre-disposal chemical treatments authorized under SOP-EHS-042-REV3. Only qualified bench chemists with level-3 EHS certification may perform neutralization or quenching procedures. All treated solutions must undergo pH and temperature verification prior to SAA container discharge.
+}
+
+\vspace{-2pt}
+
+{\fontsize{7.5}{9}\selectfont
+\begin{tabularx}{\textwidth}{@{} c c p{3.0cm} Y c p{2.2cm} p{1.6cm} @{}}
+\toprule
+\rowcolor{SlateMid!60}
+\textbf{Batch ID} & \textbf{Date / Time} & \textbf{Initial Substrate} & \textbf{Deactivation Agent \& Method} & \textbf{Final pH} & \textbf{Technician} & \textbf{Supervisor} \\
+\midrule
+NEUT-081 & 04-MAY-11:30 & 2.5 L P-Fluorobenzoyl Chloride & Slowly added to 10\% cold NaOH with stirring & 7.8 pH & Dr. Sarah Chen & M. Vance \\
+NEUT-082 & 09-MAY-14:15 & 500 mL Triethylaluminum & Dilute Solution in Heptane quenched via iPrOH/N2 & N/A & Dr. Aris Thorne & M. Vance \\
+NEUT-083 & 12-MAY-10:00 & 4.0 L Concentrated H2SO4 & Neutralized with Aqueous Na2CO3 Slurry & 7.2 pH & Elena Rostova & M. Vance \\
+NEUT-084 & 19-MAY-15:45 & 1.0 L Sodium Azide Solution & Oxidized via Nitrous Acid / Sodium Nitrite & 6.9 pH & Dr. Sarah Chen & M. Vance \\
+NEUT-085 & 22-MAY-09:20 & 3.0 L Chromic Acid Solution & Reduced via NaHSO3 then neutralized with Ca(OH)2 & 8.1 pH & Elena Rostova & M. Vance \\
+\bottomrule
+\end{tabularx}
+}
+
+\vspace{3pt}
+
+% Section 5 Header
+\begin{tcolorbox}[colback=NavyPrimary, colframe=NavyPrimary, arc=2pt, top=2.5pt, bottom=2.5pt, left=6pt]
+  \color{white}\bfseries\small\faExclamationTriangle\quad SECTION 5: Incidental Chemical Release \& Spill Containment Log
+\end{tcolorbox}
+
+\vspace{-4pt}
+
+{\fontsize{8}{9.5}\selectfont\color{TextDark}
+Log of minor lab releases managed under local containment protocols during Q2 2026. Major spills exceeding reportable quantities (RQ) trigger immediate OSHA/EPA notifications.
+}
+
+\vspace{-2pt}
+
+{\fontsize{7.5}{9}\selectfont
+\begin{tabularx}{\textwidth}{@{} c c p{2.5cm} p{2.5cm} Y c @{}}
+\toprule
+\rowcolor{SlateMid!60}
+\textbf{Inc. ID} & \textbf{Date / Time} & \textbf{Location} & \textbf{Substance \& Volume} & \textbf{Containment \& Remediation Action} & \textbf{EHS Review} \\
+\midrule
+SPL-2026-04 & 08-MAY-09:15 & Lab 402 Hood 3 & 250 mL Acetonitrile & Applied absorbent pillows; hood exhaust ramped. Drummed in W-2026-01. & \statusbadge{AccentTeal}{CLOSED} \\
+SPL-2026-05 & 16-MAY-16:30 & Lab 404 Bench B & 50 mL HCl Acid (37\%) & Neutralized with Spill-X-A agent, swept and containerized. No injuries. & \statusbadge{AccentTeal}{CLOSED} \\
+SPL-2026-06 & 21-MAY-11:05 & SAA Vault & 1.2 L Mixed Organics & Secondary containment caught leakage. Re-drummed and floor scrubbed. & \statusbadge{AccentTeal}{CLOSED} \\
+\bottomrule
+\end{tabularx}
+}
+
+\newpage
+
+% ==========================================
+% PAGE 3: SAFETY COMPLIANCE & SIGN-OFF CERTIFICATION
+% ==========================================
+
+% Section 6 Header
+\begin{tcolorbox}[colback=NavyPrimary, colframe=NavyPrimary, arc=2pt, top=2.5pt, bottom=2.5pt, left=6pt]
+  \color{white}\bfseries\small\faCheckCircle\quad SECTION 6: Quarterly Regulatory Compliance Audit \& Inspection Sign-Off
+\end{tcolorbox}
+
+\vspace{-2pt}
+
+{\fontsize{8}{9.5}\selectfont\color{TextDark}
+This Chemical Hazard \& Waste Disposal Register has been audited for completeness, accuracy, and adherence to Federal, State, and Institutional EHS directives. Verified entries constitute a legal record of chain-of-custody for hazardous materials managed by Vertex Research Institute.
+}
+
+\vspace{3pt}
+
+% Audit Checklist Grid (tcolorbox)
+\begin{tcolorbox}[
+  enhanced,
+  colback=SlateLight,
+  colframe=SlateMid,
+  arc=3pt,
+  boxrule=0.5pt,
+  top=4pt, bottom=4pt, left=8pt, right=8pt
+]
+  \subsubsection*{\fontsize{9}{10}\selectfont\bfseries\color{NavyPrimary}Quarterly Compliance Evaluation Checklist --- Q2 2026}
+  \vspace{-4pt}
+  \fontsize{7.5}{9}\selectfont
+  \begin{tabularx}{\textwidth}{@{} Y c Y c @{}}
+    \textbf{Compliance Criteria Item} & \textbf{Status} & \textbf{Compliance Criteria Item} & \textbf{Status} \\
+    \hline
+    \rule{0pt}{10pt}1. All SAA containers labeled with GHS hazards \& start dates & \statusbadge{AccentTeal}{PASSED} & 5. Weekly SAA inspection logs completed \& filed & \statusbadge{AccentTeal}{PASSED} \\
+    2. Flammable liquids stored within rated safety cabinets & \statusbadge{AccentTeal}{PASSED} & 6. Eyewash \& safety shower monthly testing verified & \statusbadge{AccentTeal}{PASSED} \\
+    3. Peroxide-forming solvents tested within 6-month window & \statusbadge{AccentAmber}{ATTN REQ} & 7. Secondary containment trays clean \& liquid-free & \statusbadge{AccentTeal}{PASSED} \\
+    4. EPA Manifest Certificates of Destruction archived & \statusbadge{AccentTeal}{PASSED} & 8. Chemical emergency spill kits fully stocked & \statusbadge{AccentTeal}{PASSED} \\
+    \hline
+  \end{tabularx}
+\end{tcolorbox}
+
+\vspace{4pt}
+
+\begin{tcolorbox}[
+  enhanced,
+  colback=white,
+  colframe=NavyPrimary,
+  arc=3pt,
+  boxrule=0.8pt,
+  top=6pt, bottom=6pt, left=8pt, right=8pt
+]
+  \subsubsection*{\fontsize{9}{10}\selectfont\bfseries\color{NavyPrimary}Formal Compliance Declaration \& Regulatory Certification}
+  \vspace{-2pt}
+  \fontsize{8}{9.5}\selectfont\color{TextDark}
+  I hereby certify under penalty of law that I have personally examined and am familiar with the information submitted in this Chemical Hazard \& Waste Disposal Register (Form EHS-WDR-v4.2). Based on my inquiry of those individuals immediately responsible for obtaining the information, I believe the submitted information is true, accurate, and complete to the best of my knowledge. All hazardous waste streams listed have been classified, packaged, marked, and labeled in accordance with applicable national and local environmental standards.
+
+  \vspace{22pt}
+
+  \begin{minipage}[t]{0.31\textwidth}
+    \centering
+    \rule{0.85\textwidth}{0.5pt}\\[3pt]
+    \textbf{Dr. Aris Thorne}\\[1pt]
+    {\tiny\color{TextMuted}Lead Chemical Safety Officer}\\
+    {\tiny\color{TextMuted}Date: 31-MAY-2026}
+  \end{minipage}%
+  \hfill
+  \begin{minipage}[t]{0.31\textwidth}
+    \centering
+    \rule{0.85\textwidth}{0.5pt}\\[3pt]
+    \textbf{Marcus Vance, MS, CSP}\\[1pt]
+    {\tiny\color{TextMuted}Director of Environmental Health \& Safety}\\
+    {\tiny\color{TextMuted}Date: 31-MAY-2026}
+  \end{minipage}%
+  \hfill
+  \begin{minipage}[t]{0.31\textwidth}
+    \centering
+    \rule{0.85\textwidth}{0.5pt}\\[3pt]
+    \textbf{Dr. Elena Rostova}\\[1pt]
+    {\tiny\color{TextMuted}VP of Research Operations}\\
+    {\tiny\color{TextMuted}Date: 01-JUN-2026}
+  \end{minipage}
+\end{tcolorbox}
+
+\vspace{4pt}
+
+% Section 7: SOP Reference & Emergency Contact Sheet
+\begin{tcolorbox}[colback=NavyPrimary, colframe=NavyPrimary, arc=2pt, top=2.5pt, bottom=2.5pt, left=6pt]
+  \color{white}\bfseries\small\faPhone\quad SECTION 7: Emergency Contacts \& Regulatory Response Directory
+\end{tcolorbox}
+
+\vspace{-4pt}
+
+\begin{tcolorbox}[
+  enhanced,
+  colback=SlateLight,
+  colframe=SlateMid,
+  arc=3pt,
+  boxrule=0.5pt,
+  left=6pt, right=6pt, top=4pt, bottom=4pt
+]
+  \fontsize{7.5}{9}\selectfont
+  \begin{tabularx}{\textwidth}{@{} Y p{2.8cm} p{2.8cm} p{2.8cm} @{}}
+    \toprule
+    \rowcolor{SlateMid!60}
+    \textbf{Role / Authority} & \textbf{Contact Person} & \textbf{Internal Phone / Ext} & \textbf{Emergency Cell / 24-hr} \\
+    \midrule
+    EHS On-Call Officer & Duty Officer (Rotational) & Ext. 4400 / Desk B4 & +1 (555) 019-2831 \\
+    HazMat Incident Commander & Marcus Vance & Ext. 4409 / Office 102 & +1 (555) 019-8820 \\
+    Chemical Hygiene Officer & Dr. Aris Thorne & Ext. 4112 / Lab 401 & +1 (555) 019-3341 \\
+    Facilities \& Exhaust Engineering & Tech Ops Center & Ext. 4000 / Bldg 1 & +1 (555) 019-9000 \\
+    Certified Waste Carrier (Apex) & Dispatch & 1-800-555-APEX & +1 (555) 012-4411 \\
+    National Response Center (NRC) & Federal Hotline & N/A & 1-800-424-8802 \\
+    \bottomrule
+  \end{tabularx}
+\end{tcolorbox}
+
+\vspace{6pt}
+
+\begin{center}
+  \color{TextMuted}\tiny
+  Vertex Research Institute $\cdot$ Environmental Health \& Safety Office $\cdot$ Building 4, 100 Innovation Way, Tech District\\
+  This register must be retained in laboratory records for a minimum of five (5) years pursuant to 40 CFR 262.40.
+\end{center}
+
+\end{document}

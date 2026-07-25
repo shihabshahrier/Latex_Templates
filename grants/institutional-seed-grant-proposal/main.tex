@@ -1,0 +1,271 @@
+\documentclass[10pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{newpxtext,newpxmath}
+
+\usepackage[margin=0.85in]{geometry}
+
+\usepackage[table]{xcolor}
+\definecolor{navy}{HTML}{1B2A4A}
+\definecolor{gold}{HTML}{C9A23F}
+\definecolor{lightgray}{HTML}{F2F4F7}
+\definecolor{slate}{HTML}{506680}
+
+\usepackage{tikz}
+\usetikzlibrary{positioning,calc,backgrounds}
+\usepackage{tcolorbox}
+\tcbset{
+  colback=lightgray,
+  colframe=navy,
+  boxrule=0.5pt,
+  arc=4pt,
+  left=8pt,
+  right=8pt,
+  top=6pt,
+  bottom=6pt
+}
+
+\usepackage{fontawesome5}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{array}
+
+\usepackage{enumitem}
+\setlist{leftmargin=*,nosep,itemsep=2pt}
+
+\usepackage{titlesec}
+\titleformat{\section}
+  {\color{navy}\Large\bfseries}
+  {}
+  {0em}
+  {}
+  [\vspace{-0.2em}{\color{gold}\rule{\textwidth}{1.2pt}}\vspace{0.2em}]
+
+\titleformat{\subsection}
+  {\color{slate}\large\bfseries}
+  {}
+  {0em}
+  {}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\footnotesize\color{slate!60}\textsc{Internal Seed Grant --- Confidential}}
+\fancyhead[R]{\footnotesize\color{slate!60}2026 Cycle}
+\fancyfoot[C]{\footnotesize\color{slate!60}\thepage}
+\renewcommand{\headrulewidth}{0.3pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\usepackage{amsmath}
+
+\usepackage{parskip}
+\setlength{\parskip}{5pt plus 1pt minus 1pt}
+
+\usepackage{hyperref}
+\hypersetup{
+  colorlinks=true,
+  linkcolor=navy,
+  urlcolor=slate,
+  citecolor=slate
+}
+
+\newtcolorbox{abstractbox}{
+  colback=lightgray,
+  colframe=navy,
+  boxrule=0.6pt,
+  arc=5pt,
+  left=12pt,
+  right=12pt,
+  top=8pt,
+  bottom=8pt
+}
+
+\newtcolorbox{highlightbox}{
+  colback=navy!6,
+  colframe=gold,
+  boxrule=1.0pt,
+  arc=4pt,
+  left=10pt,
+  right=10pt,
+  top=8pt,
+  bottom=8pt
+}
+
+\begin{document}
+
+% === HEADER BAR ===
+\begin{tikzpicture}[remember picture,overlay]
+  \fill[navy] (current page.north west) rectangle ([yshift=-2.0cm]current page.north east);
+  \draw[gold, line width=1.2pt] ([yshift=-2.0cm]current page.north west) -- ([yshift=-2.0cm]current page.north east);
+  \node[anchor=north west, text=white, font=\Large\bfseries] at ([xshift=0.85in,yshift=-0.45cm]current page.north west) {Meridian University};
+  \node[anchor=north west, text=gold, font=\small] at ([xshift=0.85in,yshift=-0.90cm]current page.north west) {Office of Research \& Innovation};
+  \node[anchor=north west, text=white, font=\footnotesize] at ([xshift=0.85in,yshift=-1.25cm]current page.north west) {Internal Seed Grant Program \textbullet\ 2026 Cycle};
+\end{tikzpicture}
+
+\vspace*{2.4cm}
+
+% === TITLE ===
+\begin{center}
+  {\LARGE\bfseries\color{navy} Machine Learning Approaches for Early\\[2pt] Detection of Neurodegenerative Disorders\\[2pt] Using Multimodal Biomarker Data}
+
+  \vspace{8pt}
+
+  {\color{slate}Internal Seed Grant Proposal}
+
+  \vspace{4pt}
+
+  {\footnotesize\color{slate!60}\faCalendar\ Submitted: 15 September 2026}
+\end{center}
+
+\vspace{4pt}
+
+% === PI INFORMATION ===
+\begin{minipage}[t]{0.48\textwidth}
+  \raggedright\small
+  \textbf{\color{navy}Principal Investigator}\\[4pt]
+  \faUser\ Dr.\ Sarah Chen\\
+  \faEnvelope\ \texttt{s.chen@meridian.edu}\\
+  \faPhone\ (555) 234--8901\\
+  \faBuilding\ Dept.\ of Computational Biology\\[1pt]
+  \faFlask\ School of Engineering \& Applied Science
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.48\textwidth}
+  \raggedright\small
+  \textbf{\color{navy}Co-Principal Investigator}\\[4pt]
+  \faUser\ Dr.\ Marcus Webb\\
+  \faEnvelope\ \texttt{m.webb@meridian.edu}\\
+  \faPhone\ (555) 234--8912\\
+  \faBuilding\ Dept.\ of Neurology\\[1pt]
+  \faFlask\ School of Medicine
+\end{minipage}
+
+\par
+
+\vspace{4pt}
+
+% === METADATA ===
+\begin{tcolorbox}[colback=navy!4, colframe=navy!20, boxrule=0.4pt, arc=3pt, left=8pt, right=8pt, top=5pt, bottom=5pt]
+  \footnotesize
+  \textbf{Funding Program:}\ Internal Seed Grant \hspace{1.4cm} \textbf{Amount Requested:}\ \$48,750
+
+  \textbf{Project Period:}\ 1 Jan -- 31 Dec 2027 \hspace{2cm} \textbf{Keywords:}\ neurodegeneration, machine learning, multimodal biomarkers
+\end{tcolorbox}
+
+\vspace{4pt}
+
+% === ABSTRACT ===
+\begin{abstractbox}
+  \small
+  \textbf{\color{navy}Project Summary.} Neurodegenerative disorders including Alzheimer's and Parkinson's disease affect over 50 million people worldwide, yet early detection remains a critical clinical challenge. This proposal seeks \$48,750 in seed funding to develop a machine learning pipeline that integrates multimodal biomarker data --- neuroimaging, cerebrospinal fluid proteomics, and wearable sensor time series --- for early risk stratification. The 12-month project leverages existing clinical datasets from the Meridian University Hospital system ($n \approx 1{,}200$ patients) and will establish preliminary data and computational infrastructure for a competitive NIH R01 submission in 2028. The proposed architecture combines transformer-based sequence models with cross-modal attention mechanisms to exploit complementary biomarker signals. Anticipated outcomes include a validated predictive model, a curated multimodal benchmark dataset, two peer-reviewed publications, and a fully drafted R01 proposal.
+\end{abstractbox}
+
+% === RESEARCH PLAN ===
+\section{Research Plan \& Objectives}
+
+Neurodegenerative diseases impose a growing societal and economic burden. Current diagnostic criteria for Alzheimer's and Parkinson's rely predominantly on clinical symptom presentation, which emerges only after substantial irreversible neural loss has occurred. While individual biomarker modalities --- structural MRI, amyloid-PET, CSF protein assays, and actigraphy-derived motor assessments --- each carry predictive signal, no existing computational framework systematically integrates these heterogeneous data streams for early, pre-symptomatic risk assessment.
+
+The central hypothesis is that a multimodal transformer architecture with learned cross-modal attention can identify subtle, interacting biomarker signatures preceding clinical diagnosis by 2--5 years, outperforming single-modality baselines and current clinical screening tools.
+
+\subsection{Specific Aims}
+
+\begin{enumerate}[leftmargin=*,label={\textbf{Aim \arabic*.}},itemsep=3pt]
+  \item \textbf{Data Integration and Harmonization.} Curate and harmonize three IRB-approved biomarker datasets from the Meridian University Hospital system: structural MRI ($n = 980$), CSF proteomic panels ($n = 720$), and 6-month continuous actigraphy recordings ($n = 410$). Develop standardized preprocessing pipelines with documented quality control metrics, producing a combined, anonymized multimodal dataset with $n \approx 1{,}200$ unique patients and longitudinal clinical outcome labels over 3--7 year follow-up.
+
+  \item \textbf{Model Architecture and Training.} Design a multimodal transformer architecture (\textsc{NeuroFuse}) with modality-specific input encoders, cross-modal attention layers, and a shared latent representation space. Train under a survival analysis framework predicting time-to-diagnosis, with systematic hyperparameter optimization and five-fold cross-validation stratified by clinical site and disease subtype.
+
+  \item \textbf{Validation and Interpretability.} Evaluate predictive performance against gold-standard clinical diagnoses using concordance index, time-dependent AUC, and net reclassification improvement versus established clinical risk scores. Characterize feature importance via integrated gradients and attention weight analysis to identify which biomarker combinations drive the earliest, most reliable predictions.
+\end{enumerate}
+
+% === METHODOLOGY ===
+\section{Methodology}
+
+\textbf{Data Sources.} All data derive from the Meridian University Hospital Electronic Health Record-linked research registry (IRB\#2025--M0784). T1-weighted structural MRI scans are processed through FreeSurfer v7.4 to extract regional volumetrics and cortical thickness. CSF proteomics were assayed using the Nimbus NeuroPlex 96-analyte panel on the Luminex xMAP platform. Actigraphy data were collected via Apex MotionTrack wrist-worn devices sampled at 50~Hz over 180-day continuous recordings, yielding gait, tremor, and sleep architecture features.
+
+\textbf{Model Architecture.} \textsc{NeuroFuse} employs three parallel encoders: a vision transformer with 3D patch embedding for imaging, a set transformer with learned per-analyte positional encodings for proteomic features, and a temporal convolutional network followed by a causal-masked transformer for actigraphy time series. Cross-modal fusion uses learnable latent query tokens that attend jointly to all three modality representations, producing a fixed-dimensional patient embedding fed into a Cox proportional hazards output head.
+
+\textbf{Evaluation.} Performance is assessed via five-fold cross-validation stratified by clinical site and diagnostic category. Primary metrics: Harrell's C-index and time-dependent AUC at 2-, 3-, and 5-year horizons. Ablation studies quantify per-modality contribution and cross-modal attention benefit. Baselines include univariate Cox models, random survival forests on concatenated features, and single-modality transformer variants.
+
+\textbf{Computational Resources.} Training uses the Synapse Cloud GPU cluster (4$\times$ Lumina H100 GPUs) funded through the requested compute allocation. Code developed in Python 3.11 with PyTorch 2.x and \texttt{pycox}, released under Apache 2.0 upon completion.
+
+% === BUDGET ===
+\section{Budget}
+
+\begin{tabularx}{\textwidth}{@{} l >{\raggedright\arraybackslash}X r @{}}
+  \toprule
+  \textbf{Category} & \textbf{Description} & \textbf{Amount} \\
+  \midrule
+  Personnel & Graduate Research Assistant (50\% FTE, 12 months) & \$28,000 \\
+  Computing & Synapse Cloud GPU credits (8,500 GPU-hours) & \$8,000 \\
+  Data Acquisition & Patient data extraction, de-identification, processing & \$5,000 \\
+  Travel \& Dissemination & Conference registration and travel (2 presentations) & \$3,750 \\
+  Supplies \& Materials & Software licenses, data storage, archival media & \$4,000 \\
+  \midrule
+  \multicolumn{2}{r}{\textbf{Total Requested}} & \textbf{\$48,750} \\
+  \bottomrule
+\end{tabularx}
+
+\vspace{2pt}
+{\footnotesize\color{slate!70}\textit{No cost-sharing is required. Funds administered through the Meridian University Office of Sponsored Programs.}}
+
+% === TIMELINE ===
+\section{Timeline}
+
+\begin{tabularx}{\textwidth}{@{} l c >{\raggedright\arraybackslash}X @{}}
+  \toprule
+  \textbf{Phase} & \textbf{Months} & \textbf{Key Activities \& Deliverables} \\
+  \midrule
+  1.\ Data Curation & 1--3 &
+    IRB renewal; data extraction from EHR registry; FreeSurfer pipeline on imaging cohort; CSF QC; actigraphy feature extraction; harmonized multimodal dataset generation \\
+  \midrule
+  2.\ Model Development & 4--7 &
+    \textsc{NeuroFuse} architecture implementation; encoder pre-training; cross-modal attention development; hyperparameter optimization; five-fold CV training runs; baseline implementation \\
+  \midrule
+  3.\ Validation & 8--10 &
+    Benchmarking against clinical risk scores; ablation studies; integrated gradient analysis; sensitivity analyses by demographic subgroup; preliminary results write-up \\
+  \midrule
+  4.\ Dissemination & 11--12 &
+    Manuscript preparation (\textit{npj Digital Medicine}, \textit{Alzheimer's \& Dementia}); conference abstract submission; benchmark dataset release; NIH R01 proposal drafting \\
+  \bottomrule
+\end{tabularx}
+
+% === EXPECTED OUTCOMES ===
+\section{Expected Outcomes \& Broader Impact}
+
+\begin{highlightbox}
+  \small
+  \textbf{\color{navy}Anticipated Deliverables.}
+  \begin{itemize}[leftmargin=*,itemsep=2pt]
+    \item A validated, open-source multimodal transformer model (\textsc{NeuroFuse}) for early neurodegenerative risk prediction
+    \item A curated, de-identified multimodal biomarker benchmark dataset released via the Meridian Data Repository
+    \item Two first-author manuscripts submitted to high-impact journals
+    \item A fully drafted NIH R01 proposal with compelling preliminary data and power analyses
+    \item Conference presentations at ICMLM and the American Academy of Neurology Annual Meeting
+  \end{itemize}
+\end{highlightbox}
+
+\vspace{4pt}
+
+This seed grant will position Dr.\ Chen and Dr.\ Webb to compete successfully for extramural funding from the National Institutes of Health (target: NINDS R01, February 2028). Beyond the immediate funding trajectory, the project will train one Ph.D.\ student in cutting-edge multimodal machine learning methods and strengthen Meridian University's research profile at the intersection of AI and clinical neuroscience. The open-source release of \textsc{NeuroFuse} and its benchmark dataset will enable independent validation and accelerate progress toward clinically deployable early screening tools for neurodegenerative disease.
+
+% === REFERENCES ===
+\section*{References}
+{\footnotesize
+\setlength{\parskip}{1pt}
+
+[1] Chen, S., Patel, R., \& Kowalski, T.\ (2025). Transformer-based survival analysis with multimodal clinical data. \textit{Journal of Machine Learning in Medicine}, 8(2), 112--134.
+
+[2] Webb, M., Okafor, N., \& Chen, S.\ (2024). Longitudinal CSF proteomic trajectories in preclinical Alzheimer's disease. \textit{Neurology: Biomarker Discovery}, 41(3), 201--219.
+
+[3] Vaswani, A., et al.\ (2017). Attention is all you need. \textit{Advances in Neural Information Processing Systems}, 30, 5998--6008.
+
+[4] Lee, C., Yoon, J., \& van der Schaar, M.\ (2019). Dynamic-DeepHit: A deep learning approach for dynamic survival analysis. \textit{IEEE Trans.\ Biomedical Engineering}, 67(1), 122--133.
+
+[5] Meridian University Hospital.\ (2025). EHR-linked research registry: Cohort profile and data dictionary (v3.2). \textit{Meridian Clinical Data Archive}. IRB\#2025--M0784.
+
+[6] Kvamme, H., Borgan, \O., \& Scheel, I.\ (2019). Time-to-event prediction with neural networks and Cox regression. \textit{Journal of Machine Learning Research}, 20(129), 1--30.
+
+}
+
+\end{document}

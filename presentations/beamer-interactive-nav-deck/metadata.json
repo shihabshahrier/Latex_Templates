@@ -1,0 +1,8 @@
+{
+  "name": "Beamer Interactive Navigation Presentation",
+  "compiler": "pdflatex",
+  "description": "Beamer Interactive Navigation Presentation LaTeX template \u2014 beamer interactive navigation presentation latex template. Elegant, compile-tested, editable online at letx.app.",
+  "author": "LetX",
+  "category": "presentations",
+  "license": "MIT"
+}

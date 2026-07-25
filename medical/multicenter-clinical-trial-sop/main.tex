@@ -1,0 +1,448 @@
+\documentclass[11pt,a4paper]{scrreprt}
+
+% ---------- Layout ----------
+\usepackage[left=2.2cm,right=2.2cm,top=2.6cm,bottom=2.8cm,headheight=14pt]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{ragged2e}
+
+% ---------- Color & tables ----------
+\usepackage[table]{xcolor}
+\usepackage{colortbl}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{longtable}
+
+% ---------- Math ----------
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+% ---------- Lists, boxes, graphics ----------
+\usepackage{enumitem}
+\usepackage{tcolorbox}
+\tcbuselibrary{skins}
+\usepackage{tikz}
+\usetikzlibrary{positioning,calc,shapes.geometric,arrows.meta,backgrounds}
+\usepackage{fontawesome5}
+\usepackage{titlesec}
+\usepackage{scrlayer-scrpage}
+\usepackage[hidelinks]{hyperref}
+
+% ---------- Palette ----------
+\definecolor{sopnavy}{RGB}{17,42,66}
+\definecolor{sopteal}{RGB}{0,116,108}
+\definecolor{sopgray}{RGB}{92,99,108}
+\definecolor{sopamber}{RGB}{178,122,17}
+\definecolor{soplight}{RGB}{241,244,247}
+\definecolor{sopline}{RGB}{206,214,221}
+
+% ---------- Heading style ----------
+\titleformat{\section}
+  {\color{sopnavy}\Large\bfseries}
+  {\thesection}{0.5em}{}
+  [{\color{sopline}\titlerule[0.9pt]}]
+\titlespacing*{\section}{0pt}{1.4em}{0.8em}
+
+\titleformat{\subsection}
+  {\color{sopteal}\large\bfseries}
+  {\thesubsection}{0.5em}{}
+\titlespacing*{\subsection}{0pt}{1.0em}{0.5em}
+
+\titleformat{\subsubsection}
+  {\color{sopgray}\normalsize\bfseries\itshape}
+  {\thesubsubsection}{0.5em}{}
+\titlespacing*{\subsubsection}{0pt}{0.8em}{0.3em}
+
+% ---------- Header / Footer ----------
+\pagestyle{scrheadings}
+\clearpairofpagestyles
+\ihead{\small\color{sopgray}SOP-CT-014 \textbar\ Multicenter Clinical Trial Conduct}
+\ohead{\small\color{sopgray}Version 4.0}
+\ifoot{\small\color{sopgray}Meridian Clinical Research Network -- Confidential}
+\ofoot{\small\color{sopgray}Page \thepage\ of \pageref{LastPage}}
+\setkomafont{pageheadfoot}{\normalfont}
+\usepackage{lastpage}
+
+\setlist[itemize]{leftmargin=1.4em,itemsep=2pt,topsep=2pt}
+\setlist[enumerate]{leftmargin=1.6em,itemsep=2pt,topsep=2pt}
+
+\newcommand{\gcpref}[1]{{\color{sopteal}\small\itshape #1}}
+
+\begin{document}
+
+% ======================================================================
+% TITLE PAGE
+% ======================================================================
+\begin{titlepage}
+\thispagestyle{empty}
+\begin{tikzpicture}[remember picture,overlay]
+  \fill[sopnavy] (current page.north west) rectangle
+      ([yshift=-4.6cm]current page.north east);
+  \fill[sopteal] (current page.north west) rectangle
+      ([xshift=0.28cm,yshift=-4.6cm]current page.north west);
+  \node[anchor=north west,text=white,font=\small\bfseries] at
+      ([xshift=2.2cm,yshift=-1.1cm]current page.north west)
+      {MERIDIAN CLINICAL RESEARCH NETWORK};
+  \node[anchor=north east,text=white!85!black,font=\small] at
+      ([xshift=-2.2cm,yshift=-1.1cm]current page.north east)
+      {\faLock\ CONTROLLED DOCUMENT};
+  \node[anchor=west,text=white,font=\Huge\bfseries] at
+      ([xshift=2.2cm,yshift=-2.7cm]current page.north west)
+      {Standard Operating Procedure};
+  \node[anchor=west,text=white!80!sopteal,font=\Large] at
+      ([xshift=2.2cm,yshift=-3.7cm]current page.north west)
+      {Conduct of Multicenter Clinical Trials -- GCP Compliance};
+\end{tikzpicture}
+
+\vspace*{5.1cm}
+
+\begin{center}
+{\color{sopgray}\large Protocol NX-2214-301}\\[2pt]
+{\small\itshape A Phase III, Randomized, Double-Blind, Placebo-Controlled Multicenter\\
+Study Evaluating the Efficacy and Safety of NX-2214 in Adults with\\
+Moderate-to-Severe Plaque Psoriasis}
+\end{center}
+
+\vspace{0.9cm}
+
+\noindent
+\begin{tabularx}{\linewidth}{@{}l X@{}}
+\rowcolor{soplight}
+\textbf{SOP Number} & SOP-CT-014 \\
+\textbf{Version} & 4.0 \\
+\rowcolor{soplight}
+\textbf{Effective Date} & 01 June 2026 \\
+\textbf{Supersedes} & Version 3.2 (12 November 2024) \\
+\rowcolor{soplight}
+\textbf{Next Scheduled Review} & 01 June 2027 \\
+\textbf{Sponsor} & Nexa Therapeutics, Inc. \\
+\rowcolor{soplight}
+\textbf{Coordinating Center} & Vertex Clinical Trials Unit \\
+\textbf{Governing CRO} & Meridian Clinical Research Network \\
+\end{tabularx}
+
+\vspace{1.0cm}
+{\color{sopnavy}\bfseries Approval Signatures}\\[4pt]
+\noindent
+\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}p{3.6cm} >{\raggedright\arraybackslash}p{4.4cm} X >{\centering\arraybackslash}p{2.1cm}@{}}
+\toprule
+\textbf{Role} & \textbf{Name} & \textbf{Signature} & \textbf{Date} \\
+\midrule
+Sponsor Medical Director & Dr. Elena Vasquez, Nexa Therapeutics & \rule{3.2cm}{0.4pt} & \rule{1.6cm}{0.4pt} \\
+Coordinating Investigator & Dr. Michael Chen, Vertex Clinical Trials Unit & \rule{3.2cm}{0.4pt} & \rule{1.6cm}{0.4pt} \\
+Head of Clinical Operations & Sarah Okonkwo, Meridian CRN & \rule{3.2cm}{0.4pt} & \rule{1.6cm}{0.4pt} \\
+QA/QC Director & Dr. Priya Nair, Meridian CRN & \rule{3.2cm}{0.4pt} & \rule{1.6cm}{0.4pt} \\
+\bottomrule
+\end{tabularx}
+
+\vfill
+{\footnotesize\color{sopgray}\raggedright
+This document is proprietary to Nexa Therapeutics, Inc. and Meridian Clinical Research
+Network. Unauthorized reproduction or distribution outside the study team is prohibited.
+Uncontrolled when printed -- verify current version in the electronic Trial Master File (eTMF)
+prior to use.\par}
+\end{titlepage}
+
+% ======================================================================
+% CHAPTER-LEVEL CONTENT (flat, no forced page breaks)
+% ======================================================================
+
+\section{Purpose and Scope}
+
+This Standard Operating Procedure (SOP) defines the mandatory processes for planning,
+initiating, conducting, monitoring, and closing out multicenter interventional clinical trials
+sponsored by Nexa Therapeutics, Inc. and operationally managed by Meridian Clinical Research
+Network. It establishes uniform expectations for all personnel -- sponsor staff, contract
+research organization (CRO) staff, Principal Investigators, and site personnel -- engaged in
+Protocol NX-2214-301 and any subsequent multicenter protocol referencing this SOP.
+
+This procedure applies to all 42 participating investigator sites across 9 countries and covers
+the full trial lifecycle from site feasibility assessment through database lock and archiving.
+It does not supersede local regulatory requirements, institutional policies, or the approved
+protocol; where a conflict exists, the more stringent requirement governs.
+
+\begin{tcolorbox}[
+  colback=soplight, colframe=sopnavy, boxrule=0.6pt, arc=2pt,
+  left=8pt, right=8pt, top=6pt, bottom=6pt,
+  title={\faFileMedical\ \ Applicable Regulations and Guidance},
+  coltitle=white, colbacktitle=sopnavy, fonttitle=\bfseries\small,
+  attach boxed title to top left={xshift=8pt,yshift=-2pt},
+  boxed title style={boxrule=0pt,arc=2pt}
+]
+\small
+ICH E6(R2) Good Clinical Practice \textbullet\ 21 CFR Parts 50, 54, 56 and 312 (US FDA)
+\textbullet\ Regulation (EU) No 536/2014 on Clinical Trials \textbullet\ Declaration of
+Helsinki (2013, Fortaleza revision) \textbullet\ Applicable local data protection and health
+privacy law at each participating site.
+\end{tcolorbox}
+
+\section{Roles and Responsibilities}
+
+Each role below carries defined accountability under this SOP. Delegation of tasks at site
+level must be recorded on the study-specific Delegation of Authority (DoA) log and is limited
+to individuals with documented training and qualifications.
+
+\begin{center}
+\small
+\begin{tabularx}{\linewidth}{@{} >{\raggedright\arraybackslash}p{3.3cm} X >{\raggedright\arraybackslash}p{3.0cm} @{}}
+\toprule
+\rowcolor{sopnavy}
+{\color{white}\textbf{Role}} & {\color{white}\textbf{Key Responsibilities}} & {\color{white}\textbf{Reports To}} \\
+\midrule
+Sponsor (Nexa Therapeutics) & Overall trial accountability, protocol authorship, safety
+  determinations, regulatory submissions & Board of Directors \\
+\rowcolor{soplight}
+Coordinating Investigator & Scientific leadership across sites, protocol interpretation
+  queries, publication oversight & Sponsor \\
+Principal Investigator (per site) & Subject safety, informed consent, protocol adherence,
+  supervision of delegated staff & Coordinating Investigator \\
+\rowcolor{soplight}
+Clinical Research Associate & Site monitoring, source data verification, regulatory document
+  maintenance & Clinical Operations Lead \\
+Data Management Team & eCRF design, query resolution, database lock readiness & Head of
+  Clinical Operations \\
+\rowcolor{soplight}
+Pharmacovigilance Unit & SAE triage, expedited reporting, aggregate safety review & Sponsor
+  Medical Director \\
+IRB / Independent Ethics Committee & Protocol and consent approval, ongoing ethical oversight
+  & Institution (independent) \\
+\rowcolor{soplight}
+Site Study Coordinator & Visit scheduling, consent logistics, IP dispensing records &
+  Principal Investigator \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\section{Site Selection, Initiation, and Activation}
+
+Sites are selected based on feasibility survey results, prior trial performance, patient
+population access, and infrastructure adequacy (pharmacy, biosample handling, emergency
+equipment). Activation follows a fixed sequence; no site may enroll subjects prior to
+completion of every step below.
+
+\begin{center}
+\begin{tikzpicture}[
+  node distance=4mm and 3mm,
+  box/.style={rectangle, rounded corners=3pt, draw=sopnavy, fill=soplight,
+    text width=2.15cm, align=center, minimum height=1.15cm, font=\scriptsize, inner sep=3pt},
+  arrow/.style={-{Stealth[length=2mm]}, sopteal, thick}
+]
+\node[box] (n1) {Feasibility Assessment};
+\node[box, right=of n1] (n2) {Site Qualification Visit};
+\node[box, right=of n2] (n3) {Contract \& Budget Execution};
+\node[box, right=of n3] (n4) {IRB/EC Approval};
+\node[box, right=of n4] (n5) {Site Initiation Visit};
+\node[box, right=of n5, fill=sopteal, text=white, draw=sopnavy] (n6) {Activation -- First Subject In};
+\draw[arrow] (n1) -- (n2);
+\draw[arrow] (n2) -- (n3);
+\draw[arrow] (n3) -- (n4);
+\draw[arrow] (n4) -- (n5);
+\draw[arrow] (n5) -- (n6);
+\end{tikzpicture}
+\end{center}
+
+The target interval from feasibility confirmation to activation is 45 calendar days. Sites
+exceeding 75 days without activation are escalated to the Steering Committee for a
+go/no-go re-evaluation. The Site Initiation Visit (SIV) must cover protocol training, IP
+handling, electronic data capture (EDC) system access, and safety reporting pathways, and
+must be documented on the SIV attendance log retained in the Trial Master File (TMF).
+
+\section{Informed Consent Process}
+
+Informed consent is obtained by the Investigator or a qualified, delegated sub-investigator
+prior to any protocol-specific procedure. The consent discussion must occur in a private
+setting, in the subject's preferred language, and allow adequate time for questions.
+
+\begin{minipage}[t]{0.485\linewidth}
+\begin{tcolorbox}[colback=white, colframe=sopteal, boxrule=0.7pt, arc=2pt,
+  title={\faCheckCircle\ Mandatory Elements}, coltitle=white, colbacktitle=sopteal,
+  fonttitle=\bfseries\small, left=6pt, right=6pt, top=4pt, bottom=4pt]
+\small
+\begin{itemize}
+\item Current IRB/EC-approved consent version
+\item Voluntary participation and right to withdraw
+\item Foreseeable risks and expected benefits
+\item Alternative treatments available
+\item Confidentiality and data-sharing scope
+\end{itemize}
+\end{tcolorbox}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.485\linewidth}
+\begin{tcolorbox}[colback=white, colframe=sopamber, boxrule=0.7pt, arc=2pt,
+  title={\faExclamationTriangle\ Re-Consent Triggers}, coltitle=white, colbacktitle=sopamber,
+  fonttitle=\bfseries\small, left=6pt, right=6pt, top=4pt, bottom=4pt]
+\small
+\begin{itemize}
+\item Substantive protocol amendment
+\item New safety information affecting risk profile
+\item Change to biological sample use or retention
+\item Extension of study duration
+\end{itemize}
+\end{tcolorbox}
+\end{minipage}
+\par
+
+Signed and dated consent forms are filed in the subject's source record; the process must be
+documented contemporaneously in the source notes, including the date, time, and version of
+the consent form used. Non-English-speaking subjects must receive a certified translated
+consent form -- verbal translation alone is not acceptable except under emergency exception
+provisions defined in the protocol.
+
+\section{Investigational Product Management}
+
+\subsection{Storage and Temperature Monitoring}
+
+Investigational product (IP) NX-2214 and matching placebo must be stored at
+2\textdegree C--8\textdegree C in a dedicated, access-controlled pharmacy refrigerator with
+continuous calibrated temperature logging. Logs are reviewed by site pharmacy staff daily and
+by the CRA at every monitoring visit.
+
+\subsection{Accountability and Reconciliation}
+
+Drug accountability logs must record every receipt, dispensing, return, and destruction event,
+reconciled against subject dosing records at each visit. Discrepancies exceeding one dosing
+unit must be investigated and documented within 5 business days.
+
+\begin{tcolorbox}[colback=sopamber!8!white, colframe=sopamber, boxrule=0.8pt, arc=2pt,
+  left=8pt, right=8pt, top=6pt, bottom=6pt,
+  title={\faExclamationTriangle\ \ Temperature Excursion Handling}, coltitle=white,
+  colbacktitle=sopamber, fonttitle=\bfseries\small]
+\small
+Upon any excursion outside 2\textdegree C--8\textdegree C: (1) quarantine affected product
+immediately and label \emph{DO NOT USE}; (2) record duration and temperature range from the
+logger; (3) notify the CRA and Sponsor Pharmacovigilance within 24 hours; (4) do not dispense
+or destroy quarantined product until written disposition is received from the Sponsor.
+\end{tcolorbox}
+
+\section{Safety Reporting}
+
+All adverse events are recorded in the eCRF regardless of causality. Serious adverse events
+(SAEs) follow expedited timelines independent of routine visit schedules.
+
+\begin{center}
+\small
+\begin{tabularx}{\linewidth}{@{} >{\raggedright\arraybackslash}p{4.4cm} >{\raggedright\arraybackslash}p{3.3cm} X @{}}
+\toprule
+\rowcolor{sopnavy}
+{\color{white}\textbf{Event Type}} & {\color{white}\textbf{Reporting Timeline}} &
+{\color{white}\textbf{Recipient}} \\
+\midrule
+SAE -- fatal or life-threatening & Within 24 hours of awareness & Sponsor Pharmacovigilance,
+  IRB/EC \\
+\rowcolor{soplight}
+SAE -- other serious & Within 24 hours of awareness & Sponsor Pharmacovigilance \\
+Suspected Unexpected Serious Adverse Reaction (SUSAR) & Within 7 or 15 calendar days per
+  expectedness & Regulatory Authorities, all sites \\
+\rowcolor{soplight}
+Pregnancy during study exposure & Within 24 hours of awareness & Sponsor Pharmacovigilance \\
+Overdose (with or without associated AE) & Within 24 hours of awareness & Sponsor
+  Pharmacovigilance \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\gcpref{Reference: ICH E2A, Clinical Safety Data Management -- Definitions and Standards for
+Expedited Reporting.}
+
+\section{Monitoring and Quality Oversight}
+
+Monitoring combines on-site visits with centralized statistical data review to detect outliers,
+site drift, and data integrity concerns between visits.
+
+\begin{center}
+\small
+\begin{tabularx}{\linewidth}{@{} >{\raggedright\arraybackslash}p{3.9cm} >{\raggedright\arraybackslash}p{2.8cm} X @{}}
+\toprule
+\rowcolor{sopteal}
+{\color{white}\textbf{Visit Type}} & {\color{white}\textbf{Frequency}} &
+{\color{white}\textbf{Primary Focus}} \\
+\midrule
+Site Initiation Visit (SIV) & Once, pre-activation & Training, readiness, regulatory binder
+  completeness \\
+\rowcolor{soplight}
+Interim Monitoring Visit (IMV) & Every 6--8 weeks & Source data verification, consent
+  compliance, IP accountability \\
+Remote / Centralized Monitoring & Continuous & Query trends, enrollment pace, safety signal
+  detection \\
+\rowcolor{soplight}
+Close-Out Visit (COV) & Once, post-database lock & Reconciliation, IP return, archiving
+  confirmation \\
+For-Cause Audit & As triggered & Root-cause investigation of significant findings \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\section{Protocol Deviations and CAPA}
+
+Deviations are classified as \textbf{Minor} (no impact on subject safety or data integrity),
+\textbf{Major} (potential impact requiring corrective action), or \textbf{Critical}
+(direct impact on subject safety, rights, or primary endpoint reliability).
+
+\begin{tcolorbox}[colback=soplight, colframe=sopnavy, boxrule=0.6pt, arc=2pt,
+  left=8pt, right=8pt, top=6pt, bottom=6pt,
+  title={\faClipboardList\ \ Reporting and CAPA Requirement}, coltitle=white,
+  colbacktitle=sopnavy, fonttitle=\bfseries\small]
+\small
+Major and Critical deviations must be reported to the CRA within 3 business days and to the
+IRB/EC per local requirements. A Corrective and Preventive Action (CAPA) plan is mandatory
+for all Major and Critical deviations, with root-cause analysis, assigned owner, and a
+verification-of-effectiveness date logged in the Quality Issue Tracker.
+\end{tcolorbox}
+
+\section{Records Retention and Archiving}
+
+Essential documents, including signed consent forms, source records, monitoring visit reports,
+and the completed regulatory binder, are retained for a minimum of 15 years following trial
+completion, or longer where local law requires. Site archiving is confirmed at the Close-Out
+Visit and documented in the TMF Index prior to final site release.
+
+\vspace{0.6cm}
+\noindent{\color{sopline}\rule{\linewidth}{0.8pt}}
+\vspace{0.4cm}
+
+\section*{Appendix A -- Revision History}
+\addcontentsline{toc}{section}{Appendix A -- Revision History}
+
+\begin{center}
+\small
+\begin{tabularx}{\linewidth}{@{} >{\centering\arraybackslash}p{1.3cm} >{\centering\arraybackslash}p{2.3cm} X @{}}
+\toprule
+\rowcolor{sopgray}
+{\color{white}\textbf{Version}} & {\color{white}\textbf{Date}} & {\color{white}\textbf{Summary of Changes}} \\
+\midrule
+1.0 & 04 Feb 2022 & Initial issue for protocol NX-2214-101 (Phase I). \\
+\rowcolor{soplight}
+2.0 & 19 Sep 2022 & Expanded to multicenter scope; added CRA monitoring cadence table. \\
+3.0 & 22 Jan 2024 & Added centralized/remote monitoring; revised SAE timelines to align
+  with amended ICH E2A guidance. \\
+\rowcolor{soplight}
+3.2 & 12 Nov 2024 & Clarified temperature excursion quarantine procedure; added pregnancy
+  reporting pathway. \\
+4.0 & 01 Jun 2026 & Full rewrite for Protocol NX-2214-301; added deviation classification
+  matrix and CAPA requirement; updated retention period to 15 years. \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\section*{Appendix B -- Regulatory References}
+\addcontentsline{toc}{section}{Appendix B -- Regulatory References}
+
+\small
+\begin{itemize}
+\item ICH E6(R2) -- Good Clinical Practice: Integrated Addendum
+\item ICH E2A -- Clinical Safety Data Management: Definitions and Standards for Expedited
+  Reporting
+\item US Code of Federal Regulations, Title 21, Parts 50, 54, 56, and 312
+\item Regulation (EU) No 536/2014 on Clinical Trials on Medicinal Products for Human Use
+\item World Medical Association Declaration of Helsinki (2013, Fortaleza revision)
+\end{itemize}
+
+\vspace{0.8cm}
+\noindent{\footnotesize\color{sopgray}\faLock\ This SOP is uncontrolled when printed. Refer to
+the Meridian eQMS for the current approved version before use. \textbullet\ Document owner:
+Head of Clinical Operations, Meridian Clinical Research Network.}
+
+\end{document}

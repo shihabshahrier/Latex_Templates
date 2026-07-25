@@ -1,0 +1,110 @@
+\documentclass[
+  paper=a4,
+  fontsize=11pt,
+  DIV=11,
+  parskip=half,
+  fromalign=right,
+  fromphone=true,
+  fromemail=true,
+  fromlogo=true,
+  addrfield=true,
+  backaddress=false,
+  foldmarks=false,
+  footsepline=false,
+  headsepline=false,
+  version=last
+]{scrlttr2}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{libertine}
+\usepackage{microtype}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage{fontawesome5}
+\usepackage{enumitem}
+
+\definecolor{ink}{HTML}{1B1B1B}
+\definecolor{slate}{HTML}{5B5F66}
+\definecolor{rust}{HTML}{A8622E}
+\definecolor{fog}{HTML}{D8D3C9}
+
+\newcommand{\divider}{%
+  \par\vspace{2pt}%
+  \noindent\textcolor{fog}{\rule{\linewidth}{0.4pt}}%
+  \par\vspace{7pt}%
+}
+
+\setkomavar{fromname}{\textcolor{rust}{\bfseries\Large Elena Marsh}}
+\setkomavar{fromaddress}{\textcolor{slate}{\footnotesize 14 Aldergate Row\\Bristol~BS1~5TJ\\United Kingdom}}
+\setkomavar{phoneseparator}{}
+\setkomavar{emailseparator}{}
+\setkomavar{fromphone}{\textcolor{slate}{\footnotesize\faPhone~+44~117~496~0233}}
+\setkomavar{fromemail}{\textcolor{slate}{\footnotesize\faEnvelope~elena.marsh@fictionalmail.com}}
+\setkomavar{signature}{Elena Marsh}
+\setkomavar{place}{Bristol}
+\setkomavar{fromlogo}{%
+  \begin{tikzpicture}
+    \draw[color=rust, line width=0.5pt] (0,0) circle (0.34cm);
+    \node[color=rust, font=\scriptsize\bfseries] at (0,0) {EM};
+  \end{tikzpicture}%
+}
+
+\begin{document}
+\color{ink}
+
+\begin{letter}{Hiring Committee\\Nexa Studio\\22 Harbourside Quay\\Bristol~BS1~6XN\\United Kingdom}
+
+\setkomavar{date}{24 July 2026}
+\setkomavar{subject}{\textcolor{rust}{\bfseries Application for the Position of Senior Product Designer (Ref.\ NX-2214)}}
+
+\opening{Dear Hiring Committee,}
+
+\divider
+
+I am writing to apply for the Senior Product Designer position advertised on the Nexa Studio careers page (Ref.\ NX-2214), with an anticipated start date in early autumn. Having followed Nexa's product work for several years, I was glad to see a role that matches both my background in subscription and financial products and the quieter, typography-led interface style your team is known for.
+
+For the past four years I have led design for the statements and billing surface at Vertex Bank, where I rebuilt the mobile statements flow from a six-screen process into a single scrollable view. The change reduced the average time to locate a transaction from fifty-one seconds to thirty-four, and it has since been adopted as the reference pattern for two adjacent teams. Before Vertex, I spent three years at Synapse Labs designing onboarding flows for early-stage products, work that taught me to defend a small number of decisions rather than accommodate every stakeholder request. I work primarily in Figma, maintain component libraries against WCAG 2.1 AA, and am comfortable pairing directly with engineers during implementation.
+
+What draws me to Nexa specifically is the Compass design system and the discipline behind it -- the way Nexa Ledger, for instance, resolves a genuinely complicated reconciliation task into three unhurried screens rather than a dashboard of competing panels. That restraint is difficult to sustain inside a growing product, and it is the kind of work I would like to spend the next stage of my career on.
+
+I have enclosed my curriculum vitae and a printed selection from my portfolio; a fuller case-study set is available on request. I am based in Bristol, available for an interview at short notice, and happy to speak by phone or in person. Thank you for taking the time to consider my application.
+
+\closing{Yours sincerely,}
+
+\encl{Curriculum vitae\\Portfolio selection (six pages, printed separately)}
+
+\end{letter}
+
+\begin{letter}{Membership Registrar\\Meridian Athenaeum\\9 Queen Anne Terrace\\Bath~BA1~2LR\\United Kingdom}
+
+\setkomavar{date}{10 August 2026}
+\setkomavar{subject}{\textcolor{rust}{\bfseries Inquiry Regarding Reader Access for Independent Historical Research}}
+
+\opening{Dear Sir or Madam,}
+
+\divider
+
+I am writing to ask about the process for gaining reader access to the Meridian Athenaeum's manuscript holdings. I am an independent researcher preparing a study of postal and correspondence networks across the Avon region between 1880 and 1910, and I understand from your published catalogue that the Fenwick Letters, held in your reference collection, fall within this period and may include correspondence relevant to my work.
+
+By way of background, I completed a diploma in local history at Ashcombe College in 2019 and published a short article on rural postal routes in the Nimbus Regional Historical Society's autumn bulletin. The Society's secretary, Mr.\ Graham Pettit, has kindly agreed to provide a letter of introduction if the Athenaeum requires one from a sponsoring body.
+
+I would be grateful if you could clarify the following before I plan a visit:
+
+\begin{enumerate}[label=(\alph*), leftmargin=1.6em, itemsep=3pt, topsep=4pt]
+  \item whether reader's tickets are issued to non-members for a research fee, and what that fee currently is;
+  \item whether an appointment is required to consult the Fenwick Letters, and how far in advance one should be booked;
+  \item whether photographic reproduction of documents is permitted for personal research notes; and
+  \item the Athenaeum's opening hours during September, when I hope to make my first visit.
+\end{enumerate}
+
+I have enclosed a completed reader registration form along with this letter. I am glad to provide any further references or documentation the Athenaeum requires, and I am flexible on timing across September. Thank you for your time, and I look forward to your reply.
+
+\closing{Yours faithfully,}
+
+\encl{Completed reader registration form}
+
+\end{letter}
+
+\end{document}

@@ -1,0 +1,541 @@
+\documentclass[12pt,a4paper]{scrartcl}
+
+%% ─── PACKAGES ────────────────────────────────────────────────────────────────
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=2.5cm, top=3cm, bottom=3cm]{geometry}
+\usepackage[table]{xcolor}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{colortbl}
+\usepackage{enumitem}
+\usepackage{parskip}
+\usepackage{setspace}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{hyperref}
+\usepackage[most]{tcolorbox}
+\usepackage{tikz}
+\usepackage{fontawesome5}
+\usepackage{soul}
+\usepackage{ragged2e}
+\usepackage{mdframed}
+\usepackage{calc}
+
+\tcbuselibrary{skins, breakable, most}
+\usetikzlibrary{positioning, calc, shapes.geometric, backgrounds, patterns, decorations.pathmorphing}
+
+%% ─── COLOURS ─────────────────────────────────────────────────────────────────
+\definecolor{NavyDeep}{HTML}{0D1F3C}
+\definecolor{GoldAccent}{HTML}{B8922A}
+\definecolor{SlateGray}{HTML}{5A6475}
+\definecolor{IvoryLight}{HTML}{F7F5F0}
+\definecolor{RuleGray}{HTML}{D0CEC8}
+\definecolor{TextBody}{HTML}{1E2530}
+\definecolor{GoldLight}{HTML}{F3E9D2}
+
+%% ─── FONTS ───────────────────────────────────────────────────────────────────
+\usepackage{palatino}
+\linespread{1.08}
+
+%% ─── HYPERREF ────────────────────────────────────────────────────────────────
+\hypersetup{
+  colorlinks=true,
+  linkcolor=NavyDeep,
+  urlcolor=GoldAccent,
+  pdfauthor={Meridian Technologies Corporation},
+  pdftitle={Articles of Incorporation -- Meridian Technologies Corporation},
+  pdfsubject={Corporate Articles of Incorporation},
+}
+
+%% ─── HEADINGS ────────────────────────────────────────────────────────────────
+\setkomafont{section}{\large\bfseries\color{NavyDeep}}
+\setkomafont{subsection}{\normalsize\bfseries\color{SlateGray}}
+\setkomafont{subsubsection}{\normalsize\itshape\color{SlateGray}}
+
+\titlespacing{\section}{0pt}{22pt}{6pt}
+\titlespacing{\subsection}{0pt}{14pt}{4pt}
+
+%% ─── HEADER / FOOTER ─────────────────────────────────────────────────────────
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\color{SlateGray}\textit{Meridian Technologies Corporation}}
+\fancyhead[R]{\small\color{SlateGray}\textit{Articles of Incorporation}}
+\fancyfoot[C]{\small\color{SlateGray}Page \thepage\ of \pageref{LastPage}}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+\renewcommand{\headrule}{\color{RuleGray}\hrule width\headwidth height\headrulewidth}
+
+%% ─── TCOLORBOX STYLES ────────────────────────────────────────────────────────
+\tcbset{
+  coverbox/.style={
+    enhanced, breakable=false,
+    colback=NavyDeep, colframe=NavyDeep,
+    arc=0pt, outer arc=0pt,
+    boxrule=0pt,
+    left=2cm, right=2cm, top=1.4cm, bottom=1.4cm,
+  },
+  articlebox/.style={
+    enhanced, breakable,
+    colback=IvoryLight, colframe=GoldAccent,
+    arc=2pt, outer arc=2pt,
+    boxrule=0.8pt,
+    left=10pt, right=10pt, top=8pt, bottom=8pt,
+    fonttitle=\bfseries\color{NavyDeep},
+    attach boxed title to top left={yshift=-3mm, xshift=8mm},
+    boxed title style={
+      colback=GoldAccent, colframe=GoldAccent,
+      arc=2pt, boxrule=0pt,
+      left=6pt, right=6pt, top=2pt, bottom=2pt,
+    },
+    title style={color=white},
+  },
+  notebox/.style={
+    enhanced,
+    colback=GoldLight, colframe=GoldAccent,
+    arc=2pt, boxrule=0.6pt,
+    left=8pt, right=8pt, top=6pt, bottom=6pt,
+  },
+  signbox/.style={
+    enhanced,
+    colback=white, colframe=RuleGray,
+    arc=2pt, boxrule=0.6pt,
+    left=10pt, right=10pt, top=10pt, bottom=10pt,
+  },
+}
+
+%% ─── MISC HELPERS ────────────────────────────────────────────────────────────
+\newcommand{\articletitle}[1]{%
+  \par\vspace{4pt}\noindent%
+  {\color{GoldAccent}\rule{\linewidth}{1.2pt}}\par\vspace{2pt}\noindent%
+  {\large\bfseries\color{NavyDeep}#1}\par\vspace{4pt}\noindent%
+  {\color{RuleGray}\rule{\linewidth}{0.4pt}}\par\vspace{6pt}\noindent%
+}
+
+\newcommand{\sectionlabel}[1]{%
+  \noindent\textbf{\color{NavyDeep}#1}\quad%
+}
+
+\newcommand{\sigline}[2]{%
+  \noindent\begin{tabular}{@{}p{7cm}@{\hspace{1.5cm}}p{5.5cm}@{}}%
+    \rule{7cm}{0.4pt} & \rule{5.5cm}{0.4pt}\\[-2pt]%
+    {\small\color{SlateGray}#1} & {\small\color{SlateGray}#2}\\%
+  \end{tabular}%
+}
+
+%% ═══════════════════════════════════════════════════════════════════════════
+\begin{document}
+\thispagestyle{empty}
+
+%% ─── COVER HEADER (TikZ decorative bar) ─────────────────────────────────────
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[NavyDeep] (current page.north west)
+    rectangle ([yshift=-5.8cm]current page.north east);
+  \fill[GoldAccent] ([yshift=-5.8cm]current page.north west)
+    rectangle ([yshift=-6.1cm]current page.north east);
+  \fill[IvoryLight] ([yshift=-6.1cm]current page.north west)
+    rectangle ([yshift=-6.2cm]current page.north east);
+\end{tikzpicture}
+
+\vspace*{0.9cm}
+\begin{center}
+  {\color{white}\fontsize{9}{11}\selectfont\bfseries\sffamily\textls[150]%
+   STATE OF NOVA HAVEN --- OFFICE OF THE SECRETARY OF STATE}\\[10pt]
+  {\color{GoldAccent}\fontsize{22}{26}\selectfont\bfseries
+   Articles of Incorporation}\\[6pt]
+  {\color{white!80!NavyDeep}\fontsize{13}{16}\selectfont\itshape
+   Meridian Technologies Corporation}\\[4pt]
+  {\color{RuleGray}\fontsize{9}{12}\selectfont
+   A For-Profit Corporation Organized Under the Laws of the State of Nova Haven}\\[16pt]
+  \begin{tikzpicture}
+    \node[draw=GoldAccent, fill=GoldAccent!15!white, rounded corners=3pt,
+          inner sep=6pt, text=NavyDeep, font=\small\bfseries] {%
+      \faCalendar\quad Filed: July 22, 2026\qquad
+      \faFile\quad Document No.\@ MTC-2026-07400\qquad
+      \faLock\quad State ID: NVH-0074291};
+  \end{tikzpicture}
+\end{center}
+
+\vspace{2.4cm}
+
+%% ─── PREAMBLE STATEMENT ─────────────────────────────────────────────────────
+\begin{tcolorbox}[notebox]
+\noindent\textbf{\color{NavyDeep}Recitals.}\enspace The undersigned natural person, being of
+legal age and acting as incorporator of a corporation under the Business Corporation Act of the
+State of Nova Haven, Chapter 14, Title 7, hereby adopts the following Articles of Incorporation:
+\end{tcolorbox}
+
+\bigskip
+
+%%─────────────────────────────────────────────────────────────────────────────
+%% ARTICLE I
+%%─────────────────────────────────────────────────────────────────────────────
+\articletitle{Article I \textemdash\ Corporate Name}
+
+The name of this corporation is \textbf{Meridian Technologies Corporation} (the
+``\textbf{Corporation}''). The Corporation shall conduct business under this name or under
+such trade names as the Board of Directors may from time to time approve in accordance with
+applicable law.
+
+%%─────────────────────────────────────────────────────────────────────────────
+%% ARTICLE II
+%%─────────────────────────────────────────────────────────────────────────────
+\articletitle{Article II \textemdash\ Registered Office and Registered Agent}
+
+\sectionlabel{Section 2.1}The address of the Corporation's registered office in the State of
+Nova Haven is \textbf{4500 Meridian Boulevard, Suite 900, Harborview, Nova Haven 08102}.
+
+\sectionlabel{Section 2.2}The name of the Corporation's registered agent at the foregoing
+address is \textbf{Elaine R. Croft}, a resident of the State of Nova Haven. The registered
+agent may be changed by filing the appropriate form with the Secretary of State in accordance
+with Chapter 14 of the Business Corporation Act.
+
+%%─────────────────────────────────────────────────────────────────────────────
+%% ARTICLE III
+%%─────────────────────────────────────────────────────────────────────────────
+\articletitle{Article III \textemdash\ Purposes and Powers}
+
+\sectionlabel{Section 3.1 \textit{General Purpose.}}The purpose of the Corporation is to
+engage in any lawful act or activity for which a corporation may be organized under the
+Business Corporation Act of the State of Nova Haven, including without limitation:
+
+\begin{enumerate}[label=\textbf{(\alph*)}, leftmargin=2.2em, itemsep=3pt]
+  \item To research, develop, design, license, and commercialize software platforms,
+        cloud-based infrastructure services, and artificial intelligence systems;
+  \item To acquire, hold, manage, and dispose of intellectual property, patents, trademarks,
+        copyrights, and trade secrets in connection with the foregoing;
+  \item To enter into strategic partnerships, joint ventures, and licensing arrangements
+        with domestic and international entities;
+  \item To raise capital through the issuance of securities in accordance with applicable
+        federal and state securities laws; and
+  \item To do all things necessary, incidental, or convenient to accomplish the foregoing
+        purposes.
+\end{enumerate}
+
+\sectionlabel{Section 3.2 \textit{Limitation on Activities.}}Nothing herein shall authorize
+the Corporation to engage in any activity that violates the laws of the State of Nova Haven
+or the United States of America, or any regulation promulgated thereunder.
+
+%%─────────────────────────────────────────────────────────────────────────────
+%% ARTICLE IV
+%%─────────────────────────────────────────────────────────────────────────────
+\articletitle{Article IV \textemdash\ Authorized Capital Stock}
+
+\sectionlabel{Section 4.1 \textit{Total Authorized Shares.}}The total number of shares of
+all classes of capital stock that the Corporation is authorized to issue is
+\textbf{150,000,000} (One Hundred Fifty Million) shares, as detailed below:
+
+\vspace{8pt}
+\noindent\begin{tabularx}{\linewidth}{@{} l l r r @{}}
+\toprule
+\rowcolor{NavyDeep}
+\color{white}\textbf{Class} &
+\color{white}\textbf{Series} &
+\color{white}\textbf{Authorized Shares} &
+\color{white}\textbf{Par Value (USD)} \\
+\midrule
+Common Stock        & Class A & 100,000,000 & \$0.0001 \\
+\rowcolor{GoldLight}
+Common Stock        & Class B &  25,000,000 & \$0.0001 \\
+Preferred Stock     & Series Seed &  10,000,000 & \$0.001\phantom{0} \\
+\rowcolor{GoldLight}
+Preferred Stock     & Series A    &  10,000,000 & \$0.001\phantom{0} \\
+Preferred Stock     & Undesignated &  5,000,000 & \$0.001\phantom{0} \\
+\midrule
+\multicolumn{2}{@{}l}{\textbf{Total}} & \textbf{150,000,000} & \\
+\bottomrule
+\end{tabularx}
+\vspace{8pt}
+
+\sectionlabel{Section 4.2 \textit{Common Stock --- Class A.}}Holders of Class A Common Stock
+shall be entitled to one (1) vote per share on all matters submitted to a vote of shareholders.
+Class A Common Stock shall rank pari passu with Class B Common Stock with respect to dividends
+and distributions upon liquidation, dissolution, or winding up of the Corporation.
+
+\sectionlabel{Section 4.3 \textit{Common Stock --- Class B.}}Holders of Class B Common Stock
+shall be entitled to ten (10) votes per share on all matters submitted to a vote of shareholders.
+Class B shares shall be issued exclusively to founders and shall automatically convert to Class A
+shares upon transfer to any person who is not a founding shareholder, as defined in the
+Shareholders' Agreement.
+
+\sectionlabel{Section 4.4 \textit{Preferred Stock.}}The Board of Directors is expressly
+authorized to fix, by resolution or resolutions, the designations, preferences, limitations,
+restrictions, and relative rights of any series of Preferred Stock prior to issuance, including
+but not limited to: (i) dividend rights; (ii) liquidation preferences; (iii) conversion rights;
+(iv) redemption rights; and (v) voting rights.
+
+%%─────────────────────────────────────────────────────────────────────────────
+%% ARTICLE V
+%%─────────────────────────────────────────────────────────────────────────────
+\articletitle{Article V \textemdash\ Board of Directors}
+
+\sectionlabel{Section 5.1 \textit{Number.}}The number of directors constituting the initial
+Board of Directors is \textbf{five (5)}. Thereafter, the number of directors shall be fixed by
+or in the manner provided in the Bylaws of the Corporation, provided that the Board shall
+consist of no fewer than three (3) and no more than eleven (11) directors.
+
+\sectionlabel{Section 5.2 \textit{Classification.}}The Board of Directors shall be divided into
+three (3) classes, as nearly equal in number as possible, with staggered three-year terms,
+such that approximately one-third of the directors shall be elected at each annual meeting of
+shareholders.
+
+\sectionlabel{Section 5.3 \textit{Initial Directors.}}The names and addresses of the persons
+who are to serve as directors until the first annual meeting of shareholders or until their
+successors are elected and qualified are:
+
+\vspace{8pt}
+\noindent\begin{tabularx}{\linewidth}{@{} l l l @{}}
+\toprule
+\rowcolor{NavyDeep}
+\color{white}\textbf{Name} &
+\color{white}\textbf{Address} &
+\color{white}\textbf{Class} \\
+\midrule
+James A. Whitmore       & 4500 Meridian Blvd, Suite 900, Harborview, NVH & Class I   \\
+\rowcolor{GoldLight}
+Dr. Priya Narayanan     & 220 Lakeshore Drive, Eastbridge, NVH 08210      & Class I   \\
+Marcus T. Okafor        & 77 Founders Row, Harborview, NVH 08105          & Class II  \\
+\rowcolor{GoldLight}
+Sophia E. Bergmann      & 1040 Innovation Parkway, Westonfield, NVH 08330 & Class II  \\
+Robert K. Tanaka        & 315 Commerce Square, Harborview, NVH 08106      & Class III \\
+\bottomrule
+\end{tabularx}
+\vspace{8pt}
+
+\sectionlabel{Section 5.4 \textit{Vacancies.}}Any vacancy occurring in the Board of Directors,
+including a vacancy resulting from an increase in the number of directors, may be filled by
+the Board of Directors. A director elected to fill a vacancy shall serve for the unexpired
+term of the director's predecessor in office.
+
+%%─────────────────────────────────────────────────────────────────────────────
+%% ARTICLE VI
+%%─────────────────────────────────────────────────────────────────────────────
+\articletitle{Article VI \textemdash\ Liability and Indemnification}
+
+\sectionlabel{Section 6.1 \textit{Limitation of Liability.}}To the fullest extent permitted
+by the Business Corporation Act of the State of Nova Haven, as it exists or may hereafter be
+amended, a director of this Corporation shall not be liable to the Corporation or its
+shareholders for monetary damages for an act or omission in the director's capacity as a
+director, except to the extent otherwise expressly provided by applicable statute.
+
+\sectionlabel{Section 6.2 \textit{Indemnification.}}The Corporation shall indemnify, to the
+fullest extent permitted by applicable law, any person who was or is a party, or is threatened
+to be made a party, to any threatened, pending, or completed action, suit, or proceeding
+(whether civil, criminal, administrative, or investigative) by reason of the fact that such
+person is or was a director, officer, employee, or agent of the Corporation, against expenses
+(including reasonable attorneys' fees), judgments, fines, and amounts paid in settlement
+actually and reasonably incurred by such person.
+
+\sectionlabel{Section 6.3 \textit{Advancement of Expenses.}}Expenses (including attorneys'
+fees) incurred by a director or officer in defending any civil, criminal, administrative, or
+investigative action, suit, or proceeding shall be paid by the Corporation in advance of the
+final disposition of such action, suit, or proceeding upon receipt of an undertaking by or on
+behalf of such director or officer to repay such amount if it shall ultimately be determined
+that such person is not entitled to be indemnified by the Corporation.
+
+%%─────────────────────────────────────────────────────────────────────────────
+%% ARTICLE VII
+%%─────────────────────────────────────────────────────────────────────────────
+\articletitle{Article VII \textemdash\ Amendment}
+
+\sectionlabel{Section 7.1}These Articles of Incorporation may be amended at any time and from
+time to time in the manner prescribed by the Business Corporation Act. Notwithstanding the
+foregoing, the affirmative vote of the holders of at least \textbf{two-thirds (2/3)} of the
+total voting power of the outstanding shares of capital stock of the Corporation, voting
+together as a single class, shall be required to amend, alter, or repeal, or adopt any
+provision inconsistent with, Articles IV, V, VI, or this Article VII.
+
+%%─────────────────────────────────────────────────────────────────────────────
+%% ARTICLE VIII
+%%─────────────────────────────────────────────────────────────────────────────
+\articletitle{Article VIII \textemdash\ Bylaws}
+
+\sectionlabel{Section 8.1}The Board of Directors of the Corporation is expressly authorized
+to make, alter, amend, or repeal the Bylaws of the Corporation. Shareholders of the
+Corporation may also adopt, amend, or repeal Bylaws by the affirmative vote of the holders
+of at least a majority of the voting power of the outstanding shares of capital stock of the
+Corporation entitled to vote thereon.
+
+%%─────────────────────────────────────────────────────────────────────────────
+%% ARTICLE IX
+%%─────────────────────────────────────────────────────────────────────────────
+\articletitle{Article IX \textemdash\ Incorporator}
+
+The name and address of the incorporator of this Corporation is:
+
+\vspace{8pt}
+\begin{tcolorbox}[signbox]
+\noindent\begin{tabularx}{\linewidth}{@{} l X @{}}
+  \textbf{Name:}    & Caroline M. Ashford, Esq.                          \\[4pt]
+  \textbf{Address:} & Ashford \& Carver LLP, 80 Capitol Boulevard,
+                      Suite 1400, Harborview, Nova Haven 08101            \\[4pt]
+  \textbf{Bar No.:} & NVH-Atty-28844                                     \\
+\end{tabularx}
+\end{tcolorbox}
+\vspace{6pt}
+
+%%─────────────────────────────────────────────────────────────────────────────
+%% ARTICLE X
+%%─────────────────────────────────────────────────────────────────────────────
+\articletitle{Article X \textemdash\ Miscellaneous Provisions}
+
+\sectionlabel{Section 10.1 \textit{No Preemptive Rights.}}Unless otherwise determined by the
+Board of Directors with respect to any series of Preferred Stock, no holder of any shares of
+the Corporation shall have any preemptive or preferential right to purchase or subscribe to
+any shares of any class of the Corporation now or hereafter authorized, or to any obligations
+convertible into shares of the Corporation.
+
+\sectionlabel{Section 10.2 \textit{No Cumulative Voting.}}Shareholders of the Corporation
+shall not be entitled to cumulate their votes in the election of directors or for any other
+purpose.
+
+\sectionlabel{Section 10.3 \textit{Fiscal Year.}}The fiscal year of the Corporation shall end
+on December 31 of each calendar year, unless otherwise determined by the Board of Directors.
+
+\sectionlabel{Section 10.4 \textit{Corporate Seal.}}The Corporation may have a corporate seal
+in such form as the Board of Directors shall from time to time determine. Failure to affix the
+corporate seal shall not affect the validity of any instrument executed on behalf of the
+Corporation.
+
+\sectionlabel{Section 10.5 \textit{Governing Law.}}These Articles of Incorporation and all
+rights arising hereunder shall be governed by and construed in accordance with the laws of
+the State of Nova Haven, without regard to its conflict of law principles.
+
+\bigskip
+
+%%─────────────────────────────────────────────────────────────────────────────
+%% CERTIFICATION NOTICE
+%%─────────────────────────────────────────────────────────────────────────────
+\begin{tcolorbox}[notebox]
+\noindent\textbf{\color{NavyDeep}\faPen\enspace Certification.}\enspace
+IN WITNESS WHEREOF, the undersigned, being the incorporator named herein, has executed these
+Articles of Incorporation as of the date first written above, declaring under penalty of
+perjury under the laws of the State of Nova Haven that the contents hereof are true and correct
+to the best of her knowledge, information, and belief.
+\end{tcolorbox}
+
+\vspace{20pt}
+
+%%─────────────────────────────────────────────────────────────────────────────
+%% SIGNATURE PAGE
+%%─────────────────────────────────────────────────────────────────────────────
+\begin{tcolorbox}[signbox, title={\color{NavyDeep}\bfseries Incorporator Signature}]
+\vspace{8pt}
+\sigline{Signature of Incorporator}{Date}
+\vspace{18pt}\\
+\sigline{Caroline M. Ashford, Esq. --- Incorporator}{July 22, 2026}
+\vspace{10pt}
+\end{tcolorbox}
+
+\vspace{16pt}
+
+\noindent\textbf{\color{NavyDeep}Initial Director Acknowledgements}
+
+\noindent{\small\color{SlateGray}Each person named as an initial director in Article V
+hereby consents to serve as director of Meridian Technologies Corporation upon the filing
+of these Articles of Incorporation with the Secretary of State of Nova Haven.}
+
+\vspace{12pt}
+
+\noindent\begin{minipage}[t]{0.48\linewidth}
+\begin{tcolorbox}[signbox]
+  \vspace{4pt}
+  \rule{\linewidth}{0.4pt}\\[-2pt]
+  {\small\color{SlateGray}James A. Whitmore, Class I Director}\\[14pt]
+  \rule{\linewidth}{0.4pt}\\[-2pt]
+  {\small\color{SlateGray}Date}
+\end{tcolorbox}
+\end{minipage}%
+\hfill%
+\begin{minipage}[t]{0.48\linewidth}
+\begin{tcolorbox}[signbox]
+  \vspace{4pt}
+  \rule{\linewidth}{0.4pt}\\[-2pt]
+  {\small\color{SlateGray}Dr. Priya Narayanan, Class I Director}\\[14pt]
+  \rule{\linewidth}{0.4pt}\\[-2pt]
+  {\small\color{SlateGray}Date}
+\end{tcolorbox}
+\end{minipage}
+
+\par
+\vspace{10pt}
+
+\noindent\begin{minipage}[t]{0.48\linewidth}
+\begin{tcolorbox}[signbox]
+  \vspace{4pt}
+  \rule{\linewidth}{0.4pt}\\[-2pt]
+  {\small\color{SlateGray}Marcus T. Okafor, Class II Director}\\[14pt]
+  \rule{\linewidth}{0.4pt}\\[-2pt]
+  {\small\color{SlateGray}Date}
+\end{tcolorbox}
+\end{minipage}%
+\hfill%
+\begin{minipage}[t]{0.48\linewidth}
+\begin{tcolorbox}[signbox]
+  \vspace{4pt}
+  \rule{\linewidth}{0.4pt}\\[-2pt]
+  {\small\color{SlateGray}Sophia E. Bergmann, Class II Director}\\[14pt]
+  \rule{\linewidth}{0.4pt}\\[-2pt]
+  {\small\color{SlateGray}Date}
+\end{tcolorbox}
+\end{minipage}
+
+\par
+\vspace{10pt}
+
+\noindent\begin{minipage}[t]{0.48\linewidth}
+\begin{tcolorbox}[signbox]
+  \vspace{4pt}
+  \rule{\linewidth}{0.4pt}\\[-2pt]
+  {\small\color{SlateGray}Robert K. Tanaka, Class III Director}\\[14pt]
+  \rule{\linewidth}{0.4pt}\\[-2pt]
+  {\small\color{SlateGray}Date}
+\end{tcolorbox}
+\end{minipage}
+
+\vspace{18pt}
+
+%%─────────────────────────────────────────────────────────────────────────────
+%% SECRETARY OF STATE USE BLOCK
+%%─────────────────────────────────────────────────────────────────────────────
+\begin{tcolorbox}[
+  enhanced,
+  colback=NavyDeep!5!white,
+  colframe=NavyDeep,
+  arc=2pt, boxrule=1pt,
+  left=12pt, right=12pt, top=10pt, bottom=10pt,
+  title={\color{white}\bfseries\small FOR SECRETARY OF STATE USE ONLY},
+  attach boxed title to top left={yshift=-3mm, xshift=8mm},
+  boxed title style={colback=NavyDeep, colframe=NavyDeep, arc=2pt, boxrule=0pt,
+    left=6pt, right=6pt, top=2pt, bottom=2pt},
+]
+\vspace{6pt}
+\noindent\begin{tabularx}{\linewidth}{@{} X X X @{}}
+  \textbf{Filing Date:} \rule{2cm}{0.3pt} &
+  \textbf{Effective Date:} \rule{2cm}{0.3pt} &
+  \textbf{Document No.:} \rule{2cm}{0.3pt} \\[12pt]
+  \multicolumn{2}{l}{\textbf{Filed by:} \rule{5cm}{0.3pt}} &
+  \textbf{Fee Received:} \$\rule{1.8cm}{0.3pt} \\[12pt]
+  \multicolumn{3}{l}{\textbf{Remarks:} \rule{11cm}{0.3pt}} \\
+\end{tabularx}
+\vspace{4pt}
+\end{tcolorbox}
+
+\vspace{10pt}
+\begin{center}
+  {\color{RuleGray}\rule{0.4\linewidth}{0.4pt}}\\[4pt]
+  {\small\color{SlateGray}\itshape
+   Meridian Technologies Corporation \textbullet\
+   Articles of Incorporation \textbullet\
+   State of Nova Haven \textbullet\
+   Document No. MTC-2026-07400}
+\end{center}
+
+\end{document}

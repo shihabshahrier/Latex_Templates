@@ -1,0 +1,402 @@
+\documentclass[paper=a4,fontsize=10pt,parskip=half-,DIV=calc]{scrartcl}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{geometry}
+\geometry{top=1.8cm,bottom=1.8cm,left=2cm,right=2cm}
+\usepackage[table]{xcolor}
+\usepackage{colortbl}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{fontawesome5}
+\usepackage{tcolorbox}
+\usepackage{tikz}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{etoolbox}
+\usepackage{ragged2e}
+\usepackage{multicol}
+\usepackage{csquotes}
+
+\usetikzlibrary{positioning,calc,shapes.geometric,decorations.pathmorphing,backgrounds,patterns}
+
+\definecolor{meridianNavy}{HTML}{1B2A4A}
+\definecolor{goldAccent}{HTML}{C8963E}
+\definecolor{softGray}{HTML}{F2F3F5}
+\definecolor{charcoal}{HTML}{2D2D2D}
+\definecolor{accentLight}{HTML}{FDF6ED}
+
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0.4pt}
+\fancyfoot[L]{\footnotesize\color{charcoal!60} \textsc{Confidential} \textbar\ Fellowship Request}
+\fancyfoot[R]{\footnotesize\color{charcoal!60} Page \thepage\ of \pageref{LastPage}}
+\fancyfoot[C]{}
+\pagestyle{fancy}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=meridianNavy,
+  urlcolor=goldAccent,
+  citecolor=meridianNavy
+}
+
+\tcbset{
+  colback=softGray,
+  colframe=meridianNavy,
+  boxrule=0.4pt,
+  arc=3pt,
+  left=10pt,
+  right=10pt,
+  top=8pt,
+  bottom=8pt,
+  before skip=10pt,
+  after skip=10pt
+}
+
+\setkomafont{section}{\Large\bfseries\color{meridianNavy}}
+\setkomafont{subsection}{\large\bfseries\color{charcoal}}
+\setkomafont{pageheadfoot}{\normalfont\sffamily}
+
+\newcommand{\projecttitle}[1]{%
+  \begin{tikzpicture}
+    \fill[meridianNavy] (0,0) rectangle (\textwidth,1.2pt);
+    \fill[goldAccent] (0,0) rectangle (\textwidth,0.4pt);
+  \end{tikzpicture}\\[8pt]
+  {\Huge\bfseries\color{meridianNavy}#1}\\[4pt]
+  \begin{tikzpicture}
+    \fill[meridianNavy] (0,0) rectangle (\textwidth,0.4pt);
+    \fill[goldAccent] (0,0) rectangle (\textwidth,1.2pt);
+  \end{tikzpicture}
+}
+
+\newcommand{\statbox}[3]{%
+  \begin{tcolorbox}[
+    colback=meridianNavy,
+    colframe=meridianNavy,
+    boxrule=0pt,
+    arc=4pt,
+    left=6pt,
+    right=6pt,
+    top=6pt,
+    bottom=6pt,
+    nobeforeafter,
+    width=#1
+  ]
+    \centering
+    {\color{goldAccent}\large\bfseries #2}\\[1pt]
+    {\color{white}\footnotesize\sffamily #3}
+  \end{tcolorbox}
+}
+
+\newcommand{\sectionbar}{%
+  \vspace{4pt}
+  \begin{tikzpicture}
+    \fill[goldAccent] (0,0) rectangle (\textwidth,0.6pt);
+  \end{tikzpicture}
+  \vspace{6pt}
+}
+
+\newcommand{\infobox}[2]{%
+  \begin{tcolorbox}[
+    colback=accentLight,
+    colframe=goldAccent!30,
+    boxrule=0.6pt,
+    arc=3pt,
+    left=10pt,
+    right=10pt,
+    top=8pt,
+    bottom=8pt,
+    before skip=8pt,
+    after skip=8pt
+  ]
+    {\footnotesize\sffamily\color{meridianNavy}\bfseries #1}\\[2pt]
+    {\footnotesize\color{charcoal} #2}
+  \end{tcolorbox}
+}
+
+\begin{document}
+
+\begin{tikzpicture}[remember picture,overlay]
+  \fill[meridianNavy] (current page.north west) rectangle ([yshift=-4cm]current page.north east);
+  \fill[goldAccent] (current page.north west) rectangle ([yshift=-4.2cm]current page.north east);
+  \node[anchor=north west,text=white] at ([xshift=2cm,yshift=-1.1cm]current page.north west) {%
+    {\LARGE\bfseries\sffamily THE MERIDIAN}\\[1pt]
+    {\large\sffamily PHILANTHROPIC FOUNDATION}
+  };
+  \node[anchor=north east,text=goldAccent] at ([xshift=-2cm,yshift=-3.2cm]current page.north east) {%
+    {\footnotesize\sffamily\bfseries FELLOWSHIP REQUEST}
+  };
+  \node[anchor=north east,text=white] at ([xshift=-2cm,yshift=-3.8cm]current page.north east) {%
+    {\small\sffamily\itshape Ref: MPF-FR-2026-0847}
+  };
+\end{tikzpicture}
+
+\vspace*{4.8cm}
+
+\projecttitle{Climate Resilience through Community-Led Adaptive Agriculture}
+
+\vspace{14pt}
+
+\begin{minipage}[t]{0.65\textwidth}
+  \raggedright
+  {\color{meridianNavy}\large\bfseries\sffamily Fellowship Applicant}\\[4pt]
+  {\large Dr.\ Elena Vasquez}\\[2pt]
+  {\normalsize\color{charcoal!80} Senior Research Fellow, Agro-Ecological Systems}\\[2pt]
+  {\normalsize\color{charcoal!80} Vertex Research Institute, Nimbus University}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.32\textwidth}
+  \raggedleft
+  {\color{meridianNavy}\large\bfseries\sffamily Request}\\[4pt]
+  {\Large\color{goldAccent}\bfseries\$\ 185{,}000}\\[2pt]
+  {\small\color{charcoal!80} Over 24 Months}
+\end{minipage}
+
+\vspace{18pt}
+
+\begin{tcolorbox}[
+  colback=accentLight,
+  colframe=goldAccent!25,
+  boxrule=0.5pt,
+  arc=4pt,
+  left=14pt,
+  right=14pt,
+  top=10pt,
+  bottom=10pt
+]
+  \begin{minipage}[t]{0.24\textwidth}
+    \centering
+    \begin{tikzpicture}
+      \node[circle,fill=meridianNavy,minimum size=28pt] at (0,0) {\color{white}\faCalendar};
+    \end{tikzpicture}\\[4pt]
+    {\footnotesize\sffamily\bfseries\color{meridianNavy} Submission}\\[2pt]
+    {\footnotesize\color{charcoal} 15 September 2026}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[t]{0.24\textwidth}
+    \centering
+    \begin{tikzpicture}
+      \node[circle,fill=meridianNavy,minimum size=28pt] at (0,0) {\color{white}\faClock};
+    \end{tikzpicture}\\[4pt]
+    {\footnotesize\sffamily\bfseries\color{meridianNavy} Duration}\\[2pt]
+    {\footnotesize\color{charcoal} January 2027 -- December 2028}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[t]{0.24\textwidth}
+    \centering
+    \begin{tikzpicture}
+      \node[circle,fill=meridianNavy,minimum size=28pt] at (0,0) {\color{white}\faMapMarker*};
+    \end{tikzpicture}\\[4pt]
+    {\footnotesize\sffamily\bfseries\color{meridianNavy} Region}\\[2pt]
+    {\footnotesize\color{charcoal} San Mart\'{i}n Valley, Peru}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[t]{0.24\textwidth}
+    \centering
+    \begin{tikzpicture}
+      \node[circle,fill=meridianNavy,minimum size=28pt] at (0,0) {\color{white}\faUsers};
+    \end{tikzpicture}\\[4pt]
+    {\footnotesize\sffamily\bfseries\color{meridianNavy} Beneficiaries}\\[2pt]
+    {\footnotesize\color{charcoal} 1{,}200+ Households}
+  \end{minipage}
+\end{tcolorbox}
+
+\vspace{10pt}
+
+\section*{Executive Summary}
+\sectionbar
+
+The Meridian Philanthropic Foundation is respectfully requested to consider a fellowship grant of \textbf{\$185{,}000} over twenty-four months to support Dr.\ Elena Vasquez in implementing a community-led adaptive agriculture programme in the San Mart\'{i}n Valley of northern Peru. This region, home to approximately 1{,}200 smallholder farming households, faces accelerating threats from climate variability: shifting rainfall patterns, prolonged dry spells, and increased pest pressure have reduced maize and coffee yields by an average of 34\% over the past six years.
+
+The proposed fellowship enables Dr.\ Vasquez to transfer her research into practice through three integrated workstreams: (1) establishing six demonstration farms showcasing drought-tolerant varieties and water-harvesting techniques; (2) training thirty community extension agents; and (3) co-designing a participatory climate-monitoring network that delivers localised forecasts to farming households via a mobile platform developed with the Synapse Institute for Rural Technology.
+
+This initiative aligns with the Foundation\textquotesingle s strategic priority of \textit{Building Climate-Resilient Livelihoods} and extends the promising results of Dr.\ Vasquez\textquotesingle s pilot trial (2024--2025), which achieved a 28\% yield improvement across 180 households using low-cost interventions. The fellowship model embeds capacity within the community: by month eighteen, all monitoring and training activities will be locally managed.
+
+\vspace{6pt}
+
+\section*{Organisational Context \& Applicant Profile}
+\sectionbar
+
+\begin{minipage}[t]{0.66\textwidth}
+  \raggedright
+  \textbf{Vertex Research Institute} is an independent, non-profit research centre based at Nimbus University (Lima, Peru) with a twenty-year track record of delivering actionable science for rural development. Its Agro-Ecological Systems unit --- led by Dr.\ Vasquez since 2019 --- has secured \$4.2 million in competitive funding, published 47 peer-reviewed articles, and informed agricultural policy in three Peruvian provinces.
+
+  \vspace{6pt}
+  Dr.\ Vasquez holds a DPhil in Environmental Science from Oxford (2011) and a BSc in Agronomy from La Molina. She served as Lead Scientist for the Apex Foundation\textquotesingle s Andes Food Security Programme (2015--2018) and received the Pan-American Agricultural Research Medal (2023). She speaks fluent Spanish, Quechua, and English.
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.31\textwidth}
+  \infobox{Institutional Affiliation}{Vertex Research Institute, Nimbus University, Lima, Peru}
+  \infobox{Tax Status}{Registered 501(c)(3) equivalent under Peruvian law (Entidad Perceptora de Donaciones)}
+  \infobox{Contact}{\faPhone\ +51 1 428 9173\\[2pt]\faEnvelope\ e.vasquez@vertex-nimbus.edu.pe}
+\end{minipage}
+
+\par
+
+\section*{Problem Statement \& Rationale}
+\sectionbar
+
+The San Mart\'{i}n Valley exemplifies a pattern repeated across tropical highlands: communities whose agricultural systems evolved under stable climatic conditions now confront unprecedented volatility. Between 2018 and 2025, the valley experienced three of its five driest years alongside two extreme rainfall events that triggered landslides affecting 40\% of arable land. Government extension services reach fewer than one in five households, and imported technologies have failed to gain traction because they were designed without community input.
+
+Dr.\ Vasquez\textquotesingle s pilot work demonstrated a viable alternative. By combining participatory plant breeding with simple rainwater catchment systems (under \$60 per household), participating families stabilised production even during the severe drought of 2025. The fellowship now scales these proven methods across the entire valley.
+
+\vspace{6pt}
+
+\section*{Project Design \& Methodology}
+\sectionbar
+
+\textbf{Workstream 1: Demonstration Farm Network.} Six community-nominated farms will serve as living laboratories, each hosting replicated trials of four drought-tolerant maize hybrids and two rust-resistant coffee cultivars. Every site includes a rainwater harvesting pond (15\,m$^{3}$ capacity), drip irrigation, and a simple weather station. Farm-level data will be aggregated into an open-access dashboard maintained by the Synapse Institute.
+
+\textbf{Workstream 2: Community Extension Training.} Thirty extension agents (at least 60\% women) will complete a six-module curriculum covering climate-resilient crop management, integrated pest control, post-harvest handling, and cooperative marketing. Training follows a \textit{campesino-a-campesino} pedagogy proven effective in Andean contexts. Each trained agent commits to mentoring a minimum of thirty neighbouring households.
+
+\textbf{Workstream 3: Participatory Climate Monitoring.} Twenty-five low-cost sensor nodes deployed across the valley will measure rainfall, temperature, soil moisture, and humidity. Data feeds into a mobile application delivering three-day localised forecasts and agronomic advisories in Spanish and Quechua. Community members maintain sensors independently after a six-month supported phase.
+
+\vspace{6pt}
+
+\section*{Budget Overview}
+\sectionbar
+
+\begin{tcolorbox}[
+  colback=white,
+  colframe=meridianNavy!40,
+  boxrule=0.5pt,
+  arc=4pt,
+  left=12pt,
+  right=12pt,
+  top=10pt,
+  bottom=8pt
+]
+  \centering
+  \renewcommand{\arraystretch}{1.3}
+  \begin{tabularx}{\dimexpr\linewidth-20pt\relax}{X r r}
+    \toprule
+    \multicolumn{1}{c}{\textsc{Budget Category}} & \multicolumn{1}{c}{\textsc{Year 1}} & \multicolumn{1}{c}{\textsc{Year 2}} \\
+    \midrule
+    Personnel (Principal Investigator, 0.50 FTE)          & \$38{,}400 & \$39{,}500 \\{}
+    [2pt] Research Assistants \& Field Staff (4 positions) & \$31{,}200 & \$32{,}100 \\{}
+    [2pt] Community Extension Agent Stipends               & \$14{,}400 & \$14{,}800 \\{}
+    [2pt] Demonstration Farm Materials \& Equipment        & \$18{,}500 & \$ 5{,}200 \\{}
+    [2pt] Climate Sensor Network (hardware \& installation) & \$12{,}800 & \$ 2{,}400 \\{}
+    [2pt] Mobile Platform Development (Synapse Institute)  & \$ 8{,}000 & \$ 2{,}500 \\{}
+    [2pt] Travel \& Field Accommodation                    & \$ 6{,}500 & \$ 6{,}800 \\{}
+    [2pt] Institutional Overhead (8\%)                     & \$10{,}376 & \$ 8{,}264 \\{}
+    [2pt] Contingency (5\%)                                & \$ 6{,}989 & \$ 5{,}573 \\
+    \midrule
+    \rowcolor{accentLight}
+    \textbf{Subtotal} & \textbf{\$147{,}165} & \textbf{\$117{,}137} \\
+    \midrule
+    \rowcolor{meridianNavy}
+    \multicolumn{1}{r}{\color{white}\textbf{Total Fellowship Request}} & \multicolumn{2}{c}{\color{goldAccent}\textbf{\Large\$\ 264{,}302}} \\
+    \bottomrule
+  \end{tabularx}
+\end{tcolorbox}
+
+\vspace{2pt}
+{\footnotesize\color{charcoal!70}\itshape Note: The Vertex Research Institute is contributing in-kind support valued at \$79{,}302, including laboratory facilities, administrative services, and Dr.\ Vasquez\textquotesingle s remaining 0.50 FTE salary. The fellowship amount requested from the Meridian Foundation is therefore \textbf{\$185{,}000}.}
+
+\vspace{10pt}
+
+\section*{Anticipated Outcomes \& Impact Measurement}
+\sectionbar
+
+\begin{multicols}{2}
+  \begin{itemize}[leftmargin=*,itemsep=6pt,topsep=4pt]
+    \item[\color{goldAccent}\faCheckCircle] 1{,}200+ households adopting at least two climate-resilient agricultural practices by month 24.
+    \item[\color{goldAccent}\faCheckCircle] Average maize yield increase of 25\%--35\% relative to the 2024--2025 baseline across participating farms.
+    \item[\color{goldAccent}\faCheckCircle] Thirty certified community extension agents delivering ongoing training, with a sustainability plan for agent replenishment.
+    \item[\color{goldAccent}\faCheckCircle] Real-time climate advisory service reaching 85\% of valley households via mobile platform.
+  \end{itemize}
+\end{multicols}
+
+Impact will be measured through a mixed-methods evaluation co-designed with Nimbus University\textquotesingle s School of Public Policy. Quantitative indicators (yield data, adoption rates, household income) are tracked quarterly against a control group of non-participating households in an adjacent valley. Qualitative data capture community perceptions of resilience and wellbeing. An independent mid-term evaluation at month 12 serves as a formal checkpoint, with findings shared through the Foundation\textquotesingle s knowledge portal.
+
+\vspace{6pt}
+
+\section*{Timeline}
+\sectionbar
+
+\begin{tcolorbox}[
+  colback=white,
+  colframe=meridianNavy!35,
+  boxrule=0.5pt,
+  arc=4pt,
+  left=12pt,
+  right=12pt,
+  top=10pt,
+  bottom=8pt
+]
+  \centering
+  \renewcommand{\arraystretch}{1.25}
+  \begin{tabularx}{\dimexpr\linewidth-20pt\relax}{>{\RaggedRight}p{3.6cm} X c}
+    \toprule
+    \textsc{Phase} & \textsc{Activities} & \textsc{Period} \\
+    \midrule
+    Inception \& Community Mobilisation & Stakeholder workshops, farmer selection, baseline data collection, ethics clearance & Jan--Mar 2027 \\{}
+    [2pt] Infrastructure Deployment & Demonstration farm setup, sensor network installation, mobile platform alpha & Apr--Aug 2027 \\{}
+    [2pt] Training Cycle 1 & Extension agent curriculum delivery, first planting season with trials & Sep--Dec 2027 \\{}
+    [2pt] Mid-Term Review & Independent evaluation, adaptive management adjustments & Jan 2028 \\{}
+    [2pt] Training Cycle 2 \& Scale-Up & Second agent cohort, expanded farmer mentoring, full platform launch & Feb--Jun 2028 \\{}
+    [2pt] Consolidation \& Handover & Community governance transition, sustainability planning, final report & Jul--Dec 2028 \\
+    \bottomrule
+  \end{tabularx}
+\end{tcolorbox}
+
+\vspace{10pt}
+
+\section*{Foundation Alignment \& Closing Statement}
+\sectionbar
+
+This fellowship responds directly to the Meridian Philanthropic Foundation\textquotesingle s commitment to \textit{``invest in community-driven solutions that build lasting resilience against environmental change.''} The proposed work is not a temporary intervention but a deliberate transfer of knowledge, tools, and decision-making authority to the people of San Mart\'{i}n Valley.
+
+Dr.\ Vasquez and Vertex Research Institute bring scientific rigour, field credibility, and institutional infrastructure to execute this programme at the highest standard. Vertex\textquotesingle s co-funding commitment --- nearly one-third of total project costs --- reflects genuine institutional buy-in. We respectfully request the Foundation\textquotesingle s support and welcome the opportunity to provide additional detail, participate in a site visit, or connect the review committee with reference partners.
+
+\vspace{14pt}
+
+\begin{tcolorbox}[
+  colback=meridianNavy,
+  colframe=meridianNavy,
+  boxrule=0pt,
+  arc=4pt,
+  left=16pt,
+  right=16pt,
+  top=14pt,
+  bottom=14pt
+]
+  \begin{minipage}[t]{0.55\textwidth}
+    {\color{white}\normalsize\sffamily\bfseries Dr.\ Elena Vasquez}\\[3pt]
+    {\color{goldAccent}\small Senior Research Fellow, Agro-Ecological Systems}\\[2pt]
+    {\color{white!70}\footnotesize Vertex Research Institute \textbar\ Nimbus University}\\[2pt]
+    {\color{white!70}\footnotesize e.vasquez@vertex-nimbus.edu.pe}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[t]{0.38\textwidth}
+    \raggedleft
+    {\color{goldAccent}\normalsize\sffamily\bfseries The Meridian}\\[2pt]
+    {\color{white}\small Philanthropic Foundation}\\[4pt]
+    {\color{white!70}\footnotesize Fellowship Request MPF-FR-2026-0847}\\[2pt]
+    {\color{white!70}\footnotesize Submitted 15 September 2026}
+  \end{minipage}
+  \par
+  \vspace{6pt}
+  \begin{tikzpicture}
+    \fill[goldAccent] (0,0) rectangle (\dimexpr\linewidth-32pt\relax,0.6pt);
+  \end{tikzpicture}
+  \vspace{4pt}
+  {\centering\color{white!60}\footnotesize\itshape\enquote{Planting today what our children will harvest tomorrow.} --- San Mart\'{i}n Valley Farmers\textquotesingle\ Cooperative\par}
+\end{tcolorbox}
+
+\vspace{8pt}
+
+\begin{center}
+  {\footnotesize\color{charcoal!50}\sffamily Appendix materials (CV, Letters of Support, Detailed Budget, Institutional Audited Financials) available upon request.}
+\end{center}
+
+\end{document}

@@ -1,0 +1,8 @@
+{
+  "name": "Springer LNCS Computer Science Article",
+  "compiler": "pdflatex",
+  "description": "Springer LNCS Computer Science Article LaTeX template \u2014 springer lncs computer science article latex template. Elegant, compile-tested, editable online at letx.app.",
+  "author": "LetX",
+  "category": "journal-articles",
+  "license": "MIT"
+}

@@ -1,0 +1,357 @@
+\documentclass[11pt,a4paper]{scrartcl}
+
+% --- PACKAGES ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb}
+\usepackage{geometry}
+\geometry{margin=2cm, top=2.2cm, bottom=2.2cm}
+
+\usepackage[table]{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{calc,positioning,shapes.geometric,backgrounds,patterns}
+
+\usepackage[many]{tcolorbox}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage{fontawesome5}
+\usepackage{scrlayer-scrpage}
+\usepackage{caption}
+\usepackage{hyperref}
+
+% --- COLOR PALETTE ---
+\definecolor{NavyPrimary}{HTML}{0F172A}   % Deep Navy (#0F172A)
+\definecolor{TealAccent}{HTML}{0D9488}    % Deep Teal (#0D9488)
+\definecolor{AmberHighlight}{HTML}{D97706}% Warm Amber (#D97706)
+\definecolor{SlateLight}{HTML}{F8FAFC}    % Light Slate background (#F8FAFC)
+\definecolor{SlateBorder}{HTML}{E2E8F0}   % Light Slate border (#E2E8F0)
+\definecolor{TextDark}{HTML}{1E293B}      % Charcoal Body Text (#1E293B)
+\definecolor{TextMuted}{HTML}{64748B}     % Muted Slate (#64748B)
+
+% --- HYPERREF SETUP ---
+\hypersetup{
+    colorlinks=true,
+    linkcolor=TealAccent,
+    citecolor=TealAccent,
+    urlcolor=TealAccent,
+    pdftitle={Doctoral Consortium Research Abstract -- Elena Rostova},
+    pdfauthor={Elena Rostova}
+}
+
+% --- TYPOGRAPHY & KOMA SETTINGS ---
+\addtokomafont{disposition}{\sffamily\bfseries\color{NavyPrimary}}
+\addtokomafont{title}{\sffamily\bfseries\color{NavyPrimary}}
+\addtokomafont{subtitle}{\sffamily\color{TealAccent}}
+\addtokomafont{author}{\sffamily}
+\addtokomafont{date}{\sffamily\color{TextMuted}}
+
+% --- HEADER & FOOTER SETUP ---
+\clearpairofpagestyles
+\ihead{\sffamily\small\color{TextMuted}\faGraduationCap\ AAMAS 2026 Doctoral Consortium Research Abstract}
+\ohead{\sffamily\small\color{TextMuted}E. Rostova | Mid-Stage PhD Research Proposal}
+\ofoot{\sffamily\small\color{TextMuted}\thepage}
+\ifoot{\sffamily\small\color{TextMuted}Department of Computer Science, Institute of Advanced Technology}
+\addtokomafont{pageheadfoot}{\sffamily}
+\KOMAoptions{headsepline=0.4pt}
+\setkomafont{headsepline}{\color{SlateBorder}}
+
+% --- TCOLORBOX STYLES ---
+\tcbset{
+    enhanced,
+    boxrule=0.8pt,
+    arc=4pt,
+    fonttitle=\bfseries\sffamily,
+    coltitle=white,
+    colback=white,
+    colframe=NavyPrimary
+}
+
+\newtcolorbox{abstractbox}[1][]{
+    enhanced,
+    colback=SlateLight,
+    colframe=TealAccent,
+    boxrule=1pt,
+    arc=5pt,
+    title={\faLightbulb\ Executive Summary \& Research Abstract},
+    coltitle=white,
+    fonttitle=\bfseries\sffamily\large,
+    attach boxed title to top left={xshift=4mm, yshift=-3mm},
+    boxed title style={colback=TealAccent, colframe=TealAccent, arc=3pt, boxrule=0pt},
+    top=12pt, bottom=10pt, left=12pt, right=12pt,
+    #1
+}
+
+\newtcolorbox{infobox}[1]{
+    enhanced,
+    colback=SlateLight,
+    colframe=SlateBorder,
+    coltitle=NavyPrimary,
+    fonttitle=\bfseries\sffamily,
+    title={#1},
+    attach boxed title to top left={xshift=3mm, yshift=-2.5mm},
+    boxed title style={colback=SlateLight, colframe=SlateBorder, arc=2pt, boxrule=0.5pt},
+    top=10pt, bottom=8pt, left=10pt, right=10pt,
+    boxrule=0.6pt
+}
+
+\newtcolorbox{highlightbox}[1][]{
+    enhanced,
+    colback=SlateLight,
+    colframe=AmberHighlight,
+    boxrule=0.8pt,
+    arc=4pt,
+    left=10pt, right=10pt, top=8pt, bottom=8pt,
+    #1
+}
+
+% --- SECTION HEADING STYLING ---
+\setkomafont{section}{\large\sffamily\bfseries\color{NavyPrimary}}
+\setkomafont{subsection}{\sffamily\bfseries\color{TealAccent}}
+
+\renewcommand{\thesection}{\arabic{section}}
+\renewcommand{\thesubsection}{\thesection.\arabic{subsection}}
+
+\begin{document}
+
+% --- TITLE BANNER ---
+\begin{tcolorbox}[
+    colback=NavyPrimary,
+    colframe=NavyPrimary,
+    arc=6pt,
+    left=16pt, right=16pt, top=14pt, bottom=14pt
+]
+    \centering
+    {\sffamily\small\bfseries\color{AmberHighlight}\MakeUppercase{\faGraduationCap\ Doctoral Consortium Paper Submission \textbullet\ AAMAS 2026}}\\[6pt]
+    {\sffamily\LARGE\bfseries\color{white} Adaptive Human-AI Shared Autonomy Frameworks for Dynamic Multi-Agent Decision Environments}\\[8pt]
+    {\sffamily\large\color{SlateBorder} Elena Rostova \textbullet\ Third-Year PhD Candidate}\\[3pt]
+    {\sffamily\small\color{SlateBorder} Primary Advisors: Prof. Marcus Vance \& Dr. Sophia Al-Mansoor}\\[6pt]
+    {\sffamily\small\color{TealAccent}
+        \faUniversity\ Institute of Advanced Technology \quad 
+        \faEnvelope\ \href{mailto:elena.rostova@iat-edu.org}{elena.rostova@iat-edu.org} \quad 
+        \faGlobe\ \href{https://elena-rostova.research.org}{elena-rostova.research.org}
+    }
+\end{tcolorbox}
+
+\vspace{10pt}
+
+% --- METADATA & QUICK INFO GRID ---
+\noindent
+\begin{minipage}[t]{0.64\textwidth}
+    \begin{abstractbox}
+        High-stakes multi-agent environments---such as autonomous fleet management, robotic disaster response, and dynamic network defense---increasingly rely on hybrid human-AI teams. However, conventional shared autonomy frameworks struggle with two critical flaws: static allocations of authority that fail under non-stationary task demands, and cognitive overload induced when human operators must intervene during unexpected agent policy drifts. This dissertation proposal presents \textbf{SYNAPSE-LOOP}, a novel adaptive shared control paradigm that dynamically models human cognitive state, predicts intervention intent, and negotiates task authority in real time. By fusing bi-directional intent forecasting with multi-agent reinforcement learning (MARL), our framework maintains mutual alignment while minimizing unnecessary operator burden. Early empirical evaluations on simulated emergency logistics demonstrate a 34\% reduction in human cognitive workload metrics alongside a 28\% improvement in mission completion velocity compared to standard supervisory baselines.
+    \end{abstractbox}
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.33\textwidth}
+    \begin{infobox}{\faBookmark\ Candidacy Snapshot}
+        \sffamily\small\raggedright
+        \textbf{\color{NavyPrimary}Institution:} Inst. of Advanced Tech.\\
+        \textbf{\color{NavyPrimary}Department:} Computer Science \& AI\\
+        \textbf{\color{NavyPrimary}PhD Start Date:} September 2023\\
+        \textbf{\color{NavyPrimary}Expected Graduation:} May 2027\\
+        \textbf{\color{NavyPrimary}Candidacy Status:} Proposal Approved\\
+        \textbf{\color{NavyPrimary}Primary Area:} Human-AI Collaboration, MARL, Shared Autonomy\\[4pt]
+        \textbf{\color{NavyPrimary}Research Keywords:}\\
+        {\color{TealAccent}\textbf{\textbullet}} Shared Autonomy\\
+        {\color{TealAccent}\textbf{\textbullet}} Human-in-the-Loop\\
+        {\color{TealAccent}\textbf{\textbullet}} MARL Policy Shift\\
+        {\color{TealAccent}\textbf{\textbullet}} Cognitive Workload
+    \end{infobox}
+\end{minipage}
+
+\vspace{12pt}
+
+% --- SECTION 1: PROBLEM & MOTIVATION ---
+\section{\texorpdfstring{\faExclamationCircle\ }{ }Problem Statement \& Research Motivation}
+
+Autonomous multi-agent systems are rapidly transitioning from controlled laboratory settings into dynamic, high-uncertainty operational environments. In scenarios such as robotic search-and-rescue, urban aerial mobility management, and dynamic supply chain dispatch, full agent autonomy remains unfeasible due to unpredictable environmental edge cases and complex ethical trade-offs. Consequently, system architects implement \emph{Human-in-the-Loop} (HITL) architectures to retain human judgment for high-level strategic supervision.
+
+Despite significant advances in single-agent shared control, existing multi-agent supervisory frameworks suffer from three systemic limitations:
+\begin{enumerate}[label=\textbf{P\arabic*.}, leftmargin=2em, itemsep=3pt]
+    \item \textbf{Rigid Authority Boundaries:} Existing frameworks rely on pre-scripted state transitions (e.g., manual override toggles), which lack the granularity required to transfer partial authority across heterogeneous sub-tasks under fluctuating network latency.
+    \item \textbf{Cognitive Context Disconnect:} When autonomous agents encounter out-of-distribution states and request human intervention, operators suffer severe situational awareness degradation (\emph{out-of-the-loop latency}), frequently leading to suboptimal or contradictory control inputs.
+    \item \textbf{Asymmetric Mutual Modeling:} While human operators develop internal mental models of agent behavior over time, autonomous agents typically treat human interventions as exogenous noise rather than intentional feedback derived from unobserved environmental context.
+\end{enumerate}
+
+Addressing these challenges requires a paradigm shift from \emph{passive supervisory control} toward \emph{symmetrical dynamic co-adaptation}, where both human operators and autonomous agents continuously model each other's intent, confidence, and cognitive capacity.
+
+\vspace{10pt}
+
+% --- SECTION 2: RESEARCH QUESTIONS & HYPOTHESES ---
+\section{\texorpdfstring{\faQuestionCircle\ }{ }Key Research Questions \& Hypotheses}
+
+This dissertation investigates the formalization, algorithmic implementation, and human-subject validation of adaptive multi-agent shared control. The core research is guided by three primary research questions:
+
+\begin{highlightbox}
+    \sffamily
+    \textbf{\color{NavyPrimary}RQ1 (Bi-Directional Intent Estimation):} How can an autonomous agent team infer human intervention intent and cognitive fatigue from implicit behavioural streams (e.g., eye gaze, control input jitter) before performance degradation occurs?\\
+    \textbf{\color{NavyPrimary}Hypothesis 1 (H1):} A latent temporal belief model trained on multimodal interaction telemetry can predict intervention intent 2.5 seconds prior to action execution with $>88\%$ precision.
+\end{highlightbox}
+
+\vspace{6pt}
+
+\begin{highlightbox}
+    \sffamily
+    \textbf{\color{NavyPrimary}RQ2 (Dynamic Authority Allocation):} What game-theoretic framework optimally balances agent policy execution against human control authority while strictly bounding operator cognitive workload under threshold $\Omega_{\max}$?\\
+    \textbf{\color{NavyPrimary}Hypothesis 2 (H2):} Bounding authority distribution via constrained Markov Decision Processes (CMDP) with dynamic slack variables achieves higher mission safety guarantees than static sliding-autonomy approaches.
+\end{highlightbox}
+
+\vspace{6pt}
+
+\begin{highlightbox}
+    \sffamily
+    \textbf{\color{NavyPrimary}RQ3 (Reciprocal Policy Alignment):} How can human intervention trajectories be converted into real-time reward shaping signals without inducing reward hacking or catastrophic forgetting in underlying MARL policies?\\
+    \textbf{\color{NavyPrimary}Hypothesis 3 (H3):} Online constrained preference optimization with bounded KL divergence prevents policy degradation while accelerating policy adaptation by at least $40\%$.
+\end{highlightbox}
+
+\vspace{10pt}
+
+% --- SECTION 3: SYSTEM ARCHITECTURE ---
+\section{\texorpdfstring{\faCogs\ }{ }Proposed SYNAPSE-LOOP Architecture}
+
+To evaluate these hypotheses, we propose the \textbf{SYNAPSE-LOOP} (Symmetrical Network for Adaptive Policy Synchronization \& Estimation) architecture. Figure~\ref{fig:architecture} illustrates the closed-loop interactions between human operators, the cognitive monitoring suite, the authority arbitrator, and the multi-agent execution team.
+
+\begin{figure}[h!]
+    \centering
+    \begin{tikzpicture}[
+        scale=0.88, transform shape,
+        box/.style={draw=NavyPrimary, fill=white, thick, rounded corners=4pt, minimum height=1.1cm, minimum width=3.2cm, align=center, font=\sffamily\small},
+        accentbox/.style={draw=TealAccent, fill=SlateLight, thick, rounded corners=4pt, minimum height=1.1cm, minimum width=3.4cm, align=center, font=\sffamily\small\bfseries},
+        amberbox/.style={draw=AmberHighlight, fill=SlateLight, thick, rounded corners=4pt, minimum height=1.1cm, minimum width=3.4cm, align=center, font=\sffamily\small\bfseries},
+        line/.style={draw=NavyPrimary, ->, >=stealth, thick},
+        dashline/.style={draw=TealAccent, ->, >=stealth, thick, dashed}
+    ]
+        % Nodes
+        \node[amberbox] (human) {\faUser\ Human Operator\\{\scriptsize (Cognitive Workload $\Omega_t$)}};
+        \node[accentbox, right=2.0cm of human] (monitor) {\faChartLine\ Cognitive \& Intent\\Estimator Engine};
+        \node[box, right=2.0cm of monitor] (arbitrator) {\faBalanceScale\ Dynamic Authority\\Arbitrator (CMDP)};
+        \node[box, below=1.5cm of arbitrator] (marl) {\faRobot\ Multi-Agent Team\\{\scriptsize (Nexa-MARL Policy $\pi_\theta$)}};
+        \node[accentbox, left=2.0cm of marl] (env) {\faLayerGroup\ Dynamic Task\\Environment};
+
+        % Paths
+        \draw[line] (human) -- node[above, font=\sffamily\tiny] {Telemetry / Inputs} (monitor);
+        \draw[line] (monitor) -- node[above, font=\sffamily\tiny] {Predicted Intent $\hat{I}_t$} (arbitrator);
+        \draw[line] (arbitrator) -- node[right, font=\sffamily\tiny] {Authority Vector $\alpha_t$} (marl);
+        \draw[line] (marl) -- node[above, font=\sffamily\tiny] {Joint Actions $\mathbf{a}_t$} (env);
+        \draw[line] (env) |- node[left, font=\sffamily\tiny, near start] {State Feedback $\mathbf{s}_t$} (human);
+        \draw[dashline] (marl) -- node[below, font=\sffamily\tiny] {Explanation Stream} (human);
+    \end{tikzpicture}
+    \caption{The SYNAPSE-LOOP framework connecting human cognitive state estimation with multi-agent policy optimization.}
+    \label{fig:architecture}
+\end{figure}
+
+The architecture comprises three core modules:
+\begin{itemize}[leftmargin=1.5em, itemsep=3pt]
+    \item \textbf{Cognitive State \& Intent Estimator:} Processes continuous biometric data (pupillometry, heart rate variability) combined with control gesture dynamics to calculate operator cognitive load index $\Omega_t \in [0, 1]$ and forecast intervention intent probability $\hat{I}_t$.
+    \item \textbf{Dynamic Authority Arbitrator:} Solves a constrained game-theoretic optimization problem at each decision epoch $t$, outputting an authority allocation vector $\mathbf{\alpha}_t \in [0,1]^N$ across $N$ sub-task dimensions.
+    \item \textbf{Multi-Agent Adaptation Engine:} Utilizes parameter-shared Soft Actor-Critic (SAC) augmented with an online human feedback loss function to adjust agent policy execution without causing instability.
+\end{itemize}
+
+\vspace{10pt}
+
+% --- SECTION 4: PRELIMINARY RESULTS ---
+\section{\texorpdfstring{\faChartBar\ }{ }Methodology \& Preliminary Results}
+
+We evaluated a prototype version of SYNAPSE-LOOP in a simulated disaster logistics testbed involving 12 autonomous delivery drones (Vertex-UAV Platform) and a single human supervisor managing emergency supply dispatch under severe weather perturbations.
+
+\subsection{Experimental Setup \& Baselines}
+We compared our approach against three standard operational paradigms:
+\begin{enumerate}[label=(\alph*), leftmargin=1.8em, itemsep=2pt]
+    \item \textbf{Full Autonomy (FA):} Agents operate independently without human intervention options.
+    \item \textbf{Fixed Supervisory Control (FSC):} Human operator must manually request control of specific drones.
+    \item \textbf{Threshold Sliding Autonomy (TSA):} Authority switches automatically based on fixed rule-based performance metrics.
+\end{enumerate}
+
+\subsection{Empirical Performance Comparison}
+Table~\ref{tab:results} summarizes the performance metrics collected across 45 evaluation trials with 15 human subjects.
+
+\begin{table}[h!]
+    \centering
+    \sffamily\small
+    \caption{Comparative evaluation across control paradigms (Mean $\pm$ Std. Dev.).}
+    \label{tab:results}
+    \vspace{4pt}
+    \begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}X c c c c}
+        \toprule
+        \rowcolor{SlateLight}
+        \textbf{Control Paradigm} & \textbf{Task Completion (\%)} & \textbf{Mean Workload ($\Omega_t$)} & \textbf{Out-of-Loop Delay (s)} & \textbf{Safety Violations} \\
+        \midrule
+        Full Autonomy (FA) & $62.4 \pm 5.1$ & N/A & N/A & $14.2 \pm 2.3$ \\
+        Fixed Supervisory (FSC) & $78.1 \pm 3.8$ & $0.78 \pm 0.06$ & $4.1 \pm 0.8$ & $6.5 \pm 1.2$ \\
+        Threshold Sliding (TSA) & $81.5 \pm 3.2$ & $0.64 \pm 0.05$ & $2.8 \pm 0.5$ & $4.1 \pm 0.9$ \\
+        \rowcolor{TealAccent!12}
+        \textbf{SYNAPSE-LOOP (Ours)} & $\mathbf{94.7 \pm 1.9}$ & $\mathbf{0.41 \pm 0.04}$ & $\mathbf{0.9 \pm 0.2}$ & $\mathbf{0.8 \pm 0.3}$ \\
+        \bottomrule
+    \end{tabularx}
+\end{table}
+
+The empirical findings confirm H1 and H2: SYNAPSE-LOOP drastically reduces out-of-the-loop delay from 4.1 seconds down to 0.9 seconds while maintaining low operator workload scores ($\Omega_t = 0.41$).
+
+\vspace{10pt}
+
+% --- SECTION 5: DISSERTATION TIMELINE & STATUS ---
+\section{\texorpdfstring{\faCalendar\ }{ }Dissertation Status \& Timeline}
+
+As a third-year PhD candidate, I have completed all required coursework, passed the departmental comprehensive examinations, and formally defended the dissertation proposal. Table~\ref{tab:timeline} outlines the completed milestones and target schedule through graduation.
+
+\begin{table}[h!]
+    \centering
+    \sffamily\small
+    \caption{Dissertation research roadmap and milestones.}
+    \label{tab:timeline}
+    \vspace{4pt}
+    \begin{tabularx}{\textwidth}{r >{\raggedright\arraybackslash}X l}
+        \toprule
+        \rowcolor{SlateLight}
+        \textbf{Phase / Date} & \textbf{Milestone / Objective} & \textbf{Status / Target} \\
+        \midrule
+        Phase I (2023--2024) & Literature survey, baseline testbed setup, initial cognitive monitoring pipeline. & \color{TealAccent}\textbf{\faCheckCircle\ Completed} \\
+        Phase II (2024--2025) & Formulated CMDP authority arbitration algorithm; published initial results at AAMAS. & \color{TealAccent}\textbf{\faCheckCircle\ Completed} \\
+        Phase III (2025--2026) & Human-subject trials with multi-agent physical UAV testbed; refine reciprocal learning. & \color{AmberHighlight}\textbf{\faSync\ In Progress} \\
+        Phase IV (Late 2026) & Complete full multi-modal ablation studies; finalize dissertation draft. & \color{TextMuted}\textbf{\faClock\ Q4 2026} \\
+        Phase V (Spring 2027) & Final dissertation defense and manuscript publication. & \color{TextMuted}\textbf{\faGraduationCap\ May 2027} \\
+        \bottomrule
+    \end{tabularx}
+\end{table}
+
+\vspace{10pt}
+
+% --- SECTION 6: CONSORTIUM GOALS & EXPECTED CONTRIBUTIONS ---
+\section{\texorpdfstring{\faBullhorn\ }{ }Doctoral Consortium Goals \& Expected Feedback}
+
+Participating in the AAMAS 2026 Doctoral Consortium will provide pivotal guidance at a critical stage of my PhD research. Specifically, I seek feedback from senior consortium mentors on the following aspects:
+
+\begin{itemize}[leftmargin=1.8em, itemsep=3pt]
+    \item \textbf{Methodological Validation for Human Trials:} Guidance on scaling human-subject user studies to ensure statistical power when evaluating complex multi-modal biometrics across diverse operator experience levels.
+    \item \textbf{Theoretical Bounding of Safety in MARL:} Insights into formal verification techniques for bounding safety constraints in online preference optimization when human rewards fluctuate due to subjective operator biases.
+    \item \textbf{Career Mentorship \& Post-PhD Trajectory:} Advice on structuring a research agenda suited for academic faculty positions vs. industrial research laboratories focused on human-centric AI systems.
+\end{itemize}
+
+\vspace{12pt}
+
+% --- REFERENCES ---
+\begin{thebibliography}{9}
+\sffamily\small
+
+\bibitem{vance2024}
+M.~Vance, E.~Rostova, and S.~Al-Mansoor.
+\newblock Dynamic authority allocation in multi-agent shared control.
+\newblock {\em IEEE Transactions on Human-Machine Systems}, 54(3):310--322, 2024.
+
+\bibitem{rostova2025}
+E.~Rostova and M.~Vance.
+\newblock Predicting human intervention intent in multi-uav supervisory tasks.
+\newblock In {\em Proceedings of the International Conference on Autonomous Agents and Multiagent Systems (AAMAS)}, pages 412--420, 2025.
+
+\bibitem{synapse2025}
+S.~Al-Mansoor, E.~Rostova, et~al.
+\newblock Bio-behavioral metrics for cognitive load estimation in complex autonomous systems.
+\newblock {\em ACM Transactions on Interactive Intelligent Systems}, 15(2):145--162, 2025.
+
+\end{thebibliography}
+
+\end{document}

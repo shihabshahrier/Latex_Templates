@@ -1,0 +1,231 @@
+\documentclass[11pt, a4paper]{article}
+
+% --- Packages ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=0.75in, headheight=25pt]{geometry}
+\usepackage[table]{xcolor}
+\usepackage{amsmath, amssymb}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage[most]{tcolorbox}
+\tcbuselibrary{most}
+\usepackage{tikz}
+\usetikzlibrary{positioning, calc}
+\usepackage{fontawesome5}
+\usepackage[hidelinks]{hyperref}
+
+% --- Color Palette ---
+\definecolor{NavyPrimary}{RGB}{26,54,93}
+\definecolor{TealSecondary}{RGB}{13,148,136}
+\definecolor{AmberAccent}{RGB}{217,119,6}
+\definecolor{BgLight}{RGB}{248,250,252}
+\definecolor{BorderGray}{RGB}{226,232,240}
+\definecolor{TextDark}{RGB}{30,41,59}
+\definecolor{TextMuted}{RGB}{100,116,139}
+
+% --- Page Style & Headers ---
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{\textcolor{TextMuted}{\small CS 402: Distributed Systems \& Cloud Architecture --- Fall 2026}}
+\lhead{\textcolor{NavyPrimary}{\bfseries Synapse University}}
+\rfoot{\textcolor{TextMuted}{\small Page \thepage}}
+\lfoot{\textcolor{TextMuted}{\small Syllabus \& Course Calendar}}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+% --- Section Styling ---
+\titleformat{\section}
+  {\color{NavyPrimary}\sffamily\Large\bfseries}
+  {\thesection}{1em}{}
+  [{\color{TealSecondary}\titlerule[1.5pt]}]
+
+\titleformat{\subsection}
+  {\color{TealSecondary}\sffamily\large\bfseries}
+  {\thesubsection}{1em}{}
+
+% --- Custom Tcolorbox Styles ---
+\tcbset{
+  coursebox/.style={
+    colback=BgLight,
+    colframe=NavyPrimary,
+    arc=4pt,
+    boxrule=1pt,
+    left=12pt, right=12pt, top=10pt, bottom=10pt
+  },
+  infobox/.style={
+    colback=TealSecondary!10,
+    colframe=TealSecondary,
+    arc=3pt,
+    boxrule=0.8pt,
+    left=10pt, right=10pt, top=8pt, bottom=8pt
+  },
+  alertbox/.style={
+    colback=AmberAccent!10,
+    colframe=AmberAccent,
+    arc=3pt,
+    boxrule=0.8pt,
+    left=10pt, right=10pt, top=8pt, bottom=8pt
+  }
+}
+
+\begin{document}
+
+% --- Header Banner ---
+\begin{tcolorbox}[coursebox]
+  \begin{minipage}[c]{0.68\textwidth}
+    {\color{NavyPrimary}\sffamily\Huge\bfseries CS 402: Distributed Systems} \\[4pt]
+    {\color{TealSecondary}\sffamily\Large\bfseries \& Cloud Architecture} \\[6pt]
+    {\color{TextDark}\sffamily\small Department of Computer Science | Synapse University | Fall 2026}
+  \end{minipage}%
+  \hfill
+  \begin{minipage}[c]{0.28\textwidth}
+    \raggedleft
+    \begin{tcolorbox}[infobox]
+      \centering
+      {\color{NavyPrimary}\sffamily\bfseries\small 4 Credit Hours} \\[2pt]
+      {\color{TextDark}\small Lecture \& Lab} \\[2pt]
+      {\color{TextMuted}\footnotesize Prereq: CS 301}
+    \end{tcolorbox}
+  \end{minipage}
+\end{tcolorbox}
+
+\vspace{0.5em}
+
+% --- Instructor & Logistics Info ---
+\noindent
+\begin{minipage}[t]{0.48\textwidth}
+  \begin{tcolorbox}[title={\sffamily\bfseries \faUserGraduate\ Instructor Information}, colback=white, colframe=NavyPrimary, coltitle=white, arc=3pt, boxrule=0.8pt]
+    \small
+    \textbf{Instructor:} Prof. Elena Rostova \\{}
+    \textbf{Email:} \href{mailto:e.rostova@synapse.edu}{e.rostova@synapse.edu} \\{}
+    \textbf{Office:} Turing Hall, Room 412 \\{}
+    \textbf{Office Hours:} Tue / Thu 2:00 PM -- 4:00 PM \\{}
+    \textbf{Website:} \href{https://synapse.edu/cs402}{synapse.edu/cs402}
+  \end{tcolorbox}
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.48\textwidth}
+  \begin{tcolorbox}[title={\sffamily\bfseries \faClock\ Course Logistics}, colback=white, colframe=TealSecondary, coltitle=white, arc=3pt, boxrule=0.8pt]
+    \small
+    \textbf{Lectures:} Mon / Wed 10:00 AM -- 11:30 AM \\{}
+    \textbf{Location:} Meridian Science Center 104 \\{}
+    \textbf{Lab Session:} Friday 1:00 PM -- 3:00 PM \\{}
+    \textbf{Lab Location:} Apex Computing Lab 2 \\{}
+    \textbf{Teaching Asst:} Marcus Vance (m.vance@synapse.edu)
+  \end{tcolorbox}
+\end{minipage}
+
+\vspace{1em}
+
+% --- Course Description & Objectives ---
+\section*{\faBook\ Course Overview \& Objectives}
+CS 402 provides an in-depth study of distributed algorithms, cloud infrastructure design, and scalable system architecture. Students will explore fundamental principles governing consensus, fault tolerance, replication, and distributed storage. Hands-on laboratory assignments will focus on building robust services using modern microservices design patterns.
+
+Upon successful completion of this course, students will be able to:
+\begin{enumerate}[label=\textcolor{TealSecondary}{\bfseries \arabic*.}, leftmargin=2em]
+  \item Analyze and apply classic distributed consensus protocols such as Raft and Paxos.
+  \item Architect fault-tolerant storage engines leveraging consistent hashing and event-driven messaging.
+  \item Evaluate performance trade-offs under CAP theorem constraints and eventual consistency models.
+  \item Deploy and monitor containerized microservices across cloud clusters using modern orchestrators.
+\end{enumerate}
+
+\vspace{0.5em}
+
+% --- Required Materials ---
+\section*{\faFile\ Prerequisites \& Course Materials}
+\begin{itemize}[label=\textcolor{NavyPrimary}{\small\faCheckCircle}, leftmargin=1.5em]
+  \item \textbf{Required Text:} \emph{Designing Scalable Distributed Systems}, 3rd Ed., Rostova \& Vance, Vertex Academic Press, 2024.
+  \item \textbf{Recommended Reference:} \emph{Cloud Architecture Guidelines}, Meridian Press, 2025.
+  \item \textbf{Software Tools:} Docker, Kubernetes local cluster (minikube/k3s), Go programming environment (v1.22+), Git.
+\end{itemize}
+
+\newpage
+
+% --- Grading Policy ---
+\section*{\faGraduationCap\ Assessment \& Grading Policy}
+
+\noindent
+\begin{minipage}[t]{0.48\textwidth}
+  \begin{tcolorbox}[title={\sffamily\bfseries Grade Breakdown}, colback=white, colframe=NavyPrimary, coltitle=white, arc=3pt, boxrule=0.8pt]
+    \small
+    \begin{tabularx}{\textwidth}{X r}
+      \textbf{Assessment Component} & \textbf{Weight} \\
+      \midrule
+      Programming Projects (4) & 35\% \\{}
+      Weekly Lab Exercises & 15\% \\{}
+      Midterm Examination & 20\% \\{}
+      Final Capstone Project & 20\% \\{}
+      Class Participation \& Quizzes & 10\% \\
+      \bottomrule
+    \end{tabularx}
+  \end{tcolorbox}
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.48\textwidth}
+  \begin{tcolorbox}[title={\sffamily\bfseries Letter Grade Scale}, colback=white, colframe=TealSecondary, coltitle=white, arc=3pt, boxrule=0.8pt]
+    \small
+    \begin{tabularx}{\textwidth}{X r | X r}
+      \textbf{Grade} & \textbf{Range} & \textbf{Grade} & \textbf{Range} \\
+      \midrule
+      A  & 93 -- 100\% & C+ & 77 -- 79\% \\{}
+      A- & 90 -- 92\%  & C  & 73 -- 76\% \\{}
+      B+ & 87 -- 89\%  & C- & 70 -- 72\% \\{}
+      B  & 83 -- 86\%  & D  & 60 -- 69\% \\{}
+      B- & 80 -- 82\%  & F  & $<$ 60\% \\
+      \bottomrule
+    \end{tabularx}
+  \end{tcolorbox}
+\end{minipage}
+
+\vspace{1em}
+
+% --- Course Policies ---
+\section*{\faExclamationTriangle\ Course Policies \& Expectations}
+\begin{tcolorbox}[alertbox]
+  \small
+  \textbf{Late Submission Policy:} Assignments submitted up to 24 hours past the deadline incur a 10\% penalty. Assignments submitted 24--48 hours late incur a 25\% penalty. Submissions beyond 48 hours will not be accepted without prior academic accommodation.
+\end{tcolorbox}
+
+\begin{itemize}[label=\textcolor{TealSecondary}{\small\faCheckCircle}, leftmargin=1.5em]
+  \item \textbf{Academic Integrity:} All submitted code and written work must be your own original effort. Collaborations must adhere strictly to the Synapse Academic Honor Code. Unauthorized use of code-generation tools during exams is prohibited.
+  \item \textbf{Attendance \& Participation:} Active involvement in lectures and lab sessions is vital. Quizzes will occur randomly during Monday lectures.
+  \item \textbf{Accommodations:} Students requiring disability accommodations should contact the Student Accessibility Office during the first week of class.
+\end{itemize}
+
+\vspace{1em}
+
+% --- Course Schedule / Calendar ---
+\section*{\faCalendar\ Course Schedule \& Lecture Calendar}
+
+\small
+\noindent
+\begin{tabularx}{\textwidth}{c c X l}
+  \arrayrulecolor{NavyPrimary}
+  \toprule
+  \rowcolor{NavyPrimary!15}
+  \textbf{Wk} & \textbf{Dates} & \textbf{Topic \& Core Concepts} & \textbf{Deliverable / Assessment} \\
+  \midrule
+  1 & Sep 07, 09 & Introduction to Distributed Systems \& RPC Architecture & Lab 0: Dev Environment Setup \\{}
+  2 & Sep 14, 16 & Clock Synchronization, Logical Clocks \& Vector Clocks & Project 1 Release (gRPC Engine) \\{}
+  3 & Sep 21, 23 & Distributed Consensus: Paxos Foundations & Quiz 1 (Mon) \\{}
+  4 & Sep 28, 30 & Practical Consensus: Raft Protocol \& Leader Election & Lab 1 Due (Sep 30) \\{}
+  5 & Oct 05, 07 & Distributed Key-Value Stores \& Consistent Hashing & Project 1 Due (Oct 07) \\{}
+  6 & Oct 12, 14 & CAP Theorem, Eventual Consistency \& Dynamo Model & Project 2 Release (Raft Cluster) \\{}
+  7 & Oct 19, 21 & Midterm Review \& \textbf{Midterm Exam (Oct 21)} & Midterm Exam \\{}
+  8 & Oct 26, 28 & Distributed Transactions, 2PC \& Saga Pattern & Lab 2 Due (Oct 28) \\{}
+  9 & Nov 02, 04 & Cloud Virtualization, Containers \& Orchestration & Project 2 Due (Nov 04) \\{}
+  10 & Nov 09, 11 & Storage Engines, LSM Trees \& Distributed File Systems & Project 3 Release (K8s Operator) \\{}
+  11 & Nov 16, 18 & Message Queues, Event Streaming \& Kafka Architecture & Lab 3 Due (Nov 18) \\{}
+  12 & Nov 23, 25 & Thanksgiving Recess (No Class Nov 25) & Project 3 Due (Nov 24) \\{}
+  13 & Nov 30, Dec 02 & Fault Injection, Chaos Engineering \& Observability & Capstone Proposals Due \\{}
+  14 & Dec 07, Dec 09 & Cloud Security, Identity \& Zero Trust Architecture & Capstone Final Presentations \\{}
+  15 & Dec 14 & \textbf{Final Capstone Submission \& Code Review} & Capstone Project Due (Dec 14) \\
+  \bottomrule
+\end{tabularx}
+
+\end{document}

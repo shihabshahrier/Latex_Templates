@@ -1,0 +1,541 @@
+\documentclass[10pt,a4paper,parskip=half]{scrartcl}
+
+% Language and Encoding
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[scaled=0.92]{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+\usepackage{microtype}
+
+% Page Layout & Geometry
+\usepackage[a4paper, margin=15mm, top=16mm, bottom=18mm]{geometry}
+\usepackage{scrlayer-scrpage}
+\usepackage{lastpage}
+
+% Math & Science Packages
+\usepackage{amsmath,amssymb}
+\usepackage{siunitx}
+\sisetup{per-mode=symbol, range-phrase= -- }
+
+% Graphics & Colors
+\usepackage{graphicx}
+\usepackage[table]{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{calc,positioning,shapes.geometric,patterns,backgrounds}
+
+% Tables
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{multirow}
+\usepackage{array}
+
+% Lists & Icons
+\usepackage{enumitem}
+\usepackage{fontawesome5}
+
+% Boxes & Cards
+\usepackage{tcolorbox}
+\tcbuselibrary{skins,breakable}
+
+% Hyperref setup
+\usepackage[hidelinks]{hyperref}
+
+% Color Definitions (No trailing spaces inside values)
+\definecolor{brandprimary}{RGB}{24,43,73}
+\definecolor{brandsecondary}{RGB}{0,128,140}
+\definecolor{brandaccent}{RGB}{210,105,30}
+\definecolor{branddark}{RGB}{45,55,72}
+\definecolor{brandlight}{RGB}{245,247,250}
+\definecolor{brandborder}{RGB}{218,225,233}
+\definecolor{passgreen}{RGB}{34,139,34}
+\definecolor{failred}{RGB}{180,40,40}
+
+% KOMA-Script Styling
+\addtokomafont{section}{\color{brandprimary}\large\bfseries}
+\addtokomafont{subsection}{\color{brandsecondary}\normalsize\bfseries}
+\addtokomafont{subsubsection}{\color{branddark}\small\bfseries}
+
+% Header and Footer Configuration
+\clearpairofpagestyles
+\ihead{\small\bfseries\color{brandprimary}\faFlask\ MERIDIAN ANALYTICAL LABS \quad\vline\quad \normalfont\small\color{branddark}MATERIALS CHARACTERIZATION REPORT}
+\ohead{\small\color{branddark}\bfseries MCR-2026-TI64-009}
+\ifoot{\small\color{gray}CONFIDENTIAL -- Prepared for Apex Advanced Materials Corp.}
+\ofoot{\small\color{gray}Page \thepage\ of \pageref{LastPage}}
+\pagestyle{scrheadings}
+
+% Custom Column Types for Tabularx
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+\newcolumntype{C}{>{\centering\arraybackslash}X}
+\newcolumntype{R}{>{\raggedleft\arraybackslash}X}
+
+% tcolorbox styles
+\tcbset{
+    enhanced,
+    boxrule=0.6pt,
+    arc=3pt,
+    fonttitle=\bfseries,
+    coltitle=white,
+    colback=brandlight,
+    colframe=brandborder,
+}
+
+\begin{document}
+
+% HEADER BANNER
+\begin{tcolorbox}[
+    enhanced,
+    colback=brandprimary,
+    colframe=brandprimary,
+    arc=4pt,
+    left=10pt, right=10pt, top=10pt, bottom=10pt
+]
+\begin{minipage}{0.62\textwidth}
+    {\color{white}\LARGE\bfseries Materials Characterization Test Report}\\[3pt]
+    {\color{brandsecondary!30}\normalsize Microstructural, Crystallographic \& Mechanical Evaluation of $Ti\text{-}6Al\text{-}4V$}
+\end{minipage}%
+\hfill
+\begin{minipage}{0.34\textwidth}
+    \raggedleft
+    {\color{white}\small\bfseries MERIDIAN ANALYTICAL LABS}\\[2pt]
+    {\color{brandlight}\scriptsize Nexa Technologies Group -- ISO/IEC 17025}\\[2pt]
+    {\color{brandlight}\scriptsize Advanced Metallurgy \& Testing Division}\\[3pt]
+    {\color{brandaccent}\small\textbf{REPORT REF:} MCR-2026-TI64-009}
+\end{minipage}
+\end{tcolorbox}
+
+\vspace{1mm}
+
+% METADATA CARDS
+\noindent
+\begin{minipage}[t]{0.49\textwidth}
+\begin{tcolorbox}[title={\faBuilding\ Sample \& Client Specification}, colframe=brandprimary, colback=white, left=6pt, right=6pt, top=6pt, bottom=6pt]
+\small
+\begin{tabular}{@{}ll@{}}
+\textbf{Client Entity:} & Apex Advanced Materials Corp. \\
+\textbf{Project Ref:} & Vertex Structural Engine Component \\
+\textbf{Material Grade:} & Titanium $Ti\text{-}6Al\text{-}4V$ (Grade 5 / ELI) \\
+\textbf{Process Type:} & Directed Energy Deposition (DED) \\
+\textbf{Heat Treatment:} & Solution Treated \& Aged (STA) \\
+ & ($925^\circ\text{C}$/2h/WQ + $540^\circ\text{C}$/4h/AC) \\
+\textbf{Sample ID:} & \texttt{NEX-TI64-B09} (Coupons TC-01 to TC-05) \\
+\textbf{Batch Lot:} & \texttt{VTX-2026-0418} \\
+\end{tabular}
+\end{tcolorbox}
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.49\textwidth}
+\begin{tcolorbox}[title={\faFile\ Test Authorization \& Standards}, colframe=brandprimary, colback=white, left=6pt, right=6pt, top=6pt, bottom=6pt]
+\small
+\begin{tabular}{@{}ll@{}}
+\textbf{Date Received:} & July 12, 2026 \\
+\textbf{Testing Dates:} & July 15, 2026 -- July 21, 2026 \\
+\textbf{Lead Engineer:} & Dr. Marcus Vance, Senior Metallurgist \\
+\textbf{Approved By:} & Dr. Elena Rostova, Lab Director \\
+\textbf{Standards Applied:} & \\
+\quad \textbullet\ ASTM E3-11 & Metallographic Sample Prep \\
+\quad \textbullet\ ASTM E8/E8M & Tension Testing of Metallic Materials \\
+\quad \textbullet\ ASTM E112-13 & Average Grain Size Determination \\
+\quad \textbullet\ ASTM E975-13 & X-Ray Phase Quantification \\
+\end{tabular}
+\end{tcolorbox}
+\end{minipage}
+
+\vspace{1mm}
+
+% KEY METRICS HIGHLIGHT STRIP
+\noindent
+\begin{minipage}[t]{0.235\textwidth}
+\begin{tcolorbox}[colframe=brandsecondary, colback=brandlight, halign=center, top=3pt, bottom=3pt, left=2pt, right=2pt]
+    {\scriptsize\bfseries\color{branddark} 0.2\% YIELD STRENGTH}\\[2pt]
+    {\Large\bfseries\color{brandprimary} 924.6 MPa}\\[2pt]
+    {\tiny\color{passgreen}\faCheckCircle\ Pass (Spec $\ge 860$ MPa)}
+\end{tcolorbox}
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.235\textwidth}
+\begin{tcolorbox}[colframe=brandsecondary, colback=brandlight, halign=center, top=3pt, bottom=3pt, left=2pt, right=2pt]
+    {\scriptsize\bfseries\color{branddark} TENSILE STRENGTH ($\sigma_{\text{uts}}$)}\\[2pt]
+    {\Large\bfseries\color{brandprimary} 1008.2 MPa}\\[2pt]
+    {\tiny\color{passgreen}\faCheckCircle\ Pass (Spec $\ge 930$ MPa)}
+\end{tcolorbox}
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.235\textwidth}
+\begin{tcolorbox}[colframe=brandsecondary, colback=brandlight, halign=center, top=3pt, bottom=3pt, left=2pt, right=2pt]
+    {\scriptsize\bfseries\color{branddark} ELONGATION AT BREAK}\\[2pt]
+    {\Large\bfseries\color{brandprimary} 12.8\%}\\[2pt]
+    {\tiny\color{passgreen}\faCheckCircle\ Pass (Spec $\ge 10.0\%$)}
+\end{tcolorbox}
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.235\textwidth}
+\begin{tcolorbox}[colframe=brandsecondary, colback=brandlight, halign=center, top=3pt, bottom=3pt, left=2pt, right=2pt]
+    {\scriptsize\bfseries\color{branddark} PHASE RATIO ($\alpha / \beta$)}\\[2pt]
+    {\Large\bfseries\color{brandprimary} 88.2\% / 11.8\%}\\[2pt]
+    {\tiny\color{passgreen}\faCheckCircle\ Optimal Lamellar}
+\end{tcolorbox}
+\end{minipage}
+
+\vspace{1mm}
+
+% EXECUTIVE SUMMARY
+\begin{tcolorbox}[title={\faInfoCircle\ Executive Summary \& Compliance Declaration}, colframe=brandsecondary, colback=white, left=8pt, right=8pt, top=6pt, bottom=6pt]
+\small
+Comprehensive physical, microstructural, crystallographic, and mechanical characterizations were executed on additive manufactured titanium alloy ($Ti\text{-}6Al\text{-}4V$) sample lot \texttt{NEX-TI64-B09} submitted by Apex Advanced Materials Corp. Analytical evaluation was carried out in accordance with certified laboratory quality management protocols under ISO/IEC 17025 accreditation.
+
+\textbf{Microstructural Analysis:} High-resolution FE-SEM imaging demonstrated a fully transformed $\alpha+\beta$ Widmanstätten (basket-weave) colony structure encapsulated within prior-$\beta$ columnar grains oriented parallel to the additive build direction ($Z$-axis). The mean $\alpha$-lath thickness was quantified at $1.42 \pm 0.18\,\mu\text{m}$. Porosity fraction was exceptionally low ($0.042\%$), consisting of dispersed gas entrapped micro-pores ($d < 15\,\mu\text{m}$) without un-melted region defects.
+
+\textbf{Phase Quantification:} X-ray diffraction (XRD) Rietveld profile refinement verified equilibrium room-temperature phase volume fractions of $88.2 \pm 0.8\%$ HCP $\alpha$-titanium and $11.8 \pm 0.8\%$ BCC $\beta$-titanium, confirming effective dissolution of non-equilibrium martensitic $\alpha'$ phase during solution treatment and aging.
+
+\textbf{Mechanical Conformance:} Uniaxial tensile testing of 5 machined coupons (\texttt{TC-01} through \texttt{TC-05}) demonstrated mean 0.2\% yield strength of $924.6\text{ MPa}$, ultimate tensile strength of $1008.2\text{ MPa}$, elongation at fracture of $12.8\%$, and area reduction of $31.4\%$. All mechanical metrics comfortably surpass ASTM F1472-20 and ASTM B348 Grade 5 specification thresholds.
+
+\textbf{Final Determination:} Material lot \texttt{NEX-TI64-B09} is formally \textbf{APPROVED} for aerospace flight hardware fabrication under Vertex Structural Program specification \texttt{VTX-2026-0418}.
+\end{tcolorbox}
+
+\vspace{2mm}
+
+% SECTION 1: INSTRUMENTATION & PREPARATION
+\section{Analytical Instrumentation \& Experimental Methods}
+
+Metallographic specimens were sectioned using a precision diamond wafering saw, mounted in conductive bakelite, and polished down to a $0.04\,\mu\text{m}$ colloidal silica finish before etching with Kroll's reagent ($2\%\text{ HF}, 4\%\text{ HNO}_3, 94\%\text{ H}_2\text{O}$) for 15 seconds.
+
+\vspace{1mm}
+\noindent
+\captionof{table}{Summary of analytical instruments, operational parameters, and calibration standards.}
+\vspace{-1mm}
+{\small
+\begin{tabularx}{\textwidth}{@{}lYYY@{}}
+\toprule
+\rowcolor{brandlight}
+\textbf{Technique} & \textbf{Equipment Model} & \textbf{Operational Parameters} & \textbf{Calibration Standard} \\
+\midrule
+\textbf{SEM Imaging} & Zeiss Sigma 500 VP FE-SEM & Accelerating Voltage: $20.0\text{ kV}$, WD: $8.5\text{ mm}$, SE2 Detector & Gold On Carbon Standard (Resolution $< 1.0\text{ nm}$) \\
+\rowcolor{brandlight!50}
+\textbf{XRD Analysis} & Rigaku SmartLab 9kW & Cu-$\text{K}\alpha$ ($\lambda = 1.5406\text{ \AA}$), $40\text{ kV} / 44\text{ mA}$, $2\theta = 30^\circ - 80^\circ$ & NIST SRM 640e Silicon Powder Standard \\
+\textbf{Tensile Testing} & Instron 5985 Dual-Column 250kN & Strain Rate: $0.005\text{ min}^{-1}$, Non-contact Video Extensometer & ISO 7500-1 Class 0.5 Load Cell Calibration \\
+\rowcolor{brandlight!50}
+\textbf{Density Measurement} & Mettler Toledo Archimedes & Temperature-compensated Deionized Water ($\rho = 0.9982\text{ g/cm}^3$) & Certified $100.0\text{ g}$ Class E2 Stainless Mass \\
+\bottomrule
+\end{tabularx}
+}
+
+\vspace{2mm}
+
+% SECTION 2: SEM MICROSTRUCTURE ANALYSIS
+\section{Scanning Electron Microscopy (SEM) \& Microstructural Characterization}
+
+Microstructural evaluation carried out via field-emission SEM revealed a highly dense matrix featuring epitaxial prior-$\beta$ columnar grain growth aligned with the build direction ($Z$-axis). High-magnification secondary electron imaging highlights a fine $\alpha$-lamellae network interspaced with thin residual $\beta$-phase ribs.
+
+\noindent
+\begin{minipage}[t]{0.48\textwidth}
+\begin{tcolorbox}[title={\faMicroscope\ SEM Microstructure Features}, colframe=brandprimary, colback=white, left=5pt, right=5pt, top=3pt, bottom=3pt]
+\small
+\begin{itemize}[leftmargin=*, label=\textcolor{brandsecondary}{\small\faCheck}]
+    \item \textbf{Grain Morphology:} Columnar prior-$\beta$ grains with average width of $118.5 \pm 14.2\,\mu\text{m}$ extending across multiple deposition layers.
+    \item \textbf{Lath Dimensions:} Mean $\alpha$-lath thickness measured at $1.42 \pm 0.18\,\mu\text{m}$, promoting strong Hall-Petch strengthening.
+    \item \textbf{Porosity Defect Analysis:} Low spherical porosity fraction ($0.042\%$), with maximum pore diameter $d_{\text{max}} = 14.8\,\mu\text{m}$.
+    \item \textbf{Lack-of-Fusion (LoF):} Zero planar un-melted region defects detected across $50\text{ mm}^2$ inspected surface area.
+\end{itemize}
+\end{tcolorbox}
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.49\textwidth}
+\begin{tcolorbox}[title={\faChartLine\ Defect Pore Size Distribution}, colframe=brandprimary, colback=white, left=4pt, right=4pt, top=3pt, bottom=3pt]
+\centering
+\begin{tikzpicture}[scale=0.55]
+    % Axes
+    \draw[->, thick, branddark] (0,0) -- (5.6,0) node[right, font=\tiny\bfseries] {Dia ($\mu$m)};
+    \draw[->, thick, branddark] (0,0) -- (0,2.8) node[above, font=\tiny\bfseries] {Freq. (\%)};
+    
+    % Grid lines
+    \draw[gray!20, dashed] (0,0.6) -- (5.1,0.6);
+    \draw[gray!20, dashed] (0,1.2) -- (5.1,1.2);
+    \draw[gray!20, dashed] (0,1.8) -- (5.1,1.8);
+    \draw[gray!20, dashed] (0,2.4) -- (5.1,2.4);
+
+    % Y Ticks
+    \node[left, font=\tiny] at (0,0.6) {15};
+    \node[left, font=\tiny] at (0,1.2) {30};
+    \node[left, font=\tiny] at (0,1.8) {45};
+    \node[left, font=\tiny] at (0,2.4) {60};
+
+    % Bars
+    \draw[fill=brandsecondary!80, draw=brandprimary] (0.4,0) rectangle (1.3,2.33) node[above, font=\tiny\bfseries] {58.4\%};
+    \draw[fill=brandsecondary!60, draw=brandprimary] (1.6,0) rectangle (2.5,1.08) node[above, font=\tiny\bfseries] {27.2\%};
+    \draw[fill=brandaccent!70, draw=brandprimary] (2.8,0) rectangle (3.7,0.47) node[above, font=\tiny\bfseries] {11.8\%};
+    \draw[fill=brandaccent!90, draw=brandprimary] (4.0,0) rectangle (4.9,0.10) node[above, font=\tiny\bfseries] {2.6\%};
+
+    % X Labels
+    \node[below, font=\tiny] at (0.85,-0.1) {0--4};
+    \node[below, font=\tiny] at (2.05,-0.1) {4--8};
+    \node[below, font=\tiny] at (3.25,-0.1) {8--12};
+    \node[below, font=\tiny] at (4.45,-0.1) {12--16};
+\end{tikzpicture}
+\end{tcolorbox}
+\end{minipage}
+
+\vspace{1mm}
+\noindent
+\captionof{table}{Quantitative stereological measurements of microstructural features in Sample \texttt{NEX-TI64-B09}.}
+\vspace{-1mm}
+{\small
+\begin{tabularx}{\textwidth}{@{}YccccR@{}}
+\toprule
+\rowcolor{brandlight}
+\textbf{Parameter Description} & \textbf{Symbol} & \textbf{Measured Mean} & \textbf{Std. Dev. ($\sigma$)} & \textbf{Min / Max} & \textbf{Sample Size ($N$)} \\
+\midrule
+Prior-$\beta$ Columnar Grain Width & $W_{\beta}$ & $118.5\,\mu\text{m}$ & $14.2\,\mu\text{m}$ & $92.1 / 145.8\,\mu\text{m}$ & $N = 45$ grains \\
+\rowcolor{brandlight!50}
+$\alpha$-Lath Thickness & $t_{\alpha}$ & $1.42\,\mu\text{m}$ & $0.18\,\mu\text{m}$ & $0.95 / 1.88\,\mu\text{m}$ & $N = 120$ laths \\
+$\alpha$-Colony Packet Diameter & $D_{\text{col}}$ & $34.6\,\mu\text{m}$ & $4.1\,\mu\text{m}$ & $24.2 / 44.0\,\mu\text{m}$ & $N = 30$ colonies \\
+\rowcolor{brandlight!50}
+Defect Pore Volume Fraction & $V_p$ & $0.042\%$ & $0.006\%$ & $0.031 / 0.052\%$ & $50\text{ mm}^2$ area \\
+Mean Pore Aspect Ratio & $AR_p$ & $1.14$ & $0.08$ & $1.02 / 1.35$ & $N = 84$ pores \\
+\bottomrule
+\end{tabularx}
+}
+
+\vspace{2mm}
+
+% SECTION 3: XRD PHASE ANALYSIS
+\section{X-Ray Diffraction (XRD) Crystallographic Phase Quantification}
+
+X-Ray Diffraction spectra were collected across $2\theta = 30^\circ - 80^\circ$ to quantify phase proportions and lattice constants. Peak profile refinement was performed using the Rietveld method in Topas v6.0.
+
+\vspace{1mm}
+\noindent
+\begin{minipage}{\textwidth}
+\centering
+\begin{tikzpicture}
+    \begin{scope}[xscale=0.18, yscale=0.038]
+        % Grid
+        \draw[gray!15, very thin, step=10] (28,0) grid (82,55);
+        \draw[gray!30, thin] (30,0) -- (80,0);
+        
+        % Axes
+        \draw[->, thick, branddark] (28,0) -- (82,0) node[right, font=\small\bfseries] {$2\theta$ (deg)};
+        \draw[->, thick, branddark] (28,0) -- (28,58) node[above, font=\small\bfseries] {Intensity (a.u.)};
+        
+        % X Ticks
+        \foreach \x in {30, 40, 50, 60, 70, 80} {
+            \draw[branddark] (\x,0) -- (\x,-1.5) node[below, font=\scriptsize] {\x$^\circ$};
+        }
+        
+        % Simulated Baseline & Peaks
+        \draw[brandprimary, thick] plot[smooth] coordinates {
+            (28,5) (33,6) 
+            (34.5,6) (35.1,28) (35.7,6) 
+            (37.5,6) (38.4,36) (39.0,6) 
+            (39.2,6) (39.6,18) (40.0,6) 
+            (40.1,6) (40.5,52) (41.0,6) 
+            (52.0,5) (53.0,16) (54.0,5) 
+            (62.0,5) (63.2,22) (64.2,5) 
+            (69.5,5) (70.6,20) (71.5,5) 
+            (75.5,5) (76.3,12) (77.2,5) 
+            (80,5) (82,5)
+        };
+        
+        % Peak Labels
+        \node[above, font=\tiny\bfseries, color=brandprimary] at (35.1,28) {$\alpha(100)$};
+        \node[above, font=\tiny\bfseries, color=brandprimary] at (38.4,36) {$\alpha(002)$};
+        \node[above, font=\tiny\bfseries, color=brandaccent] at (39.5,18) {$\beta(110)$};
+        \node[above, font=\small\bfseries, color=brandprimary] at (40.5,52) {$\alpha(101)$};
+        \node[above, font=\tiny\bfseries, color=brandprimary] at (53.0,16) {$\alpha(102)$};
+        \node[above, font=\tiny\bfseries, color=brandprimary] at (63.2,22) {$\alpha(110)$};
+        \node[above, font=\tiny\bfseries, color=brandprimary] at (70.6,20) {$\alpha(103)$};
+        \node[above, font=\tiny\bfseries, color=brandaccent] at (76.3,12) {$\beta(200)$};
+    \end{scope}
+\end{tikzpicture}
+\vspace{-1mm}
+\captionof{figure}{Bragg-Brentano XRD diffractogram of sample \texttt{NEX-TI64-B09} ($Cu\text{-}K\alpha$) showing indexed $\alpha$-HCP and $\beta$-BCC diffraction peaks.}
+\end{minipage}
+
+\vspace{1mm}
+\noindent
+\captionof{table}{Rietveld refined crystallographic phase parameters and volume fractions.}
+\vspace{-1mm}
+{\small
+\begin{tabularx}{\textwidth}{@{}lCCCCC@{}}
+\toprule
+\rowcolor{brandlight}
+\textbf{Phase Identity} & \textbf{Crystal System} & \textbf{Space Group} & \textbf{Lattice Parameters} & \textbf{Vol. Fraction (\%)} & \textbf{Domain Size ($D$)} \\
+\midrule
+\textbf{$\alpha$-Titanium} & Hexagonal (HCP) & $P6_3/mmc$ (194) & $a=2.924\text{ \AA},\, c=4.671\text{ \AA}$ & $88.2 \pm 0.8\%$ & $48.2 \pm 3.1\text{ nm}$ \\
+\rowcolor{brandlight!50}
+\textbf{$\beta$-Titanium} & Cubic (BCC) & $Im\overline{3}m$ (229) & $a=3.228\text{ \AA}$ & $11.8 \pm 0.8\%$ & $32.4 \pm 2.5\text{ nm}$ \\
+\bottomrule
+\end{tabularx}
+}
+
+\vspace{2mm}
+
+% SECTION 4: TENSILE MECHANICAL TESTING
+\section{Uniaxial Tensile Properties (ASTM E8/E8M)}
+
+Tensile tests were performed on five machined flat coupons (\texttt{TC-01} through \texttt{TC-05}) sampled in both longitudinal ($Z$, build vector) and transverse ($X$-$Y$) orientations to evaluate mechanical anisotropy.
+
+\noindent
+\begin{minipage}[t]{0.48\textwidth}
+\begin{tcolorbox}[title={\faChartLine\ Stress-Strain Curve (ASTM E8)}, colframe=brandprimary, colback=white, left=4pt, right=4pt, top=3pt, bottom=3pt]
+\centering
+\begin{tikzpicture}[scale=0.55]
+    % Axes
+    \draw[->, thick, branddark] (0,0) -- (5.6,0) node[right, font=\tiny\bfseries] {Strain $\varepsilon$ (\%)};
+    \draw[->, thick, branddark] (0,0) -- (0,3.6) node[above, font=\tiny\bfseries] {Stress $\sigma$ (MPa)};
+
+    % Grid
+    \draw[gray!20, dashed] (0,0.85) -- (5.1,0.85);
+    \draw[gray!20, dashed] (0,1.70) -- (5.1,1.70);
+    \draw[gray!20, dashed] (0,2.55) -- (5.1,2.55);
+    \draw[gray!20, dashed] (0,3.40) -- (5.1,3.40);
+
+    % Stress ticks
+    \node[left, font=\tiny] at (0,0.85) {300};
+    \node[left, font=\tiny] at (0,1.70) {600};
+    \node[left, font=\tiny] at (0,2.55) {900};
+    \node[left, font=\tiny] at (0,3.40) {1200};
+
+    % Curve Z-orientation (Solid Navy)
+    \draw[brandprimary, very thick] (0,0) -- (1.05,2.62) 
+        .. controls (1.6,2.87) and (3.1,2.98) .. (4.3,2.89)
+        .. controls (4.6,2.80) .. (4.8,2.55) node[circle, fill=failred, inner sep=1pt] {};
+
+    % Curve XY-orientation (Dashed Teal)
+    \draw[brandsecondary, thick, dashed] (0,0) -- (1.1,2.68) 
+        .. controls (1.7,2.93) and (3.2,3.05) .. (4.4,2.96)
+        .. controls (4.7,2.85) .. (4.9,2.60) node[circle, fill=failred, inner sep=1pt] {};
+
+    % Key points labels
+    \node[left, font=\tiny\bfseries, color=brandprimary] at (1.05,2.62) {$\sigma_y$};
+    \node[above, font=\tiny\bfseries, color=brandprimary] at (3.4,2.98) {$\sigma_{\text{uts}}$};
+    \node[right, font=\tiny\bfseries, color=failred] at (4.8,2.55) {Fracture};
+
+    % Legend
+    \draw[brandprimary, very thick] (0.4,0.40) -- (0.9,0.40) node[right, font=\tiny] {Z-Build Dir.};
+    \draw[brandsecondary, thick, dashed] (0.4,0.15) -- (0.9,0.15) node[right, font=\tiny] {XY-Transverse};
+\end{tikzpicture}
+\end{tcolorbox}
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.49\textwidth}
+\begin{tcolorbox}[title={\faInfoCircle\ Tensile Test Observations}, colframe=brandprimary, colback=white, left=5pt, right=5pt, top=3pt, bottom=3pt]
+\small
+\begin{itemize}[leftmargin=*, label=\textcolor{brandsecondary}{\small\faCheck}]
+    \item \textbf{Elastic Modulus:} Consistent stiffness ($E = 114.2 \pm 1.8\text{ GPa}$), showing linear elasticity up to $\sim 820\text{ MPa}$.
+    \item \textbf{Yield Behavior:} Smooth elastic-to-plastic transition with 0.2\% offset yield at $924.6\text{ MPa}$ average.
+    \item \textbf{Ductility \& Necking:} Strain hardening followed by localized necking prior to ductile fracture.
+    \item \textbf{Anisotropy Ratio:} Yield ratio $\sigma_{y,XY} / \sigma_{y,Z} = 1.025$, indicating minimal directional anisotropy.
+\end{itemize}
+\end{tcolorbox}
+\end{minipage}
+
+\vspace{1mm}
+\noindent
+\captionof{table}{Complete tensile test data record for coupons \texttt{TC-01} through \texttt{TC-05} (ASTM E8/E8M).}
+\vspace{-1mm}
+{\small
+\begin{tabularx}{\textwidth}{@{}lCCCCCC@{}}
+\toprule
+\rowcolor{brandlight}
+\textbf{Coupon ID} & \textbf{Orientation} & \textbf{Modulus $E$ (GPa)} & \textbf{Yield $\sigma_y$ (MPa)} & \textbf{UTS $\sigma_{\text{uts}}$ (MPa)} & \textbf{Elong. $\varepsilon_f$ (\%)} & \textbf{Red. Area \%RA} \\
+\midrule
+\texttt{TC-01} & Longitudinal ($Z$) & $113.8$ & $918.4$ & $1002.5$ & $12.4\%$ & $30.8\%$ \\
+\rowcolor{brandlight!50}
+\texttt{TC-02} & Longitudinal ($Z$) & $112.9$ & $921.2$ & $1005.1$ & $12.6\%$ & $31.2\%$ \\
+\texttt{TC-03} & Longitudinal ($Z$) & $114.5$ & $922.8$ & $1006.8$ & $12.5\%$ & $31.0\%$ \\
+\rowcolor{brandlight!50}
+\texttt{TC-04} & Transverse ($XY$) & $115.1$ & $931.5$ & $1012.4$ & $13.1\%$ & $32.1\%$ \\
+\texttt{TC-05} & Transverse ($XY$) & $114.8$ & $929.2$ & $1014.2$ & $12.9\%$ & $31.9\%$ \\
+\midrule
+\rowcolor{brandprimary!10}
+\textbf{Mean ($\mu$)} & -- & \textbf{114.2} & \textbf{924.6} & \textbf{1008.2} & \textbf{12.8\%} & \textbf{31.4\%} \\
+\rowcolor{brandprimary!5}
+\textbf{Std. Dev. ($\sigma$)} & -- & \textbf{0.9} & \textbf{5.4} & \textbf{4.9} & \textbf{0.3\%} & \textbf{0.5\%} \\
+\bottomrule
+\end{tabularx}
+}
+
+\vspace{2mm}
+
+% SECTION 5: SPECIFICATION COMPLIANCE BENCHMARK
+\section{Specification Compliance Benchmark}
+
+Experimental characterization data for lot \texttt{NEX-TI64-B09} were benchmarked against ASTM F1472-20 and ASTM B348 Grade 5 requirements.
+
+\vspace{1mm}
+\noindent
+\captionof{table}{Material performance comparison against standardized engineering criteria.}
+\vspace{-1mm}
+{\small
+\begin{tabularx}{\textwidth}{@{}YCCCR@{}}
+\toprule
+\rowcolor{brandlight}
+\textbf{Property Metric} & \textbf{ASTM F1472 Standard} & \textbf{Measured Mean Value} & \textbf{Margin of Safety} & \textbf{Compliance Status} \\
+\midrule
+0.2\% Offset Yield Strength ($\sigma_y$) & $\ge 860.0\text{ MPa}$ & $924.6\text{ MPa}$ & $+7.5\%$ & \textcolor{passgreen}{\textbf{\faCheckCircle\ PASS}} \\
+\rowcolor{brandlight!50}
+Ultimate Tensile Strength ($\sigma_{\text{uts}}$) & $\ge 930.0\text{ MPa}$ & $1008.2\text{ MPa}$ & $+8.4\%$ & \textcolor{passgreen}{\textbf{\faCheckCircle\ PASS}} \\
+Elongation at Fracture ($\varepsilon_f$) & $\ge 10.0\%$ & $12.8\%$ & $+28.0\%$ & \textcolor{passgreen}{\textbf{\faCheckCircle\ PASS}} \\
+\rowcolor{brandlight!50}
+Reduction of Cross-Section Area (\%RA) & $\ge 25.0\%$ & $31.4\%$ & $+25.6\%$ & \textcolor{passgreen}{\textbf{\faCheckCircle\ PASS}} \\
+Relative Physical Density ($\rho_{\text{rel}}$) & $\ge 99.50\%$ & $99.96\%$ & $+0.46\%$ & \textcolor{passgreen}{\textbf{\faCheckCircle\ PASS}} \\
+\bottomrule
+\end{tabularx}
+}
+
+\vspace{2mm}
+
+% SECTION 6: CONCLUSIONS & RECOMMENDATIONS
+\section{Conclusions \& Engineering Recommendations}
+
+\begin{tcolorbox}[colframe=brandprimary, colback=brandlight, left=5pt, right=5pt, top=3pt, bottom=3pt]
+\small
+\begin{enumerate}[leftmargin=*, label=\bfseries\color{brandprimary}\arabic*.]
+    \item \textbf{Microstructural Integrity:} Solution-treated and aged DED $Ti\text{-}6Al\text{-}4V$ exhibits optimal basket-weave $\alpha+\beta$ lath morphology free of un-melted inclusions or micro-cracks.
+    \item \textbf{Phase Equilibrium:} XRD phase quantification verifies equilibrium volume fractions ($88.2\%\,\alpha / 11.8\%\,\beta$), preventing embrittling martensite retention.
+    \item \textbf{Mechanical Conformance:} All tensile coupons exceed ASTM F1472 minima by comfortable margins ($> 7.5\%$), showing isotropic strength.
+    \item \textbf{Final Status:} Sample lot \texttt{NEX-TI64-B09} is formally \textbf{APPROVED} for structural component manufacturing under Vertex Program Ref \texttt{VTX-2026-0418}.
+\end{enumerate}
+\end{tcolorbox}
+
+\vspace{2mm}
+
+% SECTION 7: QUALITY SIGN-OFF & AUTHORIZATION
+\noindent
+\begin{minipage}[t]{0.31\textwidth}
+\begin{tcolorbox}[title={\small\faUserCheck\ Prepared By}, colframe=brandprimary, colback=white, height=2.5cm, left=4pt, right=4pt, top=2pt, bottom=2pt]
+\scriptsize
+\textbf{Dr. Marcus Vance}\\
+Senior Analytical Metallurgist\\
+Division of Materials Testing\\[2pt]
+\textit{Digital Sign: M. Vance}\\
+\textbf{Date:} July 21, 2026
+\end{tcolorbox}
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.31\textwidth}
+\begin{tcolorbox}[title={\small\faUserCheck\ Reviewed By}, colframe=brandprimary, colback=white, height=2.5cm, left=4pt, right=4pt, top=2pt, bottom=2pt]
+\scriptsize
+\textbf{Dr. Elena Rostova}\\
+Director of Analytical Services\\
+Meridian Analytical Labs\\[2pt]
+\textit{Digital Sign: E. Rostova}\\
+\textbf{Date:} July 22, 2026
+\end{tcolorbox}
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.34\textwidth}
+\begin{tcolorbox}[title={\small\faCheckCircle\ QA Certification Stamp}, colframe=brandprimary, colback=white, height=2.5cm, left=2pt, right=2pt, top=2pt, bottom=2pt]
+\centering
+\scriptsize
+\begin{tikzpicture}[scale=0.50]
+    \draw[thick, brandprimary] (0,0) circle (1.0cm);
+    \draw[dashed, brandsecondary] (0,0) circle (0.85cm);
+    \node[font=\tiny\bfseries, color=brandprimary] at (0,0.35) {MERIDIAN LABS};
+    \node[font=\tiny\bfseries, color=passgreen] at (0,0) {ISO 17025};
+    \node[font=\tiny\bfseries, color=brandprimary] at (0,-0.35) {VERIFIED PASS};
+\end{tikzpicture}
+\end{tcolorbox}
+\end{minipage}
+
+\end{document}

@@ -1,0 +1,8 @@
+{
+  "name": "Beamer Keynote-Style Media Presentation",
+  "compiler": "pdflatex",
+  "description": "Beamer Keynote-Style Media Presentation LaTeX template \u2014 beamer keynote-style media presentation latex template. Elegant, compile-tested, editable online at letx.app.",
+  "author": "LetX",
+  "category": "presentations",
+  "license": "MIT"
+}

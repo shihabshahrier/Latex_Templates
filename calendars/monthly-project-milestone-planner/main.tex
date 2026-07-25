@@ -1,0 +1,344 @@
+\documentclass[10pt,a4paper]{scrartcl}
+
+\usepackage[a4paper,margin=1.5cm,top=1.7cm,bottom=1.7cm]{geometry}
+\usepackage[table]{xcolor}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{tikz}
+\usetikzlibrary{positioning,calc,shapes.geometric,backgrounds}
+\usepackage[most]{tcolorbox}
+\usepackage{fontawesome5}
+\usepackage{enumitem}
+\usepackage[automark]{scrlayer-scrpage}
+
+%---------- palette ----------
+\definecolor{navy}{HTML}{1B3A5C}
+\definecolor{coral}{HTML}{E0733F}
+\definecolor{sage}{HTML}{4C7A6B}
+\definecolor{sand}{HTML}{F4EFE6}
+\definecolor{ok}{HTML}{3E8E5B}
+\definecolor{warn}{HTML}{D68A1D}
+\definecolor{crit}{HTML}{C0392B}
+
+\renewcommand{\familydefault}{\sfdefault}
+
+%---------- header / footer ----------
+\pagestyle{scrheadings}
+\clearpairofpagestyles
+\ihead{\small\color{navy!70}Project Meridian}
+\ohead{\small\color{navy!70}Monthly Milestone Planner}
+\ifoot{\small\color{gray}Nexa Technologies -- Nimbus Platform Migration}
+\ofoot{\small\color{gray}Page \thepage}
+\setkomafont{pageheadfoot}{\normalfont}
+
+\setlength{\parindent}{0pt}
+\renewcommand{\arraystretch}{1.15}
+
+%---------- helper commands ----------
+\newcommand{\statustag}[2]{%
+  \tcbox[on line,colframe=#1!70!black,colback=#1!15,boxrule=0.4pt,arc=1.5pt,%
+    boxsep=1pt,left=3pt,right=3pt,top=1pt,bottom=1pt,%
+    fontupper=\fontsize{6.3}{7.5}\selectfont\bfseries\color{#1!60!black}]{#2}%
+}
+
+\newcommand{\daynum}[1]{\parbox[t][1.5cm][t]{1.6cm}{\bfseries\fontsize{8}{9}\selectfont #1}}
+\newcommand{\daymil}[3]{%
+  \parbox[t][1.5cm][t]{1.6cm}{%
+    \bfseries\fontsize{8}{9}\selectfont #1\\[2.5pt]%
+    {\fontsize{6}{7.2}\selectfont\color{#3}\bfseries #2}%
+  }%
+}
+\newcommand{\blankcell}{\parbox[t][1.5cm][t]{1.6cm}{\ }}
+
+\newcommand{\deadlinecard}[5]{%
+  \begin{tcolorbox}[colback=white,colframe=navy!22,boxrule=0.5pt,arc=1.5pt,%
+    left=5pt,right=5pt,top=4pt,bottom=4pt,before skip=0pt,after skip=0pt,width=\linewidth]
+    {\bfseries\footnotesize #1}\hfill\statustag{#4}{#5}\\[3pt]
+    {\footnotesize #2}\\[1pt]
+    {\fontsize{6.5}{8}\selectfont\color{gray!70}\itshape Owner: #3}
+  \end{tcolorbox}\par\vspace{5pt}%
+}
+
+\newcommand{\monthbanner}[2]{%
+  \begin{tcolorbox}[colback=sand,colframe=navy!35,boxrule=0.6pt,arc=2pt,%
+    left=12pt,right=12pt,top=5pt,bottom=5pt,width=\linewidth]
+    {\bfseries\Large\color{navy}#1}\hfill{\footnotesize\itshape\color{sage}#2}
+  \end{tcolorbox}\par\vspace{6pt}%
+}
+
+\newcommand{\progressbar}[3]{%
+  \begin{tikzpicture}[baseline]
+    \fill[navy!10,rounded corners=1.5pt] (0,0) rectangle (11.4,0.32);
+    \fill[#3,rounded corners=1.5pt] (0,0) rectangle ({11.4*#1},0.32);
+    \draw[navy!25,rounded corners=1.5pt] (0,0) rectangle (11.4,0.32);
+    \node[anchor=west,font=\fontsize{7}{8}\selectfont\color{navy!70}] at (11.55,0.16) {#2};
+  \end{tikzpicture}%
+}
+
+\newlength{\calwidth}
+\newlength{\sidewidth}
+\setlength{\calwidth}{12.4cm}
+\setlength{\sidewidth}{5.2cm}
+
+\begin{document}
+
+%======================================================================
+% TITLE BANNER
+%======================================================================
+\begin{tcolorbox}[colback=navy,colframe=navy,boxrule=0pt,arc=2pt,%
+  left=14pt,right=14pt,top=7pt,bottom=6pt,width=\linewidth]
+  {\color{white}\bfseries\LARGE Monthly Project Milestone Planner}\\[3pt]
+  {\color{coral!85!white}\bfseries\large Project Meridian --- Nimbus Core Platform Migration}\\[5pt]
+  {\color{white!85!black}\footnotesize Nexa Technologies $\cdot$ Client: Vertex Retail Group $\cdot$ Delivery Partner: Synapse Consulting $\cdot$ PMO: Apex Program Office}\\
+  {\color{white!85!black}\footnotesize Reporting period: August--October 2026 $\cdot$ Program owner: Priya Nandakumar}
+\end{tcolorbox}
+\par\vspace{6pt}
+
+\begin{minipage}[t]{0.62\linewidth}
+  \footnotesize
+  {\bfseries\color{navy}\faClipboard\ How to use this planner}\par\vspace{2pt}
+  \begin{itemize}[leftmargin=12pt,itemsep=1pt,topsep=1pt]
+    \item Each month spans one page: calendar on the left, deadline cards on the right.
+    \item Shaded calendar cells with coloured text mark a scheduled milestone; the colour is its status.
+    \item Deadline cards repeat the same milestones with owner and a full-width status tag.
+    \item Page 4 rolls the quarter up into a milestone log and an open risk register.
+  \end{itemize}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.34\linewidth}
+  \footnotesize
+  {\bfseries\color{navy}\faFlag\ Status legend}\par\vspace{2pt}
+  \statustag{ok}{Complete}\hspace{3pt}\statustag{sage}{On Track}\par\vspace{2pt}
+  \statustag{warn}{At Risk}\hspace{3pt}\statustag{crit}{Blocked}\par\vspace{2pt}
+  \statustag{coral}{Key Milestone}
+\end{minipage}
+\par\vspace{7pt}
+
+%======================================================================
+% AUGUST
+%======================================================================
+\monthbanner{August 2026}{Sprint focus: foundations \& environment readiness}
+
+\noindent
+\begin{minipage}[t]{\calwidth}
+  {\footnotesize\faFlag\ \textbf{4} milestones this month \hspace{4pt}\statustag{ok}{2 Complete}\statustag{sage}{1 On Track}\statustag{crit}{1 Blocked}}
+  \par\vspace{5pt}
+  {\setlength{\tabcolsep}{2pt}\renewcommand{\arraystretch}{1}
+  \begin{tabular}{p{1.6cm}p{1.6cm}p{1.6cm}p{1.6cm}p{1.6cm}p{1.6cm}p{1.6cm}}
+    \rowcolor{navy}
+    \color{white}\bfseries\footnotesize Mon & \color{white}\bfseries\footnotesize Tue & \color{white}\bfseries\footnotesize Wed & \color{white}\bfseries\footnotesize Thu & \color{white}\bfseries\footnotesize Fri & \color{white}\bfseries\footnotesize Sat & \color{white}\bfseries\footnotesize Sun \\
+    \hline
+    \blankcell & \blankcell & \blankcell & \blankcell & \blankcell & \cellcolor{navy!5}\daynum{1} & \cellcolor{navy!5}\daynum{2} \\
+    \hline
+    \daynum{3} & \daynum{4} & \daynum{5} & \daynum{6} & \cellcolor{coral!15}\daymil{7}{Kickoff workshop complete}{ok} & \cellcolor{navy!5}\daynum{8} & \cellcolor{navy!5}\daynum{9} \\
+    \hline
+    \daynum{10} & \daynum{11} & \daynum{12} & \daynum{13} & \cellcolor{coral!15}\daymil{14}{Requirements sign-off}{ok} & \cellcolor{navy!5}\daynum{15} & \cellcolor{navy!5}\daynum{16} \\
+    \hline
+    \daynum{17} & \daynum{18} & \daynum{19} & \daynum{20} & \cellcolor{coral!15}\daymil{21}{Environment provisioning complete}{sage} & \cellcolor{navy!5}\daynum{22} & \cellcolor{navy!5}\daynum{23} \\
+    \hline
+    \daynum{24} & \daynum{25} & \daynum{26} & \daynum{27} & \cellcolor{coral!15}\daymil{28}{Data migration dry-run \#1 -- blocked}{crit} & \cellcolor{navy!5}\daynum{29} & \cellcolor{navy!5}\daynum{30} \\
+    \hline
+    \daynum{31} & \blankcell & \blankcell & \blankcell & \blankcell & \cellcolor{navy!5}\blankcell & \cellcolor{navy!5}\blankcell \\
+    \hline
+  \end{tabular}}
+\end{minipage}\hfill
+\begin{minipage}[t]{\sidewidth}
+  {\bfseries\color{navy}\large Deadlines --- Aug}\par\vspace{5pt}
+  \deadlinecard{Fri, Aug 7}{Kickoff workshop complete}{Priya Nandakumar}{ok}{Complete}
+  \deadlinecard{Fri, Aug 14}{Requirements sign-off}{Owen Castellanos}{ok}{Complete}
+  \deadlinecard{Fri, Aug 21}{Environment provisioning complete}{Marta Lindqvist}{sage}{On Track}
+  \deadlinecard{Fri, Aug 28}{Data migration dry-run \#1}{Felix Adeyemi}{crit}{Blocked}
+  \deadlinecard{Every Mon, 09:00}{Steering sync -- Nexa / Vertex / Synapse}{Priya Nandakumar}{sage}{Recurring}
+\end{minipage}
+\par\vspace{6pt}
+
+{\fontsize{7.5}{9}\selectfont\color{gray!70}\itshape Note: Dry-run \#1 blocked by legacy schema inconsistencies in the Vertex Retail order-history tables; see Risk R1 on page~4 for mitigation and revised date.}
+
+\par\vspace{6pt}
+{\footnotesize\bfseries\color{navy}Program timeline}\quad\progressbar{0.337}{Day 31 of 92 -- 34\% elapsed}{navy}
+
+\par\vspace{6pt}
+{\bfseries\color{navy}\faUsers\ Weekly focus breakdown}\par\vspace{5pt}
+{\setlength{\tabcolsep}{3pt}\renewcommand{\arraystretch}{1.25}
+\begin{tabular}{p{1.5cm}p{2.4cm}p{6.1cm}p{4.4cm}p{2.2cm}}
+  \toprule
+  \bfseries\footnotesize Week & \bfseries\footnotesize Dates & \bfseries\footnotesize Focus & \bfseries\footnotesize Deliverable & \bfseries\footnotesize Status \\
+  \midrule
+  \footnotesize Week 1 & \footnotesize Aug 1--2  & \footnotesize Program setup and kickoff preparation & \footnotesize Kickoff workshop complete & \statustag{ok}{Complete} \\
+  \footnotesize Week 2 & \footnotesize Aug 3--9  & \footnotesize Requirements workshops with Vertex Retail stakeholders & \footnotesize Requirements sign-off & \statustag{ok}{Complete} \\
+  \footnotesize Week 3 & \footnotesize Aug 10--16 & \footnotesize Nimbus environment build-out by Synapse Consulting & \footnotesize Environment provisioning (in progress) & \statustag{sage}{On Track} \\
+  \footnotesize Week 4 & \footnotesize Aug 17--23 & \footnotesize Environment hardening and access review & \footnotesize Environment provisioning complete & \statustag{sage}{On Track} \\
+  \footnotesize Week 5 & \footnotesize Aug 24--31 & \footnotesize Migration dry-run scoping and execution & \footnotesize Data migration dry-run \#1 & \statustag{crit}{Blocked} \\
+  \bottomrule
+\end{tabular}}
+
+\clearpage
+
+%======================================================================
+% SEPTEMBER
+%======================================================================
+\monthbanner{September 2026}{Sprint focus: integration, testing \& UAT preparation}
+
+\noindent
+\begin{minipage}[t]{\calwidth}
+  {\footnotesize\faFlag\ \textbf{5} milestones this month \hspace{4pt}\statustag{ok}{1 Complete}\statustag{sage}{3 On Track}\statustag{warn}{1 At Risk}}
+  \par\vspace{5pt}
+  {\setlength{\tabcolsep}{2pt}\renewcommand{\arraystretch}{1}
+  \begin{tabular}{p{1.6cm}p{1.6cm}p{1.6cm}p{1.6cm}p{1.6cm}p{1.6cm}p{1.6cm}}
+    \rowcolor{navy}
+    \color{white}\bfseries\footnotesize Mon & \color{white}\bfseries\footnotesize Tue & \color{white}\bfseries\footnotesize Wed & \color{white}\bfseries\footnotesize Thu & \color{white}\bfseries\footnotesize Fri & \color{white}\bfseries\footnotesize Sat & \color{white}\bfseries\footnotesize Sun \\
+    \hline
+    \blankcell & \daynum{1} & \daynum{2} & \daynum{3} & \cellcolor{coral!15}\daymil{4}{Security review checkpoint}{ok} & \cellcolor{navy!5}\daynum{5} & \cellcolor{navy!5}\daynum{6} \\
+    \hline
+    \daynum{7} & \daynum{8} & \daynum{9} & \daynum{10} & \cellcolor{coral!15}\daymil{11}{Integration testing begins}{sage} & \cellcolor{navy!5}\daynum{12} & \cellcolor{navy!5}\daynum{13} \\
+    \hline
+    \daynum{14} & \daynum{15} & \daynum{16} & \daynum{17} & \cellcolor{coral!15}\daymil{18}{UAT script freeze}{sage} & \cellcolor{navy!5}\daynum{19} & \cellcolor{navy!5}\daynum{20} \\
+    \hline
+    \daynum{21} & \daynum{22} & \daynum{23} & \daynum{24} & \cellcolor{coral!15}\daymil{25}{Data migration dry-run \#2 -- retry}{warn} & \cellcolor{navy!5}\daynum{26} & \cellcolor{navy!5}\daynum{27} \\
+    \hline
+    \daynum{28} & \daynum{29} & \cellcolor{coral!15}\daymil{30}{Go/no-go readiness review}{sage} & \blankcell & \blankcell & \cellcolor{navy!5}\blankcell & \cellcolor{navy!5}\blankcell \\
+    \hline
+  \end{tabular}}
+\end{minipage}\hfill
+\begin{minipage}[t]{\sidewidth}
+  {\bfseries\color{navy}\large Deadlines --- Sep}\par\vspace{5pt}
+  \deadlinecard{Fri, Sep 4}{Security review checkpoint}{Priya Nandakumar}{ok}{Complete}
+  \deadlinecard{Fri, Sep 11}{Integration testing begins}{Marta Lindqvist}{sage}{On Track}
+  \deadlinecard{Fri, Sep 18}{UAT script freeze}{Owen Castellanos}{sage}{On Track}
+  \deadlinecard{Fri, Sep 25}{Data migration dry-run \#2}{Felix Adeyemi}{warn}{At Risk}
+  \deadlinecard{Wed, Sep 30}{Go/no-go readiness review}{Priya Nandakumar}{sage}{On Track}
+\end{minipage}
+\par\vspace{6pt}
+
+{\fontsize{7.5}{9}\selectfont\color{gray!70}\itshape Note: Dry-run \#2 re-runs the migration against the reconciled schema from R1; result feeds directly into the Sep~30 go/no-go review.}
+
+\par\vspace{6pt}
+{\footnotesize\bfseries\color{navy}Program timeline}\quad\progressbar{0.663}{Day 61 of 92 -- 66\% elapsed}{navy}
+
+\par\vspace{6pt}
+{\bfseries\color{navy}\faUsers\ Weekly focus breakdown}\par\vspace{5pt}
+{\setlength{\tabcolsep}{3pt}\renewcommand{\arraystretch}{1.25}
+\begin{tabular}{p{1.5cm}p{2.4cm}p{6.1cm}p{4.4cm}p{2.2cm}}
+  \toprule
+  \bfseries\footnotesize Week & \bfseries\footnotesize Dates & \bfseries\footnotesize Focus & \bfseries\footnotesize Deliverable & \bfseries\footnotesize Status \\
+  \midrule
+  \footnotesize Week 1 & \footnotesize Sep 1--6   & \footnotesize Security and compliance review with Apex PMO & \footnotesize Security review checkpoint & \statustag{ok}{Complete} \\
+  \footnotesize Week 2 & \footnotesize Sep 7--13  & \footnotesize Integration test environment stand-up & \footnotesize Integration testing begins & \statustag{sage}{On Track} \\
+  \footnotesize Week 3 & \footnotesize Sep 14--20 & \footnotesize UAT test-script authoring with Vertex Retail & \footnotesize UAT script freeze & \statustag{sage}{On Track} \\
+  \footnotesize Week 4 & \footnotesize Sep 21--27 & \footnotesize Migration re-run against reconciled schema & \footnotesize Data migration dry-run \#2 & \statustag{warn}{At Risk} \\
+  \footnotesize Week 5 & \footnotesize Sep 28--30 & \footnotesize Cross-team readiness assessment & \footnotesize Go/no-go readiness review & \statustag{sage}{On Track} \\
+  \bottomrule
+\end{tabular}}
+
+\clearpage
+
+%======================================================================
+% OCTOBER
+%======================================================================
+\monthbanner{October 2026}{Sprint focus: UAT, cutover rehearsal \& go-live}
+
+\noindent
+\begin{minipage}[t]{\calwidth}
+  {\footnotesize\faFlag\ \textbf{5} milestones this month \hspace{4pt}\statustag{sage}{3 On Track}\statustag{coral}{1 Key Milestone}\statustag{ok}{1 Complete}}
+  \par\vspace{5pt}
+  {\setlength{\tabcolsep}{2pt}\renewcommand{\arraystretch}{1}
+  \begin{tabular}{p{1.6cm}p{1.6cm}p{1.6cm}p{1.6cm}p{1.6cm}p{1.6cm}p{1.6cm}}
+    \rowcolor{navy}
+    \color{white}\bfseries\footnotesize Mon & \color{white}\bfseries\footnotesize Tue & \color{white}\bfseries\footnotesize Wed & \color{white}\bfseries\footnotesize Thu & \color{white}\bfseries\footnotesize Fri & \color{white}\bfseries\footnotesize Sat & \color{white}\bfseries\footnotesize Sun \\
+    \hline
+    \blankcell & \blankcell & \blankcell & \daynum{1} & \cellcolor{coral!15}\daymil{2}{UAT begins}{sage} & \cellcolor{navy!5}\daynum{3} & \cellcolor{navy!5}\daynum{4} \\
+    \hline
+    \daynum{5} & \daynum{6} & \daynum{7} & \daynum{8} & \cellcolor{coral!15}\daymil{9}{UAT sign-off deadline}{sage} & \cellcolor{navy!5}\daynum{10} & \cellcolor{navy!5}\daynum{11} \\
+    \hline
+    \daynum{12} & \daynum{13} & \daynum{14} & \daynum{15} & \cellcolor{coral!15}\daymil{16}{Production cutover rehearsal}{sage} & \cellcolor{navy!5}\daynum{17} & \cellcolor{navy!5}\daynum{18} \\
+    \hline
+    \daynum{19} & \daynum{20} & \daynum{21} & \daynum{22} & \cellcolor{coral!25}\daymil{23}{GO-LIVE -- production cutover}{coral} & \cellcolor{navy!5}\daynum{24} & \cellcolor{navy!5}\daynum{25} \\
+    \hline
+    \daynum{26} & \daynum{27} & \daynum{28} & \daynum{29} & \cellcolor{coral!15}\daymil{30}{Hypercare exit / project close}{ok} & \cellcolor{navy!5}\daynum{31} & \cellcolor{navy!5}\blankcell \\
+    \hline
+  \end{tabular}}
+\end{minipage}\hfill
+\begin{minipage}[t]{\sidewidth}
+  {\bfseries\color{navy}\large Deadlines --- Oct}\par\vspace{5pt}
+  \deadlinecard{Fri, Oct 2}{UAT begins}{Owen Castellanos}{sage}{On Track}
+  \deadlinecard{Fri, Oct 9}{UAT sign-off deadline}{Owen Castellanos}{sage}{On Track}
+  \deadlinecard{Fri, Oct 16}{Production cutover rehearsal}{Marta Lindqvist}{sage}{On Track}
+  \deadlinecard{Fri, Oct 23}{GO-LIVE -- production cutover}{Felix Adeyemi}{coral}{Key Milestone}
+  \deadlinecard{Fri, Oct 30}{Hypercare exit / project close}{Priya Nandakumar}{ok}{Planned}
+\end{minipage}
+\par\vspace{6pt}
+
+{\fontsize{7.5}{9}\selectfont\color{gray!70}\itshape Note: Two-week hypercare window runs Oct 23--30 with Apex PMO and Synapse on elevated on-call before formal project close.}
+
+\par\vspace{6pt}
+{\footnotesize\bfseries\color{navy}Program timeline}\quad\progressbar{1.0}{Day 92 of 92 -- 100\% elapsed}{coral}
+
+\par\vspace{6pt}
+{\bfseries\color{navy}\faUsers\ Weekly focus breakdown}\par\vspace{5pt}
+{\setlength{\tabcolsep}{3pt}\renewcommand{\arraystretch}{1.25}
+\begin{tabular}{p{1.5cm}p{2.4cm}p{6.1cm}p{4.4cm}p{2.2cm}}
+  \toprule
+  \bfseries\footnotesize Week & \bfseries\footnotesize Dates & \bfseries\footnotesize Focus & \bfseries\footnotesize Deliverable & \bfseries\footnotesize Status \\
+  \midrule
+  \footnotesize Week 1 & \footnotesize Oct 1--4   & \footnotesize UAT kickoff with Vertex Retail test leads & \footnotesize UAT begins & \statustag{sage}{On Track} \\
+  \footnotesize Week 2 & \footnotesize Oct 5--11  & \footnotesize UAT execution and defect triage & \footnotesize UAT sign-off deadline & \statustag{sage}{On Track} \\
+  \footnotesize Week 3 & \footnotesize Oct 12--18 & \footnotesize Cutover rehearsal and rollback drill & \footnotesize Production cutover rehearsal & \statustag{sage}{On Track} \\
+  \footnotesize Week 4 & \footnotesize Oct 19--25 & \footnotesize Production cutover weekend & \footnotesize GO-LIVE -- production cutover & \statustag{coral}{Key Milestone} \\
+  \footnotesize Week 5 & \footnotesize Oct 26--31 & \footnotesize Hypercare monitoring and stabilization & \footnotesize Hypercare exit / project close & \statustag{ok}{Planned} \\
+  \bottomrule
+\end{tabular}}
+
+\clearpage
+
+%======================================================================
+% SUMMARY + RISK REGISTER
+%======================================================================
+\monthbanner{Quarter Roll-up}{August--October 2026 milestone log and open risk register}
+
+{\bfseries\color{navy}\faCalendar\ Milestone log}\par\vspace{5pt}
+
+{\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{p{1.9cm}p{6.0cm}p{3.6cm}p{2.4cm}}
+  \toprule
+  \bfseries\footnotesize Date & \bfseries\footnotesize Milestone & \bfseries\footnotesize Owner & \bfseries\footnotesize Status \\
+  \midrule
+  \footnotesize Aug 7  & \footnotesize Kickoff workshop complete            & \footnotesize Priya Nandakumar & \statustag{ok}{Complete} \\
+  \footnotesize Aug 14 & \footnotesize Requirements sign-off                & \footnotesize Owen Castellanos & \statustag{ok}{Complete} \\
+  \footnotesize Aug 21 & \footnotesize Environment provisioning complete    & \footnotesize Marta Lindqvist  & \statustag{sage}{On Track} \\
+  \footnotesize Aug 28 & \footnotesize Data migration dry-run \#1           & \footnotesize Felix Adeyemi    & \statustag{crit}{Blocked} \\
+  \footnotesize Sep 4  & \footnotesize Security review checkpoint           & \footnotesize Priya Nandakumar & \statustag{ok}{Complete} \\
+  \footnotesize Sep 11 & \footnotesize Integration testing begins           & \footnotesize Marta Lindqvist  & \statustag{sage}{On Track} \\
+  \footnotesize Sep 18 & \footnotesize UAT script freeze                    & \footnotesize Owen Castellanos & \statustag{sage}{On Track} \\
+  \footnotesize Sep 25 & \footnotesize Data migration dry-run \#2           & \footnotesize Felix Adeyemi    & \statustag{warn}{At Risk} \\
+  \footnotesize Sep 30 & \footnotesize Go/no-go readiness review            & \footnotesize Priya Nandakumar & \statustag{sage}{On Track} \\
+  \footnotesize Oct 2  & \footnotesize UAT begins                           & \footnotesize Owen Castellanos & \statustag{sage}{On Track} \\
+  \footnotesize Oct 9  & \footnotesize UAT sign-off deadline                & \footnotesize Owen Castellanos & \statustag{sage}{On Track} \\
+  \footnotesize Oct 16 & \footnotesize Production cutover rehearsal         & \footnotesize Marta Lindqvist  & \statustag{sage}{On Track} \\
+  \footnotesize Oct 23 & \footnotesize GO-LIVE -- production cutover        & \footnotesize Felix Adeyemi    & \statustag{coral}{Key Milestone} \\
+  \footnotesize Oct 30 & \footnotesize Hypercare exit / project close       & \footnotesize Priya Nandakumar & \statustag{ok}{Planned} \\
+  \bottomrule
+\end{tabular}}
+
+\par\vspace{14pt}
+
+{\bfseries\color{navy}\faExclamationTriangle\ Open risk register}\par\vspace{5pt}
+
+{\setlength{\tabcolsep}{3pt}\renewcommand{\arraystretch}{1.25}
+\begin{tabular}{p{0.6cm}p{4.2cm}p{1.5cm}p{2.5cm}p{5.3cm}p{1.8cm}}
+  \toprule
+  \bfseries\footnotesize ID & \bfseries\footnotesize Risk & \bfseries\footnotesize Impact & \bfseries\footnotesize Owner & \bfseries\footnotesize Mitigation & \bfseries\footnotesize Status \\
+  \midrule
+  \footnotesize R1 & \footnotesize Legacy Vertex order-history schema inconsistencies delayed dry-run \#1 & \footnotesize\color{crit}High & \footnotesize Felix Adeyemi & \footnotesize Reconciled schema with Synapse data team; retry scheduled as dry-run \#2 on Sep 25 & \statustag{warn}{Retry} \\
+  \footnotesize R2 & \footnotesize Vertex Retail stakeholder availability limited during UAT window & \footnotesize\color{warn}Medium & \footnotesize Owen Castellanos & \footnotesize UAT sessions pre-booked two weeks ahead; async test scripts provided as backup & \statustag{warn}{At Risk} \\
+  \footnotesize R3 & \footnotesize Nimbus environment capacity limits under peak-load simulation & \footnotesize\color{warn}Medium & \footnotesize Marta Lindqvist & \footnotesize Burst-capacity tier provisioned; load test scheduled ahead of cutover rehearsal & \statustag{sage}{On Track} \\
+  \footnotesize R4 & \footnotesize Cutover rollback plan not yet validated end-to-end & \footnotesize\color{crit}High & \footnotesize Priya Nandakumar & \footnotesize Rollback drill scheduled before Oct 16 rehearsal; sign-off required from all three parties & \statustag{sage}{On Track} \\
+  \bottomrule
+\end{tabular}}
+
+\par\vspace{16pt}
+
+\begin{tcolorbox}[colback=sand,colframe=navy!30,boxrule=0.6pt,arc=2pt,left=10pt,right=10pt,top=6pt,bottom=6pt,width=\linewidth]
+  {\footnotesize\bfseries\color{navy}\faUsers\ Sign-off} \hfill {\footnotesize\itshape\color{gray!70}Reviewed at each go/no-go checkpoint}\\[6pt]
+  {\footnotesize Program Owner (Nexa): Priya Nandakumar \hspace{4pt}\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ \hspace{10pt} Client Sponsor (Vertex Retail): Owen Castellanos \hspace{4pt}\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_}
+\end{tcolorbox}
+
+\end{document}

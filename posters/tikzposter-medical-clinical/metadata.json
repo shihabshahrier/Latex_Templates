@@ -1,0 +1,8 @@
+{
+  "name": "TikZposter Medical Research & Clinical Trial",
+  "compiler": "pdflatex",
+  "description": "TikZposter Medical Research & Clinical Trial LaTeX template \u2014 tikzposter medical research & clinical trial latex template. Elegant, compile-tested, editable online at letx.app.",
+  "author": "LetX",
+  "category": "posters",
+  "license": "MIT"
+}

@@ -1,0 +1,8 @@
+{
+  "name": "Springer LNCS Short Conference Paper",
+  "compiler": "pdflatex",
+  "description": "Springer LNCS Short Conference Paper LaTeX template \u2014 springer lncs short conference paper latex template. Elegant, compile-tested, editable online at letx.app.",
+  "author": "LetX",
+  "category": "conferences",
+  "license": "MIT"
+}

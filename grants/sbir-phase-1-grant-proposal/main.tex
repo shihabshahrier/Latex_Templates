@@ -1,0 +1,389 @@
+\documentclass[11pt,a4paper]{scrartcl}
+
+% Language & Encoding
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+
+% Typography & Fonts
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+\usepackage{microtype}
+
+% Geometry & Margins
+\usepackage[top=15mm,bottom=16mm,left=16mm,right=16mm,headheight=14pt]{geometry}
+
+% Colors
+\usepackage[table]{xcolor}
+\definecolor{NavyBlue}{HTML}{1E3A8A}
+\definecolor{TealAccent}{HTML}{0D9488}
+\definecolor{DarkSlate}{HTML}{0F172A}
+\definecolor{LightGrayBG}{HTML}{F8FAFC}
+\definecolor{BorderGray}{HTML}{CBD5E1}
+\definecolor{AccentGold}{HTML}{D97706}
+\definecolor{TextDark}{HTML}{334155}
+\definecolor{RowAlt}{HTML}{F1F5F9}
+
+% TikZ & Graphics
+\usepackage{graphicx}
+\usepackage{tikz}
+\usetikzlibrary{positioning,calc,shapes.geometric,backgrounds,patterns}
+
+% TColorBox
+\usepackage[many]{tcolorbox}
+\tcbuselibrary{skins,breakable}
+
+% Tables
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{colortbl}
+
+% Lists
+\usepackage{enumitem}
+\setlist[itemize]{noitemsep, topsep=1pt, parsep=1pt, leftmargin=1.3em}
+\setlist[enumerate]{noitemsep, topsep=1pt, parsep=1pt, leftmargin=1.3em}
+
+% Headers & Footers
+\usepackage{scrlayer-scrpage}
+\clearpairofpagestyles
+\ihead{\textcolor{TextDark}{\small\bfseries Meridian BioSystems --- SBIR Phase I Proposal}}
+\ohead{\textcolor{TextDark}{\small Topic ID: NSF-24-BT12}}
+\ifoot{\textcolor{TextDark}{\tiny CONFIDENTIAL --- PROPRIETARY SBIR PHASE I PROPOSAL}}
+\ofoot{\textcolor{TextDark}{\small Page \thepage}}
+\pagestyle{scrheadings}
+
+% Icons & Math
+\usepackage{fontawesome5}
+\usepackage{amsmath,amssymb}
+
+% Hyperref
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=NavyBlue,
+    citecolor=TealAccent,
+    urlcolor=TealAccent,
+    pdftitle={SBIR Phase I Grant Proposal - Meridian BioSystems},
+    pdfauthor={Meridian BioSystems Inc.}
+}
+
+% KOMA-Script Title & Heading Styling
+\addtokomafont{section}{\color{NavyBlue}\Large\bfseries}
+\addtokomafont{subsection}{\color{TealAccent}\large\bfseries}
+\addtokomafont{subsubsection}{\color{DarkSlate}\normalfont\bfseries}
+
+\RedeclareSectionCommand[beforeskip=8pt,afterskip=3pt]{section}
+\RedeclareSectionCommand[beforeskip=6pt,afterskip=2pt]{subsection}
+\RedeclareSectionCommand[beforeskip=4pt,afterskip=1pt]{subsubsection}
+
+\makeatletter
+\renewcommand{\sectionlinesformat}[4]{%
+  \Ifstr{#1}{section}{%
+    \parbox[b]{\textwidth}{%
+      \textcolor{NavyBlue}{\rule{\textwidth}{1.2pt}}\\[2pt]%
+      \textcolor{NavyBlue}{#3#4}%
+    }%
+  }{%
+    #3#4%
+  }%
+}
+\makeatother
+
+% Custom TColorBox Styles
+\tcbset{
+  proposalcard/.style={
+    enhanced,
+    colback=LightGrayBG,
+    colframe=BorderGray,
+    arc=4pt,
+    boxrule=1pt,
+    left=10pt,right=10pt,top=6pt,bottom=6pt
+  },
+  highlightbox/.style={
+    enhanced,
+    colback=TealAccent!6!white,
+    colframe=TealAccent,
+    arc=4pt,
+    boxrule=1.2pt,
+    left=10pt,right=10pt,top=6pt,bottom=6pt
+  },
+  headerbox/.style={
+    enhanced,
+    colback=NavyBlue,
+    colframe=NavyBlue,
+    arc=5pt,
+    boxrule=0pt,
+    left=12pt,right=12pt,top=10pt,bottom=10pt,
+    colupper=white
+  }
+}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{3.5pt}
+
+\begin{document}
+
+% ==================== HEADER BLOCK ====================
+\begin{tcolorbox}[headerbox]
+\begin{minipage}[t]{0.68\textwidth}
+  {\fontfamily{phv}\selectfont\Huge\bfseries MERIDIAN BIOSYSTEMS}\\[2pt]
+  {\Large\bfseries SBIR Phase I Project Proposal}\\[4pt]
+  {\small\faMicrochip\ \textbf{Project Title:} Next-Generation Microfluidic Optoelectronic Biosensor for Rapid Point-of-Care Pathogen Detection}
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.28\textwidth}
+  \raggedleft
+  \small
+  \textbf{Agency:} NSF SBIR Phase I\\
+  \textbf{Topic ID:} BT1.2 Biological Tech\\
+  \textbf{Budget:} \$275,000\\
+  \textbf{Duration:} 6 Months\\
+  \textbf{Date:} October 2026
+\end{minipage}
+\end{tcolorbox}
+
+\vspace{-2pt}
+
+% ==================== METADATA & EXECUTIVE SUMMARY ====================
+\begin{minipage}[t]{0.48\textwidth}
+  \begin{tcolorbox}[proposalcard, title={\small\bfseries\faBuilding\ Applicant Firm Details}, coltitle=NavyBlue, colbacktitle=LightGrayBG]
+    \small
+    \textbf{Company Name:} Meridian BioSystems Inc.\\
+    \textbf{DUNS / UEI:} K9X8J2M4L7V1\\
+    \textbf{Principal Investigator:} Dr. Eleanor Vance, Ph.D.\\
+    \textbf{Location:} Cambridge Innovation Center, MA\\
+    \textbf{Contact Email:} evance@meridianbio.com\\
+    \textbf{Commercial Track:} Medical Diagnostics
+  \end{tcolorbox}
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.48\textwidth}
+  \begin{tcolorbox}[proposalcard, title={\small\bfseries\faBullseye\ Key Performance Metrics}, coltitle=NavyBlue, colbacktitle=LightGrayBG]
+    \small
+    \textbf{Target Assay Time:} $< 15$ Minutes\\
+    \textbf{Limit of Detection (LOD):} $< 100\text{ CFU/mL}$\\
+    \textbf{Sample Matrix:} Whole Blood / Plasma\\
+    \textbf{Target Unit Cost:} $<\$12.50$\\
+    \textbf{IP Protection:} 2 Provisionals Filed (2025/2026)\\
+    \textbf{Phase II Target:} \$500k Match Funding
+  \end{tcolorbox}
+\end{minipage}
+
+\par\vspace{2pt}
+
+\begin{tcolorbox}[highlightbox]
+\small
+\textbf{\faFlask\ Executive Summary \& Technical Abstract:}\\
+Hospital-acquired infections and bloodstream pathogens account for over 270,000 annual fatalities in the United States, largely driven by diagnostic delays of 24--48 hours required for standard microbial blood culture. Meridian BioSystems proposes a novel microfluidic optoelectronic biosensor platform (\emph{OptoDx}) that enables fully automated multiplexed pathogen detection directly from whole blood in under 15 minutes. Phase I research will establish feasibility by optimizing functionalized plasmonic microchannels, achieving sub-picomolar target capture efficiency, and demonstrating benchtop detection of \emph{Staphylococcus aureus} and \emph{Escherichia coli} at $< 100\text{ CFU/mL}$ without prior sample enrichment.
+\end{tcolorbox}
+
+% ==================== SECTION 1 ====================
+\section{Identification and Significance of the Innovation}
+
+\subsection{Market Need and Technical Problem}
+Current clinical diagnostic protocols for bloodstream infections rely on time-intensive enrichment cultures followed by automated mass spectrometry (MALDI-TOF) or polymerase chain reaction (PCR). While highly specific, these workflow pipelines suffer from three fundamental bottlenecks:
+\begin{itemize}
+    \item \textbf{Diagnostic Delay:} Turnaround times of 24 to 72 hours force clinicians to prescribe broad-spectrum empiric antibiotics, accelerating drug-resistant strain emergence.
+    \item \textbf{Sample Preparation Complexity:} PCR and nucleic acid amplification methods demand labor-intensive extraction, centrifugation, and skilled laboratory staff.
+    \item \textbf{Point-of-Care Incompatibility:} Centralized testing infrastructure cannot support decentralization to urgent care clinics, emergency departments, or rural triage centers.
+\end{itemize}
+
+\subsection{The Meridian OptoDx Platform Innovation}
+Meridian BioSystems addresses these limitations by coupling nanostructure-enhanced surface plasmon resonance (SPR) optics with self-driven microfluidic arrays. The core innovation comprises a multi-layered cyclic olefin copolymer (COC) cartridge coated with localized gold nanostar arrays functionalized with high-affinity synthetic aptamers.
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[scale=0.85, every node/.style={transform shape}]
+    \draw[fill=LightGrayBG, draw=BorderGray, rounded corners=6pt, line width=1pt] (0,0) rectangle (15,2.6);
+    
+    \node[draw=NavyBlue, fill=white, rounded corners=4pt, text width=2.6cm, minimum height=1.7cm, align=center, line width=1pt] (step1) at (2.0,1.3) {
+        \textcolor{NavyBlue}{\faSyringe}\\[2pt]
+        \textbf{\small 1. Whole Blood}\\
+        {\tiny Direct Load ($100\,\mu\text{L}$)}
+    };
+    
+    \draw[->, >=stealth, line width=1.5pt, TealAccent] (step1.east) -- ++(0.8,0);
+    
+    \node[draw=NavyBlue, fill=white, rounded corners=4pt, text width=3.0cm, minimum height=1.7cm, align=center, line width=1pt] (step2) at (6.0,1.3) {
+        \textcolor{NavyBlue}{\faFilter}\\[2pt]
+        \textbf{\small 2. Microchannel Filter}\\
+        {\tiny Inertial RBC/WBC Sorting}
+    };
+    
+    \draw[->, >=stealth, line width=1.5pt, TealAccent] (step2.east) -- ++(0.8,0);
+    
+    \node[draw=NavyBlue, fill=white, rounded corners=4pt, text width=3.0cm, minimum height=1.7cm, align=center, line width=1pt] (step3) at (10.0,1.3) {
+        \textcolor{NavyBlue}{\faMicrochip}\\[2pt]
+        \textbf{\small 3. Plasmonic Capture}\\
+        {\tiny Nanostar Aptamer Array}
+    };
+    
+    \draw[->, >=stealth, line width=1.5pt, TealAccent] (step3.east) -- ++(0.8,0);
+    
+    \node[draw=NavyBlue, fill=TealAccent!15!white, rounded corners=4pt, text width=2.2cm, minimum height=1.7cm, align=center, line width=1.2pt] (step4) at (13.5,1.3) {
+        \textcolor{NavyBlue}{\faChartLine}\\[2pt]
+        \textbf{\small 4. Result}\\
+        {\tiny $< 15\text{ Mins}$\\\textbf{\textcolor{NavyBlue}{100 CFU/mL}}}
+    };
+\end{tikzpicture}
+\caption{Architectural Overview of the Meridian \emph{OptoDx} Sample-to-Answer Microfluidic Pipeline.}
+\end{figure}
+
+\subsection{Transformative Technical \& Commercial Potential}
+Unlike optical fluorescence sensors requiring laser excitation and cooling systems, the \emph{OptoDx} reader utilizes solid-state LED sources paired with complementary metal-oxide-semiconductor (CMOS) detector arrays. This architectural reduction decreases instrument manufacturing cost by an estimated 78\% relative to benchtop PCR systems while retaining single-cell sensitivity thresholds.
+
+% ==================== SECTION 2 ====================
+\section{Phase I Technical Objectives and R\&D Plan}
+
+The goal of this Phase I research program is to demonstrate technical feasibility of the \emph{OptoDx} platform in a laboratory environment (TRL 4). Research tasks focus on chip functionalization, optical calibration, and biological validation in spiked human blood matrix.
+
+\subsection{Phase I Research Objectives}
+\begin{enumerate}
+    \item \textbf{Objective 1 (Cartridge Optimization):} Fabricate and validate gold-nanostar microfluidic channels achieving $> 92\%$ analyte capture efficiency under continuous capillary flow rates ($15\,\mu\text{L/min}$).
+    \item \textbf{Objective 2 (Optical Sensor Calibration):} Calibrate multi-wavelength CMOS optoelectronic reader to yield a signal-to-noise ratio (SNR) $> 15\text{ dB}$ at target pathogen concentration of $50\text{ CFU/mL}$.
+    \item \textbf{Objective 3 (Whole-Blood Assay Validation):} Perform multiplexed detection of \emph{S. aureus} and \emph{E. coli} in spiked human blood samples with coefficient of variation (CV) $< 6.5\%$.
+\end{enumerate}
+
+\subsection{Detailed Work Plan \& Experimental Tasks}
+
+\textbf{Task 1: Surface Functionalization \& Microfluidic Channel Fabrication (Months 1--2)}
+\emph{Lead: Dr. Marcus Lin.} Microchannels will be injection-molded in COC substrates using precision micro-milling dies produced by manufacturing partner Apex Precision Tech. Channel surfaces will be activated via oxygen plasma treatment followed by silanization with (3-aminopropyl)triethoxysilane (APTES). Thiol-terminated aptamer sequences specific to surface proteins of \emph{S. aureus} (Apt-Sa1) and \emph{E. coli} (Apt-Ec3) will be conjugated to gold nanostars via self-assembled monolayer chemistry.
+
+\textbf{Task 2: Optoelectronic Subsystem Assembly \& Detector Tuning (Months 3--4)}
+\emph{Lead: Sarah Jenkins.} Dual-wavelength illumination LEDs ($530\text{ nm}$ and $650\text{ nm}$) will be coupled with custom bandpass filters and a 5-megapixel CMOS sensor. Signal extraction algorithms will apply spatial fast Fourier transforms (FFT) to filter baseline dark currents and ambient optical noise.
+
+\textbf{Task 3: Biological Assay Benchmark \& Matrix Interference Testing (Months 5--6)}
+\emph{Lead: Dr. Eleanor Vance.} De-identified human donor blood samples will be spiked with heat-inactivated bacterial strains across concentrations ranging from $10^1$ to $10^5\text{ CFU/mL}$. Assay performance will be cross-checked against quantitative PCR (qPCR) standard curves.
+
+\subsection{Project Milestones and Verification Metrics}
+
+\begin{table}[htbp]
+\centering
+\small
+\caption{Phase I Project Milestones, Target Specifications, and Risk Mitigation.}
+\vspace{2pt}
+\rowcolors{2}{LightGrayBG}{white}
+\begin{tabularx}{\textwidth}{c X c X X}
+\toprule
+\textbf{\textcolor{NavyBlue}{Milestone}} & \textbf{\textcolor{NavyBlue}{Deliverable Description}} & \textbf{\textcolor{NavyBlue}{Month}} & \textbf{\textcolor{NavyBlue}{Success Criteria}} & \textbf{\textcolor{NavyBlue}{Risk Mitigation Strategy}} \\
+\midrule
+M1.1 & Functionalized COC Microchips & M2 & Capture efficiency $> 90\%$ & Fallback to planar gold films with PEG \\{}
+M1.2 & Aptamer Conjugation Density & M3 & Surface density $> 10^{12}/\text{cm}^2$ & Adjust pH and ionic strength in buffer \\{}
+M2.1 & Optoelectronic Reader Assembly & M4 & Noise level $< 0.5\text{ mV}$ & Implement differential photodiode topology \\{}
+M3.1 & Single-Pathogen LOD Test & M5 & LOD $< 100\text{ CFU/mL}$ & Increase LED illumination pulse power \\{}
+M3.2 & Multiplex Whole-Blood Validation & M6 & Assay CV $< 6.5\%$ ($n=30$) & Refine inertial filter micro-pillar design \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+% ==================== SECTION 3 ====================
+\section{Commercial Opportunity and Business Strategy}
+
+\subsection{Target Market and Commercial Viability}
+The global market for rapid point-of-care infectious disease diagnostics was valued at \$14.2 Billion in 2025 and is projected to reach \$24.8 Billion by 2032 (CAGR 8.3\%). Meridian BioSystems will initially target hospital emergency departments and intensive care units where rapid diagnostic results directly reduce patient length of stay and intensive care costs.
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[scale=0.85, every node/.style={transform shape}]
+    \node[ellipse, draw=NavyBlue, fill=NavyBlue!10, minimum width=11cm, minimum height=2.2cm, align=center, line width=1.2pt] (tam) at (0,0) {};
+    \node at (0,0.75) {\textbf{\textcolor{NavyBlue}{Total Addressable Market (TAM): \$8.4B}} --- Global Hospital Pathogen Diagnostics};
+    
+    \node[ellipse, draw=TealAccent, fill=TealAccent!15, minimum width=8cm, minimum height=1.5cm, align=center, line width=1.2pt] (sam) at (0,-0.2) {};
+    \node at (0,0.22) {\textbf{\textcolor{TealAccent}{Serviceable Addressable Market (SAM): \$1.2B}} --- US POC Bloodstream Testing};
+    
+    \node[ellipse, draw=DarkSlate, fill=DarkSlate!20, minimum width=4.8cm, minimum height=0.85cm, align=center, line width=1.2pt] (som) at (0,-0.36) {};
+    \node at (0,-0.36) {\textbf{\small\textcolor{DarkSlate}{SOM: \$45M (Year 3 Target)}}};
+\end{tikzpicture}
+\caption{Market Size Partitioning (TAM / SAM / SOM) for Meridian BioSystems.}
+\end{figure}
+
+\subsection{Competitive Landscape Analysis}
+Existing commercial diagnostic systems exhibit distinct trade-offs between speed, cost, and complexity. As summarized in Table 2, Meridian's \emph{OptoDx} platform combines the rapid assay time of lateral flow tests with the sensitivity of PCR.
+
+\begin{table}[htbp]
+\centering
+\small
+\caption{Competitive Comparison of Diagnostic Platform Technologies.}
+\vspace{2pt}
+\rowcolors{2}{LightGrayBG}{white}
+\begin{tabularx}{\textwidth}{X c c c c}
+\toprule
+\textbf{\textcolor{NavyBlue}{Performance Metric}} & \textbf{\textcolor{NavyBlue}{Meridian OptoDx}} & \textbf{\textcolor{NavyBlue}{Standard PCR}} & \textbf{\textcolor{NavyBlue}{Blood Culture}} & \textbf{\textcolor{NavyBlue}{Lateral Flow}} \\
+\midrule
+Time-to-Result & \textbf{$< 15$ Mins} & 2--4 Hours & 24--48 Hours & 15--30 Mins \\{}
+Limit of Detection & \textbf{$< 100$ CFU/mL} & 10--50 CFU/mL & 1 CFU/mL & $> 10^5$ CFU/mL \\{}
+Sample Preparation & \textbf{Automated On-Chip} & Manual Extraction & Automated Incubation & None \\{}
+Instrument Cost & \textbf{\$4,500} & \$45,000--\$90,000 & \$60,000 & None (Visual) \\{}
+Consumable Unit Cost & \textbf{\$12.50} & \$35.00--\$75.00 & \$18.00 & \$5.00--\$10.00 \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{Intellectual Property \& Regulatory Strategy}
+Meridian BioSystems holds exclusive global commercial rights to two provisional patents filed with the USPTO:
+\begin{itemize}
+    \item \textbf{US Prov. App. 63/892,104:} \emph{Plasmonic Nanostructure Arrays for Microfluidic Optoelectronic Sensing} (Filed Nov 2025).
+    \item \textbf{US Prov. App. 63/941,512:} \emph{Inertial Microfluidic Particle Separation in Viscous Biological Fluids} (Filed Mar 2026).
+\end{itemize}
+The regulatory path will follow the FDA 510(k) clearance process utilizing a predicate Class II point-of-care molecular diagnostic device. Meridian will seek Clinical Laboratory Improvement Amendments (CLIA) waiver status to allow deployment in decentralized clinical settings.
+
+\subsection{Phase II Transition and Commercial Partners}
+Upon successful completion of Phase I feasibility milestones, Meridian will submit an NSF Phase II proposal for \$1,200,000 in funding. To accelerate commercial scale-up, Meridian has secured non-binding Letters of Intent (LOIs) from:
+\begin{enumerate}
+    \item \textbf{Apex Precision Tech Inc.:} Contract manufacturing partner for high-volume injection molding of microfluidic cartridges.
+    \item \textbf{Synapse Health Network:} Regional health system providing clinical access for prospective 200-patient validation trials during Phase II.
+\end{enumerate}
+
+% ==================== SECTION 4 ====================
+\section{Key Personnel, Facilities, and Budget Justification}
+
+\subsection{Key Personnel Qualifications}
+\begin{itemize}
+    \item \textbf{Dr. Eleanor Vance, Ph.D. (Principal Investigator):} Former Senior Research Scientist at Harvard Wyss Institute. 12+ years experience in microfluidics, biosensors, and translational diagnostics. Author of 24 peer-reviewed publications and inventor on 5 patents.
+    \item \textbf{Dr. Marcus Lin, Ph.D. (Lead Surface Chemist):} Ph.D. in Materials Chemistry from MIT. Expert in self-assembled monolayers, gold nanoparticle synthesis, and aptamer functionalization chemistry.
+    \item \textbf{Sarah Jenkins, M.S. (Chief Systems Engineer):} 10+ years commercial experience in optoelectronic instrument design and embedded signal processing at Vertex Biomedical.
+\end{itemize}
+
+\subsection{Facilities and Equipment Resources}
+Meridian BioSystems operates a $2,400\text{ sq ft}$ laboratory facility at the Cambridge Innovation Center, equipped with:
+\begin{itemize}
+    \item Class 1000 (ISO 6) cleanroom for microfluidic device prototype assembly.
+    \item BSL-2 cell culture laboratory equipped with Class II Type A2 biosafety cabinets, incubators, and refrigerated centrifuges.
+    \item Optical characterization suite with ocean optics spectrometers, epi-fluorescence microscope, and RF sputtering system.
+\end{itemize}
+
+\subsection{Phase I Budget Breakdown and Cost Realism}
+
+The requested total direct and indirect cost budget for the 6-month Phase I project is \$275,000. Costs have been estimated based on audited labor rates and quotes from qualified vendor suppliers.
+
+\begin{table}[htbp]
+\centering
+\small
+\caption{Detailed Phase I Budget Allocation by Cost Category.}
+\vspace{2pt}
+\rowcolors{2}{LightGrayBG}{white}
+\begin{tabularx}{\textwidth}{X X r r}
+\toprule
+\textbf{\textcolor{NavyBlue}{Cost Category}} & \textbf{\textcolor{NavyBlue}{Description \& Itemization}} & \textbf{\textcolor{NavyBlue}{Cost (\$)}} & \textbf{\textcolor{NavyBlue}{Share (\%)}} \\
+\midrule
+Senior Personnel & PI Dr. Vance (2.5 Mos) \& Dr. Lin (2.0 Mos) & \$112,500 & 40.9\% \\{}
+Engineering Staff & Systems Engineer S. Jenkins (1.5 Mos) & \$36,000 & 13.1\% \\{}
+Materials \& Supplies & Microfluidic COC substrates, aptamers, gold nanostars & \$38,500 & 14.0\% \\{}
+Subcontractor Services & Apex Precision Tech (Precision Mold Die Tooling) & \$32,000 & 11.6\% \\{}
+Analytical Testing & Third-party SEM/AFM surface characterization & \$9,500 & 3.5\% \\{}
+Indirect Costs (F\&A) & Overhead calculated at 32\% of Direct Labor & \$46,500 & 16.9\% \\
+\midrule
+\textbf{Total Requested Budget} & \textbf{NSF Phase I Small Business Innovation Research} & \textbf{\$275,000} & \textbf{100.0\%} \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\vspace{3pt}
+\begin{tcolorbox}[proposalcard]
+\small
+\textbf{\faCheckCircle\ Compliance Statement:}\\
+Meridian BioSystems Inc. certifies that it is a small business concern meeting all eligibility criteria set forth by the National Science Foundation SBIR/STTR Phase I solicitation guidelines. All research work detailed in this proposal will be performed within the United States at Meridian's facilities and designated subcontractor sites.
+\end{tcolorbox}
+
+\end{document}

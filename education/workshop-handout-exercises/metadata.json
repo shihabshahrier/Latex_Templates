@@ -1,0 +1,8 @@
+{
+  "name": "Educational Workshop Handout & Exercises",
+  "compiler": "pdflatex",
+  "description": "Educational Workshop Handout & Exercises LaTeX template \u2014 educational workshop handout & exercises latex template. Elegant, compile-tested, editable online at letx.app.",
+  "author": "LetX",
+  "category": "education",
+  "license": "MIT"
+}

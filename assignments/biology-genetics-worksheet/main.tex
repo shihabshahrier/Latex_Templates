@@ -1,0 +1,500 @@
+\documentclass[10pt,a4paper]{scrartcl}
+
+% ==============================================================================
+% PACKAGES & SETUP
+% ==============================================================================
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=13mm,top=14mm,bottom=15mm]{geometry}
+\usepackage[table]{xcolor}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{multicol}
+\usepackage{enumitem}
+\usepackage{tikz}
+\usetikzlibrary{positioning,calc,shapes.geometric,patterns,backgrounds}
+\usepackage[many]{tcolorbox}
+\usepackage{fontawesome5}
+\usepackage{scrlayer-scrpage}
+
+% ==============================================================================
+% COLOR PALETTE (Modern Deep Teal & Sage Accent)
+% ==============================================================================
+\definecolor{TealDark}{RGB}{18,78,67}
+\definecolor{TealMedium}{RGB}{35,110,96}
+\definecolor{SageLight}{RGB}{234,244,240}
+\definecolor{CoralAccent}{RGB}{217,107,39}
+\definecolor{SlateDark}{RGB}{40,55,70}
+\definecolor{BoxBg}{RGB}{249,251,250}
+\definecolor{BorderGray}{RGB}{210,225,220}
+
+% ==============================================================================
+% HEADER & FOOTER CONFIGURATION (KOMA-Script)
+% ==============================================================================
+\clearpairofpagestyles
+\addtokomafont{pageheadfoot}{\sffamily\color{SlateDark}}
+\ihead{\textbf{\textcolor{TealDark}{Meridian Academy}} \quad\vline\quad Department of Biological Sciences}
+\ohead{AP Biology \quad$\bullet$\quad Unit 4: Genetics}
+\ifoot{\footnotesize Mendelian and Molecular Inheritance Worksheet}
+\ofoot{\footnotesize Page \thepage\ of 3}
+
+% ==============================================================================
+% TCOLORBOX STYLES
+% ==============================================================================
+\tcbset{
+  basebox/.style={
+    enhanced,
+    boxrule=0.8pt,
+    arc=3pt,
+    fonttitle=\bfseries\sffamily,
+    attach boxed title to top left={xshift=10pt, yshift=-9pt},
+    boxed title style={
+      boxrule=0pt,
+      arc=2pt,
+      outer arc=2pt
+    }
+  }
+}
+
+\newtcolorbox{headerbox}[1][]{
+  enhanced,
+  colback=SageLight,
+  colframe=TealDark,
+  boxrule=1.2pt,
+  arc=4pt,
+  left=9pt, right=9pt, top=5pt, bottom=5pt,
+  #1
+}
+
+\newtcolorbox{sectionbox}[2][]{
+  basebox,
+  colback=white,
+  colframe=TealDark,
+  coltitle=white,
+  colbacktitle=TealDark,
+  title={#2},
+  left=8pt, right=8pt, top=7pt, bottom=6pt,
+  #1
+}
+
+\newtcolorbox{workspace}[1][Work Area / Explanation]{
+  enhanced,
+  colback=BoxBg,
+  colframe=TealMedium!40!white,
+  boxrule=0.6pt,
+  arc=3pt,
+  title={\small\faPen{} #1},
+  coltitle=TealDark,
+  colbacktitle=SageLight,
+  attach boxed title to top left={xshift=8pt, yshift=-8pt},
+  boxed title style={boxrule=0.4pt, colframe=TealMedium!40!white},
+  left=7pt, right=7pt, top=7pt, bottom=5pt
+}
+
+% Custom list styling
+\setlist[enumerate,1]{label=\bfseries\color{TealDark}\arabic*., leftmargin=*, itemsep=2pt, topsep=1pt}
+\setlist[enumerate,2]{label=\bfseries\color{TealMedium}(\alph*), leftmargin=*, itemsep=1pt, topsep=1pt}
+
+\begin{document}
+
+% Pre-load fontawesome font definitions to prevent tcolorbox font-loading issues
+\sbox0{\faPen\faDna\faCheck}
+
+% ==============================================================================
+% DOCUMENT HEADER / METADATA BLOCK
+% ==============================================================================
+\begin{headerbox}
+\begin{tabularx}{\textwidth}{@{} X r @{}}
+  {\Large\textbf{\textcolor{TealDark}{\sffamily UNIT 4: GENETICS \& PATTERNS OF INHERITANCE}}} & \textcolor{TealDark}{\Large\faDna} \\
+  {\small\sffamily Problem Set, Punnett Square Analysis \& Pedigree Interpretation} & {\small\sffamily Academic Year 2025--2026}
+\end{tabularx}
+\vspace{2pt}
+\textcolor{TealMedium}{\rule{\textwidth}{0.8pt}}
+\vspace{2pt}
+\sffamily
+\begin{tabularx}{\textwidth}{@{} l X l X l X @{}}
+  \textbf{Student Name:} & \underline{\hspace{3.2cm}} & \textbf{Date:} & \underline{\hspace{1.6cm}} & \textbf{Period:} & \underline{\hspace{0.8cm}} \\
+  \textbf{Instructor:} & Dr. E. Vance & \textbf{Total Score:} & \underline{\quad / 50 pts} & \textbf{Grade:} & \underline{\hspace{0.8cm}}
+\end{tabularx}
+\end{headerbox}
+
+\vspace{4pt}
+
+% ==============================================================================
+% SECTION 1: FOUNDATIONS & TERMINOLOGY
+% ==============================================================================
+\begin{sectionbox}{Section 1: Fundamental Principles \& Terminology (8 Points)}
+\sffamily
+Complete the table below by providing the correct genetic term, symbol notation, or description.
+
+\vspace{1pt}
+\rowcolors{2}{SageLight!50}{white}
+\begin{tabularx}{\textwidth}{|>{\bfseries\color{TealDark}}p{3.0cm}|X|>{\centering\arraybackslash}p{2.4cm}|>{\centering\arraybackslash}p{2.3cm}|}
+\hline
+\rowcolor{TealDark}
+\color{white}\textbf{Genetic Term} & \color{white}\textbf{Definition \& Biological Significance} & \color{white}\textbf{Example Alleles} & \color{white}\textbf{Phenotype Outcome} \\
+\hline
+Homozygous Dominant & Possesses two identical dominant alleles for a given gene locus. & $BB$ & Dominant Trait \\
+\hline
+Heterozygous & Possesses two distinct alleles for a single gene locus. & \underline{\hspace{1.5cm}} & Dominant Trait \\
+\hline
+Phenotype & \underline{\hspace{5.0cm}} & Physical Appearance & Observable Trait \\
+\hline
+Codominance & \underline{\hspace{5.5cm}} & $I^A I^B$ & \underline{\hspace{1.5cm}} \\
+\hline
+Recessive Allele & Allele whose phenotype is masked in the presence of a dominant allele. & $b$ & Expressed if $bb$ \\
+\hline
+\end{tabularx}
+\end{sectionbox}
+
+\vspace{4pt}
+
+% ==============================================================================
+% SECTION 2: MONOHYBRID CROSSES
+% ==============================================================================
+\begin{sectionbox}{Section 2: Monohybrid Inheritance \& Punnett Square Analysis (10 Points)}
+\begin{enumerate}
+  \item \textbf{Pod Shape Inheritance in Garden Peas (\textit{Pisum sativum}):}
+  In pea plants, inflated pod shape ($I$) is completely dominant over constricted pod shape ($i$). A heterozygous inflated-pod plant is crossed with a homozygous constricted-pod plant.
+
+  \vspace{1pt}
+  \begin{minipage}[t]{0.56\textwidth}
+    \begin{enumerate}
+      \item State parental genotypes:
+      \begin{itemize}[label={--}, leftmargin=10pt, itemsep=0pt]
+        \item Parent 1 (Inflated): \underline{\hspace{1.5cm}}
+        \item Parent 2 (Constricted): \underline{\hspace{1.4cm}}
+      \end{itemize}
+      \item Complete the Punnett Square on the right.
+      \item Calculate phenotypic ratio of offspring:\\
+      Inflated : Constricted = \underline{\hspace{1.5cm}}
+      \item If 480 offspring seeds are collected, calculate expected count of constricted pod plants:\\
+      Expected Count = \underline{\hspace{1.5cm}} plants.
+    \end{enumerate}
+  \end{minipage}%
+  \hfill
+  \begin{minipage}[t]{0.40\textwidth}
+    \centering
+    \begin{tcolorbox}[colback=white, colframe=TealMedium, boxrule=0.8pt, title={\centering\small\sffamily\bfseries Monohybrid Cross Punnett Square}, coltitle=white, width=\linewidth, top=1pt, bottom=1pt]
+      \centering
+      \vspace{1pt}
+      \begin{tikzpicture}[scale=0.78]
+        \draw[thick, TealDark] (0,0) grid (3,3);
+        \draw[very thick, TealDark] (0,0) rectangle (3,3);
+        \draw[line width=1.2pt, TealDark] (0,1.5) -- (3,1.5);
+        \draw[line width=1.2pt, TealDark] (1.5,0) -- (1.5,3);
+        
+        % Maternal Gametes
+        \node[font=\bfseries\sffamily\Large\color{CoralAccent}] at (0.75, 3.35) {$I$};
+        \node[font=\bfseries\sffamily\Large\color{CoralAccent}] at (2.25, 3.35) {$i$};
+        \node[font=\sffamily\footnotesize\bfseries\color{TealDark}] at (1.5, 3.75) {Maternal Gametes};
+        
+        % Paternal Gametes
+        \node[font=\bfseries\sffamily\Large\color{TealDark}] at (-0.4, 2.25) {$i$};
+        \node[font=\bfseries\sffamily\Large\color{TealDark}] at (-0.4, 0.75) {$i$};
+        \node[font=\sffamily\footnotesize\bfseries\color{TealDark}, rotate=90] at (-0.8, 1.5) {Paternal Gametes};
+        
+        % Offspring genotypes
+        \node[font=\bfseries\sffamily\large\color{SlateDark}] at (0.75, 2.25) {$Ii$};
+        \node[font=\bfseries\sffamily\large\color{SlateDark}] at (2.25, 2.25) {$ii$};
+        \node[font=\bfseries\sffamily\large\color{SlateDark}] at (0.75, 0.75) {$Ii$};
+        \node[font=\bfseries\sffamily\large\color{SlateDark}] at (2.25, 0.75) {$ii$};
+      \end{tikzpicture}
+      \vspace{1pt}
+    \end{tcolorbox}
+  \end{minipage}
+
+  \vspace{2pt}
+
+  \item \textbf{Coat Color Genetics in Rex Rabbits:}
+  In Rex rabbits, black coat color ($B$) is dominant to chinchilla gray ($b$). A geneticist crosses two black rabbits. The resulting litter consists of 27 black kits and 9 chinchilla gray kits.
+
+  \begin{enumerate}
+    \item Determine parental genotypes and justify your answer using Mendelian ratios.
+    \item Perform the necessary Punnett square analysis to support your conclusion.
+  \end{enumerate}
+
+  \vspace{1pt}
+  \begin{workspace}[Deduction \& Genetic Proof]
+    \vspace{0.9cm}
+  \end{workspace}
+\end{enumerate}
+\end{sectionbox}
+
+\newpage
+
+% ==============================================================================
+% SECTION 3: DIHYBRID CROSSES & INDEPENDENT ASSORTMENT
+% ==============================================================================
+\begin{sectionbox}{Section 3: Dihybrid Inheritance \& Independent Assortment (12 Points)}
+\begin{enumerate}
+  \item \textbf{\textit{Drosophila melanogaster} Dihybrid Cross Analysis:}
+  In fruit flies, gray body color ($E$) is dominant over ebony body ($e$), and normal wings ($V$) are dominant over vestigial wings ($v$). A male fly heterozygous for both traits ($EeVv$) is mated with a female fly also heterozygous for both traits ($EeVv$).
+
+  \begin{enumerate}
+    \item List the four possible gamete combinations produced by each parent fly:
+    \begin{center}
+      Gametes: \quad \fbox{\hspace{6pt}$EV$\hspace{6pt}} \quad \fbox{\hspace{6pt}$Ev$\hspace{6pt}} \quad \fbox{\hspace{6pt}$eV$\hspace{6pt}} \quad \fbox{\hspace{6pt}$ev$\hspace{6pt}}
+    \end{center}
+    \item Complete the 4x4 Dihybrid Punnett Square below by writing the resulting 4-allele genotype in each cell.
+  \end{enumerate}
+
+  \vspace{1pt}
+  \begin{center}
+  \begin{tcolorbox}[colback=white, colframe=TealDark, boxrule=1pt, title={\centering\sffamily\bfseries Dihybrid Cross Grid ($EeVv \times EeVv$)}, coltitle=white, width=0.82\textwidth, top=1pt, bottom=1pt]
+    \centering
+    \vspace{1pt}
+    \begin{tikzpicture}[scale=0.76]
+      % Grid boundaries
+      \draw[thick, TealDark] (0,0) grid (6.4,6.4);
+      \draw[very thick, TealDark] (0,0) rectangle (6.4,6.4);
+      \foreach \x in {1.6, 3.2, 4.8} {
+        \draw[line width=1.1pt, TealDark] (\x,0) -- (\x,6.4);
+        \draw[line width=1.1pt, TealDark] (0,\x) -- (6.4,\x);
+      }
+      
+      % Top Maternal Gametes
+      \node[font=\bfseries\sffamily\color{CoralAccent}] at (0.8, 6.75) {$EV$};
+      \node[font=\bfseries\sffamily\color{CoralAccent}] at (2.4, 6.75) {$Ev$};
+      \node[font=\bfseries\sffamily\color{CoralAccent}] at (4.0, 6.75) {$eV$};
+      \node[font=\bfseries\sffamily\color{CoralAccent}] at (5.6, 6.75) {$ev$};
+      \node[font=\sffamily\small\bfseries\color{TealDark}] at (3.2, 7.2) {Female Gametes ($EeVv$)};
+      
+      % Left Paternal Gametes
+      \node[font=\bfseries\sffamily\color{TealDark}] at (-0.5, 5.6) {$EV$};
+      \node[font=\bfseries\sffamily\color{TealDark}] at (-0.5, 4.0) {$Ev$};
+      \node[font=\bfseries\sffamily\color{TealDark}] at (-0.5, 2.4) {$eV$};
+      \node[font=\bfseries\sffamily\color{TealDark}] at (-0.5, 0.8) {$ev$};
+      \node[font=\sffamily\small\bfseries\color{TealDark}, rotate=90] at (-0.95, 3.2) {Male Gametes ($EeVv$)};
+
+      % Pre-filled reference genotypes & blanks
+      \node[font=\sffamily\small\bfseries\color{SlateDark}] at (0.8, 5.6) {$EEVV$};
+      \node[font=\sffamily\small\bfseries\color{SlateDark}] at (2.4, 5.6) {$EEVv$};
+      \node[font=\sffamily\small\bfseries\color{SlateDark}] at (4.0, 5.6) {$EeVV$};
+      \node[font=\sffamily\small\bfseries\color{SlateDark}] at (5.6, 5.6) {$EeVv$};
+
+      \node[font=\sffamily\small\bfseries\color{SlateDark}] at (0.8, 4.0) {$EEVv$};
+      \node[font=\sffamily\small\bfseries\color{SlateDark}] at (2.4, 4.0) {$EEvv$};
+      \node[font=\sffamily\small\bfseries\color{SlateDark}] at (4.0, 4.0) {$EeVv$};
+      \node[font=\sffamily\small\color{gray!70}] at (5.6, 4.0) {$Eevv$};
+
+      \node[font=\sffamily\small\bfseries\color{SlateDark}] at (0.8, 2.4) {$EeVV$};
+      \node[font=\sffamily\small\bfseries\color{SlateDark}] at (2.4, 2.4) {$EeVv$};
+      \node[font=\sffamily\small\color{gray!70}] at (4.0, 2.4) {$eeVV$};
+      \node[font=\sffamily\small\color{gray!70}] at (5.6, 2.4) {$eeVv$};
+
+      \node[font=\sffamily\small\bfseries\color{SlateDark}] at (0.8, 0.8) {$EeVv$};
+      \node[font=\sffamily\small\color{gray!70}] at (2.4, 0.8) {$Eevv$};
+      \node[font=\sffamily\small\color{gray!70}] at (4.0, 0.8) {$eeVv$};
+      \node[font=\sffamily\small\bfseries\color{TealDark}] at (5.6, 0.8) {$eevv$};
+    \end{tikzpicture}
+    \vspace{1pt}
+  \end{tcolorbox}
+  \end{center}
+
+  \vspace{1pt}
+  \begin{enumerate}[resume]
+    \item Summarize expected phenotypic counts out of 16 total offspring:
+    \begin{multicols}{2}
+      \begin{itemize}[label={\small\faCheck}]
+        \item Gray Body, Normal Wings: \underline{\hspace{1.2cm}} / 16
+        \item Gray Body, Vestigial Wings: \underline{\hspace{1.2cm}} / 16
+        \item Ebony Body, Normal Wings: \underline{\hspace{1.2cm}} / 16
+        \item Ebony Body, Vestigial Wings: \underline{\hspace{1.2cm}} / 16
+      \end{itemize}
+    \end{multicols}
+
+    \item \textbf{Meiotic Mechanism:} Explain how the chromosome alignment during \textbf{Metaphase I} of meiosis produces independent assortment of unlinked genes.
+  \end{enumerate}
+
+  \vspace{1pt}
+  \begin{workspace}[Biological Explanation]
+    \vspace{0.8cm}
+  \end{workspace}
+\end{enumerate}
+\end{sectionbox}
+
+\vspace{3pt}
+
+% ==============================================================================
+% SECTION 4: NON-MENDELIAN INHERITANCE
+% ==============================================================================
+\begin{sectionbox}{Section 4: Complex \& Non-Mendelian Patterns (10 Points)}
+\begin{enumerate}
+  \item \textbf{Incomplete Dominance in Snapdragons (\textit{Antirrhinum majus}):}
+  Red flower color is governed by allele $C^R$ and white flower color by allele $C^W$. Heterozygous plants ($C^R C^W$) exhibit pink flowers.
+  \begin{enumerate}
+    \item A pink snapdragon is crossed with a white snapdragon. Determine expected genotypic and phenotypic ratios of offspring.
+  \end{enumerate}
+
+  \vspace{1pt}
+  \begin{workspace}[Snapdragon Cross Work Area]
+    \vspace{0.8cm}
+  \end{workspace}
+
+  \vspace{2pt}
+  \item \textbf{Multiple Alleles \& Codominance: Human ABO Blood Types:}
+  Elena (Blood Type A) and Marcus (Blood Type B) have a child, Julian, who has Blood Type O ($ii$).
+  \begin{enumerate}
+    \item Identify the precise genotypes of Elena: \underline{\hspace{1.8cm}} and Marcus: \underline{\hspace{1.8cm}}.
+    \item What is the probability that their next child will have Blood Type AB? Show your cross.
+    \item \textbf{Immunohematology:} Why can an individual with Type O blood safely donate red blood cells to any recipient regardless of blood type?
+  \end{enumerate}
+\end{enumerate}
+\end{sectionbox}
+
+\newpage
+
+% ==============================================================================
+% SECTION 5: SEX-LINKED TRAITS & PEDIGREE ANALYSIS
+% ==============================================================================
+\begin{sectionbox}{Section 5: Sex-Linked Inheritance \& Pedigree Analysis (10 Points)}
+\sffamily
+The pedigree below traces the inheritance of \textbf{Hemophilia A} (an X-linked recessive bleeding disorder caused by a deficiency in Factor VIII) across three generations of the Nexa family.
+
+\vspace{2pt}
+\begin{center}
+\begin{tikzpicture}[
+  male/.style={rectangle, draw=TealDark, thick, minimum size=5.5mm, inner sep=0pt},
+  female/.style={circle, draw=TealDark, thick, minimum size=5.5mm, inner sep=0pt},
+  affected/.style={fill=TealDark!85, text=white},
+  carrier/.style={fill=CoralAccent!45},
+  unaffected/.style={fill=white},
+  line/.style={draw=TealDark, thick},
+  labfont/.style={font=\sffamily\small\bfseries\color{SlateDark}}
+]
+  % Generation Labels
+  \node[labfont] at (-1.5, 0) {Gen I};
+  \node[labfont] at (-1.5, -1.5) {Gen II};
+  \node[labfont] at (-1.5, -3.0) {Gen III};
+
+  % --- Generation I ---
+  \node[male, unaffected, label=below:{\footnotesize I-1}] (I1) at (1.2, 0) {};
+  \node[female, carrier, label=below:{\footnotesize I-2}] (I2) at (4.2, 0) {};
+  \draw[line] (I1) -- (I2);
+  \coordinate (M1) at (2.7, 0);
+
+  % --- Generation II ---
+  \coordinate (P2) at (2.7, -0.75);
+  \draw[line] (M1) -- (P2);
+  \draw[line] (0.2, -0.75) -- (5.2, -0.75);
+  \draw[line] (0.2, -0.75) -- (0.2, -1.5);
+  \draw[line] (1.87, -0.75) -- (1.87, -1.5);
+  \draw[line] (3.53, -0.75) -- (3.53, -1.5);
+  \draw[line] (5.2, -0.75) -- (5.2, -1.5);
+
+  \node[female, unaffected, label=below:{\footnotesize II-1}] (II1) at (0.2, -1.5) {};
+  \node[male, affected, label=below:{\footnotesize II-2}] (II2) at (1.87, -1.5) {};
+  \node[female, carrier, label=below:{\footnotesize II-3}] (II3) at (3.53, -1.5) {};
+  \node[male, unaffected, label=below:{\footnotesize II-4}] (II4) at (5.2, -1.5) {};
+
+  % Marriage II-3 with II-5
+  \node[male, unaffected, label=below:{\footnotesize II-5}] (II5) at (7.0, -1.5) {};
+  \draw[line] (II3) -- (II5);
+  \coordinate (M2) at (5.265, -1.5);
+
+  % --- Generation III ---
+  \coordinate (P3) at (5.265, -2.25);
+  \draw[line] (M2) -- (P3);
+  \draw[line] (3.8, -2.25) -- (6.7, -2.25);
+  \draw[line] (3.8, -2.25) -- (3.8, -3.0);
+  \draw[line] (5.25, -2.25) -- (5.25, -3.0);
+  \draw[line] (6.7, -2.25) -- (6.7, -3.0);
+
+  \node[male, affected, label=below:{\footnotesize III-1}] (III1) at (3.8, -3.0) {};
+  \node[female, carrier, label=below:{\footnotesize III-2}] (III2) at (5.25, -3.0) {};
+  \node[male, unaffected, label=below:{\footnotesize III-3}] (III3) at (6.7, -3.0) {};
+
+  % --- Legend Box ---
+  \begin{scope}[shift={(8.2, 0.2)}]
+    \draw[thick, TealDark, fill=SageLight, rounded corners=4pt] (-0.3, 0.3) rectangle (4.2, -3.4);
+    \node[anchor=west, font=\sffamily\bfseries\color{TealDark}] at (0, -0.1) {Pedigree Chart Legend};
+    \node[male, unaffected, scale=0.6] at (0.3, -0.7) {};
+    \node[anchor=west, font=\sffamily\small] at (0.8, -0.7) {Unaffected Male};
+    \node[female, unaffected, scale=0.6] at (0.3, -1.3) {};
+    \node[anchor=west, font=\sffamily\small] at (0.8, -1.3) {Unaffected Female};
+    \node[male, affected, scale=0.6] at (0.3, -1.9) {};
+    \node[anchor=west, font=\sffamily\small] at (0.8, -1.9) {Hemophilic Individual};
+    \node[female, carrier, scale=0.6] at (0.3, -2.5) {};
+    \node[anchor=west, font=\sffamily\small] at (0.8, -2.5) {Heterozygous Carrier};
+    \node[anchor=west, font=\sffamily\scriptsize\color{TealMedium}] at (0.0, -3.1) {$X^H = \text{Normal}, X^h = \text{Hemophilia}$};
+  \end{scope}
+\end{tikzpicture}
+\end{center}
+
+\vspace{1pt}
+
+\begin{enumerate}
+  \item \textbf{Genotype Determination:} Assign the most precise genotype for each individual:
+  \begin{multicols}{2}
+    \begin{itemize}[label={\small\faDna}]
+      \item Individual I-1: \underline{\hspace{2.2cm}}
+      \item Individual I-2: \underline{\hspace{2.2cm}}
+      \item Individual II-2: \underline{\hspace{2.2cm}}
+      \item Individual II-3: \underline{\hspace{2.2cm}}
+      \item Individual III-1: \underline{\hspace{2.2cm}}
+      \item Individual III-2: \underline{\hspace{2.2cm}}
+    \end{itemize}
+  \end{multicols}
+
+  \item \textbf{Probability Calculation:} If Individual III-2 (carrier female) marries an unaffected male ($X^H Y$), calculate the probability of the following outcomes:
+  \begin{enumerate}
+    \item Probability that their first \textbf{son} will have hemophilia: \underline{\hspace{2.0cm}}
+    \item Probability that their first \textbf{daughter} will be a carrier: \underline{\hspace{2.0cm}}
+    \item Overall probability of having an affected child of \textbf{any gender}: \underline{\hspace{2.0cm}}
+  \end{enumerate}
+
+  \item \textbf{Genetic Reasoning:} Why are X-linked recessive traits expressed significantly more frequently in males ($XY$) than in females ($XX$)?
+\end{enumerate}
+
+\vspace{1pt}
+\begin{workspace}[X-Linked Inheritance Mechanism]
+  \vspace{0.8cm}
+\end{workspace}
+\end{sectionbox}
+
+\vspace{3pt}
+
+% ==============================================================================
+% SECTION 6: CHI-SQUARE ANALYSIS
+% ==============================================================================
+\begin{sectionbox}{Section 6: Statistical Analysis -- Chi-Square ($\chi^2$) Goodness-of-Fit (10 Points)}
+\sffamily
+A research team at \textbf{Vertex Genetics Institute} crossed two heterozygous tall, purple-flowered pea plants ($TtPp \times TtPp$). Out of a total sample of \textbf{800 offspring plants}, the observed phenotypic distribution was recorded in the table below.
+
+Test the null hypothesis ($H_0$) that the data fits the expected Mendelian \textbf{9:3:3:1} dihybrid ratio at a significance level of $p = 0.05$.
+
+\vspace{2pt}
+\rowcolors{2}{SageLight!40}{white}
+\begin{tabularx}{\textwidth}{|X|>{\centering\arraybackslash}p{2.0cm}|>{\centering\arraybackslash}p{2.0cm}|>{\centering\arraybackslash}p{2.0cm}|>{\centering\arraybackslash}p{2.6cm}|}
+\hline
+\rowcolor{TealDark}
+\color{white}\textbf{Phenotype Category} & \color{white}\textbf{Observed ($O$)} & \color{white}\textbf{Expected Ratio} & \color{white}\textbf{Expected ($E$)} & \color{white}\textbf{$(O - E)^2 / E$} \\
+\hline
+Tall, Purple Flowers & 462 & $9/16$ & 450 & $(462 - 450)^2 / 450 = 0.320$ \\
+\hline
+Tall, White Flowers & 138 & $3/16$ & 150 & \underline{\hspace{1.6cm}} \\
+\hline
+Dwarf, Purple Flowers & 154 & $3/16$ & 150 & \underline{\hspace{1.6cm}} \\
+\hline
+Dwarf, White Flowers & 46 & $1/16$ & 50 & \underline{\hspace{1.6cm}} \\
+\hline
+\multicolumn{4}{|r|}{\textbf{Total Chi-Square Value ($\chi^2 = \sum \frac{(O-E)^2}{E}$):}} & \underline{\hspace{1.8cm}} \\
+\hline
+\end{tabularx}
+
+\vspace{2pt}
+\begin{enumerate}
+  \item Degrees of freedom ($df = k - 1$): \underline{\hspace{1.6cm}} \quad (Critical value at $p=0.05$ with $df=3$ is \textbf{7.82}).
+  \item \textbf{Conclusion Statement:} Do you accept or reject the Null Hypothesis ($H_0$)? State your biological rationale.
+\end{enumerate}
+
+\vspace{1pt}
+\begin{workspace}[Chi-Square Decision \& Rationale]
+  \vspace{0.8cm}
+\end{workspace}
+\end{sectionbox}
+
+\end{document}

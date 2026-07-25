@@ -1,0 +1,481 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[margin=0.5in,top=0.6in,bottom=0.6in]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+
+\usepackage{amsmath,amssymb}
+\usepackage[table,xcdraw]{xcolor}
+\usepackage{tcolorbox}
+\tcbuselibrary{skins,breakable}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{colortbl}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{tikz}
+\usetikzlibrary{calc,positioning,shapes.geometric,backgrounds,patterns}
+\usepackage{fontawesome5}
+\usepackage{microtype}
+\usepackage{lastpage}
+
+% Color Definitions (Tasteful 4-color lab palette)
+\definecolor{labnavy}{HTML}{0F172A}   % Deep Navy Primary
+\definecolor{labteal}{HTML}{0F766E}   % Secondary Teal
+\definecolor{labblue}{HTML}{0284C7}   % Accent Blue
+\definecolor{labbg}{HTML}{F8FAFC}     % Card Light Background
+\definecolor{labborder}{HTML}{CBD5E1} % Border Slate
+\definecolor{labtext}{HTML}{334155}   % Body Text Dark
+\definecolor{labgreen}{HTML}{15803D}  % Success / Approved
+\definecolor{labred}{HTML}{B91C1C}    % Danger / Quarantined
+\definecolor{labamber}{HTML}{B45309}  % Warning / Pending
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{2pt}
+\renewcommand{\arraystretch}{1.1}
+
+% Page Setup
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+\fancyhead[L]{\small\bfseries\color{labnavy}\faFlask\ Apex Life Sciences \quad\vline\quad \color{labteal}Molecular Biology Core Facility}
+\fancyhead[R]{\small\color{labtext}SOP-LAB-042 v3.1 \quad\vline\quad \textbf{Doc ID:} LOG-2026-B3}
+\fancyfoot[L]{\small\color{labtext}\faBuilding\ Vertex Research Campus, Bldg B-304 \quad\vline\quad \faPhone\ +1 (555) 019-2834}
+\fancyfoot[C]{\small\color{labtext}CONFIDENTIAL \& PROPRIETARY -- GLP COMPLIANT}
+\fancyfoot[R]{\small\color{labnavy}\bfseries Page \thepage\ of \pageref{LastPage}}
+
+% Custom tcolorbox styles
+\tcbset{
+    labcard/.style={
+        enhanced,
+        colback=labbg,
+        colframe=labborder,
+        arc=2.5pt,
+        boxrule=0.6pt,
+        left=5pt, right=5pt, top=4pt, bottom=4pt
+    },
+    labcardteal/.style={
+        enhanced,
+        colback=labteal!4!white,
+        colframe=labteal,
+        arc=2.5pt,
+        boxrule=0.8pt,
+        left=6pt, right=6pt, top=4pt, bottom=4pt
+    },
+    labcardnavy/.style={
+        enhanced,
+        colback=labnavy!4!white,
+        colframe=labnavy,
+        arc=2.5pt,
+        boxrule=0.8pt,
+        left=6pt, right=6pt, top=4pt, bottom=4pt
+    }
+}
+
+% Helper for Barcode rendering using TikZ
+\newcommand{\drawbarcode}[1]{%
+  \begin{tikzpicture}[x=0.7pt,y=0.7pt,every node/.style={inner sep=0,outer sep=0}]
+    \fill[white] (0,0) rectangle (170,30);
+    \foreach \x/\w in {
+      0/2, 4/1, 7/3, 12/1, 15/2, 19/1, 22/4, 28/1, 31/2, 35/1, 38/3, 43/2, 47/1, 50/3,
+      55/1, 58/2, 62/4, 68/1, 71/2, 75/1, 78/3, 83/1, 86/2, 90/1, 93/4, 99/2, 103/1,
+      106/3, 111/1, 114/2, 118/1, 121/4, 127/2, 131/1, 134/3, 139/1, 142/2, 146/1,
+      149/4, 155/2, 159/1, 162/3, 167/1
+    }{
+      \fill[labnavy] (\x pt,5pt) rectangle (\x pt + \w pt,28pt);
+    }
+    \node[anchor=north] at (85,4) {\tiny\ttfamily\bfseries #1};
+  \end{tikzpicture}%
+}
+
+\begin{document}
+
+% ==========================================
+% PAGE 1: TITLE, CONTROL METADATA, & DETAILED PREP SHEET
+% ==========================================
+
+% Header Banner
+\begin{tcolorbox}[labcardnavy, left=10pt, right=10pt, top=5pt, bottom=5pt]
+  \begin{minipage}[c]{0.68\textwidth}
+    {\LARGE\bfseries\color{labnavy} WET LAB REAGENT LOGBOOK}\\[1pt]
+    {\small\bfseries\color{labteal} Reagent Preparation, Mass Balance \& Quality Control Tracking}\\[2pt]
+    {\scriptsize\color{labtext}\faFlask\ \textbf{Facility:} Apex BioLabs Core Facility \quad \faBuilding\ \textbf{Unit:} Buffer \& Media Prep Suite B-304}
+  \end{minipage}%
+  \hfill
+  \begin{minipage}[c]{0.28\textwidth}
+    \centering
+    \drawbarcode{REAG-LOG-2026-B3}\\
+    {\tiny\color{labtext}\textbf{Audit Log Ref:} AL-88392-X}
+  \end{minipage}
+\end{tcolorbox}
+
+\vspace{-1pt}
+
+% KPI Status Summary Cards
+\begin{minipage}[t]{0.238\textwidth}
+  \begin{tcolorbox}[labcard, colframe=labblue, colback=labblue!5!white]
+    \centering
+    {\tiny\bfseries\color{labblue} TOTAL BATCHES LOGGED}\\[1pt]
+    {\Large\bfseries\color{labnavy} 142}\\[1pt]
+    {\tiny\color{labtext}\faCalendar\ Quarter Q3 2026}
+  \end{tcolorbox}
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.238\textwidth}
+  \begin{tcolorbox}[labcard, colframe=labgreen, colback=labgreen!5!white]
+    \centering
+    {\tiny\bfseries\color{labgreen} QC APPROVED \& ACTIVE}\\[1pt]
+    {\Large\bfseries\color{labgreen} 128}\\[1pt]
+    {\tiny\color{labtext}\faCheck\ Ready for Assay Use}
+  \end{tcolorbox}
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.238\textwidth}
+  \begin{tcolorbox}[labcard, colframe=labamber, colback=labamber!5!white]
+    \centering
+    {\tiny\bfseries\color{labamber} PENDING QC VERIFY}\\[1pt]
+    {\Large\bfseries\color{labamber} 9}\\[1pt]
+    {\tiny\color{labtext}\faClock\ Hold for Sterility}
+  \end{tcolorbox}
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.238\textwidth}
+  \begin{tcolorbox}[labcard, colframe=labred, colback=labred!5!white]
+    \centering
+    {\tiny\bfseries\color{labred} EXPIRED / QUARANTINED}\\[1pt]
+    {\Large\bfseries\color{labred} 5}\\[1pt]
+    {\tiny\color{labtext}\faExclamationTriangle\ Flagged Disposal}
+  \end{tcolorbox}
+\end{minipage}
+
+\vspace{1pt}
+
+% Section 1: Detailed Reagent Batch Preparation Record
+\begin{tcolorbox}[labcardteal, title={\small\bfseries\color{white}\faFile\ SECTION 1: MASTER REAGENT PREPARATION RECORD -- BATCH \# REAG-2026-0891}, coltitle=white, colbacktitle=labteal]
+
+  % Metadata Table
+  \scriptsize
+  \begin{tabularx}{\textwidth}{@{}lXlX@{}}
+    \textbf{Reagent Name:} & 10X Tris-EDTA (TE) Buffer pH 8.0 & \textbf{Preparation Date:} & 2026-07-24 \ \textbf{Time:} 09:30 \\
+    \textbf{Batch / Lot ID:} & \textbf{REAG-2026-0891-TE80} & \textbf{Expiration Date:} & 2027-01-24 (6 Months) \\
+    \textbf{Target Volume:} & $1000.0\,\text{mL}$ ($1.0\,\text{L}$) & \textbf{Storage Condition:} & Room Temp ($20^\circ\text{C}$ to $25^\circ\text{C}$) \\
+    \textbf{Prepared By:} & Dr. Eleanor Vance (Analyst) & \textbf{Verified By:} & Marcus Chen (QA Lead) \\
+    \textbf{SOP Reference:} & SOP-BUFF-012 Rev 4.0 & \textbf{Quality Grade:} & Molecular Biology Grade \\
+    \bottomrule
+  \end{tabularx}
+
+  \vspace{3pt}
+  {\subsection*{{\small\bfseries\color{labnavy}\faFlask\ Formulation \& Chemical Mass Calculation Block}}}
+  \vspace{-5pt}
+
+  \begin{tabularx}{\textwidth}{@{}Xccrr>{\raggedright\arraybackslash}Xc@{}}
+    \toprule
+    \rowcolor{labnavy!10}
+    \textbf{Chemical Component} & \textbf{CAS \#} & \textbf{MW} & \textbf{Target Conc.} & \textbf{Calc. Mass} & \textbf{Weighed Mass} & \textbf{Vendor \& Lot \#} \\
+    \midrule
+    Tris Base [Tris(hydroxymethyl)aminomethane] & 77-86-1 & 121.14 & $100\,\text{mM}$ & $12.114\,\text{g}$ & $12.115\,\text{g}$ & Synapse \#SY-88291 \\
+    EDTA Disodium Salt Dihydrate & 6381-92-6 & 372.24 & $10\,\text{mM}$ & $3.722\,\text{g}$ & $3.723\,\text{g}$ & Nexa \#NX-44012 \\
+    Hydrochloric Acid (HCl, 6M Stock) & 7647-01-0 & N/A & pH Adj. & $\sim 4.2\,\text{mL}$ & $4.18\,\text{mL}$ & Apex \#AP-90112 \\
+    Ultrapure Water (Milli-Q $18.2\,\text{M}\Omega\cdot\text{cm}$) & 7732-18-5 & 18.02 & Diluent & Q.S. $1000\,\text{mL}$ & $982.5\,\text{g}$ & In-House \#TANK-02 \\
+    \bottomrule
+  \end{tabularx}
+
+  \vspace{3pt}
+  {\subsection*{{\small\bfseries\color{labnavy}\faListOl\ Step-by-Step Preparation Protocol Execution}}}
+  \vspace{-5pt}
+
+  \begin{tabularx}{\textwidth}{@{}c>{\raggedright\arraybackslash}Xc>{\raggedright\arraybackslash}X@{}}
+    \rowcolor{labbg}
+    \textbf{Step} & \textbf{Procedure Specification} & \textbf{Check} & \textbf{Observed Parameter / Notes} \\
+    \hline
+    01 & Tare analytical balance (Bal-04). Weigh Tris Base ($12.114\,\text{g}$) and EDTA ($3.722\,\text{g}$). & [\ \checkmark\ ] & Weighed $12.115\,\text{g}$ Tris, $3.723\,\text{g}$ EDTA. \\
+    02 & Transfer solutes into $1000\,\text{mL}$ glass beaker. Add $800\,\text{mL}$ ultrapure ddH$_2$O. & [\ \checkmark\ ] & Dissolved under magnetic stirring at 400 RPM. \\
+    03 & Calibrate pH meter (pH-02) using pH 4.01, 7.00, and 10.01 standard buffers. & [\ \checkmark\ ] & Slope = $99.2\%$, Temp compensation ON ($22.4^\circ\text{C}$). \\
+    04 & Slowly titrate with 6M HCl under stirring until target pH $8.00 \pm 0.05$ is achieved. & [\ \checkmark\ ] & Final titration volume: $4.18\,\text{mL}$ 6M HCl. pH = $8.01$. \\
+    05 & Transfer solution to $1000\,\text{mL}$ volumetric flask. Q.S. to mark with ddH$_2$O. & [\ \checkmark\ ] & Meniscus aligned precisely at $1000.0\,\text{mL}$ mark. \\
+    06 & Filter sterilize through $0.22\,\mu\text{m}$ PES membrane filter into sterile storage bottle. & [\ \checkmark\ ] & Autoclave indicator strip turned black. Cycle \#402. \\
+    \bottomrule
+  \end{tabularx}
+
+  \vspace{3pt}
+  {\subsection*{{\small\bfseries\color{labnavy}\faCheckCircle\ Quality Control, Verification \& Sign-Off}}}
+  \vspace{-5pt}
+
+  \begin{tabularx}{\textwidth}{@{}lXlX@{}}
+    \textbf{Final Measured pH:} & $8.01$ at $22.5^\circ\text{C}$ (Spec: $8.00 \pm 0.05$) & \textbf{Conductivity:} & $14.2\,\text{mS/cm}$ at $23.0^\circ\text{C}$ \\
+    \textbf{Physical Appearance:} & Clear, colorless, particle-free & \textbf{Sterility Check:} & Passed ($0.22\,\mu\text{m}$ Filtered + Autoclaved) \\
+    \textbf{DNase/RNase Test:} & Negative (Fluorescence Assay Pass) & \textbf{Refractometer Index:} & $1.3342 \pm 0.0005$ \\
+    \textbf{Analyst Signature:} & \textit{Dr. Eleanor Vance} & \textbf{QA Approval:} & \textit{Marcus Chen, Lead QA} \\
+    \bottomrule
+  \end{tabularx}
+
+\end{tcolorbox}
+
+\vspace{-1pt}
+
+% Page 1 Bottom Barcode Block
+\begin{tcolorbox}[labcard, colback=labbg]
+  \begin{minipage}[c]{0.55\textwidth}
+    {\small\bfseries\color{labnavy}\faTag\ REAGENT BATCH IDENTIFIER BARCODE LOG}\\
+    {\tiny\color{labtext}Scan barcode for automated LIMS inventory entry and lot genealogy tracking.}
+  \end{minipage}%
+  \hfill
+  \begin{minipage}[c]{0.42\textwidth}
+    \centering
+    \drawbarcode{*REAG-2026-0891-TE80*}
+  \end{minipage}
+\end{tcolorbox}
+
+\newpage
+
+% ==========================================
+% PAGE 2: MASTER LOGBOOK REAGENT TABLE & SPECIALIZED FORMULATION
+% ==========================================
+
+{\section*{{\Large\bfseries\color{labnavy}\faBookOpen\ SECTION 2: MASTER REAGENT BATCH PREPARATION LOGBOOK}}}
+\vspace{-6pt}
+{\small\color{labtext}Comprehensive chronological log of all stock solutions, buffers, and working reagents prepared in Core Suite B-304.}
+
+\vspace{4pt}
+
+{\small
+\begin{tabularx}{\textwidth}{@{}c>{\raggedright\arraybackslash}Xcccc>{\centering\arraybackslash}Xcc@{}}
+  \toprule
+  \rowcolor{labnavy}
+  \color{white}\textbf{Batch ID} & \color{white}\textbf{Reagent Name} & \color{white}\textbf{Conc.} & \color{white}\textbf{Prep Date} & \color{white}\textbf{Exp Date} & \color{white}\textbf{Prep By} & \color{white}\textbf{Storage} & \color{white}\textbf{QC Status} & \color{white}\textbf{Sign} \\
+  \midrule
+  \rowcolor{white}
+  0885 & 1M Tris-HCl pH 7.5 & 1.0 M & 2026-07-15 & 2027-01-15 & E. Vance & RT ($22^\circ\text{C}$) & \color{labgreen}\textbf{Approved} & EV \\
+  \rowcolor{labbg}
+  0886 & 0.5M EDTA pH 8.0 & 0.5 M & 2026-07-16 & 2027-01-16 & M. Chen & RT ($22^\circ\text{C}$) & \color{labgreen}\textbf{Approved} & MC \\
+  \rowcolor{white}
+  0887 & 50X TAE Running Buffer & 50X & 2026-07-18 & 2027-07-18 & S. Jenkins & RT ($22^\circ\text{C}$) & \color{labgreen}\textbf{Approved} & SJ \\
+  \rowcolor{labbg}
+  0888 & 10\% (w/v) SDS Solution & 10\% & 2026-07-19 & 2026-10-19 & E. Vance & RT ($25^\circ\text{C}$) & \color{labgreen}\textbf{Approved} & EV \\
+  \rowcolor{white}
+  0889 & 5M Sodium Chloride (NaCl) & 5.0 M & 2026-07-20 & 2027-07-20 & R. Patel & RT ($22^\circ\text{C}$) & \color{labgreen}\textbf{Approved} & RP \\
+  \rowcolor{labbg}
+  0890 & Phosphate Buffered Saline (PBS 10X) & 10X & 2026-07-22 & 2027-01-22 & S. Jenkins & $4^\circ\text{C}$ & \color{labgreen}\textbf{Approved} & SJ \\
+  \rowcolor{white}
+  0891 & 10X Tris-EDTA (TE) Buffer pH 8.0 & 10X & 2026-07-24 & 2027-01-24 & E. Vance & RT ($22^\circ\text{C}$) & \color{labgreen}\textbf{Approved} & EV \\
+  \rowcolor{labbg}
+  0892 & 1X RIPA Lysis Buffer w/ Protease Inhib. & 1X & 2026-07-24 & 2026-08-24 & M. Chen & $-20^\circ\text{C}$ & \color{labamber}\textbf{Pending QC} & MC \\
+  \rowcolor{white}
+  0893 & 70\% Ethanol Nuclease-Free & 70\% & 2026-07-24 & 2026-10-24 & E. Vance & RT (Flamm.) & \color{labgreen}\textbf{Approved} & EV \\
+  \rowcolor{labbg}
+  0894 & 1M Dithiothreitol (DTT) Solution & 1.0 M & 2026-07-24 & 2026-10-24 & R. Patel & $-20^\circ\text{C}$ & \color{labamber}\textbf{Pending QC} & RP \\
+  \rowcolor{white}
+  0880 & 6X DNA Loading Dye w/ Xylene & 6X & 2026-06-01 & 2026-07-20 & S. Jenkins & $4^\circ\text{C}$ & \color{labred}\textbf{Expired} & SJ \\
+  \rowcolor{labbg}
+  0878 & Proteinase K Buffer ($20\,\text{mg/mL}$) & 20 mg/mL & 2026-05-15 & 2026-07-15 & M. Chen & $-20^\circ\text{C}$ & \color{labred}\textbf{Quarantine} & MC \\
+  \bottomrule
+\end{tabularx}
+}
+
+\vspace{6pt}
+
+% Section 3: Specialized Complex Reagent Formulation Sheet
+\begin{tcolorbox}[labcardnavy, title={\small\bfseries\color{white}\faFlask\ SECTION 3: SPECIALIZED FORMULATION SHEET -- BATCH \# REAG-2026-0892 (RIPA LYSIS BUFFER)}, coltitle=white, colbacktitle=labnavy]
+
+  \begin{minipage}[t]{0.62\textwidth}
+    {\subsection*{{\small\bfseries\color{labnavy} Formulation \& Ingredient Breakdown (Total Volume: $500\,\text{mL}$)}}}
+    \vspace{-4pt}
+    \scriptsize
+    \begin{tabularx}{\textwidth}{@{}Xrr>{\raggedright\arraybackslash}X@{}}
+      \toprule
+      \rowcolor{labbg}
+      \textbf{Reagent Component} & \textbf{Target Conc.} & \textbf{Amount} & \textbf{Stock Lot Ref.} \\
+      \midrule
+      Tris-HCl (pH 7.5, 1.0M Stock) & $50\,\text{mM}$ & $25.0\,\text{mL}$ & REAG-2026-0885 \\
+      Sodium Chloride (NaCl, 5M Stock) & $150\,\text{mM}$ & $15.0\,\text{mL}$ & REAG-2026-0889 \\
+      NP-40 (Triton X-100 Substitute) & $1.0\% \text{ v/v}$ & $5.0\,\text{mL}$ & Sigma \#BC-99120 \\
+      Sodium Deoxycholate (10\% Stock) & $0.5\% \text{ w/v}$ & $25.0\,\text{mL}$ & Meridian Chem \#MC-104 \\
+      SDS (Sodium Dodecyl Sulfate, 10\%) & $0.1\% \text{ w/v}$ & $5.0\,\text{mL}$ & REAG-2026-0888 \\
+      EDTA (0.5M Stock pH 8.0) & $1.0\,\text{mM}$ & $1.0\,\text{mL}$ & REAG-2026-0886 \\
+      PMSF (Protease Inhibitor, 100mM) & $1.0\,\text{mM}$ & $5.0\,\text{mL}$ & Fresh Addition \\
+      Ultrapure Nuclease-Free Water & Q.S. & $419.0\,\text{mL}$ & Tank-02 \\
+      \bottomrule
+    \end{tabularx}
+  \end{minipage}%
+  \hfill
+  \begin{minipage}[t]{0.35\textwidth}
+    \begin{tcolorbox}[labcard, colback=labred!5!white, colframe=labred]
+      {\small\bfseries\color{labred}\faExclamationTriangle\ HAZARD \& SAFETY WARNINGS}\\[2pt]
+      {\tiny\color{labtext}
+      \begin{itemize}[leftmargin=8pt, itemsep=1pt]
+        \item \textbf{Detergent Risk:} SDS and NP-40 are severe skin/eye irritants.
+        \item \textbf{Toxic Chemical:} PMSF is a potent neurotoxin. Use fume hood.
+        \item \textbf{Required PPE:} Gloves, safety goggles, lab coat.
+        \item \textbf{Storage:} Store aliquots at $-20^\circ\text{C}$. Avoid freeze-thaw.
+        \item \textbf{Spill Protocol:} Neutralize with pads; wash with 10\% ethanol.
+      \end{itemize}
+      }
+    \end{tcolorbox}
+    \vspace{-4pt}
+    \begin{tcolorbox}[labcard, colback=labteal!5!white, colframe=labteal]
+      {\small\bfseries\color{labteal}\faLock\ ALIQUOT DISTRIBUTION LOG}\\[1pt]
+      {\tiny\color{labtext}
+      Prepared $50 \times 10\,\text{mL}$ cryovials.\\
+      Labeled with barcode hash \textbf{*RIPA-0892*}.\\
+      Stored in Freezer F-04, Rack B, Box 2.
+      }
+    \end{tcolorbox}
+  \end{minipage}
+
+\end{tcolorbox}
+
+\vspace{3pt}
+
+% Reagent Stability & Degradation Tracking Box
+\begin{tcolorbox}[labcard, title={\small\bfseries\color{labnavy}\faThermometerHalf\ REAGENT STABILITY \& STORAGE MATRIX}, colback=white]
+  \scriptsize
+  \begin{tabularx}{\textwidth}{@{}XccccX@{}}
+    \toprule
+    \rowcolor{labnavy!10}
+    \textbf{Reagent Category} & \textbf{Ideal Temp} & \textbf{Max Shelf Life} & \textbf{Light Sensitive?} & \textbf{Freeze-Thaw Limit} & \textbf{Degradation Indicators} \\
+    \midrule
+    Tris / EDTA Buffers & $20^\circ\text{C} - 25^\circ\text{C}$ & 12 Months & No & Unlimited & Precipitation, microbial cloudiness \\
+    Detergent Stock Solutions (SDS) & $18^\circ\text{C} - 25^\circ\text{C}$ & 6 Months & No & Avoid Freezing & White crystal precipitate below $15^\circ\text{C}$ \\
+    Enzyme / Protease Inhibitors & $-20^\circ\text{C}$ & 3 Months & Yes (Keep Dark) & Max 3 Cycles & Loss of enzymatic cleavage activity \\
+    Reducing Agents (DTT / DTT) & $-20^\circ\text{C}$ & 3 Months & Yes & Single Use Rec. & Oxidation, faint yellow discoloration \\
+    \bottomrule
+  \end{tabularx}
+\end{tcolorbox}
+
+\newpage
+
+% ==========================================
+% PAGE 3: EQUIPMENT CALIBRATION, INVENTORY AUDIT & SIGN-OFF
+% ==========================================
+
+{\section*{{\Large\bfseries\color{labnavy}\faTools\ SECTION 4: INSTRUMENT CALIBRATION \& QUALITY ASSURANCE LOG}}}
+\vspace{-6pt}
+{\small\color{labtext}Routine verification records for analytical instruments used in reagent formulation (GLP/ISO 17025 Requirement).}
+
+\vspace{4pt}
+
+% Dual Column: pH Calibration & Balance Verification
+\begin{minipage}[t]{0.485\textwidth}
+  \begin{tcolorbox}[labcardteal, title={\small\bfseries\color{white}\faMicroscope\ pH Meter 3-Point Calibration Record}, coltitle=white, colbacktitle=labteal]
+    \scriptsize
+    \textbf{Device ID:} pH-Meter-02 (Thermo Orion Star A211)\\
+    \textbf{Calibration Date:} 2026-07-24 \quad \textbf{Time:} 08:15 AM\\
+    \textbf{Technician:} Dr. Eleanor Vance
+
+    \vspace{2pt}
+    \begin{tabularx}{\textwidth}{@{}cccc@{}}
+      \toprule
+      \rowcolor{labbg}
+      \textbf{Standard} & \textbf{Target pH} & \textbf{Measured} & \textbf{Status} \\
+      \midrule
+      Buffer 1 & 4.01 & 4.01 & \color{labgreen}\textbf{Pass} \\
+      Buffer 2 & 7.00 & 7.02 & \color{labgreen}\textbf{Pass} \\
+      Buffer 3 & 10.01 & 10.00 & \color{labgreen}\textbf{Pass} \\
+      \bottomrule
+    \end{tabularx}
+
+    \vspace{2pt}
+    {\tiny\color{labtext}
+    \textbf{Electrode Slope:} $99.4\%$ (Spec: $95.0\% - 105.0\%$)\\
+    \textbf{Asymmetry Potential:} $2.1\,\text{mV}$ (Spec: $\pm 30\,\text{mV}$)\\
+    \textbf{Next Due Date:} 2026-07-31 (Weekly Calibration Cycle)
+    }
+  \end{tcolorbox}
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.485\textwidth}
+  \begin{tcolorbox}[labcardnavy, title={\small\bfseries\color{white}\faWeight\ Analytical Balance Daily Verification}, coltitle=white, colbacktitle=labnavy]
+    \scriptsize
+    \textbf{Device ID:} BAL-04 (Mettler Toledo XS205 DualRange)\\
+    \textbf{Verification Date:} 2026-07-24 \quad \textbf{Time:} 08:30 AM\\
+    \textbf{Technician:} Marcus Chen
+
+    \vspace{2pt}
+    \begin{tabularx}{\textwidth}{@{}cccc@{}}
+      \toprule
+      \rowcolor{labbg}
+      \textbf{Class M Weight} & \textbf{Nominal} & \textbf{Observed} & \textbf{Dev.} \\
+      \midrule
+      Standard 1 & $10.0000\,\text{g}$ & $10.0002\,\text{g}$ & $+0.2\,\text{mg}$ \\
+      Standard 2 & $1.0000\,\text{g}$ & $1.0001\,\text{g}$ & $+0.1\,\text{mg}$ \\
+      Standard 3 & $100.0000\,\text{g}$ & $100.0005\,\text{g}$ & $+0.5\,\text{mg}$ \\
+      \bottomrule
+    \end{tabularx}
+
+    \vspace{2pt}
+    {\tiny\color{labtext}
+    \textbf{Corner Load Test:} Passed ($< 0.3\,\text{mg}$ variance)\\
+    \textbf{Zero Drift Check:} $< 0.1\,\text{mg}$ after 15 min stabilization\\
+    \textbf{Next External Cal:} 2026-12-15 (Annual Vendor Audit)
+    }
+  \end{tcolorbox}
+\end{minipage}
+
+\vspace{4pt}
+
+% Section 5: Reagent Raw Chemical Stock Inventory Audit
+{\section*{{\Large\bfseries\color{labnavy}\faBoxes\ SECTION 5: CHEMICAL STOCK INVENTORY \& RE-ORDER THRESHOLDS}}}
+\vspace{-6pt}
+{\small\color{labtext}Current inventory levels of dry chemicals, concentrated acids, and solvents in Store Room C-102.}
+
+\vspace{4pt}
+
+{\scriptsize
+\begin{tabularx}{\textwidth}{@{}Xccccc>{\centering\arraybackslash}X@{}}
+  \toprule
+  \rowcolor{labnavy}
+  \color{white}\textbf{Chemical Item} & \color{white}\textbf{CAS Number} & \color{white}\textbf{Vendor / Cat \#} & \color{white}\textbf{Current Stock} & \color{white}\textbf{Min. Threshold} & \color{white}\textbf{Location} & \color{white}\textbf{Re-Order Status} \\
+  \midrule
+  Tris Base Ultra Pure & 77-86-1 & Synapse \#SY-88291 & $2.5\,\text{kg}$ & $1.0\,\text{kg}$ & Shelf A-04 & \color{labgreen}\textbf{Sufficient} \\
+  EDTA Disodium Dihydrate & 6381-92-6 & Nexa \#NX-44012 & $800\,\text{g}$ & $500\,\text{g}$ & Shelf A-05 & \color{labgreen}\textbf{Sufficient} \\
+  Sodium Dodecyl Sulfate (SDS) & 151-21-3 & Vertex Chem \#VX-109 & $350\,\text{g}$ & $500\,\text{g}$ & Shelf B-02 & \color{labamber}\textbf{Re-Order Placed} \\
+  Hydrochloric Acid (6M HCl) & 7647-01-0 & Apex Lab \#AP-90112 & $4.0\,\text{L}$ & $2.0\,\text{L}$ & Acid Cab 01 & \color{labgreen}\textbf{Sufficient} \\
+  Sodium Chloride (NaCl) & 7647-14-5 & Synapse \#SY-10022 & $5.0\,\text{kg}$ & $2.0\,\text{kg}$ & Shelf A-02 & \color{labgreen}\textbf{Sufficient} \\
+  Protease Inhibitor Cocktails & N/A & Meridian \#MC-9901 & 4 Vials & 5 Vials & Freezer F-02 & \color{labred}\textbf{CRITICAL LOW} \\
+  Dithiothreitol (DTT) & 3483-02-3 & Nexa \#NX-30911 & $25\,\text{g}$ & $50\,\text{g}$ & Refrig R-01 & \color{labamber}\textbf{Re-Order Placed} \\
+  \bottomrule
+\end{tabularx}
+}
+
+\vspace{6pt}
+
+% Section 6: Non-Conformance, Incidents, & Corrective Action Log
+\begin{tcolorbox}[labcard, title={\small\bfseries\color{labred}\faExclamationTriangle\ SECTION 6: DEVIATIONS, NON-CONFORMANCE \& CORRECTIVE ACTIONS (CAPA)}, colback=white, colframe=labred]
+  \scriptsize
+  \begin{tabularx}{\textwidth}{@{}ccX>{\raggedright\arraybackslash}Xc@{}}
+    \toprule
+    \rowcolor{labred!10}
+    \textbf{Incident ID} & \textbf{Date} & \textbf{Deviation Description} & \textbf{Corrective Action Taken (CAPA)} & \textbf{Initials} \\
+    \midrule
+    DEV-2026-041 & 2026-07-10 & Autoclave Cycle \#389 failed pressure hold test during TAE buffer sterilization. & Re-sterilized batch in Autoclave \#02. Maintained unit logged for gasket replacement. & EV \\
+    DEV-2026-042 & 2026-07-19 & SDS 10\% solution precipitated upon storage at $12^\circ\text{C}$ cold room. & Warm bottle to $37^\circ\text{C}$ to redissolve. Updated SOP label: "Store strictly at room temp ($22^\circ\text{C}$)". & MC \\
+    \bottomrule
+  \end{tabularx}
+\end{tcolorbox}
+
+\vspace{6pt}
+
+% Section 7: Final End-of-Quarter Sign-off & Audit Stamp
+\begin{tcolorbox}[labcardnavy, title={\small\bfseries\color{white}\faCheckCircle\ SECTION 7: QUALITY ASSURANCE LOGBOOK SIGN-OFF \& APPROVAL}, coltitle=white, colbacktitle=labnavy]
+  \scriptsize
+  \begin{tabularx}{\textwidth}{@{}Xp{0.5cm}X@{}}
+    \textbf{Lead Laboratory Analyst:} & & \textbf{Quality Assurance Officer:} \\[8pt]
+    \rule{\linewidth}{0.4pt} & & \rule{\linewidth}{0.4pt} \\
+    \textbf{Signature:} Dr. Eleanor Vance & & \textbf{Signature:} Marcus Chen, Lead QA \\
+    \textbf{Date:} 2026-07-24 & & \textbf{Date:} 2026-07-24 \\[10pt]
+    \textbf{Principal Investigator Approval:} & & \textbf{Regulatory Compliance Stamp:} \\[8pt]
+    \rule{\linewidth}{0.4pt} & & \begin{tcolorbox}[colback=white, colframe=labnavy, arc=2pt, boxrule=0.5pt, left=3pt, right=3pt, top=2pt, bottom=2pt]
+      \centering
+      {\tiny\bfseries\color{labnavy} APEX BIOLABS QUALITY CONTROL}\\
+      {\tiny\color{labtext} ISO 17025 / GLP COMPLIANT}\\
+      {\tiny\bfseries\color{labgreen} AUDITED \& APPROVED 2026}
+    \end{tcolorbox} \\
+    \textbf{Signature:} Prof. Sarah Jenkins, PhD & & \\
+    \textbf{Date:} 2026-07-24 & & \\
+  \end{tabularx}
+\end{tcolorbox}
+
+\end{document}

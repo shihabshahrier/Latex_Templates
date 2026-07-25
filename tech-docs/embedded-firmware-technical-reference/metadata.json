@@ -1,0 +1,8 @@
+{
+  "name": "Embedded Firmware Technical Reference",
+  "compiler": "pdflatex",
+  "description": "Embedded Firmware Technical Reference LaTeX template \u2014 embedded firmware technical reference latex template. Elegant, compile-tested, editable online at letx.app.",
+  "author": "LetX",
+  "category": "tech-docs",
+  "license": "MIT"
+}

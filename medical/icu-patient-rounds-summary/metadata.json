@@ -1,0 +1,8 @@
+{
+  "name": "ICU Patient Progress & Rounds Summary",
+  "compiler": "pdflatex",
+  "description": "ICU Patient Progress & Rounds Summary LaTeX template \u2014 icu patient progress & rounds summary latex template. Elegant, compile-tested, editable online at letx.app.",
+  "author": "LetX",
+  "category": "medical",
+  "license": "MIT"
+}

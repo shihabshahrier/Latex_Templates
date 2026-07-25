@@ -1,0 +1,502 @@
+\documentclass[11pt,a4paper]{scrartcl}
+
+% ---------- Layout ----------
+\usepackage[a4paper,top=2.2cm,bottom=2.4cm,left=2.2cm,right=2.2cm]{geometry}
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+
+% ---------- Colour & tables ----------
+\usepackage[table]{xcolor}
+\usepackage{colortbl}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{longtable}
+
+% ---------- Maths ----------
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+% ---------- Lists, icons, boxes ----------
+\usepackage{enumitem}
+\usepackage{fontawesome5}
+\usepackage{tcolorbox}
+\tcbuselibrary{skins,breakable}
+\usepackage{tikz}
+\usetikzlibrary{positioning,calc,shapes.geometric,arrows.meta,backgrounds}
+
+% ---------- Headers / footers ----------
+\usepackage{scrlayer-scrpage}
+\usepackage{lastpage}
+\usepackage{hyperref}
+
+% ---------- Palette ----------
+\definecolor{navyink}{RGB}{22,37,59}
+\definecolor{tealaccent}{RGB}{0,121,140}
+\definecolor{mist}{RGB}{237,242,244}
+\definecolor{slate}{RGB}{96,108,118}
+\definecolor{paleteal}{RGB}{219,238,238}
+\definecolor{alertamber}{RGB}{178,110,20}
+
+% ---------- Section styling (KOMA fonts) ----------
+\addtokomafont{disposition}{\color{navyink}}
+\setkomafont{section}{\normalfont\Large\bfseries\color{navyink}}
+\setkomafont{subsection}{\normalfont\large\bfseries\color{tealaccent}}
+\setkomafont{subsubsection}{\normalfont\normalsize\bfseries\color{slate}}
+\RedeclareSectionCommand[
+  beforeskip=0.9em,afterskip=0.4em]{section}
+\RedeclareSectionCommand[
+  beforeskip=0.6em,afterskip=0.3em]{subsection}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.3em}
+\renewcommand{\arraystretch}{0.94}
+
+% ---------- Header/footer ----------
+\pagestyle{scrheadings}
+\clearpairofpagestyles
+\ihead{\small\color{slate}Nexa Technologies B.\,V.\ --- Data Privacy Policy}
+\ohead{\small\color{slate}\thepage\ / \pageref{LastPage}}
+\ofoot{}
+\ifoot{\small\color{slate}Version 4.2 --- Effective 1 March 2026}
+\setheadsepline{0.4pt}
+\setfootsepline{0.4pt}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=tealaccent,
+  urlcolor=tealaccent,
+  citecolor=tealaccent,
+  pdftitle={Nexa Technologies -- Data Privacy Policy and GDPR Terms},
+  pdfauthor={Nexa Technologies B.V.}
+}
+
+% ---------- Custom environments ----------
+\newtcolorbox{keybox}[1][]{
+  enhanced,
+  breakable,
+  colback=paleteal,
+  colframe=tealaccent,
+  boxrule=0.6pt,
+  left=8pt,right=8pt,top=4pt,bottom=4pt,
+  arc=2pt,
+  title={#1},
+  fonttitle=\bfseries\color{navyink},
+  colbacktitle=paleteal,
+  coltitle=navyink,
+  attach boxed title to top left={yshift=-2mm,xshift=4mm},
+  boxed title style={colback=paleteal,boxrule=0pt,arc=2pt},
+}
+
+\newtcolorbox{noticebox}{
+  enhanced,
+  breakable,
+  colback=mist,
+  colframe=alertamber,
+  boxrule=0.6pt,
+  left=8pt,right=8pt,top=4pt,bottom=4pt,
+  arc=2pt,
+}
+
+\newtcolorbox{dpobox}{
+  enhanced,
+  breakable,
+  colback=navyink,
+  colframe=navyink,
+  coltext=white,
+  boxrule=0pt,
+  left=10pt,right=10pt,top=6pt,bottom=6pt,
+  arc=3pt,
+}
+
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
+
+% ---------- Rights list style ----------
+\setlist[itemize]{leftmargin=1.4em,itemsep=0.2em,topsep=0.3em}
+\setlist[enumerate]{leftmargin=1.6em,itemsep=0.2em,topsep=0.3em}
+
+\newcommand{\gdprart}[1]{\textcolor{tealaccent}{\small\textit{(#1)}}}
+
+\begin{document}
+
+% ============================================================
+% TITLE BLOCK
+% ============================================================
+\begin{center}
+{\color{slate}\small\faLock\ CONFIDENTIAL POLICY DOCUMENT --- PUBLIC-FACING}\\[6pt]
+{\color{navyink}\Huge\bfseries Data Privacy Policy}\\[4pt]
+{\color{tealaccent}\Large\bfseries \& GDPR Compliance Terms}\\[10pt]
+{\color{slate}\large Nexa Technologies B.\,V.}\\[2pt]
+{\color{slate}\small Cloud collaboration software for regulated industries}
+\end{center}
+
+\vspace{6pt}
+\begin{center}
+\begin{tabularx}{\linewidth}{Y Y Y Y}
+\toprule
+\textbf{\small Version} & \textbf{\small Effective date} & \textbf{\small Document owner} & \textbf{\small Review cycle} \\
+\midrule
+4.2 & 1 March 2026 & Data Protection Officer & Annual, or upon material change \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\vspace{4pt}
+{\color{tealaccent}\hrule height 1.2pt}
+\vspace{10pt}
+
+% ============================================================
+\section*{\color{navyink}Introduction}
+\addcontentsline{toc}{section}{Introduction}
+
+Nexa Technologies B.\,V.\ (``\textbf{Nexa}'', ``\textbf{we}'', ``\textbf{us}'', or ``\textbf{our}'') provides
+web-based document collaboration and workflow software to organisations across the European
+Economic Area (EEA), the United Kingdom, and beyond. This Data Privacy Policy \& GDPR
+Compliance Terms document (the ``\textbf{Policy}'') explains, in plain language backed by
+precise legal references, how we collect, use, disclose, retain, and protect personal data when
+you visit \texttt{www.nexatech.example}, use the Nexa application, or otherwise interact with us
+as a customer, prospective customer, website visitor, or employee of a customer organisation.
+
+This Policy is issued in accordance with Regulation (EU) 2016/679 (the \textbf{General Data
+Protection Regulation}, ``GDPR''), the UK GDPR as retained in domestic law, and applicable
+member-state implementing legislation. Where Nexa acts as a \textbf{data processor} on behalf of
+a customer (for example, processing content your organisation uploads to the platform), the
+terms of the separate Data Processing Addendum (DPA) govern that processing; this Policy
+addresses Nexa's role as a \textbf{data controller} for account, billing, marketing, and
+website-visitor data.
+
+\begin{keybox}[At a glance]
+\begin{itemize}
+  \item We are the \textbf{data controller} for account, billing, and marketing data, and a
+        \textbf{data processor} for customer content stored in the platform.
+  \item Our lead supervisory authority is the \textbf{Dutch Data Protection Authority}
+        (Autoriteit Persoonsgegevens), as our main establishment is in Amsterdam.
+  \item You may exercise your GDPR rights at any time by contacting our Data Protection
+        Officer at \texttt{dpo@nexatech.example}.
+\end{itemize}
+\end{keybox}
+
+% ============================================================
+\section{Data Controller Information}
+
+\begin{tabularx}{\linewidth}{@{}l Y@{}}
+\toprule
+\textbf{Legal entity} & Nexa Technologies B.\,V. \\
+\textbf{Registered address} & Herengracht 182, 1016 BR Amsterdam, The Netherlands \\
+\textbf{Trade register} & Kamer van Koophandel, No.\ 78341205 \\
+\textbf{Data Protection Officer} & Elena Vos --- \texttt{dpo@nexatech.example} \\
+\textbf{EU representative (UK entities)} & Nexa UK Compliance Services Ltd, 20 Farringdon
+  Street, London EC4A 4AB \\
+\textbf{Lead supervisory authority} & Autoriteit Persoonsgegevens (Dutch DPA) \\
+\bottomrule
+\end{tabularx}
+
+% ============================================================
+\section{Definitions}
+
+\begin{tabularx}{\linewidth}{@{}l Y@{}}
+\toprule
+\textbf{Term} & \textbf{Meaning} \\
+\midrule
+Personal data & Any information relating to an identified or identifiable natural person
+  (Art.\ 4(1) GDPR). \\
+Processing & Any operation performed on personal data, including collection, storage, use,
+  disclosure, or erasure. \\
+Data subject & The individual to whom personal data relates --- e.g.\ a Nexa account holder. \\
+Controller & The entity that determines the purposes and means of processing. \\
+Processor & The entity that processes personal data on behalf of a controller. \\
+Sub-processor & A third party engaged by Nexa to assist in processing customer content. \\
+Special category data & Data revealing racial or ethnic origin, health, sexual orientation,
+  religious belief, or similar (Art.\ 9 GDPR); Nexa does not intentionally collect this
+  data. \\
+\bottomrule
+\end{tabularx}
+
+% ============================================================
+\section{What Personal Data We Collect}
+
+We collect the minimum personal data necessary to provide, secure, and improve the Nexa
+platform. The table below summarises the categories, examples, and source of collection.
+
+\begin{tabularx}{\linewidth}{@{}l Y l@{}}
+\toprule
+\textbf{Category} & \textbf{Examples} & \textbf{Source} \\
+\midrule
+Account data & Full name, work email, password hash, organisation name, role & Provided by
+  user \\
+Billing data & Billing address, VAT number, invoice history, tokenised card reference &
+  Provided by user / payment processor \\
+Usage data & Login timestamps, feature interactions, document open/edit events, IP address &
+  Collected automatically \\
+Device data & Browser type, operating system, screen resolution, device identifiers &
+  Collected automatically \\
+Support data & Ticket contents, chat transcripts, screen-recording attachments &
+  Provided by user \\
+Marketing data & Newsletter subscription status, campaign engagement, event registrations &
+  Provided by user \\
+Cookies \& tracking & Session identifiers, analytics identifiers, consent preferences &
+  Collected automatically (see \S\ref{sec:cookies}) \\
+\bottomrule
+\end{tabularx}
+
+\vspace{4pt}
+\begin{noticebox}
+\faExclamationTriangle\ \textbf{We do not knowingly collect special category data} (Art.\ 9
+GDPR) such as health information, biometric data, or political opinions. Please do not upload
+such data into free-text fields (e.g.\ document titles, support tickets) unless it forms part of
+customer content governed by our DPA.
+\end{noticebox}
+
+% ============================================================
+\section{Legal Basis for Processing}
+
+Every processing activity we carry out relies on one of the six lawful bases set out in Article
+6(1) GDPR. The table below maps our principal purposes to their legal basis.
+
+\rowcolors{2}{mist}{white}
+\begin{tabularx}{\linewidth}{@{}Y c Y@{}}
+\toprule
+\rowcolor{navyink}
+{\color{white}\textbf{Purpose}} & {\color{white}\textbf{Legal basis}} &
+  {\color{white}\textbf{Article}} \\
+\midrule
+Creating and administering your account & Performance of a contract & Art.\ 6(1)(b) \\
+Processing subscription payments & Performance of a contract & Art.\ 6(1)(b) \\
+Complying with tax and accounting law & Legal obligation & Art.\ 6(1)(c) \\
+Detecting fraud and platform abuse & Legitimate interest & Art.\ 6(1)(f) \\
+Improving product features via usage analytics & Legitimate interest & Art.\ 6(1)(f) \\
+Sending the monthly product newsletter & Consent & Art.\ 6(1)(a) \\
+Responding to a legal request from an authority & Legal obligation & Art.\ 6(1)(c) \\
+\bottomrule
+\end{tabularx}
+
+Where processing relies on \textbf{legitimate interest}, we have conducted a Legitimate
+Interest Assessment (LIA) balancing our interests against your rights and freedoms; a summary
+is available on request from the DPO. Where processing relies on \textbf{consent}, you may
+withdraw consent at any time without affecting the lawfulness of processing carried out before
+withdrawal.
+
+% ============================================================
+\section{Data Flow Overview}
+
+The diagram below illustrates, at a high level, how personal and content data moves between
+you, the Nexa platform, and the limited set of sub-processors engaged to deliver the service.
+
+\begin{center}
+\begin{tikzpicture}[
+  node distance=11mm and 15mm,
+  box/.style={draw=tealaccent,thick,rounded corners=3pt,fill=mist,
+    minimum width=2.7cm,minimum height=1.1cm,align=center,font=\small},
+  core/.style={draw=navyink,thick,rounded corners=3pt,fill=paleteal,
+    minimum width=3.0cm,minimum height=1.3cm,align=center,font=\small\bfseries},
+  sub/.style={draw=slate,thick,rounded corners=3pt,fill=white,
+    minimum width=2.5cm,minimum height=1.0cm,align=center,font=\footnotesize},
+  lbl/.style={font=\scriptsize,color=slate},
+  arr/.style={-{Latex[length=2.2mm]},thick,color=navyink}
+]
+  \node[box] (user) {User \\ Browser};
+  \node[core, right=of user] (nexa) {Nexa Platform \\ (Controller / Processor)};
+  \node[sub, above right=8mm and 16mm of nexa] (payments) {Payment\\Processor};
+  \node[sub, right=16mm of nexa] (hosting) {EU Cloud\\Hosting};
+  \node[sub, below right=8mm and 16mm of nexa] (email) {Transactional\\Email Service};
+
+  \draw[arr] (user) -- node[lbl,above]{account data} (nexa);
+  \draw[arr] (nexa) -- node[lbl,above,sloped]{billing token} (payments);
+  \draw[arr] (nexa) -- node[lbl,above]{encrypted content} (hosting);
+  \draw[arr] (nexa) -- node[lbl,below,sloped]{delivery events} (email);
+\end{tikzpicture}
+\end{center}
+
+\vspace{2pt}
+{\small\color{slate}\textit{All sub-processors are bound by Art.\ 28 GDPR data-processing
+agreements and are listed in full at \url{nexatech.example/subprocessors}.}}
+
+% ============================================================
+\section{International Data Transfers}
+
+Nexa's primary infrastructure is hosted within the European Economic Area. Where a transfer of
+personal data outside the EEA is necessary --- for example, to a sub-processor providing
+customer support tooling with servers in the United States --- we ensure an adequate level of
+protection through one or more of the following safeguards:
+
+\begin{sloppypar}
+\begin{itemize}
+  \item \textbf{Standard Contractual Clauses (SCCs)} adopted by the European Commission
+        (Implementing Decision (EU) 2021/914), incorporated into every applicable
+        sub-processor agreement;
+  \item \textbf{Adequacy decisions}, where the destination country is recognised by the
+        European Commission as providing adequate protection;
+  \item \textbf{Supplementary technical measures}, including encryption in transit and at
+        rest, and pseudonymisation of analytics identifiers.
+\end{itemize}
+\end{sloppypar}
+
+A current, version-controlled list of sub-processors, their processing location, and applicable
+transfer mechanism is published at \url{nexatech.example/subprocessors} and updated at least
+30 days before any new sub-processor is engaged, in accordance with our DPA notification
+obligations.
+
+% ============================================================
+\section{Data Retention}
+
+We retain personal data only for as long as necessary to fulfil the purposes described in this
+Policy, after which it is deleted or irreversibly anonymised. The table below sets out our
+standard retention schedule.
+
+\begin{tabularx}{\linewidth}{@{}Y c Y@{}}
+\toprule
+\textbf{Data category} & \textbf{Retention period} & \textbf{Trigger for deletion} \\
+\midrule
+Active account data & Duration of account + 30 days & Account closure or deletion request \\
+Billing \& invoice records & 7 years & Statutory accounting requirement (NL Civil Code) \\
+Support tickets \& chat logs & 24 months & Rolling deletion from ticket close date \\
+Usage \& analytics logs & 14 months & Rolling deletion, aggregated data retained indefinitely \\
+Marketing consent records & Until consent withdrawn + 3 years & Withdrawal or unsubscribe \\
+Document version history & 50 versions per document, per product retention policy & Superseded
+  by newer versions \\
+Deleted project backups & 30 days & Automatic purge job \\
+\bottomrule
+\end{tabularx}
+
+% ============================================================
+\section{Your Rights Under GDPR}
+
+As a data subject in the EEA or UK, you have the following rights in respect of your personal
+data. We respond to verified requests within \textbf{one calendar month}, extendable by a
+further two months for complex requests, as permitted by Art.\ 12(3) GDPR.
+
+\rowcolors{2}{white}{mist}
+\begin{tabularx}{\linewidth}{@{}l l Y@{}}
+\toprule
+\rowcolor{navyink}
+{\color{white}\textbf{Right}} & {\color{white}\textbf{Article}} & {\color{white}\textbf{What it means}} \\
+\midrule
+\faSearch\ Access & 15 & Obtain confirmation of, and access to, the personal data we hold about you. \\
+\faPen\ Rectification & 16 & Request correction of inaccurate or incomplete personal data. \\
+\faTrash\ Erasure & 17 & Request deletion of your data where no overriding legal ground exists. \\
+\faBan\ Restrict processing & 18 & Limit how we use your data while a dispute is resolved. \\
+\faDownload\ Data portability & 20 & Receive your data in a structured, machine-readable format. \\
+\faHandPaper\ Object & 21 & Object to processing based on legitimate interest or for direct marketing. \\
+\faRobot\ Automated decisions & 22 & Not be subject to a decision based solely on automated processing with legal effect. \\
+\faGavel\ Lodge a complaint & --- & File a complaint with your local supervisory authority at any time. \\
+\bottomrule
+\end{tabularx}
+
+To exercise any of these rights, email \texttt{dpo@nexatech.example} or use the in-app
+\textit{Privacy Centre} under \textit{Account Settings $\rightarrow$ Privacy}. We may request
+proof of identity before actioning a request involving disclosure or erasure.
+
+% ============================================================
+\section{Security Measures}
+
+We apply technical and organisational measures proportionate to the risk, in line with Art.\ 32
+GDPR. Key controls include:
+
+\begin{tabularx}{\linewidth}{@{}l Y@{}}
+\toprule
+\textbf{Control} & \textbf{Implementation} \\
+\midrule
+Encryption in transit & TLS 1.2+ enforced on all client and inter-service connections \\
+Encryption at rest & AES-256 for stored documents, backups, and database volumes \\
+Access control & Role-based access control, mandatory MFA for staff with production access \\
+Network isolation & Private subnets, security-group segmentation between application tiers \\
+Audit logging & Immutable access logs retained for 14 months, reviewed for anomalies \\
+Vulnerability management & Quarterly penetration testing, continuous dependency scanning \\
+Employee training & Mandatory annual data-protection training for all staff and contractors \\
+Incident response & Documented playbook with a 72-hour regulator notification target \\
+\bottomrule
+\end{tabularx}
+
+% ============================================================
+\section{Cookies \& Tracking Technologies}
+\label{sec:cookies}
+
+The Nexa website and application use cookies and similar technologies to operate core
+functionality, remember preferences, and understand aggregate usage. We categorise cookies as
+follows, consistent with the ePrivacy Directive and GDPR consent requirements.
+
+\begin{tabularx}{\linewidth}{@{}l Y c@{}}
+\toprule
+\textbf{Category} & \textbf{Purpose} & \textbf{Consent required} \\
+\midrule
+Strictly necessary & Session authentication, load balancing, CSRF protection & No \\
+Preference & Remembering language, theme, and editor layout & No \\
+Analytics & Aggregate feature usage and performance monitoring & Yes \\
+Marketing & Attribution for acquisition campaigns on the marketing site & Yes \\
+\bottomrule
+\end{tabularx}
+
+You can manage cookie preferences at any time via the \textit{Cookie Settings} link in the site
+footer, or through your browser controls. Disabling strictly necessary cookies will prevent the
+application from functioning correctly.
+
+% ============================================================
+\section{Children's Data}
+
+The Nexa platform is intended for business and professional use and is not directed at
+individuals under the age of 16. We do not knowingly collect personal data from children. If we
+become aware that a child's personal data has been collected without appropriate consent, we
+will delete it promptly.
+
+% ============================================================
+\section{Data Breach Notification}
+
+In the event of a personal data breach likely to result in a risk to your rights and freedoms,
+Nexa will:
+
+\begin{enumerate}
+  \item Notify the Autoriteit Persoonsgegevens without undue delay, and in any event within
+        \textbf{72 hours} of becoming aware of the breach, as required by Art.\ 33 GDPR;
+  \item Notify affected data subjects directly, without undue delay, where the breach is
+        likely to result in a \textit{high} risk to their rights and freedoms (Art.\ 34
+        GDPR);
+  \item Document the breach, its effects, and remedial action taken in our internal breach
+        register, made available to supervisory authorities upon request.
+\end{enumerate}
+
+% ============================================================
+\section{Changes to This Policy}
+
+We may update this Policy to reflect changes in our practices, technology, legal requirements,
+or for other operational reasons. Material changes will be communicated to registered users by
+email and an in-app notice at least \textbf{14 days} before taking effect. The ``Effective
+date'' at the top of this document reflects the most recent revision. Prior versions are
+archived and available on request.
+
+% ============================================================
+\section{Contact \& Data Protection Officer}
+
+\begin{dpobox}
+\begin{minipage}[t]{0.55\linewidth}
+{\color{white}\bfseries\large Data Protection Officer}\\[4pt]
+{\color{paleteal}Elena Vos}\\
+{\color{white}\small
+\faEnvelope\ \ dpo@nexatech.example\\
+\faPhone\ \ \ +31\,20\,555\,0142\\
+\faMapMarker\ Herengracht 182, 1016 BR Amsterdam
+}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.4\linewidth}
+{\color{white}\bfseries Supervisory authority}\\[4pt]
+{\color{paleteal}\small
+Autoriteit Persoonsgegevens\\
+Bezuidenhoutseweg 30\\
+2594 AV The Hague, NL\\
+\url{autoriteitpersoonsgegevens.nl}
+}
+\end{minipage}
+\end{dpobox}
+
+\vspace{10pt}
+{\small\color{slate}
+This document forms part of the Nexa Technologies B.\,V.\ Terms of Service and is incorporated
+by reference into the Data Processing Addendum executed with customer organisations. Nothing in
+this Policy limits the rights afforded to data subjects under applicable law.
+\par\vspace{4pt}
+\copyright\ 2026 Nexa Technologies B.\,V.\ --- All rights reserved.}
+
+\end{document}

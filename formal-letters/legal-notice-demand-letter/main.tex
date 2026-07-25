@@ -1,0 +1,432 @@
+\documentclass[
+  paper=letter,
+  fontsize=10.5pt,
+  parskip=half,
+  firsthead=true,
+  fromalign=right,
+  fromrule=false,
+  addrfield=topaligned,
+  subject=titled,
+  foldmarks=false
+]{scrlttr2}
+
+%% ── Core packages ────────────────────────────────────────────────────────────
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in, top=0.75in, bottom=1in, left=1.25in, right=1in]{geometry}
+\usepackage[table]{xcolor}
+\usepackage{microtype}
+\usepackage{lmodern}
+
+%% ── Font stack ───────────────────────────────────────────────────────────────
+\usepackage{palatino}
+\usepackage{helvet}
+
+%% ── Graphics & drawing ───────────────────────────────────────────────────────
+\usepackage{tikz}
+\usetikzlibrary{positioning, calc, backgrounds}
+\usepackage{graphicx}
+
+%% ── Boxes & tables ───────────────────────────────────────────────────────────
+\usepackage[most]{tcolorbox}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{colortbl}
+\usepackage{multirow}
+
+%% ── Lists & formatting ───────────────────────────────────────────────────────
+\usepackage{enumitem}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{calc}
+\usepackage{ragged2e}
+\usepackage{setspace}
+\usepackage{dashrule}
+
+%% ── Icons ────────────────────────────────────────────────────────────────────
+\usepackage{fontawesome5}
+
+%% ── Hyperlinks ───────────────────────────────────────────────────────────────
+\usepackage[hidelinks, pdfusetitle]{hyperref}
+
+%% ── Colour palette ───────────────────────────────────────────────────────────
+\definecolor{NavyDeep}{HTML}{1A2744}
+\definecolor{GoldAccent}{HTML}{B8952A}
+\definecolor{SlateGray}{HTML}{5A6478}
+\definecolor{IvoryBg}{HTML}{F7F5F0}
+\definecolor{RubyAlert}{HTML}{8B1A1A}
+\definecolor{BorderLine}{HTML}{C8C0B0}
+\definecolor{LightTint}{HTML}{EEF0F5}
+
+%% ── tcolorbox styles ─────────────────────────────────────────────────────────
+\tcbset{
+  demandstyle/.style={
+    colback=IvoryBg,
+    colframe=NavyDeep,
+    colbacktitle=NavyDeep,
+    coltitle=white,
+    fonttitle=\bfseries\small\sffamily,
+    boxrule=0.8pt,
+    arc=2pt,
+    left=8pt, right=8pt, top=6pt, bottom=6pt,
+    toptitle=4pt, bottomtitle=4pt,
+    title=#1
+  },
+  alertstyle/.style={
+    colback=RubyAlert!8,
+    colframe=RubyAlert,
+    colbacktitle=RubyAlert,
+    coltitle=white,
+    fonttitle=\bfseries\small\sffamily,
+    boxrule=1pt,
+    arc=2pt,
+    left=8pt, right=8pt, top=6pt, bottom=6pt,
+    toptitle=4pt, bottomtitle=4pt,
+    title=#1
+  },
+  goldstyle/.style={
+    colback=GoldAccent!10,
+    colframe=GoldAccent,
+    colbacktitle=GoldAccent,
+    coltitle=NavyDeep,
+    fonttitle=\bfseries\small\sffamily,
+    boxrule=0.8pt,
+    arc=2pt,
+    left=8pt, right=8pt, top=6pt, bottom=6pt,
+    toptitle=4pt, bottomtitle=4pt,
+    title=#1
+  },
+  trackingstyle/.style={
+    colback=NavyDeep!4,
+    colframe=NavyDeep!30,
+    boxrule=0.6pt,
+    arc=2pt,
+    left=6pt, right=6pt, top=5pt, bottom=5pt
+  }
+}
+
+%% ── Paragraph / spacing ──────────────────────────────────────────────────────
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt}
+
+%% ── Custom commands ──────────────────────────────────────────────────────────
+\newcommand{\sectionrule}{%
+  \par\vspace{2pt}%
+  {\color{GoldAccent}\rule{\linewidth}{0.8pt}}%
+  \par\vspace{4pt}%
+}
+
+\newcommand{\claimlabel}[1]{%
+  {\sffamily\bfseries\color{NavyDeep}\small #1}%
+}
+
+\newcommand{\demandnum}[1]{%
+  \tikz[baseline=(char.base)]{
+    \node[circle, fill=NavyDeep, text=white, inner sep=1.8pt,
+          font=\sffamily\bfseries\fontsize{8}{8}\selectfont] (char) {#1};
+  }%
+}
+
+\newcommand{\iconitem}[2]{%
+  \noindent\makebox[1.4em][c]{{\color{GoldAccent}#1}}\hspace{0.4em}#2%
+}
+
+%% ── Letter setup ─────────────────────────────────────────────────────────────
+\setkomavar{fromname}{Meridian Legal Associates, P.C.}
+\setkomavar{fromaddress}{1200 Commerce Tower, Suite 3400\\Chicago, Illinois 60601}
+\setkomavar{fromphone}{(312) 555-0170}
+\setkomavar{fromemail}{legal@meridianpc.law}
+\setkomavar{fromurl}{www.meridianpc.law}
+
+\setkomavar{date}{July 23, 2026}
+\setkomavar{place}{Chicago, IL}
+
+\setkomavar{subject}{\sffamily\bfseries\color{RubyAlert}\large
+  LEGAL NOTICE \& FORMAL DEMAND FOR PAYMENT}
+
+\setkomavar{signature}{%
+  \textbf{Elliott J. Hargrove, Esq.}\\
+  \textit{Senior Partner, Meridian Legal Associates, P.C.}\\
+  \textit{Illinois Bar No. 6293847}
+}
+
+%% ─────────────────────────────────────────────────────────────────────────────
+\begin{document}
+
+%% ── Custom letterhead (replaces KOMA head) ───────────────────────────────────
+\begin{tikzpicture}[remember picture, overlay]
+  % Top bar
+  \fill[NavyDeep] (current page.north west)
+    rectangle ([yshift=-1.8cm]current page.north east);
+  % Gold accent strip
+  \fill[GoldAccent] ([yshift=-1.8cm]current page.north west)
+    rectangle ([yshift=-2.1cm]current page.north east);
+  % Firm name
+  \node[anchor=west, text=white,
+        font=\sffamily\bfseries\fontsize{18}{20}\selectfont,
+        xshift=1.25in] at ([yshift=-0.9cm]current page.north west)
+    {MERIDIAN LEGAL ASSOCIATES, P.C.};
+  % Tagline
+  \node[anchor=west, text=GoldAccent,
+        font=\sffamily\fontsize{8}{10}\selectfont\itshape,
+        xshift=1.25in] at ([yshift=-1.4cm]current page.north west)
+    {Attorneys at Law \ \textbullet\ \ Commercial Litigation \ \textbullet\ \ Contract Disputes \ \textbullet\ \ Corporate Recovery};
+  % Contact block (right side)
+  \node[anchor=east, text=white,
+        font=\sffamily\fontsize{7.5}{10}\selectfont,
+        align=right,
+        xshift=-0.85in] at ([yshift=-0.78cm]current page.north east)
+    {1200 Commerce Tower, Suite 3400\\Chicago, Illinois 60601};
+  \node[anchor=east, text=white!80,
+        font=\sffamily\fontsize{7.5}{10}\selectfont,
+        align=right,
+        xshift=-0.85in] at ([yshift=-1.35cm]current page.north east)
+    {(312) 555-0170 \ \textbar\ \ legal@meridianpc.law};
+\end{tikzpicture}
+
+\vspace*{2.6cm}
+
+\begin{letter}{%
+  \textbf{Mr. Conrad A. Bellamy}\\
+  Chief Executive Officer\\
+  Synapse Technologies, Inc.\\
+  780 Innovation Parkway, Floor 12\\
+  Austin, Texas 78701%
+}
+
+%% ── Certified mail tracking block ────────────────────────────────────────────
+\begin{tcolorbox}[trackingstyle]
+  \begin{minipage}[t]{0.48\linewidth}
+    \iconitem{\faEnvelope}{\claimlabel{Delivery Method:} USPS Certified Mail}\\[3pt]
+    \iconitem{\faBarcode}{\claimlabel{Tracking No.:} 9407 1118 9922 3816 0047 12}\\[3pt]
+    \iconitem{\faCalendar}{\claimlabel{Date Mailed:} July 23, 2026}
+  \end{minipage}%
+  \hfill%
+  \begin{minipage}[t]{0.48\linewidth}
+    \iconitem{\faCopy}{\claimlabel{File Reference:} MLA-2026-7734-CSB}\\[3pt]
+    \iconitem{\faFile}{\claimlabel{Matter:} Synapse / Nexa Contract Dispute}\\[3pt]
+    \iconitem{\faLock}{\claimlabel{Status:} \textcolor{RubyAlert}{\bfseries CONFIDENTIAL -- LEGAL}}
+  \end{minipage}
+\end{tcolorbox}
+
+\vspace{6pt}
+
+\opening{Dear Mr. Bellamy:}
+
+This firm represents \textbf{Nexa Capital Holdings, LLC} (\textquotedblleft\textbf{Nexa}\textquotedblright{} or \textquotedblleft\textbf{Client}\textquotedblright) in connection with the matters set forth herein. Please direct all further communications to this office; do not contact Nexa or any of its officers directly.
+
+\textbf{You are hereby placed on formal legal notice.} This letter constitutes a formal demand for payment and performance, and is sent as a precondition to initiating legal proceedings. Your failure to respond fully and satisfactorily within the deadline stated herein will result in the commencement of litigation without further notice.
+
+\vspace{4pt}
+\sectionrule
+{\sffamily\bfseries\color{NavyDeep}\normalsize I.\enspace FACTUAL BACKGROUND}
+\sectionrule
+
+On or about \textbf{March 1, 2025}, Nexa Capital Holdings, LLC and Synapse Technologies, Inc. (\textquotedblleft\textbf{Synapse}\textquotedblright{} or \textquotedblleft\textbf{Respondent}\textquotedblright) entered into that certain \textit{Software Development \& Services Agreement} (the \textquotedblleft\textbf{Agreement}\textquotedblright), bearing contract number \textbf{SYN-NXA-2025-003}. Under the Agreement, Synapse agreed to design, develop, test, and deliver a proprietary enterprise resource planning platform (the \textquotedblleft\textbf{Platform}\textquotedblright) for Nexa's internal operations, in exchange for total consideration of \textbf{\$1,150,000.00}.
+
+Nexa performed all of its obligations under the Agreement, including timely payment of two milestone installments totaling \textbf{\$600,000.00} on March 15, 2025 (\$250,000) and May 30, 2025 (\$350,000). Despite receiving substantial payment, Synapse has:
+
+\begin{itemize}[leftmargin=1.5em, itemsep=3pt, topsep=4pt]
+  \item Failed to deliver the Phase II deliverables by the contractual deadline of June 30, 2025;
+  \item Delivered non-conforming beta code that failed Nexa's acceptance testing on July 8, 2025 and July 15, 2025;
+  \item Refused to provide a remediation timeline despite written requests dated July 10 and July 17, 2025;
+  \item Diverted key development personnel (\textit{see} Exhibit A) to competing client projects in breach of the exclusivity clause at \S 7.4 of the Agreement;
+  \item Failed to maintain required insurance coverage as mandated by \S 12.2 of the Agreement.
+\end{itemize}
+
+These acts and omissions constitute a \textbf{material breach} of the Agreement, entitling Nexa to damages and other relief as further described herein.
+
+\vspace{4pt}
+\sectionrule
+{\sffamily\bfseries\color{NavyDeep}\normalsize II.\enspace CLAIMS ASSERTED}
+\sectionrule
+
+\begin{tcolorbox}[demandstyle={Claim 1 \ \ Breach of Contract}]
+\noindent Synapse's failure to deliver conforming deliverables by the agreed milestones, and its continued failure to cure despite demand, constitutes a material breach of the Agreement. Nexa is entitled to recover all direct and consequential damages flowing from such breach, including without limitation the amounts paid for undelivered or non-conforming work and costs incurred in engaging substitute vendors.
+
+\medskip
+\noindent\claimlabel{Governing Law:} Illinois Uniform Commercial Code, 810 ILCS 5/2-601 et seq.; common law contract.
+\end{tcolorbox}
+
+\vspace{6pt}
+
+\begin{tcolorbox}[demandstyle={Claim 2 \ \ Unjust Enrichment \& Restitution}]
+\noindent In the alternative, Synapse has been unjustly enriched by retaining \$600,000.00 of Nexa's funds without delivering the bargained-for performance. Nexa seeks full restitution of all amounts paid under the Agreement to the extent not offset by the fair market value of any conforming work product actually delivered and accepted.
+\end{tcolorbox}
+
+\vspace{6pt}
+
+\begin{tcolorbox}[demandstyle={Claim 3 \ \ Breach of Implied Covenant of Good Faith \& Fair Dealing}]
+\noindent Synapse's concealment of personnel reassignments, its failure to disclose known deficiencies in its development capacity, and its repeated refusal to engage in remediation discussions constitute a breach of the implied covenant of good faith and fair dealing implied in every Illinois contract.
+\end{tcolorbox}
+
+\vspace{6pt}
+
+\begin{tcolorbox}[alertstyle={Claim 4 \ \ Fraudulent Misrepresentation (Potential)}]
+\noindent Evidence gathered to date suggests that Synapse represented to Nexa, at the time of contracting, that it had sufficient staffing and technical capacity to complete the Platform -- representations Synapse knew or should have known to be false. Meridian Legal Associates reserves the right to assert fraud claims, which may support punitive damages and fee-shifting, upon completion of pre-litigation discovery.
+
+\medskip
+\noindent\claimlabel{Note:} This claim will be formally evaluated upon receipt of Synapse's response and supporting documentation.
+\end{tcolorbox}
+
+\newpage
+
+\vspace*{0.3cm}
+
+\vspace{4pt}
+\sectionrule
+{\sffamily\bfseries\color{NavyDeep}\normalsize III.\enspace STATEMENT OF DAMAGES}
+\sectionrule
+
+The following table sets forth Nexa's damages as presently quantified. These figures are preliminary and subject to upward revision upon completion of forensic accounting and assessment of business interruption losses.
+
+\vspace{6pt}
+
+\begin{tcolorbox}[goldstyle={Damages Summary -- Matter No. MLA-2026-7734-CSB}]
+\renewcommand{\arraystretch}{1.4}
+\begin{tabularx}{\linewidth}{@{} l X r @{}}
+  \rowcolor{NavyDeep!12}
+  \claimlabel{Item} & \claimlabel{Description} & \claimlabel{Amount (USD)} \\
+  \midrule
+  1 & Payments made for undelivered / non-conforming work & \$600,000.00 \\
+  \rowcolor{GoldAccent!8}
+  2 & Cost of emergency engagement of substitute vendor (Apex Systems Ltd.) & \$178,500.00 \\
+  3 & Internal IT labor costs re-allocated to breach mitigation (875 hours) & \$87,250.00 \\
+  \rowcolor{GoldAccent!8}
+  4 & Lost business opportunity -- delayed Vertex Financial integration & \$310,000.00 \\
+  5 & Insurance coverage gap exposure (uninsured period: Apr 1 -- Jul 20, 2026) & \$45,000.00 \\
+  \rowcolor{GoldAccent!8}
+  6 & Pre-litigation legal fees \& costs (through this date) & \$62,400.00 \\
+  \midrule
+  \rowcolor{NavyDeep!20}
+  \multicolumn{2}{@{} l}{\claimlabel{\textbf{TOTAL DEMAND (principal, excluding interest \& future costs)}} } &
+  \textbf{\$1,283,150.00} \\
+\end{tabularx}
+\end{tcolorbox}
+
+\vspace{2pt}
+{\small\color{SlateGray}\itshape Interest accrues on unpaid amounts at the Illinois statutory rate of 5\% per annum from the date each payment obligation arose. Additional litigation costs, expert witness fees, and statutory attorney's fees (where recoverable) are not included above.}
+
+\vspace{4pt}
+\sectionrule
+{\sffamily\bfseries\color{NavyDeep}\normalsize IV.\enspace FORMAL DEMANDS}
+\sectionrule
+
+In order to resolve this matter without resort to litigation, Nexa demands that Synapse perform \textbf{all} of the following within \textbf{fourteen (14) calendar days} of the date of this letter (the \textquotedblleft\textbf{Response Deadline}\textquotedblright):
+
+\vspace{4pt}
+\begin{enumerate}[leftmargin=2em, itemsep=8pt, topsep=4pt,
+    label=\protect\demandnum{\arabic*}]
+  \item \textbf{Payment:} Remit to Meridian Legal Associates, P.C. (as escrow agent for Nexa) the sum of \textbf{\$1,283,150.00} by wire transfer to the trust account designated in the enclosed wire instructions, or present a written settlement offer accompanied by evidence of financial ability to perform.
+
+  \item \textbf{Delivery or Source Code Escrow:} Either (a) deliver fully conforming Phase II deliverables meeting the acceptance criteria in Exhibit B of the Agreement, or (b) deposit all source code, documentation, and development assets into a mutually agreed escrow pending resolution, so that Nexa may engage a third-party developer to complete the Platform.
+
+  \item \textbf{Document Preservation:} Immediately implement and maintain a litigation hold on all documents, communications (including Slack, email, and project management tools), contracts, billing records, and personnel records related to Nexa, the Platform, and any concurrent client projects. Destruction of potentially relevant evidence will be treated as spoliation.
+
+  \item \textbf{Written Response:} Provide a written response from counsel admitted to practice in the relevant jurisdiction, addressing each claim and demand herein, no later than the Response Deadline. Silence will be construed as an admission of the material facts herein.
+
+  \item \textbf{Insurance Documentation:} Provide certificates of insurance demonstrating maintenance of coverage required by \S 12.2 of the Agreement for all periods from the effective date, or documentation of any coverage gaps and the steps taken to remedy them.
+\end{enumerate}
+
+\vspace{4pt}
+\sectionrule
+{\sffamily\bfseries\color{NavyDeep}\normalsize V.\enspace RESERVATION OF RIGHTS}
+\sectionrule
+
+\begin{tcolorbox}[trackingstyle]
+\noindent Nexa and Meridian Legal Associates expressly reserve \textbf{all rights and remedies} available at law and in equity, including without limitation:
+
+\vspace{4pt}
+\begin{itemize}[leftmargin=1.4em, itemsep=2pt, topsep=0pt]
+  \item The right to seek injunctive or other equitable relief on an expedited basis;
+  \item The right to assert additional claims, including fraud and punitive damages, as facts are developed;
+  \item The right to seek prejudgment attachment of Synapse assets;
+  \item The right to name individual officers and directors as defendants where piercing the corporate veil is warranted;
+  \item The right to seek recovery of all attorneys' fees and costs to the extent permitted by the Agreement (\S 15.3) or applicable statute.
+\end{itemize}
+
+\vspace{4pt}
+\noindent Nothing in this letter shall be construed as a waiver of any right or remedy, nor as an election of remedies. This letter is written for settlement purposes only and is without prejudice to Nexa's full legal position.
+\end{tcolorbox}
+
+\vspace{4pt}
+\sectionrule
+{\sffamily\bfseries\color{NavyDeep}\normalsize VI.\enspace CONSEQUENCE OF NON-COMPLIANCE}
+\sectionrule
+
+\begin{tcolorbox}[alertstyle={NOTICE OF LITIGATION INTENT}]
+\noindent\faGavel\enspace Should Synapse fail to comply fully with the demands set forth above by \textbf{5:00 p.m. Central Time on August 6, 2026}, Meridian Legal Associates is authorized and prepared to file suit in the \textbf{Circuit Court of Cook County, Illinois} (or the United States District Court for the Northern District of Illinois, as appropriate) seeking:
+
+\vspace{4pt}
+\begin{itemize}[leftmargin=1.4em, itemsep=2pt, topsep=0pt,
+    label={\color{RubyAlert}\faAngleRight}]
+  \item Compensatory damages in excess of \$1,283,150.00;
+  \item Punitive damages (pending fraud investigation);
+  \item Prejudgment and post-judgment interest;
+  \item Injunctive relief and specific performance;
+  \item All attorneys' fees, expert fees, and litigation costs;
+  \item Such other and further relief as the Court deems just and proper.
+\end{itemize}
+
+\vspace{4pt}
+\noindent\textbf{Synapse's litigation exposure, including potential punitive damages and compounding interest, will only increase with delay.} We urge Synapse to engage counsel immediately and respond to this letter within the prescribed time.
+\end{tcolorbox}
+
+\vspace{6pt}
+
+\closing{Respectfully submitted,}
+
+\vspace{2pt}
+
+\par\noindent
+\begin{minipage}[t]{0.55\linewidth}
+\vspace{10pt}
+\noindent{\color{SlateGray}\hdashrule{\linewidth}{0.6pt}{2pt}}\\
+\textbf{Elliott J. Hargrove, Esq.}\\
+Senior Partner, Meridian Legal Associates, P.C.\\
+Illinois Bar No. 6293847\\
+\textit{Admitted: IL, NY, USDC N.D. Ill.}
+\end{minipage}%
+\hfill%
+\begin{minipage}[t]{0.38\linewidth}
+\begin{tcolorbox}[trackingstyle, top=4pt, bottom=4pt]
+  \sffamily\fontsize{7.5}{10}\selectfont
+  \textbf{\color{NavyDeep}Enclosures:}\\[2pt]
+  \iconitem{\faFile}{Exhibit A -- Personnel Records}\\
+  \iconitem{\faFile}{Exhibit B -- Acceptance Criteria}\\
+  \iconitem{\faFile}{Exhibit C -- Payment Receipts}\\
+  \iconitem{\faFile}{Wire Transfer Instructions}\\
+  \iconitem{\faFile}{Certificate of Service}
+\end{tcolorbox}
+\end{minipage}
+
+\vspace{8pt}
+\par\noindent
+{\small\color{SlateGray}%
+  \textbf{cc:} Ms. Diana Osei-Mensah, General Counsel, Nexa Capital Holdings, LLC (via email)\\
+  \phantom{\textbf{cc:} }Mr. Thomas R. Calloway, Esq., Outside Litigation Counsel (via email)\\
+  \phantom{\textbf{cc:} }File -- Meridian Legal Associates Matter No. MLA-2026-7734-CSB%
+}
+
+\vspace{10pt}
+
+%% ── Footer rule ──────────────────────────────────────────────────────────────
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[NavyDeep] ([yshift=1.1cm]current page.south west)
+    rectangle ([yshift=0.6cm]current page.south east);
+  \fill[GoldAccent] ([yshift=0.6cm]current page.south west)
+    rectangle ([yshift=0.45cm]current page.south east);
+  \node[text=white, font=\sffamily\fontsize{7}{9}\selectfont,
+        anchor=center] at ([yshift=0.85cm]current page.south)
+    {MERIDIAN LEGAL ASSOCIATES, P.C. \ \textbullet\ \
+     1200 Commerce Tower, Suite 3400, Chicago, IL 60601 \ \textbullet\ \
+     (312) 555-0170 \ \textbullet\ \ legal@meridianpc.law \ \textbullet\ \
+     www.meridianpc.law};
+  \node[text=white!60, font=\sffamily\fontsize{6.5}{8}\selectfont\itshape,
+        anchor=center] at ([yshift=0.53cm]current page.south)
+    {This communication is from a law firm and may contain privileged and confidential attorney-client information intended solely for the named recipient.};
+\end{tikzpicture}
+
+\end{letter}
+\end{document}

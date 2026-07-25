@@ -1,0 +1,201 @@
+\documentclass[10pt,landscape]{article}
+\usepackage[table]{xcolor}
+\usepackage[a4paper,margin=8mm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric,calc}
+\usepackage{pgfgantt}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{tcolorbox}
+\usepackage{fontawesome5}
+\usepackage{microtype}
+
+% Custom Color Palette
+\definecolor{NavyDark}{HTML}{0F172A}
+\definecolor{Primary}{HTML}{1E3A8A}
+\definecolor{Accent}{HTML}{2563EB}
+\definecolor{Teal}{HTML}{0D9488}
+\definecolor{Amber}{HTML}{D97706}
+\definecolor{Slate}{HTML}{475569}
+\definecolor{LightBg}{HTML}{F8FAFC}
+\definecolor{CardBg}{HTML}{F1F5F9}
+\definecolor{BorderColor}{HTML}{CBD5E1}
+
+\pagestyle{empty}
+
+\begin{document}
+
+% --- HEADER / TITLE BLOCK ---
+\begin{tcolorbox}[colback=NavyDark,colframe=NavyDark,arc=4pt,boxrule=0pt,top=6pt,bottom=6pt,left=10pt,right=10pt]
+  \color{white}
+  \begin{minipage}[c]{0.58\textwidth}
+    {\Large \bfseries \color{white} MERIDIAN PLATFORM 2.0} \\[2pt]
+    {\small \color{Accent!40} Next-Generation Cloud Infrastructure Deployment Roadmap}
+  \end{minipage}%
+  \hfill
+  \begin{minipage}[c]{0.40\textwidth}
+    \raggedleft \scriptsize \color{white!85}
+    \faCalendar~ \textbf{Timeline:} Q1--Q4 2026 \quad | \quad \faUser~ \textbf{Lead:} Apex Systems Tech Team \\
+    \faTag~ \textbf{Status:} Active Execution \quad | \quad \faCheckCircle~ \textbf{Target Release:} Dec 2026
+  \end{minipage}
+\end{tcolorbox}
+
+\vspace{-4pt}
+
+% --- PROJECT OVERVIEW CARDS ---
+\begin{minipage}[t]{0.32\textwidth}
+  \begin{tcolorbox}[colback=LightBg,colframe=BorderColor,arc=3pt,boxrule=0.5pt,top=4pt,bottom=4pt,left=6pt,right=6pt]
+    {\small \bfseries \color{Primary} \faInfoCircle~ Project Objectives} \\[2pt]
+    \scriptsize \color{Slate}
+    Deploy next-gen distributed microservices architecture across multi-region cloud nodes for Vertex Corporation.
+  \end{tcolorbox}
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.32\textwidth}
+  \begin{tcolorbox}[colback=LightBg,colframe=BorderColor,arc=3pt,boxrule=0.5pt,top=4pt,bottom=4pt,left=6pt,right=6pt]
+    {\small \bfseries \color{Primary} \faTasks~ Key Deliverables} \\[2pt]
+    \scriptsize \color{Slate}
+    Core Engine v2.0, Zero-Trust Auth Gateway, Analytics Pipeline, SOC2 Audit, and Automated Failover Engine.
+  \end{tcolorbox}
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.32\textwidth}
+  \begin{tcolorbox}[colback=LightBg,colframe=BorderColor,arc=3pt,boxrule=0.5pt,top=4pt,bottom=4pt,left=6pt,right=6pt]
+    {\small \bfseries \color{Primary} \faChartPie~ Overall Status} \\[2pt]
+    \scriptsize \color{Slate}
+    Overall Progress: \textbf{45\% Completed} \\
+    Phase 1: 100\% \ \vline \ Phase 2: 70\% \ \vline \ Phase 3: 15\% \ \vline \ Phase 4: 0\%
+  \end{tcolorbox}
+\end{minipage}
+
+\vspace{-4pt}
+
+% --- GANTT CHART ---
+\begin{tcolorbox}[colback=white,colframe=BorderColor,arc=3pt,boxrule=0.5pt,top=3pt,bottom=3pt,left=3pt,right=3pt]
+  \centering
+  \begin{ganttchart}[
+    canvas/.style={fill=white, draw=BorderColor, line width=0.4pt},
+    hgrid={*1{draw=BorderColor!50, line width=0.3pt}},
+    vgrid={*1{draw=BorderColor!40, dashed, line width=0.3pt}, *3{draw=BorderColor!80, line width=0.5pt}},
+    title/.style={fill=CardBg, draw=BorderColor, line width=0.4pt},
+    title label font=\bfseries\scriptsize\color{NavyDark},
+    title height=0.7,
+    %
+    group/.style={fill=Primary, draw=NavyDark, line width=0.4pt},
+    group height=0.28,
+    group top shift=0.15,
+    group label font=\bfseries\scriptsize\color{NavyDark},
+    %
+    bar/.style={fill=Accent!85, draw=Accent!90!black, line width=0.3pt, rounded corners=1.5pt},
+    bar height=0.32,
+    bar top shift=0.12,
+    bar label font=\scriptsize\color{Slate},
+    bar progress label font=\tiny\color{NavyDark}\bfseries,
+    %
+    bar complete/.style={fill=Teal!85, draw=Teal!90!black},
+    %
+    milestone/.style={fill=Amber, draw=Amber!90!black, line width=0.5pt},
+    milestone height=0.32,
+    milestone label font=\bfseries\scriptsize\color{Amber!90!black},
+    %
+    link/.style={-latex, line width=0.6pt, color=Slate!70},
+    link type=dr,
+    %
+    x unit=17.8mm,
+    y unit chart=4.8mm,
+    y unit title=4.8mm
+  ]{1}{12}
+    % Title Rows (Quarters & Months)
+    \gantttitle{Quarter 1 (Q1)}{3}
+    \gantttitle{Quarter 2 (Q2)}{3}
+    \gantttitle{Quarter 3 (Q3)}{3}
+    \gantttitle{Quarter 4 (Q4)}{3} \\
+    \gantttitle{Jan}{1}
+    \gantttitle{Feb}{1}
+    \gantttitle{Mar}{1}
+    \gantttitle{Apr}{1}
+    \gantttitle{May}{1}
+    \gantttitle{Jun}{1}
+    \gantttitle{Jul}{1}
+    \gantttitle{Aug}{1}
+    \gantttitle{Sep}{1}
+    \gantttitle{Oct}{1}
+    \gantttitle{Nov}{1}
+    \gantttitle{Dec}{1} \\
+
+    % PHASE 1
+    \ganttgroup[progress=100]{Phase 1: Architecture \& Specs}{1}{3} \\
+    \ganttbar[progress=100]{System Specs \& Requirements}{1}{2} \\
+    \ganttbar[progress=100]{Cloud Topology \& Security Spec}{1}{2} \\
+    \ganttbar[progress=100]{Core Database Schema Design}{2}{3} \\
+    \ganttmilestone{M1: Architecture Sign-off}{3} \\
+
+    % PHASE 2
+    \ganttgroup[progress=70]{Phase 2: Core Engine Development}{4}{7} \\
+    \ganttbar[progress=100]{Distributed Engine Build}{4}{5} \\
+    \ganttbar[progress=80]{Zero-Trust Auth Services}{5}{6} \\
+    \ganttbar[progress=30]{API Gateway Integration}{6}{7} \\
+    \ganttmilestone{M2: Alpha Build Release}{7} \\
+
+    % PHASE 3
+    \ganttgroup[progress=15]{Phase 3: Validation \& Compliance}{7}{10} \\
+    \ganttbar[progress=30]{Real-Time Analytics Pipeline}{7}{9} \\
+    \ganttbar[progress=0]{Penetration Testing \& Audit}{8}{10} \\
+    \ganttmilestone{M3: SOC2 Compliance Certified}{10} \\
+
+    % PHASE 4
+    \ganttgroup[progress=0]{Phase 4: Staging \& Go-Live}{9}{12} \\
+    \ganttbar[progress=0]{Staging Load \& Stress Tests}{9}{11} \\
+    \ganttbar[progress=0]{Production Migration \& Go-Live}{11}{12} \\
+    \ganttmilestone{M4: General Availability (GA)}{12}
+
+    % Task Links
+    \ganttlink{elem2}{elem3}
+    \ganttlink{elem4}{elem5}
+    \ganttlink{elem5}{elem7}
+    \ganttlink{elem9}{elem10}
+    \ganttlink{elem13}{elem14}
+  \end{ganttchart}
+\end{tcolorbox}
+
+\vspace{-4pt}
+
+% --- BOTTOM SECTION: LEGEND & MILESTONE TABLE ---
+\begin{minipage}[t]{0.30\textwidth}
+  \begin{tcolorbox}[colback=LightBg,colframe=BorderColor,arc=3pt,boxrule=0.5pt,top=4pt,bottom=4pt,left=6pt,right=6pt]
+    {\small \bfseries \color{Primary} \faInfoCircle~ Legend \& Indicators} \\[3pt]
+    \scriptsize \color{Slate}
+    \setlength{\tabcolsep}{4pt}
+    \begin{tabular}{cl}
+      \tikz\draw[fill=Primary,draw=NavyDark] (0,0) rectangle (0.35,0.16); & Phase Summary Group \\
+      \tikz\draw[fill=Teal!85,draw=Teal!90!black,rounded corners=1pt] (0,0) rectangle (0.35,0.16); & Completed Task (100\%) \\
+      \tikz\draw[fill=Accent!85,draw=Accent!90!black,rounded corners=1pt] (0,0) rectangle (0.35,0.16); & In-Progress / Planned \\
+      \tikz\node[diamond,fill=Amber,draw=Amber!90!black,inner sep=1.8pt] {}; & Project Milestone \\
+      \tikz\draw[-latex,line width=0.6pt,color=Slate!70] (0,0.08) -- (0.4,0.08); & Dependency Link
+    \end{tabular}
+  \end{tcolorbox}
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.68\textwidth}
+  \begin{tcolorbox}[colback=white,colframe=BorderColor,arc=3pt,boxrule=0.5pt,top=4pt,bottom=4pt,left=6pt,right=6pt]
+    {\small \bfseries \color{Primary} \faFlag~ Key Project Milestones} \\[2pt]
+    \scriptsize
+    \rowcolors{2}{LightBg}{white}
+    \begin{tabularx}{\textwidth}{c X c c l}
+      \toprule
+      \textbf{ID} & \textbf{Milestone Description} & \textbf{Target Date} & \textbf{Owner} & \textbf{Status} \\
+      \midrule
+      \textbf{M1} & Architecture \& Security Specs Sign-off & 31 Mar 2026 & Vertex Arch Team & \color{Teal!90!black}\textbf{\faCheckCircle~ Completed} \\{}
+      \textbf{M2} & Alpha Release \& Integration Test Pass & 31 Jul 2026 & Apex Dev Lead & \color{Accent}\textbf{\faHourglassHalf~ On Track} \\{}
+      \textbf{M3} & SOC2 Security \& Compliance Audit Passed & 15 Oct 2026 & Synapse Audit Co & \color{Slate}\textbf{\faClock~ Scheduled} \\{}
+      \textbf{M4} & Meridian 2.0 General Availability (GA) & 31 Dec 2026 & Nexa Release Team & \color{Slate}\textbf{\faClock~ Scheduled} \\
+      \bottomrule
+    \end{tabularx}
+  \end{tcolorbox}
+\end{minipage}
+
+\end{document}

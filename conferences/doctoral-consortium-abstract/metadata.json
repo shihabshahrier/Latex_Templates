@@ -1,0 +1,8 @@
+{
+  "name": "Doctoral Consortium Research Abstract",
+  "compiler": "pdflatex",
+  "description": "Doctoral Consortium Research Abstract LaTeX template \u2014 doctoral consortium research abstract latex template. Elegant, compile-tested, editable online at letx.app.",
+  "author": "LetX",
+  "category": "conferences",
+  "license": "MIT"
+}

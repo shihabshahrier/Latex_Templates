@@ -1,0 +1,407 @@
+\documentclass[10pt,a4paper]{article}
+
+% --- PACKAGES ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[margin=1.5cm,top=1.6cm,bottom=1.6cm,headheight=14pt]{geometry}
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+
+\usepackage[table]{xcolor}
+\usepackage{amsmath,amssymb}
+\usepackage[version=4]{mhchem}
+\usepackage{tcolorbox}
+\tcbuselibrary{skins,breakable}
+\usepackage{tikz}
+\usetikzlibrary{calc,positioning,shapes.geometric}
+\usepackage{booktabs,tabularx,colortbl,multirow}
+\usepackage{enumitem}
+\usepackage{fontawesome5}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage[hidelinks]{hyperref}
+
+% --- COLOR PALETTE ---
+\definecolor{NavyDark}{HTML}{0F172A}      % Primary header & accents
+\definecolor{TealPrimary}{HTML}{0D9488}    % Secondary accent
+\definecolor{TealLight}{HTML}{F0FDFA}      % Background tint
+\definecolor{AmberDark}{HTML}{B45309}     % Safety warning header
+\definecolor{AmberLight}{HTML}{FFFBEB}    % Safety warning bg
+\definecolor{SlateGray}{HTML}{475569}     % Subtitles & text
+\definecolor{BorderGray}{HTML}{CBD5E1}    % Lines & borders
+\definecolor{LightGray}{HTML}{F8FAFC}     % Table light row
+
+% --- PAGE STYLE ---
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{\small\color{SlateGray}\textbf{CHM-302: Organic Synthesis} \quad|\quad Lab Brief 04}
+\lhead{\small\color{SlateGray}Apex Institute of Science \& Technology}
+\rfoot{\small\color{SlateGray}Page \thepage\ of \pageref{LastPage}}
+\lfoot{\small\color{SlateGray}\textbf{CONFIDENTIAL} -- Chemistry Instructional Lab}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\headrule}{\color{BorderGray}\hrule width\headwidth height \headrulewidth}
+
+% Custom section command
+\newcommand{\labsection}[2]{%
+  \vspace{0.25cm}%
+  \begin{tcolorbox}[
+    enhanced,
+    colback=NavyDark,
+    colframe=NavyDark,
+    arc=3pt,
+    boxrule=0pt,
+    left=8pt, right=8pt, top=3pt, bottom=3pt
+  ]
+    \textcolor{white}{\bfseries\small #1 \quad #2}
+  \end{tcolorbox}%
+  \vspace{0.05cm}%
+}
+
+\begin{document}
+
+% --- HEADER BANNER ---
+\begin{tcolorbox}[
+  enhanced,
+  colback=TealLight,
+  colframe=TealPrimary,
+  boxrule=1.2pt,
+  arc=5pt,
+  left=10pt, right=10pt, top=8pt, bottom=8pt
+]
+  \begin{minipage}[c]{0.72\textwidth}
+    {\color{TealPrimary}\scriptsize\bfseries\faFlask \quad DEPARTMENT OF CHEMISTRY \& CHEMICAL ENGINEERING}\\[2pt]
+    {\color{NavyDark}\Large\bfseries CHM-302: Organic Synthesis \& Reaction Kinetics}\\[3pt]
+    {\color{SlateGray}\normalsize\bfseries Experiment 04: Catalyzed Esterification \& Recrystallization}
+  \end{minipage}%
+  \hfill
+  \begin{minipage}[c]{0.25\textwidth}
+    \begin{tcolorbox}[
+      colback=white,
+      colframe=TealPrimary!40,
+      boxrule=0.6pt,
+      arc=3pt,
+      left=4pt, right=4pt, top=3pt, bottom=3pt,
+      halign=center
+    ]
+      \scriptsize\color{NavyDark}
+      \textbf{Term:} Fall 2026\\
+      \textbf{Duration:} 3.5 Hours\\
+      \textbf{Lab Location:} Hall 402\\
+      \textbf{Total Points:} 50 Pts
+    \end{tcolorbox}
+  \end{minipage}
+
+  \vspace{5pt}
+  \hrule height 0.4pt color BorderGray
+  \vspace{5pt}
+
+  \begin{tabularx}{\textwidth}{@{}X X X X@{}}
+    \scriptsize\textbf{Instructor:} Dr. Marcus Vance & 
+    \scriptsize\textbf{Head TA:} Elena Rostova & 
+    \scriptsize\textbf{Pre-Lab Due:} Oct 28, 2026 & 
+    \scriptsize\textbf{Format:} Pair Work
+  \end{tabularx}
+\end{tcolorbox}
+
+\vspace{0.1cm}
+
+% --- METADATA FILL-IN BOX ---
+\begin{tcolorbox}[
+  enhanced,
+  colback=LightGray,
+  colframe=BorderGray,
+  boxrule=0.6pt,
+  arc=3pt,
+  left=8pt, right=8pt, top=5pt, bottom=5pt
+]
+  \scriptsize
+  \begin{tabularx}{\textwidth}{@{}l X l X@{}}
+    \textbf{Student 1 Name:} & \hrulefill & \textbf{Student ID:} & \hrulefill \\[4pt]
+    \textbf{Student 2 Name:} & \hrulefill & \textbf{Bench \#:} & \hrulefill
+  \end{tabularx}
+\end{tcolorbox}
+
+% --- SECTION 1: OBJECTIVES & OVERVIEW ---
+\labsection{1}{Executive Summary \& Learning Objectives}
+
+\begin{tcolorbox}[
+  enhanced,
+  colback=white,
+  colframe=BorderGray,
+  boxrule=0.5pt,
+  arc=3pt,
+  left=8pt, right=8pt, top=5pt, bottom=5pt
+]
+\small
+This laboratory assignment focuses on the acid-catalyzed esterification of salicylic acid with acetic anhydride to yield acetylsalicylic acid (aspirin), followed by crude isolation, purificative recrystallization in an ethanol-water solvent system, and quantitative assessment of chemical purity via micro-melting point determination and ferric chloride ($\ce{Fe^{3+}}$) complexation spectroscopy.
+
+\vspace{4pt}
+\textbf{Key Pedagogical Objectives:}
+\begin{enumerate}[label=\textbf{\arabic*.}, leftmargin=1.5em, itemsep=1pt, topsep=2pt]
+  \item Perform nucleophilic acyl substitution under anhydrous conditions using concentrated acid catalysis.
+  \item Master vacuum filtration techniques and compute accurate theoretical, crude, and purified percent yields.
+  \item Understand recrystallization mechanics based on temperature-dependent solubility differentials.
+  \item Assess organic product purity using colorimetric complexation assays and melting point range analysis.
+\end{enumerate}
+\end{tcolorbox}
+
+% --- SECTION 2: SAFETY PROTOCOLS & HAZARDS ---
+\labsection{2}{Chemical Hazards \& Laboratory Safety Protocols}
+
+\begin{tcolorbox}[
+  enhanced,
+  colback=AmberLight,
+  colframe=AmberDark,
+  boxrule=1pt,
+  arc=3pt,
+  left=8pt, right=8pt, top=5pt, bottom=5pt
+]
+  {\color{AmberDark}\small\bfseries \faExclamationTriangle \quad MANDATORY SAFETY DIRECTIVES \& GHS HAZARDS}\\[2pt]
+  {\scriptsize All operations involving acetic anhydride and concentrated sulfuric acid MUST be conducted inside operational fume hoods. Wear splash goggles, neoprene/nitrile gloves, and lab coat at all times.}
+
+  \vspace{4pt}
+
+  \scriptsize
+  \begin{tabularx}{\textwidth}{@{}l c X l@{}}
+    \toprule
+    \rowcolor{AmberDark!15}
+    \textbf{Reagent} & \textbf{CAS \#} & \textbf{Primary GHS Hazard Statements} & \textbf{PPE Requirement} \\
+    \midrule
+    Salicylic Acid & 69-72-7 & Acute Tox. 4 (Oral), Eye Dam. 1 (H318, H302) & Nitrile Gloves, Safety Glasses \\
+    Acetic Anhydride & 108-24-7 & Flam. Liq. 3, Skin Corr. 1B, Acute Tox. 4 (H226, H314) & Fume Hood, Heavy Nitrile \\
+    Sulfuric Acid ($18\,\text{M}$) & 7664-93-9 & Skin Corr. 1A, Met. Corr. 1 (H314, H290) & Double Gloves, Face Shield \\
+    Acetylsalicylic Acid & 50-78-2 & Acute Tox. 4, Skin Irrit. 2 (H302, H315) & Standard Lab Coat, Goggles \\
+    \bottomrule
+  \end{tabularx}
+
+  \vspace{4pt}
+  \scriptsize\textbf{Emergency Procedure:} Flush chemical skin exposure with water for 15+ minutes. Benchtop acid spills must be neutralized with sodium bicarbonate ($\ce{NaHCO3}$) prior to wipe-down. Waste solutions containing heavy metals ($\ce{FeCl3}$) must be poured into Hazardous Metal Waste Container B.
+\end{tcolorbox}
+
+% --- SECTION 3: REACTION SCHEME & REAGENT DATA ---
+\labsection{3}{Theoretical Reaction Scheme \& Stoichiometric Matrix}
+
+\begin{tcolorbox}[
+  enhanced,
+  colback=white,
+  colframe=TealPrimary,
+  boxrule=0.8pt,
+  arc=3pt,
+  left=8pt, right=8pt, top=5pt, bottom=5pt
+]
+  \centering
+  \textbf{\small Reaction Scheme: Acid-Catalyzed Acetylation of Salicylic Acid}\\[3pt]
+  
+  \begin{equation*}
+    \ce{C7H6O3 (s) + C4H6O3 (l) ->[H2SO4][85^\circ C] C9H8O4 (s) + C2H4O2 (l)}
+  \end{equation*}
+  
+  \vspace{2pt}
+  {\scriptsize\color{SlateGray}Salicylic Acid ($2.50\,\text{g}$) + Acetic Anhydride ($5.00\,\text{mL}$) $\xrightarrow{\ce{H2SO4}}$ Acetylsalicylic Acid + Acetic Acid}
+\end{tcolorbox}
+
+\vspace{0.05cm}
+
+\textbf{\small Reagent Physical Property Table}
+\vspace{2pt}
+
+\rowcolors{2}{LightGray}{white}
+\scriptsize
+\begin{tabularx}{\textwidth}{@{}l c c c c X@{}}
+  \toprule
+  \rowcolor{NavyDark}
+  \color{white}\textbf{Chemical Compound} & \color{white}\textbf{MW (g/mol)} & \color{white}\textbf{Density (g/mL)} & \color{white}\textbf{m.p. ($^\circ\text{C}$)} & \color{white}\textbf{b.p. ($^\circ\text{C}$)} & \color{white}\textbf{Reaction Role} \\
+  \midrule
+  Salicylic Acid & 138.12 & 1.443 & 158.6 & 211.0 & Limiting Reagent \\
+  Acetic Anhydride & 102.09 & 1.082 & --73.1 & 139.8 & Excess Reactant / Solvent \\
+  Sulfuric Acid ($98\%$) & 98.08 & 1.840 & 10.3 & 337.0 & Acid Catalyst \\
+  Acetylsalicylic Acid & 180.16 & 1.400 & 135.0--136.0 & Decomposes & Target Product \\
+  Water (Deionized) & 18.02 & 1.000 & 0.0 & 100.0 & Quenching Solvent \\
+  \bottomrule
+\end{tabularx}
+
+\pagebreak
+
+% --- SECTION 4: STEP-BY-STEP PROCEDURE ---
+\labsection{4}{Detailed Experimental Work Plan}
+
+\begin{tcolorbox}[
+  enhanced,
+  colback=white,
+  colframe=BorderGray,
+  boxrule=0.5pt,
+  arc=3pt,
+  left=8pt, right=8pt, top=6pt, bottom=6pt
+]
+\small
+\begin{enumerate}[label=\textbf{Part \Alph*:}, leftmargin=3em, itemsep=5pt, topsep=2pt]
+  \item \textbf{Synthesis of Crude Acetylsalicylic Acid}
+    \begin{enumerate}[label=\arabic*., leftmargin=1.5em, itemsep=2pt]
+      \item Accurately weigh approximately $2.50\,\text{g}$ of salicylic acid to the nearest $0.001\,\text{g}$ on an analytical balance. Record exact mass in Data Sheet 5.1.
+      \item Transfer solid into a dry $125\,\text{mL}$ Erlenmeyer flask equipped with a magnetic stir bar.
+      \item In the fume hood, add $5.00\,\text{mL}$ of acetic anhydride via volumetric pipette. Wash down any solid adhering to flask walls.
+      \item Carefully add $5\text{--}8$ drops of concentrated sulfuric acid ($\ce{H2SO4}, 18\,\text{M}$) using a Pasteur pipette while swirling.
+      \item Clamp flask in a warm water bath ($75\text{--}85^\circ\text{C}$) on a hotplate-stirrer. Heat with constant stirring for 15 minutes.
+    \end{enumerate}
+
+  \item \textbf{Quenching, Precipitation \& Vacuum Isolation}
+    \begin{enumerate}[label=\arabic*., leftmargin=1.5em, itemsep=2pt]
+      \item Remove flask from water bath. Slowly add $2.0\,\text{mL}$ of ice-cold deionized water to decompose unreacted acetic anhydride (\textbf{CAUTION:} exothermic reaction; vapor evolution).
+      \item Once reaction subsides, add $40\,\text{mL}$ of ice-cold water. Chill mixture in an ice-water bath for 15 minutes to maximize precipitation.
+      \item Assemble a Büchner funnel with Whatman No. 1 filter paper on a filter flask attached to vacuum aspirator.
+      \item Filter crude aspirin under vacuum. Wash filter cake twice with $5\,\text{mL}$ portions of ice-cold water. Draw air through cake for 5 minutes.
+    \end{enumerate}
+
+  \item \textbf{Purification via Recrystallization \& Characterization}
+    \begin{enumerate}[label=\arabic*., leftmargin=1.5em, itemsep=2pt]
+      \item Transfer crude solid to a $50\,\text{mL}$ beaker. Dissolve in minimum volume ($\sim 5\text{--}7\,\text{mL}$) of warm $95\%$ ethanol heated to $60^\circ\text{C}$.
+      \item Add $20\,\text{mL}$ of warm deionized water. Cover beaker with watch glass and allow to cool undisturbed to room temperature, then transfer to ice bath.
+      \item Collect purified needle crystals via vacuum filtration. Dry in oven at $60^\circ\text{C}$ for 25 minutes.
+      \item Determine melting point range using Mel-Temp apparatus. Perform $\ce{FeCl3}$ test ($1\text{ drop } 1\% \ce{FeCl3}$ in ethanol) to test for residual salicylic acid.
+    \end{enumerate}
+\end{enumerate}
+\end{tcolorbox}
+
+\vspace{0.1cm}
+
+% --- SECTION 5: DATA TABLES & STUDENT RECORD ---
+\labsection{5}{Primary Experimental Data \& Observations Sheet}
+
+\begin{tcolorbox}[
+  enhanced,
+  colback=white,
+  colframe=BorderGray,
+  boxrule=0.5pt,
+  arc=3pt,
+  left=8pt, right=8pt, top=6pt, bottom=6pt
+]
+\scriptsize
+\textbf{Table 5.1: Gravimetric Synthesis Data}
+\vspace{2pt}
+
+\begin{tabularx}{\textwidth}{|X|c|r|}
+  \hline
+  \rowcolor{NavyDark}
+  \color{white}\textbf{Measurement Parameter} & \color{white}\textbf{Unit} & \color{white}\textbf{Recorded Value} \\
+  \hline
+  Mass of Salicylic Acid ($\ce{C7H6O3}$) & g & \hspace{3cm} . \hspace{1cm} \\
+  \hline
+  Volume of Acetic Anhydride ($\ce{C4H6O3}$) & mL & . \hspace{1cm} \\
+  \hline
+  Calculated Density of Acetic Anhydride & g/mL & 1.082 \\
+  \hline
+  Mass of Acetic Anhydride Used & g & . \hspace{1cm} \\
+  \hline
+  Theoretical Yield of Acetylsalicylic Acid & g & . \hspace{1cm} \\
+  \hline
+  Mass of Watch Glass + Filter Paper & g & . \hspace{1cm} \\
+  \hline
+  Mass of Watch Glass + Filter Paper + Crude Aspirin & g & . \hspace{1cm} \\
+  \hline
+  Mass of Isolated Crude Acetylsalicylic Acid & g & . \hspace{1cm} \\
+  \hline
+  Mass of Watch Glass + Filter Paper + Purified Aspirin & g & . \hspace{1cm} \\
+  \hline
+  Mass of Isolated Purified Acetylsalicylic Acid & g & . \hspace{1cm} \\
+  \hline
+  \textbf{Crude Percent Yield} & \% & . \hspace{1cm} \\
+  \hline
+  \textbf{Purified Percent Yield} & \% & . \hspace{1cm} \\
+  \hline
+\end{tabularx}
+
+\vspace{5pt}
+\textbf{Table 5.2: Analytical Purity \& Characterization}
+\vspace{2pt}
+
+\begin{tabularx}{\textwidth}{|X|c|c|c|}
+  \hline
+  \rowcolor{NavyDark}
+  \color{white}\textbf{Sample Tested} & \color{white}\textbf{Observed m.p. ($^\circ\text{C}$)} & \color{white}\textbf{$\ce{FeCl3}$ Color Test Result} & \color{white}\textbf{Phenol Assessment} \\
+  \hline
+  Pure Salicylic Acid Standard & 158.5 -- 159.5 & Intense Dark Violet & High Phenolic Content \\
+  \hline
+  Commercial Aspirin Tablet (Control) & 134.5 -- 135.5 & Clear / Pale Yellow & No Phenolic Impurity \\
+  \hline
+  Crude Aspirin Sample & \hspace{1.5cm} -- \hspace{1.5cm} & & \\
+  \hline
+  Purified Recrystallized Aspirin & \hspace{1.5cm} -- \hspace{1.5cm} & & \\
+  \hline
+\end{tabularx}
+\end{tcolorbox}
+
+\pagebreak
+
+% --- SECTION 6: PRE-LAB ASSIGNMENT QUESTIONS ---
+\labsection{6}{Mandatory Pre-Lab Analytical Questions}
+
+\begin{tcolorbox}[
+  enhanced,
+  colback=white,
+  colframe=BorderGray,
+  boxrule=0.5pt,
+  arc=3pt,
+  left=8pt, right=8pt, top=6pt, bottom=6pt
+]
+\small
+\textit{Complete these pre-lab questions individually before arriving at the laboratory session. Submit your completed responses to the TA at the beginning of the lab.}
+
+\begin{enumerate}[label=\textbf{Q\arabic*.}, leftmargin=2em, itemsep=6pt, topsep=2pt]
+  \item \textbf{Stoichiometric Yield Calculation:}\\{}
+    A student reacts $2.75\,\text{g}$ of salicylic acid with $5.50\,\text{mL}$ of acetic anhydride in the presence of $5$ drops of sulfuric acid.
+    \begin{enumerate}[label=(\alph*), leftmargin=1.5em, itemsep=2pt]
+      \item Determine the limiting reactant showing full dimensional analysis.
+      \item Calculate the theoretical yield of acetylsalicylic acid in grams.
+      \item If $2.82\,\text{g}$ of purified aspirin is recovered, calculate the overall percent yield.
+    \end{enumerate}
+
+  \item \textbf{Mechanistic Pathway:}\\{}
+    Draw the complete curved-arrow mechanism for the acid-catalyzed acetylation of salicylic acid by acetic anhydride. Clearly indicate all proton transfers, tetrahedral intermediates, and resonance structures of the protonated anhydride catalyst complex.
+
+  \item \textbf{Quenching Side Reactions:}\\{}
+    Why is water added at the end of the reaction heating period? Write the balanced chemical equation for the hydrolysis of excess acetic anhydride and explain why this operation is conducted in the fume hood.
+
+  \item \textbf{Recrystallization Solvent Selection:}\\{}
+    Explain why a solvent pair of ethanol and water is superior to pure water or pure ethanol for the recrystallization of aspirin, referencing polar solubility parameters and temperature coefficients.
+
+  \item \textbf{Purity Assay Chemistry:}\\{}
+    Describe the chemical basis of the iron(III) chloride ($\ce{FeCl3}$) colorimetric test. What functional group coordinates with $\ce{Fe^{3+}}$ to form the violet complex, and why does pure aspirin yield a negative test?
+\end{enumerate}
+\end{tcolorbox}
+
+\vspace{0.1cm}
+
+% --- SECTION 7: SAFETY SIGN-OFF & COMPLIANCE ---
+\labsection{7}{Student Safety Commitment \& TA Verification}
+
+\begin{tcolorbox}[
+  enhanced,
+  colback=TealLight,
+  colframe=TealPrimary,
+  boxrule=1pt,
+  arc=4pt,
+  left=8pt, right=8pt, top=6pt, bottom=6pt
+]
+  \textbf{\small Safety Compliance Declaration}
+  \vspace{3pt}
+
+  \scriptsize
+  By signing below, I certify that I have read and fully understood the GHS safety data sheets for all chemical reagents used in Experiment 04. I agree to abide by all laboratory safety regulations, wear required PPE, perform acid heating operations exclusively within chemical fume hoods, and properly segregate hazardous organic waste.
+
+  \vspace{10pt}
+  
+  \begin{tabularx}{\textwidth}{@{}X X@{}}
+    \textbf{Student 1 Signature:} \hrulefill & \textbf{Date:} \hrulefill \\[10pt]
+    \textbf{Student 2 Signature:} \hrulefill & \textbf{Date:} \hrulefill \\
+  \end{tabularx}
+
+  \vspace{6pt}
+  \hrule height 0.4pt color BorderGray
+  \vspace{6pt}
+
+  \begin{tabularx}{\textwidth}{@{}X X@{}}
+    \textbf{TA Pre-Lab Check (Sign-off):} \hrulefill & \textbf{Bench Safety Approved:} \lbrack~\text{ }~\rbrack~\text{Yes} \quad \lbrack~\text{ }~\rbrack~\text{No} \\
+  \end{tabularx}
+\end{tcolorbox}
+
+\end{document}

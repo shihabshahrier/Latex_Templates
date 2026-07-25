@@ -1,0 +1,352 @@
+\documentclass[11pt, a4paper, parskip=half]{scrartcl}
+
+%-------------------------------------------------------------------------------
+% PACKAGES & FONTS
+%-------------------------------------------------------------------------------
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{charter}
+\usepackage[scaled=0.92]{helvet}
+\usepackage{microtype}
+\linespread{0.95}
+
+\usepackage[top=1.5cm, bottom=1.5cm, left=1.6cm, right=1.6cm, headheight=14pt]{geometry}
+\usepackage[table, svgnames]{xcolor}
+\usepackage{amsmath, amssymb}
+\usepackage{booktabs, tabularx, array}
+\usepackage{enumitem}
+\usepackage{lastpage}
+\usepackage{fontawesome5}
+\usepackage[most]{tcolorbox}
+\usepackage{tikz}
+\usetikzlibrary{calc, positioning, shapes.geometric}
+
+\usepackage[headsepline, footsepline]{scrlayer-scrpage}
+\usepackage[hidelinks, colorlinks=true, linkcolor=PrimaryNavy, citecolor=SecondaryTeal, urlcolor=SecondaryTeal]{hyperref}
+
+%-------------------------------------------------------------------------------
+% COLOR PALETTE (Tasteful 4-color academic palette)
+%-------------------------------------------------------------------------------
+\definecolor{PrimaryNavy}{RGB}{24, 43, 73}       % Deep academic navy (#182B49)
+\definecolor{SecondaryTeal}{RGB}{30, 115, 110}   % Slate teal accent (#1E736E)
+\definecolor{AccentGold}{RGB}{185, 125, 35}      % Warm gold accent (#B97D23)
+\definecolor{BgLight}{RGB}{245, 247, 250}        % Soft gray background (#F5F7FA)
+\definecolor{BorderGray}{RGB}{215, 222, 232}     % Border gray (#DAE0E9)
+\definecolor{TextDark}{RGB}{35, 40, 48}          % Deep charcoal body text (#232830)
+
+% Apply text color
+\color{TextDark}
+
+%-------------------------------------------------------------------------------
+% KOMA-SCRIPT FORMATTING & SPACING
+%-------------------------------------------------------------------------------
+\addtokomafont{section}{\sffamily\bfseries\color{PrimaryNavy}\large}
+\addtokomafont{subsection}{\sffamily\bfseries\color{SecondaryTeal}\normalsize}
+\addtokomafont{subsubsection}{\sffamily\bfseries\color{PrimaryNavy}\normalsize}
+
+\RedeclareSectionCommand[beforeskip=-0.4em, afterskip=0.15em]{section}
+\RedeclareSectionCommand[beforeskip=-0.3em, afterskip=0.10em]{subsection}
+\RedeclareSectionCommand[beforeskip=-0.2em, afterskip=0.10em]{subsubsection}
+
+% Header & Footer Configuration
+\clearpairofpagestyles
+\ihead{\textcolor{PrimaryNavy}{\sffamily\bfseries\small Tenure Dossier: Research Statement}}
+\ohead{\textcolor{PrimaryNavy}{\sffamily\small Dr.~Elena V.~Rostova}}
+\ifoot{\textcolor{PrimaryNavy}{\sffamily\small Dept.~of Computer Science \& Engineering \textbar\ Meridian University of Technology}}
+\ofoot{\textcolor{PrimaryNavy}{\sffamily\bfseries\small Page \thepage\ of \pageref{LastPage}}}
+\addtokomafont{pageheadfoot}{\sffamily}
+
+% Custom List Styling
+\setlist[itemize]{leftmargin=1.2em, label=\textcolor{SecondaryTeal}{\small\faAngleRight}, itemsep=0.04em, parsep=0.0em, topsep=0.04em}
+\setlist[enumerate]{leftmargin=1.2em, itemsep=0.04em, parsep=0.0em, topsep=0.04em}
+
+% Tabularx helper column types
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\arraybackslash}p{#1}}
+
+% Custom tcolorbox styles
+\tcbset{
+  enhanced,
+  boxrule=0.8pt,
+  arc=4pt,
+  fonttitle=\sffamily\bfseries,
+  coltitle=white,
+  colback=BgLight,
+  colframe=PrimaryNavy,
+  attach boxed title to top left={xshift=10pt, yshift=-9pt},
+  boxed title style={colback=PrimaryNavy, arc=2pt, boxrule=0pt, top=2pt, bottom=2pt, left=7pt, right=7pt}
+}
+
+\newtcolorbox{highlightbox}[1]{
+  colframe=SecondaryTeal,
+  colback=BgLight,
+  coltitle=white,
+  boxed title style={colback=SecondaryTeal},
+  top=3pt, bottom=3pt, left=7pt, right=7pt,
+  title=#1
+}
+
+\newtcolorbox{summarybox}{
+  colframe=PrimaryNavy,
+  colback=BgLight,
+  boxrule=1pt,
+  arc=4pt,
+  top=4pt, bottom=4pt, left=7pt, right=7pt
+}
+
+%-------------------------------------------------------------------------------
+% DOCUMENT CONTENT
+%-------------------------------------------------------------------------------
+\begin{document}
+
+%-------------------------------------------------------------------------------
+% HEADER BLOCK / CANDIDATE METADATA
+%-------------------------------------------------------------------------------
+\begin{summarybox}
+  \begin{minipage}[t]{0.62\textwidth}
+    {\sffamily\Huge\bfseries\color{PrimaryNavy} Dr.~Elena V.~Rostova} \\[0.2em]
+    {\sffamily\Large\bfseries\color{SecondaryTeal} Research Statement \& 5-Year Vision} \\[0.3em]
+    {\sffamily\bfseries Candidate for Tenure \& Promotion to Associate Professor} \\
+    {\small Department of Computer Science \& Engineering \quad|\quad Meridian University}
+  \end{minipage}%
+  \hfill
+  \begin{minipage}[t]{0.35\textwidth}
+    \small\sffamily
+    \raggedleft
+    \textcolor{PrimaryNavy}{\faEnvelope} \ \href{mailto:e.rostova@meridian.edu}{e.rostova@meridian.edu} \\
+    \textcolor{PrimaryNavy}{\faGlobe} \ \href{https://rostova-lab.meridian.edu}{rostova-lab.meridian.edu} \\
+    \textcolor{PrimaryNavy}{\faGraduationCap} \ Scholar: \href{https://scholar.google.com}{Elena Rostova} \\
+    \textcolor{PrimaryNavy}{\faCodeBranch} \ Code: \href{https://github.com/rostova-lab}{github.com/rostova-lab} \\
+    \textcolor{PrimaryNavy}{\faCalendar} \ Evaluation Period: 2021--2026
+  \end{minipage}
+  
+  \vspace{0.3em}
+  \hrule height 0.8pt \relax
+  \vspace{0.3em}
+  
+  \begin{minipage}[t]{\textwidth}
+    \sffamily\small
+    \begin{tabularx}{\textwidth}{@{} X X X X @{}}
+      \textcolor{PrimaryNavy}{\textbf{Tenure Track:}} 2021--2026 &
+      \textcolor{PrimaryNavy}{\textbf{Grants:}} \$2.45M (PI/Lead) &
+      \textcolor{PrimaryNavy}{\textbf{Publications:}} 16 Papers &
+      \textcolor{PrimaryNavy}{\textbf{Ph.D.\ Students:}} 4 Grad / 3 Active
+    \end{tabularx}
+  \end{minipage}
+\end{summarybox}
+
+%-------------------------------------------------------------------------------
+% SECTION 1: OVERARCHING VISION
+%-------------------------------------------------------------------------------
+\section{Overarching Research Vision \& Philosophy}
+
+My research operates at the intersection of \textbf{distributed systems}, \textbf{edge computing}, and \textbf{fault-tolerant machine learning algorithms}. As autonomous systems—ranging from fleets of robotic vehicles to distributed medical diagnostic sensors—are increasingly deployed in unconstrained physical environments, traditional cloud-centric computing paradigms fail due to high latency, bandwidth limitations, and severe network partitioning.
+
+\textbf{Core Mission:} My laboratory, the \textit{Vertex Distributed Systems Laboratory (VDSL)} at Meridian University, develops the theoretical foundations and system software architectures necessary to realize \textbf{provably resilient, real-time autonomous intelligence across heterogeneous, bandwidth-constrained edge networks}.
+
+Over the past five years as an Assistant Professor, my research agenda has centered on three mutually reinforcing pillars:
+\begin{enumerate}
+  \item \textbf{Byzantine-Robust Distributed Optimization:} Architecting asynchronous stochastic gradient algorithms capable of maintaining formal convergence guarantees despite arbitrary worker failures, malicious inputs, or extreme network stragglers (Project \textit{Synapse}).
+  \item \textbf{Heterogeneous Resource-Aware Federated Learning:} Devising dynamic gradient compression and device-scheduling protocols designed for non-IID data distributions on low-power microcontrollers (Project \textit{Nexa}).
+  \item \textbf{Hardware-Assisted Edge Execution for Swarm Autonomy:} Co-designing real-time control loops and distributed consensus algorithms verified on physical autonomous drone and ground rover testbeds (Project \textit{Apex}).
+\end{enumerate}
+
+Since joining Meridian University in Fall 2021, I have established a vibrant, competitive research program funded by \textbf{\$2.45M in total competitive external grants} (including an \textbf{NSF CAREER Award} in 2024), published \textbf{16 peer-reviewed papers} in premier computer science venues (such as \textit{NeurIPS}, \textit{ICML}, \textit{OSDI}, \textit{IEEE TPDS}, and \textit{ACM EuroSys}), graduated \textbf{4 Ph.D.\ students}, and built active interdisciplinary collaborations with national laboratories and industry partners like Synapse Robotics and Nimbus Systems.
+
+%-------------------------------------------------------------------------------
+% SECTION 2: ACCOMPLISHMENTS & THRUSTS
+%-------------------------------------------------------------------------------
+\section{Major Research Accomplishments During Tenure Track}
+
+\subsection{Thrust 1: Byzantine-Robust Asynchronous Distributed Learning (Project Synapse)}
+
+Distributed machine learning on edge clusters suffers from severe straggler effects and network dropouts. Traditional synchronous parameter server frameworks stall when waiting for slow nodes, while standard asynchronous stochastic gradient descent (SGD) models are vulnerable to poisoned gradients from compromised edge nodes.
+
+\begin{highlightbox}{Key Breakthroughs in Project Synapse}
+\begin{itemize}
+  \item \textbf{Sub-linear Communication Overhead:} Formulated the \textit{Krum-Asynch} gradient filter, the first asynchronous aggregation rule providing optimal breakdown point ($\frac{1}{2} - \epsilon$) while requiring only $O(d \log K)$ per-step communication complexity for $d$-dimensional model vectors across $K$ workers.
+  \item \textbf{Bounded Asynchrony Under Extreme Drift:} Proved tight convergence bounds under non-convex loss functions when worker staleness follows arbitrary heavy-tailed distributions.
+  \item \textbf{Open-Source Impact:} Implemented our algorithms into the \texttt{Synapse-ML} framework, currently deployed by over 40 research groups worldwide and integrated into industrial pipelines at Nexa Autonomous Systems.
+\end{itemize}
+\end{highlightbox}
+
+\textbf{Representative Publications:} [C1] NeurIPS 2022 (Spotlight), [C4] OSDI 2023, [J1] IEEE TPDS 2024.
+
+\subsection{Thrust 2: Heterogeneous Edge-Device Federated Compression (Project Nexa)}
+
+Federated learning across millions of internet-of-things (IoT) devices faces two primary bottlenecks: severe communication constraints and non-identically distributed (non-IID) local training data. Existing gradient compression schemes (e.g., Top-$k$ sparsification) perform poorly under non-IID conditions, leading to model divergence.
+
+To resolve this challenge, my lab developed \textbf{Adaptive Quantized Drift Compensation (AQDC)}, a novel theoretical framework that dynamically pairs error-compensated gradient quantization with localized client drift correction vectors.
+
+\begin{center}
+\begin{tikzpicture}[scale=0.88, every node/.style={font=\sffamily\small}]
+  % Nodes
+  \node[draw=PrimaryNavy, fill=PrimaryNavy!10, rectangle, rounded corners=3pt, text width=3.4cm, align=center, inner sep=4pt, line width=1pt] (server) at (0,0) {\textbf{Central Server}\\[0.1em]\footnotesize Global Aggregation};
+  
+  \node[draw=SecondaryTeal, fill=SecondaryTeal!10, rectangle, rounded corners=3pt, text width=2.7cm, align=center, inner sep=3pt, line width=1pt] (edge1) at (-4.2,-1.6) {\textbf{Edge Node A}\\[0.1em]\footnotesize Resource-Constrained};
+  
+  \node[draw=SecondaryTeal, fill=SecondaryTeal!10, rectangle, rounded corners=3pt, text width=2.7cm, align=center, inner sep=3pt, line width=1pt] (edge2) at (0,-1.6) {\textbf{Edge Node B}\\[0.1em]\footnotesize Heterogeneous CPU};
+  
+  \node[draw=SecondaryTeal, fill=SecondaryTeal!10, rectangle, rounded corners=3pt, text width=2.7cm, align=center, inner sep=3pt, line width=1pt] (edge3) at (4.2,-1.6) {\textbf{Edge Node C}\\[0.1em]\footnotesize Intermittent Link};
+
+  % Arrows
+  \draw[<->, >=stealth, line width=1.1pt, color=PrimaryNavy] (server) -- node[above left, font=\sffamily\tiny] {Compressed Gradient} (edge1);
+  \draw[<->, >=stealth, line width=1.1pt, color=PrimaryNavy] (server) -- node[fill=white, inner sep=1.5pt, font=\sffamily\tiny] {Drift Compensation} (edge2);
+  \draw[<->, >=stealth, line width=1.1pt, color=PrimaryNavy] (server) -- node[above right, font=\sffamily\tiny] {32x Sparsified Model} (edge3);
+\end{tikzpicture}
+\\[0.2em]
+\parbox{0.92\textwidth}{\centering\small\sffamily \textbf{Figure 1:} Conceptual architecture of Project Nexa: Adaptive Quantized Drift Compensation (AQDC) maintaining fast global model convergence across heterogeneous edge nodes with 32$\times$ lower payload transmission.}
+\end{center}
+
+Our empirical results demonstrate a \textbf{32$\times$ reduction in uplink network payload} while maintaining accuracy parity within 0.3\% of uncompressed centralized training on standard benchmark datasets (CIFAR-100, ImageNet-Edge, and HAR-Kinetics).
+
+\textbf{Representative Publications:} [C2] ICML 2023, [C6] ACM EuroSys 2024, [J2] ACM TACO 2025.
+
+\subsection{Thrust 3: Real-Time Swarm Autonomy in Hardware Testbeds (Project Apex)}
+
+Moving beyond pure simulation, my group constructed a state-of-the-art \textbf{Hardware-in-the-Loop (HIL) Robotics Testbed} featuring 16 custom autonomous quadcopters and 12 ground vehicles equipped with onboard Lumina Jetson Orin modules.
+
+Through Project \textit{Apex}, we developed the first provably safe decentralized model-predictive control (DMPC) protocol operating over lossy wireless mesh connections:
+\begin{itemize}
+  \item Integrated stochastic safety barrier functions directly into distributed optimization update steps, ensuring collision-free trajectory generation even under 400ms bursty network delays.
+  \item Validated real-time task allocation algorithms during multi-agent search-and-rescue mission simulations in physically occluded environments.
+\end{itemize}
+
+\textbf{Representative Publications:} [C3] IEEE ICRA 2023, [C7] IEEE/RSJ IROS 2024, [C8] ACM/IEEE ICCPS 2025.
+
+%-------------------------------------------------------------------------------
+% SECTION 3: FUNDING & GRANTS
+%-------------------------------------------------------------------------------
+\section{External Funding \& Sponsored Research Portfolio}
+
+During my tenure-track period, I have been awarded \textbf{\$2.45M in total research funding} (\$2.15M directly credited to my lab as PI/Lead PI). This portfolio includes prestigious federal career awards, core NSF single-PI grants, interdisciplinary team grants, and industry gifts.
+
+\begin{center}
+\sffamily\small
+\rowcolors{2}{BgLight}{white}
+\begin{tabularx}{\textwidth}{@{} L{2.2cm} X L{3.0cm} C{2.0cm} R{2.0cm} @{}}
+  \toprule
+  \rowcolor{PrimaryNavy}
+  \textcolor{white}{\textbf{Agency}} & \textcolor{white}{\textbf{Grant Title \& Award Number}} & \textcolor{white}{\textbf{Role}} & \textcolor{white}{\textbf{Period}} & \textcolor{white}{\textbf{Amount}} \\
+  \midrule
+  NSF CAREER & CAREER: Resilient Learning at Network Edge (\#2341892) & Principal Investigator & 2024--2029 & \$600,000 \\{}
+  NSF CNS Core & Medium: Byzantine Edge Consensus (\#2209145) & Lead PI (with Vertex) & 2022--2026 & \$850,000 \\{}
+  AFOSR RIF & Autonomous Swarm Control Under Link Loss & Co-PI (PI: Dr. Chang) & 2023--2026 & \$450,000 \\{}
+  Nimbus Systems & Unrestricted Gift: Edge Robotics Software & Sole PI & 2022--2025 & \$250,000 \\{}
+  Meridian Seed & Hardware Swarm Testbed & Sole PI & 2021--2022 & \$300,000 \\
+  \bottomrule
+  \textbf{Total Funding} & \multicolumn{3}{@{}l}{\textbf{Directly Managed Lab Portfolio: \$2,150,000}} & \textbf{\$2,450,000} \\
+  \bottomrule
+\end{tabularx}
+\\[0.2em]
+\parbox{0.92\textwidth}{\centering\small\sffamily \textbf{Table 1:} Summary of sponsored research projects and competitive external grants secured during the evaluation period.}
+\end{center}
+
+%-------------------------------------------------------------------------------
+% SECTION 4: MENTORSHIP & LAB LEADERSHIP
+%-------------------------------------------------------------------------------
+\section{Research Student Advising \& Lab Leadership}
+
+Building an inclusive, rigorous, and highly productive laboratory environment is one of my highest priorities as a faculty member.
+
+\subsection{Ph.D.\ Student Supervision}
+\begin{itemize}
+  \item \textbf{Dr. Marcus Vance} (Ph.D.\ 2024): Dissertation: \textit{"Asynchronous Optimization for Decentralized Edge Networks"}. Currently Tenure-Track Assistant Professor at Vertex Polytechnic Institute.
+  \item \textbf{Dr. Sophia Chen} (Ph.D.\ 2025): Dissertation: \textit{"Quantized Federated Learning in Non-IID Mobile Systems"}. Recipient of the 2024 Meridian Outstanding Graduate Dissertation Award. Currently Research Scientist at Synapse AI Research Labs.
+  \item \textbf{David K. Miller} (Ph.D.\ candidate, expected 2026): Co-advised with Prof. Aris Thorne. Focus: Real-time safety barriers in multi-robot systems.
+  \item \textbf{Amara Okafor} (Ph.D.\ candidate, expected 2027): NSF Graduate Research Fellow (GRFP). Focus: Quantum-assisted distributed consensus.
+\end{itemize}
+
+\subsection{Undergraduate Mentorship \& Diversity Initiatives}
+I have directly mentored \textbf{9 undergraduate researchers}, 6 of whom were funded through NSF REU supplements. Five of my undergraduate advisees have co-authored peer-reviewed papers at top conferences, and four have gone on to top Ph.D.\ programs in computer science.
+
+Furthermore, I serve as the Faculty Advisor for the \textit{Meridian Women in Computer Science (WiCS)} chapter and lead the annual \textit{EdgeRobotics High School Summer Workshop}, introducing underrepresented students to robotics programming.
+
+%-------------------------------------------------------------------------------
+% SECTION 5: 5-YEAR POST-TENURE ROADMAP
+%-------------------------------------------------------------------------------
+\section{Five-Year Post-Tenure Research Roadmap (2026--2031)}
+
+Looking ahead, my overall goal for the next five years is to scale the theoretical and system insights developed during my tenure-track period into a foundational paradigm for \textbf{Zero-Trust Autonomous Swarm Intelligence}.
+
+\begin{tcolorbox}[colframe=SecondaryTeal, title=Vision 2026--2031: Next-Generation Swarm Intelligence]
+\begin{description}[font=\sffamily\bfseries\color{PrimaryNavy}]
+  \item[Years 1--2 (Near-Term):] \textbf{Physics-Informed Edge Learning.} We will integrate physical differential equation priors directly into low-bit quantized neural networks operating on embedded edge silicon, eliminating sample inefficiency in real-time robotic navigation.
+  \item[Years 3--4 (Mid-Term):] \textbf{Zero-Trust Decentralized Consensus.} We will develop asynchronous cryptographic primitives that allow autonomous drone swarms to execute mission-critical consensus even when up to 40\% of nodes are compromised by adversary attacks or spoofing signals.
+  \item[Year 5 (Long-Term Horizon):] \textbf{Space-Constrained Micro-Satellite Mesh Networks.} Extending our algorithms to orbital satellite constellations, addressing extreme thermal variance, radiation-induced bit flips, and intermittent ground-station connectivity.
+\end{description}
+\end{tcolorbox}
+
+\subsection{Target Funding \& Institutional Initiatives}
+To support this ambitious vision, I plan to leverage our lab's strong foundational track record to apply for major multi-investigator center grants:
+\begin{itemize}
+  \item \textbf{NSF Cyber-Physical Systems (CPS) Frontier Grant} (\$4M, planned submission 2027 as Lead PI).
+  \item \textbf{DoD MURI (Multidisciplinary University Research Initiative):} Partnering with Aerospace Engineering faculty at Meridian and Apex Institute to explore resilient satellite swarm dynamics.
+  \item \textbf{Industry Ecosystem:} Expanding the Vertex Industrial Consortium to establish a shared testbed standard for autonomous robotics software verification.
+\end{itemize}
+
+%-------------------------------------------------------------------------------
+% SECTION 6: SELECTED PUBLICATIONS
+%-------------------------------------------------------------------------------
+\section{Selected Representative Publications}
+
+\textit{Note: Below is a curated list of top publications during the tenure-track period. Ph.D.\ student advisees from my laboratory are marked with an asterisk (*). Direct links to open-source implementations are provided.}
+
+\subsection{Top Refereed Conference Papers}
+
+\begin{enumerate}[label={\sffamily\bfseries [C\arabic*]}]
+  \item \textbf{Elena V. Rostova}, Marcus Vance*, and Aris Thorne. \textit{"Krum-Asynch: Fast Asynchronous Aggregation under Heavy-Tailed Adversaries."} In \textbf{NeurIPS 2022} (\textit{Advances in Neural Information Processing Systems}), pp. 14201--14215, 2022. \textcolor{SecondaryTeal}{\textbf{[Spotlight Paper, Top 3\% of submissions]}} \\
+  \small\href{https://github.com/rostova-lab/krum-asynch}{\faCodeBranch \ \texttt{github.com/rostova-lab/krum-asynch}}
+
+  \item Sophia Chen*, \textbf{Elena V. Rostova}, and Julian Vance. \textit{"Adaptive Quantized Drift Compensation for Federated Learning on Non-IID Devices."} In \textbf{ICML 2023} (\textit{International Conference on Machine Learning}), PMLR 202: 4891--4908, 2023. \\
+  \small\href{https://github.com/rostova-lab/aqdc-fl}{\faCodeBranch \ \texttt{github.com/rostova-lab/aqdc-fl}}
+
+  \item David K. Miller*, Marcus Vance*, and \textbf{Elena V. Rostova}. \textit{"Decentralized Safe Barrier Functions for Swarm Autonomy in Occluded Environments."} In \textbf{IEEE ICRA 2023} (\textit{International Conference on Robotics and Automation}), pp. 3120--3127, 2023.
+
+  \item \textbf{Elena V. Rostova}, Sophia Chen*, and Hendrik Weber. \textit{"Scaling Resilient Edge Clusters: Operating System Support for Heterogeneous Micro-Kernel Swarms."} In \textbf{ACM OSDI 2023} (\textit{USENIX Symposium on Operating Systems Design and Implementation}), pp. 611--628, 2023.
+
+  \item Amara Okafor*, David K. Miller*, and \textbf{Elena V. Rostova}. \textit{"Provably Safe Model Predictive Control for Low-Power Microcontrollers."} In \textbf{ACM EuroSys 2024} (\textit{European Conference on Computer Systems}), pp. 189--204, 2024.
+
+  \item Marcus Vance*, Sophia Chen*, and \textbf{Elena V. Rostova}. \textit{"Byzantine-Resilient Asynchronous SGD with Optimal Breakdown Point."} In \textbf{ACM SIGCOMM 2024}, pp. 410--425, 2024.
+
+  \item David K. Miller* and \textbf{Elena V. Rostova}. \textit{"Real-Time Swarm Pathfinding under Bursty Wireless Packet Losses."} In \textbf{IEEE/RSJ IROS 2024}, pp. 8890--8897, 2024.
+
+  \item Amara Okafor* and \textbf{Elena V. Rostova}. \textit{"Formal Verification of Stochastic Safety Barriers in Swarm Autonomous Systems."} In \textbf{ACM/IEEE ICCPS 2025} (\textit{International Conference on Cyber-Physical Systems}), pp. 45--56, 2025. \textcolor{SecondaryTeal}{\textbf{[Best Paper Candidate]}}
+\end{enumerate}
+
+\subsection{Top Refereed Journal Publications}
+
+\begin{enumerate}[label={\sffamily\bfseries [J\arabic*]}]
+  \item \textbf{Elena V. Rostova}, Marcus Vance*, and Sophia Chen*. \textit{"Theoretical Guarantees for Asynchronous Gradient Optimization in Bandwidth-Constrained Edge Networks."} \textbf{IEEE Transactions on Parallel and Distributed Systems (TPDS)}, 35(4): 712--728, 2024.
+
+  \item Sophia Chen* and \textbf{Elena V. Rostova}. \textit{"Hardware-Aware Gradient Compression in Federated IoT Architectures."} \textbf{ACM Transactions on Architecture and Code Optimization (TACO)}, 22(1): 18:1--18:24, 2025.
+
+  \item Marcus Vance*, Hendrik Weber, and \textbf{Elena V. Rostova}. \textit{"System Foundations for Resilient Cyber-Physical Edge Computing."} \textbf{ACM Computing Surveys (CSUR)}, 57(2): 41:1--41:38, 2025.
+\end{enumerate}
+
+\vspace{0.3em}
+
+%-------------------------------------------------------------------------------
+% CLOSING SUMMARY & SIGNATURE
+%-------------------------------------------------------------------------------
+\begin{summarybox}
+  \sffamily\small
+  \textbf{Summary Statement:} In summary, my tenure-track record demonstrates a sustained trajectory of research excellence, impactful theoretical and systems contributions, robust external grant funding, and dedication to student mentorship. If granted tenure and promotion to Associate Professor, I will continue to elevate Meridian University's leadership in distributed systems and autonomous computing.
+  
+  \vspace{0.3em}
+  
+  \begin{minipage}[t]{0.5\textwidth}
+    \textbf{Respectfully submitted,} \\[0.6em]
+    \textbf{Dr. Elena V. Rostova} \\
+    Assistant Professor of Computer Science \& Engineering \\
+    Meridian University of Technology
+  \end{minipage}%
+  \begin{minipage}[t]{0.5\textwidth}
+    \raggedleft
+    \textbf{Date:} October 15, 2025 \\
+    \textbf{Location:} Meridian, MA
+  \end{minipage}
+\end{summarybox}
+
+\end{document}

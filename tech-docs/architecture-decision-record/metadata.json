@@ -1,0 +1,8 @@
+{
+  "name": "Software Architecture Decision Record (ADR)",
+  "compiler": "pdflatex",
+  "description": "Software Architecture Decision Record (ADR) LaTeX template \u2014 software architecture decision record adr latex template. Elegant, compile-tested, editable online at letx.app.",
+  "author": "LetX",
+  "category": "tech-docs",
+  "license": "MIT"
+}
